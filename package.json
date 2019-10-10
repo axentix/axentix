@@ -1,9 +1,10 @@
 {
   "name": "axentix",
   "version": "0.1.0",
-  "description": "Axentix - Front-End Framework",
+  "description": "Axentix is lightweight and open source Framework based on CSS-Grid using HTML, CSS and JS.",
   "homepage": "https://useaxentix.com",
-  "private": true,
+  "author": "Axel SIMONET, Vincent LEVEQUE",
+  "license": "MIT",
   "scripts": {
     "build:js": "gulp js",
     "build:js-min": "gulp jsmin",
@@ -12,12 +13,39 @@
     "build": "gulp",
     "watch": "gulp watch"
   },
+  "keywords": [
+    "axentix",
+    "framework",
+    "front-end",
+    "responsive",
+    "css",
+    "js",
+    "sass",
+    "web"
+  ],
   "repository": {
     "type": "git",
-    "url": "ssh://git@git.axelsimonet.fr:2220/AxelS/Axentix.git"
+    "url": "git@github.com:axentix/axentix.git"
   },
-  "author": "Axentix Team",
-  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/axentix/axentix/issues"
+  },
+  "style": "dist/css/axentix.css",
+  "sass": "src/scss/axentix.scss",
+  "main": "dist/js/axentix.js",
+  "files": [
+    "dist",
+    "src",
+    "gulpfile.js",
+    "LICENSE",
+    "README",
+    "CHANGELOG"
+  ],
+  "np": {
+    "yarn": false,
+    "tests": false
+  },
+  "engine": "node >= 10",
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
