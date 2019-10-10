@@ -41,10 +41,6 @@
     "README",
     "CHANGELOG"
   ],
-  "np": {
-    "yarn": false,
-    "tests": false
-  },
   "engine": "node >= 10",
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -60,5 +56,6 @@
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
     "sass": "^1.22.10"
-  }
+  },
+  "dependencies": {}
 }
