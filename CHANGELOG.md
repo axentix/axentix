@@ -1,3 +1,10 @@
+# 0.1.1 - 2019-10-10
+
+- ADDED
+- REMOVED
+- BUGFIXES
+  - Fix critical bug on a:hover who apply on all components.
+
 # 0.1.0 - 2019-10-10
 
 We are very happy to present you the first release of Axentix.
