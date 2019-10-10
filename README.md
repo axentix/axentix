@@ -10,8 +10,6 @@
   <a href="https://useaxentix.com/docs/"><strong>Documentation</strong></a>
 </p>
 
-#
-
 ## Quickstart
 
 - You can download the latest release from [Github](https://github.com/axentix/axentix/releases/latest).
