@@ -40,10 +40,6 @@ a {
   text-decoration: none;
   color: getColor('primary');
   transition: color 0.2s ease;
-
-  &:hover {
-    color: getColor('cyan');
-  }
 }
 
 p {

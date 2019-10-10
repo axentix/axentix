@@ -385,9 +385,6 @@ a {
   color: #2196f3;
   transition: color 0.2s ease;
 }
-a:hover {
-  color: #28d1e7;
-}
 
 p {
   line-height: 1.6rem;
