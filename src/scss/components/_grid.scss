@@ -1,0 +1,71 @@
+/*** Grix : Efficient grid system for everyone ***/
+
+// Base
+.grix {
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: 0.25rem;
+}
+
+@each $name, $value in $grid-breakpoints {
+  @if ($name == 'xs') {
+    @for $i from 1 through $max-cols {
+      .grix.#{$name}#{$i} {
+        grid-template-columns: repeat($i, 1fr);
+      }
+
+      .col.#{$name}#{$i} {
+        grid-column: auto / span $i;
+      }
+
+      .row-#{$name}#{$i} {
+        grid-row: auto / span $i;
+      }
+
+      .pos-#{$name}#{$i} {
+        grid-column-start: #{$i};
+      }
+    }
+  } @else {
+    @for $i from 1 through $max-cols {
+      @media #{$value} {
+        .grix.#{$name}#{$i} {
+          grid-template-columns: repeat($i, 1fr);
+        }
+
+        .col.#{$name}#{$i} {
+          grid-column: auto / span $i;
+        }
+
+        .row-#{$name}#{$i} {
+          grid-row: auto / span $i;
+        }
+
+        .pos-#{$name}#{$i} {
+          grid-column-start: #{$i};
+        }
+      }
+    }
+  }
+}
+
+// gutters
+@each $num, $size in $gutter {
+  @each $name, $value in $grid-breakpoints {
+    @if ($name == 'xs') {
+      .gutter-#{$name}#{$num} {
+        grid-gap: $size;
+      }
+    } @else {
+      @media #{$value} {
+        .gutter-#{$name}#{$num} {
+          grid-gap: $size;
+        }
+      }
+    }
+  }
+}
+
+.no-auto-height {
+  grid-template-rows: minmax(min-content, max-content);
+}

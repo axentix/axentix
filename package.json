@@ -1,0 +1,36 @@
+{
+  "name": "axentix",
+  "version": "0.1.0",
+  "description": "Axentix - Front-End Framework",
+  "homepage": "https://useaxentix.com",
+  "private": true,
+  "scripts": {
+    "build:js": "gulp js",
+    "build:js-min": "gulp jsmin",
+    "build:sass-min": "gulp sassmin",
+    "build:sass": "gulp sass",
+    "build": "gulp",
+    "watch": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@git.axelsimonet.fr:2220/AxelS/Axentix.git"
+  },
+  "author": "Axentix Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "browser-sync": "^2.26.7",
+    "fibers": "^4.0.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-babel-minify": "^0.5.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-deporder": "^1.2.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "sass": "^1.22.10"
+  }
+}

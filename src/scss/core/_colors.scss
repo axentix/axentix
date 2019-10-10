@@ -1,0 +1,42 @@
+// Creating light and dark variations for all colors
+@each $name, $value in $colors {
+  @for $i from -5 through 4 {
+    @if $i < 0 {
+      .#{$name}.dark-#{abs($i)} {
+        background-color: darken($value, abs($i) * 8%);
+        color: txtColor(darken($value, abs($i) * 8%));
+      }
+      .txt-#{$name}.txt-dark-#{abs($i)} {
+        color: darken($value, abs($i) * 8%) !important;
+      }
+    }
+    @if $i == 0 {
+      .#{$name} {
+        background-color: #{$value};
+        color: txtColor($value);
+      }
+      .txt-#{$name} {
+        color: #{$value} !important;
+      }
+    }
+    @if $i > 0 {
+      .#{$name}.light-#{$i} {
+        background-color: lighten($value, $i * 8%);
+        color: txtColor(lighten($value, $i * 8%));
+      }
+      .txt-#{$name}.txt-light-#{$i} {
+        color: lighten($value, $i * 8%) !important;
+      }
+    }
+  }
+}
+
+@each $name, $value in $axentix-palette {
+  .#{$name} {
+    background-color: #{$value};
+    color: txtColor($value);
+  }
+  .txt-#{$name} {
+    color: #{$value} !important;
+  }
+}

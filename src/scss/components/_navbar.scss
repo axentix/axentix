@@ -1,0 +1,91 @@
+/*** Navbar ***/
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 0.5rem;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  position: relative;
+  @extend .shadow-1;
+
+  .logo {
+    display: flex;
+    height: 3rem;
+    margin: 0 1rem;
+
+    img {
+      width: inherit;
+      height: inherit;
+    }
+
+    &.centered {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-100%);
+    }
+  }
+
+  &.center {
+    justify-content: center;
+  }
+
+  .nav-brand {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: inherit;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    &.right {
+      margin-left: auto;
+    }
+
+    &.left {
+      margin-right: auto;
+    }
+
+    li {
+      padding: 0;
+      a {
+        color: inherit;
+        text-decoration: none;
+        display: block;
+        padding: 0 0.6rem;
+        transition: background-color 0.23s ease;
+
+        @include responsive('xs') {
+          padding: 0 0.4rem;
+        }
+
+        &:hover,
+        &.active {
+          background-color: rgba(0, 0, 0, 0.15);
+        }
+      }
+    }
+  }
+}
+
+// Fixed navbar
+.navbar-fixed {
+  height: 3.5rem;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+// Styling navbar

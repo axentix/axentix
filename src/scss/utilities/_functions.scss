@@ -1,0 +1,32 @@
+/*** Functions ***/
+// Get color contrast for text | By https://codepen.io/davidhalford/pen/wlDxL
+@function txtColor($n) {
+  @if ($n == transparent) {
+    @return #000;
+  }
+  $color-brightness: round((red($n) * 299) + (green($n) * 587) + (blue($n) * 114) / 1000);
+  $light-color: round((red(#ffffff) * 299) + (green(#ffffff) * 587) + (blue(#ffffff) * 114) / 1000);
+
+  @if (abs($color-brightness) < ($light-color/2)) {
+    @return #fff;
+  } @else {
+    @return #000;
+  }
+}
+
+// User can get any color Lighten or Darken using getColor function
+@function getColor($color, $variant: '', $number: 0) {
+  $tmpcolor: undefined;
+  @if (map-has-key($colors, $color)) {
+    $tmpcolor: map-get($colors, $color);
+  } @else if (map-has-key($axentix-palette, $color)) {
+    $tmpcolor: map-get($axentix-palette, $color);
+  }
+
+  @if ($variant == 'light' and $number > 0) {
+    @return lighten($tmpcolor, $number * 8%);
+  } @else if ($variant == 'dark' and $number > 0) {
+    @return darken($tmpcolor, $number * 8%);
+  }
+  @return $tmpcolor;
+}

@@ -1,0 +1,180 @@
+/*** Some helpers classes ***/
+.mg-0 {
+  margin: 0 !important;
+}
+
+.pd-0 {
+  padding: 0 !important;
+}
+
+.shadow-0 {
+  box-shadow: none !important;
+}
+
+.dropshadow-0 {
+  filter: none !important;
+}
+
+.textshadow-0 {
+  text-shadow: none !important;
+}
+
+.gutter-0 {
+  grid-gap: 0 !important;
+}
+
+.flex {
+  display: flex;
+}
+
+.w100 {
+  width: 100% !important;
+}
+// box shadows
+@each $number, $value in $shadows {
+  .shadow-#{$number} {
+    box-shadow: #{$value};
+  }
+}
+// drop shadows
+@each $number, $value in $drop-shadows {
+  .dropshadow-#{$number} {
+    filter: #{$value};
+  }
+}
+// text shadows
+@each $number, $value in $text-shadows {
+  .textshadow-#{$number} {
+    text-shadow: #{$value};
+  }
+}
+
+// Hide elements
+.hide {
+  display: none;
+}
+
+@each $name, $value in $breakpoints {
+  @media #{$value} {
+    .hide-#{$name} {
+      display: none !important;
+    }
+  }
+}
+@each $name, $value in $extra-breakpoints {
+  @media #{$value} {
+    .hide-#{$name} {
+      display: none !important;
+    }
+  }
+}
+
+// Alignments
+.txt-left {
+  text-align: left;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.txt-right {
+  text-align: right;
+}
+
+.mg-center {
+  margin: 0 auto;
+}
+
+.center {
+  justify-items: center;
+}
+.left {
+  justify-items: start;
+}
+.right {
+  justify-items: end;
+}
+
+.fx-center {
+  justify-content: center;
+}
+
+.fx-right {
+  justify-content: flex-end;
+}
+
+.fx-left {
+  justify-content: flex-start;
+}
+
+.self-center {
+  justify-self: center;
+}
+
+.self-left {
+  justify-self: start;
+}
+
+.self-right {
+  justify-self: end;
+}
+
+.vtop {
+  align-items: start;
+}
+
+.vcenter {
+  align-items: center;
+}
+
+.vbottom {
+  align-items: end;
+}
+
+.vself-top {
+  align-self: start;
+}
+
+.vself-center {
+  align-self: center;
+}
+
+.vself-bottom {
+  align-self: end;
+}
+
+// Truncate
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Divider
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #eee;
+}
+
+// Blockquote
+.blockquote {
+  border-left: 5px solid getColor('primary');
+  margin: 0;
+  padding: 1rem 2rem;
+}
+
+// Container
+.container {
+  width: 75%;
+  margin: 0 auto;
+
+  @include responsive('sm-down') {
+    width: 85%;
+  }
+
+  @include responsive('xs') {
+    width: 90%;
+  }
+}

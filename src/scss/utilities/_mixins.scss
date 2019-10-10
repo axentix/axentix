@@ -1,0 +1,14 @@
+/*** Mixins ***/
+@mixin responsive($br) {
+  @if (map-has-key($breakpoints, $br)) {
+    $value: map-get($breakpoints, $br);
+    @media #{$value} {
+      @content;
+    }
+  } @else if (map-has-key($extra-breakpoints, $br)) {
+    $value: map-get($extra-breakpoints, $br);
+    @media #{$value} {
+      @content;
+    }
+  }
+}

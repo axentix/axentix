@@ -1,0 +1,72 @@
+/*** Some basics rules ***/
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: $font-family;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1.25rem 0 0.75rem;
+}
+h1 {
+  font-size: $h1;
+}
+h2 {
+  font-size: $h2;
+}
+h3 {
+  font-size: $h3;
+}
+h4 {
+  font-size: $h4;
+}
+h5 {
+  font-size: $h5;
+}
+h6 {
+  font-size: $h6;
+}
+
+a {
+  text-decoration: none;
+  color: getColor('primary');
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: getColor('cyan');
+  }
+}
+
+p {
+  line-height: 1.6rem;
+}
+
+// Ghost overlay
+.ghost-overlay {
+  position: relative;
+  z-index: 1000;
+  animation: ghost 1s infinite ease-in-out;
+}
+
+@keyframes ghost {
+  0% {
+    background-color: rgba(165, 165, 165, 0.1);
+  }
+
+  50% {
+    background-color: rgba(165, 165, 165, 0.35);
+  }
+
+  100% {
+    background-color: rgba(165, 165, 165, 0.1);
+  }
+}
