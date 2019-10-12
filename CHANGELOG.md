@@ -1,3 +1,10 @@
+# 0.1.2 - 2019-10-12
+
+- ADDED
+- REMOVED
+- BUGFIXES
+  - Fix responsive tables not working correctly.
+
 # 0.1.1 - 2019-10-10
 
 - ADDED

@@ -83,7 +83,7 @@
   }
 }
 
-.responsive-table .table {
+.responsive-table {
   overflow-x: auto;
   width: 100%;
   max-width: 100vw;
@@ -95,7 +95,7 @@
   }
 }
 
-.responsive-table-2 .table {
+.responsive-table-2 {
   width: 100%;
   max-width: 100vw;
   @include responsive('xs') {
@@ -134,7 +134,7 @@
   }
 }
 
-.responsive-table-3 .table {
+.responsive-table-3 {
   width: 100%;
   max-width: 100vw;
 

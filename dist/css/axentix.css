@@ -3281,65 +3281,65 @@ p {
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.responsive-table .table {
+.responsive-table {
   overflow-x: auto;
   width: 100%;
   max-width: 100vw;
 }
-.responsive-table .table td,
-.responsive-table .table th {
+.responsive-table td,
+.responsive-table th {
   max-width: 80vw;
   overflow-wrap: break-word;
 }
 
-.responsive-table-2 .table {
+.responsive-table-2 {
   width: 100%;
   max-width: 100vw;
 }
 @media screen and (max-width: 599px) {
-  .responsive-table-2 .table table thead {
+  .responsive-table-2 table thead {
     display: block;
     float: left;
   }
-  .responsive-table-2 .table table thead tr {
+  .responsive-table-2 table thead tr {
     display: block;
   }
-  .responsive-table-2 .table table thead tr th {
+  .responsive-table-2 table thead tr th {
     display: block;
     max-width: 25vw;
     overflow-wrap: break-word;
   }
-  .responsive-table-2 .table table tbody {
+  .responsive-table-2 table tbody {
     display: block;
     overflow-x: auto;
     max-width: 75vw;
   }
-  .responsive-table-2 .table table tbody tr {
+  .responsive-table-2 table tbody tr {
     display: table-cell;
   }
-  .responsive-table-2 .table table tbody tr td {
+  .responsive-table-2 table tbody tr td {
     display: block;
     text-align: right;
     overflow-wrap: break-word;
   }
 }
 
-.responsive-table-3 .table {
+.responsive-table-3 {
   width: 100%;
   max-width: 100vw;
 }
 @media screen and (max-width: 599px) {
-  .responsive-table-3 .table table thead {
+  .responsive-table-3 table thead {
     display: none;
   }
-  .responsive-table-3 .table table tr {
+  .responsive-table-3 table tr {
     display: block;
   }
-  .responsive-table-3 .table table td {
+  .responsive-table-3 table td {
     display: block;
     text-align: right;
   }
-  .responsive-table-3 .table table td::before {
+  .responsive-table-3 table td::before {
     content: attr(data-col);
     float: left;
     font-weight: 600;
