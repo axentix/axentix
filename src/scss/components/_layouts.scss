@@ -63,12 +63,12 @@
 
     @include responsive('md-up') {
       header,
-      main,
-      footer {
+      main {
         padding-left: $sidenav-width;
       }
 
-      .navbar-fixed .navbar {
+      .navbar-fixed .navbar,
+      footer {
         padding-left: $sidenav-width + 0.5rem;
       }
     }

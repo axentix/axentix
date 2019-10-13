@@ -152,6 +152,8 @@ function () {
     this.sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
     this.isActive = false;
     this.isFixed = this.el.classList.contains('fixed');
+    this.isInLayout = document.body.classList.contains('fixed-sidenav');
+    this.isLarge = this.el.classList.contains('large');
     /**
      * Options
      * @member Sidenav#options
@@ -166,6 +168,8 @@ function () {
     }
 
     this._setup();
+
+    this._handleSidenavLarge();
   }
   /**
    * Setup listeners
@@ -199,6 +203,27 @@ function () {
       this.overlayElement = document.createElement('div');
       this.overlayElement.classList.add('sidenav-overlay');
       this.overlayElement.dataset.target = this.el.id;
+    }
+    /**
+     * Handle Sidenav large when is in layout
+     */
+
+  }, {
+    key: "_handleSidenavLarge",
+    value: function _handleSidenavLarge() {
+      if (this.isInLayout && this.isLarge && window.innerWidth >= 960) {
+        var elementWidth = this.el.offsetWidth;
+        var navFixedEl = document.querySelector('.navbar-fixed .navbar');
+        navFixedEl ? navFixedEl.style.paddingLeft = elementWidth + 8 + 'px' : '';
+        document.querySelector('header').style.paddingLeft = elementWidth + 'px';
+        document.querySelector('main').style.paddingLeft = elementWidth + 'px';
+        document.querySelector('footer').style.paddingLeft = elementWidth + 8 + 'px';
+
+        if (document.body.classList.contains('under-navbar')) {
+          document.querySelector('header').style.paddingLeft = '';
+          navFixedEl ? navFixedEl.style.paddingLeft = 8 + 'px' : '';
+        }
+      }
     }
     /**
      * Enable or disable body scroll when option is true

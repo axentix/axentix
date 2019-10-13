@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Axentix Layout - With sidenav • Style 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
+  </head>
+
+  <body class="layout with-sidenav fixed-sidenav under-navbar">
+    <header>
+      <div class="navbar-fixed">
+        <nav class="navbar primary">
+          <a href="#" target="_blank" class="nav-brand">Axentix</a>
+          <ul class="right">
+            <li><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a href="#">Link 3</a></li>
+            <li><a href="#">Link 4</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <ul id="example-sidenav" class="sidenav white fixed large">
+      <li class="header">
+        <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
+        <img class="logo dropshadow-1" src="https://useaxentix.com/img/axentix-250.png" />
+      </li>
+      <li><a href="#" class="active">Link 1</a></li>
+      <li><a href="#">Link 2</a></li>
+      <li><a href="#">Link 3</a></li>
+      <li><a href="#">Link 4</a></li>
+    </ul>
+
+    <main>
+      <button data-target="example-sidenav" class="btn press amaranth dark-1 sidenav-trigger">
+        Open sidenav
+      </button>
+    </main>
+
+    <footer class="footer primary">
+      Copyright © 2019 - Example
+    </footer>
+    <script src="../dist/js/axentix.min.js"></script>
+    <script>
+      var sidenav = new Sidenav('#example-sidenav');
+    </script>
+  </body>
+</html>

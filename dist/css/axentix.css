@@ -3194,11 +3194,11 @@ p {
 }
 @media screen and (min-width: 960px) {
   .layout.with-sidenav.fixed-sidenav header,
-.layout.with-sidenav.fixed-sidenav main,
-.layout.with-sidenav.fixed-sidenav footer {
+.layout.with-sidenav.fixed-sidenav main {
     padding-left: 12rem;
   }
-  .layout.with-sidenav.fixed-sidenav .navbar-fixed .navbar {
+  .layout.with-sidenav.fixed-sidenav .navbar-fixed .navbar,
+.layout.with-sidenav.fixed-sidenav footer {
     padding-left: 12.5rem;
   }
 }
