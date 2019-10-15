@@ -95,4 +95,18 @@
       }
     }
   }
+
+  &.sidenav-large {
+    @include responsive('md-up') {
+      header,
+      main {
+        padding-left: $sidenav-large-width;
+      }
+
+      .navbar-fixed .navbar,
+      footer {
+        padding-left: $sidenav-large-width + 0.5rem;
+      }
+    }
+  }
 }

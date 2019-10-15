@@ -3218,6 +3218,16 @@ p {
     top: 3.5rem;
   }
 }
+@media screen and (min-width: 960px) {
+  .layout.with-sidenav.sidenav-large header,
+.layout.with-sidenav.sidenav-large main {
+    padding-left: 15rem;
+  }
+  .layout.with-sidenav.sidenav-large .navbar-fixed .navbar,
+.layout.with-sidenav.sidenav-large footer {
+    padding-left: 15.5rem;
+  }
+}
 
 /*** Table ***/
 .table {
