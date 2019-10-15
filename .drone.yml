@@ -5,10 +5,10 @@ steps:
 - name: Install
   image: node:11-alpine
   commands:
-  - npm install
+  - npm ci
   when:
     branch:
-      - master
+      - infra
     event:
       - push
 
@@ -18,6 +18,22 @@ steps:
   - npm run build
   when:
     branch:
-      - master
+      - infra
+    event:
+      - push
+
+- name: Github Release
+  image: plugins/github-release
+  settings:
+    api_key:
+      from_secret: github_auth
+    files:
+      - dist/*
+      - CHANGELOG.md
+      - LICENSE
+      - README.md
+  when:
+    branch:
+      - infra
     event:
       - push
