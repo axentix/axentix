@@ -29,7 +29,7 @@ steps:
     api_key:
       from_secret: github_auth
     files:
-      - dist/*
+      - dist/**/*
       - CHANGELOG.md
       - LICENSE
       - README.md
