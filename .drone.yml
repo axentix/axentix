@@ -1,0 +1,23 @@
+kind: pipeline
+name: default
+
+steps:
+- name: Install
+  image: node:11-alpine
+  commands:
+  - npm install
+  when:
+    branch:
+      - master
+    event:
+      - push
+
+- name: Build
+  image: node:11-alpine
+  commands:
+  - npm run build
+  when:
+    branch:
+      - master
+    event:
+      - push
