@@ -11,7 +11,7 @@ steps:
     branch:
       - infra
     event:
-      - push
+      - tag
 
 - name: Build
   image: node:11-alpine
@@ -21,7 +21,7 @@ steps:
     branch:
       - infra
     event:
-      - push
+      - tag
 
 - name: Github Release
   image: plugins/github-release
@@ -39,4 +39,4 @@ steps:
     branch:
       - infra
     event:
-      - push
+      - tag
