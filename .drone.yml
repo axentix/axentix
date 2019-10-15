@@ -2,26 +2,26 @@ kind: pipeline
 name: default
 
 steps:
-# - name: Install
-#   image: node:11-alpine
-#   commands:
-#   - apk add python make g++
-#   - npm install
-#   when:
-#     branch:
-#       - infra
-#     event:
-#       - push
+- name: Install
+  image: node:11-alpine
+  commands:
+  - apk add python make g++
+  - npm install
+  when:
+    branch:
+      - infra
+    event:
+      - push
 
-# - name: Build
-#   image: node:11-alpine
-#   commands:
-#   - npm run build
-#   when:
-#     branch:
-#       - infra
-#     event:
-#       - push
+- name: Build
+  image: node:11-alpine
+  commands:
+  - npm run build
+  when:
+    branch:
+      - infra
+    event:
+      - push
 
 - name: Github Release
   image: plugins/github-release
