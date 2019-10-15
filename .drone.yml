@@ -5,6 +5,7 @@ steps:
 - name: Install
   image: node:11-alpine
   commands:
+  - apk add python make g++
   - npm install
   when:
     branch:
