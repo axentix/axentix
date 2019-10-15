@@ -34,7 +34,6 @@ steps:
       - LICENSE
       - README.md
     draft: true
-    title: '0.1.3'
   when:
     branch:
       - infra
