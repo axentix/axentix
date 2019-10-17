@@ -17,6 +17,7 @@ steps:
   image: node:11-alpine
   commands:
   - npm run build
+  - echo ${DRONE_TAG}
   when:
     branch:
       - infra
