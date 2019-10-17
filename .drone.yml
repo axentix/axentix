@@ -2,7 +2,7 @@ kind: pipeline
 name: default
 
 steps:
-- name: Install
+- name: install
   image: node:11-alpine
   commands:
   - apk add python make g++
@@ -13,7 +13,7 @@ steps:
     event:
       - tag
 
-- name: Build
+- name: build
   image: node:11-alpine
   commands:
   - npm run build
@@ -23,17 +23,28 @@ steps:
     event:
       - tag
 
-- name: Github Release
+- name: make zip folder
+  image: node:11-alpine
+  commands:
+  - apk add zip
+  - cp -R ./dist ./axentix-v0.1.2-alpha
+  - cp CHANGELOG.md ./axentix-v0.1.2-alpha/CHANGELOG.md
+  - cp LICENSE ./axentix-v0.1.2-alpha/LICENSE
+  - cp README.md ./axentix-v0.1.2-alpha/README.md
+  - zip -R ./axentix-v0.1.2-alpha.zip ./axentix-v0.1.2-alpha
+  when:
+    branch:
+      - infra
+    event:
+      - tag
+
+- name: github release
   image: plugins/github-release
   settings:
     api_key:
       from_secret: github_auth
     files:
-      - dist/**/*
-      - CHANGELOG.md
-      - LICENSE
-      - README.md
-    draft: true
+      - axentix-v0.1.2-alpha.zip
   when:
     branch:
       - infra
