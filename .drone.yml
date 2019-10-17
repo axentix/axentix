@@ -31,7 +31,7 @@ steps:
   - cp CHANGELOG.md ./axentix-v0.1.2-alpha/CHANGELOG.md
   - cp LICENSE ./axentix-v0.1.2-alpha/LICENSE
   - cp README.md ./axentix-v0.1.2-alpha/README.md
-  - zip -R ./axentix-v0.1.2-alpha.zip ./axentix-v0.1.2-alpha
+  - zip -r ./axentix-v0.1.2-alpha.zip ./axentix-v0.1.2-alpha
   when:
     branch:
       - infra
