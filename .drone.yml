@@ -28,11 +28,11 @@ steps:
   image: node:11-alpine
   commands:
   - apk add zip
-  - cp -R ./dist ./axentix-v0.1.2-alpha
-  - cp CHANGELOG.md ./axentix-v0.1.2-alpha/CHANGELOG.md
-  - cp LICENSE ./axentix-v0.1.2-alpha/LICENSE
-  - cp README.md ./axentix-v0.1.2-alpha/README.md
-  - zip -r ./axentix-v0.1.2-alpha.zip ./axentix-v0.1.2-alpha
+  - cp -R ./dist ./axentix-v${DRONE_TAG}
+  - cp CHANGELOG.md ./axentix-v${DRONE_TAG}/CHANGELOG.md
+  - cp LICENSE ./axentix-v${DRONE_TAG}/LICENSE
+  - cp README.md ./axentix-v${DRONE_TAG}/README.md
+  - zip -r ./axentix-v${DRONE_TAG}.zip ./axentix-v${DRONE_TAG}
   when:
     branch:
       - infra
@@ -45,8 +45,7 @@ steps:
     api_key:
       from_secret: github_auth
     files:
-      - axentix-v0.1.2-alpha.zip
-    draft: true
+      - axentix-v${DRONE_TAG}.zip
     overwrite: true
   when:
     branch:
