@@ -45,6 +45,8 @@ steps:
       from_secret: github_auth
     files:
       - axentix-v0.1.2-alpha.zip
+    draft: true
+    overwrite: true
   when:
     branch:
       - infra
