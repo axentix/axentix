@@ -3526,18 +3526,56 @@ p {
 }
 
 .card {
-  display: table;
+  width: 100%;
   margin: 0.5rem 0;
   box-sizing: border-box;
+  align-self: start;
+  overflow: hidden;
 }
 .card .card-header {
   font-size: 1.5rem;
   padding: 1rem 1.5rem 0.5rem;
 }
 .card .card-content {
-  padding: 0 1.5rem 0.5rem;
+  padding: 1rem 1.5rem;
+}
+.card .card-content .card-header {
+  padding: 1rem 0;
 }
 .card .card-footer {
   padding: 0.5rem 1.5rem 1rem;
   border-top: 2px solid rgba(180, 180, 180, 0.2);
+}
+.card.vertical .card-image {
+  position: relative;
+}
+.card.vertical .card-image img {
+  background-size: cover;
+  width: 100%;
+}
+.card.user-card {
+  display: flex;
+}
+.card.user-card .user-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+}
+.card.user-card .user-side .user-name {
+  font-size: 1.5rem;
+}
+.card.user-card .user-side img {
+  padding: 1rem 0;
+  border-radius: 100%;
+  width: 50%;
+  align-self: center;
+  justify-self: center;
+}
+.card.user-card .description-side {
+  width: 60%;
+  padding: 1rem;
+}
+.card.user-card .description-side .description-title {
+  font-size: 1.5rem;
 }
