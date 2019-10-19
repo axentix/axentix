@@ -15,7 +15,6 @@ steps:
   image: node:11-alpine
   commands:
   - npm run build
-  - npm --no-git-tag-version version ${DRONE_TAG}
   when:
     event:
       - tag
