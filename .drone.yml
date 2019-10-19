@@ -8,8 +8,6 @@ steps:
   - apk add python make g++
   - npm install
   when:
-    branch:
-      - infra
     event:
       - tag
 
@@ -17,10 +15,8 @@ steps:
   image: node:11-alpine
   commands:
   - npm run build
-  - echo ${DRONE_TAG}
+  - npm --no-git-tag-version version ${DRONE_TAG}
   when:
-    branch:
-      - infra
     event:
       - tag
 
@@ -34,8 +30,6 @@ steps:
   - cp README.md ./axentix-v${DRONE_TAG}/README.md
   - zip -r ./axentix-v${DRONE_TAG}.zip ./axentix-v${DRONE_TAG}
   when:
-    branch:
-      - infra
     event:
       - tag
 
@@ -47,7 +41,5 @@ steps:
     files:
       - axentix-v${DRONE_TAG}.zip
   when:
-    branch:
-      - infra
     event:
       - tag
