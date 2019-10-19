@@ -11,7 +11,8 @@
     "build:sass-min": "gulp sassmin",
     "build:sass": "gulp sass",
     "build": "gulp",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "postversion": "git push origin --follow-tags"
   },
   "keywords": [
     "axentix",
