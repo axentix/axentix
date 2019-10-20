@@ -24,6 +24,7 @@ class Sidenav {
     this.sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
     this.isActive = false;
     this.isFixed = this.el.classList.contains('fixed');
+    this.isLarge = this.el.classList.contains('large');
 
     /**
      * Options
@@ -37,6 +38,7 @@ class Sidenav {
       this._createOverlay();
     }
     this._setup();
+    this.el.classList.contains('large') ? document.body.classList.add('sidenav-large') : '';
   }
 
   /**
