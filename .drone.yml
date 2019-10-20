@@ -1,5 +1,5 @@
 kind: pipeline
-name: default
+name: axentix new release
 
 steps:
 - name: install
@@ -39,6 +39,17 @@ steps:
       from_secret: github_auth
     files:
       - axentix-v${DRONE_TAG}.zip
+  when:
+    event:
+      - tag
+
+- name: publish to npm
+  image: plugins/npm
+  settings:
+    token:
+      from_secret: npm_token
+    email:
+      from_secret: publish_email
   when:
     event:
       - tag
