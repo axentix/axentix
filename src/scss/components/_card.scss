@@ -4,11 +4,12 @@
   box-sizing: border-box;
   align-self: start;
   overflow: hidden;
+  @extend .shadow-1;
   //word-break: break-all;
 
   .card-header {
     font-size: 1.5rem;
-    padding: 1rem 1.5rem 0.5rem;
+    padding: 2rem 1.5rem 0;
   }
   .card-content {
     padding: 1rem 1.5rem;
@@ -42,10 +43,10 @@
       .user-name {
         font-size: 1.5rem;
       }
-      img {
-        padding: 1rem 0;
-        border-radius: 100%;
-        width: 50%;
+      .logo {
+        margin: 1rem 0;
+        width: 4rem;
+        height: 4rem;
         align-self: center;
         justify-self: center;
       }

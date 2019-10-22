@@ -2818,7 +2818,7 @@ p {
   width: 100% !important;
 }
 
-.shadow-1, .sidenav, .btn, .navbar {
+.shadow-1, .card, .sidenav, .btn, .navbar {
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.18), 0px 2px 5px 0px rgba(0,0,0,0.14);
 }
 
@@ -3534,7 +3534,7 @@ p {
 }
 .card .card-header {
   font-size: 1.5rem;
-  padding: 1rem 1.5rem 0.5rem;
+  padding: 2rem 1.5rem 0;
 }
 .card .card-content {
   padding: 1rem 1.5rem;
@@ -3565,10 +3565,10 @@ p {
 .card.user-card .user-side .user-name {
   font-size: 1.5rem;
 }
-.card.user-card .user-side img {
-  padding: 1rem 0;
-  border-radius: 100%;
-  width: 50%;
+.card.user-card .user-side .logo {
+  margin: 1rem 0;
+  width: 4rem;
+  height: 4rem;
   align-self: center;
   justify-self: center;
 }
