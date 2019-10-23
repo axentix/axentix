@@ -1,7 +1,10 @@
 # 0.2.0 - Under Development
 
 - ADDED
-  - Add .large class to sidenav to have a bigger sidenav
+  - Add .large class to sidenav to have a bigger sidenav (work in layouts !)
+  - Add cards with variants
+  - Add outline buttons
+  - Change sidenav syntax
 - REMOVED
 - BUGFIXES
   - Fix incorrect header and footer padding when using layouts

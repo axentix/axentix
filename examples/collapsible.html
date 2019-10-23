@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../dist/css/axentix.min.css" />
   </head>
 
-  <body class="layout">
+  <body class="layout with-sidenav fixed-sidenav">
     <header>
       <div class="navbar-fixed">
         <nav class="navbar primary">
@@ -21,18 +21,59 @@
       </div>
     </header>
 
+    <div id="example-sidenav" class="sidenav fixed white">
+      <div class="header">
+        <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
+        <img class="logo dropshadow-1" src="https://useaxentix.com/img/axentix-250.png" />
+      </div>
+      <a href="#" class="active">Link 1</a>
+      <a href="#" class="collapsible-trigger" data-target="sidenav-collapsible">Collapsible</a>
+      <div>
+        <div class="collapsible" id="sidenav-collapsible">
+          <a href="#">Sublink 1</a>
+          <a href="#">Sublink 2</a>
+          <a href="#">Sublink 3</a>
+          <a href="#">Sublink 4</a>
+        </div>
+      </div>
+      <a href="#">Link 3</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+      <a href="#">Link 4</a>
+    </div>
+
     <main>
       <div class="container">
         <button data-target="example-collapsible" class="btn press amaranth dark-1 collapsible-trigger">
           Toggle
         </button>
-        <div class="collapsible blue" id="example-collapsible">
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error, soluta asperiores nobis, iusto
-            tenetur illum sunt modi quisquam blanditiis aspernatur sequi minus corporis quibusdam quam
-            voluptatem! Cumque nemo debitis porro.
-          </p>
+        <div class="collapsible" id="example-collapsible">
+          <div class="card blue">
+            <div class="card-content">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error, soluta asperiores nobis, iusto
+              tenetur illum sunt modi quisquam blanditiis aspernatur sequi minus corporis quibusdam quam
+              voluptatem! Cumque nemo debitis porro.
+            </div>
+          </div>
         </div>
+        <button data-target="example-sidenav" class="btn press amaranth dark-1 sidenav-trigger">
+          Open sidenav
+        </button>
       </div>
     </main>
 
@@ -42,6 +83,8 @@
     <script src="../dist/js/axentix.min.js"></script>
     <script>
       var exampleCollapsible = new Collapsible('#example-collapsible');
+      var sidenavCollapsible = new Collapsible('#sidenav-collapsible');
+      var exampleSidenav = new Sidenav('#example-sidenav');
     </script>
   </body>
 </html>

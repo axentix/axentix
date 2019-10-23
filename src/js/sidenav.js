@@ -1,13 +1,4 @@
 /**
- * Component: Sidenav
- */
-
-let defaultOptions = {
-  overlay: true,
-  bodyScrolling: true
-};
-
-/**
  * Class Sidenav
  * @class
  */
@@ -19,6 +10,11 @@ class Sidenav {
    * @param {Object} options
    */
   constructor(element, options) {
+    this.defaultOptions = {
+      overlay: true,
+      bodyScrolling: true
+    };
+
     this.el = document.querySelector(element);
     this.el.Sidenav = this;
     this.sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
@@ -32,7 +28,7 @@ class Sidenav {
      * @property {boolean} overlay Toggle overlay when sidenav is active
      * @property {boolean} bodyScrolling Prevent bodyScrolling when sidenav is active and over content
      */
-    this.options = extend(defaultOptions, options);
+    this.options = extend(this.defaultOptions, options);
 
     if (this.options.overlay) {
       this._createOverlay();

@@ -25,7 +25,6 @@ class Collapsible {
      * @property {integer} animationDelay Delay to collapse content in ms
      */
     this.options = extend(this.defaultOptions, options);
-    console.log(this.options);
     this._setup();
     this.isActive ? this.open() : '';
   }
@@ -43,11 +42,26 @@ class Collapsible {
   }
 
   /**
+   * Apply overflow hidden and automatically remove
+   */
+  _applyOverflow() {
+    this.el.style.overflow = 'hidden';
+    setTimeout(() => {
+      this.el.style.overflow = '';
+    }, this.options.animationDelay);
+  }
+
+  /**
    * Handle click on trigger
    */
   _onClickTrigger(e, id) {
     e.preventDefault();
-    const collapsible = document.querySelector('#' + id).Collapsible;
+    const element = document.querySelector('#' + id);
+    const collapsible = element.Collapsible;
+
+    if (element.classList.contains('showing')) {
+      return;
+    }
 
     if (collapsible.isActive) {
       collapsible.close();
@@ -61,19 +75,25 @@ class Collapsible {
    * Open collapsible
    */
   open() {
+    this.el.classList.add('showing');
     this.el.style.display = 'block';
-    this.el.classList.add('active');
+    this._applyOverflow();
     this.el.style.maxHeight = this.el.scrollHeight + 'px';
+    setTimeout(() => {
+      this.el.classList.remove('showing');
+    }, this.options.animationDelay);
   }
 
   /**
    * Close collapsible
    */
   close() {
+    this.el.classList.add('showing');
     this.el.style.maxHeight = '';
-    this.el.classList.remove('active');
+    this._applyOverflow();
     setTimeout(() => {
       this.el.style.display = '';
+      this.el.classList.remove('showing');
     }, this.options.animationDelay);
   }
 }
