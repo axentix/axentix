@@ -1,0 +1,62 @@
+.card {
+  width: 100%;
+  margin: 0.5rem 0;
+  box-sizing: border-box;
+  align-self: start;
+  overflow: hidden;
+  @extend .shadow-1;
+  //word-break: break-all;
+
+  .card-header {
+    font-size: 1.5rem;
+    padding: 2rem 1.5rem 0;
+  }
+  .card-content {
+    padding: 1rem 1.5rem;
+    .card-header {
+      padding: 1rem 0;
+    }
+  }
+  .card-footer {
+    padding: 0.5rem 1.5rem 1rem;
+    border-top: 2px solid rgba(180, 180, 180, 0.2);
+  }
+
+  &.vertical {
+    .card-image {
+      position: relative;
+
+      img {
+        background-size: cover;
+        width: 100%;
+      }
+    }
+  }
+
+  &.user-card {
+    display: flex;
+    .user-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 40%;
+      .user-name {
+        font-size: 1.5rem;
+      }
+      .logo {
+        margin: 1rem 0;
+        width: 4rem;
+        height: 4rem;
+        align-self: center;
+        justify-self: center;
+      }
+    }
+    .description-side {
+      width: 60%;
+      padding: 1rem;
+      .description-title {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
