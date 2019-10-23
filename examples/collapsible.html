@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Axentix Collapsible</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
+  </head>
+
+  <body class="layout">
+    <header>
+      <div class="navbar-fixed">
+        <nav class="navbar primary">
+          <a href="#" target="_blank" class="nav-brand">Axentix</a>
+          <ul class="right">
+            <li><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a href="#">Link 3</a></li>
+            <li><a href="#">Link 4</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <button data-target="example-collapsible" class="btn press amaranth dark-1 collapsible-trigger">
+          Toggle
+        </button>
+        <div class="collapsible blue" id="example-collapsible">
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error, soluta asperiores nobis, iusto
+            tenetur illum sunt modi quisquam blanditiis aspernatur sequi minus corporis quibusdam quam
+            voluptatem! Cumque nemo debitis porro.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer primary">
+      Copyright © 2019 - Example
+    </footer>
+    <script src="../dist/js/axentix.min.js"></script>
+    <script>
+      var exampleCollapsible = new Collapsible('#example-collapsible');
+    </script>
+  </body>
+</html>
