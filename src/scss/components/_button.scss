@@ -87,6 +87,16 @@
     box-shadow: none;
   }
 
+  &.outline {
+    border: 2px solid currentColor;
+    background-color: #fff;
+    &:hover {
+      background-color: currentColor;
+      .outline-text {
+        color: #fff;
+      }
+    }
+  }
   &:hover,
   &:active {
     transition: all 0.3s ease;

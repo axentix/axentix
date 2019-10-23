@@ -31,7 +31,7 @@
   }
 
   &.large {
-    width: $sidenav-full-width;
+    width: $sidenav-large-width;
   }
 
   &:hover {
@@ -98,4 +98,21 @@
   height: 100%;
   z-index: 800;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+// Animations
+body {
+  &.anim-push {
+    transition: transform 0.4s ease;
+    &.active {
+      transform: translateX($sidenav-width);
+
+      .sidenav {
+        transition: all 0.4s ease;
+        &.active {
+          transform: translateX(-100%);
+        }
+      }
+    }
+  }
 }

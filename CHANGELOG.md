@@ -1,3 +1,11 @@
+# 0.2.0 - Under Development
+
+- ADDED
+  - Add .large class to sidenav to have a bigger sidenav
+- REMOVED
+- BUGFIXES
+  - Fix incorrect header and footer padding when using layouts
+
 # 0.1.2 - 2019-10-12
 
 - ADDED
