@@ -60,29 +60,23 @@
     text-align: center;
     padding: 0;
     font-size: 1.5rem;
-    max-width: 2.8rem;
-    min-width: 2.8rem;
-    max-height: 2.8rem;
-    min-height: 2.8rem;
+    width: 2.8rem;
+    height: 2.8rem;
     line-height: 2.8rem;
     border-radius: 50%;
     overflow: hidden;
 
     &.small {
       font-size: 0.9rem;
-      max-width: 2rem;
-      min-width: 2rem;
-      max-height: 2rem;
-      min-height: 2rem;
+      width: 2rem;
+      height: 2rem;
       line-height: 2rem;
     }
 
     &.large {
       font-size: 1.8rem;
-      max-width: 3.8rem;
-      min-width: 3.8rem;
-      max-height: 3.8rem;
-      min-height: 3.8rem;
+      width: 3.8rem;
+      height: 3.8rem;
       line-height: 3.8rem;
     }
   }
