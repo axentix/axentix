@@ -181,9 +181,7 @@
 
 // Rounded
 @each $name, $value in $rounded {
-  @media #{$value} {
-    .rounded-#{$name} {
-      border-radius: #{$value} !important;
-    }
+  .rounded-#{$name} {
+    border-radius: #{$value} !important;
   }
 }

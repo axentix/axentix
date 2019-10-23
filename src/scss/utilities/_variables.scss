@@ -110,9 +110,9 @@ $sidenav-large-width: 15rem !default;
 
 // Rounded
 $rounded: (
-  '1': 'border-radius(2px)',
-  '2': 'border-radius(5px)',
-  '3': 'border-radius(10%)',
-  '4': 'border-radius(50px/100%)',
-  'full': 'border-radius(100%)'
+  '1': '2px',
+  '2': '5px',
+  '3': '10%',
+  '4': '50px/100%',
+  'full': '100%'
 ) !default;
