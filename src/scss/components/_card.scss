@@ -5,7 +5,7 @@
   align-self: start;
   overflow: hidden;
   @extend .shadow-1;
-  //word-break: break-all;
+  word-break: break-word;
 
   .card-header {
     font-size: 1.5rem;
@@ -22,14 +22,13 @@
     border-top: 2px solid rgba(180, 180, 180, 0.2);
   }
 
-  &.vertical {
-    .card-image {
-      position: relative;
+  .card-image {
+    position: relative;
 
-      img {
-        background-size: cover;
-        width: 100%;
-      }
+    img {
+      background-size: cover;
+      width: 100%;
+      display: block;
     }
   }
 
