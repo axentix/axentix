@@ -178,3 +178,12 @@
     width: 90%;
   }
 }
+
+// Rounded
+@each $name, $value in $rounded {
+  @media #{$value} {
+    .rounded-#{$name} {
+      border-radius: #{$value} !important;
+    }
+  }
+}
