@@ -90,12 +90,6 @@
   &.outline {
     border: 2px solid currentColor;
     background-color: #fff;
-    &.outline-black {
-      background-color: #000;
-      &:hover .outline-text {
-        color: #000;
-      }
-    }
     &:hover {
       background-color: currentColor;
       .outline-text {
