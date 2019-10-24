@@ -1,0 +1,25 @@
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  right: 0;
+  margin: auto;
+  //all that is gonna go in modal parameter ( js )
+  height: 500px;
+  width: 50vw;
+
+  &.active {
+    display: block;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  z-index: 800;
+  background-color: rgba(0, 0, 0, 0.5);
+}
