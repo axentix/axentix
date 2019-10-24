@@ -11,13 +11,14 @@ class Collapsible {
    */
   constructor(element, options) {
     this.defaultOptions = {
-      animationDelay: 400
+      animationDelay: 300
     };
 
     this.el = document.querySelector(element);
     this.el.Collapsible = this;
     this.collapsibleTriggers = document.querySelectorAll('.collapsible-trigger');
     this.isActive = this.el.classList.contains('active') ? true : false;
+    this.isAnimated = false;
 
     /**
      * Options
@@ -59,7 +60,7 @@ class Collapsible {
     const element = document.querySelector('#' + id);
     const collapsible = element.Collapsible;
 
-    if (element.classList.contains('showing')) {
+    if (collapsible.isAnimated) {
       return;
     }
 
@@ -75,12 +76,12 @@ class Collapsible {
    * Open collapsible
    */
   open() {
-    this.el.classList.add('showing');
+    this.isAnimated = true;
     this.el.style.display = 'block';
     this._applyOverflow();
     this.el.style.maxHeight = this.el.scrollHeight + 'px';
     setTimeout(() => {
-      this.el.classList.remove('showing');
+      this.isAnimated = false;
     }, this.options.animationDelay);
   }
 
@@ -88,12 +89,12 @@ class Collapsible {
    * Close collapsible
    */
   close() {
-    this.el.classList.add('showing');
+    this.isAnimated = true;
     this.el.style.maxHeight = '';
     this._applyOverflow();
     setTimeout(() => {
       this.el.style.display = '';
-      this.el.classList.remove('showing');
+      this.isAnimated = false;
     }, this.options.animationDelay);
   }
 }
