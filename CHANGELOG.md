@@ -5,9 +5,11 @@
   - Add cards with variants
   - Add outline buttons
   - Change sidenav syntax
+  - Rework initialization of our JavaScript components (3 methods)
 - REMOVED
 - BUGFIXES
   - Fix incorrect header and footer padding when using layouts
+  - Change default value of bodyScrolling option in sidenav to be more understandable
 
 # 0.1.2 - 2019-10-12
 

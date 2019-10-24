@@ -26,34 +26,17 @@
         <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
         <img class="logo dropshadow-1" src="https://useaxentix.com/img/axentix-250.png" />
       </div>
-      <a href="#" class="active">Link 1</a>
-      <a href="#" class="collapsible-trigger" data-target="sidenav-collapsible">Collapsible</a>
+      <a href="#">Link 1</a>
+      <a href="#" class="collapsible-trigger active" data-target="sidenav-collapsible">Collapsible</a>
       <div>
-        <div class="collapsible" id="sidenav-collapsible">
-          <a href="#">Sublink 1</a>
+        <div class="collapsible active" id="sidenav-collapsible">
+          <a href="#" class="active">Sublink 1</a>
           <a href="#">Sublink 2</a>
           <a href="#">Sublink 3</a>
           <a href="#">Sublink 4</a>
         </div>
       </div>
       <a href="#">Link 3</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
-      <a href="#">Link 4</a>
       <a href="#">Link 4</a>
     </div>
 
@@ -82,9 +65,7 @@
     </footer>
     <script src="../dist/js/axentix.min.js"></script>
     <script>
-      var exampleCollapsible = new Collapsible('#example-collapsible');
-      var sidenavCollapsible = new Collapsible('#sidenav-collapsible');
-      var exampleSidenav = new Sidenav('#example-sidenav');
+      var axentix = new Axentix('all');
     </script>
   </body>
 </html>

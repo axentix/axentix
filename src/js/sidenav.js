@@ -12,7 +12,7 @@ class Sidenav {
   constructor(element, options) {
     this.defaultOptions = {
       overlay: true,
-      bodyScrolling: true
+      bodyScrolling: false
     };
 
     this.el = document.querySelector(element);
@@ -65,7 +65,7 @@ class Sidenav {
    * @param {boolean} state Enable or disable body scroll
    */
   _toggleBodyScroll(state) {
-    if (this.options.bodyScrolling) {
+    if (!this.options.bodyScrolling) {
       if (state) {
         document.body.style.overflow = '';
       } else {
