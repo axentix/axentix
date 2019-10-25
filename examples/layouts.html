@@ -32,8 +32,22 @@
       <li><a href="#">Link 4</a></li>
     </ul>
 
+    <ul id="example-sidenav2" class="sidenav white large">
+      <li class="header">
+        <button data-target="example-sidenav2" class="sidenav-trigger"><i class="fas fa-times"></i></button>
+        <img class="logo dropshadow-1" src="https://useaxentix.com/img/axentix-250.png" />
+      </li>
+      <li><a href="#" class="active">Link 1</a></li>
+      <li><a href="#">Link 2</a></li>
+      <li><a href="#">Link 3</a></li>
+      <li><a href="#">Link 4</a></li>
+    </ul>
+
     <main>
       <button data-target="example-sidenav" class="btn press amaranth dark-1 sidenav-trigger">
+        Open sidenav
+      </button>
+      <button data-target="example-sidenav2" class="btn press amaranth dark-1 sidenav-trigger">
         Open sidenav
       </button>
     </main>
@@ -44,6 +58,7 @@
     <script src="../dist/js/axentix.min.js"></script>
     <script>
       var sidenav = new Sidenav('#example-sidenav');
+      var sidenav = new Sidenav('#example-sidenav2');
     </script>
   </body>
 </html>

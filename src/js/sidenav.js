@@ -47,7 +47,7 @@ class Sidenav {
       }
     });
     if (this.options.overlay) {
-      this.overlayElement.addEventListener('click', this._onClickTrigger);
+      this.overlayElement.addEventListener('click', e => this._onClickTrigger(e, this.el.id));
     }
   }
 
@@ -79,8 +79,7 @@ class Sidenav {
    */
   _onClickTrigger(e, id) {
     e.preventDefault();
-    const idElem = id ? '#' + id : '#' + document.querySelector('.' + e.target.className).dataset.target;
-    const sidenav = document.querySelector(idElem).Sidenav;
+    const sidenav = document.querySelector('#' + id).Sidenav;
     if (sidenav.isFixed && window.innerWidth >= 960) {
       return;
     }
