@@ -11,7 +11,8 @@ class Collapsible {
    */
   constructor(element, options) {
     this.defaultOptions = {
-      animationDelay: 300
+      animationDelay: 300,
+      activeClassSidenav: true
     };
 
     this.el = document.querySelector(element);
@@ -19,15 +20,17 @@ class Collapsible {
     this.collapsibleTriggers = document.querySelectorAll('.collapsible-trigger');
     this.isActive = this.el.classList.contains('active') ? true : false;
     this.isAnimated = false;
+    this.isInSidenav = false;
+    this.childIsActive = false;
 
     /**
      * Options
      * @member Collapsible#options
      * @property {integer} animationDelay Delay to collapse content in ms
+     * @property {boolean} activeClassSidenav Add automatically .active class in sidenav to trigger and collapsible
      */
     this.options = extend(this.defaultOptions, options);
     this._setup();
-    this.isActive ? this.open() : '';
   }
 
   /**
@@ -40,6 +43,51 @@ class Collapsible {
       }
     });
     this.el.style.transitionDuration = this.options.animationDelay + 'ms';
+
+    this.options.activeClassSidenav ? this._handleSidenav() : '';
+    this.isActive ? this.open() : '';
+  }
+
+  /**
+   * Check if collapsible is in sidenav & if children is active
+   */
+  _handleSidenav() {
+    let elements = [];
+    let currElement = this.el;
+    elements.push(currElement);
+    while (currElement.parentElement) {
+      elements.unshift(currElement.parentElement);
+      currElement = currElement.parentElement;
+      if (currElement.classList.contains('sidenav')) {
+        this.isInSidenav = true;
+        break;
+      }
+    }
+
+    const childrens = this.el.children;
+    for (const child of childrens) {
+      if (child.classList.contains('active')) {
+        this.childIsActive = true;
+        break;
+      }
+    }
+    this.childIsActive && this.isInSidenav ? this._addActiveInSidenav() : '';
+  }
+
+  /**
+   * Add active class to trigger and collapsible
+   */
+  _addActiveInSidenav() {
+    const triggers = document.querySelectorAll('.sidenav .collapsible-trigger');
+    triggers.forEach(trigger => {
+      if (trigger.dataset.target === this.el.id) {
+        trigger.classList.add('active');
+      }
+    });
+
+    this.el.classList.add('active');
+    this.open();
+    this.isActive = true;
   }
 
   /**

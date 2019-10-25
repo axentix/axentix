@@ -4,17 +4,19 @@
   - Add .large class to sidenav to have a bigger sidenav (work in layouts !)
   - Add cards with variants
   - Add outline buttons
+- REMOVED
+- IMPROVED
   - Change sidenav syntax
   - Rework initialization of our JavaScript components (3 methods)
-- REMOVED
+  - Change default value of bodyScrolling option in sidenav to be more understandable
 - BUGFIXES
   - Fix incorrect header and footer padding when using layouts
-  - Change default value of bodyScrolling option in sidenav to be more understandable
 
 # 0.1.2 - 2019-10-12
 
 - ADDED
 - REMOVED
+- IMPROVED
 - BUGFIXES
   - Fix responsive tables not working correctly.
 
@@ -22,6 +24,7 @@
 
 - ADDED
 - REMOVED
+- IMPROVED
 - BUGFIXES
   - Fix critical bug on a:hover who apply on all components.
 
@@ -42,4 +45,5 @@ We are very happy to present you the first release of Axentix.
   - Some functions and mixins
   - Utilities classes (alignments, container, ...)
 - REMOVED
+- IMPROVED
 - BUFIXES
