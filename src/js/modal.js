@@ -48,7 +48,7 @@ class Modal {
       }
     });
     if (this.options.overlay) {
-      this.overlayElement.addEventListener('click', this._onClickTrigger);
+      this.overlayElement.addEventListener('click', e => this._onClickTrigger(e, this.el.id));
     }
   }
 
@@ -63,8 +63,7 @@ class Modal {
    */
   _onClickTrigger(e, id) {
     e.preventDefault();
-    const idElem = id ? '#' + id : '#' + document.querySelector('.' + e.target.className).dataset.target;
-    const modal = document.querySelector(idElem).Modal;
+    const modal = document.querySelector('#' + id).Modal;
 
     if (modal.isActive) {
       modal.close();
