@@ -1,0 +1,14 @@
+.form-field {
+  margin: 0.5rem 0.25rem;
+
+  input {
+    display: block;
+    border: 1px solid #bbb8b8;
+    padding: 0.5rem 0.75rem;
+    @extend .rounded-1;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
