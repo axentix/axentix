@@ -63,12 +63,8 @@ class Modal {
    */
   _onClickTrigger(e, id) {
     e.preventDefault();
-    const element = document.querySelector('#' + id);
-    const modal = element.Modal;
-
-    if (element.classList.contains('showing')) {
-      return;
-    }
+    const idElem = id ? '#' + id : '#' + document.querySelector('.' + e.target.className).dataset.target;
+    const modal = document.querySelector(idElem).Modal;
 
     if (modal.isActive) {
       modal.close();
@@ -83,10 +79,8 @@ class Modal {
    */
 
   open() {
-    this.el.classList.add('showing');
     this.el.classList.add('active');
     this.overlay(true);
-    this.el.classList.remove('showing');
   }
 
   /**
@@ -94,10 +88,8 @@ class Modal {
    */
 
   close() {
-    this.el.classList.add('showing');
     this.el.classList.remove('active');
     this.overlay(false);
-    this.el.classList.remove('showing');
   }
 
   /**
