@@ -29,10 +29,28 @@
             <form>
               <div class="grix xs1 sm2 center">
                 <div class="form-field">
-                  <input type="text" id="first_name" placeholder="Firstname" />
+                  <label for="first_name">Firstname</label>
+                  <input type="text" id="first_name" class="form-control" placeholder="Toto" />
                 </div>
                 <div class="form-field">
-                  <input type="text" id="last_name" placeholder="Lastname" />
+                  <label class="txt-right" for="email">Email</label>
+                  <input type="email" id="email" class="form-control" placeholder="toto@toto.com" />
+                </div>
+                <div class="form-field col sm2">
+                  <label class="txt-center" for="select1">Select an option</label>
+                  <select class="form-control" id="select1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label class="form-check"> <input type="checkbox" value="check" />Checkbox </label>
+                </div>
+                <div class="form-field">
+                  <label class="form-check axentix-style">
+                    <input type="checkbox" value="check" />Checkbox
+                  </label>
                 </div>
               </div>
             </form>
@@ -46,6 +64,8 @@
     </footer>
 
     <script src="../dist/js/axentix.min.js"></script>
-    <script></script>
+    <script>
+      var axentix = new Axentix('all');
+    </script>
   </body>
 </html>

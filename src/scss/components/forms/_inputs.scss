@@ -1,14 +1,25 @@
 .form-field {
-  margin: 0.5rem 0.25rem;
+  margin: 0.25rem 0.5rem 0.5rem;
+  width: 100%;
 
-  input {
+  label {
     display: block;
-    border: 1px solid #bbb8b8;
-    padding: 0.5rem 0.75rem;
-    @extend .rounded-1;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+}
 
-    &:focus {
-      outline: none;
-    }
+.form-control {
+  display: block;
+  border: 1px solid #bbb8b8;
+  padding: 0.5rem 0.75rem;
+  transition: border 0.2s ease, box-shadow 0.3s ease;
+  width: 100%;
+  @extend .rounded-1;
+
+  &:focus {
+    outline: none;
+    border-color: transparent;
+    @extend .shadow-1;
   }
 }

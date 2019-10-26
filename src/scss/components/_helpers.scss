@@ -180,8 +180,12 @@
 }
 
 // Rounded
+.rounded-0 {
+  border-radius: 0 !important;
+}
+
 @each $name, $value in $rounded {
   .rounded-#{$name} {
-    border-radius: #{$value} !important;
+    border-radius: #{$value};
   }
 }

@@ -24,7 +24,8 @@ class Axentix {
   _init() {
     const componentList = {
       Collapsible: document.querySelectorAll('.collapsible'),
-      Sidenav: document.querySelectorAll('.sidenav')
+      Sidenav: document.querySelectorAll('.sidenav'),
+      Modal: document.querySelectorAll('.modal')
     };
 
     const isInList = componentList.hasOwnProperty(this.component);
