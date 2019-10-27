@@ -12,12 +12,12 @@ sass.compiler = require('sass');
 
 function compileJSMinified() {
   return src('src/js/**/*.js')
+    .pipe(concat('axentix.min.js'))
     .pipe(
       babel({
         presets: ['@babel/env']
       })
     )
-    .pipe(concat('axentix.min.js'))
     .pipe(
       minify({
         mangle: {
@@ -30,12 +30,12 @@ function compileJSMinified() {
 
 function compileJS() {
   return src('src/js/**/*.js')
+    .pipe(concat('axentix.js'))
     .pipe(
       babel({
         presets: ['@babel/env']
       })
     )
-    .pipe(concat('axentix.js'))
     .pipe(dest('dist/js/'));
 }
 
