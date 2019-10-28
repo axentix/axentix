@@ -82,7 +82,9 @@ class Modal {
   open() {
     this.el.style.display = 'block';
     this.overlay(true);
-    this.el.classList.add('active');
+    setTimeout(() => {
+      this.el.classList.add('active');
+    }, 1);
   }
 
   /**
