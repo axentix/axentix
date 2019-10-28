@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Axentix Layout - With sidenav • Style 2</title>
+    <title>Axentix Layout</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../dist/css/axentix.min.css" />
   </head>
@@ -21,7 +21,7 @@
       </div>
     </header>
 
-    <ul id="example-sidenav" class="sidenav white fixed large">
+    <ul id="example-sidenav" class="sidenav white fixed">
       <li class="header">
         <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
         <img class="logo dropshadow-1" src="https://useaxentix.com/img/axentix-250.png" />
@@ -32,7 +32,7 @@
       <li><a href="#">Link 4</a></li>
     </ul>
 
-    <ul id="example-sidenav2" class="sidenav white large">
+    <ul id="example-sidenav2" class="sidenav airforce dark-1">
       <li class="header">
         <button data-target="example-sidenav2" class="sidenav-trigger"><i class="fas fa-times"></i></button>
         <img class="logo dropshadow-1" src="https://useaxentix.com/img/axentix-250.png" />
@@ -58,7 +58,7 @@
     <script src="../dist/js/axentix.min.js"></script>
     <script>
       var sidenav = new Sidenav('#example-sidenav');
-      var sidenav = new Sidenav('#example-sidenav2');
+      var sidenav2 = new Sidenav('#example-sidenav2', { animation: 'push', animationDelay: 400 });
     </script>
   </body>
 </html>

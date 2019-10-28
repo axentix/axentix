@@ -41,7 +41,7 @@
     grid-auto-rows: auto 1fr auto;
   }
 
-  .sidenav {
+  .sidenav.fixed {
     position: fixed;
     z-index: 900;
     grid-area: initial;
@@ -49,7 +49,7 @@
     @include responsive('md-up') {
       grid-area: sidenav;
       position: initial;
-      z-index: initial;
+      z-index: 750;
     }
   }
 
@@ -73,9 +73,8 @@
       }
     }
 
-    .sidenav {
+    .sidenav.fixed {
       position: fixed;
-      z-index: 900;
       grid-area: initial;
     }
 
@@ -89,7 +88,7 @@
       }
 
       @include responsive('md-up') {
-        .sidenav {
+        .sidenav.fixed {
           top: 3.5rem;
         }
       }

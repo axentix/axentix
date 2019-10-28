@@ -12,7 +12,7 @@
   flex-direction: column;
   @extend .shadow-1;
   transform: translateX(-105%);
-  transition: all 0.3s ease;
+  transition: transform ease;
   overflow: hidden;
 
   &.active {
@@ -100,15 +100,17 @@
 // Animations
 body {
   &.anim-push {
-    transition: transform 0.4s ease;
-    &.active {
+    transition: transform ease;
+
+    &.anim-active {
       transform: translateX($sidenav-width);
 
-      .sidenav {
-        transition: all 0.4s ease;
-        &.active {
-          transform: translateX(-100%);
-        }
+      &.sidenav-large {
+        transform: translateX($sidenav-large-width);
+      }
+
+      .sidenav.active {
+        transform: translateX(-100%);
       }
     }
   }

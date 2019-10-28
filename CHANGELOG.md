@@ -4,6 +4,8 @@
   - Add .large class to sidenav to have a bigger sidenav (work in layouts !)
   - Add cards with variants
   - Add outline buttons
+  - Add more options to Sidenav (animation, animationDelay)
+  - Add "push" animation to Sidenav
 - REMOVED
 - IMPROVED
   - Change sidenav syntax
@@ -11,6 +13,8 @@
   - Change default value of bodyScrolling option in sidenav to be more understandable
 - BUGFIXES
   - Fix incorrect header and footer padding when using layouts
+  - Fix sidenav not .fixed in layouts
+  - Fix z-index with multiple sidenav in layouts
 
 # 0.1.2 - 2019-10-12
 
