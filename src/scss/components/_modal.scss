@@ -5,12 +5,19 @@
   left: 0;
   right: 0;
   margin: auto;
-  //all that is gonna go in modal parameter ( js )
-  height: 500px;
   width: 50vw;
 
-  &.active {
-    display: block;
+  &.from-top {
+    top: -800px;
+    &.active {
+      top: 50px;
+    }
+  }
+  &.showing {
+    transform: scaleX(0) scaleY(0);
+    &.active {
+      transform: scaleX(1) scaleY(1);
+    }
   }
 }
 
@@ -21,5 +28,5 @@
   top: 0;
   height: 100%;
   z-index: 800;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
 }

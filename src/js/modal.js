@@ -50,6 +50,7 @@ class Modal {
     if (this.options.overlay) {
       this.overlayElement.addEventListener('click', e => this._onClickTrigger(e, this.el.id));
     }
+    this.el.style.transitionDuration = this.options.animationDelay + 'ms';
   }
 
   _createOverlay() {
@@ -78,8 +79,11 @@ class Modal {
    */
 
   open() {
-    this.el.classList.add('active');
+    this.el.style.display = 'block';
     this.overlay(true);
+    setTimeout(() => {
+      this.el.classList.add('active');
+    }, this.options.animationDelay);
   }
 
   /**
@@ -88,7 +92,10 @@ class Modal {
 
   close() {
     this.el.classList.remove('active');
-    this.overlay(false);
+    setTimeout(() => {
+      this.el.style.display = '';
+      this.overlay(false);
+    }, this.options.animationDelay);
   }
 
   /**

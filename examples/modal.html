@@ -24,11 +24,32 @@
     <main>
       <div class="container">
         <h1>Modals</h1>
-        <button class="btn primary modal-trigger" data-target="example-modal">Show modal</button>
-
-        <div class="modal primary rounded-2 shadow-1" id="example-modal">
-          <p>Bonjour, ceci est une modal</p>
+        <div class="grix xs3">
+          <button class="btn primary modal-trigger" data-target="example-modal">From top modal</button>
+          <button class="btn primary modal-trigger" data-target="example-modal2">Popping modal</button>
         </div>
+       
+        <div class="modal primary showing rounded-2 shadow-1" id="example-modal">
+          <p>
+            Bonjour, ceci est une modal Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati
+            sit explicabo veritatis nesciunt quia, mollitia soluta aut consequuntur eius libero corrupti
+            accusamus provident deserunt ducimus repudiandae quas non labore. Molestias. Lorem ipsum dolor
+            sit, amet consectetur adipisicing elit. Numquam a distinctio quasi aperiam similique repellat
+            sapiente! Omnis voluptatum at optio blanditiis. Necessitatibus est consequatur reprehenderit sunt
+            maxime suscipit doloribus eligendi.
+          </p>
+  
+      </div>
+      
+      <div class="modal primary showing rounded-2 shadow-1" id="example-modal2">
+        <p>
+          fzefezBonjour, ceci est une modal Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati
+          sit explicabo veritatis nesciunt quia, mollitia soluta aut consequuntur eius libero corrupti
+          accusamus provident deserunt ducimus repudiandae quas non labore. Molestias. Lorem ipsum dolor
+          sit, amet consectetur adipisicing elit. Numquam a distinctio quasi aperiam similique repellat
+          sapiente! Omnis voluptatum at optio blanditiis. Necessitatibus est consequatur reprehenderit sunt
+          maxime suscipit doloribus eligendi.
+        </p>
       </div>
     </main>
 
@@ -38,7 +59,8 @@
 
     <script src="../dist/js/axentix.min.js"></script>
     <script>
-      var exampleModal = new Modal('#example-modal');
+      var exampleModal = new Modal('#example-modal', { animationDelay: 400 });
+      var exampleModal = new Modal('#example-modal2', { animationDelay: 400 });
     </script>
   </body>
 </html>
