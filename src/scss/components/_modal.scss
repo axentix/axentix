@@ -7,6 +7,36 @@
   margin: auto;
   width: 50vw;
 
+  @include responsive('sm-down') {
+    width: 80vw;
+  }
+
+  .modal-header {
+    padding: 1rem;
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  }
+
+  .modal-content {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  }
+
+  .modal-footer {
+    padding: 1rem;
+  }
+
+  &.modal-top {
+    &.active {
+      top: 30px !important;
+    }
+  }
+
+  &.modal-center {
+    &.active {
+    }
+  }
+
   &.from-top {
     top: -800px;
 
