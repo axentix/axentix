@@ -15,7 +15,10 @@
 /// Custom styles
 // Axentix
 .form-check.axentix-style {
-  input[type='checkbox'] {
+  position: relative;
+  padding-left: 1.7rem;
+
+  [type='checkbox'] {
     position: absolute;
     opacity: 0;
     pointer-events: none;
