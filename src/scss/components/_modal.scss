@@ -33,8 +33,7 @@
   }
 
   &.modal-center {
-    &.active {
-    }
+    top: 50%;
   }
 
   &.from-top {
@@ -42,12 +41,21 @@
 
     &.active {
       top: 50px;
+      &.modal-center {
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
   }
 
   &.showing {
     transform: scaleX(0) scaleY(0);
-
+    // &.modal-center {
+    //   transform: scaleX(0) scaleY(0) translateY(-50%);
+    // }
+    &.modal-top {
+      top: 30px !important;
+    }
     &.active {
       transform: scaleX(1) scaleY(1);
     }
