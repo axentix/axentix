@@ -56,6 +56,7 @@ class Modal {
   _createOverlay() {
     this.overlayElement = document.createElement('div');
     this.overlayElement.classList.add('modal-overlay');
+    this.overlayElement.style.transitionDuration = this.options.animationDelay + 'ms';
     this.overlayElement.dataset.target = this.el.id;
   }
 
@@ -81,9 +82,7 @@ class Modal {
   open() {
     this.el.style.display = 'block';
     this.overlay(true);
-    setTimeout(() => {
-      this.el.classList.add('active');
-    }, this.options.animationDelay);
+    this.el.classList.add('active');
   }
 
   /**
@@ -92,9 +91,9 @@ class Modal {
 
   close() {
     this.el.classList.remove('active');
+    this.overlay(false);
     setTimeout(() => {
       this.el.style.display = '';
-      this.overlay(false);
     }, this.options.animationDelay);
   }
 
@@ -106,8 +105,14 @@ class Modal {
     if (this.options.overlay) {
       if (state) {
         document.body.appendChild(this.overlayElement);
+        setTimeout(() => {
+          this.overlayElement.classList.add('active');
+        }, 1);
       } else {
-        document.body.removeChild(this.overlayElement);
+        this.overlayElement.classList.remove('active');
+        setTimeout(() => {
+          document.body.removeChild(this.overlayElement);
+        }, this.options.animationDelay);
       }
     }
   }
