@@ -9,12 +9,15 @@
 
   &.from-top {
     top: -800px;
+
     &.active {
       top: 50px;
     }
   }
+
   &.showing {
     transform: scaleX(0) scaleY(0);
+
     &.active {
       transform: scaleX(1) scaleY(1);
     }
@@ -28,5 +31,10 @@
   top: 0;
   height: 100%;
   z-index: 800;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color ease;
+
+  &.active {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 }
