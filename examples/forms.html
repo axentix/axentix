@@ -22,7 +22,7 @@
     </header>
 
     <main>
-      <div class="container" style="margin-top: 2rem;">
+      <div class="container" style="margin: 2rem auto;">
         <div class="card white rounded-2">
           <div class="card-header txt-center">Forms</div>
           <div class="card-content">
@@ -59,19 +59,28 @@
                   </select>
                 </div>
                 <div class="form-field">
-                  <label class="form-check"> <input type="checkbox" value="check" />Checkbox </label>
+                  <label class="form-check">
+                    <input type="radio" name="answer" />
+                    Yes
+                  </label>
+                  <label class="form-check">
+                    <input type="radio" name="answer" />
+                    No
+                  </label>
                 </div>
                 <div class="form-field">
-                  <label class="form-check axentix-style">
-                    <input type="checkbox" value="check" />Checkbox
-                  </label>
+                  <label class="form-check"> <input type="checkbox" value="check" />Checkbox </label>
+                </div>
+                <div class="form-field col sm2">
+                  <label for="textarea">Textarea</label>
+                  <textarea cols="8" id="textarea" class="form-control"></textarea>
                 </div>
               </div>
             </form>
             <div class="flex fx-center">
-              <div class="btn txt-primary outline opening rounded-4">
-                <span class="outline-text">Submit</span>
-              </div>
+              <button class="btn primary push rounded-4">
+                Submit
+              </button>
             </div>
           </div>
         </div>
