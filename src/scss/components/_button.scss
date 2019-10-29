@@ -21,18 +21,12 @@
     filter: brightness(115%);
   }
 
-  &.rounded-button {
-    border-radius: 40px/100%;
-  }
 
   &.small {
     font-size: 1rem;
     padding: 0 1rem;
     height: 2rem;
     line-height: 2rem;
-    &.rounded-button {
-      border-radius: 30px/100%;
-    }
   }
 
   &.large {
@@ -40,9 +34,6 @@
     padding: 0 1.5rem;
     height: 3.6rem;
     line-height: 3.6rem;
-    &.rounded-button {
-      border-radius: 50px/100%;
-    }
   }
 
   &.push {
