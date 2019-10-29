@@ -38,7 +38,7 @@
 
   &.push {
     transition: 0.2s ease;
-    transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform, filter;
     box-shadow: inset 0 -0.5rem 0rem -0.25rem rgba(0, 0, 0, 0.25),
       inset -0.5rem 0 0rem -0.25rem rgba(0, 0, 0, 0.25);
 
@@ -50,7 +50,7 @@
 
   &.press {
     transition: 0.1s ease;
-    transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform, filter;
     box-shadow: inset 0 -0.5rem 0 -0.25rem rgba(0, 0, 0, 0.25);
 
     &:active {
@@ -114,6 +114,9 @@
       transition-property: opacity;
       background-color: currentColor;
       z-index: -2;
+      @supports (-ms-ime-align: auto) {
+        border-radius: inherit;
+      }
     }
 
     &:hover {
