@@ -25,7 +25,6 @@ class Sidenav {
     this.isActive = false;
     this.isFixed = this.el.classList.contains('fixed');
     this.isLarge = this.el.classList.contains('large');
-    this.isDefaultAnimation = true;
 
     /**
      * Options
@@ -73,7 +72,6 @@ class Sidenav {
     if (this.options.animation !== 'slide-in') {
       document.body.classList.add('anim-' + this.options.animation);
       document.body.style.transitionDuration = this.options.animationDelay + 'ms';
-      this.isDefaultAnimation = false;
     }
   }
 
@@ -92,7 +90,7 @@ class Sidenav {
    * @param {boolean} state Enable or disable animation
    */
   _toggleAnim(state) {
-    if (!this.isDefaultAnimation) {
+    if (this.options.animation !== 'slide-in') {
       state ? document.body.classList.add('anim-active') : document.body.classList.remove('anim-active');
     }
   }

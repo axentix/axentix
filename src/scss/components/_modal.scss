@@ -6,6 +6,7 @@
   right: 0;
   margin: auto;
   width: 50vw;
+  transition-timing-function: ease-in-out;
 
   @include responsive('sm-down') {
     width: 80vw;
@@ -26,38 +27,25 @@
     padding: 1rem;
   }
 
-  &.modal-top {
-    &.active {
-      top: 30px !important;
-    }
-  }
-
-  &.modal-center {
-    top: 50%;
-  }
-
   &.from-top {
-    top: -800px;
+    top: -20%;
+    transition-property: top, opacity;
+    opacity: 0;
 
     &.active {
-      top: 50px;
-      &.modal-center {
-        top: 50%;
-        transform: translateY(-50%);
-      }
+      top: 50px; // js
+      opacity: 1;
     }
   }
 
   &.showing {
+    transition-property: transform, opacity;
     transform: scaleX(0) scaleY(0);
-    // &.modal-center {
-    //   transform: scaleX(0) scaleY(0) translateY(-50%);
-    // }
-    &.modal-top {
-      top: 30px !important;
-    }
+    opacity: 0;
+
     &.active {
       transform: scaleX(1) scaleY(1);
+      opacity: 1;
     }
   }
 }
