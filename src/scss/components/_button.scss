@@ -21,7 +21,6 @@
     filter: brightness(115%);
   }
 
-
   &.small {
     font-size: 1rem;
     padding: 0 1rem;
@@ -114,7 +113,7 @@
       transition-property: opacity;
       background-color: currentColor;
       z-index: -2;
-      @supports (-ms-ime-align: auto) {
+      @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
         border-radius: inherit;
       }
     }
