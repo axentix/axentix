@@ -24,7 +24,7 @@
     &.fixed {
       transform: none;
 
-      .header .sidenav-trigger {
+      .sidenav-header .sidenav-trigger {
         display: none;
       }
     }
@@ -38,7 +38,7 @@
     overflow-y: auto;
   }
 
-  .header {
+  .sidenav-header {
     height: 5rem;
     width: 100%;
     display: flex;
