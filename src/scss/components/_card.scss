@@ -33,16 +33,18 @@
     }
   }
 
-  &.user-card {
-    display: flex;
+  // CARD USER
 
-    .user-side {
+  &.card-profile {
+    //display: flex;
+
+    .profile-side {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 40%;
 
-      .user-name {
+      .profile-name {
+        text-align: center;
         font-size: 1.5rem;
       }
 
@@ -56,10 +58,9 @@
     }
 
     .description-side {
-      width: 60%;
       padding: 1rem;
 
-      .description-title {
+      .profile-title {
         font-size: 1.5rem;
       }
     }
