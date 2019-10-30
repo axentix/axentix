@@ -1,0 +1,12 @@
+select.form-control {
+  cursor: pointer;
+
+  &[multiple] {
+    height: auto;
+    padding: 0;
+
+    option {
+      padding: 0.5rem 0.75rem;
+    }
+  }
+}
