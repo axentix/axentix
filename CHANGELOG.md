@@ -11,10 +11,12 @@
   - Change sidenav syntax
   - Rework initialization of our JavaScript components (3 methods)
   - Change default value of bodyScrolling option in sidenav to be more understandable
+  - Grix columns class changed. Now .col-{breakpoint}{number}
 - BUGFIXES
   - Fix incorrect header and footer padding when using layouts
   - Fix sidenav not .fixed in layouts
   - Fix z-index with multiple sidenav in layouts
+  - Fix grix nesting with col
 
 # 0.1.2 - 2019-10-12
 
