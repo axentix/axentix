@@ -1,5 +1,15 @@
 # 0.2.0 - Under Development
 
+<b>
+<p align="center">
+/!\ IMPORTANT /!\
+<p>
+In this release we have changed many of elements syntax like grix & sidenav.
+Please check docs to make sure you have latest release syntax.
+</b>
+
+---
+
 - ADDED
   - Add .large class to sidenav to have a bigger sidenav (work in layouts !)
   - Add cards with variants
