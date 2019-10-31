@@ -119,6 +119,13 @@
     }
 
     &:hover {
+      animation-name: fix-outline-button;
+      animation-delay: 0.001s;
+      animation-fill-mode: forwards;
+      @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
+        animation: none;
+      }
+
       .outline-text {
         color: #fff !important;
       }
@@ -133,12 +140,26 @@
         left: 50%;
         right: 50%;
         transition-property: opacity, left, right;
+        border-radius: inherit;
       }
 
-      &:hover::before {
-        left: 0;
-        right: 0;
+      &:hover {
+        animation-delay: 0.29s;
+
+        &::before {
+          left: 0;
+          right: 0;
+        }
       }
     }
+  }
+}
+
+@keyframes fix-outline-button {
+  from {
+    background-color: transparent;
+  }
+  to {
+    background-color: currentColor;
   }
 }
