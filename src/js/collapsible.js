@@ -12,12 +12,17 @@ class Collapsible {
   constructor(element, options) {
     this.defaultOptions = {
       animationDelay: 300,
-      activeClassSidenav: true
+      sidenav: {
+        activeClass: true,
+        activeWhenOpen: true,
+        autoCloseOtherCollapsible: true
+      }
     };
 
     this.el = document.querySelector(element);
     this.el.Collapsible = this;
     this.collapsibleTriggers = document.querySelectorAll('.collapsible-trigger');
+    this.initialStart = true;
     this.isActive = this.el.classList.contains('active') ? true : false;
     this.isAnimated = false;
     this.isInSidenav = false;
@@ -44,14 +49,18 @@ class Collapsible {
     });
     this.el.style.transitionDuration = this.options.animationDelay + 'ms';
 
-    this.options.activeClassSidenav ? this._handleSidenav() : '';
+    this._detectSidenav();
+    this._detectChild();
+    this.options.sidenav.activeClass ? this._addActiveInSidenav() : '';
+
     this.isActive ? this.open() : '';
+    this.initialStart = false;
   }
 
   /**
-   * Check if collapsible is in sidenav & if children is active
+   * Check if collapsible is in sidenav
    */
-  _handleSidenav() {
+  _detectSidenav() {
     let elements = [];
     let currElement = this.el;
     elements.push(currElement);
@@ -64,6 +73,13 @@ class Collapsible {
       }
     }
 
+    this.sidenavCollapsibles = document.querySelectorAll('.sidenav .collapsible');
+  }
+
+  /**
+   * Check if collapsible have active childs
+   */
+  _detectChild() {
     const childrens = this.el.children;
     for (const child of childrens) {
       if (child.classList.contains('active')) {
@@ -71,23 +87,50 @@ class Collapsible {
         break;
       }
     }
-    this.childIsActive && this.isInSidenav ? this._addActiveInSidenav() : '';
   }
 
   /**
    * Add active class to trigger and collapsible
    */
   _addActiveInSidenav() {
+    if (this.childIsActive && this.isInSidenav) {
+      const triggers = document.querySelectorAll('.sidenav .collapsible-trigger');
+      triggers.forEach(trigger => {
+        if (trigger.dataset.target === this.el.id) {
+          trigger.classList.add('active');
+        }
+      });
+
+      this.el.classList.add('active');
+      this.open();
+      this.isActive = true;
+    }
+  }
+
+  /**
+   * Enable / disable active state to trigger when collapsible is in sidenav
+   * @param {boolean} state enable or disable
+   */
+  _addActiveToTrigger(state) {
     const triggers = document.querySelectorAll('.sidenav .collapsible-trigger');
     triggers.forEach(trigger => {
       if (trigger.dataset.target === this.el.id) {
-        trigger.classList.add('active');
+        state ? trigger.classList.add('active') : trigger.classList.remove('active');
       }
     });
+  }
 
-    this.el.classList.add('active');
-    this.open();
-    this.isActive = true;
+  /**
+   * Auto close others collapsible
+   */
+  _autoCloseOtherCollapsible() {
+    if (!this.initialStart) {
+      this.sidenavCollapsibles.forEach(collapsible => {
+        if (collapsible.id !== this.el.id) {
+          collapsible.Collapsible.close();
+        }
+      });
+    }
   }
 
   /**
@@ -117,17 +160,21 @@ class Collapsible {
     } else {
       collapsible.open();
     }
-    collapsible.isActive = !collapsible.isActive;
   }
 
   /**
    * Open collapsible
    */
   open() {
+    this.isActive = true;
     this.isAnimated = true;
     this.el.style.display = 'block';
     this._applyOverflow();
     this.el.style.maxHeight = this.el.scrollHeight + 'px';
+
+    this.options.sidenav.activeWhenOpen ? this._addActiveToTrigger(true) : '';
+    this.options.sidenav.autoCloseOtherCollapsible ? this._autoCloseOtherCollapsible() : '';
+
     setTimeout(() => {
       this.isAnimated = false;
     }, this.options.animationDelay);
@@ -140,9 +187,13 @@ class Collapsible {
     this.isAnimated = true;
     this.el.style.maxHeight = '';
     this._applyOverflow();
+
+    this.options.sidenav.activeWhenOpen ? this._addActiveToTrigger(false) : '';
+
     setTimeout(() => {
       this.el.style.display = '';
       this.isAnimated = false;
+      this.isActive = false;
     }, this.options.animationDelay);
   }
 }

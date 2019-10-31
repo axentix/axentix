@@ -48,8 +48,10 @@
 
     <script src="../dist/js/axentix.min.js"></script>
     <script>
-      var exampleModal = new Modal('#example-modal');
-      var exampleModal = new Modal('#example-modal2');
+      document.addEventListener('DOMContentLoaded', function(){
+        var exampleModal = new Modal('#example-modal');
+        var exampleModal = new Modal('#example-modal2');
+      })
     </script>
   </body>
 </html>
