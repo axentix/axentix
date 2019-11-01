@@ -10,17 +10,18 @@
 }
 
 .form-control {
+  position: relative;
   display: block;
   border: 1px solid #bbb8b8;
   padding: 0.5rem 0.75rem;
   transition: border 0.2s ease, box-shadow 0.3s ease;
   height: 2.5rem;
-  line-height: 2.5rem;
   width: 100%;
+  appearance: none;
   @extend .rounded-1;
 
   &:focus {
-    outline: none;
+    outline: 0;
     border-color: transparent;
     @extend .shadow-1;
   }

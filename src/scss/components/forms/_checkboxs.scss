@@ -3,8 +3,11 @@
   cursor: pointer;
 
   input {
-    margin-right: 0.25rem;
     cursor: pointer;
+
+    &:not([type='radio']) {
+      margin-right: 0.25rem;
+    }
   }
 }
 
