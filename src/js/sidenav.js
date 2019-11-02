@@ -23,12 +23,6 @@ class Sidenav {
     this.isFixed = this.el.classList.contains('fixed');
     this.isLarge = this.el.classList.contains('large');
 
-    /**
-     * Options
-     * @member Sidenav#options
-     * @property {boolean} overlay Toggle overlay when sidenav is active
-     * @property {boolean} bodyScrolling Prevent bodyScrolling when sidenav is active and over content
-     */
     this.options = extend(this.defaultOptions, options);
 
     this._setup();

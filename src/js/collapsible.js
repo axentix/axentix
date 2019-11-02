@@ -28,12 +28,6 @@ class Collapsible {
     this.isInSidenav = false;
     this.childIsActive = false;
 
-    /**
-     * Options
-     * @member Collapsible#options
-     * @property {integer} animationDelay Delay to collapse content in ms
-     * @property {boolean} activeClassSidenav Add automatically .active class in sidenav to trigger and collapsible
-     */
     this.options = extend(this.defaultOptions, options);
     this._setup();
   }

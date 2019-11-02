@@ -21,12 +21,6 @@ class Modal {
     this.modalTriggers = document.querySelectorAll('.modal-trigger');
     this.isActive = this.el.classList.contains('active') ? true : false;
 
-    /**
-     * Options
-     * @member Modal#options
-     * @property {boolean} overlay Toggle overlay when the modal is active
-     * @property {integer} animationDelay Delay to show modal
-     */
     this.options = extend(this.defaultOptions, options);
 
     if (this.options.overlay) {
