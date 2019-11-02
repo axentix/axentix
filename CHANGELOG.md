@@ -11,17 +11,18 @@ Please check docs to make sure you have latest release syntax.
 ---
 
 - ADDED
-  - Add .large class to sidenav to have a bigger sidenav (work in layouts !)
-  - Add cards with variants
-  - Add outline buttons
-  - Add animationDelay option to Sidenav
-  - Add collapsible with options
+  - Basic forms are here !
+  - Cards with variants
+  - Collapsible with options
+  - Outline buttons
+  - .large class to sidenav to have a bigger sidenav (work in layouts !)
+  - animationDelay option to Sidenav
 - REMOVED
 - IMPROVED
-  - Change sidenav syntax
   - Rework initialization of our JavaScript components (3 methods)
-  - Change default value of bodyScrolling option in sidenav to be more understandable
   - Grix columns class changed. Now .col-{breakpoint}{number}
+  - Change sidenav syntax
+  - Change default value of bodyScrolling option in sidenav to be more understandable
 - BUGFIXES
   - Fix incorrect header and footer padding when using layouts
   - Fix sidenav not .fixed in layouts
