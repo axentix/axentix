@@ -13,6 +13,11 @@ select.form-control {
     height: auto;
     padding: 0;
 
+    @media (pointer: coarse) {
+      height: 2.5rem;
+      padding: 0.5rem 0.75rem;
+    }
+
     option {
       padding: 0.5rem 0.75rem;
     }
