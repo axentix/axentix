@@ -13,11 +13,8 @@ class Sidenav {
     this.defaultOptions = {
       overlay: true,
       bodyScrolling: false,
-      animation: 'slide-in',
       animationDelay: 300
     };
-
-    this.animationList = ['slide-in', 'push'];
 
     this.el = document.querySelector(element);
     this.el.Sidenav = this;
@@ -33,7 +30,6 @@ class Sidenav {
      * @property {boolean} bodyScrolling Prevent bodyScrolling when sidenav is active and over content
      */
     this.options = extend(this.defaultOptions, options);
-    this.options.animation = this.options.animation.toLowerCase();
 
     this._setup();
   }
@@ -52,7 +48,6 @@ class Sidenav {
       this.overlayElement.addEventListener('click', e => this._onClickTrigger(e, this.el.id));
     }
     this.el.classList.contains('large') ? document.body.classList.add('sidenav-large') : '';
-    this.animationList.includes(this.options.animation) ? this._handleAnim() : '';
     this.el.style.transitionDuration = this.options.animationDelay + 'ms';
   }
 
@@ -66,32 +61,12 @@ class Sidenav {
   }
 
   /**
-   * Add .anim-{name} to body
-   */
-  _handleAnim() {
-    if (this.options.animation !== 'slide-in') {
-      document.body.classList.add('anim-' + this.options.animation);
-      document.body.style.transitionDuration = this.options.animationDelay + 'ms';
-    }
-  }
-
-  /**
    * Enable or disable body scroll when option is true
    * @param {boolean} state Enable or disable body scroll
    */
   _toggleBodyScroll(state) {
     if (!this.options.bodyScrolling) {
       state ? (document.body.style.overflow = '') : (document.body.style.overflow = 'hidden');
-    }
-  }
-
-  /**
-   * Add .anim-active to body
-   * @param {boolean} state Enable or disable animation
-   */
-  _toggleAnim(state) {
-    if (this.options.animation !== 'slide-in') {
-      state ? document.body.classList.add('anim-active') : document.body.classList.remove('anim-active');
     }
   }
 
@@ -120,7 +95,6 @@ class Sidenav {
     this.el.classList.add('active');
     this.overlay(true);
     this._toggleBodyScroll(false);
-    this._toggleAnim(true);
   }
 
   /**
@@ -129,7 +103,6 @@ class Sidenav {
   close() {
     this.el.classList.remove('active');
     this.overlay(false);
-    this._toggleAnim(false);
     setTimeout(() => {
       this._toggleBodyScroll(true);
     }, this.options.animationDelay);

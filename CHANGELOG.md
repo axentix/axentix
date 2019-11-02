@@ -14,8 +14,8 @@ Please check docs to make sure you have latest release syntax.
   - Add .large class to sidenav to have a bigger sidenav (work in layouts !)
   - Add cards with variants
   - Add outline buttons
-  - Add more options to Sidenav (animation, animationDelay)
-  - Add "push" animation to Sidenav
+  - Add animationDelay option to Sidenav
+  - Add collapsible with options
 - REMOVED
 - IMPROVED
   - Change sidenav syntax

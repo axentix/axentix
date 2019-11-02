@@ -96,22 +96,3 @@
   z-index: 800;
   background-color: rgba(0, 0, 0, 0.5);
 }
-
-// Animations
-body {
-  &.anim-push {
-    transition: transform ease;
-
-    &.anim-active {
-      transform: translateX($sidenav-width);
-
-      &.sidenav-large {
-        transform: translateX($sidenav-large-width);
-      }
-
-      .sidenav.active {
-        transform: translateX(-100%);
-      }
-    }
-  }
-}
