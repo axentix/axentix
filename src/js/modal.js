@@ -78,7 +78,7 @@ class Modal {
     this.overlay(true);
     setTimeout(() => {
       this.el.classList.add('active');
-    }, 1);
+    }, 50);
   }
 
   /**
@@ -103,7 +103,7 @@ class Modal {
         document.body.appendChild(this.overlayElement);
         setTimeout(() => {
           this.overlayElement.classList.add('active');
-        }, 1);
+        }, 50);
       } else {
         this.overlayElement.classList.remove('active');
         setTimeout(() => {
