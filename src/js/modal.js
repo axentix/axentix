@@ -46,7 +46,7 @@ class Modal {
       this.overlayElement.addEventListener('click', e => this._onClickTrigger(e, this.el.id));
     }
     this.el.style.transitionDuration = this.options.animationDelay + 'ms';
-    //this.el.style.top = this.options.top + 'vh';
+    this.el.style.top = this.options.top + '%';
   }
 
   _createOverlay() {
