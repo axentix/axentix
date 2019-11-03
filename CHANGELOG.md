@@ -28,6 +28,7 @@ Please check docs to make sure you have latest release syntax.
   - Fix sidenav not .fixed in layouts
   - Fix z-index with multiple sidenav in layouts
   - Fix grix nesting with col
+  - Fix centered logo on navbar
 
 # 0.1.2 - 2019-10-12
 
