@@ -33,12 +33,13 @@
     opacity: 0;
 
     &.active {
-      top: 50px; // js
+      top: 10%; // js
       opacity: 1;
     }
   }
 
   &.showing {
+    top: 10%;
     transition-property: transform, opacity;
     transform: scaleX(0) scaleY(0);
     opacity: 0;
