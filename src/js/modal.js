@@ -13,7 +13,8 @@ class Modal {
   constructor(element, options) {
     this.defaultOptions = {
       overlay: true,
-      animationDelay: 400
+      animationDelay: 400,
+      top: 10
     };
 
     this.el = document.querySelector(element);
@@ -45,6 +46,7 @@ class Modal {
       this.overlayElement.addEventListener('click', e => this._onClickTrigger(e, this.el.id));
     }
     this.el.style.transitionDuration = this.options.animationDelay + 'ms';
+    //this.el.style.top = this.options.top + 'vh';
   }
 
   _createOverlay() {
