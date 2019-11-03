@@ -67,7 +67,10 @@
         padding-left: $sidenav-width;
       }
 
-      .navbar-fixed .navbar,
+      .navbar-fixed .navbar {
+        margin-left: $sidenav-width;
+      }
+
       footer {
         padding-left: $sidenav-width + 0.5rem;
       }
@@ -84,7 +87,7 @@
       }
 
       .navbar-fixed .navbar {
-        padding-left: 0.5rem;
+        margin-left: 0;
       }
 
       @include responsive('md-up') {
@@ -93,23 +96,23 @@
         }
       }
     }
-  }
 
-  &.sidenav-large {
-    @include responsive('md-up') {
-      header,
-      main {
-        padding-left: $sidenav-large-width;
-      }
+    &.sidenav-large {
+      @include responsive('md-up') {
+        header,
+        main {
+          padding-left: $sidenav-large-width;
+        }
 
-      &:not(.under-navbar) {
-        .navbar-fixed .navbar {
+        &:not(.under-navbar) {
+          .navbar-fixed .navbar {
+            margin-left: $sidenav-large-width;
+          }
+        }
+
+        footer {
           padding-left: $sidenav-large-width + 0.5rem;
         }
-      }
-
-      footer {
-        padding-left: $sidenav-large-width + 0.5rem;
       }
     }
   }
