@@ -102,7 +102,12 @@
         padding-left: $sidenav-large-width;
       }
 
-      .navbar-fixed .navbar,
+      &:not(.under-navbar) {
+        .navbar-fixed .navbar {
+          padding-left: $sidenav-large-width + 0.5rem;
+        }
+      }
+
       footer {
         padding-left: $sidenav-large-width + 0.5rem;
       }
