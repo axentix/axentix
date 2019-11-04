@@ -6,6 +6,15 @@
   margin: auto;
   width: 50vw;
   transition-timing-function: ease-in-out;
+  transition-property: transform, opacity;
+  transform: scaleX(0) scaleY(0);
+  opacity: 0;
+  top: 10%;
+
+  &.active {
+    transform: scaleX(1) scaleY(1);
+    opacity: 1;
+  }
 
   @include responsive('sm-down') {
     width: 80vw;
@@ -26,26 +35,13 @@
     padding: 1rem;
   }
 
-  &.from-top {
+  &.falling {
     top: -20%;
     transition-property: top, opacity;
-    opacity: 0;
+    transform: none;
 
     &.active {
       top: 10%;
-      opacity: 1;
-    }
-  }
-
-  &.showing {
-    top: 10%;
-    transition-property: transform, opacity;
-    transform: scaleX(0) scaleY(0);
-    opacity: 0;
-
-    &.active {
-      transform: scaleX(1) scaleY(1);
-      opacity: 1;
     }
   }
 }
