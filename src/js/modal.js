@@ -20,6 +20,7 @@ class Modal {
     this.el.Modal = this;
     this.modalTriggers = document.querySelectorAll('.modal-trigger');
     this.isActive = this.el.classList.contains('active') ? true : false;
+    this.isAnimated = false;
 
     this.options = extend(this.defaultOptions, options);
 
@@ -61,6 +62,10 @@ class Modal {
     e.preventDefault();
     const modal = document.querySelector('#' + id).Modal;
 
+    if (modal.isAnimated) {
+      return;
+    }
+
     if (modal.isActive) {
       modal.close();
     } else {
@@ -74,11 +79,16 @@ class Modal {
    */
 
   open() {
+    this.isAnimated = true;
     this.el.style.display = 'block';
     this.overlay(true);
     setTimeout(() => {
       this.el.classList.add('active');
     }, 50);
+
+    setTimeout(() => {
+      this.isAnimated = false;
+    }, this.options.animationDelay);
   }
 
   /**
@@ -86,10 +96,12 @@ class Modal {
    */
 
   close() {
+    this.isAnimated = true;
     this.el.classList.remove('active');
     this.overlay(false);
     setTimeout(() => {
       this.el.style.display = '';
+      this.isAnimated = false;
     }, this.options.animationDelay);
   }
 

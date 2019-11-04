@@ -95,6 +95,7 @@
   &.outline {
     background-color: transparent;
     border: 2px solid currentColor;
+    line-height: normal;
 
     .outline-text {
       transition: color 0.3s ease;
