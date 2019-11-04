@@ -9,6 +9,10 @@ select.form-control {
     background-position: right -0.75rem center;
   }
 
+  &[disabled] {
+    cursor: default;
+  }
+
   &[multiple] {
     height: auto;
     padding: 0;

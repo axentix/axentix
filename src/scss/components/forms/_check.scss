@@ -2,18 +2,34 @@
 .form-check {
   cursor: pointer;
 
+  &.disabled {
+    color: #afafaf !important;
+    cursor: default;
+  }
+
   input {
     cursor: pointer;
 
     &:not([type='radio']) {
       margin-right: 0.25rem;
     }
+
+    &[disabled] {
+      cursor: default;
+    }
   }
 }
 
-.form-field .form-check {
-  font-weight: initial;
-  margin-bottom: 0;
+.form-field {
+  &.inline .form-check {
+    margin-left: 0;
+  }
+
+  .form-check {
+    font-weight: initial;
+    margin-bottom: 0;
+    display: inline-block;
+  }
 }
 
 /// Custom styles

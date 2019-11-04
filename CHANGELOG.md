@@ -1,4 +1,4 @@
-# 0.2.0 - Under Development
+# 0.2.0 - 2019-11-05
 
 <b>
 <p align="center">
@@ -14,9 +14,12 @@ Please check docs to make sure you have latest release syntax.
   - Basic forms are here !
   - Cards with variants
   - Collapsible with options
+  - Modals with variants
   - Outline buttons
-  - .large class to sidenav to have a bigger sidenav (work in layouts !)
+  - .large class to sidenav to have a bigger sidenav (works in layouts !)
+  - .rounded utilities
   - animationDelay option to Sidenav
+  - .sidenav-footer in Sidenav
 - REMOVED
 - IMPROVED
   - Rework initialization of our JavaScript components (3 methods)

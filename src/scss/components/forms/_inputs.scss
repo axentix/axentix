@@ -1,11 +1,31 @@
 .form-field {
   margin: 0.25rem 0.5rem 0.5rem;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 
   label {
     display: block;
     font-weight: 500;
     margin-bottom: 0.5rem;
+    word-break: normal;
+  }
+
+  &.inline {
+    flex-direction: row;
+    align-items: center;
+
+    label {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .form-helper {
+    font-size: $form-helper;
+    color: #747474;
+    margin-top: 0.5rem;
+    display: block;
   }
 }
 
@@ -25,5 +45,12 @@
     outline: 0;
     border-color: transparent;
     @extend .shadow-1;
+  }
+
+  &[disabled],
+  &[readonly] {
+    background-color: #c8c8c8 !important;
+    color: #787878 !important;
+    border-color: #c8c8c8;
   }
 }
