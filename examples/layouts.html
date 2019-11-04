@@ -44,6 +44,7 @@
       <a href="#">Link 2</a>
       <a href="#" class="active">Link 3</a>
       <a href="#">Link 4</a>
+      <button class="btn primary modal-trigger" data-target="example-modal">From top modal</button>
     </div>
 
     <main>
@@ -53,6 +54,31 @@
       <button data-target="example-sidenav2" class="btn press amaranth dark-1 sidenav-trigger">
         Open sidenav
       </button>
+
+      <div class="modal white from-top rounded-2 shadow-1" id="example-modal">
+        <div class="modal-header">Bonsoir</div>
+        <div class="modal-content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores dolorum eum in totam amet
+          soluta! Id distinctio iusto voluptatum ipsam officia, odit neque, fuga, commodi totam repellendus
+          deserunt quod laborum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda nostrum
+          doloribus quisquam minima minus animi voluptatum illo illum. Vel, labore iure aut sed nobis officiis
+          itaque molestias rerum natus vero.
+          <button class="btn primary modal-trigger" data-target="example-modal2">Popping modal</button>
+        </div>
+        <div class="modal-footer">Footer</div>
+      </div>
+
+      <div class="modal white showing rounded-2 shadow-1" id="example-modal2">
+        <div class="modal-header">Bonsoir</div>
+        <div class="modal-content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores dolorum eum in totam amet
+          soluta! Id distinctio iusto voluptatum ipsam officia, odit neque, fuga, commodi totam repellendus
+          deserunt quod laborum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda nostrum
+          doloribus quisquam minima minus animi voluptatum illo illum. Vel, labore iure aut sed nobis officiis
+          itaque molestias rerum natus vero.
+        </div>
+        <div class="modal-footer">Footer</div>
+      </div>
     </main>
 
     <footer class="footer primary">
@@ -62,6 +88,8 @@
     <script>
       var sidenav = new Sidenav('#example-sidenav');
       var sidenav2 = new Sidenav('#example-sidenav2', { animationDelay: 400 });
+      var exampleModal = new Modal('#example-modal');
+      var exampleModal2 = new Modal('#example-modal2');
     </script>
   </body>
 </html>

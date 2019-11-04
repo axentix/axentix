@@ -2,7 +2,6 @@
  * Class Modal
  * @class
  */
-
 class Modal {
   /**
    * Construct Modal instance
@@ -35,7 +34,6 @@ class Modal {
   /**
    * Setup listeners
    */
-
   _setup() {
     this.modalTriggers.forEach(trigger => {
       if (trigger.dataset.target === this.el.id) {
@@ -48,11 +46,24 @@ class Modal {
     this.el.style.transitionDuration = this.options.animationDelay + 'ms';
   }
 
+  /**
+   * Create overlay element
+   */
   _createOverlay() {
     this.overlayElement = document.createElement('div');
     this.overlayElement.classList.add('modal-overlay');
     this.overlayElement.style.transitionDuration = this.options.animationDelay + 'ms';
     this.overlayElement.dataset.target = this.el.id;
+  }
+
+  /**
+   * Set Z-Index when modal is open
+   */
+  _setZIndex() {
+    const totalModals = document.querySelectorAll('.modal.active').length + 1;
+
+    this.overlayElement.style.zIndex = 800 + totalModals * 6;
+    this.el.style.zIndex = 800 + totalModals * 10;
   }
 
   /**
@@ -77,9 +88,9 @@ class Modal {
   /**
    * Open the modal
    */
-
   open() {
     this.isAnimated = true;
+    this._setZIndex();
     this.el.style.display = 'block';
     this.overlay(true);
     setTimeout(() => {
@@ -94,7 +105,6 @@ class Modal {
   /**
    * Close the modal
    */
-
   close() {
     this.isAnimated = true;
     this.el.classList.remove('active');
