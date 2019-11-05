@@ -118,7 +118,7 @@ class Collapsible {
    * Auto close others collapsible
    */
   _autoCloseOtherCollapsible() {
-    if (!this.initialStart) {
+    if (!this.initialStart && this.isInSidenav) {
       this.sidenavCollapsibles.forEach(collapsible => {
         if (collapsible.id !== this.el.id) {
           collapsible.Collapsible.close();
