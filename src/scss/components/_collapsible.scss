@@ -1,0 +1,15 @@
+.collapsible {
+  display: none;
+  max-height: 0;
+  transition: max-height ease;
+}
+
+// Style in sidenav
+.sidenav .collapsible a {
+  padding-left: 1.75rem;
+
+  &:hover,
+  &.active {
+    background-color: rgba(0, 0, 0, 0.09);
+  }
+}

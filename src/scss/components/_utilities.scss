@@ -155,7 +155,7 @@
 .divider {
   width: 100%;
   height: 1px;
-  background-color: #eee;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 // Blockquote
@@ -176,5 +176,16 @@
 
   @include responsive('xs') {
     width: 90%;
+  }
+}
+
+// Rounded
+.rounded-0 {
+  border-radius: 0 !important;
+}
+
+@each $name, $value in $rounded {
+  .rounded-#{$name} {
+    border-radius: #{$value};
   }
 }

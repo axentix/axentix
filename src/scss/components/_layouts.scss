@@ -41,15 +41,15 @@
     grid-auto-rows: auto 1fr auto;
   }
 
-  .sidenav {
+  .sidenav.fixed {
     position: fixed;
-    z-index: 900;
+    z-index: 710;
     grid-area: initial;
 
     @include responsive('md-up') {
       grid-area: sidenav;
       position: initial;
-      z-index: initial;
+      z-index: 690;
     }
   }
 
@@ -63,19 +63,21 @@
 
     @include responsive('md-up') {
       header,
-      main,
-      footer {
+      main {
         padding-left: $sidenav-width;
       }
 
       .navbar-fixed .navbar {
+        margin-left: $sidenav-width;
+      }
+
+      footer {
         padding-left: $sidenav-width + 0.5rem;
       }
     }
 
-    .sidenav {
+    .sidenav.fixed {
       position: fixed;
-      z-index: 900;
       grid-area: initial;
     }
 
@@ -85,12 +87,31 @@
       }
 
       .navbar-fixed .navbar {
-        padding-left: 0.5rem;
+        margin-left: 0;
       }
 
       @include responsive('md-up') {
-        .sidenav {
+        .sidenav.fixed {
           top: 3.5rem;
+        }
+      }
+    }
+
+    &.sidenav-large {
+      @include responsive('md-up') {
+        header,
+        main {
+          padding-left: $sidenav-large-width;
+        }
+
+        &:not(.under-navbar) {
+          .navbar-fixed .navbar {
+            margin-left: $sidenav-large-width;
+          }
+        }
+
+        footer {
+          padding-left: $sidenav-large-width + 0.5rem;
         }
       }
     }

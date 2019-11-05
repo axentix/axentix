@@ -1,7 +1,7 @@
 {
   "name": "axentix",
-  "version": "0.1.2",
-  "description": "Axentix is lightweight and open source Framework based on CSS-Grid using HTML, CSS and JS.",
+  "version": "0.2.0",
+  "description": "Axentix is a lightweight and open source Framework based on CSS-Grid using HTML, CSS and JS.",
   "homepage": "https://useaxentix.com",
   "author": "Axel SIMONET, Vincent LEVEQUE",
   "license": "MIT",
@@ -52,7 +52,6 @@
     "gulp-babel": "^8.0.0",
     "gulp-babel-minify": "^0.5.1",
     "gulp-concat": "^2.6.1",
-    "gulp-deporder": "^1.2.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
     "sass": "^1.22.10"

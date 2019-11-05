@@ -1,7 +1,6 @@
 const { src, dest, watch, series, parallel } = require('gulp'),
   babel = require('gulp-babel'),
   concat = require('gulp-concat'),
-  deporder = require('gulp-deporder'),
   sass = require('gulp-sass'),
   rename = require('gulp-rename'),
   minify = require('gulp-babel-minify'),
@@ -13,13 +12,12 @@ sass.compiler = require('sass');
 
 function compileJSMinified() {
   return src('src/js/**/*.js')
-    .pipe(deporder())
+    .pipe(concat('axentix.min.js'))
     .pipe(
       babel({
         presets: ['@babel/env']
       })
     )
-    .pipe(concat('axentix.min.js'))
     .pipe(
       minify({
         mangle: {
@@ -32,13 +30,12 @@ function compileJSMinified() {
 
 function compileJS() {
   return src('src/js/**/*.js')
-    .pipe(deporder())
+    .pipe(concat('axentix.js'))
     .pipe(
       babel({
         presets: ['@babel/env']
       })
     )
-    .pipe(concat('axentix.js'))
     .pipe(dest('dist/js/'));
 }
 

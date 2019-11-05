@@ -1,0 +1,60 @@
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 50vw;
+  transition-timing-function: ease-in-out;
+  transition-property: transform, opacity;
+  transform: scaleX(0) scaleY(0);
+  opacity: 0;
+  top: 10%;
+  @extend .shadow-1;
+
+  &.active {
+    transform: scaleX(1) scaleY(1);
+    opacity: 1;
+  }
+
+  @include responsive('sm-down') {
+    width: 80vw;
+  }
+
+  .modal-header {
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .modal-content {
+    padding: 1rem;
+  }
+
+  .modal-footer {
+    padding: 1rem;
+  }
+
+  &.falling {
+    top: -20%;
+    transition-property: top, opacity;
+    transform: none;
+
+    &.active {
+      top: 10%;
+    }
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color ease;
+
+  &.active {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}

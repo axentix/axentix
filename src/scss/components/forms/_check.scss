@@ -1,0 +1,46 @@
+// Default checkbox
+.form-check {
+  cursor: pointer;
+
+  &.disabled {
+    color: #afafaf !important;
+    cursor: default;
+  }
+
+  input {
+    cursor: pointer;
+
+    &:not([type='radio']) {
+      margin-right: 0.25rem;
+    }
+
+    &[disabled] {
+      cursor: default;
+    }
+  }
+}
+
+.form-field {
+  &.inline .form-check {
+    margin-left: 0;
+  }
+
+  .form-check {
+    font-weight: initial;
+    margin-bottom: 0;
+    display: inline-block;
+  }
+}
+
+/// Custom styles
+// Axentix
+.form-check.axentix-style {
+  position: relative;
+  padding-left: 1.7rem;
+
+  [type='checkbox'] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+}

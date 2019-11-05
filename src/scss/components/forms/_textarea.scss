@@ -1,0 +1,14 @@
+textarea.form-control {
+  width: 100%;
+  resize: vertical;
+  line-height: 1.15;
+
+  &:not([rows]) {
+    min-height: 6rem;
+    max-height: 30rem;
+  }
+
+  &[rows] {
+    height: initial;
+  }
+}

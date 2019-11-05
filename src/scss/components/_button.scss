@@ -1,19 +1,25 @@
 .btn {
   display: table; // fix width in Edge
-  transition: all 0.3s ease;
+  position: relative;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-property: filter;
   cursor: pointer;
   text-transform: uppercase;
   border: none;
   text-decoration: none;
   outline-style: none;
   width: fit-content;
-  border-radius: 0.25rem;
   height: 2.8rem;
   line-height: 2.8rem;
   font-size: 1.2rem;
   padding: 0 1.25rem;
   overflow: hidden;
-  @extend .shadow-1;
+  @extend .shadow-1, .rounded-1;
+
+  &:hover {
+    filter: brightness(115%);
+  }
 
   &.small {
     font-size: 1rem;
@@ -21,6 +27,7 @@
     height: 2rem;
     line-height: 2rem;
   }
+
   &.large {
     font-size: 1.4rem;
     padding: 0 1.5rem;
@@ -29,67 +36,131 @@
   }
 
   &.push {
-    transition: all 0.2s ease;
+    transition: 0.2s ease;
+    transition-property: box-shadow, transform, filter;
     box-shadow: inset 0 -0.5rem 0rem -0.25rem rgba(0, 0, 0, 0.25),
       inset -0.5rem 0 0rem -0.25rem rgba(0, 0, 0, 0.25);
+
     &:active {
       box-shadow: none;
-      transition: transform 0.1s ease;
-      border: none;
       transform: translate(2px, 2px);
     }
   }
 
   &.press {
-    transition: all 0.15s ease;
+    transition: 0.1s ease;
+    transition-property: box-shadow, transform, filter;
     box-shadow: inset 0 -0.5rem 0 -0.25rem rgba(0, 0, 0, 0.25);
+
     &:active {
-      transition-property: background-color, box-shadow, transform;
-      transition-duration: 0.15s ease;
       box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.25);
       transform: translateY(2px);
     }
   }
+
   &.circle {
     display: block;
     text-align: center;
     padding: 0;
     font-size: 1.5rem;
-    max-width: 2.8rem;
-    min-width: 2.8rem;
-    max-height: 2.8rem;
-    min-height: 2.8rem;
+    width: 2.8rem;
+    height: 2.8rem;
     line-height: 2.8rem;
     border-radius: 50%;
     overflow: hidden;
 
     &.small {
       font-size: 0.9rem;
-      max-width: 2rem;
-      min-width: 2rem;
-      max-height: 2rem;
-      min-height: 2rem;
+      width: 2rem;
+      height: 2rem;
       line-height: 2rem;
     }
+
     &.large {
       font-size: 1.8rem;
-      max-width: 3.8rem;
-      min-width: 3.8rem;
-      max-height: 3.8rem;
-      min-height: 3.8rem;
+      width: 3.8rem;
+      height: 3.8rem;
       line-height: 3.8rem;
     }
   }
-  &.disabled {
+
+  &.disabled,
+  &[disabled] {
     pointer-events: none;
     background-color: rgb(200, 200, 200) !important;
     color: rgb(120, 120, 120) !important;
     box-shadow: none;
   }
 
-  &:hover,
-  &:active {
-    transition: all 0.3s ease;
-    filter: brightness(115%);
+  &.outline {
+    background-color: transparent;
+    border: 2px solid currentColor;
+    line-height: normal;
+
+    .outline-text {
+      transition: color 0.3s ease;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition-duration: 0.3s;
+      transition-timing-function: ease;
+      transition-property: opacity;
+      background-color: currentColor;
+      z-index: -2;
+      @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
+        border-radius: inherit;
+      }
+    }
+
+    &:hover {
+      animation-name: fix-outline-button;
+      animation-delay: 0.001s;
+      animation-fill-mode: forwards;
+      @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
+        animation: none;
+      }
+
+      .outline-text {
+        color: #fff !important;
+      }
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    &.opening {
+      &::before {
+        left: 50%;
+        right: 50%;
+        transition-property: opacity, left, right;
+        border-radius: inherit;
+      }
+
+      &:hover {
+        animation-delay: 0.29s;
+
+        &::before {
+          left: 0;
+          right: 0;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fix-outline-button {
+  from {
+    background-color: transparent;
+  }
+  to {
+    background-color: currentColor;
   }
 }

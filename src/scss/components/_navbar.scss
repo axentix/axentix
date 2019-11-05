@@ -10,19 +10,18 @@
   @extend .shadow-1;
 
   .logo {
-    display: flex;
     height: 3rem;
     margin: 0 1rem;
 
     img {
-      width: inherit;
       height: inherit;
     }
 
     &.centered {
       position: absolute;
       left: 50%;
-      transform: translateX(-100%);
+      transform: translateX(-50%);
+      margin: 0;
     }
   }
 
@@ -87,5 +86,3 @@
     right: 0;
   }
 }
-
-// Styling navbar

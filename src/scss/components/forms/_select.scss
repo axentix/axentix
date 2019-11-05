@@ -1,0 +1,29 @@
+select.form-control {
+  cursor: pointer;
+  padding: 0.3rem 0.75rem;
+
+  &:not([multiple]) {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' aria-hidden='true' focusable='false' width='1.5rem' height='1.5rem' style='-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);' preserveAspectRatio='xMidYMid meet' viewBox='0 0 24 24'%3E%3Cpath d='M8.12 9.29L12 13.17l3.88-3.88a.996.996 0 1 1 1.41 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L6.7 10.7a.996.996 0 0 1 0-1.41c.39-.38 1.03-.39 1.42 0z' fill='%23626262'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-position: right -0.75rem center;
+  }
+
+  &[disabled] {
+    cursor: default;
+  }
+
+  &[multiple] {
+    height: auto;
+    padding: 0;
+
+    @media (pointer: coarse) {
+      height: 2.5rem;
+      padding: 0.5rem 0.75rem;
+    }
+
+    option {
+      padding: 0.5rem 0.75rem;
+    }
+  }
+}

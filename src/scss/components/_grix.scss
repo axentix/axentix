@@ -14,7 +14,7 @@
         grid-template-columns: repeat($i, 1fr);
       }
 
-      .col.#{$name}#{$i} {
+      .col-#{$name}#{$i} {
         grid-column: auto / span $i;
       }
 
@@ -33,7 +33,7 @@
           grid-template-columns: repeat($i, 1fr);
         }
 
-        .col.#{$name}#{$i} {
+        .col-#{$name}#{$i} {
           grid-column: auto / span $i;
         }
 

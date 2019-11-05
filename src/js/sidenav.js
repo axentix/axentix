@@ -1,13 +1,4 @@
 /**
- * Component: Sidenav
- */
-
-let defaultOptions = {
-  overlay: true,
-  bodyScrolling: true
-};
-
-/**
  * Class Sidenav
  * @class
  */
@@ -19,23 +10,21 @@ class Sidenav {
    * @param {Object} options
    */
   constructor(element, options) {
+    this.defaultOptions = {
+      overlay: true,
+      bodyScrolling: false,
+      animationDelay: 300
+    };
+
     this.el = document.querySelector(element);
     this.el.Sidenav = this;
     this.sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
     this.isActive = false;
     this.isFixed = this.el.classList.contains('fixed');
+    this.isLarge = this.el.classList.contains('large');
 
-    /**
-     * Options
-     * @member Sidenav#options
-     * @property {boolean} overlay Toggle overlay when sidenav is active
-     * @property {boolean} bodyScrolling Prevent bodyScrolling when sidenav is active and over content
-     */
-    this.options = extend(defaultOptions, options);
+    this.options = extend(this.defaultOptions, options);
 
-    if (this.options.overlay) {
-      this._createOverlay();
-    }
     this._setup();
   }
 
@@ -49,8 +38,11 @@ class Sidenav {
       }
     });
     if (this.options.overlay) {
-      this.overlayElement.addEventListener('click', this._onClickTrigger);
+      this._createOverlay();
+      this.overlayElement.addEventListener('click', e => this._onClickTrigger(e, this.el.id));
     }
+    this.el.classList.contains('large') ? document.body.classList.add('sidenav-large') : '';
+    this.el.style.transitionDuration = this.options.animationDelay + 'ms';
   }
 
   /**
@@ -67,12 +59,8 @@ class Sidenav {
    * @param {boolean} state Enable or disable body scroll
    */
   _toggleBodyScroll(state) {
-    if (this.options.bodyScrolling) {
-      if (state) {
-        document.body.style.overflow = '';
-      } else {
-        document.body.style.overflow = 'hidden';
-      }
+    if (!this.options.bodyScrolling) {
+      state ? (document.body.style.overflow = '') : (document.body.style.overflow = 'hidden');
     }
   }
 
@@ -81,8 +69,7 @@ class Sidenav {
    */
   _onClickTrigger(e, id) {
     e.preventDefault();
-    const idElem = id ? '#' + id : '#' + document.querySelector('.' + e.target.className).dataset.target;
-    const sidenav = document.querySelector(idElem).Sidenav;
+    const sidenav = document.querySelector('#' + id).Sidenav;
     if (sidenav.isFixed && window.innerWidth >= 960) {
       return;
     }
@@ -110,7 +97,9 @@ class Sidenav {
   close() {
     this.el.classList.remove('active');
     this.overlay(false);
-    this._toggleBodyScroll(true);
+    setTimeout(() => {
+      this._toggleBodyScroll(true);
+    }, this.options.animationDelay);
   }
 
   /**
@@ -119,11 +108,7 @@ class Sidenav {
    */
   overlay(state) {
     if (this.options.overlay) {
-      if (state) {
-        document.body.appendChild(this.overlayElement);
-      } else {
-        document.body.removeChild(this.overlayElement);
-      }
+      state ? document.body.appendChild(this.overlayElement) : document.body.removeChild(this.overlayElement);
     }
   }
 }
