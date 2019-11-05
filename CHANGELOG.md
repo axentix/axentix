@@ -4,8 +4,8 @@
 <p align="center">
 /!\ IMPORTANT /!\
 <p>
-In this release we have changed many of elements syntax like grix & sidenav.
-Please check docs to make sure you have latest release syntax.
+In this release we have changed many elements syntax like grix & sidenav.
+Please check docs to make sure you have the latest release syntax.
 </b>
 
 ---
@@ -16,7 +16,7 @@ Please check docs to make sure you have latest release syntax.
   - Collapsible with options
   - Modals with variants
   - Outline buttons
-  - .large class to sidenav to have a bigger sidenav (works in layouts !)
+  - .large class to sidenav to get a bigger sidenav (works in layouts !)
   - .rounded utilities
   - animationDelay option to Sidenav
   - .sidenav-footer in Sidenav
