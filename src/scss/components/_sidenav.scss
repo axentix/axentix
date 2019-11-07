@@ -46,6 +46,7 @@
     align-items: center;
     padding: 1rem 0.5rem;
     position: relative;
+    flex-shrink: 0;
 
     .logo {
       height: 3rem;
