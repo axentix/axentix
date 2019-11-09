@@ -80,8 +80,6 @@ $h4: $base-size * 1.75 !default;
 $h5: $base-size * 1.5 !default;
 $h6: $base-size * 1.25 !default;
 
-$form-helper: 0.75rem;
-
 // Shadow
 $shadows: (
   '1': '0px 0px 8px 0px rgba(0, 0, 0, 0.18), 0px 2px 5px 0px rgba(0,0,0,0.14)',
@@ -118,3 +116,11 @@ $rounded: (
   '4': '30px',
   'full': '100%'
 ) !default;
+
+// Forms
+$forms-helper-size: 0.75rem;
+$forms-disabled-color: #787878;
+
+// Material Forms
+$material-border-color: #c7c7c7;
+$material-color: getColor('viride', 'dark', 2);

@@ -23,7 +23,7 @@
   }
 
   .form-helper {
-    font-size: $form-helper;
+    font-size: $forms-helper-size;
     color: #747474;
     margin-top: 0.5rem;
     display: block;
@@ -51,7 +51,7 @@
   &[disabled],
   &[readonly] {
     background-color: #c8c8c8 !important;
-    color: #787878 !important;
+    color: $forms-disabled-color !important;
     border-color: #c8c8c8;
   }
 }
@@ -76,13 +76,28 @@
 
     .form-control {
       border: none;
-      border-bottom: 1px solid #c7c7c7;
-      background-color: transparent;
+      border-bottom: 1px solid $material-border-color;
       padding: 0;
-      @extend .rounded-0;
+      background: linear-gradient(to bottom, transparent 96%, currentColor 4%);
+      background-position: 0 0;
+      background-size: 0;
+      background-repeat: no-repeat;
+      transition: background-size 0.3s ease;
+      border-radius: 0;
 
       &:focus {
         box-shadow: none;
+      }
+
+      &[disabled],
+      &[readonly] {
+        background: transparent !important;
+        color: $forms-disabled-color !important;
+        border-bottom: $material-border-color dashed thin;
+
+        + label {
+          color: $forms-disabled-color;
+        }
       }
     }
 
@@ -90,7 +105,15 @@
       label {
         top: 0.1rem;
         font-size: 0.8rem;
-        color: currentColor;
+      }
+
+      .form-control {
+        background-size: 100%;
+
+        &[disabled] + label,
+        &[readonly] + label {
+          color: $forms-disabled-color;
+        }
       }
     }
   }
