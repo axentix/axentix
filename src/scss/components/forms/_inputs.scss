@@ -70,19 +70,15 @@
       pointer-events: none;
       transition-property: top, color, font-size;
       transition-timing-function: ease;
-      transition-duration: 0.3s;
+      transition-duration: $material-animation-duration;
       font-size: 1rem;
+      z-index: 2;
     }
 
     .form-control {
       border: none;
       border-bottom: 1px solid $material-border-color;
       padding: 0;
-      background: linear-gradient(to bottom, transparent 96%, currentColor 4%);
-      background-position: 0 0;
-      background-size: 0;
-      background-repeat: no-repeat;
-      transition: background-size 0.3s ease;
       border-radius: 0;
 
       &:focus {
@@ -101,15 +97,28 @@
       }
     }
 
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      border-bottom: $material-color solid 2px;
+      transition: width $material-animation-duration ease;
+    }
+
     &.active {
       label {
         top: 0.1rem;
         font-size: 0.8rem;
+        color: $material-color;
+      }
+
+      &::after {
+        width: 100%;
       }
 
       .form-control {
-        background-size: 100%;
-
         &[disabled] + label,
         &[readonly] + label {
           color: $forms-disabled-color;

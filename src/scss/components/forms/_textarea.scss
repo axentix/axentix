@@ -1,7 +1,6 @@
 textarea.form-control {
   width: 100%;
   resize: vertical;
-  line-height: 1.15;
 
   &:not([rows]) {
     min-height: 6rem;
@@ -10,5 +9,13 @@ textarea.form-control {
 
   &[rows] {
     height: initial;
+  }
+}
+
+.form-material {
+  .form-field {
+    textarea.form-control {
+      padding-top: 0.75rem;
+    }
   }
 }
