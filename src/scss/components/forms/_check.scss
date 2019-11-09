@@ -32,15 +32,11 @@
   }
 }
 
-/// Custom styles
-// Axentix
-.form-check.axentix-style {
-  position: relative;
-  padding-left: 1.7rem;
-
-  [type='checkbox'] {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
+.form-material {
+  .form-field {
+    .form-check {
+      position: initial;
+      pointer-events: auto;
+    }
   }
 }

@@ -14,15 +14,15 @@ Axentix.detectAllInputs = function(inputElements) {
  */
 Axentix.detectInput = function(input) {
   const isActive = input.parentElement.classList.contains('active');
-  const hasContent =
-    input.value.length > 0 || input.placeholder.length > 0 || document.activeElement === input;
+  const hasContent = input.value.length > 0 || input.placeholder.length > 0;
+  const isFocused = document.activeElement === input;
   const isDisabled = input.hasAttribute('disabled') || input.hasAttribute('readonly');
 
   if (input.firstInit) {
-    Axentix.updateInput(input, isActive, hasContent);
+    Axentix.updateInput(input, isActive, hasContent, isFocused);
     input.firstInit = false;
   } else {
-    isDisabled ? '' : Axentix.updateInput(input, isActive, hasContent);
+    isDisabled ? '' : Axentix.updateInput(input, isActive, hasContent, isFocused);
   }
 };
 
@@ -31,13 +31,18 @@ Axentix.detectInput = function(input) {
  * @param {Element} input
  * @param {boolean} isActive
  * @param {boolean} hasContent
+ * @param {boolean} isFocused
  */
-Axentix.updateInput = function(input, isActive, hasContent) {
-  if (!isActive && hasContent) {
+Axentix.updateInput = function(input, isActive, hasContent, isFocused) {
+  if (!isActive && (hasContent || isFocused)) {
     input.parentElement.classList.add('active');
-  } else if (isActive && !hasContent) {
+  } else if (isActive && !(hasContent || isFocused)) {
     input.parentElement.classList.remove('active');
   }
+
+  isFocused
+    ? input.parentElement.classList.add('is-focused')
+    : input.parentElement.classList.remove('is-focused');
 };
 
 /**

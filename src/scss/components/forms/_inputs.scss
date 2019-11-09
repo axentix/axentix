@@ -23,7 +23,7 @@
   }
 
   .form-helper {
-    font-size: $forms-helper-size;
+    font-size: $form-helper-size;
     color: #747474;
     margin-top: 0.5rem;
     display: block;
@@ -51,7 +51,7 @@
   &[disabled],
   &[readonly] {
     background-color: #c8c8c8 !important;
-    color: $forms-disabled-color !important;
+    color: $form-disabled-color !important;
     border-color: #c8c8c8;
   }
 }
@@ -88,11 +88,11 @@
       &[disabled],
       &[readonly] {
         background: transparent !important;
-        color: $forms-disabled-color !important;
+        color: $form-disabled-color !important;
         border-bottom: $material-border-color dashed thin;
 
         + label {
-          color: $forms-disabled-color;
+          color: $form-disabled-color;
         }
       }
     }
@@ -114,14 +114,14 @@
         color: $material-color;
       }
 
-      &::after {
+      &.is-focused::after {
         width: 100%;
       }
 
       .form-control {
         &[disabled] + label,
         &[readonly] + label {
-          color: $forms-disabled-color;
+          color: $form-disabled-color;
         }
       }
     }
