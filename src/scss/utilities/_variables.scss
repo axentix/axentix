@@ -82,11 +82,11 @@ $h6: $base-size * 1.25 !default;
 
 // Shadow
 $shadows: (
-  '1': '0px 0px 8px 0px rgba(0, 0, 0, 0.18), 0px 2px 5px 0px rgba(0,0,0,0.14)',
-  '2': '0px 0px 10px 0px rgba(0, 0, 0, 0.26), 0px 2px 8px 0px rgba(0,0,0,0.16)',
-  '3': '0px 0px 15px 0px rgba(0, 0, 0, 0.32), 0px 2px 12px 0px rgba(0,0,0,0.18)',
-  '4': '0px 0px 18px 0px rgba(0, 0, 0, 0.34), 0px 2px 15px 0px rgba(0,0,0,0.20)',
-  '5': '0px 0px 21px 0px rgba(0, 0, 0, 0.36), 0px 2px 17px 0px rgba(0,0,0,0.22)'
+  '1': '0px 4px 8px 0px rgba(0, 0, 0, 0.10),  0px 2px 5px 2px rgba(0,0,0,0.1)',
+  '2': '0px 6px 8px 0px rgba(0, 0, 0, 0.09), 0px 5px 12px 4px rgba(0,0,0,0.15)',
+  '3': '0px 8px 9px 0px rgba(0, 0, 0, 0.12),  0px 10px 25px 8px rgba(0,0,0,0.15)',
+  '4': '0px 10px 10px 0px rgba(0, 0, 0, 0.15),  0px 10px 32px 8px rgba(0,0,0,0.15)',
+  '5': '0px 12px 14px 0px rgba(0, 0, 0, 0.2),  0px 10px 40px 10px rgba(0,0,0,0.2)'
 ) !default;
 
 $drop-shadows: (
@@ -102,6 +102,14 @@ $text-shadows: (
   '2': 2px 4px 3px rgba(0, 0, 0, 0.3),
   '3': '0px 4px 3px rgba(0,0,0,0.5), 0px 8px 13px rgba(0,0,0,0.1), 0px 18px 23px rgba(0,0,0,0.1)',
   '4': 6px 6px 0px rgba(0, 0, 0, 0.2)
+) !default;
+
+$hoverable: (
+  '1': '0px 9px 8px 0px rgba(0, 0, 0, 0.10),  0px 5px 8px 3px rgba(0,0,0,0.12)',
+  '2': '0px 11px 8px 0px rgba(0, 0, 0, 0.11), 0px 8px 12px 8px rgba(0,0,0,0.17)',
+  '3': '0px 13px 9px 0px rgba(0, 0, 0, 0.14),  0px 13px 25px 12px rgba(0,0,0,0.17)',
+  '4': '0px 15px 10px 0px rgba(0, 0, 0, 0.17),  0px 13px 32px 12px rgba(0,0,0,0.17)',
+  '5': '0px 17px 14px 0px rgba(0, 0, 0, 0.22),  0px 13px 40px 14px rgba(0,0,0,0.22)'
 ) !default;
 
 // Sidenav

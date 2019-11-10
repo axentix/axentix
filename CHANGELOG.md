@@ -1,3 +1,12 @@
+# 0.2.1 - 2019-11-05
+
+- ADDED
+  - Hoverable classes
+- REMOVED
+- IMPROVED
+  - Improved shadows classes
+- BUGFIXES
+
 # 0.2.0 - 2019-11-05
 
 <b>
