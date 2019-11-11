@@ -126,11 +126,11 @@ $rounded: (
 ) !default;
 
 // Forms
-$form-helper-size: 0.75rem;
-$form-disabled-color: #787878;
+$form-helper-size: 0.75rem !default;
+$form-disabled-color: #787878 !default;
 
 // Material Forms
-$material-animation-duration: 0.3s;
-$material-border-color: #c7c7c7;
-$material-color: getColor('viride', 'dark', 1);
-$material-placeholder-color: getColor('grey', 'dark', 2);
+$material-animation-duration: 0.3s !default;
+$material-border-color: #c7c7c7 !default;
+$material-color: getColor('viride', 'dark', 1) !default;
+$material-placeholder-color: getColor('grey', 'dark', 2) !default;

@@ -29,6 +29,7 @@
     font-weight: initial;
     margin-bottom: 0;
     display: inline-block;
+    align-self: flex-start;
   }
 }
 
@@ -38,6 +39,52 @@
       position: initial;
       pointer-events: auto;
       color: inherit;
+
+      input {
+        position: absolute;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      // For checkbox
+      input[type='checkbox'] + span {
+        position: relative;
+        padding-left: 1rem;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          display: inline-block;
+          width: 1rem;
+          height: 1rem;
+          border: $material-color solid 2px;
+          border-radius: 2px;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          display: block;
+          left: 0;
+          top: 0.05rem;
+          width: 0.7rem;
+          height: 0.4rem;
+          border: solid 2px transparent;
+          border-right: none;
+          border-top: none;
+          transform: translate(3px, 4px) rotate(-45deg);
+        }
+      }
+
+      input[type='checkbox']:checked + span::after {
+        border-color: #fff;
+      }
+
+      input[type='checkbox']:checked + span::before {
+        background-color: $material-color;
+      }
     }
   }
 }

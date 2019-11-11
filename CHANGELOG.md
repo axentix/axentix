@@ -1,4 +1,4 @@
-# 0.2.1 - 2019-11-05
+# 0.2.1 - Under development
 
 - ADDED
   - Hoverable classes
@@ -6,6 +6,8 @@
 - IMPROVED
   - Improved shadows classes
 - BUGFIXES
+  - Sidenav header & footer height on safari fixed
+  - Fixed .form-check take full width
 
 # 0.2.0 - 2019-11-05
 
