@@ -46,21 +46,19 @@
         opacity: 0;
       }
 
-      // For checkbox
-      input[type='checkbox'] + span {
+      input[type='checkbox'] + span,
+      input[type='radio'] + span {
         position: relative;
-        padding-left: 1rem;
+        padding-left: 1.25rem;
 
         &::before {
           content: '';
           position: absolute;
           left: 0;
-          top: 0;
+          top: 0.2rem;
           display: inline-block;
           width: 1rem;
           height: 1rem;
-          border: $material-color solid 2px;
-          border-radius: 2px;
         }
 
         &::after {
@@ -68,13 +66,26 @@
           position: absolute;
           display: block;
           left: 0;
-          top: 0.05rem;
-          width: 0.7rem;
+          top: 0.2rem;
+        }
+      }
+
+      // For checkbox only
+      input[type='checkbox'] + span {
+        &::before {
+          border: $material-color solid 2px;
+          border-radius: 2px;
+          transition: background-color 0.2s ease;
+        }
+
+        &::after {
+          width: 0.65rem;
           height: 0.4rem;
           border: solid 2px transparent;
           border-right: none;
           border-top: none;
           transform: translate(3px, 4px) rotate(-45deg);
+          transition: border-color 0.2s ease;
         }
       }
 
@@ -85,6 +96,38 @@
       input[type='checkbox']:checked + span::before {
         background-color: $material-color;
       }
+
+      // For radio only
+      input[type='radio'] + span {
+        &::before {
+          border: $material-color solid 2px;
+          @extend .rounded-full;
+        }
+
+        &::after {
+          width: 1rem;
+          height: 1rem;
+          background-color: $material-color;
+          transform: scale(0);
+          transition: transform 0.2s ease;
+          @extend .rounded-full;
+        }
+      }
+
+      input[type='radio']:checked + span {
+        &::after {
+          transform: scale(0.6);
+        }
+
+        &.full::after {
+          transform: scale(1);
+        }
+      }
     }
+  }
+}
+
+@keyframes anim-check {
+  0% {
   }
 }
