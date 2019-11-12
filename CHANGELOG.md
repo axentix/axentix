@@ -2,12 +2,16 @@
 
 - ADDED
   - Hoverable classes
+  - Text format classes
 - REMOVED
 - IMPROVED
-  - Improved shadows classes
+  - Shadows classes
+  - Padding on cards
 - BUGFIXES
   - Sidenav header & footer height on safari fixed
   - Fixed .form-check take full width
+  - Outline buttons line height
+  - Outline buttons in a and div
 
 # 0.2.0 - 2019-11-05
 
