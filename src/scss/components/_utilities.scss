@@ -202,3 +202,17 @@
     border-radius: #{$value};
   }
 }
+
+// Text format
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}

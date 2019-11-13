@@ -13,7 +13,7 @@
   height: 2.8rem;
   line-height: 2.8rem;
   font-size: 1.2rem;
-  padding: 0 1.25rem;
+  padding: 2px 1.25rem;
   overflow: hidden;
   @extend .shadow-1, .rounded-1;
 
@@ -23,14 +23,14 @@
 
   &.small {
     font-size: 1rem;
-    padding: 0 1rem;
+    padding: 2px 1rem;
     height: 2rem;
     line-height: 2rem;
   }
 
   &.large {
     font-size: 1.4rem;
-    padding: 0 1.5rem;
+    padding: 2px 1.5rem;
     height: 3.6rem;
     line-height: 3.6rem;
   }
@@ -60,6 +60,7 @@
 
   &.circle {
     display: block;
+    position: relative;
     text-align: center;
     padding: 0;
     font-size: 1.5rem;
@@ -78,9 +79,9 @@
 
     &.large {
       font-size: 1.8rem;
-      width: 3.8rem;
-      height: 3.8rem;
-      line-height: 3.8rem;
+      width: 3.6rem;
+      height: 3.6rem;
+      line-height: 3.6rem;
     }
   }
 
@@ -95,7 +96,32 @@
   &.outline {
     background-color: transparent;
     border: 2px solid currentColor;
-    line-height: normal;
+    padding: 0 calc(1.25rem - 2px);
+    line-height: 2.8rem;
+    height: 2.8rem;
+
+    &.circle {
+      position: relative;
+      .outline-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+      }
+    }
+
+    &.small {
+      height: 2rem;
+      line-height: 2rem;
+      padding: 0 calc(1rem - 2px);
+    }
+
+    &.large {
+      height: 3.6rem;
+      line-height: 3.6rem;
+      padding: 0 calc(1.5rem - 2px);
+    }
 
     .outline-text {
       transition: color 0.3s ease;
