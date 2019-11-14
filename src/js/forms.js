@@ -72,7 +72,9 @@ Axentix.setupFormsListeners = function(inputElements) {
 
 // Init
 document.addEventListener('DOMContentLoaded', () => {
-  const inputElements = document.querySelectorAll('.form-material .form-field .form-control');
+  const inputElements = document.querySelectorAll(
+    '.form-material .form-field:not(.form-default) .form-control'
+  );
   if (inputElements.length > 0) {
     Axentix.setupFormsListeners(inputElements);
     Axentix.detectAllInputs(inputElements);

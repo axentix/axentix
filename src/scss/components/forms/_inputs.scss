@@ -58,7 +58,7 @@
 
 // Material Style
 .form-material {
-  .form-field {
+  .form-field:not(.form-default) {
     padding-top: 0.75rem;
 
     label {

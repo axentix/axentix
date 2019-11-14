@@ -13,7 +13,7 @@ textarea.form-control {
 }
 
 .form-material {
-  .form-field {
+  .form-field:not(.form-default) {
     textarea.form-control {
       padding-top: 0.75rem;
     }

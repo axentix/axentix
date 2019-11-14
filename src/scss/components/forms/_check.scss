@@ -34,7 +34,7 @@
 }
 
 .form-material {
-  .form-field {
+  .form-field:not(.form-default) {
     .form-check {
       position: initial;
       pointer-events: auto;

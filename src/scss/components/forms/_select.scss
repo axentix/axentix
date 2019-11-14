@@ -27,3 +27,7 @@ select.form-control {
     }
   }
 }
+
+.form-material .form-field:not(.form-default) .form-control:not([multiple]) {
+  background-position: right -0.25rem center;
+}
