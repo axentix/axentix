@@ -38,6 +38,10 @@
     overflow-y: auto;
   }
 
+  @media (hover: none) {
+    overflow-y: auto;
+  }
+
   .sidenav-header {
     height: 5rem;
     width: 100%;
@@ -69,7 +73,7 @@
     }
   }
 
-  a {
+  .sidenav-link {
     color: inherit;
     text-decoration: none;
     display: block;

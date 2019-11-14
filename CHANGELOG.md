@@ -1,5 +1,7 @@
 # 0.2.1 - Under development
 
+**Sidenav link syntax changed ! Please add class="sidenav-link" to your a link.**
+
 - ADDED
   - Hoverable classes
   - Text format classes
@@ -7,11 +9,13 @@
 - IMPROVED
   - Shadows classes
   - Padding on cards
+  - Rework sidenav link
 - BUGFIXES
   - Sidenav header & footer height on safari fixed
   - Fixed .form-check take full width
   - Outline buttons line height
   - Outline buttons in a and div
+  - Fixed Sidenav overflow with device who don't support hover
 
 # 0.2.0 - 2019-11-05
 
