@@ -1,16 +1,18 @@
 # 0.2.1 - Under development
 
-**Sidenav link syntax changed ! Please add class="sidenav-link" to your a link.**
+**Sidenav link syntax changed ! Please add class="sidenav-link" to your `<a>` link.**
 
 - ADDED
   - Hoverable classes
   - Text format classes
+  - Material forms (inputs, checkbox, radio, textarea, .form-default, basic select) /!\ needs JavaScript
 - REMOVED
 - IMPROVED
   - Shadows classes
   - Padding on cards
   - Rework sidenav link
   - Rework buttons with paddings instead of height and line height
+  - Improved checkbox / radio disabled state
 - BUGFIXES
   - Sidenav header & footer height on safari fixed
   - Fixed .form-check take full width
