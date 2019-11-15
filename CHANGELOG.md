@@ -10,12 +10,14 @@
   - Shadows classes
   - Padding on cards
   - Rework sidenav link
+  - Rework buttons with paddings instead of height and line height
 - BUGFIXES
   - Sidenav header & footer height on safari fixed
   - Fixed .form-check take full width
   - Outline buttons line height
   - Outline buttons in a and div
   - Fixed Sidenav overflow with device who don't support hover
+  - Colspan border in tables
 
 # 0.2.0 - 2019-11-05
 
