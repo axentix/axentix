@@ -1,10 +1,7 @@
 // Default checkbox
 .form-check {
-  cursor: pointer;
-
-  &.disabled {
-    color: #afafaf !important;
-    cursor: default;
+  span {
+    cursor: pointer;
   }
 
   input {
@@ -14,9 +11,14 @@
       margin-right: 0.25rem;
     }
 
-    &[disabled] {
+    &:disabled {
       cursor: default;
     }
+  }
+
+  input:disabled + span {
+    color: $form-checkbox-disabled-color !important;
+    cursor: default;
   }
 }
 
@@ -46,8 +48,7 @@
         opacity: 0;
       }
 
-      input[type='checkbox'] + span,
-      input[type='radio'] + span {
+      input + span {
         position: relative;
         padding-left: 1.25rem;
 
@@ -67,6 +68,24 @@
           display: block;
           left: 0;
           top: 0.2rem;
+        }
+      }
+
+      input:disabled + span {
+        &::before {
+          border-color: $form-checkbox-disabled-color !important;
+        }
+      }
+
+      input[type='checkbox']:disabled + span {
+        &::before {
+          background-color: $form-checkbox-disabled-color !important;
+        }
+      }
+
+      input[type='radio']:disabled + span {
+        &::after {
+          background-color: $form-checkbox-disabled-color !important;
         }
       }
 
