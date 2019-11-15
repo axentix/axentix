@@ -60,6 +60,7 @@
 .form-material {
   .form-field:not(.form-default) {
     padding-top: 0.75rem;
+    align-self: start;
 
     label {
       font-weight: 400;

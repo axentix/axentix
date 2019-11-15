@@ -38,6 +38,22 @@
       <button data-target="example-sidenav" class="btn press amaranth dark-1 sidenav-trigger">
         Open sidenav
       </button>
+      <button data-target="example-modal" class="btn press amaranth dark-1 modal-trigger">
+        Open modal
+      </button>
+      <div class="modal white" id="example-modal">
+        <div class="modal-header">Header</div>
+        <div class="divider"></div>
+        <div class="modal-content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores dolorum eum in totam amet
+          soluta! Id distinctio iusto voluptatum ipsam officia, odit neque, fuga, commodi totam repellendus
+          deserunt quod laborum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda nostrum
+          doloribus quisquam minima minus animi voluptatum illo illum. Vel, labore iure aut sed nobis officiis
+          itaque molestias rerum natus vero.
+        </div>
+        <div class="divider"></div>
+        <div class="modal-footer">Footer</div>
+      </div>
       <table class="table">
         <thead>
           <tr>
@@ -75,6 +91,9 @@
     <script src="../dist/js/axentix.min.js"></script>
     <script>
       var sidenav = new Sidenav('#example-sidenav');
+      var modal = new Modal('#example-modal', {
+        overlay: false
+      });
     </script>
   </body>
 </html>
