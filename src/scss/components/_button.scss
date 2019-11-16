@@ -1,3 +1,7 @@
+.grix .btn {
+  align-self: start;
+}
+
 .btn {
   display: table;
   position: relative;
@@ -13,7 +17,6 @@
   font-size: 1.2rem;
   padding: calc(0.6rem + 2px) 1.25rem;
   overflow: hidden;
-  align-self: start;
   word-wrap: normal;
   @extend .shadow-1, .rounded-1;
 
