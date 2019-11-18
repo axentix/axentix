@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  -webkit-tap-highlight-color: transparent;
 
   label {
     display: block;
@@ -40,6 +41,7 @@
   width: 100%;
   appearance: none;
   background-color: #fff;
+  -webkit-tap-highlight-color: transparent;
   @extend .rounded-1;
 
   &:focus {
