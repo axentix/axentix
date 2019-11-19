@@ -138,13 +138,16 @@
       }
     }
 
+    &:not(.circle):hover {
+      @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
+        animation: none;
+      }
+    }
+
     &:hover {
       animation-name: fix-outline-button;
       animation-delay: 0.001s;
       animation-fill-mode: forwards;
-      @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
-        animation: none;
-      }
 
       .outline-text {
         color: #fff !important;
