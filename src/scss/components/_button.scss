@@ -175,8 +175,8 @@
 }
 
 // Firefox fix
-button.btn.outline:hover {
-  @supports (-moz-appearance: none) {
+@supports (-moz-appearance: none) {
+  button.btn.outline:hover {
     animation: initial;
     animation-name: fix-outline-button;
     animation-delay: 0.001s;
