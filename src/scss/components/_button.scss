@@ -58,7 +58,6 @@
   }
 
   &.circle {
-    display: block;
     position: relative;
     text-align: center;
     padding: 0;
@@ -138,16 +137,13 @@
       }
     }
 
-    &:not(.circle):hover {
-      @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
-        animation: none;
-      }
-    }
-
     &:hover {
       animation-name: fix-outline-button;
       animation-delay: 0.001s;
       animation-fill-mode: forwards;
+      @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
+        animation: none;
+      }
 
       .outline-text {
         color: #fff !important;
@@ -175,6 +171,16 @@
         }
       }
     }
+  }
+}
+
+// Firefox fix
+button.btn.outline:hover {
+  @supports (-moz-appearance: none) {
+    animation: initial;
+    animation-name: fix-outline-button;
+    animation-delay: 0.001s;
+    animation-fill-mode: forwards;
   }
 }
 
