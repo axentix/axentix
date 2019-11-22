@@ -135,6 +135,12 @@
       @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
         border-radius: inherit;
       }
+
+      @media not all and (min-resolution: 0.001dpcm) {
+        @supports (-webkit-appearance: none) {
+          border-radius: inherit;
+        }
+      }
     }
 
     &:hover {
