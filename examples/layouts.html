@@ -3,6 +3,10 @@
   <head>
     <title>Axentix Layout - Fixed sidenav</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="../dist/css/axentix.min.css" />
   </head>
 
@@ -75,8 +79,14 @@
       <button data-target="example-modal" class="btn press amaranth dark-1 modal-trigger">
         Open modal
       </button>
+
       <div class="modal white" id="example-modal">
-        <div class="modal-header">Header</div>
+        <div class="modal-header">
+          <button data-target="example-modal" class="modal-trigger">
+            <i class="fas fa-times"></i>
+          </button>
+          Header
+        </div>
         <div class="divider"></div>
         <div class="modal-content">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores dolorum eum in totam amet
@@ -86,7 +96,10 @@
           itaque molestias rerum natus vero.
         </div>
         <div class="divider"></div>
-        <div class="modal-footer">Footer</div>
+        <div class="modal-footer flex vcenter">
+          Footer
+          <button data-target="example-modal" class="mg-l-auto btn primary modal-trigger">Close</button>
+        </div>
       </div>
       <table class="table">
         <thead>

@@ -96,7 +96,8 @@
 }
 
 .mg-center {
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .center {
@@ -155,6 +156,24 @@
 
 .vself-bottom {
   align-self: end;
+}
+
+// Margins
+.mg-l-auto {
+  margin-left: auto;
+}
+
+.mg-r-auto {
+  margin-right: auto;
+}
+
+// Paddings
+.pd-l-auto {
+  padding-left: auto;
+}
+
+.pd-r-auto {
+  padding-right: auto;
 }
 
 // Truncate
