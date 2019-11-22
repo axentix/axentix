@@ -13,6 +13,7 @@
   - Rework sidenav link
   - Rework buttons with paddings instead of height and line height
   - Improved checkbox / radio disabled state
+  - White/light colors on outline buttons, use the .outline-invert on the span to get a black text on hover
 - BUGFIXES
   - Sidenav header & footer height on safari fixed
   - Fixed .form-check take full width
