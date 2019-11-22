@@ -155,6 +155,11 @@
         color: #fff !important;
       }
 
+      &.txt-white {
+        .outline-text {
+          color: black !important;
+        }
+      }
       &::before {
         opacity: 1;
       }

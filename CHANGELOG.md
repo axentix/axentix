@@ -17,9 +17,9 @@
   - Sidenav header & footer height on safari fixed
   - Fixed .form-check take full width
   - Outline buttons line height
-  - Outline buttons in a and div
-  - Fixed Sidenav overflow with device who don't support hover
-  - Colspan border in tables
+  - Outline buttons in `<a>` and `<div>`
+  - Fixed Sidenav overflow with devices who don't support hover
+  - Colspan borders in tables
   - Safari outline buttons on hover
   - 2 Collapsible in 2 differents Sidenav will close the others collapsibles on click
 
