@@ -20,6 +20,8 @@
   - Outline buttons in a and div
   - Fixed Sidenav overflow with device who don't support hover
   - Colspan border in tables
+  - Safari outline buttons on hover
+  - 2 Collapsible in 2 differents Sidenav will close the others collapsibles on click
 
 # 0.2.0 - 2019-11-05
 

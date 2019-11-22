@@ -63,11 +63,12 @@ class Collapsible {
       currElement = currElement.parentElement;
       if (currElement.classList.contains('sidenav')) {
         this.isInSidenav = true;
+        this.sidenavId = currElement.id;
         break;
       }
     }
 
-    this.sidenavCollapsibles = document.querySelectorAll('.sidenav .collapsible');
+    this.sidenavCollapsibles = document.querySelectorAll('#' + this.sidenavId + ' .collapsible');
   }
 
   /**
