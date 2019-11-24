@@ -8,21 +8,18 @@
   - Material forms (inputs, checkbox, radio, textarea, .form-default, basic select) /!\ needs JavaScript
 - REMOVED
 - IMPROVED
-  - Shadows classes
-  - Padding on cards
+  - Rework shadows classes
+  - Better padding on cards
   - Rework sidenav link
-  - Rework buttons with paddings instead of height and line height
+  - Rework buttons
   - Improved checkbox / radio disabled state
   - White/light colors on outline buttons, use the .outline-invert on the span to get a black text on hover
 - BUGFIXES
   - Sidenav header & footer height on safari fixed
-  - Fixed .form-check take full width
-  - Outline buttons line height
-  - Outline buttons in `<a>` and `<div>`
+  - The .form-check doesn't take the full width
   - Fixed Sidenav overflow with devices who don't support hover
   - Colspan borders in tables
-  - Safari outline buttons on hover
-  - 2 Collapsible in 2 differents Sidenav will close the others collapsibles on click
+  - 2 Collapsible in 2 differents Sidenav were closing the others collapsibles on click
 
 # 0.2.0 - 2019-11-05
 
