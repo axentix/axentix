@@ -1,4 +1,4 @@
-# 0.3.0 - Under development
+# 0.3.0 - 2019-11-24
 
 **Sidenav link syntax changed ! Please add class="sidenav-link" to your `<a>` link.**
 
