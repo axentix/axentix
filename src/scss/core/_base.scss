@@ -7,6 +7,8 @@
 
 html {
   font-family: $font-family;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
 }
 
 h1,

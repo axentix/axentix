@@ -1,22 +1,20 @@
 // Default checkbox
 .form-check {
-  cursor: pointer;
-
-  &.disabled {
-    color: #afafaf !important;
-    cursor: default;
+  span {
+    cursor: pointer;
   }
 
   input {
     cursor: pointer;
 
-    &:not([type='radio']) {
-      margin-right: 0.25rem;
-    }
-
-    &[disabled] {
+    &:disabled {
       cursor: default;
     }
+  }
+
+  input:disabled + span {
+    color: $form-checkbox-disabled-color !important;
+    cursor: default;
   }
 }
 
@@ -29,18 +27,130 @@
     font-weight: initial;
     margin-bottom: 0;
     display: inline-block;
+    align-self: flex-start;
   }
 }
 
-/// Custom styles
-// Axentix
-.form-check.axentix-style {
-  position: relative;
-  padding-left: 1.7rem;
+.form-material {
+  .form-field:not(.form-default) {
+    .form-check {
+      position: initial;
+      pointer-events: auto;
+      color: inherit;
 
-  [type='checkbox'] {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
+      input {
+        position: absolute;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      input + span {
+        position: relative;
+        padding-left: 1.25rem;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          display: inline-block;
+          width: 1rem;
+          height: 1rem;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          display: block;
+          left: 0;
+          top: 50%;
+        }
+      }
+
+      input:disabled + span {
+        &::before {
+          border-color: $form-checkbox-disabled-color !important;
+        }
+      }
+
+      input[type='checkbox']:checked:disabled + span {
+        &::before {
+          background-color: $form-checkbox-disabled-color !important;
+        }
+      }
+
+      input[type='radio']:disabled + span {
+        &::after {
+          background-color: $form-checkbox-disabled-color !important;
+        }
+      }
+
+      // For checkbox only
+      input[type='checkbox'] + span {
+        &::before {
+          border: $material-color solid 2px;
+          border-radius: 2px;
+          transition: background-color 0.2s ease;
+        }
+
+        &::after {
+          width: 0.65rem;
+          height: 0.4rem;
+          border: solid 2px transparent;
+          border-right: none;
+          border-top: none;
+          transform: translate(3px, -60%) rotate(-45deg);
+          transition: border-color 0.16s ease;
+        }
+      }
+
+      input[type='checkbox']:checked + span::after,
+      input[type='checkbox']:indeterminate + span::after {
+        border-color: #fff;
+      }
+
+      input[type='checkbox']:checked + span::before,
+      input[type='checkbox']:indeterminate + span::before {
+        background-color: $material-color;
+      }
+
+      input[type='checkbox']:indeterminate + span::after {
+        border-left: none;
+        transform: translate(4px, 3px);
+        width: 0.52rem;
+      }
+
+      // For radio only
+      input[type='radio'] + span {
+        &::before {
+          border: $material-color solid 2px;
+          @extend .rounded-full;
+        }
+
+        &::after {
+          width: 1rem;
+          height: 1rem;
+          background-color: $material-color;
+          transform: scale(0) translateY(-100%);
+          transition: transform 0.2s ease;
+          @extend .rounded-full;
+        }
+
+        &.full::after {
+          transform: scale(0) translateY(-50%);
+        }
+      }
+
+      input[type='radio']:checked + span {
+        &::after {
+          transform: scale(0.5) translateY(-100%);
+        }
+
+        &.full::after {
+          transform: scale(1) translateY(-50%);
+        }
+      }
+    }
   }
 }

@@ -10,6 +10,8 @@
   transform: scaleX(0) scaleY(0);
   opacity: 0;
   top: 10%;
+  max-height: 80%;
+  overflow: auto;
   @extend .shadow-1;
 
   &.active {
@@ -24,6 +26,17 @@
   .modal-header {
     padding: 1rem;
     font-size: 1.5rem;
+    .modal-trigger {
+      position: absolute;
+      background-color: transparent;
+      border: none;
+      height: 2.5rem;
+      width: 2.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      top: 0rem;
+      right: 0rem;
+    }
   }
 
   .modal-content {

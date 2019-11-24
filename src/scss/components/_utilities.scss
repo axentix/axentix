@@ -1,14 +1,27 @@
 /*** Some helpers classes ***/
-.mg-0 {
+.m-0 {
   margin: 0 !important;
 }
 
-.pd-0 {
+.p-0 {
   padding: 0 !important;
 }
 
 .shadow-0 {
   box-shadow: none !important;
+}
+
+//hoverable
+@each $number, $value in $hoverable {
+  .hoverable-#{$number} {
+    transition-property: box-shadow, transform;
+    transition-timing-function: ease;
+    transition-duration: 0.2s;
+    &:hover {
+      box-shadow: #{$value} !important;
+      transform: translateY(-5px);
+    }
+  }
 }
 
 .dropshadow-0 {
@@ -82,8 +95,24 @@
   text-align: right;
 }
 
-.mg-center {
-  margin: 0 auto;
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.px-auto {
+  padding-left: auto;
+  padding-right: auto;
+}
+
+.py-auto {
+  padding-top: auto;
+  padding-bottom: auto;
 }
 
 .center {
@@ -144,6 +173,24 @@
   align-self: end;
 }
 
+// Margins
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
+// Paddings
+.pl-auto {
+  padding-left: auto;
+}
+
+.pr-auto {
+  padding-right: auto;
+}
+
 // Truncate
 .truncate {
   overflow: hidden;
@@ -154,8 +201,9 @@
 // Divider
 .divider {
   width: 100%;
-  height: 1px;
-  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: solid;
+  border-width: thin;
+  border-color: rgba(0, 0, 0, 0.3);
 }
 
 // Blockquote
@@ -188,4 +236,18 @@
   .rounded-#{$name} {
     border-radius: #{$value};
   }
+}
+
+// Text format
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }

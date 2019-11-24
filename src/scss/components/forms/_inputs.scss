@@ -3,6 +3,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
 
   label {
     display: block;
@@ -22,7 +23,7 @@
   }
 
   .form-helper {
-    font-size: $form-helper;
+    font-size: $form-helper-size;
     color: #747474;
     margin-top: 0.5rem;
     display: block;
@@ -50,7 +51,81 @@
   &[disabled],
   &[readonly] {
     background-color: #c8c8c8 !important;
-    color: #787878 !important;
+    color: $form-disabled-color !important;
     border-color: #c8c8c8;
+  }
+}
+
+// Material Style
+.form-material {
+  .form-field:not(.form-default) {
+    padding-top: 0.75rem;
+    align-self: start;
+
+    label {
+      font-weight: 400;
+      margin: 0;
+      position: absolute;
+      top: 1.4rem;
+      left: 0;
+      pointer-events: none;
+      transition-property: top, color, font-size;
+      transition-timing-function: ease;
+      transition-duration: $material-animation-duration;
+      font-size: 1rem;
+      z-index: 2;
+      color: $material-placeholder-color;
+    }
+
+    .form-control {
+      border: none;
+      border-bottom: 1px solid $material-border-color;
+      padding: 0;
+      border-radius: 0;
+
+      &:focus {
+        box-shadow: none;
+      }
+
+      &[disabled],
+      &[readonly] {
+        background: transparent !important;
+        color: $form-disabled-color !important;
+        border-bottom: $material-border-color dashed thin;
+
+        + label {
+          color: $form-disabled-color;
+        }
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      border-bottom: $material-color solid 2px;
+      transition: width $material-animation-duration ease;
+    }
+
+    &.active {
+      label {
+        top: 0.1rem;
+        font-size: 0.8rem;
+        color: $material-color;
+      }
+
+      &.is-focused::after {
+        width: 100%;
+      }
+
+      .form-control {
+        &[disabled] + label,
+        &[readonly] + label {
+          color: $form-disabled-color;
+        }
+      }
+    }
   }
 }

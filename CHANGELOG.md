@@ -1,3 +1,26 @@
+# 0.3.0 - 2019-11-24
+
+**Sidenav link syntax changed ! Please add class="sidenav-link" to your `<a>` link.**
+
+- ADDED
+  - Hoverable classes
+  - Text format classes
+  - Material forms (inputs, checkbox, radio, textarea, .form-default, basic select) /!\ needs JavaScript
+- REMOVED
+- IMPROVED
+  - Rework shadows classes
+  - Better padding on cards
+  - Rework sidenav link
+  - Rework buttons
+  - Improved checkbox / radio disabled state
+  - White/light colors on outline buttons, use the .outline-invert on the span to get a black text on hover
+- BUGFIXES
+  - Sidenav header & footer height on safari fixed
+  - The .form-check doesn't take the full width
+  - Fixed Sidenav overflow with devices who don't support hover
+  - Colspan borders in tables
+  - 2 Collapsible in 2 differents Sidenav were closing the others collapsibles on click
+
 # 0.2.0 - 2019-11-05
 
 <b>

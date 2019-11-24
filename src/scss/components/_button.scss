@@ -1,5 +1,9 @@
+.grix .btn {
+  align-self: start;
+}
+
 .btn {
-  display: table; // fix width in Edge
+  display: table;
   position: relative;
   transition-duration: 0.3s;
   transition-timing-function: ease;
@@ -10,11 +14,10 @@
   text-decoration: none;
   outline-style: none;
   width: fit-content;
-  height: 2.8rem;
-  line-height: 2.8rem;
   font-size: 1.2rem;
-  padding: 0 1.25rem;
+  padding: calc(0.6rem + 2px) 1.25rem;
   overflow: hidden;
+  word-wrap: normal;
   @extend .shadow-1, .rounded-1;
 
   &:hover {
@@ -23,16 +26,12 @@
 
   &.small {
     font-size: 1rem;
-    padding: 0 1rem;
-    height: 2rem;
-    line-height: 2rem;
+    padding: calc(0.45rem + 2px) 1rem;
   }
 
   &.large {
     font-size: 1.4rem;
-    padding: 0 1.5rem;
-    height: 3.6rem;
-    line-height: 3.6rem;
+    padding: calc(1rem + 2px) 1.5rem;
   }
 
   &.push {
@@ -59,7 +58,7 @@
   }
 
   &.circle {
-    display: block;
+    position: relative;
     text-align: center;
     padding: 0;
     font-size: 1.5rem;
@@ -78,9 +77,9 @@
 
     &.large {
       font-size: 1.8rem;
-      width: 3.8rem;
-      height: 3.8rem;
-      line-height: 3.8rem;
+      width: 3.6rem;
+      height: 3.6rem;
+      line-height: 3.6rem;
     }
   }
 
@@ -95,7 +94,26 @@
   &.outline {
     background-color: transparent;
     border: 2px solid currentColor;
-    line-height: normal;
+    padding: 0.6rem calc(1.25rem - 2px);
+
+    &.circle {
+      position: relative;
+      .outline-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+      }
+    }
+
+    &.small {
+      padding: 0.45rem calc(1rem - 2px);
+    }
+
+    &.large {
+      padding: 1rem calc(1.5rem - 2px);
+    }
 
     .outline-text {
       transition: color 0.3s ease;
@@ -117,6 +135,12 @@
       @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
         border-radius: inherit;
       }
+
+      @media not all and (min-resolution: 0.001dpcm) {
+        @supports (-webkit-appearance: none) {
+          border-radius: inherit;
+        }
+      }
     }
 
     &:hover {
@@ -129,8 +153,10 @@
 
       .outline-text {
         color: #fff !important;
+        &.outline-invert {
+          color: black !important;
+        }
       }
-
       &::before {
         opacity: 1;
       }
@@ -153,6 +179,16 @@
         }
       }
     }
+  }
+}
+
+// Firefox fix
+@supports (-moz-appearance: none) {
+  button.btn.outline:hover {
+    animation: initial;
+    animation-name: fix-outline-button;
+    animation-delay: 0.001s;
+    animation-fill-mode: forwards;
   }
 }
 

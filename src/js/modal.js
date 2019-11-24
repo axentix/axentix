@@ -62,7 +62,7 @@ class Modal {
   _setZIndex() {
     const totalModals = document.querySelectorAll('.modal.active').length + 1;
 
-    this.overlayElement.style.zIndex = 800 + totalModals * 6;
+    this.options.overlay ? (this.overlayElement.style.zIndex = 800 + totalModals * 6) : '';
     this.el.style.zIndex = 800 + totalModals * 10;
   }
 

@@ -53,3 +53,17 @@ steps:
   when:
     event:
       - tag
+
+- name: send
+  image: plugins/webhook
+  settings:
+    urls: https://useaxentix.com/api/hook
+    headers:
+      from_secret: hook_headers
+    template: |
+      {
+        "version": "{{ build.tag }}"
+      }
+  when:
+    event:
+      - tag

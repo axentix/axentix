@@ -8,19 +8,22 @@
 
   .card-header {
     font-size: 1.5rem;
-    padding: 1.5rem 1.5rem 0;
+    padding: 1rem 1.5rem;
   }
 
   .card-content {
     padding: 1rem 1.5rem;
 
     .card-header {
-      padding: 1rem 0;
+      padding: 0 0 2rem 0;
+    }
+    p {
+      margin: 0;
     }
   }
 
   .card-footer {
-    padding: 0.5rem 1.5rem 1rem;
+    padding: 1rem 1.5rem;
   }
 
   .card-image {
