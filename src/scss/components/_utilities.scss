@@ -95,14 +95,24 @@
   text-align: right;
 }
 
-.mx-center {
+.mx-auto {
   margin-left: auto;
   margin-right: auto;
 }
 
-.my-center {
+.my-auto {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.px-auto {
+  padding-left: auto;
+  padding-right: auto;
+}
+
+.py-auto {
+  padding-top: auto;
+  padding-bottom: auto;
 }
 
 .center {
