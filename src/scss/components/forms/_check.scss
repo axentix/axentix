@@ -7,10 +7,6 @@
   input {
     cursor: pointer;
 
-    &:not([type='radio']) {
-      margin-right: 0.25rem;
-    }
-
     &:disabled {
       cursor: default;
     }
@@ -78,7 +74,7 @@
         }
       }
 
-      input[type='checkbox']:disabled + span {
+      input[type='checkbox']:checked:disabled + span {
         &::before {
           background-color: $form-checkbox-disabled-color !important;
         }
