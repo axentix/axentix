@@ -9,7 +9,6 @@
 
   &.toast-bottom {
     flex-direction: column-reverse;
-    align-items: flex-end;
     top: unset;
     bottom: 10%;
   }
@@ -26,9 +25,8 @@
     display: flex;
     width: auto;
     padding: 1rem;
-    margin-top: 1rem;
     background-color: #2196e3;
-    transition-property: margin-top, opacity, padding-top, padding-bottom;
+    transition-property: margin, opacity, padding-top, padding-bottom, height;
     transition-timing-function: ease;
   }
 }
