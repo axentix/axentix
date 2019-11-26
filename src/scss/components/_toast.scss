@@ -9,6 +9,7 @@
 
   &.toast-bottom {
     flex-direction: column-reverse;
+    // align-items: flex-end;
     top: unset;
     bottom: 10%;
   }
@@ -25,7 +26,12 @@
     display: flex;
     width: auto;
     padding: 1rem;
-    transition-property: margin, opacity, padding, height;
+    overflow: hidden;
+
+    transition-property: height, margin, opacity, padding, transform;
     transition-timing-function: ease;
+    &.toastout {
+      transform: translateY(-100%);
+    }
   }
 }

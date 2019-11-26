@@ -12,8 +12,8 @@ class Toast {
 
   constructor(content, options) {
     this.defaultOptions = {
-      animationDelay: 4000,
-      displayTime: 8000,
+      animationDelay: 1000,
+      displayTime: 4000,
       classes: '',
       position: 'right',
       comeFrom: 'top'
@@ -84,7 +84,10 @@ class Toast {
     setTimeout(() => {
       toast.style.paddingTop = 0;
       toast.style.paddingBottom = 0;
-      toast.style.height = 0;
+      toast.innerHTML = '';
+      // toast.style.marginBottom = '-100%';
+      // toast.style.transform = 'translateY(-100%)';
+
       this.options.comeFrom === 'top' ? (toast.style.marginTop = 0) : (toast.style.marginBottom = 0);
     }, this.options.displayTime + this.options.animationDelay);
 
