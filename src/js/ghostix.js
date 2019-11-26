@@ -21,6 +21,7 @@ class Ghostix {
     };
 
     this.el = document.querySelector(element);
+    this.el.style.position = 'relative';
     this.width = this.el.clientWidth + 'px';
     this.height = this.el.clientHeight + 'px';
 
