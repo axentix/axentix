@@ -1,10 +1,18 @@
 .toaster {
   position: fixed;
-  display: block;
+  display: flex;
+  flex-direction: column;
   top: 10%;
   z-index: 5000;
   width: 10rem;
   height: auto;
+
+  &.toast-bottom {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    top: unset;
+    bottom: 10%;
+  }
 
   &.toaster-left {
     left: 5%;
@@ -15,6 +23,7 @@
   }
 
   .toast {
+    display: flex;
     width: auto;
     padding: 1rem;
     margin-top: 1rem;
