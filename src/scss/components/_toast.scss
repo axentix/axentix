@@ -1,0 +1,26 @@
+.toaster {
+  position: fixed;
+  display: block;
+  top: 10%;
+  background-color: red;
+  z-index: 5000;
+  width: 10rem;
+  height: auto;
+
+  &.toaster-left {
+    left: 5%;
+  }
+
+  &.toaster-right {
+    right: 5%;
+  }
+
+  .toast {
+    width: auto;
+    padding: 1rem;
+    margin-top: 1rem;
+    background-color: blue;
+    transition-property: margin-top, opacity;
+    transition-timing-function: ease;
+  }
+}
