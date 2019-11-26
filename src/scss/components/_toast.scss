@@ -2,7 +2,6 @@
   position: fixed;
   display: block;
   top: 10%;
-  background-color: red;
   z-index: 5000;
   width: 10rem;
   height: auto;
@@ -19,8 +18,8 @@
     width: auto;
     padding: 1rem;
     margin-top: 1rem;
-    background-color: blue;
-    transition-property: margin-top, opacity;
+    background-color: #2196e3;
+    transition-property: margin-top, opacity, padding-top, padding-bottom;
     transition-timing-function: ease;
   }
 }

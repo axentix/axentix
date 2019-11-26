@@ -13,8 +13,9 @@ class Toast {
 
   constructor(content, options) {
     this.defaultOptions = {
-      animationDelay: 1000,
-      classes: ['toast', 'shadow-1'],
+      animationDelay: 400,
+      displayTime: 4000,
+      classes: 'toast shadow-1',
       yAxis: 'top',
       xAxis: 'right'
     };
@@ -28,49 +29,88 @@ class Toast {
   createToaster() {
     //  need to use xAxis and yAxis
     let toaster = document.createElement('div');
-    if (this.options.xAxis == 'right') {
+    if (this.options.xAxis === 'right') {
       toaster.setAttribute('class', 'toaster toaster-right');
-    } else if (this.options.xAxis == 'left') {
+    } else if (this.options.xAxis === 'left') {
       toaster.setAttribute('class', 'toaster toaster-left');
     }
     document.body.appendChild(toaster);
+  }
+
+  removeToaster() {
+    if (document.querySelector('.toaster').childElementCount <= 0) {
+      document.querySelector('.toaster').remove();
+    }
+  }
+
+  /**
+   * Toast in animation
+   */
+  animToastIn(toast) {
+    toast.style.opacity = 0.2;
+    toast.style.marginTop = 5 + 'rem';
+    setTimeout(() => {
+      toast.style.marginTop = 1 + 'rem';
+      toast.style.opacity = 1;
+    }, 50);
+  }
+
+  /**
+   * Toast out animation
+   */
+  animToastOut(toast) {
+    setTimeout(() => {
+      toast.style.opacity = 0;
+    }, this.options.displayTime);
+  }
+
+  /**
+   * Toast remove
+   */
+  removeToast(toast) {
+    setTimeout(() => {
+      toast.style.paddingTop = 0;
+      toast.style.paddingBottom = 0;
+      toast.style.marginTop = 0;
+    }, this.options.displayTime + this.options.animationDelay);
+
+    setTimeout(() => {
+      toast.remove();
+    }, this.options.displayTime + 2 * this.options.animationDelay);
   }
 
   /**
    * Create toast
    */
   createToast() {
-    var toast = document.createElement('div');
+    let toast = document.createElement('div');
 
-    this.options.classes.forEach(element => {
-      toast.classList.add(element);
-    });
+    toast.className = this.options.classes;
     toast.style.transitionDuration = this.options.animationDelay + 'ms';
 
     // anim toast in
-
-    setTimeout(() => {
-      toast.style.marginTop = 1 + 'rem';
-    }, 5);
-    toast.style.marginTop = 2 + 'rem';
+    this.animToastIn(toast);
 
     document.querySelector('.toaster').appendChild(toast);
 
-    // anim toast out
+    this.animToastOut(toast);
+
+    this.removeToast(toast);
+
     setTimeout(() => {
-      toast.style.opacity = 0;
-    }, 1000);
+      this.removeToaster();
+    }, this.options.displayTime + 2 * this.options.animationDelay + 500);
   }
 
   /**
    * Showing the toast
    */
   show() {
-    if (!document.querySelector('id', 'toaster')) {
+    if (!document.querySelector('.toaster')) {
       this.createToaster(this.options);
     }
 
-    let toaster = document.querySelector('id', 'toaster');
+    // let toaster = document.querySelector('id', 'toaster');
 
     this.createToast();
   }
