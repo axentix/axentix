@@ -1,8 +1,7 @@
 /**
- * Class toast
+ * Class Toast
  * @class
  */
-
 class Toast {
   /**
    * Construct Toast instance
@@ -14,8 +13,8 @@ class Toast {
   constructor(content, options) {
     this.defaultOptions = {
       animationDelay: 4000,
-      displayTime: 4000,
-      classes: 'toast shadow-1',
+      displayTime: 8000,
+      classes: '',
       position: 'right',
       comeFrom: 'top'
     };
@@ -29,8 +28,7 @@ class Toast {
    */
 
   _createToaster() {
-    //  need to use xAxis and yAxis
-    let toaster = document.createElement('div');
+    this.toaster = document.createElement('div');
 
     const positionList = ['right', 'left'];
     positionList.includes(this.options.position) ? '' : (this.options.position = 'right');
@@ -38,16 +36,15 @@ class Toast {
     const comeFromList = ['bottom', 'top'];
     comeFromList.includes(this.options.comeFrom) ? '' : (this.options.comeFrom = 'top');
 
-    toaster.setAttribute(
-      'class',
-      'toaster toaster-' + this.options.position + ' toast-' + this.options.comeFrom
-    );
+    this.toaster.className = 'toaster toaster-' + this.options.position + ' toast-' + this.options.comeFrom;
 
-    document.body.appendChild(toaster);
+    document.body.appendChild(this.toaster);
   }
 
   _removeToaster() {
-    document.querySelector('.toaster').remove();
+    setTimeout(() => {
+      this.toaster.remove();
+    }, this.options.displayTime + 2 * this.options.animationDelay + 500);
   }
 
   /**
@@ -87,13 +84,8 @@ class Toast {
     setTimeout(() => {
       toast.style.paddingTop = 0;
       toast.style.paddingBottom = 0;
-      toast.style.height = '0px';
-      // if (this.options.comeFrom === 'top') {
-      //   toast.style.marginTop = 0;
-      // } else if (this.options.comeFrom === 'bottom') {
-      //   toast.style.marginBottom = 0;
-      // }
-      toast.style.marginBottom = 0;
+      toast.style.height = 0;
+      this.options.comeFrom === 'top' ? (toast.style.marginTop = 0) : (toast.style.marginBottom = 0);
     }, this.options.displayTime + this.options.animationDelay);
 
     setTimeout(() => {
@@ -107,32 +99,30 @@ class Toast {
   _createToast() {
     let toast = document.createElement('div');
 
-    toast.className = this.options.classes;
+    toast.className = 'toast shadow-1 ' + this.options.classes;
     toast.innerHTML = this.content;
     toast.style.transitionDuration = this.options.animationDelay + 'ms';
 
     // anim toast in
     this._fadeInToast(toast);
 
-    document.querySelector('.toaster').appendChild(toast);
+    this.toaster.appendChild(toast);
 
     this._fadeOutToast(toast);
 
     this._removeToast(toast);
 
     // remove toaster if there is no more toasts on the page
-    setTimeout(() => {
-      if (document.querySelector('.toaster').childElementCount <= 0) {
-        this._removeToaster();
-      }
-    }, this.options.displayTime + 2 * this.options.animationDelay + 500);
+    if (this.toaster.childElementCount <= 0) {
+      this._removeToaster();
+    }
   }
 
   /**
    * Showing the toast
    */
   show() {
-    if (!document.querySelector('.toaster')) {
+    if (!this.toaster) {
       this._createToaster(this.options);
     }
 

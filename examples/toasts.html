@@ -44,7 +44,9 @@
     <script src="../dist/js/axentix.min.js"></script>
     <script>
       var sidenav = new Sidenav('#example-sidenav');
-      var mytoast = new Toast('This is a toast <br> ok');
+      var mytoast = new Toast('This is a toast <br> ok', {
+        classes: 'primary'
+      });
       mytoast.show();
     </script>
   </body>
