@@ -5,11 +5,9 @@
   top: 10%;
   z-index: 5000;
   width: 10rem;
-  height: auto;
 
   &.toast-bottom {
     flex-direction: column-reverse;
-    // align-items: flex-end;
     top: unset;
     bottom: 10%;
   }
@@ -24,14 +22,8 @@
 
   .toast {
     display: flex;
-    width: auto;
     padding: 1rem;
-    overflow: hidden;
-
-    transition-property: height, margin, opacity, padding, transform;
+    transition-property: height, margin, opacity, padding;
     transition-timing-function: ease;
-    &.toastout {
-      transform: translateY(-100%);
-    }
   }
 }
