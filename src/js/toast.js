@@ -12,11 +12,11 @@ class Toast {
 
   constructor(content, options) {
     this.defaultOptions = {
-      animationDelay: 4000,
-      displayTime: 8000,
+      animationDelay: 1000,
+      displayTime: 4000,
       classes: '',
       position: 'right',
-      comeFrom: 'top'
+      comeFrom: 'bottom'
     };
 
     this.content = content;
@@ -43,8 +43,11 @@ class Toast {
 
   _removeToaster() {
     setTimeout(() => {
-      this.toaster.remove();
-    }, this.options.displayTime + 2 * this.options.animationDelay + 500);
+      if (this.toaster.childElementCount <= 0) {
+        this.toaster.remove();
+        this.toaster = undefined;
+      }
+    }, 50);
   }
 
   /**
@@ -78,18 +81,25 @@ class Toast {
   }
 
   /**
-   * Toast remove
+   *
+   * @param {Element} toast
    */
   _removeToast(toast) {
+    const height = toast.clientHeight;
+    toast.style.height = height + 'px';
+
     setTimeout(() => {
       toast.style.paddingTop = 0;
       toast.style.paddingBottom = 0;
+      toast.style.margin = 0;
       toast.style.height = 0;
+
       this.options.comeFrom === 'top' ? (toast.style.marginTop = 0) : (toast.style.marginBottom = 0);
     }, this.options.displayTime + this.options.animationDelay);
 
     setTimeout(() => {
       toast.remove();
+      this._removeToaster();
     }, this.options.displayTime + 2 * this.options.animationDelay);
   }
 
@@ -103,7 +113,6 @@ class Toast {
     toast.innerHTML = this.content;
     toast.style.transitionDuration = this.options.animationDelay + 'ms';
 
-    // anim toast in
     this._fadeInToast(toast);
 
     this.toaster.appendChild(toast);
@@ -111,20 +120,13 @@ class Toast {
     this._fadeOutToast(toast);
 
     this._removeToast(toast);
-
-    // remove toaster if there is no more toasts on the page
-    if (this.toaster.childElementCount <= 0) {
-      this._removeToaster();
-    }
   }
 
   /**
    * Showing the toast
    */
   show() {
-    if (!this.toaster) {
-      this._createToaster(this.options);
-    }
+    this.toaster ? '' : this._createToaster(this.options);
 
     this._createToast();
   }

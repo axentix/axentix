@@ -5,7 +5,6 @@
   top: 10%;
   z-index: 5000;
   width: 10rem;
-  height: auto;
 
   &.toast-bottom {
     flex-direction: column-reverse;
@@ -23,9 +22,8 @@
 
   .toast {
     display: flex;
-    width: auto;
     padding: 1rem;
-    transition-property: margin, opacity, padding, height;
+    transition-property: height, margin, opacity, padding;
     transition-timing-function: ease;
   }
 }
