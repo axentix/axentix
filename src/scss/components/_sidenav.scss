@@ -15,6 +15,12 @@
   transition: transform ease;
   overflow: hidden;
 
+  &.right-aligned {
+    left: initial;
+    right: 0;
+    transform: translateX(105%);
+  }
+
   &.active {
     transform: translateX(0);
     overflow-y: auto;
