@@ -20,15 +20,31 @@
     right: 5%;
   }
 
-  &.toaster-mobile-bottom {
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
+  @include responsive('sm-down') {
+    &.toaster-mobile-bottom {
+      flex-direction: column-reverse;
+      margin: 0 0 5rem 0;
+      top: unset;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+    }
+    &.toaster-mobile-top {
+      flex-direction: column;
+      margin: 5rem 0 0 0;
+      top: 10%;
+      bottom: unset;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+    }
   }
 
   .toast {
     display: flex;
     padding: 1rem;
+    margin: 5rem 0;
     transition-property: height, margin, opacity, padding;
     transition-timing-function: ease;
   }
