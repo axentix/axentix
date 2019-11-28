@@ -61,29 +61,17 @@ class Toast {
 
   /**
    * Toast in animation
+   * @param {Element} toast
    */
   _fadeInToast(toast) {
-    toast.style.opacity = 0.2;
-
-    if (this.options.comeFrom === 'top') {
-      toast.style.marginBottom = 0;
-      toast.style.marginTop = 5 + 'rem';
-      setTimeout(() => {
-        toast.style.marginTop = 1 + 'rem';
-        toast.style.opacity = 1;
-      }, 50);
-    } else if (this.options.comeFrom === 'bottom') {
-      toast.style.marginTop = 0;
-      toast.style.marginBottom = 5 + 'rem';
-      setTimeout(() => {
-        toast.style.marginBottom = 1 + 'rem';
-        toast.style.opacity = 1;
-      }, 50);
-    }
+    setTimeout(() => {
+      toast.classList.add('toast-animated');
+    }, 50);
   }
 
   /**
    * Toast out animation
+   * @param {Element} toast
    */
   _fadeOutToast(toast) {
     setTimeout(() => {
@@ -92,7 +80,7 @@ class Toast {
   }
 
   /**
-   *
+   * Remove toast
    * @param {Element} toast
    */
   _removeToast(toast) {
@@ -104,8 +92,6 @@ class Toast {
       toast.style.paddingBottom = 0;
       toast.style.margin = 0;
       toast.style.height = 0;
-
-      // this.options.comeFrom === 'top' ? (toast.style.marginTop = 0) : (toast.style.marginBottom = 0);
     }, this.options.displayTime + 2 * this.options.animationDelay);
 
     setTimeout(() => {
@@ -138,7 +124,6 @@ class Toast {
    */
   show() {
     this.toaster ? '' : this._createToaster(this.options);
-
     this._createToast();
   }
 }
