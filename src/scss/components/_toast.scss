@@ -20,6 +20,12 @@
     right: 5%;
   }
 
+  &.toaster-mobile-bottom {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+  }
+
   .toast {
     display: flex;
     padding: 1rem;

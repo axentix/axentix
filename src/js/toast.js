@@ -16,7 +16,8 @@ class Toast {
       displayTime: 4000,
       classes: '',
       position: 'right',
-      comeFrom: 'bottom'
+      comeFrom: 'top',
+      mobileComeFrom: 'bottom'
     };
 
     this.content = content;
@@ -36,7 +37,15 @@ class Toast {
     const comeFromList = ['bottom', 'top'];
     comeFromList.includes(this.options.comeFrom) ? '' : (this.options.comeFrom = 'top');
 
-    this.toaster.className = 'toaster toaster-' + this.options.position + ' toast-' + this.options.comeFrom;
+    comeFromList.includes(this.options.mobileComeFrom) ? '' : (this.options.mobileComeFrom = 'bottom');
+
+    this.toaster.className =
+      'toaster toaster-' +
+      this.options.position +
+      ' toast-' +
+      this.options.comeFrom +
+      ' toaster-mobile-' +
+      this.options.mobileComeFrom;
 
     document.body.appendChild(this.toaster);
   }
@@ -77,7 +86,7 @@ class Toast {
   _fadeOutToast(toast) {
     setTimeout(() => {
       toast.style.opacity = 0;
-    }, this.options.displayTime);
+    }, this.options.displayTime + this.options.animationDelay);
   }
 
   /**
@@ -95,12 +104,12 @@ class Toast {
       toast.style.height = 0;
 
       this.options.comeFrom === 'top' ? (toast.style.marginTop = 0) : (toast.style.marginBottom = 0);
-    }, this.options.displayTime + this.options.animationDelay);
+    }, this.options.displayTime + 2 * this.options.animationDelay);
 
     setTimeout(() => {
       toast.remove();
       this._removeToaster();
-    }, this.options.displayTime + 2 * this.options.animationDelay);
+    }, this.options.displayTime + 3 * this.options.animationDelay);
   }
 
   /**
