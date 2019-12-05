@@ -1,3 +1,12 @@
+# 0.4.0 - Under development
+
+- ADDED
+  - Toasts
+- REMOVED
+- IMPROVED
+  - Sidenav link height increased to make it more SEO friendly
+- BUGFIXES
+
 # 0.3.0 - 2019-11-24
 
 **Sidenav link syntax changed ! Please add class="sidenav-link" to your `<a>` link.**
