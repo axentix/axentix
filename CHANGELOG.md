@@ -4,7 +4,7 @@
   - Sidenav can now be placed on the right
 - REMOVED
 - IMPROVED
-  - You can now disable auto init (Axentix method) with class .no-axentix-init, and manually init element
+  - You can now disable auto init (Axentix method) with the .no-axentix-init class, and manually init the element
   - Sidenav link height increased to make it more SEO friendly
   - Modal have now bodyScrolling option like Sidenav by default
 - BUGFIXES
