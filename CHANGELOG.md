@@ -7,6 +7,7 @@
 - IMPROVED
   - You can now disable auto init (Axentix method) with class .no-axentix-init, and manually init element
   - Sidenav link height increased to make it more SEO friendly
+  - Rework navbar classes
 - BUGFIXES
   - Button's height broken in sidenav
 
