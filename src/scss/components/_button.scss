@@ -23,12 +23,10 @@
   &:not(.press),
   &:not(.push),
   &:not(.outline) {
-    &.hoverable-1,
-    &.hoverable-2,
-    &.hoverable-3,
-    &.hoverable-4,
-    &.hoverable-5 {
-      transition-property: filter, transform, box-shadow;
+    @each $number, $value in $hoverable {
+      &.hoverable-#{$number} {
+        transition-property: filter, transform, box-shadow;
+      }
     }
   }
 
