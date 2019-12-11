@@ -1,3 +1,11 @@
+# 0.4.0 - Under development
+
+- ADDED
+  - Toasts
+- REMOVED
+- IMPROVED
+- BUGFIXES
+
 # 0.3.1 - 2019-12-11
 
 - ADDED
