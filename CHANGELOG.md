@@ -3,6 +3,7 @@
 - ADDED
   - Sidenav can now be placed on the right
 - REMOVED
+  - Button doesn't have anymore text transform to uppercase by default
 - IMPROVED
   - You can now disable auto init (Axentix method) with the .no-axentix-init class, and manually init the element
   - Sidenav link height increased to make it more SEO friendly
