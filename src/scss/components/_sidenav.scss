@@ -15,6 +15,10 @@
   transition: transform ease;
   overflow: hidden;
 
+  .btn {
+    flex-shrink: 0;
+  }
+
   &.right-aligned {
     left: initial;
     right: 0;
@@ -76,10 +80,6 @@
       &:focus {
         outline: none;
       }
-    }
-
-    .btn {
-      flex-shrink: 0;
     }
   }
 

@@ -1,13 +1,12 @@
-# 0.4.0 - Under development
+# 0.3.1 - 2019-12-11
 
 - ADDED
-  - Toasts
   - Sidenav can now be placed on the right
 - REMOVED
 - IMPROVED
   - You can now disable auto init (Axentix method) with class .no-axentix-init, and manually init element
   - Sidenav link height increased to make it more SEO friendly
-  - Rework navbar classes
+  - Modal have now bodyScrolling option like Sidenav by default
 - BUGFIXES
   - Button's height broken in sidenav
 

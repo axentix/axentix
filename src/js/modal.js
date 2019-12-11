@@ -12,6 +12,7 @@ class Modal {
   constructor(element, options) {
     this.defaultOptions = {
       overlay: true,
+      bodyScrolling: false,
       animationDelay: 400
     };
 
@@ -57,6 +58,16 @@ class Modal {
   }
 
   /**
+   * Enable or disable body scroll when option is true
+   * @param {boolean} state Enable or disable body scroll
+   */
+  _toggleBodyScroll(state) {
+    if (!this.options.bodyScrolling) {
+      state ? (document.body.style.overflow = '') : (document.body.style.overflow = 'hidden');
+    }
+  }
+
+  /**
    * Set Z-Index when modal is open
    */
   _setZIndex() {
@@ -82,17 +93,21 @@ class Modal {
     } else {
       modal.open();
     }
-    modal.isActive = !modal.isActive;
   }
 
   /**
    * Open the modal
    */
   open() {
+    if (this.isActive) {
+      return;
+    }
+    this.isActive = true;
     this.isAnimated = true;
     this._setZIndex();
     this.el.style.display = 'block';
     this.overlay(true);
+    this._toggleBodyScroll(false);
     setTimeout(() => {
       this.el.classList.add('active');
     }, 50);
@@ -106,12 +121,17 @@ class Modal {
    * Close the modal
    */
   close() {
+    if (!this.isActive) {
+      return;
+    }
     this.isAnimated = true;
     this.el.classList.remove('active');
     this.overlay(false);
     setTimeout(() => {
       this.el.style.display = '';
       this.isAnimated = false;
+      this.isActive = false;
+      this._toggleBodyScroll(true);
     }, this.options.animationDelay);
   }
 
