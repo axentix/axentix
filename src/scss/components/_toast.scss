@@ -4,7 +4,7 @@
   flex-direction: column;
   top: 10%;
   z-index: 5000;
-  width: 10rem;
+  max-width: 50%;
 
   &.toast-bottom {
     flex-direction: column-reverse;
@@ -35,7 +35,8 @@
       bottom: 10%;
       left: 50%;
       transform: translateX(-50%);
-      width: 80%;
+      max-width: unset;
+      width: 90%;
 
       .toast {
         margin-top: 0;
@@ -53,7 +54,8 @@
       bottom: unset;
       left: 50%;
       transform: translateX(-50%);
-      width: 80%;
+      max-width: unset;
+      width: 90%;
 
       .toast {
         margin-top: 5rem;
