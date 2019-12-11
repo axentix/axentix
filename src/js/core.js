@@ -77,7 +77,7 @@ class Axentix {
   /**
    * Get all instances
    */
-  getAllInstance() {
+  getAllInstances() {
     return this.instances;
   }
 }

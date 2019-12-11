@@ -1,12 +1,4 @@
 /*** Some helpers classes ***/
-.m-0 {
-  margin: 0 !important;
-}
-
-.p-0 {
-  padding: 0 !important;
-}
-
 .shadow-0 {
   box-shadow: none !important;
 }
@@ -64,7 +56,7 @@
 
 // Hide elements
 .hide {
-  display: none;
+  display: none !important;
 }
 
 @each $name, $value in $breakpoints {
@@ -84,111 +76,118 @@
 
 // Alignments
 .txt-left {
-  text-align: left;
+  text-align: left !important;
 }
 
 .txt-center {
-  text-align: center;
+  text-align: center !important;
 }
 
 .txt-right {
-  text-align: right;
-}
-
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-.px-auto {
-  padding-left: auto;
-  padding-right: auto;
-}
-
-.py-auto {
-  padding-top: auto;
-  padding-bottom: auto;
+  text-align: right !important;
 }
 
 .center {
-  justify-items: center;
+  justify-items: center !important;
 }
 .left {
-  justify-items: start;
+  justify-items: start !important;
 }
 .right {
-  justify-items: end;
+  justify-items: end !important;
 }
 
 .fx-center {
-  justify-content: center;
+  justify-content: center !important;
 }
 
 .fx-right {
-  justify-content: flex-end;
+  justify-content: flex-end !important;
 }
 
 .fx-left {
-  justify-content: flex-start;
+  justify-content: flex-start !important;
 }
 
 .self-center {
-  justify-self: center;
+  justify-self: center !important;
 }
 
 .self-left {
-  justify-self: start;
+  justify-self: start !important;
 }
 
 .self-right {
-  justify-self: end;
+  justify-self: end !important;
 }
 
 .vtop {
-  align-items: start;
+  align-items: start !important;
 }
 
 .vcenter {
-  align-items: center;
+  align-items: center !important;
 }
 
 .vbottom {
-  align-items: end;
+  align-items: end !important;
 }
 
 .vself-top {
-  align-self: start;
+  align-self: start !important;
 }
 
 .vself-center {
-  align-self: center;
+  align-self: center !important;
 }
 
 .vself-bottom {
-  align-self: end;
+  align-self: end !important;
 }
 
 // Margins
+.m-0 {
+  margin: 0 !important;
+}
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.my-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
 .ml-auto {
-  margin-left: auto;
+  margin-left: auto !important;
 }
 
 .mr-auto {
-  margin-right: auto;
+  margin-right: auto !important;
 }
 
 // Paddings
+.p-0 {
+  padding: 0 !important;
+}
+
+.px-auto {
+  padding-left: auto !important;
+  padding-right: auto !important;
+}
+
+.py-auto {
+  padding-top: auto !important;
+  padding-bottom: auto !important;
+}
+
 .pl-auto {
-  padding-left: auto;
+  padding-left: auto !important;
 }
 
 .pr-auto {
-  padding-right: auto;
+  padding-right: auto !important;
 }
 
 // Truncate
@@ -216,7 +215,7 @@
 // Container
 .container {
   width: 75%;
-  margin: 0 auto;
+  @extend .mx-auto;
 
   @include responsive('sm-down') {
     width: 85%;
@@ -239,15 +238,14 @@
 }
 
 // Text format
-
 .lowercase {
-  text-transform: lowercase;
+  text-transform: lowercase !important;
 }
 
 .uppercase {
-  text-transform: uppercase;
+  text-transform: uppercase !important;
 }
 
 .capitalize {
-  text-transform: capitalize;
+  text-transform: capitalize !important;
 }
