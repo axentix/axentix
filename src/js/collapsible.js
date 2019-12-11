@@ -161,6 +161,9 @@ class Collapsible {
    * Open collapsible
    */
   open() {
+    if (this.isActive) {
+      return;
+    }
     this.isActive = true;
     this.isAnimated = true;
     this.el.style.display = 'block';
@@ -179,6 +182,9 @@ class Collapsible {
    * Close collapsible
    */
   close() {
+    if (!this.isActive) {
+      return;
+    }
     this.isAnimated = true;
     this.el.style.maxHeight = '';
     this._applyOverflow();

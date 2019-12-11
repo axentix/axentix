@@ -47,24 +47,3 @@ a {
 p {
   line-height: 1.6rem;
 }
-
-// Ghost overlay
-.ghost-overlay {
-  position: relative;
-  z-index: 1000;
-  animation: ghost 1s infinite ease-in-out;
-}
-
-@keyframes ghost {
-  0% {
-    background-color: rgba(165, 165, 165, 0.1);
-  }
-
-  50% {
-    background-color: rgba(165, 165, 165, 0.35);
-  }
-
-  100% {
-    background-color: rgba(165, 165, 165, 0.1);
-  }
-}

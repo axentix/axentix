@@ -1,3 +1,17 @@
+# 0.3.1 - 2019-12-11
+
+- ADDED
+  - Sidenav can now be placed on the right
+- REMOVED
+  - Buttons' text transform is not uppercase by default anymore
+- IMPROVED
+  - You can now disable auto init (Axentix method) with the .no-axentix-init class, and manually init the element
+  - Sidenav link height increased to make it more SEO friendly
+  - Modal have now bodyScrolling option like the Sidenav
+- BUGFIXES
+  - Button's height broken in sidenav
+  - Hoverable class doesn't work with basic buttons
+
 # 0.3.0 - 2019-11-24
 
 **Sidenav link syntax changed ! Please add class="sidenav-link" to your `<a>` link.**

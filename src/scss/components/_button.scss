@@ -9,7 +9,6 @@
   transition-timing-function: ease;
   transition-property: filter;
   cursor: pointer;
-  text-transform: uppercase;
   border: none;
   text-decoration: none;
   outline-style: none;
@@ -19,6 +18,16 @@
   overflow: hidden;
   word-wrap: normal;
   @extend .shadow-1, .rounded-1;
+
+  &:not(.press),
+  &:not(.push),
+  &:not(.outline) {
+    @each $number, $value in $hoverable {
+      &.hoverable-#{$number} {
+        transition-property: filter, transform, box-shadow;
+      }
+    }
+  }
 
   &:hover {
     filter: brightness(115%);

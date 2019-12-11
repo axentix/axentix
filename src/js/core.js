@@ -23,9 +23,9 @@ class Axentix {
    */
   _init() {
     const componentList = {
-      Collapsible: document.querySelectorAll('.collapsible'),
-      Sidenav: document.querySelectorAll('.sidenav'),
-      Modal: document.querySelectorAll('.modal')
+      Collapsible: document.querySelectorAll('.collapsible:not(.no-axentix-init)'),
+      Sidenav: document.querySelectorAll('.sidenav:not(.no-axentix-init)'),
+      Modal: document.querySelectorAll('.modal:not(.no-axentix-init)')
     };
 
     const isInList = componentList.hasOwnProperty(this.component);
@@ -77,7 +77,7 @@ class Axentix {
   /**
    * Get all instances
    */
-  getAllInstance() {
+  getAllInstances() {
     return this.instances;
   }
 }

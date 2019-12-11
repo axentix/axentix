@@ -15,6 +15,16 @@
   transition: transform ease;
   overflow: hidden;
 
+  .btn {
+    flex-shrink: 0;
+  }
+
+  &.right-aligned {
+    left: initial;
+    right: 0;
+    transform: translateX(105%);
+  }
+
   &.active {
     transform: translateX(0);
     overflow-y: auto;
@@ -79,7 +89,7 @@
     display: block;
     padding: 0 0.75rem;
     transition: background-color 0.23s ease;
-    line-height: 2.5rem;
+    line-height: 3rem;
 
     &:hover,
     &.active {

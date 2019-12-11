@@ -42,6 +42,7 @@ class Sidenav {
       this.overlayElement.addEventListener('click', e => this._onClickTrigger(e, this.el.id));
     }
     this.el.classList.contains('large') ? document.body.classList.add('sidenav-large') : '';
+    this.el.classList.contains('right-aligned') ? this._handleRightSide() : '';
     this.el.style.transitionDuration = this.options.animationDelay + 'ms';
   }
 
@@ -52,6 +53,10 @@ class Sidenav {
     this.overlayElement = document.createElement('div');
     this.overlayElement.classList.add('sidenav-overlay');
     this.overlayElement.dataset.target = this.el.id;
+  }
+
+  _handleRightSide() {
+    document.body.classList.add('sidenav-right');
   }
 
   /**
@@ -79,13 +84,16 @@ class Sidenav {
     } else {
       sidenav.open();
     }
-    sidenav.isActive = !sidenav.isActive;
   }
 
   /**
    * Open sidenav
    */
   open() {
+    if (this.isActive) {
+      return;
+    }
+    this.isActive = true;
     this.el.classList.add('active');
     this.overlay(true);
     this._toggleBodyScroll(false);
@@ -95,10 +103,14 @@ class Sidenav {
    * Close sidenav
    */
   close() {
+    if (!this.isActive) {
+      return;
+    }
     this.el.classList.remove('active');
     this.overlay(false);
     setTimeout(() => {
       this._toggleBodyScroll(true);
+      this.isActive = false;
     }, this.options.animationDelay);
   }
 
