@@ -77,6 +77,10 @@
         outline: none;
       }
     }
+
+    .btn {
+      flex-shrink: 0;
+    }
   }
 
   .sidenav-link {
