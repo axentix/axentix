@@ -1,3 +1,16 @@
+# 0.4.0 - Under development
+
+- ADDED
+  - Toasts
+  - Sidenav can now be placed on the right
+- REMOVED
+- IMPROVED
+  - You can now disable auto init (Axentix method) with class .no-axentix-init, and manually init element
+  - Sidenav link height increased to make it more SEO friendly
+  - Rework navbar classes
+- BUGFIXES
+  - Button's height broken in sidenav
+
 # 0.3.0 - 2019-11-24
 
 **Sidenav link syntax changed ! Please add class="sidenav-link" to your `<a>` link.**
