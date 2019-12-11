@@ -82,13 +82,16 @@ class Modal {
     } else {
       modal.open();
     }
-    modal.isActive = !modal.isActive;
   }
 
   /**
    * Open the modal
    */
   open() {
+    if (this.isActive) {
+      return;
+    }
+    this.isActive = true;
     this.isAnimated = true;
     this._setZIndex();
     this.el.style.display = 'block';
@@ -106,12 +109,16 @@ class Modal {
    * Close the modal
    */
   close() {
+    if (!this.isActive) {
+      return;
+    }
     this.isAnimated = true;
     this.el.classList.remove('active');
     this.overlay(false);
     setTimeout(() => {
       this.el.style.display = '';
       this.isAnimated = false;
+      this.isActive = false;
     }, this.options.animationDelay);
   }
 

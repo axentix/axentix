@@ -84,13 +84,16 @@ class Sidenav {
     } else {
       sidenav.open();
     }
-    sidenav.isActive = !sidenav.isActive;
   }
 
   /**
    * Open sidenav
    */
   open() {
+    if (this.isActive) {
+      return;
+    }
+    this.isActive = true;
     this.el.classList.add('active');
     this.overlay(true);
     this._toggleBodyScroll(false);
@@ -100,10 +103,14 @@ class Sidenav {
    * Close sidenav
    */
   close() {
+    if (!this.isActive) {
+      return;
+    }
     this.el.classList.remove('active');
     this.overlay(false);
     setTimeout(() => {
       this._toggleBodyScroll(true);
+      this.isActive = false;
     }, this.options.animationDelay);
   }
 
