@@ -20,6 +20,18 @@
   word-wrap: normal;
   @extend .shadow-1, .rounded-1;
 
+  &:not(.press),
+  &:not(.push),
+  &:not(.outline) {
+    &.hoverable-1,
+    &.hoverable-2,
+    &.hoverable-3,
+    &.hoverable-4,
+    &.hoverable-5 {
+      transition-property: filter, transform, box-shadow;
+    }
+  }
+
   &:hover {
     filter: brightness(115%);
   }
