@@ -2,6 +2,7 @@
 
 - ADDED
   - Toasts
+  - Pagination
 - REMOVED
 - IMPROVED
 - BUGFIXES
