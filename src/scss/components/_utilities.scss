@@ -249,3 +249,16 @@
 .capitalize {
   text-transform: capitalize !important;
 }
+
+// Positions
+.absolute-pos {
+  position: absolute;
+}
+
+.fixed-pos {
+  position: fixed;
+}
+
+.relative-pos {
+  position: relative;
+}

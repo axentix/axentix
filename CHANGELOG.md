@@ -4,6 +4,7 @@
   - Toasts
   - Pagination
   - Loading (spinner, progress bar), work with our color palette !
+  - Position classes
 - REMOVED
 - IMPROVED
 - BUGFIXES
