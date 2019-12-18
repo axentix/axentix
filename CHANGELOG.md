@@ -3,6 +3,7 @@
 - ADDED
   - Toasts
   - Pagination
+  - Loading (spinner, progress bar), work with our color palette !
 - REMOVED
 - IMPROVED
 - BUGFIXES
