@@ -13,7 +13,7 @@ class Toast {
   constructor(content, options) {
     this.defaultOptions = {
       animationDelay: 750,
-      displayTime: 150000,
+      displayTime: 4000,
       classes: '',
       position: 'right',
       comeFrom: 'top',

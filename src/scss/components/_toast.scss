@@ -22,10 +22,12 @@
 
   &.toaster-left {
     left: 5%;
+    align-items: flex-start;
   }
 
   &.toaster-right {
     right: 5%;
+    align-items: flex-end;
   }
 
   @include responsive('sm-down') {
@@ -36,6 +38,7 @@
       left: 50%;
       transform: translateX(-50%);
       max-width: unset;
+      align-items: unset;
       width: 90%;
 
       .toast {
@@ -69,7 +72,7 @@
   }
 
   .toast {
-    display: block;
+    display: flex;
     padding: 1rem;
     margin-top: 5rem;
     transition-property: height, margin, opacity, padding;
