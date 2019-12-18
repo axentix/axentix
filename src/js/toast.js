@@ -134,4 +134,12 @@ class Toast {
   changeContent(newContent) {
     this.content = newContent;
   }
+
+  /**
+   * Change toast classes
+   *@param {String} newContent
+   */
+  changeClasses(newClasses) {
+    this.options.classes = newClasses;
+  }
 }

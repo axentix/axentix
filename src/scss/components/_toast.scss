@@ -46,7 +46,8 @@
         margin-bottom: 5rem;
 
         &.toast-animated {
-          margin-bottom: 1rem;
+          margin-bottom: 0.75rem;
+          margin-top: 0.75rem;
         }
       }
     }
@@ -65,7 +66,8 @@
         margin-bottom: 0;
 
         &.toast-animated {
-          margin-top: 1rem;
+          margin-top: 0.75rem;
+          margin-bottom: 0.75rem;
         }
       }
     }

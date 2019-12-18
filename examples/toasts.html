@@ -36,7 +36,10 @@
       </div>
     </div>
 
-    <main class="container"></main>
+    <main class="container">
+      <button class="btn primary" onclick="show1()">1</button>
+      <button class="btn primary" onclick="show2()">2</button>
+    </main>
 
     <footer class="footer primary">
       Copyright © 2019 - Example
@@ -47,9 +50,17 @@
       var mytoast = new Toast('Bonjour Axel', {
         classes: 'airforce rounded-4 shadow-3'
       });
-      mytoast.show();
-      mytoast.changeContent('Hello');
-      mytoast.show();
+      function show1() {
+        mytoast.changeContent('Bonsoir AXELLLLLLLLLLL');
+        mytoast.changeClasses('airforce rounded-4 shadow-3');
+        mytoast.show();
+      }
+      function show2() {
+        mytoast.changeContent('Bonsoir AXEL');
+        mytoast.changeClasses('amaranth rounded-4 shadow-3');
+
+        mytoast.show();
+      }
     </script>
   </body>
 </html>
