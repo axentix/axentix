@@ -44,12 +44,11 @@
     <script src="../dist/js/axentix.min.js"></script>
     <script>
       var sidenav = new Sidenav('#example-sidenav');
-      var mytoast = new Toast(
-        'Conne sexion Connexion Connexion Connexion Connexion Connexion Connexion Connexion Connexion OK',
-        {
-          classes: 'airforce rounded-4 shadow-3'
-        }
-      );
+      var mytoast = new Toast('Bonjour Axel', {
+        classes: 'airforce rounded-4 shadow-3'
+      });
+      mytoast.show();
+      mytoast.changeContent('Hello');
       mytoast.show();
     </script>
   </body>

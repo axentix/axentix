@@ -13,7 +13,7 @@ class Toast {
   constructor(content, options) {
     this.defaultOptions = {
       animationDelay: 750,
-      displayTime: 4000,
+      displayTime: 150000,
       classes: '',
       position: 'right',
       comeFrom: 'top',
@@ -125,5 +125,13 @@ class Toast {
   show() {
     this.toaster ? '' : this._createToaster(this.options);
     this._createToast();
+  }
+
+  /**
+   * Change toast html
+   *@param {String} newContent
+   */
+  changeContent(newContent) {
+    this.content = newContent;
   }
 }

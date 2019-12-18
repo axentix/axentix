@@ -69,7 +69,7 @@
   }
 
   .toast {
-    display: flex;
+    display: block;
     padding: 1rem;
     margin-top: 5rem;
     transition-property: height, margin, opacity, padding;
