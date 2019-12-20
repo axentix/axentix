@@ -1,0 +1,15 @@
+.progress {
+  display: flex;
+  height: 1rem;
+  font-size: 0.8rem;
+  width: 100%;
+  background-color: getColor('airforce', 'light', 4);
+  @extend .rounded-1;
+
+  .progress-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: inherit;
+  }
+}
