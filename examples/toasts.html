@@ -47,19 +47,26 @@
     <script src="../dist/js/axentix.min.js"></script>
     <script>
       var sidenav = new Sidenav('#example-sidenav');
+
+      var mytoast2 = new Toast('Hello', {
+        position: 'left',
+        classes: 'red rounded-2 shadow-2'
+      });
+
       var mytoast = new Toast('Bonjour Axel', {
         classes: 'airforce rounded-4 shadow-3'
       });
+
       function show1() {
         mytoast.changeContent('Bonsoir AXELLLLLLLLLLL');
         mytoast.changeClasses('airforce rounded-4 shadow-3');
         mytoast.show();
       }
       function show2() {
-        mytoast.changeContent('Bonsoir AXEL');
-        mytoast.changeClasses('amaranth rounded-4 shadow-3');
-
-        mytoast.show();
+        mytoast2.show();
+        // mytoast.changeContent('Bonsoir AXEL');
+        // mytoast.changeClasses('amaranth rounded-4 shadow-3');
+        // mytoast.show();
       }
     </script>
   </body>
