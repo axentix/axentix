@@ -1,15 +1,45 @@
 .progress {
   display: flex;
-  height: 1rem;
-  font-size: 0.8rem;
+  height: 0.5rem;
+  font-size: 0.5rem;
   width: 100%;
   background-color: getColor('airforce', 'light', 4);
-  @extend .rounded-1;
+  overflow: hidden;
+  @extend .rounded-2;
+
+  &.large {
+    height: 0.75rem;
+    font-size: 0.7rem;
+  }
+
+  &.small {
+    height: 0.25rem;
+    font-size: 0.3rem;
+  }
 
   .progress-bar {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: inherit;
+  }
+
+  &.indeterminate {
+    .progress-bar {
+      animation: pbar-indeterminate 1s infinite linear;
+      width: 100%;
+      transform-origin: 0% 50%;
+    }
+  }
+}
+
+@keyframes pbar-indeterminate {
+  0% {
+    transform: translateX(0) scaleX(0);
+  }
+  40% {
+    transform: translateX(0) scaleX(0.4);
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.5);
   }
 }
