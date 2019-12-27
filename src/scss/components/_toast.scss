@@ -78,7 +78,7 @@
     padding: 1rem;
     margin-top: 5rem;
     transition-property: height, margin, opacity, padding;
-    transition-timing-function: linear;
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     opacity: 0.2;
 
     &.toast-animated {
