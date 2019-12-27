@@ -1,0 +1,31 @@
+.dropdown {
+  position: relative;
+
+  .dropdown-content {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    margin-top: 0.25rem;
+    overflow: hidden;
+    @extend .shadow-1, .rounded-1;
+
+    .dropdown-item {
+      color: inherit;
+      padding: 1rem 1.25rem;
+      transition: background-color 0.2s ease;
+
+      &.active {
+        background-color: getColor('primary');
+        color: txtColor(getColor('primary'));
+      }
+
+      &:hover:not(.active) {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+
+  &.active .dropdown-content {
+    display: flex;
+  }
+}
