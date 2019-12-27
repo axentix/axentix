@@ -12,7 +12,7 @@ class Toast {
 
   constructor(content, options) {
     this.defaultOptions = {
-      animationDelay: 750,
+      animationDelay: 400,
       displayTime: 4000,
       classes: '',
       position: 'right',
@@ -95,6 +95,7 @@ class Toast {
     toast.style.height = height + 'px';
 
     setTimeout(() => {
+      toast.style.transitionTimingFunction = 'cubic-bezier(0.445, 0.05, 0.55, 0.95)';
       toast.style.paddingTop = 0;
       toast.style.paddingBottom = 0;
       toast.style.margin = 0;
