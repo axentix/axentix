@@ -78,7 +78,7 @@
     padding: 1rem;
     margin-top: 5rem;
     transition-property: height, margin, opacity, padding;
-    transition-timing-function: ease;
+    transition-timing-function: linear;
     opacity: 0.2;
 
     &.toast-animated {
