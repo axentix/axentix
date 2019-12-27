@@ -48,13 +48,18 @@
     <script>
       var sidenav = new Sidenav('#example-sidenav');
 
+      var mytoast = new Toast('Bonjour Axel', {
+        classes: 'airforce rounded-4 shadow-3'
+      });
+
       var mytoast2 = new Toast('Hello', {
         position: 'left',
         classes: 'red rounded-2 shadow-2'
       });
 
-      var mytoast = new Toast('Bonjour Axel', {
-        classes: 'airforce rounded-4 shadow-3'
+      var mytoast3 = new Toast('Hello', {
+        position: 'left',
+        classes: 'green rounded-2 shadow-2'
       });
 
       function show1() {
@@ -63,10 +68,9 @@
         mytoast.show();
       }
       function show2() {
-        mytoast2.show();
-        // mytoast.changeContent('Bonsoir AXEL');
-        // mytoast.changeClasses('amaranth rounded-4 shadow-3');
-        // mytoast.show();
+        mytoast.changeContent('Bonsoir AXEL');
+        mytoast.changeClasses('amaranth rounded-4 shadow-3');
+        mytoast.show();
       }
     </script>
   </body>

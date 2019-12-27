@@ -20,6 +20,13 @@ class Toast {
       mobileComeFrom: 'bottom'
     };
 
+    if (Axentix.toastInstanceExist) {
+      console.error("Don't try to create multiple toast instances");
+      return;
+    } else {
+      Axentix.toastInstanceExist = true;
+    }
+
     this.content = content;
     this.options = extend(this.defaultOptions, options);
   }
