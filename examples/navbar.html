@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Axentix - Rework Navbar</title>
+    <title>Axentix - Navbar / Dropdown</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../dist/css/axentix.min.css" />
     <link
@@ -17,7 +17,6 @@
           <li><a href="#">Link 1</a></li>
           <li><a href="#">Link 2</a></li>
           <li><a href="#">Link 3</a></li>
-          <li><a href="#">Link 4</a></li>
         </ul>
       </nav>
     </header>
@@ -25,7 +24,7 @@
     <div id="example-sidenav" class="sidenav large fixed white">
       <div class="sidenav-header">
         <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-        <img class="logo dropshadow-1" src="https://axentix-web.test/img/axentix-250.png" alt="Logo" />
+        <img class="logo dropshadow-1" src="https://useaxentix.com/img/axentix-250.png" alt="Logo" />
       </div>
       <a href="#" class="sidenav-link active">Link 1</a>
       <a href="#" class="sidenav-link">Link 2</a>
@@ -36,7 +35,20 @@
       </div>
     </div>
 
-    <main class="container"></main>
+    <main>
+      <div class="container">
+        <div class="dropdown mx-auto" id="example-dropdown">
+          <button type="button" class="btn shadow-0 primary dropdown-trigger">
+            Toggle
+          </button>
+          <div class="dropdown-content">
+            <a class="dropdown-item" href="#">Drop122222222222222222</a>
+            <a class="dropdown-item" href="#">Drop2</a>
+            <a class="dropdown-item active" href="#">Drop3</a>
+          </div>
+        </div>
+      </div>
+    </main>
 
     <footer class="footer primary">
       Copyright © 2019 - Example
@@ -44,6 +56,7 @@
     <script src="../dist/js/axentix.min.js"></script>
     <script>
       var sidenav = new Sidenav('#example-sidenav');
+      var dropdown = new Dropdown('#example-dropdown');
     </script>
   </body>
 </html>
