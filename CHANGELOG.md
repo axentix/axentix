@@ -7,6 +7,7 @@
   - Position classes
 - REMOVED
 - IMPROVED
+  - Change `.nav-brand` to `.navbar-brand`
 - BUGFIXES
 
 # 0.3.1 - 2019-12-11
