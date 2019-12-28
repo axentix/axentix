@@ -41,7 +41,7 @@
           <button type="button" class="btn shadow-0 primary dropdown-trigger">
             Toggle
           </button>
-          <div class="dropdown-content">
+          <div class="dropdown-content white">
             <a class="dropdown-item" href="#">Drop122222222222222222</a>
             <a class="dropdown-item" href="#">Drop2</a>
             <a class="dropdown-item active" href="#">Drop3</a>
@@ -56,7 +56,9 @@
     <script src="../dist/js/axentix.min.js"></script>
     <script>
       var sidenav = new Sidenav('#example-sidenav');
-      var dropdown = new Dropdown('#example-dropdown');
+      var dropdown = new Dropdown('#example-dropdown', {
+        animationType: 'fade'
+      });
     </script>
   </body>
 </html>

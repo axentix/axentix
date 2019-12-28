@@ -18,6 +18,8 @@ class Dropdown {
 
     this.el = document.querySelector(element);
     this.el.Dropdown = this;
+    this.dropdownContent = document.querySelector('#' + this.el.id + ' .dropdown-content');
+    this.dropdownTrigger = document.querySelector('#' + this.el.id + ' .dropdown-trigger');
     this.isAnimated = false;
     this.isActive = this.el.classList.contains('active') ? true : false;
 
@@ -29,19 +31,37 @@ class Dropdown {
    * Setup listeners
    */
   _setup() {
-    document
-      .querySelector('#' + this.el.id + ' .dropdown-trigger')
-      .addEventListener('click', e => this._onClickTrigger(e, this.el.id));
+    if (this.options.hover) {
+      this.el.classList.add('active-hover');
+    } else {
+      this.dropdownTrigger.addEventListener('click', e => this._onClickTrigger(e, this.el.id));
 
-    document.addEventListener('click', e => this._onDocumentClick(e, this.el.id), true);
+      document.addEventListener('click', e => this._onDocumentClick(e, this.el.id), true);
+    }
+
+    this._setupAnimation();
   }
 
-  _setAnimation() {}
+  /**
+   * Check and init animation
+   */
+  _setupAnimation() {
+    const animationList = ['none', 'fade'];
+    this.options.animationType = this.options.animationType.toLowerCase();
+    animationList.includes(this.options.animationType) ? '' : (this.options.animationType = 'none');
+
+    if (this.options.animationType !== 'none' && !this.options.hover) {
+      if (this.options.hover) {
+        this.el.style.animationDuration = this.options.animationDelay + 'ms';
+      } else {
+        this.el.style.transitionDuration = this.options.animationDelay + 'ms';
+      }
+      this.el.classList.add('anim-' + this.options.animationType);
+    }
+  }
 
   /**
    * Handle click on document click
-   * @param {Event} e
-   * @param {String} id
    */
   _onDocumentClick(e, id) {
     e.preventDefault();
@@ -60,8 +80,6 @@ class Dropdown {
 
   /**
    * Handle click on trigger
-   * @param {Event} e
-   * @param {String} id
    */
   _onClickTrigger(e, id) {
     e.preventDefault();
@@ -86,8 +104,11 @@ class Dropdown {
     if (this.isActive) {
       return;
     }
-    this.el.classList.add('active');
-    this.isActive = true;
+    this.dropdownContent.style.display = 'flex';
+    setTimeout(() => {
+      this.el.classList.add('active');
+      this.isActive = true;
+    }, 10);
 
     if (this.options.animationType !== 'none') {
       this.isAnimated = true;
@@ -109,10 +130,12 @@ class Dropdown {
     if (this.options.animationType !== 'none') {
       this.isAnimated = true;
       setTimeout(() => {
+        this.dropdownContent.style.display = '';
         this.isAnimated = false;
         this.isActive = false;
       }, this.options.animationDelay);
     } else {
+      this.dropdownContent.style.display = '';
       this.isAnimated = false;
       this.isActive = false;
     }

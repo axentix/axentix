@@ -1,11 +1,12 @@
 .dropdown {
   position: relative;
+  display: inline-block;
 
   .dropdown-content {
     position: absolute;
+    z-index: 10;
     display: none;
     flex-direction: column;
-    margin-top: 0.25rem;
     overflow: hidden;
     @extend .shadow-1, .rounded-1;
 
@@ -25,7 +26,23 @@
     }
   }
 
-  &.active .dropdown-content {
+  &.active-hover:hover .dropdown-content {
     display: flex;
+  }
+}
+
+// Animation
+.dropdown {
+  &.anim-fade {
+    .dropdown-content {
+      transition-timing-function: ease-in-out;
+      transition-property: opacity;
+      transition-duration: inherit;
+      opacity: 0;
+    }
+
+    &.active .dropdown-content {
+      opacity: 1;
+    }
   }
 }
