@@ -19,8 +19,8 @@
     }
 
     &.active {
-      background-color: #2169f3;
-      color: #fff;
+      background-color: getColor('primary');
+      color: txtColor(getColor('primary'));
     }
 
     &.disabled {
