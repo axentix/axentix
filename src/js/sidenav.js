@@ -23,7 +23,7 @@ class Sidenav {
     this.isFixed = this.el.classList.contains('fixed');
     this.isLarge = this.el.classList.contains('large');
 
-    this.options = extend(this.defaultOptions, options);
+    this.options = Axentix.extend(this.defaultOptions, options);
 
     this._setup();
   }

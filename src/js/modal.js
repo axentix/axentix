@@ -22,7 +22,7 @@ class Modal {
     this.isActive = this.el.classList.contains('active') ? true : false;
     this.isAnimated = false;
 
-    this.options = extend(this.defaultOptions, options);
+    this.options = Axentix.extend(this.defaultOptions, options);
 
     if (this.options.overlay) {
       this._createOverlay();

@@ -1,7 +1,5 @@
 // By https://gomakethings.com/vanilla-javascript-version-of-jquery-extend/ | MIT License
-// Pass in the objects to merge as arguments.
-// For a deep extend, set the first argument to `true`.
-function extend() {
+Axentix.extend = () => {
   let extended = {};
   let deep = false;
   let i = 0;
@@ -30,4 +28,4 @@ function extend() {
   }
 
   return extended;
-}
+};

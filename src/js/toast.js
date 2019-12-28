@@ -28,7 +28,7 @@ class Toast {
     }
 
     this.content = content;
-    this.options = extend(this.defaultOptions, options);
+    this.options = Axentix.extend(this.defaultOptions, options);
   }
 
   /**

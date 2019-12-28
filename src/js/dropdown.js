@@ -23,7 +23,7 @@ class Dropdown {
     this.isAnimated = false;
     this.isActive = this.el.classList.contains('active') ? true : false;
 
-    this.options = extend(this.defaultOptions, options);
+    this.options = Axentix.extend(this.defaultOptions, options);
     this._setup();
   }
 
