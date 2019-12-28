@@ -2,12 +2,14 @@
 
 - ADDED
   - Toasts
-  - Pagination
+  - Dropdown
   - Loading (spinner, progress bar), work with our color palette !
+  - Pagination
   - Position classes
 - REMOVED
 - IMPROVED
   - Change `.nav-brand` to `.navbar-brand`
+  - Axentix core
 - BUGFIXES
 
 # 0.3.1 - 2019-12-11
