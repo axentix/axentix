@@ -25,7 +25,8 @@ class Axentix {
     const componentList = {
       Collapsible: document.querySelectorAll('.collapsible:not(.no-axentix-init)'),
       Sidenav: document.querySelectorAll('.sidenav:not(.no-axentix-init)'),
-      Modal: document.querySelectorAll('.modal:not(.no-axentix-init)')
+      Modal: document.querySelectorAll('.modal:not(.no-axentix-init)'),
+      Dropdown: document.querySelectorAll('.dropdown:not(.no-axentix-init)')
     };
 
     const isInList = componentList.hasOwnProperty(this.component);
@@ -68,7 +69,7 @@ class Axentix {
       } catch (error) {
         // For debug
         // console.log(error);
-        console.log('Axentix error : Unable to load ' + component);
+        console.error('Axentix : Unable to load ' + component);
       }
     });
   }
