@@ -1,5 +1,5 @@
 // By https://gomakethings.com/vanilla-javascript-version-of-jquery-extend/ | MIT License
-Axentix.extend = () => {
+Axentix.extend = function() {
   let extended = {};
   let deep = false;
   let i = 0;
