@@ -1,5 +1,7 @@
 # 0.4.0 - Under development
 
+**Navbar syntax changed & improved ! Please visit our docs !**
+
 - ADDED
   - Toasts
   - Dropdown
@@ -8,7 +10,7 @@
   - Position classes
 - REMOVED
 - IMPROVED
-  - Change `.nav-brand` to `.navbar-brand`
+  - Totally reworked navbar
   - Axentix core
 - BUGFIXES
 
