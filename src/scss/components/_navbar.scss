@@ -51,6 +51,7 @@
       display: block;
       padding: 0 0.6rem;
       transition: background-color 0.23s ease;
+      cursor: pointer;
 
       @include responsive('xs') {
         padding: 0 0.4rem;
@@ -77,4 +78,9 @@
     left: 0;
     right: 0;
   }
+}
+
+// Fix for dropdown
+.navbar .dropdown {
+  line-height: 1.15;
 }

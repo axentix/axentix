@@ -4,11 +4,17 @@
 
   .dropdown-content {
     position: absolute;
+    left: 0;
     z-index: 10;
     display: none;
     flex-direction: column;
     overflow: hidden;
     @extend .shadow-1, .rounded-1;
+
+    &.right-aligned {
+      right: 0;
+      left: unset;
+    }
 
     .dropdown-item {
       color: inherit;

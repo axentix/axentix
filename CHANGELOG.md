@@ -11,6 +11,7 @@
 - REMOVED
 - IMPROVED
   - Totally reworked navbar
+  - Some navbar properties is now in \_variables.scss file
   - Axentix core
 - BUGFIXES
 
