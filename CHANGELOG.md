@@ -8,6 +8,7 @@
   - Loading (spinner, progress bar), work with our color palette !
   - Pagination
   - Position classes
+  - Cursor classes
 - REMOVED
 - IMPROVED
   - Totally reworked navbar
