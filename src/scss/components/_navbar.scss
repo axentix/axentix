@@ -18,15 +18,14 @@
     }
 
     &.centered {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
       margin: 0;
     }
   }
 
-  &.center {
-    justify-content: center;
+  .centered {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .navbar-brand {
@@ -81,6 +80,6 @@
 }
 
 // Fix for dropdown
-.navbar .dropdown {
+.navbar .dropdown .dropdown-content {
   line-height: 1.15;
 }
