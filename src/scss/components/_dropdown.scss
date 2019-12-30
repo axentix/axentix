@@ -16,6 +16,12 @@
       left: unset;
     }
 
+    &.constrain-width {
+      right: 0;
+      left: 0;
+      word-break: break-all;
+    }
+
     .dropdown-item {
       color: inherit;
       padding: 1rem 1.25rem;
