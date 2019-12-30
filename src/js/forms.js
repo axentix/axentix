@@ -1,8 +1,14 @@
+Axentix.inputElements = document.querySelectorAll(
+  '.form-material .form-field:not(.form-default) .form-control'
+);
+
 /**
  * Detect attribute & state of all inputs
  * @param {NodeListOf<Element>} inputElements
  */
 Axentix.detectAllInputs = function(inputElements) {
+  inputElements ? '' : (inputElements = Axentix.inputElements);
+
   inputElements.forEach(input => {
     Axentix.detectInput(input);
   });
@@ -14,7 +20,13 @@ Axentix.detectAllInputs = function(inputElements) {
  */
 Axentix.detectInput = function(input) {
   const isActive = input.parentElement.classList.contains('active');
-  const hasContent = input.value.length > 0 || input.placeholder.length > 0;
+  const hasContent =
+    input.value.length > 0 ||
+    input.placeholder.length > 0 ||
+    input.matches('[type="date"]') ||
+    input.matches('[type="month"]') ||
+    input.matches('[type="week"]') ||
+    input.matches('[type="time"]');
   const isFocused = document.activeElement === input;
   const isDisabled = input.hasAttribute('disabled') || input.hasAttribute('readonly');
 
@@ -61,6 +73,8 @@ Axentix.handleListeners = function(e, inputElements) {
  * @param {NodeListOf<Element>} inputElements
  */
 Axentix.setupFormsListeners = function(inputElements) {
+  inputElements ? '' : (inputElements = Axentix.inputElements);
+
   inputElements.forEach(input => {
     input.addEventListener('input', Axentix.detectInput(input));
     input.firstInit = true;
@@ -72,11 +86,8 @@ Axentix.setupFormsListeners = function(inputElements) {
 
 // Init
 document.addEventListener('DOMContentLoaded', () => {
-  const inputElements = document.querySelectorAll(
-    '.form-material .form-field:not(.form-default) .form-control'
-  );
-  if (inputElements.length > 0) {
-    Axentix.setupFormsListeners(inputElements);
-    Axentix.detectAllInputs(inputElements);
+  if (Axentix.inputElements.length > 0) {
+    Axentix.setupFormsListeners();
+    Axentix.detectAllInputs();
   }
 });

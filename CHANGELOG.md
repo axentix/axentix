@@ -14,7 +14,9 @@
   - Totally reworked navbar
   - Some navbar properties is now in \_variables.scss file
   - Axentix core
+  - Forms detect function
 - BUGFIXES
+  - Forms don't handle some special input type
 
 # 0.3.1 - 2019-12-11
 

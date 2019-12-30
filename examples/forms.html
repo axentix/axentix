@@ -11,11 +11,10 @@
       <div class="navbar-fixed">
         <nav class="navbar primary">
           <a href="#" target="_blank" class="navbar-brand">Axentix</a>
-          <ul class="right">
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
-            <li><a href="#">Link 3</a></li>
-            <li><a href="#">Link 4</a></li>
+          <ul class="navbar-menu ml-auto">
+            <li><a class="navbar-link" href="#">Link 1</a></li>
+            <li><a class="navbar-link" href="#">Link 2</a></li>
+            <li><a class="navbar-link" href="#">Link 3</a></li>
           </ul>
         </nav>
       </div>
@@ -46,6 +45,10 @@
             <label for="name">Name</label>
           </div>
           <div class="form-field">
+            <input type="date" id="date" class="form-control" />
+            <label for="date">Date</label>
+          </div>
+          <div class="form-field col-sm2">
             <input type="email" id="email" class="form-control" placeholder="contact@example.com" />
             <label for="email">Email</label>
           </div>
@@ -91,8 +94,8 @@
             </select>
           </div>
           <div class="form-field form-default">
-            <label class="txt-center" for="select">Choose one or more option</label>
-            <select class="form-control" multiple id="select">
+            <label class="txt-center" for="multiple-select">Choose one or more option</label>
+            <select class="form-control" multiple id="multiple-select">
               <option>1</option>
               <option>2</option>
               <option>3</option>
