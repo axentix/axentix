@@ -139,3 +139,8 @@ $material-animation-duration: 0.3s !default;
 $material-border-color: #c7c7c7 !default;
 $material-color: getColor('viride', 'dark', 1) !default;
 $material-placeholder-color: getColor('grey', 'dark', 2) !default;
+
+// Dropdown
+$dropdown-zindex: 10 !default;
+$dropdown-zindex-navbar: 20 !default;
+$dropdown-zindex-sidenav: 30 !default;

@@ -80,6 +80,10 @@
 }
 
 // Fix for dropdown
-.navbar .dropdown .dropdown-content {
-  line-height: 1.15;
+.navbar .dropdown {
+  z-index: $dropdown-zindex-navbar;
+
+  .dropdown-content {
+    line-height: 1.15;
+  }
 }

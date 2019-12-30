@@ -1,11 +1,11 @@
 .dropdown {
   position: relative;
   display: inline-block;
+  z-index: $dropdown-zindex;
 
   .dropdown-content {
     position: absolute;
     left: 0;
-    z-index: 10;
     display: none;
     flex-direction: column;
     overflow: hidden;
