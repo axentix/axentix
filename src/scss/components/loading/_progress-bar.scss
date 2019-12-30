@@ -5,6 +5,7 @@
   width: 100%;
   background-color: getColor('airforce', 'light', 4);
   overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
   @extend .rounded-2;
 
   &.large {
