@@ -9,7 +9,7 @@
   &.toast-bottom {
     flex-direction: column-reverse;
     top: unset;
-    bottom: 10%;
+    bottom: 0;
 
     .toast {
       margin-bottom: 5rem;
@@ -34,7 +34,7 @@
     &.toaster-mobile-bottom {
       flex-direction: column-reverse;
       top: unset;
-      bottom: 7%;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
       max-width: unset;
