@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <title>Axentix - Toasts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+  </head>
+
+  <body class="layout with-sidenav fixed-sidenav">
+    <header>
+      <nav class="navbar primary">
+        <a href="#" class="navbar-brand">Axentix</a>
+        <div class="navbar-menu ml-auto">
+          <a class="navbar-link" href="#">Link 1</a>
+          <a class="navbar-link" href="#">Link 2</a>
+          <div class="dropdown mx-auto" id="nav-dropdown">
+            <button type="button" class="btn secondary dropdown-trigger">
+              Toggle
+            </button>
+            <div class="dropdown-content right-aligned white">
+              <a class="dropdown-item" href="#">Drop122222222222222222</a>
+              <a class="dropdown-item" href="#">Drop2</a>
+              <a class="dropdown-item active" href="#">Drop3</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div id="example-sidenav" class="sidenav large fixed white">
+      <div class="sidenav-header">
+        <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
+        <img class="logo dropshadow-1" src="https://axentix-web.test/img/axentix-250.png" alt="Logo" />
+      </div>
+      <a href="#" class="sidenav-link active">Link 1</a>
+      <a href="#" class="sidenav-link">Link 2</a>
+      <a href="#" class="sidenav-link">Link 3</a>
+      <a href="#" class="sidenav-link">Link 4</a>
+      <div class="sidenav-footer viride">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </div>
+    </div>
+
+    <main class="container">
+      <button class="btn primary" onclick="show1()">1</button>
+      <button class="btn primary" onclick="show2()">2</button>
+    </main>
+
+    <footer class="footer primary">
+      Copyright © 2019 - Example
+    </footer>
+    <script src="../dist/js/axentix.min.js"></script>
+    <script>
+      var sidenav = new Sidenav('#example-sidenav');
+
+      var mytoast = new Toast('Bonjour Axel', {
+        classes: 'airforce rounded-4 shadow-3'
+      });
+
+      var mytoast2 = new Toast('Hello', {
+        position: 'left',
+        classes: 'red rounded-2 shadow-2'
+      });
+
+      function show1() {
+        mytoast.changeContent('Bonsoir AXELLLLLLLLLLL', 'red');
+        // mytoast.changeClasses('airforce rounded-4 shadow-3');
+        mytoast.show();
+      }
+      function show2() {
+        mytoast.changeContent('Bonsoir AXEL');
+        mytoast.changeClasses('cyan rounded-4 shadow-3');
+        mytoast.show();
+      }
+    </script>
+  </body>
+</html>

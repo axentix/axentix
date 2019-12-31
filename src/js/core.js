@@ -25,7 +25,8 @@ class Axentix {
     const componentList = {
       Collapsible: document.querySelectorAll('.collapsible:not(.no-axentix-init)'),
       Sidenav: document.querySelectorAll('.sidenav:not(.no-axentix-init)'),
-      Modal: document.querySelectorAll('.modal:not(.no-axentix-init)')
+      Modal: document.querySelectorAll('.modal:not(.no-axentix-init)'),
+      Dropdown: document.querySelectorAll('.dropdown:not(.no-axentix-init)')
     };
 
     const isInList = componentList.hasOwnProperty(this.component);
@@ -33,7 +34,7 @@ class Axentix {
       const ids = this._detectIds(componentList[this.component]);
       this._instanciate(ids, this.component);
     } else if (this.isAll) {
-      Object.keys(componentList).forEach(component => {
+      Object.keys(componentList).map(component => {
         let ids = this._detectIds(componentList[component]);
         ids.length > 0 ? this._instanciate(ids, component) : '';
       });
@@ -59,10 +60,17 @@ class Axentix {
    * @param {String} component
    */
   _instanciate(ids, component) {
-    ids.forEach(id => {
+    ids.map(id => {
       let constructor = window[component];
       let args = [id, this.options];
-      this.instances.push(new constructor(...args));
+
+      try {
+        this.instances.push(new constructor(...args));
+      } catch (error) {
+        // For debug
+        // console.log(error);
+        console.error('Axentix : Unable to load ' + component);
+      }
     });
   }
 

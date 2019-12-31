@@ -112,6 +112,11 @@ $hoverable: (
   '5': '0px 17px 14px 0px rgba(0, 0, 0, 0.22),  0px 13px 40px 14px rgba(0,0,0,0.22)'
 ) !default;
 
+// Navbar
+$navbar-height: 3.5rem !default;
+$navbar-logo-height: 3rem !default;
+$navbar-zindex: 100 !default;
+
 // Sidenav
 $sidenav-width: 12rem !default;
 $sidenav-large-width: 15rem !default;
@@ -135,3 +140,8 @@ $material-animation-duration: 0.3s !default;
 $material-border-color: #c7c7c7 !default;
 $material-color: getColor('viride', 'dark', 1) !default;
 $material-placeholder-color: getColor('grey', 'dark', 2) !default;
+
+// Dropdown
+$dropdown-zindex: 10 !default;
+$dropdown-zindex-navbar: 20 !default;
+$dropdown-zindex-sidenav: 30 !default;

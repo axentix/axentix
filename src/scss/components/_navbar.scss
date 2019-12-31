@@ -1,16 +1,16 @@
 /*** Navbar ***/
 .navbar {
   display: flex;
+  position: relative;
   flex-direction: row;
   align-items: center;
   padding: 0 0.5rem;
-  height: 3.5rem;
-  line-height: 3.5rem;
-  position: relative;
+  height: $navbar-height;
+  line-height: $navbar-height;
   @extend .shadow-1;
 
-  .logo {
-    height: 3rem;
+  .navbar-logo {
+    height: $navbar-logo-height;
     margin: 0 1rem;
 
     img {
@@ -18,55 +18,47 @@
     }
 
     &.centered {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
       margin: 0;
     }
   }
 
-  &.center {
-    justify-content: center;
+  .centered {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  .nav-brand {
+  .navbar-brand {
     text-decoration: none;
     font-size: 1.5rem;
     color: inherit;
   }
 
-  ul {
+  ul.navbar-menu {
+    list-style: none;
+  }
+
+  .navbar-menu {
     display: flex;
     flex-direction: row;
-    list-style: none;
     margin: 0;
     padding: 0;
 
-    &.right {
-      margin-left: auto;
-    }
+    .navbar-link {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      padding: 0 0.6rem;
+      transition: background-color 0.23s ease;
+      cursor: pointer;
 
-    &.left {
-      margin-right: auto;
-    }
+      @include responsive('xs') {
+        padding: 0 0.4rem;
+      }
 
-    li {
-      padding: 0;
-      a {
-        color: inherit;
-        text-decoration: none;
-        display: block;
-        padding: 0 0.6rem;
-        transition: background-color 0.23s ease;
-
-        @include responsive('xs') {
-          padding: 0 0.4rem;
-        }
-
-        &:hover,
-        &.active {
-          background-color: rgba(0, 0, 0, 0.15);
-        }
+      &:hover,
+      &.active {
+        background-color: rgba(0, 0, 0, 0.15);
       }
     }
   }
@@ -77,12 +69,21 @@
   height: 3.5rem;
   width: 100%;
   position: relative;
-  z-index: 5;
+  z-index: $navbar-zindex;
 
   .navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+  }
+}
+
+// Fix for dropdown
+.navbar .dropdown {
+  z-index: $dropdown-zindex-navbar;
+
+  .dropdown-content {
+    line-height: 1.15;
   }
 }

@@ -1,0 +1,51 @@
+.grix .pagination {
+  align-self: start;
+}
+
+.pagination {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+
+  li {
+    display: block;
+    padding: 0.75rem 1rem;
+    margin: 0 0.25rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: 0.1s ease;
+    transition-property: background-color, color;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #eee;
+    }
+
+    &.active {
+      background-color: getColor('primary');
+      color: txtColor(getColor('primary'));
+    }
+
+    &.disabled {
+      background-color: rgba(0, 0, 0, 0.2);
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    i {
+      opacity: 0.6;
+    }
+  }
+
+  &.small li {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.825rem;
+  }
+
+  &.large li {
+    padding: 1rem 1.25rem;
+    font-size: 1.25rem;
+  }
+}

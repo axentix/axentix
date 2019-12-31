@@ -28,7 +28,7 @@ class Collapsible {
     this.isInSidenav = false;
     this.childIsActive = false;
 
-    this.options = extend(this.defaultOptions, options);
+    this.options = Axentix.extend(this.defaultOptions, options);
     this._setup();
   }
 

@@ -1,3 +1,23 @@
+# 0.4.0 - 2019-12-31
+
+**Navbar syntax changed & improved ! Please visit our docs !**
+
+- ADDED
+  - Toasts
+  - Dropdown
+  - Loading (spinner, progress bar), working with our color palette !
+  - Pagination
+  - Position classes
+  - Cursor classes
+- REMOVED
+- IMPROVED
+  - Totally reworked navbar
+  - Some navbar properties are now in the \_variables.scss file
+  - Axentix core
+  - Forms detect function
+- BUGFIXES
+  - Forms don't handle some special input type
+
 # 0.3.1 - 2019-12-11
 
 - ADDED

@@ -249,3 +249,50 @@
 .capitalize {
   text-transform: capitalize !important;
 }
+
+// Positions
+.absolute-pos {
+  position: absolute;
+}
+
+.fixed-pos {
+  position: fixed;
+}
+
+.relative-pos {
+  position: relative;
+}
+
+// Cursors
+
+.cursor-default {
+  cursor: default !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+.cursor-grab {
+  cursor: grab !important;
+}
+
+.cursor-wait {
+  cursor: wait !important;
+}
+
+.cursor-zoom-in {
+  cursor: zoom-in !important;
+}
+
+.cursor-zoom-out {
+  cursor: zoom-out !important;
+}
+
+.cursor-none {
+  cursor: none !important;
+}

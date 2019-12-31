@@ -1,0 +1,84 @@
+.spinner {
+  position: relative;
+  width: 3.5rem;
+
+  &:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
+
+  svg {
+    animation: sp-rotate 2s linear infinite;
+    height: 100%;
+    transform-origin: center center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    color: inherit;
+
+    .spinner-path {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+      animation: sp-dash 1.5s ease-in-out infinite;
+      stroke-linecap: round;
+      color: inherit;
+      stroke: currentColor;
+    }
+  }
+
+  &.rainbow svg .spinner-path {
+    animation: sp-dash 1.5s ease-in-out infinite, sp-colors 6s ease-in-out infinite;
+  }
+
+  &.large {
+    width: 5rem;
+  }
+
+  &.small {
+    width: 2rem;
+  }
+}
+
+@keyframes sp-colors {
+  0% {
+    stroke: getColor('blue');
+  }
+  25% {
+    stroke: getColor('red');
+  }
+  50% {
+    stroke: getColor('viride');
+  }
+  75% {
+    stroke: getColor('green');
+  }
+  100% {
+    stroke: getColor('airforce');
+  }
+}
+
+@keyframes sp-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sp-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}

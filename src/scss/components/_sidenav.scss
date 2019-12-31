@@ -90,6 +90,7 @@
     padding: 0 0.75rem;
     transition: background-color 0.23s ease;
     line-height: 3rem;
+    cursor: pointer;
 
     &:hover,
     &.active {
@@ -119,4 +120,8 @@
   height: 100%;
   z-index: 700;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.sidenav .dropdown {
+  z-index: $dropdown-zindex-sidenav;
 }
