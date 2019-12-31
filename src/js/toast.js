@@ -29,6 +29,10 @@ class Toast {
 
     this.content = content;
     this.options = Axentix.extend(this.defaultOptions, options);
+    this.options.classes = this.options.classes.toLowerCase;
+    this.options.position = this.options.position.toLowerCase;
+    this.options.comeFrom = this.options.comeFrom.toLowerCase;
+    this.options.mobileComeFrom = this.options.mobileComeFrom.toLowerCase;
   }
 
   /**
@@ -139,8 +143,9 @@ class Toast {
    * Change toast html
    *@param {String} newContent
    */
-  changeContent(newContent) {
+  changeContent(newContent, newClasses) {
     this.content = newContent;
+    newClasses === '' ? '' : (this.classes = newClasses);
   }
 
   /**
