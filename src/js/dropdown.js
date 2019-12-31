@@ -64,7 +64,6 @@ class Dropdown {
    * Handle click on document click
    */
   _onDocumentClick(e, id) {
-    e.preventDefault();
     if (e.target.matches('.dropdown-trigger')) {
       return;
     }
