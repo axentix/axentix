@@ -5,14 +5,14 @@
 - ADDED
   - Toasts
   - Dropdown
-  - Loading (spinner, progress bar), work with our color palette !
+  - Loading (spinner, progress bar), working with our color palette !
   - Pagination
   - Position classes
   - Cursor classes
 - REMOVED
 - IMPROVED
   - Totally reworked navbar
-  - Some navbar properties is now in \_variables.scss file
+  - Some navbar properties are now in the \_variables.scss file
   - Axentix core
   - Forms detect function
 - BUGFIXES
