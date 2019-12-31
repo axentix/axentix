@@ -69,7 +69,7 @@
   height: 3.5rem;
   width: 100%;
   position: relative;
-  z-index: 5;
+  z-index: $navbar-zindex;
 
   .navbar {
     position: fixed;
