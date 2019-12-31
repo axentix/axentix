@@ -29,7 +29,6 @@ class Toast {
 
     this.content = content;
     this.options = Axentix.extend(this.defaultOptions, options);
-    this.options.classes = this.options.classes.toLowerCase;
     this.options.position = this.options.position.toLowerCase;
     this.options.comeFrom = this.options.comeFrom.toLowerCase;
     this.options.mobileComeFrom = this.options.mobileComeFrom.toLowerCase;
