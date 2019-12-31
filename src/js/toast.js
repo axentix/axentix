@@ -16,8 +16,8 @@ class Toast {
       displayTime: 4000,
       classes: '',
       position: 'right',
-      comeFrom: 'top',
-      mobileComeFrom: 'bottom'
+      direction: 'top',
+      mobileDirection: 'bottom'
     };
 
     if (Axentix.toastInstanceExist) {
@@ -30,8 +30,8 @@ class Toast {
     this.content = content;
     this.options = Axentix.extend(this.defaultOptions, options);
     this.options.position = this.options.position.toLowerCase();
-    this.options.comeFrom = this.options.comeFrom.toLowerCase();
-    this.options.mobileComeFrom = this.options.mobileComeFrom.toLowerCase();
+    this.options.direction = this.options.direction.toLowerCase();
+    this.options.mobileDirection = this.options.mobileDirection.toLowerCase();
   }
 
   /**
@@ -44,18 +44,18 @@ class Toast {
     const positionList = ['right', 'left'];
     positionList.includes(this.options.position) ? '' : (this.options.position = 'right');
 
-    const comeFromList = ['bottom', 'top'];
-    comeFromList.includes(this.options.comeFrom) ? '' : (this.options.comeFrom = 'top');
+    const directionList = ['bottom', 'top'];
+    directionList.includes(this.options.direction) ? '' : (this.options.direction = 'top');
 
-    comeFromList.includes(this.options.mobileComeFrom) ? '' : (this.options.mobileComeFrom = 'bottom');
+    directionList.includes(this.options.mobileDirection) ? '' : (this.options.mobileDirection = 'bottom');
 
     this.toaster.className =
       'toaster toaster-' +
       this.options.position +
       ' toast-' +
-      this.options.comeFrom +
+      this.options.direction +
       ' toaster-mobile-' +
-      this.options.mobileComeFrom;
+      this.options.mobileDirection;
 
     document.body.appendChild(this.toaster);
   }
