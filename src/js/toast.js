@@ -29,9 +29,9 @@ class Toast {
 
     this.content = content;
     this.options = Axentix.extend(this.defaultOptions, options);
-    this.options.position = this.options.position.toLowerCase;
-    this.options.comeFrom = this.options.comeFrom.toLowerCase;
-    this.options.mobileComeFrom = this.options.mobileComeFrom.toLowerCase;
+    this.options.position = this.options.position.toLowerCase();
+    this.options.comeFrom = this.options.comeFrom.toLowerCase();
+    this.options.mobileComeFrom = this.options.mobileComeFrom.toLowerCase();
   }
 
   /**
@@ -144,7 +144,7 @@ class Toast {
    */
   changeContent(newContent, newClasses) {
     this.content = newContent;
-    newClasses === '' ? '' : (this.classes = newClasses);
+    newClasses === '' ? '' : (this.options.classes = newClasses);
   }
 
   /**
