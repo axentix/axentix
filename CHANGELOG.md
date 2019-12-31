@@ -1,4 +1,4 @@
-# 0.4.0 - Under development
+# 0.4.0 - 2019-12-31
 
 **Navbar syntax changed & improved ! Please visit our docs !**
 
