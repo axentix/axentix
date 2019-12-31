@@ -9,6 +9,7 @@
     display: block;
     padding: 0.75rem 1rem;
     margin: 0 0.25rem;
+    font-size: 1rem;
     border-radius: 5px;
     transition: 0.1s ease;
     transition-property: background-color, color;
@@ -32,5 +33,15 @@
     i {
       opacity: 0.6;
     }
+  }
+
+  &.small li {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.825rem;
+  }
+
+  &.large li {
+    padding: 1rem 1.25rem;
+    font-size: 1.25rem;
   }
 }
