@@ -15,7 +15,7 @@
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/axentix/badge?style=rounded)](https://www.jsdelivr.com/package/npm/axentix)
 ![David](https://img.shields.io/david/axentix/axentix)
 ![David](https://img.shields.io/david/dev/axentix/axentix)
-[![Gitter](https://badges.gitter.im/useaxentix/community.svg)](https://gitter.im/useaxentix/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/axentix/community.svg)](https://gitter.im/axentix/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## Quickstart
 
