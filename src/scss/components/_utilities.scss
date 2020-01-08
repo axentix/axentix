@@ -190,6 +190,48 @@
   padding-right: auto !important;
 }
 
+@each $number, $value in $spaces {
+  .mt-#{$number} {
+    margin-top: #{$value};
+  }
+  .mr-#{$number} {
+    margin-right: #{$value};
+  }
+  .mb-#{$number} {
+    margin-bottom: #{$value};
+  }
+  .ml-#{$number} {
+    margin-left: #{$value};
+  }
+  .mx-#{$number} {
+    margin-left: #{$value};
+    margin-right: #{$value};
+  }
+  .my-#{$number} {
+    margin-left: #{$value};
+    margin-right: #{$value};
+  }
+  .pt-#{$number} {
+    padding-top: #{$value};
+  }
+  .pr-#{$number} {
+    padding-right: #{$value};
+  }
+  .pb-#{$number} {
+    padding-bottom: #{$value};
+  }
+  .pl-#{$number} {
+    padding-left: #{$value};
+  }
+  .px-#{$number} {
+    padding-left: #{$value};
+    padding-right: #{$value};
+  }
+  .py-#{$number} {
+    padding-left: #{$value};
+    padding-right: #{$value};
+  }
+}
 // Truncate
 .truncate {
   overflow: hidden;
