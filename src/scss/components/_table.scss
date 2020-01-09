@@ -24,7 +24,8 @@
   }
 
   &.border-0 {
-    tr {
+    td,
+    th {
       border: none;
     }
   }
