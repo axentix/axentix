@@ -149,6 +149,7 @@ $dropdown-zindex-sidenav: 30 !default;
 // Margins & paddings
 $base-space: 1rem;
 $spaces: (
+  '0': 0,
   '1': $base-space * 0.25,
   '2': $base-space * 0.5,
   '3': $base-space * 1,
