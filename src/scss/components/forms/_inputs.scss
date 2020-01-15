@@ -102,10 +102,10 @@
     &::after {
       content: '';
       position: absolute;
-      bottom: 0;
+      top: var(--form-material-position);
       left: 0;
       width: 0;
-      border-bottom: $material-color solid 2px;
+      border-bottom: $material-color solid 0.1rem;
       transition: width $material-animation-duration ease;
     }
 

@@ -46,15 +46,34 @@ Axentix.detectInput = function(input) {
  * @param {boolean} isFocused
  */
 Axentix.updateInput = function(input, isActive, hasContent, isFocused) {
+  const isTextArea = input.type === 'textarea';
   if (!isActive && (hasContent || isFocused)) {
+    isTextArea ? '' : Axentix.setFormPosition(input);
     input.parentElement.classList.add('active');
   } else if (isActive && !(hasContent || isFocused)) {
     input.parentElement.classList.remove('active');
   }
 
-  isFocused
+  isFocused && !isTextArea
     ? input.parentElement.classList.add('is-focused')
     : input.parentElement.classList.remove('is-focused');
+};
+
+/**
+ * Add bottom position variable to form
+ * @param {Element} input
+ */
+Axentix.setFormPosition = function(input) {
+  const style = window.getComputedStyle(input.parentElement);
+  const height = parseFloat(input.clientHeight),
+    margin = parseFloat(style.marginTop),
+    padding = parseFloat(style.paddingTop),
+    border = parseFloat(style.borderTopWidth);
+
+  console.log('m:' + margin + 'p:' + padding + 'b:' + border + 'h' + height);
+  const pos = padding + border + height + 'px';
+
+  input.parentElement.style.setProperty('--form-material-position', pos);
 };
 
 /**
