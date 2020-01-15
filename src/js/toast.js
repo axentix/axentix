@@ -62,7 +62,7 @@ class Toast {
 
   _removeToaster() {
     setTimeout(() => {
-      if (this.toaster.childElementCount <= 0) {
+      if (this.toaster && this.toaster.childElementCount <= 0) {
         this.toaster.remove();
         this.toaster = undefined;
       }
@@ -86,6 +86,7 @@ class Toast {
   _fadeOutToast(toast) {
     setTimeout(() => {
       toast.style.opacity = 0;
+      this._hide(toast);
     }, this.options.displayTime + this.options.animationDelay);
   }
 
@@ -98,17 +99,25 @@ class Toast {
     toast.style.height = height + 'px';
 
     setTimeout(() => {
-      toast.style.transitionTimingFunction = 'cubic-bezier(0.445, 0.05, 0.55, 0.95)';
-      toast.style.paddingTop = 0;
-      toast.style.paddingBottom = 0;
-      toast.style.margin = 0;
-      toast.style.height = 0;
+      this._animOut(toast);
     }, this.options.displayTime + 2 * this.options.animationDelay);
 
     setTimeout(() => {
-      toast.remove();
+      this._deleteToast(toast);
       this._removeToaster();
     }, this.options.displayTime + 3 * this.options.animationDelay);
+  }
+
+  _animOut(toast) {
+    toast.style.transitionTimingFunction = 'cubic-bezier(0.445, 0.05, 0.55, 0.95)';
+    toast.style.paddingTop = 0;
+    toast.style.paddingBottom = 0;
+    toast.style.margin = 0;
+    toast.style.height = 0;
+  }
+
+  _deleteToast(toast) {
+    toast.remove();
   }
 
   /**
@@ -153,5 +162,14 @@ class Toast {
    */
   changeClasses(newClasses) {
     this.options.classes = newClasses;
+  }
+
+  _hide(toast) {
+    setTimeout(() => {
+      this._animOut(toast);
+    }, this.options.animationDelay);
+    setTimeout(() => {
+      this._deleteToast(toast);
+    }, 2 * this.options.animationDelay);
   }
 }

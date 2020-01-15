@@ -2,7 +2,7 @@
   position: fixed;
   display: flex;
   flex-direction: column;
-  top: 10%;
+  top: 0;
   z-index: 5000;
   max-width: 50%;
 
@@ -54,7 +54,7 @@
 
     &.toaster-mobile-top {
       flex-direction: column;
-      top: 10%;
+      top: 0;
       bottom: unset;
       left: 50%;
       transform: translateX(-50%);
