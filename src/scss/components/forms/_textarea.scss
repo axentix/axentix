@@ -16,6 +16,18 @@ textarea.form-control {
   .form-field:not(.form-default) {
     textarea.form-control {
       padding-top: 0.75rem;
+      transition: $material-animation-duration ease border;
+    }
+
+    &.active {
+      textarea.form-control {
+        border-bottom: 0.1rem solid $material-color;
+
+        &[disabled] + label,
+        &[readonly] + label {
+          color: $form-disabled-color;
+        }
+      }
     }
   }
 }
