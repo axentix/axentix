@@ -12,12 +12,13 @@ class Toast {
 
   constructor(content, options) {
     this.defaultOptions = {
-      animationDelay: 400,
+      animationDelay: 300,
       displayTime: 4000,
       classes: '',
       position: 'right',
       direction: 'top',
-      mobileDirection: 'bottom'
+      mobileDirection: 'bottom',
+      closable: 'false'
     };
 
     if (Axentix.toastInstanceExist) {
@@ -85,7 +86,6 @@ class Toast {
    */
   _fadeOutToast(toast) {
     setTimeout(() => {
-      toast.style.opacity = 0;
       this._hide(toast);
     }, this.options.displayTime + this.options.animationDelay);
   }
@@ -130,6 +130,13 @@ class Toast {
     toast.innerHTML = this.content;
     toast.style.transitionDuration = this.options.animationDelay + 'ms';
 
+    if (this.options.closable) {
+      let trigger = document.createElement('i');
+      trigger.className = 'toast-trigger fas fa-times';
+      trigger.addEventListener('click', e => this._hide(toast, e, trigger));
+      toast.appendChild(trigger);
+    }
+
     this._fadeInToast(toast);
 
     this.toaster.appendChild(toast);
@@ -164,12 +171,18 @@ class Toast {
     this.options.classes = newClasses;
   }
 
-  _hide(toast) {
+  _hide(toast, e, trigger) {
+    let timer = 1;
+    if (e) {
+      e.preventDefault();
+      timer = 0;
+    }
+    toast.style.opacity = 0;
     setTimeout(() => {
       this._animOut(toast);
-    }, this.options.animationDelay);
+    }, timer * this.options.animationDelay + this.options.animationDelay);
     setTimeout(() => {
       this._deleteToast(toast);
-    }, 2 * this.options.animationDelay);
+    }, this.options.animationDelay * timer + this.options.animationDelay * 2);
   }
 }
