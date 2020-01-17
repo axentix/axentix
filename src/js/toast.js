@@ -13,7 +13,7 @@ class Toast {
   constructor(content, options) {
     this.defaultOptions = {
       animationDelay: 300,
-      displayTime: 4000,
+      duration: 4000,
       classes: '',
       position: 'right',
       direction: 'top',
@@ -87,7 +87,7 @@ class Toast {
   _fadeOutToast(toast) {
     setTimeout(() => {
       this._hide(toast);
-    }, this.options.displayTime + this.options.animationDelay);
+    }, this.options.duration + this.options.animationDelay);
   }
 
   /**
@@ -100,12 +100,12 @@ class Toast {
 
     setTimeout(() => {
       this._animOut(toast);
-    }, this.options.displayTime + 2 * this.options.animationDelay);
+    }, this.options.duration + 2 * this.options.animationDelay);
 
     setTimeout(() => {
       this._deleteToast(toast);
       this._removeToaster();
-    }, this.options.displayTime + 3 * this.options.animationDelay);
+    }, this.options.duration + 3 * this.options.animationDelay);
   }
 
   _animOut(toast) {
