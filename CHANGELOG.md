@@ -1,3 +1,15 @@
+# 0.4.1 - Under Development
+
+- ADDED
+  - Toast "closable" option
+  - Margins and Paddings classes
+- REMOVED
+- IMPROVED
+  - Change Toast "displayTime" to "duration"
+- BUGFIXES
+  - Material forms span "helper text" was breaking the border bottom alignment
+  - Correct card footer padding and remove "overflow : hidden"
+
 # 0.4.0 - 2019-12-31
 
 **Navbar syntax changed & improved ! Please visit our docs !**
