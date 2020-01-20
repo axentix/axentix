@@ -13,6 +13,7 @@
   - Remove default margin on inline forms
   - Remove default background-color
   - Fix `<a>` default color
+  - `.striped`, `.border-0`, `.bordered` fix on table
 
 # 0.4.0 - 2019-12-31
 
