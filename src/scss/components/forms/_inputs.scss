@@ -17,8 +17,8 @@
     align-items: center;
 
     label {
-      margin-left: 0.5rem;
       margin-right: 0.5rem;
+      margin-bottom: 0;
     }
   }
 
@@ -39,7 +39,6 @@
   height: 2.5rem;
   width: 100%;
   appearance: none;
-  background-color: #fff;
   @extend .rounded-1;
 
   &:focus {
