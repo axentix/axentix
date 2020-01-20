@@ -10,6 +10,9 @@
   - Material forms span "helper text" was breaking the border bottom alignment
   - Correct card footer padding and remove "overflow : hidden"
   - Correct the icons centering on the circle buttons
+  - Remove default margin on inline forms
+  - Remove default background-color
+  - Fix `<a>` default color
 
 # 0.4.0 - 2019-12-31
 
