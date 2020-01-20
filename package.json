@@ -43,18 +43,18 @@
   ],
   "engine": "node >= 10",
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
     "browser-sync": "^2.26.7",
-    "fibers": "^4.0.1",
+    "fibers": "^4.0.2",
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.0",
+    "gulp-autoprefixer": "^7.0.1",
     "gulp-babel": "^8.0.0",
     "gulp-babel-minify": "^0.5.1",
     "gulp-concat": "^2.6.1",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
-    "sass": "^1.22.10"
+    "sass": "^1.25.0"
   },
   "dependencies": {}
 }
