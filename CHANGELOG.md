@@ -6,6 +6,7 @@
 - REMOVED
 - IMPROVED
   - Change Toast "displayTime" to "duration"
+  - Rework pagination syntax
 - BUGFIXES
   - Material forms span "helper text" was breaking the border bottom alignment
   - Correct card footer padding and remove "overflow : hidden"
