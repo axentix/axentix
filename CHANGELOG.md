@@ -14,6 +14,7 @@
   - Remove default background-color
   - Fix `<a>` default color
   - `.striped`, `.border-0`, `.bordered` fix on table
+  - Disable `word-break` on table thead
 
 # 0.4.0 - 2019-12-31
 

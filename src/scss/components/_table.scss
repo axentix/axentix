@@ -1,4 +1,7 @@
-/*** Table ***/
+.card .table thead {
+  word-break: normal;
+}
+
 .table {
   display: table;
   width: 100%;
