@@ -5,14 +5,14 @@
   - Margins and Paddings classes
 - REMOVED
 - IMPROVED
-  - Change Toast "displayTime" to "duration"
+  - Change Toast option `displayTime` to `duration`
   - Rework pagination syntax
 - BUGFIXES
-  - Material forms span "helper text" was breaking the border bottom alignment
-  - Correct card footer padding and remove "overflow : hidden"
+  - Material forms span `.form-helper` was breaking the border bottom alignment
+  - Correct card footer padding and remove `overflow: hidden;`
   - Correct the icons centering on the circle buttons
   - Remove default margin on inline forms
-  - Remove default background-color
+  - Remove default background-color on material forms
   - Fix `<a>` default color
   - `.striped`, `.border-0`, `.bordered` fix on table
   - Disable `word-break` on table thead
