@@ -9,9 +9,8 @@
   .card-header {
     font-size: 1.5rem;
     padding: 1.5rem;
-    border-radius: inherit;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
   }
 
   .card-content {
@@ -30,9 +29,8 @@
 
   .card-footer {
     padding: 1rem;
-    border-radius: inherit;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
   }
 
   .card-image {
