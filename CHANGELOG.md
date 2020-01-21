@@ -3,11 +3,15 @@
 - ADDED
   - Toast "closable" option
   - Margins and Paddings classes
+  - Toast `.change(content, options)` method
 - REMOVED
+  - Toast `.changeContent` & `.changeClasses` in favour of `.change` method
 - IMPROVED
   - Change Toast option `displayTime` to `duration`
   - Rework pagination syntax
   - Rework all of our event listeners
+  - Rework toast js
+  - You can now have 2 toasts in same time and in differents positions
 - BUGFIXES
   - Material forms span `.form-helper` was breaking the border bottom alignment
   - Correct card footer padding and remove `overflow: hidden;`
