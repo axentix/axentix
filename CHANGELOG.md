@@ -1,4 +1,4 @@
-# 0.4.1 - Under Development
+# 0.4.1 - 2020-01-21
 
 - ADDED
   - Toast "closable" option
