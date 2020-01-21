@@ -24,10 +24,6 @@ class Modal {
 
     this.options = Axentix.extend(this.defaultOptions, options);
 
-    if (this.options.overlay) {
-      this._createOverlay();
-    }
-
     this._setup();
     this.isActive ? this.open() : '';
   }
@@ -36,13 +32,14 @@ class Modal {
    * Setup listeners
    */
   _setup() {
+    this.listenerRef = this._onClickTrigger.bind(this);
     this.modalTriggers.forEach(trigger => {
       if (trigger.dataset.target === this.el.id) {
-        trigger.addEventListener('click', e => this._onClickTrigger(e, this.el.id));
+        trigger.addEventListener('click', this.listenerRef);
       }
     });
     if (this.options.overlay) {
-      this.overlayElement.addEventListener('click', e => this._onClickTrigger(e, this.el.id));
+      this._createOverlay();
     }
     this.el.style.transitionDuration = this.options.animationDelay + 'ms';
   }
@@ -80,18 +77,16 @@ class Modal {
   /**
    * Handle click on trigger
    */
-  _onClickTrigger(e, id) {
+  _onClickTrigger(e) {
     e.preventDefault();
-    const modal = document.querySelector('#' + id).Modal;
-
-    if (modal.isAnimated) {
+    if (this.isAnimated) {
       return;
     }
 
-    if (modal.isActive) {
-      modal.close();
+    if (this.isActive) {
+      this.close();
     } else {
-      modal.open();
+      this.open();
     }
   }
 
@@ -142,6 +137,7 @@ class Modal {
   overlay(state) {
     if (this.options.overlay) {
       if (state) {
+        this.overlayElement.addEventListener('click', this.listenerRef);
         document.body.appendChild(this.overlayElement);
         setTimeout(() => {
           this.overlayElement.classList.add('active');
@@ -149,6 +145,7 @@ class Modal {
       } else {
         this.overlayElement.classList.remove('active');
         setTimeout(() => {
+          this.overlayElement.removeEventListener('click', this.listenerRef);
           document.body.removeChild(this.overlayElement);
         }, this.options.animationDelay);
       }

@@ -34,9 +34,11 @@ class Dropdown {
     if (this.options.hover) {
       this.el.classList.add('active-hover');
     } else {
-      this.dropdownTrigger.addEventListener('click', e => this._onClickTrigger(e, this.el.id));
+      this.listenerRef = this._onClickTrigger.bind(this);
+      this.dropdownTrigger.addEventListener('click', this.listenerRef);
 
-      document.addEventListener('click', e => this._onDocumentClick(e, this.el.id), true);
+      this.documentClickRef = this._onDocumentClick.bind(this);
+      document.addEventListener('click', this.documentClickRef, true);
     }
 
     this._setupAnimation();
@@ -63,36 +65,32 @@ class Dropdown {
   /**
    * Handle click on document click
    */
-  _onDocumentClick(e, id) {
+  _onDocumentClick(e) {
     if (e.target.matches('.dropdown-trigger')) {
       return;
     }
-    const element = document.querySelector('#' + id);
-    const dropdown = element.Dropdown;
 
-    if (dropdown.isAnimated || !dropdown.isActive) {
+    if (this.isAnimated || !this.isActive) {
       return;
     }
 
-    dropdown.close();
+    this.close();
   }
 
   /**
    * Handle click on trigger
    */
-  _onClickTrigger(e, id) {
+  _onClickTrigger(e) {
     e.preventDefault();
-    const element = document.querySelector('#' + id);
-    const dropdown = element.Dropdown;
 
-    if (dropdown.isAnimated) {
+    if (this.isAnimated) {
       return;
     }
 
-    if (dropdown.isActive) {
-      dropdown.close();
+    if (this.isActive) {
+      this.close();
     } else {
-      dropdown.open();
+      this.open();
     }
   }
 

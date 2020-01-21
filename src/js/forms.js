@@ -66,11 +66,9 @@ Axentix.updateInput = function(input, isActive, hasContent, isFocused) {
 Axentix.setFormPosition = function(input) {
   const style = window.getComputedStyle(input.parentElement);
   const height = parseFloat(input.clientHeight),
-    margin = parseFloat(style.marginTop),
     padding = parseFloat(style.paddingTop),
     border = parseFloat(style.borderTopWidth);
 
-  console.log('m:' + margin + 'p:' + padding + 'b:' + border + 'h' + height);
   const pos = padding + border + height + 'px';
 
   input.parentElement.style.setProperty('--form-material-position', pos);

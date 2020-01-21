@@ -36,9 +36,10 @@ class Collapsible {
    * Setup listeners
    */
   _setup() {
+    this.listenerRef = this._onClickTrigger.bind(this);
     this.collapsibleTriggers.forEach(trigger => {
       if (trigger.dataset.target === this.el.id) {
-        trigger.addEventListener('click', e => this._onClickTrigger(e, this.el.id));
+        trigger.addEventListener('click', this.listenerRef);
       }
     });
     this.el.style.transitionDuration = this.options.animationDelay + 'ms';
@@ -141,19 +142,16 @@ class Collapsible {
   /**
    * Handle click on trigger
    */
-  _onClickTrigger(e, id) {
+  _onClickTrigger(e) {
     e.preventDefault();
-    const element = document.querySelector('#' + id);
-    const collapsible = element.Collapsible;
-
-    if (collapsible.isAnimated) {
+    if (this.isAnimated) {
       return;
     }
 
-    if (collapsible.isActive) {
-      collapsible.close();
+    if (this.isActive) {
+      this.close();
     } else {
-      collapsible.open();
+      this.open();
     }
   }
 

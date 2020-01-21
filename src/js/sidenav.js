@@ -17,7 +17,6 @@ class Sidenav {
     };
 
     this.el = document.querySelector(element);
-    this.el.Sidenav = this;
     this.sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
     this.isActive = false;
     this.isFixed = this.el.classList.contains('fixed');
@@ -32,14 +31,14 @@ class Sidenav {
    * Setup listeners
    */
   _setup() {
+    this.listenerRef = this._onClickTrigger.bind(this);
     this.sidenavTriggers.forEach(trigger => {
       if (trigger.dataset.target === this.el.id) {
-        trigger.addEventListener('click', e => this._onClickTrigger(e, this.el.id));
+        trigger.addEventListener('click', this.listenerRef);
       }
     });
     if (this.options.overlay) {
       this._createOverlay();
-      this.overlayElement.addEventListener('click', e => this._onClickTrigger(e, this.el.id));
     }
     this.el.classList.contains('large') ? document.body.classList.add('sidenav-large') : '';
     this.el.classList.contains('right-aligned') ? this._handleRightSide() : '';
@@ -72,17 +71,16 @@ class Sidenav {
   /**
    * Handle click on trigger
    */
-  _onClickTrigger(e, id) {
+  _onClickTrigger(e) {
     e.preventDefault();
-    const sidenav = document.querySelector('#' + id).Sidenav;
-    if (sidenav.isFixed && window.innerWidth >= 960) {
+    if (this.isFixed && window.innerWidth >= 960) {
       return;
     }
 
-    if (sidenav.isActive) {
-      sidenav.close();
+    if (this.isActive) {
+      this.close();
     } else {
-      sidenav.open();
+      this.open();
     }
   }
 
@@ -120,7 +118,13 @@ class Sidenav {
    */
   overlay(state) {
     if (this.options.overlay) {
-      state ? document.body.appendChild(this.overlayElement) : document.body.removeChild(this.overlayElement);
+      if (state) {
+        this.overlayElement.addEventListener('click', this.listenerRef);
+        document.body.appendChild(this.overlayElement);
+      } else {
+        this.overlayElement.removeEventListener('click', this.listenerRef);
+        document.body.removeChild(this.overlayElement);
+      }
     }
   }
 }

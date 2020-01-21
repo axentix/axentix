@@ -140,55 +140,55 @@
           </table>
         </div>
       </div>
-      <ul class="pagination">
-        <li class="disabled">
-          <i class="fas fa-step-backward"></i>
-        </li>
-        <li>
-          <i class="fas fa-angle-left"></i>
-        </li>
-        <li>1</li>
-        <li class="active">2</li>
-        <li>3</li>
-        <li>
-          <i class="fas fa-angle-right"></i>
-        </li>
-        <li>
-          <i class="fas fa-step-forward"></i>
-        </li>
-      </ul>
       <ul class="pagination small">
         <li class="disabled">
-          <i class="fas fa-step-backward"></i>
+          <a href=""><i class="fas fa-step-backward"></i></a>
         </li>
         <li>
-          <i class="fas fa-angle-left"></i>
+          <a href=""><i class="fas fa-angle-left"></i></a></i>
         </li>
-        <li>1</li>
-        <li class="active">2</li>
-        <li>3</li>
+        <li><a href="">1</a></li>
+        <li class="active"><a href="">2</a></li>
+        <li><a href="">3</a></li>
         <li>
-          <i class="fas fa-angle-right"></i>
+          <a href=""><i class="fas fa-angle-right"></i></a></i>
         </li>
         <li>
-          <i class="fas fa-step-forward"></i>
+          <a href=""><i class="fas fa-step-forward"></i></a></i>
+        </li>
+      </ul>
+      <ul class="pagination">
+        <li class="disabled">
+          <a href=""><i class="fas fa-step-backward"></i></a>
+        </li>
+        <li>
+          <a href=""><i class="fas fa-angle-left"></i></a></i>
+        </li>
+        <li><a href="">1</a></li>
+        <li class="active"><a href="">2</a></li>
+        <li><a href="">3</a></li>
+        <li>
+          <a href=""><i class="fas fa-angle-right"></i></a></i>
+        </li>
+        <li>
+          <a href=""><i class="fas fa-step-forward"></i></a></i>
         </li>
       </ul>
       <ul class="pagination large">
         <li class="disabled">
-          <i class="fas fa-step-backward"></i>
+          <a href=""><i class="fas fa-step-backward"></i></a>
         </li>
         <li>
-          <i class="fas fa-angle-left"></i>
+          <a href=""><i class="fas fa-angle-left"></i></a></i>
         </li>
-        <li>1</li>
-        <li class="active">2</li>
-        <li>3</li>
+        <li><a href="">1</a></li>
+        <li class="active"><a href="">2</a></li>
+        <li><a href="">3</a></li>
         <li>
-          <i class="fas fa-angle-right"></i>
+          <a href=""><i class="fas fa-angle-right"></i></a></i>
         </li>
         <li>
-          <i class="fas fa-step-forward"></i>
+          <a href=""><i class="fas fa-step-forward"></i></a></i>
         </li>
       </ul>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Error mollitia temporibus tempora commodi
@@ -235,9 +235,9 @@
     <script>
       var axentix = new Axentix('all');
       var collapsible = new Collapsible('#sidenav-collapsible3', {
-        sidenav: {
-          activeClass: false
-        }
+        // sidenav: {
+        //   activeClass: false
+        // }
       });
       var modal = new Modal('#example-modal', {
         bodyScrolling: true
