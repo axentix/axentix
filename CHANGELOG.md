@@ -9,14 +9,14 @@
 - IMPROVED
   - Change Toast option `displayTime` to `duration`
   - Rework pagination syntax
-  - Rework all of our event listeners
-  - Rework toast js
-  - You can now have 2 toasts in same time and in differents positions
+  - Rework all our event listeners
+  - Rework toast javascript
+  - You can now have 2 toasts at the same time and in different positions
 - BUGFIXES
-  - Material forms span `.form-helper` was breaking the border bottom alignment
+  - Material forms' span `.form-helper` was breaking the border bottom alignment
   - Correct card footer padding and remove `overflow: hidden;`
   - Correct the icons centering on the circle buttons
-  - Remove default margin on inline forms
+  - Remove default margins on inline forms
   - Remove default background-color on material forms
   - Fix `<a>` default color
   - `.striped`, `.border-0`, `.bordered` fix on table
