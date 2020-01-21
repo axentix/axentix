@@ -82,12 +82,15 @@
     transition-property: height, margin, opacity, padding, transform, box-shadow;
     transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     opacity: 0.2;
+
     .toast-trigger {
-      margin-left: 0.5rem; // auto sur mobile
+      margin-left: auto;
+      padding-left: 0.5rem;
       display: flex;
       align-self: flex-start;
       cursor: pointer;
     }
+
     &.toast-animated {
       margin-top: 1rem;
       opacity: 1;
