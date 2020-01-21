@@ -12,13 +12,13 @@ class Toast {
 
   constructor(content, options) {
     this.defaultOptions = {
-      animationDelay: 300,
+      animationDelay: 3000,
       duration: 4000,
       classes: '',
       position: 'right',
       direction: 'top',
       mobileDirection: 'bottom',
-      closable: 'false'
+      isClosable: false
     };
 
     if (Axentix.toastInstanceExist) {
@@ -108,6 +108,10 @@ class Toast {
     }, this.options.duration + 3 * this.options.animationDelay);
   }
 
+  /**
+   * Anim out toast
+   * @param {Element} toast
+   */
   _animOut(toast) {
     toast.style.transitionTimingFunction = 'cubic-bezier(0.445, 0.05, 0.55, 0.95)';
     toast.style.paddingTop = 0;
@@ -116,6 +120,10 @@ class Toast {
     toast.style.height = 0;
   }
 
+  /**
+   * Delete toast
+   * @param {Element} toast
+   */
   _deleteToast(toast) {
     toast.remove();
   }
@@ -130,10 +138,11 @@ class Toast {
     toast.innerHTML = this.content;
     toast.style.transitionDuration = this.options.animationDelay + 'ms';
 
-    if (this.options.closable) {
+    if (this.options.isClosable) {
       let trigger = document.createElement('i');
       trigger.className = 'toast-trigger fas fa-times';
-      trigger.addEventListener('click', e => this._hide(toast, e, trigger));
+      trigger.listenerRef = this._hide.bind(this, toast, trigger);
+      trigger.addEventListener('click', trigger.listenerRef);
       toast.appendChild(trigger);
     }
 
@@ -171,13 +180,15 @@ class Toast {
     this.options.classes = newClasses;
   }
 
-  _hide(toast, e, trigger) {
+  _hide(toast, trigger, e) {
     let timer = 1;
     if (e) {
       e.preventDefault();
       timer = 0;
     }
+
     toast.style.opacity = 0;
+    this.options.isClosable ? trigger.removeEventListener('click', trigger.listenerRef) : '';
     setTimeout(() => {
       this._animOut(toast);
     }, timer * this.options.animationDelay + this.options.animationDelay);

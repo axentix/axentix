@@ -7,6 +7,7 @@
 - IMPROVED
   - Change Toast option `displayTime` to `duration`
   - Rework pagination syntax
+  - Rework all of our event listeners
 - BUGFIXES
   - Material forms span `.form-helper` was breaking the border bottom alignment
   - Correct card footer padding and remove `overflow: hidden;`
