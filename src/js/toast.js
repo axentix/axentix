@@ -13,11 +13,12 @@ class Toast {
   constructor(content, options) {
     this.defaultOptions = {
       animationDelay: 400,
-      displayTime: 4000,
+      duration: 4000,
       classes: '',
       position: 'right',
       direction: 'top',
-      mobileDirection: 'bottom'
+      mobileDirection: 'bottom',
+      isClosable: false
     };
 
     if (Axentix.toastInstanceExist) {
@@ -32,14 +33,14 @@ class Toast {
     this.options.position = this.options.position.toLowerCase();
     this.options.direction = this.options.direction.toLowerCase();
     this.options.mobileDirection = this.options.mobileDirection.toLowerCase();
+    this.toasters = {};
   }
 
   /**
    * Create toast container
    */
-
   _createToaster() {
-    this.toaster = document.createElement('div');
+    let toaster = document.createElement('div');
 
     const positionList = ['right', 'left'];
     positionList.includes(this.options.position) ? '' : (this.options.position = 'right');
@@ -49,7 +50,7 @@ class Toast {
 
     directionList.includes(this.options.mobileDirection) ? '' : (this.options.mobileDirection = 'bottom');
 
-    this.toaster.className =
+    toaster.className =
       'toaster toaster-' +
       this.options.position +
       ' toast-' +
@@ -57,16 +58,21 @@ class Toast {
       ' toaster-mobile-' +
       this.options.mobileDirection;
 
-    document.body.appendChild(this.toaster);
+    this.toasters[this.options.position] = toaster;
+    document.body.appendChild(toaster);
   }
 
+  /**
+   * Remove toast container
+   */
   _removeToaster() {
-    setTimeout(() => {
-      if (this.toaster.childElementCount <= 0) {
-        this.toaster.remove();
-        this.toaster = undefined;
+    for (const key in this.toasters) {
+      let toaster = this.toasters[key];
+      if (toaster.childElementCount <= 0) {
+        toaster.remove();
+        delete this.toasters[key];
       }
-    }, 50);
+    }
   }
 
   /**
@@ -85,30 +91,20 @@ class Toast {
    */
   _fadeOutToast(toast) {
     setTimeout(() => {
-      toast.style.opacity = 0;
-    }, this.options.displayTime + this.options.animationDelay);
+      this._hide(toast);
+    }, this.options.duration + this.options.animationDelay);
   }
 
   /**
-   * Remove toast
+   * Anim out toast
    * @param {Element} toast
    */
-  _removeToast(toast) {
-    const height = toast.clientHeight;
-    toast.style.height = height + 'px';
-
-    setTimeout(() => {
-      toast.style.transitionTimingFunction = 'cubic-bezier(0.445, 0.05, 0.55, 0.95)';
-      toast.style.paddingTop = 0;
-      toast.style.paddingBottom = 0;
-      toast.style.margin = 0;
-      toast.style.height = 0;
-    }, this.options.displayTime + 2 * this.options.animationDelay);
-
-    setTimeout(() => {
-      toast.remove();
-      this._removeToaster();
-    }, this.options.displayTime + 3 * this.options.animationDelay);
+  _animOut(toast) {
+    toast.style.transitionTimingFunction = 'cubic-bezier(0.445, 0.05, 0.55, 0.95)';
+    toast.style.paddingTop = 0;
+    toast.style.paddingBottom = 0;
+    toast.style.margin = 0;
+    toast.style.height = 0;
   }
 
   /**
@@ -121,37 +117,71 @@ class Toast {
     toast.innerHTML = this.content;
     toast.style.transitionDuration = this.options.animationDelay + 'ms';
 
+    if (this.options.isClosable) {
+      let trigger = document.createElement('i');
+      trigger.className = 'toast-trigger fas fa-times';
+      trigger.listenerRef = this._hide.bind(this, toast, trigger);
+      trigger.addEventListener('click', trigger.listenerRef);
+      toast.appendChild(trigger);
+    }
+
     this._fadeInToast(toast);
 
-    this.toaster.appendChild(toast);
+    this.toasters[this.options.position].appendChild(toast);
 
     this._fadeOutToast(toast);
 
-    this._removeToast(toast);
+    const height = toast.clientHeight;
+    toast.style.height = height + 'px';
+  }
+
+  /**
+   * Hide toast
+   * @param {String} toast
+   * @param {Element} trigger
+   * @param {Event} e
+   */
+  _hide(toast, trigger, e) {
+    if (toast.isAnimated) {
+      return;
+    }
+
+    let timer = 1;
+    if (e) {
+      e.preventDefault();
+      timer = 0;
+      this.options.isClosable ? trigger.removeEventListener('click', trigger.listenerRef) : '';
+    }
+
+    toast.style.opacity = 0;
+    toast.isAnimated = true;
+    const delay = timer * this.options.animationDelay + this.options.animationDelay;
+    setTimeout(() => {
+      this._animOut(toast);
+    }, delay / 2);
+    setTimeout(() => {
+      toast.remove();
+      this._removeToaster();
+    }, delay * 1.45);
   }
 
   /**
    * Showing the toast
    */
   show() {
-    this.toaster ? '' : this._createToaster(this.options);
+    if (!Object.keys(this.toasters).includes(this.options.position)) {
+      this._createToaster();
+    }
     this._createToast();
   }
 
   /**
-   * Change toast html
-   *@param {String} newContent
+   * Change
+   * @param {String} content
+   * @param {Object} options
    */
-  changeContent(newContent, newClasses) {
-    this.content = newContent;
-    newClasses === '' ? '' : (this.options.classes = newClasses);
-  }
-
-  /**
-   * Change toast classes
-   *@param {String} newContent
-   */
-  changeClasses(newClasses) {
-    this.options.classes = newClasses;
+  change(content, options) {
+    this.content = content;
+    this.options = Axentix.extend(this.options, options);
   }
 }

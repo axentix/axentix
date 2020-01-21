@@ -10,14 +10,21 @@
   flex-wrap: wrap;
 
   li {
-    display: block;
-    padding: 0.75rem 1rem;
+    padding: 0;
     margin: 0 0.25rem;
     font-size: 1rem;
     border-radius: 5px;
+    cursor: pointer;
     transition: 0.1s ease;
     transition-property: background-color, color;
-    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a {
+      padding: 0.75rem 1rem;
+      color: inherit;
+    }
 
     &:hover {
       background-color: #eee;
@@ -40,12 +47,16 @@
   }
 
   &.small li {
-    padding: 0.5rem 0.75rem;
+    a {
+      padding: 0.5rem 0.75rem;
+    }
     font-size: 0.825rem;
   }
 
   &.large li {
-    padding: 1rem 1.25rem;
+    a {
+      padding: 1rem 1.25rem;
+    }
     font-size: 1.25rem;
   }
 }

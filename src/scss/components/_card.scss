@@ -1,21 +1,26 @@
 .card {
+  position: relative;
   width: 100%;
   margin: 0.5rem 0;
   align-self: start;
-  overflow: hidden;
   word-break: break-word;
   @extend .shadow-1;
 
   .card-header {
     font-size: 1.5rem;
-    padding: 1rem 1.5rem;
+    padding: 1.5rem;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
   }
 
   .card-content {
-    padding: 1rem 1.5rem;
+    padding: 1.5rem;
 
     .card-header {
-      padding: 0 0 2rem 0;
+      padding: 0 0 3rem 0;
+    }
+    .card-footer {
+      padding: 2rem 0 0 0;
     }
     p {
       margin: 0;
@@ -23,7 +28,9 @@
   }
 
   .card-footer {
-    padding: 1rem 1.5rem;
+    padding: 1rem;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
   }
 
   .card-image {

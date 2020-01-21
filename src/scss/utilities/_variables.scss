@@ -46,8 +46,8 @@ $colors: (
 
 $axentix-palette: (
   'primary': #2196f3,
-  'secondary': #17bacf,
-  'success': #0bdd00,
+  'secondary': #22ac72,
+  'success': #12ad12,
   'warning': #ebce2d,
   'error': #df2c29,
   'white': #fff,
@@ -145,3 +145,15 @@ $material-placeholder-color: getColor('grey', 'dark', 2) !default;
 $dropdown-zindex: 10 !default;
 $dropdown-zindex-navbar: 20 !default;
 $dropdown-zindex-sidenav: 30 !default;
+
+// Margins & paddings
+$base-space: 1rem;
+$spaces: (
+  '0': 0,
+  '1': $base-space * 0.25,
+  '2': $base-space * 0.5,
+  '3': $base-space * 1,
+  '4': $base-space * 1.5,
+  '5': $base-space * 2.5,
+  'auto': auto
+) !default;

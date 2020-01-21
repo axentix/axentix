@@ -1,3 +1,27 @@
+# 0.4.1 - 2020-01-21
+
+- ADDED
+  - Toast "closable" option
+  - Margins and Paddings classes
+  - Toast `.change(content, options)` method
+- REMOVED
+  - Toast `.changeContent` & `.changeClasses` in favour of `.change` method
+- IMPROVED
+  - Change Toast option `displayTime` to `duration`
+  - Rework pagination syntax
+  - Rework all our event listeners
+  - Rework toast javascript
+  - You can now have 2 toasts at the same time and in different positions
+- BUGFIXES
+  - Material forms' span `.form-helper` was breaking the border bottom alignment
+  - Correct card footer padding and remove `overflow: hidden;`
+  - Correct the icons centering on the circle buttons
+  - Remove default margins on inline forms
+  - Remove default background-color on material forms
+  - Fix `<a>` default color
+  - `.striped`, `.border-0`, `.bordered` fix on table
+  - Disable `word-break` on table thead
+
 # 0.4.0 - 2019-12-31
 
 **Navbar syntax changed & improved ! Please visit our docs !**

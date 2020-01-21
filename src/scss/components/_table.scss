@@ -1,4 +1,7 @@
-/*** Table ***/
+.card .table thead {
+  word-break: normal;
+}
+
 .table {
   display: table;
   width: 100%;
@@ -8,7 +11,7 @@
   &.bordered {
     td,
     th {
-      border: 1px solid rgba(0, 0, 0, 0.3);
+      border: 1px solid rgb(210, 210, 210);
     }
 
     tr {
@@ -23,8 +26,10 @@
     }
   }
 
-  &.border-0 {
-    tr {
+  &.border-0,
+  &.striped {
+    td,
+    th {
       border: none;
     }
   }

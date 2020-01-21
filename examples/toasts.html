@@ -57,7 +57,8 @@
       var sidenav = new Sidenav('#example-sidenav');
 
       var mytoast = new Toast('Bonjour Axel', {
-        classes: 'airforce rounded-4 shadow-3'
+        classes: 'airforce rounded-4 shadow-3',
+        isClosable: true
       });
 
       var mytoast2 = new Toast('Hello', {
@@ -66,13 +67,21 @@
       });
 
       function show1() {
-        mytoast.changeContent('Bonsoir AXELLLLLLLLLLL', 'red');
-        // mytoast.changeClasses('airforce rounded-4 shadow-3');
+        mytoast.change('Salut 20 100<br/>yoooooooooooooooooooooooooo<br/>yoooooooooooo<br/>ffffffffffff', {
+          position: 'left',
+          classes: 'red dark-2 rounded-2',
+          duration: 4000,
+          animationDelay: 400
+        });
         mytoast.show();
       }
       function show2() {
-        mytoast.changeContent('Bonsoir AXEL');
-        mytoast.changeClasses('cyan rounded-4 shadow-3');
+        mytoast.change('Bonjour Axel <div class="btn blue">TOAST POWER</div>', {
+          position: 'right',
+          classes: 'green dark-2 rounded-2',
+          duration: 4000,
+          animationDelay: 400
+        });
         mytoast.show();
       }
     </script>

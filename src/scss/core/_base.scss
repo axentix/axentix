@@ -40,8 +40,7 @@ h6 {
 
 a {
   text-decoration: none;
-  color: getColor('primary');
-  transition: color 0.2s ease;
+  color: inherit;
 }
 
 p {

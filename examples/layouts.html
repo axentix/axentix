@@ -12,7 +12,7 @@
 
   <body class="layout with-sidenav fixed-sidenav">
     <header>
-      <nav class="navbar primary">
+      <nav class="navbar secondary">
         <a href="#" target="_blank" class="navbar-brand">Axentix</a>
         <ul class="navbar-menu ml-auto">
           <li><a class="navbar-link" href="#">Link 1</a></li>
@@ -52,7 +52,11 @@
     <div id="example-sidenav2" class="sidenav secondary">
       <div class="sidenav-header">
         <button data-target="example-sidenav2" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-        <img class="logo dropshadow-1" src="your_img_path" alt="Axentix Logo" />
+        <img
+          class="logo dropshadow-1"
+          src="https://www.ps-ecublens.ch/wp-content/uploads/2019/05/img-logo-lg.png"
+          alt="Axentix Logo"
+        />
       </div>
       <a href="#" class="sidenav-link">Link 1</a>
       <a href="#" class="collapsible-trigger sidenav-link" data-target="sidenav-collapsible2">Collapsible</a>
@@ -103,84 +107,88 @@
           <button data-target="example-modal" class="mg-l-auto btn primary modal-trigger">Close</button>
         </div>
       </div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>City</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Paul</td>
-            <td>24</td>
-            <td>Paris</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td colspan="2">Patrick</td>
-            <td>Nice</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Robert</td>
-            <td>62</td>
-            <td>Limoges</td>
-          </tr>
-        </tbody>
-      </table>
-      <ul class="pagination">
-        <li class="disabled">
-          <i class="fas fa-step-backward"></i>
-        </li>
-        <li>
-          <i class="fas fa-angle-left"></i>
-        </li>
-        <li>1</li>
-        <li class="active">2</li>
-        <li>3</li>
-        <li>
-          <i class="fas fa-angle-right"></i>
-        </li>
-        <li>
-          <i class="fas fa-step-forward"></i>
-        </li>
-      </ul>
+      <div class="card">
+        <div class="card-content">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>City</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Paul</td>
+                <td>24</td>
+                <td>Paris</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td colspan="2">Patrick</td>
+                <td>Nice</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Robert</td>
+                <td>62</td>
+                <td>Limoges</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <ul class="pagination small">
         <li class="disabled">
-          <i class="fas fa-step-backward"></i>
+          <a href=""><i class="fas fa-step-backward"></i></a>
         </li>
         <li>
-          <i class="fas fa-angle-left"></i>
+          <a href=""><i class="fas fa-angle-left"></i></a>
         </li>
-        <li>1</li>
-        <li class="active">2</li>
-        <li>3</li>
+        <li><a href="">1</a></li>
+        <li class="active"><a href="">2</a></li>
+        <li><a href="">3</a></li>
         <li>
-          <i class="fas fa-angle-right"></i>
+          <a href=""><i class="fas fa-angle-right"></i></a>
         </li>
         <li>
-          <i class="fas fa-step-forward"></i>
+          <a href=""><i class="fas fa-step-forward"></i></a>
+        </li>
+      </ul>
+      <ul class="pagination">
+        <li class="disabled">
+          <a href=""><i class="fas fa-step-backward"></i></a>
+        </li>
+        <li>
+          <a href=""><i class="fas fa-angle-left"></i></a>
+        </li>
+        <li><a href="">1</a></li>
+        <li class="active"><a href="">2</a></li>
+        <li><a href="">3</a></li>
+        <li>
+          <a href=""><i class="fas fa-angle-right"></i></a>
+        </li>
+        <li>
+          <a href=""><i class="fas fa-step-forward"></i></a>
         </li>
       </ul>
       <ul class="pagination large">
         <li class="disabled">
-          <i class="fas fa-step-backward"></i>
+          <a href=""><i class="fas fa-step-backward"></i></a>
         </li>
         <li>
-          <i class="fas fa-angle-left"></i>
+          <a href=""><i class="fas fa-angle-left"></i></a>
         </li>
-        <li>1</li>
-        <li class="active">2</li>
-        <li>3</li>
+        <li><a href="">1</a></li>
+        <li class="active"><a href="">2</a></li>
+        <li><a href="">3</a></li>
         <li>
-          <i class="fas fa-angle-right"></i>
+          <a href=""><i class="fas fa-angle-right"></i></a>
         </li>
         <li>
-          <i class="fas fa-step-forward"></i>
+          <a href=""><i class="fas fa-step-forward"></i></a>
         </li>
       </ul>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Error mollitia temporibus tempora commodi
@@ -190,18 +198,46 @@
       veniam repudiandae excepturi atque, quisquam quam dolores? Praesentium, sunt? Lorem ipsum dolor sit amet
       consectetur adipisicing elit. Error mollitia temporibus tempora commodi corporis sunt necessitatibus vel
       similique quia obcaecati architecto veniam repudiandae excepturi atque, quisquam quam dolores?
+
+      <div class="grix xs3">
+        <div class="card success">
+          <div class="card-header">Card header</div>
+          <p class="card-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Non veritatis excepturi natus impedit
+            distinctio quidem, nesciunt id possimus quia, tempore fuga doloribus reiciendis facilis voluptate
+            accusantium! Adipisci est nam soluta!
+          </p>
+        </div>
+        <div class="card primary">
+          <div class="card-header">Card header</div>
+          <p class="card-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Non veritatis excepturi natus impedit
+            distinctio quidem, nesciunt id possimus quia, tempore fuga doloribus reiciendis facilis voluptate
+            accusantium! Adipisci est nam soluta!
+          </p>
+        </div>
+        <div class="card secondary">
+          <div class="card-header">Card header</div>
+          <p class="card-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Non veritatis excepturi natus impedit
+            distinctio quidem, nesciunt id possimus quia, tempore fuga doloribus reiciendis facilis voluptate
+            accusantium! Adipisci est nam soluta!
+          </p>
+        </div>
+      </div>
     </main>
 
     <footer class="footer primary">
       Copyright © 2019 - Example
+      <a href="#">Hello guys</a>
     </footer>
     <script src="../dist/js/axentix.min.js"></script>
     <script>
       var axentix = new Axentix('all');
       var collapsible = new Collapsible('#sidenav-collapsible3', {
-        sidenav: {
-          activeClass: false
-        }
+        // sidenav: {
+        //   activeClass: false
+        // }
       });
       var modal = new Modal('#example-modal', {
         bodyScrolling: true

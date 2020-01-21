@@ -190,6 +190,54 @@
   padding-right: auto !important;
 }
 
+@each $number, $value in $spaces {
+  .m-#{$number} {
+    margin: #{$value} !important;
+  }
+  .mt-#{$number} {
+    margin-top: #{$value} !important;
+  }
+  .mr-#{$number} {
+    margin-right: #{$value} !important;
+  }
+  .mb-#{$number} {
+    margin-bottom: #{$value} !important;
+  }
+  .ml-#{$number} {
+    margin-left: #{$value} !important;
+  }
+  .mx-#{$number} {
+    margin-left: #{$value} !important;
+    margin-right: #{$value} !important;
+  }
+  .my-#{$number} {
+    margin-left: #{$value} !important;
+    margin-right: #{$value} !important;
+  }
+  .p-#{$number} {
+    padding: #{$value} !important;
+  }
+  .pt-#{$number} {
+    padding-top: #{$value} !important;
+  }
+  .pr-#{$number} {
+    padding-right: #{$value} !important;
+  }
+  .pb-#{$number} {
+    padding-bottom: #{$value} !important;
+  }
+  .pl-#{$number} {
+    padding-left: #{$value} !important;
+  }
+  .px-#{$number} {
+    padding-left: #{$value} !important;
+    padding-right: #{$value} !important;
+  }
+  .py-#{$number} {
+    padding-left: #{$value} !important;
+    padding-right: #{$value} !important;
+  }
+}
 // Truncate
 .truncate {
   overflow: hidden;
