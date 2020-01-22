@@ -29,6 +29,10 @@
       animation: pbar-indeterminate 1s infinite linear;
       width: 100%;
       transform-origin: 0% 50%;
+
+      &.rainbow {
+        animation: pbar-indeterminate 1s infinite linear, pbar-colors 3s ease-in-out infinite;
+      }
     }
   }
 }
@@ -42,5 +46,23 @@
   }
   100% {
     transform: translateX(100%) scaleX(0.5);
+  }
+}
+
+@keyframes pbar-colors {
+  0% {
+    background-color: getColor('blue');
+  }
+  25% {
+    background-color: getColor('red');
+  }
+  50% {
+    background-color: getColor('viride');
+  }
+  75% {
+    background-color: getColor('green');
+  }
+  100% {
+    background-color: getColor('airforce');
   }
 }
