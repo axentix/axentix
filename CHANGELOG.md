@@ -1,3 +1,16 @@
+# 0.4.2 - 2020-01-22
+
+- ADDED
+  - Progress bar rainbow option on the indeterminate variant
+  - Float classes
+  - Flex direction classes
+- REMOVED
+- IMPROVED
+  - Footer select line-height has been increased
+  - Margins & paddings generation
+- BUGFIXES
+  - Card footer padding
+
 # 0.4.1 - 2020-01-21
 
 - ADDED

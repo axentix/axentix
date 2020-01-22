@@ -28,8 +28,25 @@
   grid-gap: 0 !important;
 }
 
+// Flex
 .flex {
   display: flex;
+}
+
+.fx-col {
+  flex-direction: column !important;
+}
+
+.fx-col-reverse {
+  flex-direction: column-reverse !important;
+}
+
+.fx-row {
+  flex-direction: row !important;
+}
+
+.fx-row-reverse {
+  flex-direction: row-reverse !important;
 }
 
 .w100 {
@@ -145,51 +162,15 @@
   align-self: end !important;
 }
 
-// Margins
-.m-0 {
-  margin: 0 !important;
-}
-.mx-auto {
-  margin-left: auto !important;
-  margin-right: auto !important;
+.float-left {
+  float: left !important;
 }
 
-.my-auto {
-  margin-top: auto !important;
-  margin-bottom: auto !important;
+.float-right {
+  float: right !important;
 }
 
-.ml-auto {
-  margin-left: auto !important;
-}
-
-.mr-auto {
-  margin-right: auto !important;
-}
-
-// Paddings
-.p-0 {
-  padding: 0 !important;
-}
-
-.px-auto {
-  padding-left: auto !important;
-  padding-right: auto !important;
-}
-
-.py-auto {
-  padding-top: auto !important;
-  padding-bottom: auto !important;
-}
-
-.pl-auto {
-  padding-left: auto !important;
-}
-
-.pr-auto {
-  padding-right: auto !important;
-}
-
+// Margin / Padding
 @each $number, $value in $spaces {
   .m-#{$number} {
     margin: #{$value} !important;
@@ -312,7 +293,6 @@
 }
 
 // Cursors
-
 .cursor-default {
   cursor: default !important;
 }
