@@ -1,3 +1,11 @@
+# 0.4.3 - Under Development
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Buttons in table are not display correctly
+
 # 0.4.2 - 2020-01-22
 
 - ADDED
