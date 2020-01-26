@@ -57,6 +57,10 @@ Axentix.updateInput = function(input, isActive, hasContent, isFocused) {
   isFocused && !isTextArea
     ? input.parentElement.classList.add('is-focused')
     : input.parentElement.classList.remove('is-focused');
+
+  isFocused && isTextArea
+    ? input.parentElement.classList.add('is-txtarea-focused')
+    : input.parentElement.classList.remove('is-txtarea-focused');
 };
 
 /**
@@ -86,6 +90,18 @@ Axentix.handleListeners = function(e, inputElements) {
 };
 
 /**
+ * Handle form reset event
+ * @param {Event} e
+ */
+Axentix.handleResetEvent = function(e) {
+  if (e.target.tagName === 'FORM' && e.target.classList.contains('form-material')) {
+    setTimeout(() => {
+      Axentix.detectAllInputs();
+    }, 10);
+  }
+};
+
+/**
  * Setup forms fields listeners
  * @param {NodeListOf<Element>} inputElements
  */
@@ -99,6 +115,13 @@ Axentix.setupFormsListeners = function(inputElements) {
 
   document.addEventListener('focus', e => Axentix.handleListeners(e, inputElements), true);
   document.addEventListener('blur', e => Axentix.handleListeners(e, inputElements), true);
+
+  window.addEventListener('pageshow', () => {
+    setTimeout(() => {
+      Axentix.detectAllInputs();
+    }, 10);
+  });
+  document.addEventListener('reset', Axentix.handleResetEvent);
 };
 
 // Init

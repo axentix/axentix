@@ -3,8 +3,11 @@
 - ADDED
 - REMOVED
 - IMPROVED
+  - Increase priority of positions classes
+  - Form handle now reset & history back event
 - BUGFIXES
   - Buttons in table are not display correctly
+  - Textarea are always active when have content
 
 # 0.4.2 - 2020-01-22
 

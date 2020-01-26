@@ -21,12 +21,14 @@ textarea.form-control {
 
     &.active {
       textarea.form-control {
-        border-bottom: 0.1rem solid $material-color;
-
         &[disabled] + label,
         &[readonly] + label {
           color: $form-disabled-color;
         }
+      }
+
+      &.is-txtarea-focused textarea.form-control {
+        border-bottom: 0.1rem solid $material-color;
       }
     }
   }
