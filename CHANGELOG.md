@@ -4,10 +4,10 @@
 - REMOVED
 - IMPROVED
   - Increase priority of positions classes
-  - Form handle now reset & history back event
+  - Forms handle now reset & history back event
 - BUGFIXES
-  - Buttons in table are not display correctly
-  - Textarea are always active when have content
+  - Buttons in tables weren't display correctly
+  - Textareas were always active with content inside
 
 # 0.4.2 - 2020-01-22
 
