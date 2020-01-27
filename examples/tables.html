@@ -2,41 +2,68 @@
   <head>
     <title>Axentix Layout - Fixed sidenav</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
     />
+    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
   </head>
 
-  <table class="table bordered border-0">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Age</th>
-        <th>City</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>Paul</td>
-        <td>24</td>
-        <td>Paris</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Patrick</td>
-        <td>34</td>
-        <td>Nice</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Robert</td>
-        <td>62</td>
-        <td>Limoges</td>
-      </tr>
-    </tbody>
-  </table>
+  <body>
+    <header></header>
+
+    <main>
+      <table class="table bordered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>City</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Paul</td>
+            <td>24</td>
+            <td>
+              <a href="" class="btn outline txt-red"><span class="outline-text">Yes</span></a>
+              <a href="" class="btn outline opening txt-red"><span class="outline-text">No</span></a>
+              <a href="" class="btn outline opening txt-red rounded-4"
+                ><span class="outline-text">No</span></a
+              >
+              <a href="" class="btn press red">test</a>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Patrick</td>
+            <td>34</td>
+            <td>
+              <button class="btn outline txt-red"><span class="outline-text">Yes</span></button>
+              <button class="btn outline opening txt-red"><span class="outline-text">No</span></button>
+              <button class="btn outline opening txt-red rounded-4">
+                <span class="outline-text">No</span>
+              </button>
+              <button class="btn press red">test</button>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Robert</td>
+            <td>62</td>
+            <td>
+              <div class="btn outline txt-red"><span class="outline-text">Yes</span></div>
+              <div class="btn outline opening txt-red"><span class="outline-text">No</span></div>
+              <div class="btn outline opening txt-red rounded-4"><span class="outline-text">No</span></div>
+              <div class="btn press red">test</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
+    <footer></footer>
+  </body>
 </html>

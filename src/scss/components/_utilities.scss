@@ -281,15 +281,15 @@
 
 // Positions
 .absolute-pos {
-  position: absolute;
+  position: absolute !important;
 }
 
 .fixed-pos {
-  position: fixed;
+  position: fixed !important;
 }
 
 .relative-pos {
-  position: relative;
+  position: relative !important;
 }
 
 // Cursors

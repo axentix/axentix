@@ -1,7 +1,3 @@
-.grix .btn {
-  align-self: start;
-}
-
 .btn {
   display: table;
   position: relative;
@@ -212,5 +208,32 @@
   }
   to {
     background-color: currentColor;
+  }
+}
+
+// Grix fix
+.grix .btn {
+  align-self: start;
+}
+
+// Table fix
+table .btn {
+  display: inline-block;
+
+  &.outline {
+    &::before {
+      @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
+        border-radius: 0;
+      }
+    }
+
+    &:hover {
+      @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
+        animation: initial;
+        animation-name: fix-outline-button;
+        animation-delay: 0.001s;
+        animation-fill-mode: forwards;
+      }
+    }
   }
 }

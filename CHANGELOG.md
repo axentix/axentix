@@ -1,3 +1,14 @@
+# 0.4.3 - 2020-01-27
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Increase priority of positions classes
+  - Forms handle now reset & history back event
+- BUGFIXES
+  - Buttons in tables weren't display correctly
+  - Textareas were always active with content inside
+
 # 0.4.2 - 2020-01-22
 
 - ADDED
