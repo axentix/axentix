@@ -1,4 +1,4 @@
-# 0.4.3 - Under Development
+# 0.4.3 - 2020-01-27
 
 - ADDED
 - REMOVED
