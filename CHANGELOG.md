@@ -1,7 +1,7 @@
 # 0.5.0 - Under Development
 
 - ADDED
-  - Form switch
+  - Form switch (different sizes, thin option)
 - REMOVED
 - IMPROVED
 - BUGFIXES
