@@ -141,6 +141,13 @@ $material-border-color: #c7c7c7 !default;
 $material-color: getColor('viride', 'dark', 1) !default;
 $material-placeholder-color: getColor('grey', 'dark', 2) !default;
 
+// Switch
+$switch-bg-color: #e2e2e2 !default;
+$switch-bg-disabled-color: #c7c7c7 !default;
+$switch-bg-active-color: getColor('viride', 'dark', 1) !default;
+$switch-btn-color: #fff !default;
+$switch-animation-duration: 0.3s !default;
+
 // Dropdown
 $dropdown-zindex: 10 !default;
 $dropdown-zindex-navbar: 20 !default;

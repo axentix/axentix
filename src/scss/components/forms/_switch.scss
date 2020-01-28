@@ -1,0 +1,75 @@
+.form-switch {
+  position: relative;
+  pointer-events: auto;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .slider {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    width: 3rem;
+    height: 1.75rem;
+    background-color: $switch-bg-color;
+    transition: background-color $switch-animation-duration ease;
+    border-radius: 1rem;
+    margin: 0 0.5rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1.25rem;
+      height: 1.25rem;
+      left: 0.25rem;
+      top: 0.25rem;
+      border-radius: 50%;
+      background-color: $switch-btn-color;
+      transition: transform $switch-animation-duration ease;
+    }
+
+    &.small {
+      width: 2.5rem;
+      height: 1.5rem;
+
+      &::before {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+
+    &.large {
+      width: 3.5rem;
+      height: 2rem;
+
+      &::before {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+
+  input:checked + .slider {
+    background-color: $switch-bg-active-color;
+  }
+
+  input:checked + .slider::before {
+    transform: translateX(100%);
+  }
+}
+
+.form-field {
+  .form-switch {
+    font-weight: initial;
+    margin-bottom: 0;
+    display: inline-flex;
+    align-self: flex-start;
+  }
+}

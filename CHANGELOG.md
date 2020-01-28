@@ -1,3 +1,11 @@
+# 0.5.0 - Under Development
+
+- ADDED
+  - Switch
+- REMOVED
+- IMPROVED
+- BUGFIXES
+
 # 0.4.3 - 2020-01-27
 
 - ADDED
