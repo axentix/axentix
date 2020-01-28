@@ -195,28 +195,30 @@
     margin-left: #{$value} !important;
     margin-right: #{$value} !important;
   }
-  .p-#{$number} {
-    padding: #{$value} !important;
-  }
-  .pt-#{$number} {
-    padding-top: #{$value} !important;
-  }
-  .pr-#{$number} {
-    padding-right: #{$value} !important;
-  }
-  .pb-#{$number} {
-    padding-bottom: #{$value} !important;
-  }
-  .pl-#{$number} {
-    padding-left: #{$value} !important;
-  }
-  .px-#{$number} {
-    padding-left: #{$value} !important;
-    padding-right: #{$value} !important;
-  }
-  .py-#{$number} {
-    padding-left: #{$value} !important;
-    padding-right: #{$value} !important;
+  @if ($value != 'auto') {
+    .p-#{$number} {
+      padding: #{$value} !important;
+    }
+    .pt-#{$number} {
+      padding-top: #{$value} !important;
+    }
+    .pr-#{$number} {
+      padding-right: #{$value} !important;
+    }
+    .pb-#{$number} {
+      padding-bottom: #{$value} !important;
+    }
+    .pl-#{$number} {
+      padding-left: #{$value} !important;
+    }
+    .px-#{$number} {
+      padding-left: #{$value} !important;
+      padding-right: #{$value} !important;
+    }
+    .py-#{$number} {
+      padding-left: #{$value} !important;
+      padding-right: #{$value} !important;
+    }
   }
 }
 // Truncate

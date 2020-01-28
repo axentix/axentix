@@ -1,10 +1,11 @@
 # 0.5.0 - Under Development
 
 - ADDED
-  - Switch
+  - Form switch
 - REMOVED
 - IMPROVED
 - BUGFIXES
+  - Padding generation bug
 
 # 0.4.3 - 2020-01-27
 
