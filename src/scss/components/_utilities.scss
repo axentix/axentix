@@ -192,8 +192,8 @@
     margin-right: #{$value} !important;
   }
   .my-#{$number} {
-    margin-left: #{$value} !important;
-    margin-right: #{$value} !important;
+    margin-top: #{$value} !important;
+    margin-bottom: #{$value} !important;
   }
   @if ($value != 'auto') {
     .p-#{$number} {
@@ -216,8 +216,8 @@
       padding-right: #{$value} !important;
     }
     .py-#{$number} {
-      padding-left: #{$value} !important;
-      padding-right: #{$value} !important;
+      padding-top: #{$value} !important;
+      padding-bottom: #{$value} !important;
     }
   }
 }
