@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>Axentix Layout - Fixed sidenav</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
+  </head>
+
+  <body class="layout">
+    <header></header>
+
+    <main>
+      <div class="container mt-4">
+        <div class="tab shadow-1" id="example-tab">
+          <div class="tab-menu">
+            <a href="#tab1" class="tab-item">Tab 1</a>
+            <a href="#tab2" class="tab-item">Tab 2</a>
+            <a href="#tab3" class="tab-item">Tabbbbbbbbb</a>
+            <a href="#tab3" class="tab-item">Tabbbbbbbbb</a>
+            <a href="#tab3" class="tab-item">Tabbbbbbbbb</a>
+            <a href="#tab3" class="tab-item">Tabbbbbbbbb</a>
+          </div>
+          <div id="tab1">Content 1</div>
+          <div id="tab2">Content 2</div>
+          <div id="tab3">Content 3</div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer primary">
+      Copyright © 2020 - Example
+    </footer>
+    <script src="../dist/js/axentix.min.js"></script>
+    <script>
+      var tab = new Tab('#example-tab');
+    </script>
+  </body>
+</html>

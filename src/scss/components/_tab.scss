@@ -1,0 +1,30 @@
+.tab {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .tab-menu {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    transition-duration: inherit;
+    --tab-active-color: #{getColor('primary')};
+
+    .tab-item {
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: var(--tab-bar-left-offset);
+      width: var(--tab-bar-width);
+      border-bottom: 0.1rem solid var(--tab-active-color);
+      transition-property: left, width;
+      transition-timing-function: ease;
+      transition-duration: inherit;
+    }
+  }
+}
