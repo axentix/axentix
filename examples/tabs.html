@@ -28,6 +28,19 @@
           <div id="tab3">Content 3</div>
         </div>
       </div>
+      <div class="fab" id="example-fab">
+        <button class="btn circle large red fab-trigger">
+          <i class="fas fa-plus" aria-hidden="true"></i>
+        </button>
+        <div class="fab-menu">
+          <button class="btn circle secondary fab-item" title="Edit">
+            <i class="fas fa-pen" aria-hidden="true"></i>
+          </button>
+          <button class="btn circle cyan dark-2 fab-item" title="Send to">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
     </main>
 
     <footer class="footer primary">
@@ -36,6 +49,10 @@
     <script src="../dist/js/axentix.min.js"></script>
     <script>
       var tab = new Tab('#example-tab');
+      var fab = new Fab('#example-fab', {
+        hover: false,
+        direction: 'top'
+      });
     </script>
   </body>
 </html>
