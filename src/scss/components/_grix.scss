@@ -25,6 +25,10 @@
       .pos-#{$name}#{$i} {
         grid-column-start: #{$i};
       }
+
+      .pos-row-#{$name}#{$i} {
+        grid-row-start: #{$i};
+      }
     }
   } @else {
     @for $i from 1 through $max-cols {
@@ -43,6 +47,10 @@
 
         .pos-#{$name}#{$i} {
           grid-column-start: #{$i};
+        }
+
+        .pos-row-#{$name}#{$i} {
+          grid-row-start: #{$i};
         }
       }
     }

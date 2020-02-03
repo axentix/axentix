@@ -2,6 +2,9 @@
 
 - ADDED
   - Form switch (different sizes, thin option)
+  - Tabs
+  - FAB (Floating Action Button)
+  - Grix `.pos-row-{breakpoint}{number}`
 - REMOVED
 - IMPROVED
 - BUGFIXES
