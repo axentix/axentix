@@ -1,4 +1,4 @@
-.fab {
+.fab:not(i) {
   position: fixed;
   z-index: $fab-zindex;
 

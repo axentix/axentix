@@ -15,13 +15,72 @@
     <main>
       <div class="container mt-4">
         <div class="tab shadow-1" id="example-tab">
-          <div class="tab-menu">
-            <a href="#tab1" class="tab-item">Tab 1</a>
-            <a href="#tab2" class="tab-item">Tab 2</a>
-            <a href="#tab3" class="tab-item">Tabbbbbbbbb</a>
-            <a href="#tab3" class="tab-item">Tabbbbbbbbb</a>
-            <a href="#tab3" class="tab-item">Tabbbbbbbbb</a>
-            <a href="#tab3" class="tab-item">Tabbbbbbbbb</a>
+          <ul class="tab-menu">
+            <li class="tab-item">
+              <a href="#tab1">Tab 1</a>
+            </li>
+            <li class="tab-item active">
+              <a href="#tab2">Tab 2</a>
+            </li>
+            <li class="tab-item">
+              <a href="#tab3">Tabbbbbbbbb</a>
+            </li>
+            <li class="tab-item">
+              <a href="#tab3">Tabbbbbbbbb</a>
+            </li>
+            <li class="tab-item">
+              <a href="#tab3">Tabbbbbbbbb</a>
+            </li>
+            <li class="tab-item">
+              <a href="#tab3">Tabbbbbbbbb</a>
+            </li>
+            <li class="tab-item">
+              <a href="#tab3">Tabbbbbbbbb</a>
+            </li>
+            <li class="tab-item">
+              <a href="#tab3">Tabbbbbbbbb</a>
+            </li>
+            <li class="tab-item">
+              <a href="#tab3">Tabbbbbbbbb</a>
+            </li>
+          </ul>
+          <div id="tab1">Content 1</div>
+          <div id="tab2">Content 2</div>
+          <div id="tab3">Content 3</div>
+        </div>
+
+        <!-- Arrow option -->
+        <div class="tab shadow-1 mt-4" id="example-tab2">
+          <div class="tab-arrow">
+            <div class="tab-prev white">
+              <a href=""><i class="fas fa-chevron-left"></i></a>
+            </div>
+            <ul class="tab-menu">
+              <li class="tab-item">
+                <a href="#tab1">Tab 1</a>
+              </li>
+              <li class="tab-item">
+                <a href="#tab2">Tab 2</a>
+              </li>
+              <li class="tab-item">
+                <a href="#tab3">Tabbbbbbbbb</a>
+              </li>
+              <li class="tab-item">
+                <a href="#tab3">Tabbbbbbbbb</a>
+              </li>
+              <li class="tab-item">
+                <a href="#tab3">Tabbbbbbbbb</a>
+              </li>
+              <li class="tab-item">
+                <a href="#tab3">Tabbbbbbbbb</a>
+              </li>
+              <li class="tab-item">
+                <a href="#tab3">Tabbbbbbbbb</a>
+              </li>
+            </ul>
+            <div class="tab-next white">
+              <a href=""><i class="fas fa-chevron-right"></i></a>
+            </div>
           </div>
           <div id="tab1">Content 1</div>
           <div id="tab2">Content 2</div>
@@ -48,7 +107,12 @@
     </footer>
     <script src="../dist/js/axentix.min.js"></script>
     <script>
-      var tab = new Tab('#example-tab');
+      var tab = new Tab('#example-tab', {
+        arrowMode: false
+      });
+      var tab2 = new Tab('#example-tab2');
+
+      // Floating Action Button
       var fab = new Fab('#example-fab', {
         hover: false,
         direction: 'top'

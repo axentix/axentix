@@ -8,11 +8,25 @@
     display: flex;
     flex-direction: row;
     transition-duration: inherit;
+    align-items: center;
+    max-width: 100vw;
+    overflow-y: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
     --tab-active-color: #{getColor('primary')};
 
     .tab-item {
-      padding: 1rem 1.25rem;
+      position: relative;
       cursor: pointer;
+      display: inline-block;
+
+      a {
+        display: block;
+        text-overflow: ellipsis;
+        padding: 1rem 1.25rem;
+      }
     }
 
     &::after {
@@ -25,6 +39,45 @@
       transition-property: left, width;
       transition-timing-function: ease;
       transition-duration: inherit;
+    }
+  }
+
+  // Arrow mode
+  .tab-arrow {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    transition-duration: inherit;
+
+    .tab-menu {
+      overflow: hidden;
+    }
+
+    .tab-prev,
+    .tab-next {
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      width: 2rem;
+      z-index: 10;
+      display: none;
+      @extend .shadow-1;
+    }
+
+    .tab-prev {
+      left: 0;
+    }
+
+    .tab-next {
+      right: 0;
+    }
+
+    &.tab-arrow-show {
+      .tab-prev,
+      .tab-next {
+        display: flex;
+      }
     }
   }
 }
