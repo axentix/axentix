@@ -1,0 +1,25 @@
+.caroulix {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  overflow: hidden;
+
+  .caroulix-item {
+    visibility: hidden;
+    position: absolute;
+
+    &.active {
+      visibility: visible;
+    }
+  }
+
+  &.anim-slide {
+    .caroulix-item {
+      transition-property: transform;
+      transition-timing-function: ease-in-out;
+      will-change: transform;
+    }
+  }
+}

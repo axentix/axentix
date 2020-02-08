@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Axentix • Caroulix</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
+  </head>
+
+  <body class="layout">
+    <header>
+      <div class="navbar-fixed">
+        <nav class="navbar primary">
+          <a href="#" target="_blank" class="navbar-brand">Axentix</a>
+          <div class="navbar-menu ml-auto">
+            <a href="#" class="navbar-link">Link 1</a>
+            <a href="#" class="navbar-link">Link 2</a>
+            <a href="#" class="navbar-link">Link 3</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <h2>Cards</h2>
+        <div class="grix xs3 center">
+          <div class="btn airforce" onclick="caroulix.previous()">Previous</div>
+          <div class="caroulix" id="example-caroulix">
+            <div class="caroulix-item">
+              <div class="card airforce m-2">
+                <div class="card-content">
+                  <div class="card-header">Header</div>
+                  <p>
+                    Content Content cdvvzreg rgzreg gergrze fe fef ef ef efe ddzeezf f ezf f ezfzef zefe zef
+                    fz efze fze Content Content Content Content Content Content Content
+                  </p>
+                </div>
+                <div class="card-footer">Footer</div>
+              </div>
+            </div>
+            <div class="caroulix-item active">
+              <div class="card white m-2">
+                <div class="card-content">
+                  <div class="card-header">Header</div>
+                  <p>
+                    Content Content cdvvzreg rgzreg gergrze fe fef ef ef efe ddzeezf f ezf f ezfzef zefe zef
+                    fz efze fze Content Content Content Content Content Content Content
+                  </p>
+                </div>
+                <div class="card-footer">Footer</div>
+              </div>
+            </div>
+            <div class="caroulix-item">
+              <div class="card grey m-2">
+                <div class="card-content">
+                  <div class="card-header">Header</div>
+                  <p>
+                    Content Content cdvvzreg rgzreg gergrze fe fef ef ef efe ddzeezf f ezf f ezfzef zefe zef
+                    fz efze fze Content Content Content Content Content Content Content
+                  </p>
+                </div>
+                <div class="card-footer">Footer</div>
+              </div>
+            </div>
+          </div>
+          <div class="btn amaranth" onclick="caroulix.next()">Next</div>
+        </div>
+      </div>
+    </main>
+
+    <script src="../dist/js/axentix.min.js"></script>
+    <script>
+      var caroulix = new Caroulix('#example-caroulix', {
+        // animationDelay: 3000
+      });
+    </script>
+  </body>
+</html>
