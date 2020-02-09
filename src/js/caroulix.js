@@ -120,7 +120,7 @@ class Caroulix {
       nextItem.style.transform = '';
       currentItem.style.transitionDuration = this.options.animationDelay + 'ms';
       currentItem.style.transform = `translateX(${currentItemPercentage})`;
-    }, 5);
+    }, 50);
 
     setTimeout(() => {
       nextItem.removeAttribute('style');
