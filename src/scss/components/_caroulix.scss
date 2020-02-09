@@ -15,6 +15,30 @@
     }
   }
 
+  .caroulix-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    z-index: 50;
+    cursor: pointer;
+
+    &.caroulix-prev {
+      left: 0.75rem;
+    }
+
+    &.caroulix-next {
+      right: 0.75rem;
+    }
+  }
+
   &.anim-slide {
     .caroulix-item {
       transition-property: transform;

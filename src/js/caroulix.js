@@ -26,37 +26,67 @@ class Caroulix {
     const animationList = ['slide'];
     animationList.includes(this.options.animationType) ? '' : (this.options.animationType = 'slide');
     this.currentItemIndex = 0;
-    this.childrens = this.el.children;
-    this._getActiveElementIndex();
     this.isAnimated = false;
+    this._getChildrens();
+    this._getActiveElementIndex();
     this._setupListeners();
 
     this.el.classList.add('anim-' + this.options.animationType);
-    this.options.fixedHeight ? this._setMaxHeight() : '';
+
+    this.updateHeight();
   }
 
   _setupListeners() {
     this.windowResizeRef = this._setMaxHeight.bind(this);
     window.addEventListener('resize', this.windowResizeRef);
+
+    if (this.arrowPrev && this.arrowNext) {
+      this.arrowPrevRef = this.prev.bind(this);
+      this.arrowNextRef = this.next.bind(this);
+
+      this.arrowPrev.addEventListener('click', this.arrowPrevRef);
+      this.arrowNext.addEventListener('click', this.arrowNextRef);
+    }
   }
 
   _removeListeners() {
     window.removeEventListener('resize', this.windowResizeRef);
     this.windowResizeRef = undefined;
+
+    if (this.arrowPrev && this.arrowNext) {
+      this.arrowPrev.removeEventListener('click', this.arrowPrevRef);
+      this.arrowNext.removeEventListener('click', this.arrowNextRef);
+      this.arrowPrevRef = undefined;
+      this.arrowNextRef = undefined;
+    }
+  }
+
+  _getChildrens() {
+    this.childrens = Array.from(this.el.children).reduce((acc, child) => {
+      child.classList.contains('caroulix-item') ? acc.push(child) : '';
+
+      child.classList.contains('caroulix-prev') ? (this.arrowPrev = child) : '';
+      child.classList.contains('caroulix-next') ? (this.arrowNext = child) : '';
+      return acc;
+    }, []);
   }
 
   _getActiveElementIndex() {
-    Array.from(this.childrens).map((child, i) => {
-      child.classList.contains('active') ? (this.currentItemIndex = i) : '';
+    let find = false;
+    this.childrens.map((child, i) => {
+      if (child.classList.contains('active')) {
+        this.currentItemIndex = i;
+        find = true;
+      }
     });
+    find ? '' : this.childrens[0].classList.add('active');
   }
 
   _setMaxHeight() {
-    let childrenHeight = [];
-    for (const child of this.childrens) {
-      childrenHeight.push(child.offsetHeight);
-    }
-    this.maxHeight = Math.max(...childrenHeight);
+    const childrensHeight = this.childrens.map(child => {
+      return child.offsetHeight;
+    });
+    this.maxHeight = Math.max(...childrensHeight);
 
     this.el.style.height = this.maxHeight + 'px';
   }
@@ -123,6 +153,16 @@ class Caroulix {
   }
 
   /**
+   * Update height of caroulix container
+   */
+  updateHeight() {
+    if (this.options.fixedHeight) {
+      this._setMaxHeight();
+      return;
+    }
+  }
+
+  /**
    * Go to {n} item
    * @param {number} number
    * @param {string} side
@@ -140,7 +180,7 @@ class Caroulix {
     this[animFunction](number, side);
   }
 
-  previous() {
+  prev() {
     if (this.isAnimated) {
       return;
     }
