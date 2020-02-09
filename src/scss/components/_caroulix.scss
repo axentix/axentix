@@ -9,6 +9,12 @@
   .caroulix-item {
     visibility: hidden;
     position: absolute;
+    left: 0;
+    right: 0;
+
+    img {
+      width: 100%;
+    }
 
     &.active {
       visibility: visible;
