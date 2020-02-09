@@ -129,7 +129,7 @@ class Caroulix {
 
       this.currentItemIndex = number;
       this.isAnimated = false;
-    }, this.options.animationDelay);
+    }, this.options.animationDelay + 50);
   }
 
   /***** [END] Animation Section [END] *****/
