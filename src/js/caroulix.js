@@ -13,7 +13,9 @@ class Caroulix {
     this.defaultOptions = {
       fixedHeight: true,
       animationDelay: 500,
-      animationType: 'slide'
+      animationType: 'slide',
+      indicators: false,
+      height: ''
     };
 
     this.el = document.querySelector(element);
@@ -31,11 +33,16 @@ class Caroulix {
     this._getActiveElementIndex();
     this._setupListeners();
 
+    this.options.indicators ? this._enableIndicators() : '';
+
     this.el.classList.add('anim-' + this.options.animationType);
 
     this.updateHeight();
   }
 
+  /**
+   * Setup listeners
+   */
   _setupListeners() {
     this.windowResizeRef = this._setMaxHeight.bind(this);
     window.addEventListener('resize', this.windowResizeRef);
@@ -49,6 +56,9 @@ class Caroulix {
     }
   }
 
+  /**
+   * Remove listeners
+   */
   _removeListeners() {
     window.removeEventListener('resize', this.windowResizeRef);
     this.windowResizeRef = undefined;
@@ -61,6 +71,9 @@ class Caroulix {
     }
   }
 
+  /**
+   * Get caroulix childrens
+   */
   _getChildrens() {
     this.childrens = Array.from(this.el.children).reduce((acc, child) => {
       child.classList.contains('caroulix-item') ? acc.push(child) : '';
@@ -89,6 +102,18 @@ class Caroulix {
     this.maxHeight = Math.max(...childrensHeight);
 
     this.el.style.height = this.maxHeight + 'px';
+  }
+
+  _enableIndicators() {
+    this.indicators = document.createElement('ul');
+    this.indicators.classList.add('caroulix-indicators');
+    for (let i = 0; i < this.childrens.length; i++) {
+      const li = document.createElement('li');
+      li.triggerRef = this._handleIndicatorClick.bind(this, i);
+      li.addEventListener('click', li.triggerRef);
+      this.indicators.appendChild(li);
+    }
+    this.el.appendChild(this.indicators);
   }
 
   /***** Animation Section *****/
@@ -134,6 +159,19 @@ class Caroulix {
 
   /***** [END] Animation Section [END] *****/
 
+  /**
+   * Handle indicator click
+   * @param {number} i
+   * @param {Event} e
+   */
+  _handleIndicatorClick(i, e) {
+    e.preventDefault();
+
+    let side = '';
+    i > this.currentItemIndex ? (side = 'right') : (side = 'left');
+    this.goTo(i, side);
+  }
+
   _getPreviousItem() {
     let previousItem = 0;
     if (this.currentItemIndex > 0) {
@@ -177,6 +215,13 @@ class Caroulix {
       '_animation' +
       this.options.animationType.charAt(0).toUpperCase() +
       this.options.animationType.substring(1);
+
+    if (this.options.indicators) {
+      Array.from(this.indicators.children).map(li => {
+        li.removeAttribute('class');
+      });
+      this.indicators.children[number].classList.add('active');
+    }
     this[animFunction](number, side);
   }
 

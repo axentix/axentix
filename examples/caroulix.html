@@ -86,6 +86,9 @@
           <div class="caroulix-item">
             <img src="https://picsum.photos/800/600?random=3" alt="img3" />
           </div>
+          <div class="caroulix-item">
+            <img src="https://picsum.photos/800/600?random=4" alt="img4" />
+          </div>
         </div>
       </div>
     </main>
@@ -97,7 +100,8 @@
       });
 
       var imgCaroulix = new Caroulix('#img-caroulix', {
-        // animationDelay: 10000
+        // animationDelay: 10000,
+        indicators: true
       });
 
       setTimeout(() => {
