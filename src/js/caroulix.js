@@ -31,10 +31,9 @@ class Caroulix {
     this.currentItemIndex = 0;
     this.isAnimated = false;
     this._getChildrens();
+    this.options.indicators ? this._enableIndicators() : '';
     this._getActiveElementIndex();
     this._setupListeners();
-
-    this.options.indicators ? this._enableIndicators() : '';
 
     this.el.classList.add('anim-' + this.options.animationType);
 
@@ -94,6 +93,8 @@ class Caroulix {
       }
     });
     find ? '' : this.childrens[0].classList.add('active');
+
+    this.options.indicators ? this.indicators.children[this.currentItemIndex].classList.add('active') : '';
   }
 
   _setMaxHeight() {
