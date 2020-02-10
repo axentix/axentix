@@ -72,6 +72,17 @@
         opacity: 1;
       }
     }
+
+    &.caroulix-flat {
+      li {
+        border-radius: unset;
+        border-bottom: 0.5rem solid transparent;
+        border-top: 0.5rem solid transparent;
+        width: 1.75rem;
+        height: 1.25rem;
+        background-clip: padding-box;
+      }
+    }
   }
 
   &.anim-slide {

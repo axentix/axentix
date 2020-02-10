@@ -12,10 +12,11 @@ class Caroulix {
   constructor(element, options) {
     this.defaultOptions = {
       fixedHeight: true,
+      height: '',
       animationDelay: 500,
       animationType: 'slide',
       indicators: false,
-      height: ''
+      isIndicatorFlat: false
     };
 
     this.el = document.querySelector(element);
@@ -107,6 +108,8 @@ class Caroulix {
   _enableIndicators() {
     this.indicators = document.createElement('ul');
     this.indicators.classList.add('caroulix-indicators');
+    this.options.isIndicatorFlat ? this.indicators.classList.add('caroulix-flat') : '';
+
     for (let i = 0; i < this.childrens.length; i++) {
       const li = document.createElement('li');
       li.triggerRef = this._handleIndicatorClick.bind(this, i);
@@ -166,6 +169,10 @@ class Caroulix {
    */
   _handleIndicatorClick(i, e) {
     e.preventDefault();
+
+    if (i === this.currentItemIndex) {
+      return;
+    }
 
     let side = '';
     i > this.currentItemIndex ? (side = 'right') : (side = 'left');
