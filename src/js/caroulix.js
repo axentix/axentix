@@ -16,7 +16,9 @@ class Caroulix {
       animationDelay: 500,
       animationType: 'slide',
       indicators: false,
-      isIndicatorFlat: false
+      isIndicatorFlat: false,
+      autoplay: true,
+      autoInterval: 3000
     };
 
     this.el = document.querySelector(element);
@@ -85,16 +87,31 @@ class Caroulix {
   }
 
   _getActiveElementIndex() {
-    let find = false;
     this.childrens.map((child, i) => {
       if (child.classList.contains('active')) {
         this.currentItemIndex = i;
-        find = true;
       }
     });
-    find ? '' : this.childrens[0].classList.add('active');
 
+    const item = this.childrens[this.currentItemIndex];
+    item.classList.contains('active') ? '' : item.classList.add('active');
     this.options.indicators ? this.indicators.children[this.currentItemIndex].classList.add('active') : '';
+
+    const childItem = item.querySelector('img') || item.querySelector('video');
+    if (childItem) {
+      childItem.loadRef = this._initWhenLoaded.bind(this, childItem);
+      childItem.addEventListener('load', childItem.loadRef);
+    }
+  }
+
+  /**
+   * Update height & remove listener when active element is loaded
+   * @param {Element} item
+   */
+  _initWhenLoaded(item) {
+    this.updateHeight();
+    item.removeEventListener('load', item.loadRef);
+    item.loadRef = undefined;
   }
 
   _setMaxHeight() {
