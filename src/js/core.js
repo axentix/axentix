@@ -26,7 +26,10 @@ class Axentix {
       Collapsible: document.querySelectorAll('.collapsible:not(.no-axentix-init)'),
       Sidenav: document.querySelectorAll('.sidenav:not(.no-axentix-init)'),
       Modal: document.querySelectorAll('.modal:not(.no-axentix-init)'),
-      Dropdown: document.querySelectorAll('.dropdown:not(.no-axentix-init)')
+      Dropdown: document.querySelectorAll('.dropdown:not(.no-axentix-init)'),
+      Tab: document.querySelectorAll('.tab:not(.no-axentix-init)'),
+      Fab: document.querySelectorAll('.fab:not(.no-axentix-init)'),
+      Caroulix: document.querySelectorAll('.caroulix:not(.no-axentix-init)')
     };
 
     const isInList = componentList.hasOwnProperty(this.component);
