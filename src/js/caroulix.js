@@ -50,8 +50,8 @@ class Caroulix {
     window.addEventListener('resize', this.windowResizeRef);
 
     if (this.arrowPrev && this.arrowNext) {
-      this.arrowPrevRef = this.prev.bind(this);
-      this.arrowNextRef = this.next.bind(this);
+      this.arrowPrevRef = this.prev.bind(this, 1);
+      this.arrowNextRef = this.next.bind(this, 1);
 
       this.arrowPrev.addEventListener('click', this.arrowPrevRef);
       this.arrowNext.addEventListener('click', this.arrowNextRef);
@@ -97,10 +97,27 @@ class Caroulix {
     item.classList.contains('active') ? '' : item.classList.add('active');
     this.options.indicators ? this.indicators.children[this.currentItemIndex].classList.add('active') : '';
 
-    const childItem = item.querySelector('img') || item.querySelector('video');
-    if (childItem) {
-      childItem.loadRef = this._initWhenLoaded.bind(this, childItem);
-      childItem.addEventListener('load', childItem.loadRef);
+    this._waitUntilLoad(item);
+  }
+
+  _waitUntilLoad(item) {
+    if (this.options.fixedHeight) {
+      this.totalLoadChild = 0;
+      this.totalLoadedChild = 0;
+      this.childrens.map(child => {
+        const waitItem = child.querySelector('img') || child.querySelector('video');
+        if (waitItem) {
+          waitItem.loadRef = this._initWhenLoaded.bind(this, waitItem);
+          waitItem.addEventListener('load', waitItem.loadRef);
+          this.totalLoadChild++;
+        }
+      });
+    } else {
+      const childItem = item.querySelector('img') || item.querySelector('video');
+      if (childItem) {
+        childItem.loadRef = this._initWhenLoaded.bind(this, childItem);
+        childItem.addEventListener('load', childItem.loadRef);
+      }
     }
   }
 
@@ -109,9 +126,21 @@ class Caroulix {
    * @param {Element} item
    */
   _initWhenLoaded(item) {
-    this.updateHeight();
-    item.removeEventListener('load', item.loadRef);
-    item.loadRef = undefined;
+    if (this.options.fixedHeight) {
+      item.removeEventListener('load', item.loadRef);
+      item.loadRef = undefined;
+      this.totalLoadedChild++;
+
+      if (this.totalLoadedChild === this.totalLoadChild) {
+        this.updateHeight('', true);
+        this.totalLoadedChild = undefined;
+        this.totalLoadChild = undefined;
+      }
+    } else {
+      this.updateHeight('', true);
+      item.removeEventListener('load', item.loadRef);
+      item.loadRef = undefined;
+    }
   }
 
   _setMaxHeight() {
@@ -123,6 +152,24 @@ class Caroulix {
     this.el.style.height = this.maxHeight + 'px';
   }
 
+  /**
+   * Dynamic height option
+   * @param {string} side
+   */
+  _setDynamicHeight(side, init) {
+    let index;
+    init
+      ? (index = this.currentItemIndex)
+      : side === 'right'
+      ? (index = this._getNextItemIndex(1))
+      : (index = this._getPreviousItemIndex(1));
+    const height = this.childrens[index].offsetHeight;
+    this.el.style.height = height + 'px';
+  }
+
+  /**
+   * Enable indicators
+   */
   _enableIndicators() {
     this.indicators = document.createElement('ul');
     this.indicators.classList.add('caroulix-indicators');
@@ -197,32 +244,45 @@ class Caroulix {
     this.goTo(i, side);
   }
 
-  _getPreviousItem() {
-    let previousItem = 0;
-    if (this.currentItemIndex > 0) {
-      previousItem = this.currentItemIndex - 1;
-    } else {
-      previousItem = this.childrens.length - 1;
+  _getPreviousItemIndex(step) {
+    let previousItemIndex = 0;
+    let index = this.currentItemIndex;
+    for (let i = 0; i < step; i++) {
+      if (index > 0) {
+        previousItemIndex = index - 1;
+        index--;
+      } else {
+        index = this.childrens.length - 1;
+        previousItemIndex = index;
+      }
     }
-    return previousItem;
+    return previousItemIndex;
   }
 
-  _getNextItem() {
-    let nextItem = 0;
-    if (this.currentItemIndex < this.childrens.length - 1) {
-      nextItem = this.currentItemIndex + 1;
+  _getNextItemIndex(step) {
+    let nextItemIndex = 0;
+    let index = this.currentItemIndex;
+    for (let i = 0; i < step; i++) {
+      if (index < this.childrens.length - 1) {
+        nextItemIndex = index + 1;
+        index++;
+      } else {
+        index = 0;
+        nextItemIndex = index;
+      }
     }
-    return nextItem;
+    return nextItemIndex;
   }
 
   /**
    * Update height of caroulix container
    */
-  updateHeight() {
+  updateHeight(side, init) {
     if (this.options.fixedHeight) {
       this._setMaxHeight();
       return;
     }
+    this._setDynamicHeight(side, init);
   }
 
   /**
@@ -247,24 +307,26 @@ class Caroulix {
       });
       this.indicators.children[number].classList.add('active');
     }
+
+    this.options.fixedHeight ? '' : this.updateHeight(side);
     this[animFunction](number, side);
   }
 
-  prev() {
+  prev(step, e) {
     if (this.isAnimated) {
       return;
     }
 
-    const previousItem = this._getPreviousItem();
-    this.goTo(previousItem, 'left');
+    const previousItemIndex = this._getPreviousItemIndex(step);
+    this.goTo(previousItemIndex, 'left');
   }
 
-  next() {
+  next(step, e) {
     if (this.isAnimated) {
       return;
     }
 
-    const nextItem = this._getNextItem();
-    this.goTo(nextItem, 'right');
+    const nextItemIndex = this._getNextItemIndex(step);
+    this.goTo(nextItemIndex, 'right');
   }
 }
