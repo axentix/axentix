@@ -21,6 +21,7 @@
       position: relative;
       cursor: pointer;
       display: inline-block;
+      text-align: center;
 
       a {
         display: block;
@@ -40,6 +41,10 @@
       transition-timing-function: ease;
       transition-duration: inherit;
     }
+  }
+
+  &.full-width .tab-menu .tab-item {
+    width: 100%;
   }
 
   // Arrow mode
