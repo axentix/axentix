@@ -29,3 +29,17 @@ Axentix.extend = function() {
 
   return extended;
 };
+
+/**
+ * Create custom event
+ * @param {Element} element
+ * @param {string} eventName
+ * @param {Object} extraData
+ */
+Axentix.createEvent = (element, eventName, extraData) => {
+  const event = new CustomEvent('ax.' + eventName, {
+    detail: extraData || {},
+    bubbles: true
+  });
+  element.dispatchEvent(event);
+};

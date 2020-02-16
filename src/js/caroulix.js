@@ -28,6 +28,8 @@ class Caroulix {
   }
 
   _setup() {
+    Axentix.createEvent(this.el, 'caroulix.setup');
+
     const animationList = ['slide'];
     animationList.includes(this.options.animationType) ? '' : (this.options.animationType = 'slide');
     this.currentItemIndex = 0;
@@ -295,6 +297,11 @@ class Caroulix {
       return;
     }
 
+    Axentix.createEvent(this.el, 'caroulix.slide', {
+      side,
+      nextElement: this.childrens[number],
+      currentElement: this.childrens[this.currentItemIndex]
+    });
     this.isAnimated = true;
     const animFunction =
       '_animation' +
@@ -312,20 +319,22 @@ class Caroulix {
     this[animFunction](number, side);
   }
 
-  prev(step, e) {
+  prev(step = 1) {
     if (this.isAnimated) {
       return;
     }
 
+    Axentix.createEvent(this.el, 'caroulix.prev', { step });
     const previousItemIndex = this._getPreviousItemIndex(step);
     this.goTo(previousItemIndex, 'left');
   }
 
-  next(step, e) {
+  next(step = 1) {
     if (this.isAnimated) {
       return;
     }
 
+    Axentix.createEvent(this.el, 'caroulix.next', { step });
     const nextItemIndex = this._getNextItemIndex(step);
     this.goTo(nextItemIndex, 'right');
   }

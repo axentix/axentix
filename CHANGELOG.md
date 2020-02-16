@@ -1,9 +1,10 @@
 # 0.5.0 - Under Development
 
 - ADDED
-  - Form switch (different sizes, thin option)
+  - Caroulix
   - Tabs (basic, arrow mode, responsive)
   - [FAB] Floating Action Button
+  - Form switch (different sizes, thin option)
   - Grix `.pos-row-{breakpoint}{number}`
 - REMOVED
 - IMPROVED

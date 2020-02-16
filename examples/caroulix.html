@@ -106,6 +106,10 @@
         isIndicatorFlat: true,
         fixedHeight: true
       });
+
+      document.addEventListener('ax.caroulix.slide', function(e) {
+        console.log('slide', e);
+      });
     </script>
   </body>
 </html>
