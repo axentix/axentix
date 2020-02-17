@@ -2,13 +2,17 @@
 
 - ADDED
   - Caroulix
-  - Tabs (basic, arrow mode, responsive)
+  - Tabs (basic, arrow mode, responsive, customizable)
   - [FAB] Floating Action Button
+  - Event on all our components
   - Form switch (different sizes, thin option)
-  - Grix `.pos-row-{breakpoint}{number}`
+  - sync() & reset() methods on all our components
+  - Grix `.pos-row-{breakpoint}{number}` functionality
 - REMOVED
 - IMPROVED
+  - Update dev-dependencies for our sources files
 - BUGFIXES
+  - Sidenav bug with resize event
   - Padding generation bug
 
 # 0.4.3 - 2020-01-27
