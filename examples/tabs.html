@@ -82,6 +82,19 @@
           </button>
         </div>
       </div>
+      <div class="fab" id="example-fab2">
+        <button class="btn circle large secondary fab-trigger">
+          <i class="fas fa-plus" aria-hidden="true"></i>
+        </button>
+        <div class="fab-menu">
+          <button class="btn circle viride dark-2 fab-item" title="Edit">
+            <i class="fas fa-pen" aria-hidden="true"></i>
+          </button>
+          <button class="btn circle cyan dark-2 fab-item" title="Send to">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
     </main>
 
     <footer class="footer primary">
@@ -99,7 +112,15 @@
       // Floating Action Button
       var fab = new Fab('#example-fab', {
         // hover: false,
-        direction: 'top'
+        // direction: 'bottom',
+        // position: 'top-right'
+      });
+
+      var fab2 = new Fab('#example-fab2', {
+        hover: false,
+        direction: 'right',
+        position: 'bottom-left',
+        offsetY: '8%'
       });
     </script>
   </body>
