@@ -2,7 +2,7 @@
  * Class Sidenav
  * @class
  */
-class Sidenav {
+class Sidenav extends AxentixComponent {
   /**
    * Construct Sidenav instance
    * @constructor
@@ -10,6 +10,7 @@ class Sidenav {
    * @param {Object} options
    */
   constructor(element, options) {
+    super();
     this.defaultOptions = {
       overlay: true,
       bodyScrolling: false,
@@ -17,32 +18,58 @@ class Sidenav {
     };
 
     this.el = document.querySelector(element);
+
+    this.options = Axentix.extend(this.defaultOptions, options);
+    this._setup();
+  }
+
+  /**
+   * Setup component
+   */
+  _setup() {
     this.sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
     this.isActive = false;
     this.isFixed = this.el.classList.contains('fixed');
     this.isLarge = this.el.classList.contains('large');
 
-    this.options = Axentix.extend(this.defaultOptions, options);
+    this._setupListeners();
 
-    this._setup();
+    this.options.overlay ? this._createOverlay() : '';
+
+    this.el.classList.contains('large')
+      ? document.body.classList.add('sidenav-large')
+      : document.body.classList.remove('sidenav-large');
+
+    this.el.classList.contains('right-aligned') ? document.body.classList.add('sidenav-right') : '';
+    this.el.style.transitionDuration = this.options.animationDelay + 'ms';
   }
 
   /**
    * Setup listeners
    */
-  _setup() {
+  _setupListeners() {
     this.listenerRef = this._onClickTrigger.bind(this);
     this.sidenavTriggers.forEach(trigger => {
       if (trigger.dataset.target === this.el.id) {
         trigger.addEventListener('click', this.listenerRef);
       }
     });
-    if (this.options.overlay) {
-      this._createOverlay();
-    }
-    this.el.classList.contains('large') ? document.body.classList.add('sidenav-large') : '';
-    this.el.classList.contains('right-aligned') ? this._handleRightSide() : '';
-    this.el.style.transitionDuration = this.options.animationDelay + 'ms';
+    this.windowResizeRef = this.close.bind(this);
+    window.addEventListener('resize', this.windowResizeRef);
+  }
+
+  /**
+   * Remove listeners
+   */
+  _removeListeners() {
+    this.sidenavTriggers.forEach(trigger => {
+      if (trigger.dataset.target === this.el.id) {
+        trigger.removeEventListener('click', this.listenerRef);
+      }
+    });
+    this.listenerRef = undefined;
+    window.removeEventListener('resize', this.windowResizeRef);
+    this.windowResizeRef = undefined;
   }
 
   /**
@@ -52,10 +79,6 @@ class Sidenav {
     this.overlayElement = document.createElement('div');
     this.overlayElement.classList.add('sidenav-overlay');
     this.overlayElement.dataset.target = this.el.id;
-  }
-
-  _handleRightSide() {
-    document.body.classList.add('sidenav-right');
   }
 
   /**
