@@ -89,14 +89,16 @@
     </footer>
     <script src="../dist/js/axentix.min.js"></script>
     <script>
-      var tab = new Tab('#example-tab', {
-        arrowMode: false
+      document.addEventListener('ax.tab.select', function(e) {
+        console.log('hey', e);
       });
+
+      var tab = new Tab('#example-tab');
       var tab2 = new Tab('#example-tab2');
 
       // Floating Action Button
       var fab = new Fab('#example-fab', {
-        hover: false,
+        // hover: false,
         direction: 'top'
       });
     </script>

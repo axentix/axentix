@@ -2,7 +2,7 @@
  * Class Caroulix
  * @class
  */
-class Caroulix {
+class Caroulix extends AxentixComponent {
   /**
    * Construct Caroulix instance
    * @constructor
@@ -10,6 +10,7 @@ class Caroulix {
    * @param {Object} options
    */
   constructor(element, options) {
+    super();
     this.defaultOptions = {
       fixedHeight: true,
       height: '',

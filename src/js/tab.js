@@ -2,7 +2,7 @@
  * Class Tab
  * @class
  */
-class Tab {
+class Tab extends AxentixComponent {
   /**
    * Construct Tab instance
    * @constructor
@@ -10,6 +10,7 @@ class Tab {
    * @param {Object} options
    */
   constructor(element, options) {
+    super();
     this.defaultOptions = {
       animationDelay: 300,
       animationType: 'none'

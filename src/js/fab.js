@@ -2,7 +2,7 @@
  * Class Fab
  * @class
  */
-class Fab {
+class Fab extends AxentixComponent {
   /**
    * Construct Fab instance
    * @constructor
@@ -10,9 +10,10 @@ class Fab {
    * @param {Object} options
    */
   constructor(element, options) {
+    super();
     this.defaultOptions = {
       animationDelay: 300,
-      hover: false,
+      hover: true,
       direction: 'top',
       position: 'bottom-right',
       offsetX: '1rem',
