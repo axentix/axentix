@@ -29,6 +29,8 @@ class Fab {
    * Setup component
    */
   _setup() {
+    Axentix.createEvent(this.el, 'fab.setup');
+
     this.isAnimated = false;
     this.isActive = false;
     this.trigger = document.querySelector('#' + this.el.id + ' .fab-trigger');
@@ -57,6 +59,9 @@ class Fab {
   _setupListeners() {
     this.listenerRef = this._onClickTrigger.bind(this);
     this.trigger.addEventListener('click', this.listenerRef);
+
+    this.documentClickRef = this._handleDocumentClick.bind(this);
+    document.addEventListener('click', this.documentClickRef, true);
   }
 
   /**
@@ -65,6 +70,9 @@ class Fab {
   _removeListeners() {
     this.trigger.removeEventListener('click', this.listenerRef);
     this.listenerRef = undefined;
+
+    document.removeEventListener('click', this.documentClickRef, true);
+    this.documentClickRef = undefined;
   }
 
   /**
@@ -104,6 +112,16 @@ class Fab {
   }
 
   /**
+   * Handle document click event
+   * @param {Event} e
+   */
+  _handleDocumentClick(e) {
+    const isInside = this.el.contains(e.target);
+
+    !isInside && this.isActive ? this.close() : '';
+  }
+
+  /**
    * Handle click on trigger
    * @param {Event} e
    */
@@ -123,6 +141,7 @@ class Fab {
     if (this.isActive) {
       return;
     }
+    Axentix.createEvent(this.el, 'fab.open');
     this.isAnimated = true;
     this.isActive = true;
     this.el.classList.add('active');
@@ -138,6 +157,7 @@ class Fab {
     if (!this.isActive) {
       return;
     }
+    Axentix.createEvent(this.el, 'fab.close');
     this.isAnimated = true;
     this.isActive = false;
     this.el.classList.remove('active');

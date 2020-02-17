@@ -26,6 +26,8 @@ class Tab {
    * Setup component
    */
   _setup() {
+    Axentix.createEvent(this.el, 'tab.setup');
+
     this.isAnimated = false;
     this.tabArrow = document.querySelector(this.elQuery + ' .tab-arrow');
     this.tabItems = document.querySelectorAll(this.elQuery + ' .tab-menu .tab-item');
@@ -53,6 +55,9 @@ class Tab {
       item.addEventListener('click', item.listenerRef);
     });
 
+    this.resizeTabListener = this.updateActiveElement.bind(this);
+    window.addEventListener('resize', this.resizeTabListener);
+
     if (this.tabArrow) {
       this.arrowListener = this._toggleArrowMode.bind(this);
       window.addEventListener('resize', this.arrowListener);
@@ -72,6 +77,9 @@ class Tab {
       item.removeEventListener('click', item.listenerRef);
       item.listenerRef = undefined;
     });
+
+    window.removeEventListener('resize', this.resizeTabListener);
+    this.resizeTabListener = undefined;
 
     if (this.tabArrow) {
       window.removeEventListener('resize', this.arrowListener);
@@ -184,8 +192,9 @@ class Tab {
     }
 
     const menuItem = document.querySelector(this.elQuery + ' .tab-menu a[href="#' + item_id + '"]');
-    this._setActiveElement(menuItem.parentElement);
+    Axentix.createEvent(menuItem, 'tab.select');
 
+    this._setActiveElement(menuItem.parentElement);
     this._hideContent();
     for (const child of this.el.children) {
       if (!child.classList.contains('tab-menu') && child.id === item_id) {
