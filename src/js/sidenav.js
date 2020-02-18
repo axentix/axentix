@@ -40,12 +40,7 @@ class Sidenav extends AxentixComponent {
       ? document.body.classList.add('sidenav-large')
       : document.body.classList.remove('sidenav-large');
 
-    // todo : sortir ce code dans une fonction
-    document.querySelectorAll('.sidenav').forEach(sidenav => {
-      if (sidenav.classList.contains('right-aligned') && !document.body.classList.contains('sidenav-right')) {
-        document.body.classList.add('sidenav-right');
-      }
-    });
+    this._handleRightSidenav();
     this.el.style.transitionDuration = this.options.animationDelay + 'ms';
   }
 
@@ -75,6 +70,19 @@ class Sidenav extends AxentixComponent {
     this.listenerRef = undefined;
     window.removeEventListener('resize', this.windowResizeRef);
     this.windowResizeRef = undefined;
+  }
+
+  /**
+   * Handle right sidenav detection
+   */
+  _handleRightSidenav() {
+    const sidenavs = document.querySelectorAll('.sidenav');
+    const found = Array.from(sidenavs).some(sidenav => sidenav.classList.contains('right-aligned'));
+    if (found && !document.body.classList.contains('sidenav-right')) {
+      document.body.classList.add('sidenav-right');
+    } else if (!found && document.body.classList.contains('sidenav-right')) {
+      document.body.classList.remove('sidenav-right');
+    }
   }
 
   /**
