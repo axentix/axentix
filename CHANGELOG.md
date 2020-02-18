@@ -189,4 +189,4 @@ We are very happy to present you the first release of Axentix.
   - Utilities classes (alignments, container, ...)
 - REMOVED
 - IMPROVED
-- BUFIXES
+- BUGFIXES

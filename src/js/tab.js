@@ -134,9 +134,9 @@ class Tab extends AxentixComponent {
       acc += element.clientWidth;
       return acc;
     }, 0);
-    const menuWidth = this.tabMenu.clientWidth;
+    const arrowWidth = this.tabArrow.clientWidth;
 
-    if (totalWidth > menuWidth) {
+    if (totalWidth > arrowWidth) {
       this.tabArrow.classList.contains('tab-arrow-show') ? '' : this.tabArrow.classList.add('tab-arrow-show');
     } else {
       this.tabArrow.classList.contains('tab-arrow-show')
