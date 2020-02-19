@@ -1,14 +1,53 @@
 /*** Some helpers classes ***/
+
+// Typography
+@for $i from 1 to 9 {
+  .font-w#{$i}00 {
+    font-weight: #{$i}00 !important;
+  }
+}
+
+/// Shadows
+// Box shadows
 .shadow-0 {
   box-shadow: none !important;
 }
 
-//hoverable
+@each $number, $value in $shadows {
+  .shadow-#{$number} {
+    box-shadow: #{$value};
+  }
+}
+
+// Drop shadows
+.dropshadow-0 {
+  filter: none !important;
+}
+
+@each $number, $value in $drop-shadows {
+  .dropshadow-#{$number} {
+    filter: #{$value};
+  }
+}
+
+// Text shadows
+.textshadow-0 {
+  text-shadow: none !important;
+}
+
+@each $number, $value in $text-shadows {
+  .textshadow-#{$number} {
+    text-shadow: #{$value};
+  }
+}
+
+// Hoverable
 @each $number, $value in $hoverable {
   .hoverable-#{$number} {
     transition-property: box-shadow, transform;
     transition-timing-function: ease-out;
     transition-duration: 0.3s;
+
     &:hover {
       box-shadow: #{$value} !important;
       transform: translateY(-5px);
@@ -16,16 +55,9 @@
   }
 }
 
-.dropshadow-0 {
-  filter: none !important;
-}
-
-.textshadow-0 {
-  text-shadow: none !important;
-}
-
-.gutter-0 {
-  grid-gap: 0 !important;
+// Width
+.w100 {
+  width: 100% !important;
 }
 
 // Flex
@@ -47,28 +79,6 @@
 
 .fx-row-reverse {
   flex-direction: row-reverse !important;
-}
-
-.w100 {
-  width: 100% !important;
-}
-// box shadows
-@each $number, $value in $shadows {
-  .shadow-#{$number} {
-    box-shadow: #{$value};
-  }
-}
-// drop shadows
-@each $number, $value in $drop-shadows {
-  .dropshadow-#{$number} {
-    filter: #{$value};
-  }
-}
-// text shadows
-@each $number, $value in $text-shadows {
-  .textshadow-#{$number} {
-    text-shadow: #{$value};
-  }
 }
 
 // Hide elements
@@ -107,9 +117,11 @@
 .center {
   justify-items: center !important;
 }
+
 .left {
   justify-items: start !important;
 }
+
 .right {
   justify-items: end !important;
 }
@@ -175,52 +187,66 @@
   .m-#{$number} {
     margin: #{$value} !important;
   }
+
   .mt-#{$number} {
     margin-top: #{$value} !important;
   }
+
   .mr-#{$number} {
     margin-right: #{$value} !important;
   }
+
   .mb-#{$number} {
     margin-bottom: #{$value} !important;
   }
+
   .ml-#{$number} {
     margin-left: #{$value} !important;
   }
+
   .mx-#{$number} {
     margin-left: #{$value} !important;
     margin-right: #{$value} !important;
   }
+
   .my-#{$number} {
     margin-top: #{$value} !important;
     margin-bottom: #{$value} !important;
   }
+
   @if ($value != 'auto') {
     .p-#{$number} {
       padding: #{$value} !important;
     }
+
     .pt-#{$number} {
       padding-top: #{$value} !important;
     }
+
     .pr-#{$number} {
       padding-right: #{$value} !important;
     }
+
     .pb-#{$number} {
       padding-bottom: #{$value} !important;
     }
+
     .pl-#{$number} {
       padding-left: #{$value} !important;
     }
+
     .px-#{$number} {
       padding-left: #{$value} !important;
       padding-right: #{$value} !important;
     }
+
     .py-#{$number} {
       padding-top: #{$value} !important;
       padding-bottom: #{$value} !important;
     }
   }
 }
+
 // Truncate
 .truncate {
   overflow: hidden;
@@ -295,40 +321,8 @@
 }
 
 // Cursors
-.cursor-default {
-  cursor: default !important;
-}
-
-.cursor-pointer {
-  cursor: pointer !important;
-}
-
-.cursor-not-allowed {
-  cursor: not-allowed !important;
-}
-
-.cursor-grab {
-  cursor: grab !important;
-}
-
-.cursor-wait {
-  cursor: wait !important;
-}
-
-.cursor-zoom-in {
-  cursor: zoom-in !important;
-}
-
-.cursor-zoom-out {
-  cursor: zoom-out !important;
-}
-
-.cursor-none {
-  cursor: none !important;
-}
-
-@for $i from 1 to 9 {
-  .font-w#{$i}00 {
-    font-weight: #{$i}00 !important;
+@each $cursor in $cursors {
+  .cursor-#{$cursor} {
+    cursor: #{$cursor} !important;
   }
 }

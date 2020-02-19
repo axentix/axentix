@@ -80,6 +80,9 @@ $h4: $base-size * 1.75 !default;
 $h5: $base-size * 1.5 !default;
 $h6: $base-size * 1.25 !default;
 
+// Cursors
+$cursors: 'default', 'pointer', 'not-allowed', 'grab', 'wait', 'zoom-in', 'zoom-out', 'none' !default;
+
 // Shadow
 $shadows: (
   '1': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
