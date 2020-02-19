@@ -27,6 +27,7 @@ class Sidenav extends AxentixComponent {
    * Setup component
    */
   _setup() {
+    Axentix.createEvent(this.el, 'sidenav.setup');
     this.sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
     this.isActive = false;
     this.isFixed = this.el.classList.contains('fixed');
@@ -78,6 +79,7 @@ class Sidenav extends AxentixComponent {
   _handleRightSidenav() {
     const sidenavs = document.querySelectorAll('.sidenav');
     const found = Array.from(sidenavs).some(sidenav => sidenav.classList.contains('right-aligned'));
+
     if (found && !document.body.classList.contains('sidenav-right')) {
       document.body.classList.add('sidenav-right');
     } else if (!found && document.body.classList.contains('sidenav-right')) {
@@ -96,7 +98,7 @@ class Sidenav extends AxentixComponent {
 
   /**
    * Enable or disable body scroll when option is true
-   * @param {boolean} state Enable or disable body scroll
+   * @param {boolean} state
    */
   _toggleBodyScroll(state) {
     if (!this.options.bodyScrolling) {
@@ -106,6 +108,7 @@ class Sidenav extends AxentixComponent {
 
   /**
    * Handle click on trigger
+   * @param {Event} e
    */
   _onClickTrigger(e) {
     e.preventDefault();
@@ -113,11 +116,7 @@ class Sidenav extends AxentixComponent {
       return;
     }
 
-    if (this.isActive) {
-      this.close();
-    } else {
-      this.open();
-    }
+    this.isActive ? this.close() : this.open();
   }
 
   /**
@@ -127,6 +126,7 @@ class Sidenav extends AxentixComponent {
     if (this.isActive) {
       return;
     }
+    Axentix.createEvent(this.el, 'sidenav.open');
     this.isActive = true;
     this.el.classList.add('active');
     this.overlay(true);
@@ -140,6 +140,7 @@ class Sidenav extends AxentixComponent {
     if (!this.isActive) {
       return;
     }
+    Axentix.createEvent(this.el, 'sidenav.close');
     this.el.classList.remove('active');
     this.overlay(false);
     setTimeout(() => {
@@ -154,6 +155,7 @@ class Sidenav extends AxentixComponent {
    */
   overlay(state) {
     if (this.options.overlay) {
+      Axentix.createEvent(this.el, 'sidenav.overlay');
       if (state) {
         this.overlayElement.addEventListener('click', this.listenerRef);
         document.body.appendChild(this.overlayElement);
