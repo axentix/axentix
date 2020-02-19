@@ -8,9 +8,11 @@
   - Form switch (different sizes, thin option)
   - sync() & reset() methods on all our components
   - Grix `.pos-row-{breakpoint}{number}` functionality
+  - `.font-w{number}` classes
 - REMOVED
 - IMPROVED
   - All of our js components have been optimized
+  - Rework grey color
   - Sidenav `.right-aligned` detection
   - Collapsible sidenav detection
   - Update dev-dependencies for our sources files

@@ -326,3 +326,9 @@
 .cursor-none {
   cursor: none !important;
 }
+
+@for $i from 1 to 9 {
+  .font-w#{$i}00 {
+    font-weight: #{$i}00 !important;
+  }
+}
