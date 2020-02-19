@@ -80,6 +80,12 @@ $h4: $base-size * 1.75 !default;
 $h5: $base-size * 1.5 !default;
 $h6: $base-size * 1.25 !default;
 
+// Cursors
+$cursors: 'default', 'pointer', 'not-allowed', 'grab', 'wait', 'zoom-in', 'zoom-out', 'none' !default;
+
+// Overflow
+$overflows: 'visible', 'auto', 'hidden', 'scroll', 'initial', 'inherit' !default;
+
 // Shadow
 $light-shadows: (
   '1': '0 6px 10px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',

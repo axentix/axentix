@@ -1,5 +1,4 @@
 /*** Grix : Efficient grid system for everyone ***/
-
 // Base
 .grix {
   display: grid;
@@ -57,7 +56,7 @@
   }
 }
 
-// gutters
+// Gutters
 @each $num, $size in $gutter {
   @each $name, $value in $grid-breakpoints {
     @if ($name == 'xs') {
@@ -72,8 +71,4 @@
       }
     }
   }
-}
-
-.no-auto-height {
-  grid-template-rows: minmax(min-content, max-content);
 }
