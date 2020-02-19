@@ -10,6 +10,9 @@
   - Grix `.pos-row-{breakpoint}{number}` functionality
 - REMOVED
 - IMPROVED
+  - All of our js components have been optimized
+  - Sidenav `.right-aligned` detection
+  - Collapsible sidenav detection
   - Update dev-dependencies for our sources files
 - BUGFIXES
   - Sidenav bug with resize event
