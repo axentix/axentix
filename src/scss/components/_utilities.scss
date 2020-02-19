@@ -7,8 +7,8 @@
 @each $number, $value in $hoverable {
   .hoverable-#{$number} {
     transition-property: box-shadow, transform;
-    transition-timing-function: ease;
-    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+    transition-duration: 0.3s;
     &:hover {
       box-shadow: #{$value} !important;
       transform: translateY(-5px);
