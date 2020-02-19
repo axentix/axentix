@@ -2,7 +2,7 @@
  * Class Modal
  * @class
  */
-class Modal {
+class Modal extends AxentixComponent {
   /**
    * Construct Modal instance
    * @constructor
@@ -10,6 +10,7 @@ class Modal {
    * @param {Object} options
    */
   constructor(element, options) {
+    super();
     this.defaultOptions = {
       overlay: true,
       bodyScrolling: false,
@@ -17,38 +18,59 @@ class Modal {
     };
 
     this.el = document.querySelector(element);
-    this.el.Modal = this;
+
+    this.options = Axentix.extend(this.defaultOptions, options);
+    this._setup();
+  }
+
+  /**
+   * Setup component
+   */
+  _setup() {
+    Axentix.createEvent(this.el, 'modal.setup');
     this.modalTriggers = document.querySelectorAll('.modal-trigger');
     this.isActive = this.el.classList.contains('active') ? true : false;
     this.isAnimated = false;
 
-    this.options = Axentix.extend(this.defaultOptions, options);
-
-    this._setup();
-    this.isActive ? this.open() : '';
+    this._setupListeners();
+    this.options.overlay ? this._createOverlay() : '';
+    this.el.style.transitionDuration = this.options.animationDelay + 'ms';
   }
 
   /**
    * Setup listeners
    */
-  _setup() {
+  _setupListeners() {
     this.listenerRef = this._onClickTrigger.bind(this);
     this.modalTriggers.forEach(trigger => {
       if (trigger.dataset.target === this.el.id) {
         trigger.addEventListener('click', this.listenerRef);
       }
     });
-    if (this.options.overlay) {
-      this._createOverlay();
-    }
-    this.el.style.transitionDuration = this.options.animationDelay + 'ms';
+  }
+
+  /**
+   * Remove listeners
+   */
+  _removeListeners() {
+    this.modalTriggers.forEach(trigger => {
+      if (trigger.dataset.target === this.el.id) {
+        trigger.removeEventListener('click', this.listenerRef);
+      }
+    });
+    this.listenerRef = undefined;
   }
 
   /**
    * Create overlay element
    */
   _createOverlay() {
-    this.overlayElement = document.createElement('div');
+    if (this.isActive && this.options.overlay) {
+      this.overlayElement = document.querySelector('.modal-overlay[data-target="' + this.el.id + '"]');
+      this.overlayElement ? '' : (this.overlayElement = document.createElement('div'));
+    } else {
+      this.overlayElement = document.createElement('div');
+    }
     this.overlayElement.classList.add('modal-overlay');
     this.overlayElement.style.transitionDuration = this.options.animationDelay + 'ms';
     this.overlayElement.dataset.target = this.el.id;
@@ -83,11 +105,7 @@ class Modal {
       return;
     }
 
-    if (this.isActive) {
-      this.close();
-    } else {
-      this.open();
-    }
+    this.isActive ? this.close() : this.open();
   }
 
   /**
@@ -97,6 +115,7 @@ class Modal {
     if (this.isActive) {
       return;
     }
+    Axentix.createEvent(this.el, 'modal.open');
     this.isActive = true;
     this.isAnimated = true;
     this._setZIndex();
@@ -109,6 +128,7 @@ class Modal {
 
     setTimeout(() => {
       this.isAnimated = false;
+      Axentix.createEvent(this.el, 'modal.opened');
     }, this.options.animationDelay);
   }
 
@@ -119,6 +139,7 @@ class Modal {
     if (!this.isActive) {
       return;
     }
+    Axentix.createEvent(this.el, 'modal.close');
     this.isAnimated = true;
     this.el.classList.remove('active');
     this.overlay(false);
@@ -127,6 +148,7 @@ class Modal {
       this.isAnimated = false;
       this.isActive = false;
       this._toggleBodyScroll(true);
+      Axentix.createEvent(this.el, 'modal.closed');
     }, this.options.animationDelay);
   }
 
@@ -136,6 +158,7 @@ class Modal {
    */
   overlay(state) {
     if (this.options.overlay) {
+      Axentix.createEvent(this.el, 'modal.overlay');
       if (state) {
         this.overlayElement.addEventListener('click', this.listenerRef);
         document.body.appendChild(this.overlayElement);

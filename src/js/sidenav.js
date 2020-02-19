@@ -131,6 +131,10 @@ class Sidenav extends AxentixComponent {
     this.el.classList.add('active');
     this.overlay(true);
     this._toggleBodyScroll(false);
+
+    setTimeout(() => {
+      Axentix.createEvent(this.el, 'sidenav.opened');
+    }, this.options.animationDelay);
   }
 
   /**
@@ -146,6 +150,7 @@ class Sidenav extends AxentixComponent {
     setTimeout(() => {
       this._toggleBodyScroll(true);
       this.isActive = false;
+      Axentix.createEvent(this.el, 'sidenav.closed');
     }, this.options.animationDelay);
   }
 
