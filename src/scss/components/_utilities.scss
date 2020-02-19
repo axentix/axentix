@@ -326,3 +326,18 @@
     cursor: #{$cursor} !important;
   }
 }
+
+// Overflows
+@each $overflow in $overflows {
+  .overflow-#{$overflow} {
+    overflow: #{$overflow} !important;
+  }
+
+  .overflow-x-#{$overflow} {
+    overflow-x: #{$overflow} !important;
+  }
+
+  .overflow-y-#{$overflow} {
+    overflow-y: #{$overflow} !important;
+  }
+}

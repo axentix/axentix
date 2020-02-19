@@ -9,6 +9,7 @@
   - sync() & reset() methods on all our components
   - Grix `.pos-row-{breakpoint}{number}` functionality
   - `.font-w{number}` classes
+  - `.overflow` classes
 - REMOVED
 - IMPROVED
   - All of our js components have been optimized
