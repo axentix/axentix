@@ -12,10 +12,47 @@
 .shadow-0 {
   box-shadow: none !important;
 }
+.light-shadow-0 {
+  box-shadow: none !important;
+}
 
 @each $number, $value in $shadows {
   .shadow-#{$number} {
     box-shadow: #{$value};
+  }
+}
+
+@each $number, $value in $light-shadows {
+  .light-shadow-#{$number} {
+    box-shadow: #{$value};
+  }
+}
+
+// Hoverable
+@each $number, $value in $hoverable {
+  .hoverable-#{$number} {
+    transition-property: box-shadow, transform;
+    transition-timing-function: ease;
+    transition-duration: $hoverable-delay;
+
+    &:hover {
+      box-shadow: #{$value} !important;
+      transform: translateY(-5px);
+    }
+  }
+}
+
+// Light overable
+@each $number, $value in $light-hoverable {
+  .light-hoverable-#{$number} {
+    transition-property: box-shadow, transform;
+    transition-timing-function: ease-out;
+    transition-duration: $light-hoverable-delay;
+
+    &:hover {
+      box-shadow: #{$value} !important;
+      transform: translateY(-5px);
+    }
   }
 }
 
@@ -38,20 +75,6 @@
 @each $number, $value in $text-shadows {
   .textshadow-#{$number} {
     text-shadow: #{$value};
-  }
-}
-
-// Hoverable
-@each $number, $value in $hoverable {
-  .hoverable-#{$number} {
-    transition-property: box-shadow, transform;
-    transition-timing-function: ease-out;
-    transition-duration: 0.3s;
-
-    &:hover {
-      box-shadow: #{$value} !important;
-      transform: translateY(-5px);
-    }
   }
 }
 
