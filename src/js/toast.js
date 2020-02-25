@@ -81,7 +81,12 @@ class Toast {
    */
   _fadeInToast(toast) {
     setTimeout(() => {
+      Axentix.createEvent(toast, 'toast.show');
       toast.classList.add('toast-animated');
+
+      setTimeout(() => {
+        Axentix.createEvent(toast, 'toast.showed');
+      }, this.options.animationDelay);
     }, 50);
   }
 
@@ -91,6 +96,7 @@ class Toast {
    */
   _fadeOutToast(toast) {
     setTimeout(() => {
+      Axentix.createEvent(toast, 'toast.hide');
       this._hide(toast);
     }, this.options.duration + this.options.animationDelay);
   }
@@ -161,6 +167,7 @@ class Toast {
     }, delay / 2);
     setTimeout(() => {
       toast.remove();
+      Axentix.createEvent(toast, 'toast.remove');
       this._removeToaster();
     }, delay * 1.45);
   }
