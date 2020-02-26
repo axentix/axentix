@@ -28,7 +28,7 @@ textarea.form-control {
       }
 
       &.is-txtarea-focused textarea.form-control {
-        border-bottom: 0.1rem solid $material-color;
+        border-bottom: 0.1rem solid var(--form-material-color);
       }
     }
   }

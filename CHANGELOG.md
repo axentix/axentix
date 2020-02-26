@@ -13,12 +13,14 @@
   - Grix `.pos-row-{breakpoint}{number}` functionality
   - `.font-w{number}` classes
   - `.overflow-` classes
+  - Material forms `.form-rtl` functionality
 - REMOVED
 - IMPROVED
   - All of our js components have been optimized
   - Rework grey color
   - Rework shadows classes
   - Rework hoverable classes
+  - Material forms color customization (css variables)
   - Sidenav `.right-aligned` detection
   - Collapsible sidenav detection
   - Update gulp integration
