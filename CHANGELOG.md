@@ -6,16 +6,22 @@
   - [FAB] Floating Action Button
   - Event on all our components
   - Form switch (different sizes, thin option)
+  - New `.light-shadow-{number}` classes
+  - New `.light-hoverable-{number}` classes
   - sync() & reset() methods on all our components
+  - sync() / syncAll() & reset() / resetAll() methods inside Axentix core
   - Grix `.pos-row-{breakpoint}{number}` functionality
   - `.font-w{number}` classes
-  - `.overflow` classes
+  - `.overflow-` classes
 - REMOVED
 - IMPROVED
   - All of our js components have been optimized
   - Rework grey color
+  - Rework shadows classes
+  - Rework hoverable classes
   - Sidenav `.right-aligned` detection
   - Collapsible sidenav detection
+  - Update gulp integration
   - Update dev-dependencies of our sources files
 - BUGFIXES
   - Sidenav bug with resize event
