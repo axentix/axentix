@@ -25,7 +25,8 @@ function compileJSMinified() {
         }
       })
     )
-    .pipe(dest('dist/js/'));
+    .pipe(dest('dist/js/'))
+    .pipe(browserSync.stream());
 }
 
 function compileJS() {
@@ -36,7 +37,8 @@ function compileJS() {
         presets: ['@babel/env']
       })
     )
-    .pipe(dest('dist/js/'));
+    .pipe(dest('dist/js/'))
+    .pipe(browserSync.stream());
 }
 
 function compileSassMinified() {
@@ -48,7 +50,8 @@ function compileSassMinified() {
       })
     )
     .pipe(rename({ extname: '.min.css' }))
-    .pipe(dest('dist/css/'));
+    .pipe(dest('dist/css/'))
+    .pipe(browserSync.stream());
 }
 
 function compileSass() {
@@ -59,7 +62,8 @@ function compileSass() {
         cascade: false
       })
     )
-    .pipe(dest('dist/css/'));
+    .pipe(dest('dist/css/'))
+    .pipe(browserSync.stream());
 }
 
 function initBrowserSync() {
@@ -76,18 +80,18 @@ exports.sass = compileSass;
 
 exports.watch = function() {
   initBrowserSync();
-  watch('src/js/**/*.js', series(compileJSMinified, compileJS)).on('change', browserSync.reload);
-  watch('src/scss/**/*.scss', series(compileSassMinified, compileSass)).on('change', browserSync.reload);
+  watch('src/js/**/*.js', series(compileJSMinified, compileJS));
+  watch('src/scss/**/*.scss', series(compileSassMinified, compileSass));
 };
 
 exports.watchjs = function() {
   initBrowserSync();
-  watch('src/js/**/*.js', series(compileJSMinified, compileJS)).on('change', browserSync.reload);
+  watch('src/js/**/*.js', series(compileJSMinified, compileJS));
 };
 
 exports.watchsass = function() {
   initBrowserSync();
-  watch('src/scss/**/*.scss', series(compileSassMinified, compileSass)).on('change', browserSync.reload);
+  watch('src/scss/**/*.scss', series(compileSassMinified, compileSass));
 };
 
 exports.default = parallel(series(compileJSMinified, compileJS), series(compileSassMinified, compileSass));
