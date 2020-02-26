@@ -70,8 +70,6 @@ class Axentix {
       try {
         this.instances.push(new constructor(...args));
       } catch (error) {
-        // For debug
-        // console.log(error);
         console.error('Axentix : Unable to load ' + component);
       }
     });
@@ -90,5 +88,35 @@ class Axentix {
    */
   getAllInstances() {
     return this.instances;
+  }
+
+  /**
+   * Sync instance of element
+   * @param {String} element Id of element
+   */
+  sync(element) {
+    this.getInstance(element).sync();
+  }
+
+  /**
+   * Sync all instances
+   */
+  syncAll() {
+    this.instances.map(instance => instance.sync());
+  }
+
+  /**
+   * Reset instance of element
+   * @param {String} element Id of element
+   */
+  reset(element) {
+    this.getInstance(element).reset();
+  }
+
+  /**
+   * Reset all instances
+   */
+  resetAll() {
+    this.instances.map(instance => instance.reset());
   }
 }
