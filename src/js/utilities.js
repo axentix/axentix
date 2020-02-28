@@ -31,6 +31,19 @@ Axentix.extend = function() {
 };
 
 /**
+ * Wrap content inside an element (<div> by default)
+ * @param {Array<Element>} target
+ * @param {Element} wrapper
+ * @return {Element}
+ */
+Axentix.wrap = (target, wrapper = document.createElement('div')) => {
+  const parent = target[0].parentElement;
+  target.forEach(elem => wrapper.appendChild(elem));
+  parent.appendChild(wrapper);
+  return wrapper;
+};
+
+/**
  * Create custom event
  * @param {Element} element
  * @param {string} eventName

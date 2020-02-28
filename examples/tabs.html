@@ -16,17 +16,38 @@
       <div class="container mt-4">
         <div class="tab  shadow-1" id="example-tab">
           <ul class="tab-menu">
-            <li class="tab-item">
+            <li class="tab-link">
               <a href="#tab1">Tab 1</a>
             </li>
-            <li class="tab-item active">
+            <li class="tab-link active">
               <a href="#tab2">Tab 2</a>
             </li>
-            <li class="tab-item">
+            <li class="tab-link">
               <a href="#tab3">Tabbbbbbbbb</a>
             </li>
           </ul>
           <div id="tab1">Content 1</div>
+          <div id="tab2">Content 2</div>
+          <div id="tab3">Content 3</div>
+        </div>
+
+        <div class="tab shadow-1 mt-4" id="slide-tab">
+          <ul class="tab-menu">
+            <li class="tab-link">
+              <a href="#tab1">Tab 1</a>
+            </li>
+            <li class="tab-link active">
+              <a href="#tab2">Tab 2</a>
+            </li>
+            <li class="tab-link">
+              <a href="#tab3">Tabbbbbbbbb</a>
+            </li>
+          </ul>
+          <div id="tab1">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem minima nesciunt totam eligendi
+            dolorem, perferendis dignissimos unde deserunt temporibus tempore, aut sint aliquid harum?
+            Accusantium eligendi porro temporibus quibusdam sed.
+          </div>
           <div id="tab2">Content 2</div>
           <div id="tab3">Content 3</div>
         </div>
@@ -38,25 +59,25 @@
               <a href=""><i class="fas fa-chevron-left"></i></a>
             </div>
             <ul class="tab-menu">
-              <li class="tab-item">
+              <li class="tab-link">
                 <a href="#tab1">Tab 1</a>
               </li>
-              <li class="tab-item">
+              <li class="tab-link">
                 <a href="#tab2">Tab 2</a>
               </li>
-              <li class="tab-item">
+              <li class="tab-link">
                 <a href="#tab3">Tabbbbbbbbb</a>
               </li>
-              <li class="tab-item">
+              <li class="tab-link">
                 <a href="#tab3">Tabbbbbbbbb</a>
               </li>
-              <li class="tab-item">
+              <li class="tab-link">
                 <a href="#tab3">Tabbbbbbbbb</a>
               </li>
-              <li class="tab-item">
+              <li class="tab-link">
                 <a href="#tab3">Tabbbbbbbbb</a>
               </li>
-              <li class="tab-item">
+              <li class="tab-link">
                 <a href="#tab3">Tabbbbbbbbb</a>
               </li>
             </ul>
@@ -108,6 +129,10 @@
 
       var tab = new Tab('#example-tab');
       var tab2 = new Tab('#example-tab2');
+
+      var slideTab = new Tab('#slide-tab', {
+        animationType: 'slide'
+      });
 
       // Floating Action Button
       var fab = new Fab('#example-fab', {

@@ -242,9 +242,7 @@ class Caroulix extends AxentixComponent {
       return;
     }
 
-    let side = '';
-    i > this.currentItemIndex ? (side = 'right') : (side = 'left');
-    this.goTo(i, side);
+    this.goTo(i);
   }
 
   _getPreviousItemIndex(step) {
@@ -294,9 +292,11 @@ class Caroulix extends AxentixComponent {
    * @param {string} side
    */
   goTo(number, side) {
-    if (this.isAnimated) {
+    if (this.isAnimated || number === this.currentItemIndex) {
       return;
     }
+
+    side ? '' : number > this.currentItemIndex ? (side = 'right') : (side = 'left');
 
     Axentix.createEvent(this.el, 'caroulix.slide', {
       side,
