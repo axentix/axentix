@@ -14,10 +14,11 @@
   - `.font-w{number}` classes
   - `.overflow-` classes
   - Material forms `.form-rtl` functionality
+  - Orange color
 - REMOVED
 - IMPROVED
   - All of our js components have been optimized
-  - Rework grey color
+  - Rework grey, yellow and warning colors
   - Rework shadows classes
   - Rework hoverable classes
   - Material forms color customization (css variables)
