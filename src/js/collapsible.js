@@ -47,6 +47,7 @@ class Collapsible extends AxentixComponent {
     this.options.sidenav.activeClass ? this._addActiveInSidenav() : '';
 
     this.isActive ? this.open() : '';
+    this.isInitialStart = false;
   }
 
   /**
@@ -139,7 +140,6 @@ class Collapsible extends AxentixComponent {
           collapsible.Collapsible.close();
         }
       });
-      this.isInitialStart = false;
     }
   }
 
