@@ -16,8 +16,11 @@ class Caroulix extends AxentixComponent {
       height: '',
       animationDelay: 500,
       animationType: 'slide',
-      indicators: false,
-      isIndicatorFlat: false,
+      indicators: {
+        enabled: false,
+        isFlat: false,
+        customClasses: ''
+      },
       autoplay: true,
       autoInterval: 3000
     };
@@ -36,7 +39,7 @@ class Caroulix extends AxentixComponent {
     this.currentItemIndex = 0;
     this.isAnimated = false;
     this._getChildrens();
-    this.options.indicators ? this._enableIndicators() : '';
+    this.options.indicators.enabled ? this._enableIndicators() : '';
     this._getActiveElementIndex();
     this._setupListeners();
 
@@ -98,7 +101,9 @@ class Caroulix extends AxentixComponent {
 
     const item = this.childrens[this.currentItemIndex];
     item.classList.contains('active') ? '' : item.classList.add('active');
-    this.options.indicators ? this.indicators.children[this.currentItemIndex].classList.add('active') : '';
+    this.options.indicators.enabled
+      ? this.indicators.children[this.currentItemIndex].classList.add('active')
+      : '';
 
     this._waitUntilLoad(item);
   }
@@ -176,8 +181,11 @@ class Caroulix extends AxentixComponent {
   _enableIndicators() {
     this.indicators = document.createElement('ul');
     this.indicators.classList.add('caroulix-indicators');
-    this.options.isIndicatorFlat ? this.indicators.classList.add('caroulix-flat') : '';
+    this.options.indicators.isFlat ? this.indicators.classList.add('caroulix-flat') : '';
 
+    this.options.indicators.customClasses
+      ? (this.indicators.className = this.indicators.className + ' ' + this.options.indicators.customClasses)
+      : '';
     for (let i = 0; i < this.childrens.length; i++) {
       const li = document.createElement('li');
       li.triggerRef = this._handleIndicatorClick.bind(this, i);
@@ -309,7 +317,7 @@ class Caroulix extends AxentixComponent {
       this.options.animationType.charAt(0).toUpperCase() +
       this.options.animationType.substring(1);
 
-    if (this.options.indicators) {
+    if (this.options.indicators.enabled) {
       Array.from(this.indicators.children).map(li => {
         li.removeAttribute('class');
       });

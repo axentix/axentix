@@ -102,8 +102,11 @@
 
       var imgCaroulix = new Caroulix('#img-caroulix', {
         // animationDelay: 10000,
-        indicators: true,
-        isIndicatorFlat: true,
+        indicators: {
+          enabled: true,
+          isFlat: true,
+          customClasses: 'test toto'
+        },
         fixedHeight: true
       });
 
