@@ -51,13 +51,13 @@
 
   .sidenav.fixed {
     position: fixed;
-    z-index: 710;
+    z-index: $layouts-sidenav-fixed-zindex;
     grid-area: initial;
 
     @include responsive('md-up') {
       grid-area: sidenav;
       position: initial;
-      z-index: 690;
+      z-index: $layouts-sidenav-fixed-zindex-mdup;
     }
   }
 

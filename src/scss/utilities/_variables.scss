@@ -142,11 +142,17 @@ $text-shadows: (
 // Navbar
 $navbar-height: 3.5rem !default;
 $navbar-logo-height: 3rem !default;
-$navbar-zindex: 100 !default;
+$navbar-zindex: 200 !default;
 
 // Sidenav
 $sidenav-width: 12rem !default;
 $sidenav-large-width: 15rem !default;
+$sidenav-zindex: 710 !default;
+$sidenav-overlay-zindex: 700 !default;
+
+// Layouts
+$layouts-sidenav-fixed-zindex: 710 !default;
+$layouts-sidenav-fixed-zindex-mdup: 690 !default;
 
 // Rounded
 $rounded: (
@@ -193,4 +199,4 @@ $spaces: (
 ) !default;
 
 // Floating Action Button (FAB)
-$fab-zindex: 200 !default;
+$fab-zindex: 100 !default;
