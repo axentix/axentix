@@ -21,8 +21,11 @@ class Caroulix extends AxentixComponent {
         isFlat: false,
         customClasses: ''
       },
-      autoplay: true,
-      autoInterval: 3000
+      autoplay: {
+        enabled: true,
+        interval: 5000,
+        side: 'right'
+      }
     };
 
     this.el = document.querySelector(element);
@@ -36,6 +39,8 @@ class Caroulix extends AxentixComponent {
 
     const animationList = ['slide'];
     animationList.includes(this.options.animationType) ? '' : (this.options.animationType = 'slide');
+    const autoplaySides = ['right', 'left'];
+    autoplaySides.includes(this.options.autoplay.side) ? '' : (this.options.autoplay.side = 'right');
     this.currentItemIndex = 0;
     this.isAnimated = false;
     this._getChildrens();
@@ -109,12 +114,14 @@ class Caroulix extends AxentixComponent {
   }
 
   _waitUntilLoad(item) {
+    let isImage = false;
     if (this.options.fixedHeight) {
       this.totalLoadChild = 0;
       this.totalLoadedChild = 0;
       this.childrens.map(child => {
         const waitItem = child.querySelector('img') || child.querySelector('video');
         if (waitItem) {
+          isImage = true;
           waitItem.loadRef = this._initWhenLoaded.bind(this, waitItem);
           waitItem.addEventListener('load', waitItem.loadRef);
           this.totalLoadChild++;
@@ -123,10 +130,13 @@ class Caroulix extends AxentixComponent {
     } else {
       const childItem = item.querySelector('img') || item.querySelector('video');
       if (childItem) {
+        isImage = true;
         childItem.loadRef = this._initWhenLoaded.bind(this, childItem);
         childItem.addEventListener('load', childItem.loadRef);
       }
     }
+
+    isImage ? '' : this.options.autoplay.enabled ? this.play() : '';
   }
 
   /**
@@ -143,11 +153,13 @@ class Caroulix extends AxentixComponent {
         this.updateHeight('', true);
         this.totalLoadedChild = undefined;
         this.totalLoadChild = undefined;
+        this.options.autoplay.enabled ? this.play() : '';
       }
     } else {
       this.updateHeight('', true);
       item.removeEventListener('load', item.loadRef);
       item.loadRef = undefined;
+      this.options.autoplay.enabled ? this.play() : '';
     }
   }
 
@@ -233,6 +245,7 @@ class Caroulix extends AxentixComponent {
 
       this.currentItemIndex = number;
       this.isAnimated = false;
+      this.options.autoplay.enabled ? this.play() : '';
     }, this.options.animationDelay + 50);
   }
 
@@ -306,6 +319,8 @@ class Caroulix extends AxentixComponent {
 
     side ? '' : number > this.currentItemIndex ? (side = 'right') : (side = 'left');
 
+    this.options.autoplay.enabled && this.autoTimeout ? this.stop() : '';
+
     Axentix.createEvent(this.el, 'caroulix.slide', {
       side,
       nextElement: this.childrens[number],
@@ -346,5 +361,16 @@ class Caroulix extends AxentixComponent {
     Axentix.createEvent(this.el, 'caroulix.next', { step });
     const nextItemIndex = this._getNextItemIndex(step);
     this.goTo(nextItemIndex, 'right');
+  }
+
+  play() {
+    this.autoTimeout = setTimeout(() => {
+      this.options.autoplay.side === 'right' ? this.next() : this.prev();
+    }, this.options.autoplay.interval);
+  }
+
+  stop() {
+    clearTimeout(this.autoTimeout);
+    this.autoTimeout = false;
   }
 }
