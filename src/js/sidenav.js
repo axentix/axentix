@@ -160,7 +160,6 @@ class Sidenav extends AxentixComponent {
    */
   overlay(state) {
     if (this.options.overlay) {
-      Axentix.createEvent(this.el, 'sidenav.overlay');
       if (state) {
         this.overlayElement.addEventListener('click', this.listenerRef);
         document.body.appendChild(this.overlayElement);
