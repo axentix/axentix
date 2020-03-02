@@ -13,6 +13,7 @@
   }
 
   .slider {
+    --form-switch-active-color: #{$switch-bg-active-color};
     position: relative;
     cursor: pointer;
     display: inline-block;
@@ -76,7 +77,7 @@
   }
 
   input:checked + .slider {
-    background-color: $switch-bg-active-color;
+    background-color: var(--form-switch-active-color);
   }
 
   input:checked + .slider {

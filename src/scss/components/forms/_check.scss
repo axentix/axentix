@@ -89,7 +89,7 @@
       // For checkbox only
       input[type='checkbox'] + span {
         &::before {
-          border: $material-color solid 2px;
+          border: var(--form-material-color) solid 2px;
           border-radius: 2px;
           transition: background-color 0.2s ease;
         }
@@ -112,7 +112,7 @@
 
       input[type='checkbox']:checked + span::before,
       input[type='checkbox']:indeterminate + span::before {
-        background-color: $material-color;
+        background-color: var(--form-material-color);
       }
 
       input[type='checkbox']:indeterminate + span::after {
@@ -124,14 +124,14 @@
       // For radio only
       input[type='radio'] + span {
         &::before {
-          border: $material-color solid 2px;
+          border: var(--form-material-color) solid 2px;
           @extend .rounded-full;
         }
 
         &::after {
           width: 1rem;
           height: 1rem;
-          background-color: $material-color;
+          background-color: var(--form-material-color);
           transform: scale(0) translateY(-100%);
           transition: transform 0.2s ease;
           @extend .rounded-full;
