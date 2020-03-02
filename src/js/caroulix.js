@@ -49,8 +49,6 @@ class Caroulix extends AxentixComponent {
     this._setupListeners();
 
     this.el.classList.add('anim-' + this.options.animationType);
-
-    this.updateHeight();
   }
 
   /**
@@ -136,7 +134,10 @@ class Caroulix extends AxentixComponent {
       }
     }
 
-    isImage ? '' : this.options.autoplay.enabled ? this.play() : '';
+    if (!isImage) {
+      this.updateHeight();
+      this.options.autoplay.enabled ? this.play() : '';
+    }
   }
 
   /**
@@ -164,6 +165,11 @@ class Caroulix extends AxentixComponent {
   }
 
   _setMaxHeight() {
+    if (this.options.height) {
+      this.el.style.height = this.options.height;
+      return;
+    }
+
     const childrensHeight = this.childrens.map(child => {
       return child.offsetHeight;
     });
