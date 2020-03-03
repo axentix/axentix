@@ -120,9 +120,13 @@ class Caroulix extends AxentixComponent {
         const waitItem = child.querySelector('img') || child.querySelector('video');
         if (waitItem) {
           isImage = true;
-          waitItem.loadRef = this._initWhenLoaded.bind(this, waitItem);
-          waitItem.addEventListener('load', waitItem.loadRef);
           this.totalLoadChild++;
+          if (waitItem.complete) {
+            this._initWhenLoaded(waitItem, true);
+          } else {
+            waitItem.loadRef = this._initWhenLoaded.bind(this, waitItem);
+            waitItem.addEventListener('load', waitItem.loadRef);
+          }
         }
       });
     } else {
@@ -143,11 +147,14 @@ class Caroulix extends AxentixComponent {
   /**
    * Update height & remove listener when active element is loaded
    * @param {Element} item
+   * @param {Boolean} alreadyLoad
    */
-  _initWhenLoaded(item) {
+  _initWhenLoaded(item, alreadyLoad) {
     if (this.options.fixedHeight) {
-      item.removeEventListener('load', item.loadRef);
-      item.loadRef = undefined;
+      if (!alreadyLoad) {
+        item.removeEventListener('load', item.loadRef);
+        item.loadRef = undefined;
+      }
       this.totalLoadedChild++;
 
       if (this.totalLoadedChild === this.totalLoadChild) {
