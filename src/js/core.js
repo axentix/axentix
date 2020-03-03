@@ -80,7 +80,7 @@ class Axentix {
    * @param {String} element Id of element
    */
   getInstance(element) {
-    return this.instances.filter(instance => instance.el.id === element)[0];
+    return this.instances.filter(instance => '#' + instance.el.id === element)[0];
   }
 
   /**

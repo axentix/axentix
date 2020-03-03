@@ -243,13 +243,13 @@
         bodyScrolling: true
       });
 
-      const sidenav = axentix.getInstance('example-sidenav');
+      const sidenav = axentix.getInstance('#example-sidenav');
       function testSidenavReset() {
         sidenav.el.classList.toggle('large');
         sidenav.el.classList.toggle('right-aligned');
 
         setTimeout(() => {
-          axentix.reset('example-sidenav');
+          axentix.reset('#example-sidenav');
         }, 1000);
       }
 
