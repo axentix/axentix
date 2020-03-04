@@ -1,0 +1,101 @@
+.caroulix {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  overflow: hidden;
+  align-items: center;
+
+  .caroulix-item {
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    img {
+      width: 100%;
+    }
+
+    &.active {
+      visibility: visible;
+    }
+  }
+
+  .caroulix-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    z-index: 50;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+      @extend .shadow-2;
+    }
+
+    &.caroulix-prev {
+      left: 0.75rem;
+    }
+
+    &.caroulix-next {
+      right: 0.75rem;
+    }
+  }
+
+  .caroulix-indicators {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 1.5rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    li {
+      background-color: #fff;
+      border-radius: 50%;
+      margin: 0 0.5rem;
+      height: 1rem;
+      width: 1rem;
+      opacity: 0.75;
+      transition: opacity 0.2s ease;
+      cursor: pointer;
+
+      &:hover,
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    &.caroulix-flat {
+      li {
+        border-radius: unset;
+        border-bottom: 0.5rem solid transparent;
+        border-top: 0.5rem solid transparent;
+        width: 1.75rem;
+        height: 1.25rem;
+        background-clip: padding-box;
+      }
+    }
+  }
+
+  &.anim-slide {
+    .caroulix-item {
+      transition-property: transform;
+      transition-timing-function: ease-in-out;
+      will-change: transform;
+    }
+  }
+}

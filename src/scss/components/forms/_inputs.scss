@@ -59,6 +59,7 @@
 // Material Style
 .form-material {
   .form-field:not(.form-default) {
+    --form-material-color: #{$material-color};
     padding-top: 0.75rem;
     align-self: start;
 
@@ -105,15 +106,20 @@
       top: var(--form-material-position);
       left: 0;
       width: 0;
-      border-bottom: $material-color solid 0.1rem;
+      border-bottom: var(--form-material-color) solid 0.1rem;
       transition: width $material-animation-duration ease;
+    }
+
+    &.form-rtl::after {
+      left: unset;
+      right: 0;
     }
 
     &.active {
       label {
         top: 0.1rem;
         font-size: 0.8rem;
-        color: $material-color;
+        color: var(--form-material-color);
       }
 
       &.is-focused::after {

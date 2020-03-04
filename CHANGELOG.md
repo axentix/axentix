@@ -1,3 +1,35 @@
+# 0.5.0 - 2020-03-04
+
+- ADDED
+  - Caroulix
+  - Tabs (basic, arrow mode, responsive, customizable)
+  - [FAB] Floating Action Button
+  - Event on all our components
+  - Form switch (different sizes, thin option)
+  - New `.light-shadow-{number}` classes
+  - New `.light-hoverable-{number}` classes
+  - sync() & reset() methods on all our components
+  - sync() / syncAll() & reset() / resetAll() methods inside Axentix core
+  - Grix `.pos-row-{breakpoint}{number}` functionality
+  - `.font-w{number}` classes
+  - `.overflow-` classes
+  - Material forms `.form-rtl` functionality
+  - Orange color
+- REMOVED
+- IMPROVED
+  - All our js components have been optimized
+  - Rework grey, yellow and warning colors
+  - Rework shadows classes
+  - Rework hoverable classes
+  - Material forms color customization (css variables)
+  - Sidenav `.right-aligned` detection
+  - Collapsible sidenav detection
+  - Update gulp integration
+  - Update dev-dependencies of our sources files
+- BUGFIXES
+  - Sidenav bug with resize event
+  - Padding generation bug
+
 # 0.4.3 - 2020-01-27
 
 - ADDED
@@ -172,4 +204,4 @@ We are very happy to present you the first release of Axentix.
   - Utilities classes (alignments, container, ...)
 - REMOVED
 - IMPROVED
-- BUFIXES
+- BUGFIXES

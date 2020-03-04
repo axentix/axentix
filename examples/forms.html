@@ -4,6 +4,14 @@
     <title>Axentix Layout - Fixed sidenav</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../dist/css/axentix.min.css" />
+    <style>
+      .form-material .form-field:not(.form-default) {
+        --form-material-color: #c91d34;
+      }
+      .form-switch .slider {
+        --form-switch-active-color: #c91d34;
+      }
+    </style>
   </head>
 
   <body class="layout with-sidenav fixed-sidenav">
@@ -40,7 +48,7 @@
       </button>
       <form class="container form-material">
         <div class="grix xs1 sm2">
-          <div class="form-field">
+          <div class="form-field form-rtl">
             <input type="text" id="name" class="form-control" />
             <label for="name">Name</label>
           </div>
@@ -91,6 +99,70 @@
             <label class="form-check">
               <input type="checkbox" disabled value="check" id="checkbox" />
               <span>Checkbox</span>
+            </label>
+          </div>
+          <div class="form-field form-default">
+            <label class="form-switch mt-2">
+              dd
+              <input type="checkbox" />
+              <span class="slider small"></span>
+              Cc
+            </label>
+            <label class="form-switch mt-2">
+              <input type="checkbox" checked />
+              <span class="slider small"></span>
+            </label>
+            <label class="form-switch mt-2">
+              dd
+              <input type="checkbox" />
+              <span class="slider"></span>
+              Cc
+            </label>
+            <label class="form-switch mt-2">
+              <input type="checkbox" checked />
+              <span class="slider"></span>
+            </label>
+            <label class="form-switch mt-2">
+              dd
+              <input type="checkbox" />
+              <span class="slider large"></span>
+              Cc
+            </label>
+            <label class="form-switch mt-2">
+              <input type="checkbox" checked />
+              <span class="slider large"></span>
+            </label>
+          </div>
+          <div class="form-field form-default">
+            <label class="form-switch mt-2">
+              dd
+              <input type="checkbox" />
+              <span class="slider small thin"></span>
+              Cc
+            </label>
+            <label class="form-switch mt-2">
+              <input type="checkbox" checked />
+              <span class="slider small thin"></span>
+            </label>
+            <label class="form-switch mt-2">
+              dd
+              <input type="checkbox" />
+              <span class="slider thin"></span>
+              Cc
+            </label>
+            <label class="form-switch mt-2">
+              <input type="checkbox" checked />
+              <span class="slider thin"></span>
+            </label>
+            <label class="form-switch mt-2">
+              dd
+              <input type="checkbox" />
+              <span class="slider large thin"></span>
+              Cc
+            </label>
+            <label class="form-switch mt-2">
+              <input type="checkbox" checked />
+              <span class="slider large thin"></span>
             </label>
           </div>
           <div class="form-field">

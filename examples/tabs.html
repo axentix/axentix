@@ -1,0 +1,152 @@
+<html>
+  <head>
+    <title>Axentix Layout - Fixed sidenav</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
+  </head>
+
+  <body class="layout">
+    <header></header>
+
+    <main>
+      <div class="container mt-4">
+        <div class="tab  shadow-1" id="example-tab">
+          <ul class="tab-menu">
+            <li class="tab-link">
+              <a href="#tab1">Tab 1</a>
+            </li>
+            <li class="tab-link active">
+              <a href="#tab2">Tab 2</a>
+            </li>
+            <li class="tab-link">
+              <a href="#tab3">Tabbbbbbbbb</a>
+            </li>
+          </ul>
+          <div id="tab1">Content 1</div>
+          <div id="tab2">Content 2</div>
+          <div id="tab3">Content 3</div>
+        </div>
+
+        <div class="tab shadow-1 mt-4" id="slide-tab">
+          <ul class="tab-menu">
+            <li class="tab-link">
+              <a href="#tab1">Tab 1</a>
+            </li>
+            <li class="tab-link active">
+              <a href="#tab2">Tab 2</a>
+            </li>
+            <li class="tab-link">
+              <a href="#tab3">Tabbbbbbbbb</a>
+            </li>
+          </ul>
+          <div id="tab1">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem minima nesciunt totam eligendi
+            dolorem, perferendis dignissimos unde deserunt temporibus tempore, aut sint aliquid harum?
+            Accusantium eligendi porro temporibus quibusdam sed.
+          </div>
+          <div id="tab2">Content 2</div>
+          <div id="tab3">Content 3</div>
+        </div>
+
+        <!-- Arrow option -->
+        <div class="tab shadow-1 mt-4" id="example-tab2">
+          <div class="tab-arrow">
+            <div class="tab-prev white">
+              <a href=""><i class="fas fa-chevron-left"></i></a>
+            </div>
+            <ul class="tab-menu">
+              <li class="tab-link">
+                <a href="#tab1">Tab 1</a>
+              </li>
+              <li class="tab-link">
+                <a href="#tab2">Tab 2</a>
+              </li>
+              <li class="tab-link">
+                <a href="#tab3">Tabbbbbbbbb</a>
+              </li>
+              <li class="tab-link">
+                <a href="#tab3">Tabbbbbbbbb</a>
+              </li>
+              <li class="tab-link">
+                <a href="#tab3">Tabbbbbbbbb</a>
+              </li>
+              <li class="tab-link">
+                <a href="#tab3">Tabbbbbbbbb</a>
+              </li>
+              <li class="tab-link">
+                <a href="#tab3">Tabbbbbbbbb</a>
+              </li>
+            </ul>
+            <div class="tab-next white">
+              <a href=""><i class="fas fa-chevron-right"></i></a>
+            </div>
+          </div>
+          <div id="tab1">Content 1</div>
+          <div id="tab2">Content 2</div>
+          <div id="tab3">Content 3</div>
+        </div>
+      </div>
+      <div class="fab" id="example-fab">
+        <button class="btn circle large red fab-trigger">
+          <i class="fas fa-plus" aria-hidden="true"></i>
+        </button>
+        <div class="fab-menu">
+          <button class="btn circle secondary fab-item" title="Edit">
+            <i class="fas fa-pen" aria-hidden="true"></i>
+          </button>
+          <button class="btn circle cyan dark-2 fab-item" title="Send to">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="fab" id="example-fab2">
+        <button class="btn circle large secondary fab-trigger">
+          <i class="fas fa-plus" aria-hidden="true"></i>
+        </button>
+        <div class="fab-menu">
+          <button class="btn circle viride dark-2 fab-item" title="Edit">
+            <i class="fas fa-pen" aria-hidden="true"></i>
+          </button>
+          <button class="btn circle cyan dark-2 fab-item" title="Send to">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer primary">
+      Copyright © 2020 - Example
+    </footer>
+    <script src="../dist/js/axentix.min.js"></script>
+    <script>
+      // document.addEventListener('ax.tab.select', function(e) {
+      //   console.log('hey', e);
+      // });
+
+      var tab = new Tab('#example-tab');
+      var tab2 = new Tab('#example-tab2');
+
+      var slideTab = new Tab('#slide-tab', {
+        animationType: 'slide'
+      });
+
+      // Floating Action Button
+      var fab = new Fab('#example-fab', {
+        // hover: false,
+        // direction: 'bottom',
+        // position: 'top-right'
+      });
+
+      var fab2 = new Fab('#example-fab2', {
+        hover: false,
+        direction: 'right',
+        position: 'bottom-left',
+        offsetY: '8%'
+      });
+    </script>
+  </body>
+</html>

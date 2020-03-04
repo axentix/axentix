@@ -2,7 +2,7 @@
  * Class Collapsible
  * @class
  */
-class Collapsible {
+class Collapsible extends AxentixComponent {
   /**
    * Construct Collapsible instance
    * @constructor
@@ -10,6 +10,7 @@ class Collapsible {
    * @param {Object} options
    */
   constructor(element, options) {
+    super();
     this.defaultOptions = {
       animationDelay: 300,
       sidenav: {
@@ -20,28 +21,25 @@ class Collapsible {
     };
 
     this.el = document.querySelector(element);
-    this.el.Collapsible = this;
-    this.collapsibleTriggers = document.querySelectorAll('.collapsible-trigger');
-    this.initialStart = true;
-    this.isActive = this.el.classList.contains('active') ? true : false;
-    this.isAnimated = false;
-    this.isInSidenav = false;
-    this.childIsActive = false;
 
     this.options = Axentix.extend(this.defaultOptions, options);
     this._setup();
   }
 
   /**
-   * Setup listeners
+   * Setup component
    */
   _setup() {
-    this.listenerRef = this._onClickTrigger.bind(this);
-    this.collapsibleTriggers.forEach(trigger => {
-      if (trigger.dataset.target === this.el.id) {
-        trigger.addEventListener('click', this.listenerRef);
-      }
-    });
+    Axentix.createEvent(this.el, 'collapsible.setup');
+    this.el.Collapsible = this;
+    this.collapsibleTriggers = document.querySelectorAll('.collapsible-trigger');
+    this.isInitialStart = true;
+    this.isActive = this.el.classList.contains('active') ? true : false;
+    this.isAnimated = false;
+    this.isInSidenav = false;
+    this.childIsActive = false;
+
+    this._setupListeners();
     this.el.style.transitionDuration = this.options.animationDelay + 'ms';
 
     this._detectSidenav();
@@ -49,24 +47,41 @@ class Collapsible {
     this.options.sidenav.activeClass ? this._addActiveInSidenav() : '';
 
     this.isActive ? this.open() : '';
-    this.initialStart = false;
+    this.isInitialStart = false;
+  }
+
+  /**
+   * Setup listeners
+   */
+  _setupListeners() {
+    this.listenerRef = this._onClickTrigger.bind(this);
+    this.collapsibleTriggers.forEach(trigger => {
+      if (trigger.dataset.target === this.el.id) {
+        trigger.addEventListener('click', this.listenerRef);
+      }
+    });
+  }
+
+  /**
+   * Remove listeners
+   */
+  _removeListeners() {
+    this.collapsibleTriggers.forEach(trigger => {
+      if (trigger.dataset.target === this.el.id) {
+        trigger.removeEventListener('click', this.listenerRef);
+      }
+    });
+    this.listenerRef = undefined;
   }
 
   /**
    * Check if collapsible is in sidenav
    */
   _detectSidenav() {
-    let elements = [];
-    let currElement = this.el;
-    elements.push(currElement);
-    while (currElement.parentElement) {
-      elements.unshift(currElement.parentElement);
-      currElement = currElement.parentElement;
-      if (currElement.classList.contains('sidenav')) {
-        this.isInSidenav = true;
-        this.sidenavId = currElement.id;
-        break;
-      }
+    const sidenavElem = this.el.closest('.sidenav');
+    if (sidenavElem) {
+      this.isInSidenav = true;
+      this.sidenavId = sidenavElem.id;
     }
 
     this.sidenavCollapsibles = document.querySelectorAll('#' + this.sidenavId + ' .collapsible');
@@ -76,8 +91,7 @@ class Collapsible {
    * Check if collapsible have active childs
    */
   _detectChild() {
-    const childrens = this.el.children;
-    for (const child of childrens) {
+    for (const child of this.el.children) {
       if (child.classList.contains('active')) {
         this.childIsActive = true;
         break;
@@ -120,7 +134,7 @@ class Collapsible {
    * Auto close others collapsible
    */
   _autoCloseOtherCollapsible() {
-    if (!this.initialStart && this.isInSidenav) {
+    if (!this.isInitialStart && this.isInSidenav) {
       this.sidenavCollapsibles.forEach(collapsible => {
         if (collapsible.id !== this.el.id) {
           collapsible.Collapsible.close();
@@ -141,6 +155,7 @@ class Collapsible {
 
   /**
    * Handle click on trigger
+   * @param {Event} e
    */
   _onClickTrigger(e) {
     e.preventDefault();
@@ -148,11 +163,7 @@ class Collapsible {
       return;
     }
 
-    if (this.isActive) {
-      this.close();
-    } else {
-      this.open();
-    }
+    this.isActive ? this.close() : this.open();
   }
 
   /**
@@ -162,6 +173,7 @@ class Collapsible {
     if (this.isActive) {
       return;
     }
+    Axentix.createEvent(this.el, 'collapsible.open');
     this.isActive = true;
     this.isAnimated = true;
     this.el.style.display = 'block';
@@ -183,6 +195,7 @@ class Collapsible {
     if (!this.isActive) {
       return;
     }
+    Axentix.createEvent(this.el, 'collapsible.close');
     this.isAnimated = true;
     this.el.style.maxHeight = '';
     this._applyOverflow();

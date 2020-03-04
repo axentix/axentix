@@ -1,5 +1,4 @@
 /*** Grix : Efficient grid system for everyone ***/
-
 // Base
 .grix {
   display: grid;
@@ -25,6 +24,10 @@
       .pos-#{$name}#{$i} {
         grid-column-start: #{$i};
       }
+
+      .pos-row-#{$name}#{$i} {
+        grid-row-start: #{$i};
+      }
     }
   } @else {
     @for $i from 1 through $max-cols {
@@ -44,12 +47,16 @@
         .pos-#{$name}#{$i} {
           grid-column-start: #{$i};
         }
+
+        .pos-row-#{$name}#{$i} {
+          grid-row-start: #{$i};
+        }
       }
     }
   }
 }
 
-// gutters
+// Gutters
 @each $num, $size in $gutter {
   @each $name, $value in $grid-breakpoints {
     @if ($name == 'xs') {
@@ -64,8 +71,4 @@
       }
     }
   }
-}
-
-.no-auto-height {
-  grid-template-rows: minmax(min-content, max-content);
 }

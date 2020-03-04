@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Axentix • Caroulix</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
+  </head>
+
+  <body class="layout">
+    <header>
+      <div class="navbar-fixed">
+        <nav class="navbar primary">
+          <a href="#" target="_blank" class="navbar-brand">Axentix</a>
+          <div class="navbar-menu ml-auto">
+            <a href="#" class="navbar-link">Link 1</a>
+            <a href="#" class="navbar-link">Link 2</a>
+            <a href="#" class="navbar-link">Link 3</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <h2>Cards</h2>
+        <div class="grix xs3 center">
+          <div class="btn airforce" onclick="caroulix.prev()">Previous</div>
+          <div class="caroulix" id="example-caroulix">
+            <div class="caroulix-item">
+              <div class="card airforce m-2">
+                <div class="card-content">
+                  <div class="card-header">Header</div>
+                  <p>
+                    Content Content cdvvzreg rgzreg gergrze fe fef ef ef efe ddzeezf f ezf f ezfzef zefe zef
+                    fz efze fze Content Content Content Content Content Content Content
+                  </p>
+                </div>
+                <div class="card-footer">Footer</div>
+              </div>
+            </div>
+            <div class="caroulix-item active">
+              <div class="card white m-2">
+                <div class="card-content">
+                  <div class="card-header">Header</div>
+                  <p>
+                    Content Content cdvvzreg rgzreg gergrze fe fef ef ef efe ddzeezf f ezf f ezfzef zefe zef
+                    fz efze fze Content Content Content Content Content Content Content
+                  </p>
+                </div>
+                <div class="card-footer">Footer</div>
+              </div>
+            </div>
+            <div class="caroulix-item">
+              <div class="card grey m-2">
+                <div class="card-content">
+                  <div class="card-header">Header</div>
+                  <p>
+                    Content Content cdvvzreg rgzreg gergrze fe fef ef ef efe ddzeezf f ezf f ezfzef zefe zef
+                    fz efze fze Content Content Content Content Content Content Content
+                  </p>
+                </div>
+                <div class="card-footer">Footer</div>
+              </div>
+            </div>
+          </div>
+          <div class="btn amaranth" onclick="caroulix.next()">Next</div>
+        </div>
+
+        <div class="caroulix" id="img-caroulix">
+          <div class="caroulix-arrow caroulix-prev">
+            <i class="fas fa-chevron-left"></i>
+          </div>
+          <div class="caroulix-arrow caroulix-next">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+          <div class="caroulix-item">
+            <img src="https://picsum.photos/800/600?random=1" alt="img1" />
+          </div>
+          <div class="caroulix-item">
+            <img src="https://picsum.photos/800/700?random=2" alt="img2" />
+          </div>
+          <div class="caroulix-item">
+            <img src="https://picsum.photos/800/500?random=3" alt="img3" />
+          </div>
+          <div class="caroulix-item">
+            <img src="https://picsum.photos/800/600?random=4" alt="img4" />
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="../dist/js/axentix.min.js"></script>
+    <script>
+      var caroulix = new Caroulix('#example-caroulix', {
+        // animationDelay: 3000,
+        animationType: 'material'
+      });
+
+      var imgCaroulix = new Caroulix('#img-caroulix', {
+        // animationDelay: 10000,
+        indicators: {
+          enabled: true,
+          isFlat: true,
+          customClasses: 'test toto'
+        },
+        fixedHeight: true
+      });
+
+      document.addEventListener('ax.caroulix.slide', function(e) {
+        console.log('slide', e);
+      });
+    </script>
+  </body>
+</html>

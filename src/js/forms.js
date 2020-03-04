@@ -19,6 +19,7 @@ Axentix.detectAllInputs = function(inputElements) {
  * @param {Element} input
  */
 Axentix.detectInput = function(input) {
+  Axentix.createEvent(input, 'form.input');
   const isActive = input.parentElement.classList.contains('active');
   const hasContent =
     input.value.length > 0 ||

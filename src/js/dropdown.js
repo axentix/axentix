@@ -2,7 +2,7 @@
  * Class Dropdown
  * @class
  */
-class Dropdown {
+class Dropdown extends AxentixComponent {
   /**
    * Construct Dropdown instance
    * @constructor
@@ -10,6 +10,7 @@ class Dropdown {
    * @param {Object} options
    */
   constructor(element, options) {
+    super();
     this.defaultOptions = {
       animationDelay: 300,
       animationType: 'none',
@@ -17,31 +18,58 @@ class Dropdown {
     };
 
     this.el = document.querySelector(element);
-    this.el.Dropdown = this;
-    this.dropdownContent = document.querySelector('#' + this.el.id + ' .dropdown-content');
-    this.dropdownTrigger = document.querySelector('#' + this.el.id + ' .dropdown-trigger');
-    this.isAnimated = false;
-    this.isActive = this.el.classList.contains('active') ? true : false;
 
     this.options = Axentix.extend(this.defaultOptions, options);
     this._setup();
   }
 
   /**
-   * Setup listeners
+   * Setup component
    */
   _setup() {
+    Axentix.createEvent(this.el, 'dropdown.setup');
+    this.dropdownContent = document.querySelector('#' + this.el.id + ' .dropdown-content');
+    this.dropdownTrigger = document.querySelector('#' + this.el.id + ' .dropdown-trigger');
+    this.isAnimated = false;
+    this.isActive = this.el.classList.contains('active') ? true : false;
+
     if (this.options.hover) {
       this.el.classList.add('active-hover');
     } else {
-      this.listenerRef = this._onClickTrigger.bind(this);
-      this.dropdownTrigger.addEventListener('click', this.listenerRef);
-
-      this.documentClickRef = this._onDocumentClick.bind(this);
-      document.addEventListener('click', this.documentClickRef, true);
+      this._setupListeners();
     }
 
     this._setupAnimation();
+  }
+
+  /**
+   * Setup listeners
+   */
+  _setupListeners() {
+    if (this.options.hover) {
+      return;
+    }
+
+    this.listenerRef = this._onClickTrigger.bind(this);
+    this.dropdownTrigger.addEventListener('click', this.listenerRef);
+
+    this.documentClickRef = this._onDocumentClick.bind(this);
+    document.addEventListener('click', this.documentClickRef, true);
+  }
+
+  /**
+   * Remove listeners
+   */
+  _removeListeners() {
+    if (this.options.hover) {
+      return;
+    }
+
+    this.dropdownTrigger.removeEventListener('click', this.listenerRef);
+    this.listenerRef = undefined;
+
+    document.removeEventListener('click', this.documentClickRef, true);
+    this.documentClickRef = undefined;
   }
 
   /**
@@ -82,16 +110,11 @@ class Dropdown {
    */
   _onClickTrigger(e) {
     e.preventDefault();
-
     if (this.isAnimated) {
       return;
     }
 
-    if (this.isActive) {
-      this.close();
-    } else {
-      this.open();
-    }
+    this.isActive ? this.close() : this.open();
   }
 
   /**
@@ -101,6 +124,7 @@ class Dropdown {
     if (this.isActive) {
       return;
     }
+    Axentix.createEvent(this.el, 'dropdown.open');
     this.dropdownContent.style.display = 'flex';
     setTimeout(() => {
       this.el.classList.add('active');
@@ -111,7 +135,10 @@ class Dropdown {
       this.isAnimated = true;
       setTimeout(() => {
         this.isAnimated = false;
+        Axentix.createEvent(this.el, 'dropdown.opened');
       }, this.options.animationDelay);
+    } else {
+      Axentix.createEvent(this.el, 'dropdown.opened');
     }
   }
 
@@ -122,6 +149,7 @@ class Dropdown {
     if (!this.isActive) {
       return;
     }
+    Axentix.createEvent(this.el, 'dropdown.close');
     this.el.classList.remove('active');
 
     if (this.options.animationType !== 'none') {
@@ -130,11 +158,13 @@ class Dropdown {
         this.dropdownContent.style.display = '';
         this.isAnimated = false;
         this.isActive = false;
+        Axentix.createEvent(this.el, 'dropdown.closed');
       }, this.options.animationDelay);
     } else {
       this.dropdownContent.style.display = '';
       this.isAnimated = false;
       this.isActive = false;
+      Axentix.createEvent(this.el, 'dropdown.closed');
     }
   }
 }

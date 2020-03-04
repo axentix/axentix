@@ -1,0 +1,101 @@
+.form-switch {
+  position: relative;
+  pointer-events: auto;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .slider {
+    --form-switch-active-color: #{$switch-bg-active-color};
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    width: 3rem;
+    height: 1.75rem;
+    background-color: $switch-bg-color;
+    transition: background-color $switch-animation-duration ease;
+    border-radius: 1rem;
+    margin: 0 0.5rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 1.25rem;
+      height: 1.25rem;
+      left: 0.25rem;
+      top: 0.25rem;
+      border-radius: 50%;
+      background-color: $switch-btn-color;
+      transition: left $switch-animation-duration ease;
+      box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    &.small {
+      width: 2.5rem;
+      height: 1.5rem;
+
+      &::before {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+
+    &.large {
+      width: 3.5rem;
+      height: 2rem;
+
+      &::before {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    &.thin {
+      height: 0.75rem;
+      margin-top: 0.5rem;
+      &::before {
+        top: -0.25rem;
+        left: -0.25rem;
+        box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.75);
+      }
+
+      &.small {
+        height: 0.5rem;
+      }
+
+      &.large {
+        height: 1rem;
+      }
+    }
+  }
+
+  input:checked + .slider {
+    background-color: var(--form-switch-active-color);
+  }
+
+  input:checked + .slider {
+    &::before {
+      left: 50%;
+    }
+
+    &.thin::before {
+      left: 60%;
+    }
+  }
+}
+
+.form-field {
+  .form-switch {
+    font-weight: initial;
+    margin-bottom: 0;
+    display: inline-flex;
+    align-self: flex-start;
+  }
+}

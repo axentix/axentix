@@ -26,7 +26,10 @@ class Axentix {
       Collapsible: document.querySelectorAll('.collapsible:not(.no-axentix-init)'),
       Sidenav: document.querySelectorAll('.sidenav:not(.no-axentix-init)'),
       Modal: document.querySelectorAll('.modal:not(.no-axentix-init)'),
-      Dropdown: document.querySelectorAll('.dropdown:not(.no-axentix-init)')
+      Dropdown: document.querySelectorAll('.dropdown:not(.no-axentix-init)'),
+      Tab: document.querySelectorAll('.tab:not(.no-axentix-init)'),
+      Fab: document.querySelectorAll('.fab:not(.no-axentix-init)'),
+      Caroulix: document.querySelectorAll('.caroulix:not(.no-axentix-init)')
     };
 
     const isInList = componentList.hasOwnProperty(this.component);
@@ -67,8 +70,6 @@ class Axentix {
       try {
         this.instances.push(new constructor(...args));
       } catch (error) {
-        // For debug
-        // console.log(error);
         console.error('Axentix : Unable to load ' + component);
       }
     });
@@ -79,7 +80,7 @@ class Axentix {
    * @param {String} element Id of element
    */
   getInstance(element) {
-    return this.instances.filter(instance => instance.el.id === element)[0];
+    return this.instances.filter(instance => '#' + instance.el.id === element)[0];
   }
 
   /**
@@ -87,5 +88,35 @@ class Axentix {
    */
   getAllInstances() {
     return this.instances;
+  }
+
+  /**
+   * Sync instance of element
+   * @param {String} element Id of element
+   */
+  sync(element) {
+    this.getInstance(element).sync();
+  }
+
+  /**
+   * Sync all instances
+   */
+  syncAll() {
+    this.instances.map(instance => instance.sync());
+  }
+
+  /**
+   * Reset instance of element
+   * @param {String} element Id of element
+   */
+  reset(element) {
+    this.getInstance(element).reset();
+  }
+
+  /**
+   * Reset all instances
+   */
+  resetAll() {
+    this.instances.map(instance => instance.reset());
   }
 }

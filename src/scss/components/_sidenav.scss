@@ -1,5 +1,5 @@
 .sidenav {
-  z-index: 710;
+  z-index: $sidenav-zindex;
   width: $sidenav-width;
   position: fixed;
   left: 0;
@@ -119,7 +119,7 @@
   right: 0;
   top: 0;
   height: 100%;
-  z-index: 700;
+  z-index: $sidenav-overlay-zindex;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
