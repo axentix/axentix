@@ -85,7 +85,7 @@ class Toast {
       toast.classList.add('toast-animated');
 
       setTimeout(() => {
-        Axentix.createEvent(toast, 'toast.showed');
+        Axentix.createEvent(toast, 'toast.shown');
       }, this.options.animationDelay);
     }, 50);
   }
