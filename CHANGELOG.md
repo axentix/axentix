@@ -17,7 +17,7 @@
   - Orange color
 - REMOVED
 - IMPROVED
-  - All of our js components have been optimized
+  - All our js components have been optimized
   - Rework grey, yellow and warning colors
   - Rework shadows classes
   - Rework hoverable classes
