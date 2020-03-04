@@ -1,4 +1,4 @@
-# 0.5.0 - Under Development
+# 0.5.0 - 2020-03-04
 
 - ADDED
   - Caroulix
