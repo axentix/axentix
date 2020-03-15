@@ -105,11 +105,6 @@ class Tab extends AxentixComponent {
     }
   }
 
-  _handleResizeTabEvent() {
-    clearTimeout(this.resizeEventDelay);
-    this.resizeEventDelay = setTimeout(() => this.updateActiveElement, 100);
-  }
-
   /**
    * Get all items
    */
