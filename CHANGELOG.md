@@ -5,12 +5,12 @@
 - IMPROVED
 - BUGFIXES
   - Tab bar incorrectly sized when resize event is triggered
-  - Tab slide enable autoplay by default
+  - Tab slide was enabling autoplay by default
   - Fix btn hoverable & light-hoverable
   - Caroulix `updateHeight` method rework
   - Caroulix resize event
   - Caroulix optimization
-  - Collapsible in sidenav height
+  - Collapsible height in sidenav
   - Fab hover method
 
 # 0.5.0 - 2020-03-04
