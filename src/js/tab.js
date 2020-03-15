@@ -68,7 +68,7 @@ class Tab extends AxentixComponent {
       item.addEventListener('click', item.listenerRef);
     });
 
-    this.resizeTabListener = this.updateActiveElement.bind(this);
+    this.resizeTabListener = this._handleResizeEvent.bind(this);
     window.addEventListener('resize', this.resizeTabListener);
 
     if (this.tabArrow) {
@@ -102,6 +102,15 @@ class Tab extends AxentixComponent {
       this.rightArrow.removeEventListener('click', this.scrollRightLstener);
       this.scrollLeftListener = undefined;
       this.scrollRightLstener = undefined;
+    }
+  }
+
+  _handleResizeEvent() {
+    this.updateActiveElement();
+    for (let i = 100; i < 500; i += 100) {
+      setTimeout(() => {
+        this.updateActiveElement();
+      }, i);
     }
   }
 
@@ -149,12 +158,14 @@ class Tab extends AxentixComponent {
   _setActiveElement(element) {
     this.tabLinks.forEach(item => item.classList.remove('active'));
 
-    const elementPosLeft = element.getBoundingClientRect().left;
+    const elementRect = element.getBoundingClientRect();
+
+    const elementPosLeft = elementRect.left;
     const menuPosLeft = this.tabMenu.getBoundingClientRect().left;
     const left = elementPosLeft - menuPosLeft + this.tabMenu.scrollLeft;
 
-    const elementPosRight = element.getBoundingClientRect().width;
-    const right = this.tabMenu.clientWidth - left - elementPosRight;
+    const elementWidth = elementRect.width;
+    const right = this.tabMenu.clientWidth - left - elementWidth;
 
     this.tabMenu.style.setProperty('--tab-bar-left-offset', Math.floor(left) + 'px');
     this.tabMenu.style.setProperty('--tab-bar-right-offset', Math.ceil(right) + 'px');
