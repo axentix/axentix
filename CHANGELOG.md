@@ -1,4 +1,4 @@
-# 0.5.1 - Under development
+# 0.5.1 - 2020-03-15
 
 - ADDED
 - REMOVED
