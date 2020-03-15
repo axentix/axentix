@@ -5,11 +5,15 @@
 }
 
 // Style in sidenav
-.sidenav .collapsible a {
-  padding-left: 1.75rem;
+.sidenav .collapsible {
+  flex-shrink: 0;
 
-  &:hover,
-  &.active {
-    background-color: rgba(0, 0, 0, 0.09);
+  a {
+    padding-left: 1.75rem;
+
+    &:hover,
+    &.active {
+      background-color: rgba(0, 0, 0, 0.09);
+    }
   }
 }
