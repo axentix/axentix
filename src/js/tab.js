@@ -12,12 +12,17 @@ class Tab extends AxentixComponent {
   constructor(element, options) {
     super();
     this.defaultAnimDelay = 300;
+    this.caroulixOptions = {
+      animationDelay: this.defaultAnimDelay,
+      autoplay: {
+        enabled: false
+      }
+    };
+
     this.defaultOptions = {
       animationDelay: this.defaultAnimDelay,
       animationType: 'none',
-      caroulix: {
-        animationDelay: this.defaultAnimDelay
-      }
+      caroulix: {}
     };
 
     this.el = document.querySelector(element);
@@ -36,6 +41,7 @@ class Tab extends AxentixComponent {
     const animationList = ['none', 'slide'];
     animationList.includes(this.options.animationType) ? '' : (this.options.animationType = 'none');
     this.isAnimated = false;
+    this.resizeEventDelay = 0;
     this.tabArrow = document.querySelector(this.elQuery + ' .tab-arrow');
     this.tabLinks = document.querySelectorAll(this.elQuery + ' .tab-menu .tab-link');
     this.tabMenu = document.querySelector(this.elQuery + ' .tab-menu');
@@ -62,7 +68,7 @@ class Tab extends AxentixComponent {
       item.addEventListener('click', item.listenerRef);
     });
 
-    this.resizeTabListener = this.updateActiveElement.bind(this);
+    this.resizeTabListener = this._handleResizeEvent.bind(this);
     window.addEventListener('resize', this.resizeTabListener);
 
     if (this.tabArrow) {
@@ -99,6 +105,15 @@ class Tab extends AxentixComponent {
     }
   }
 
+  _handleResizeEvent() {
+    this.updateActiveElement();
+    for (let i = 100; i < 500; i += 100) {
+      setTimeout(() => {
+        this.updateActiveElement();
+      }, i);
+    }
+  }
+
   /**
    * Get all items
    */
@@ -129,6 +144,7 @@ class Tab extends AxentixComponent {
     this.tabCaroulix.id = 'tab-caroulix-' + nb;
     this.tabCaroulixInit = true;
 
+    this.options.caroulix = Axentix.extend(this.caroulixOptions, this.options.caroulix);
     this.options.animationDelay !== this.defaultAnimDelay
       ? (this.options.caroulix.animationDelay = this.options.animationDelay)
       : '';
@@ -142,14 +158,17 @@ class Tab extends AxentixComponent {
   _setActiveElement(element) {
     this.tabLinks.forEach(item => item.classList.remove('active'));
 
-    const width = element.clientWidth;
-    const elementPosLeft = element.getBoundingClientRect().left;
+    const elementRect = element.getBoundingClientRect();
 
+    const elementPosLeft = elementRect.left;
     const menuPosLeft = this.tabMenu.getBoundingClientRect().left;
     const left = elementPosLeft - menuPosLeft + this.tabMenu.scrollLeft;
 
-    this.tabMenu.style.setProperty('--tab-bar-left-offset', left + 'px');
-    this.tabMenu.style.setProperty('--tab-bar-width', width + 'px');
+    const elementWidth = elementRect.width;
+    const right = this.tabMenu.clientWidth - left - elementWidth;
+
+    this.tabMenu.style.setProperty('--tab-bar-left-offset', Math.floor(left) + 'px');
+    this.tabMenu.style.setProperty('--tab-bar-right-offset', Math.ceil(right) + 'px');
 
     element.classList.add('active');
   }

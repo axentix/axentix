@@ -30,7 +30,7 @@
 
 // Hoverable
 @each $number, $value in $hoverable {
-  .hoverable-#{$number} {
+  .hoverable-#{$number}:not(.press):not(.push):not(.outline) {
     transition-property: box-shadow, transform;
     transition-timing-function: ease;
     transition-duration: $hoverable-delay;
@@ -42,9 +42,9 @@
   }
 }
 
-// Light overable
+// Light hoverable
 @each $number, $value in $light-hoverable {
-  .light-hoverable-#{$number} {
+  .light-hoverable-#{$number}:not(.press):not(.push):not(.outline) {
     transition-property: box-shadow, transform;
     transition-timing-function: ease-out;
     transition-duration: $light-hoverable-delay;

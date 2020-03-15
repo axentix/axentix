@@ -31,12 +31,12 @@
           <div id="tab3">Content 3</div>
         </div>
 
-        <div class="tab shadow-1 mt-4" id="slide-tab">
+        <div class="tab full-width shadow-1 mt-4" id="slide-tab">
           <ul class="tab-menu">
             <li class="tab-link">
               <a href="#tab1">Tab 1</a>
             </li>
-            <li class="tab-link active">
+            <li class="tab-link">
               <a href="#tab2">Tab 2</a>
             </li>
             <li class="tab-link">
@@ -44,11 +44,67 @@
             </li>
           </ul>
           <div id="tab1">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem minima nesciunt totam eligendi
-            dolorem, perferendis dignissimos unde deserunt temporibus tempore, aut sint aliquid harum?
-            Accusantium eligendi porro temporibus quibusdam sed.
+            <div class="responsive-table">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Paul</td>
+                    <td>24</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div id="tab2">Content 2</div>
+          <div id="tab2">
+            <div class="responsive-table">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Car</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Paul</td>
+                    <td>24</td>
+                    <td>Paris</td>
+                    <td>France</td>
+                    <td>Mustang</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Patrick</td>
+                    <td>34</td>
+                    <td>Nice</td>
+                    <td>France</td>
+                    <td>Renault</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Robert</td>
+                    <td>62</td>
+                    <td>Limoges</td>
+                    <td>France</td>
+                    <td>Ferrari</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
           <div id="tab3">Content 3</div>
         </div>
 
@@ -131,7 +187,10 @@
       var tab2 = new Tab('#example-tab2');
 
       var slideTab = new Tab('#slide-tab', {
-        animationType: 'slide'
+        animationType: 'slide',
+        caroulix: {
+          fixedHeight: false
+        }
       });
 
       // Floating Action Button

@@ -16,13 +16,12 @@
   word-wrap: normal;
   @extend .shadow-1, .rounded-1;
 
-  &:not(.press),
-  &:not(.push),
-  &:not(.outline) {
-    @each $number, $value in $hoverable {
-      &.hoverable-#{$number} {
-        transition-property: filter, transform, box-shadow;
-      }
+  [class*='hoverable-'],
+  [class*='light-hoverable-'] {
+    &:not(.press),
+    &:not(.push),
+    &:not(.outline) {
+      transition-property: filter, transform, box-shadow;
     }
   }
 

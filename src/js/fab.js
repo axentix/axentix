@@ -38,7 +38,7 @@ class Fab extends AxentixComponent {
     this.fabMenu = document.querySelector('#' + this.el.id + ' .fab-menu');
 
     this._verifOptions();
-    this.options.hover ? this.el.classList.add('fab-hover') : this._setupListeners();
+    this._setupListeners();
     this.el.style.transitionDuration = this.options.animationDelay + 'ms';
     this._setProperties();
   }
@@ -58,8 +58,15 @@ class Fab extends AxentixComponent {
    * Setup listeners
    */
   _setupListeners() {
-    this.listenerRef = this._onClickTrigger.bind(this);
-    this.trigger.addEventListener('click', this.listenerRef);
+    if (this.options.hover) {
+      this.openRef = this.open.bind(this);
+      this.closeRef = this.close.bind(this);
+      this.el.addEventListener('mouseenter', this.openRef);
+      this.el.addEventListener('mouseleave', this.closeRef);
+    } else {
+      this.listenerRef = this._onClickTrigger.bind(this);
+      this.el.addEventListener('click', this.listenerRef);
+    }
 
     this.documentClickRef = this._handleDocumentClick.bind(this);
     document.addEventListener('click', this.documentClickRef, true);
@@ -69,8 +76,15 @@ class Fab extends AxentixComponent {
    * Remove listeners
    */
   _removeListeners() {
-    this.trigger.removeEventListener('click', this.listenerRef);
-    this.listenerRef = undefined;
+    if (this.options.hover) {
+      this.el.removeEventListener('mouseenter', this.openRef);
+      this.el.removeEventListener('mouseleave', this.closeRef);
+      this.openRef = undefined;
+      this.closeRef = undefined;
+    } else {
+      this.el.removeEventListener('click', this.listenerRef);
+      this.listenerRef = undefined;
+    }
 
     document.removeEventListener('click', this.documentClickRef, true);
     this.documentClickRef = undefined;
