@@ -30,14 +30,14 @@
       }
     }
 
-    &::after {
+    &::before {
       content: '';
       position: absolute;
       bottom: 0;
       left: var(--tab-bar-left-offset);
-      width: var(--tab-bar-width);
+      right: var(--tab-bar-right-offset);
       border-bottom: 0.1rem solid var(--tab-active-color);
-      transition-property: left, width;
+      transition-property: left, right;
       transition-timing-function: ease;
       transition-duration: inherit;
     }

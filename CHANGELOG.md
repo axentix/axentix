@@ -1,3 +1,16 @@
+# 0.5.1 - Under development
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Tab bar incorrectly sized when resize event is triggered
+  - Tab slide enable autoplay by default
+  - Fix btn hoverable & light-hoverable
+  - Caroulix updateHeight method rework
+  - Caroulix resize event
+  - Caroulix optimization
+
 # 0.5.0 - 2020-03-04
 
 - ADDED
