@@ -18,9 +18,11 @@
     .card-header {
       padding: 0 0 3rem 0;
     }
+
     .card-footer {
       padding: 3rem 0 0 0;
     }
+
     p {
       margin: 0;
     }
@@ -41,4 +43,9 @@
       display: block;
     }
   }
+}
+
+// Grix stretch fix
+.grix.vstretch .card {
+  align-self: auto;
 }

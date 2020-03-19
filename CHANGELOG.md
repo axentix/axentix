@@ -1,11 +1,14 @@
 # 0.5.2 - 2020-03-19
 
 - ADDED
+  - `.h100` class
+  - `.vstretch` & `.vself-stretch` classes
 - REMOVED
 - IMPROVED
 - BUGFIXES
   - Axentix core don't init component
   - Fab don't init in Axentix core
+  - Handle card with stretch mode
 
 # 0.5.1 - 2020-03-15
 
