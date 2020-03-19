@@ -168,3 +168,4 @@ class Dropdown extends AxentixComponent {
     }
   }
 }
+Axentix.Dropdown = Dropdown;

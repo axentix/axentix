@@ -28,7 +28,7 @@ class Axentix {
       Modal: document.querySelectorAll('.modal:not(.no-axentix-init)'),
       Dropdown: document.querySelectorAll('.dropdown:not(.no-axentix-init)'),
       Tab: document.querySelectorAll('.tab:not(.no-axentix-init)'),
-      Fab: document.querySelectorAll('.fab:not(.no-axentix-init)'),
+      Fab: document.querySelectorAll('.fab:not(i):not(.no-axentix-init)'),
       Caroulix: document.querySelectorAll('.caroulix:not(.no-axentix-init)')
     };
 
@@ -64,7 +64,7 @@ class Axentix {
    */
   _instanciate(ids, component) {
     ids.map(id => {
-      let constructor = window[component];
+      let constructor = Axentix[component];
       let args = [id, this.options];
 
       try {

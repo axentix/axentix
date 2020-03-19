@@ -181,3 +181,4 @@ class Fab extends AxentixComponent {
     }, this.options.animationDelay);
   }
 }
+Axentix.Fab = Fab;

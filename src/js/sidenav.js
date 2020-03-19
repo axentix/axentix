@@ -170,3 +170,4 @@ class Sidenav extends AxentixComponent {
     }
   }
 }
+Axentix.Sidenav = Sidenav;

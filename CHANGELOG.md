@@ -1,3 +1,12 @@
+# 0.5.2 - 2020-03-19
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Axentix core don't init component
+  - Fab don't init in Axentix core
+
 # 0.5.1 - 2020-03-15
 
 - ADDED

@@ -391,3 +391,4 @@ class Caroulix extends AxentixComponent {
     this.autoTimeout = false;
   }
 }
+Axentix.Caroulix = Caroulix;

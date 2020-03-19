@@ -277,3 +277,4 @@ class Tab extends AxentixComponent {
     this.select(target.split('#')[1]);
   }
 }
+Axentix.Tab = Tab;
