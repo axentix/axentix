@@ -209,3 +209,4 @@ class Collapsible extends AxentixComponent {
     }, this.options.animationDelay);
   }
 }
+Axentix.Collapsible = Collapsible;

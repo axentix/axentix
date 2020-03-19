@@ -83,6 +83,11 @@
   width: 100% !important;
 }
 
+// Height
+.h100 {
+  height: 100% !important;
+}
+
 // Flex
 .flex {
   display: flex;
@@ -185,6 +190,10 @@
   align-items: end !important;
 }
 
+.vstretch {
+  align-items: stretch !important;
+}
+
 .vself-top {
   align-self: start !important;
 }
@@ -195,6 +204,10 @@
 
 .vself-bottom {
   align-self: end !important;
+}
+
+.vself-stretch {
+  align-self: stretch !important;
 }
 
 .float-left {

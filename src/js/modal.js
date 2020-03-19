@@ -174,3 +174,4 @@ class Modal extends AxentixComponent {
     }
   }
 }
+Axentix.Modal = Modal;
