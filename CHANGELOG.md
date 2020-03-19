@@ -6,8 +6,8 @@
 - REMOVED
 - IMPROVED
 - BUGFIXES
-  - Axentix core don't init component
-  - Fab don't init in Axentix core
+  - Axentix core doesn't init the components
+  - Fab doesn't init in Axentix core
   - Handle card with stretch mode
 
 # 0.5.1 - 2020-03-15
