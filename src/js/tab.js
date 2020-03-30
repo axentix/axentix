@@ -22,6 +22,7 @@ class Tab extends AxentixComponent {
     this.defaultOptions = {
       animationDelay: this.defaultAnimDelay,
       animationType: 'none',
+      disableActiveBar: false,
       caroulix: {}
     };
 
@@ -45,6 +46,7 @@ class Tab extends AxentixComponent {
     this.tabArrow = document.querySelector(this.elQuery + ' .tab-arrow');
     this.tabLinks = document.querySelectorAll(this.elQuery + ' .tab-menu .tab-link');
     this.tabMenu = document.querySelector(this.elQuery + ' .tab-menu');
+    this.currentItemIndex = 0;
     this._getItems();
 
     if (this.tabArrow) {
@@ -158,17 +160,19 @@ class Tab extends AxentixComponent {
   _setActiveElement(element) {
     this.tabLinks.forEach(item => item.classList.remove('active'));
 
-    const elementRect = element.getBoundingClientRect();
+    if (!this.options.disableActiveBar) {
+      const elementRect = element.getBoundingClientRect();
 
-    const elementPosLeft = elementRect.left;
-    const menuPosLeft = this.tabMenu.getBoundingClientRect().left;
-    const left = elementPosLeft - menuPosLeft + this.tabMenu.scrollLeft;
+      const elementPosLeft = elementRect.left;
+      const menuPosLeft = this.tabMenu.getBoundingClientRect().left;
+      const left = elementPosLeft - menuPosLeft + this.tabMenu.scrollLeft;
 
-    const elementWidth = elementRect.width;
-    const right = this.tabMenu.clientWidth - left - elementWidth;
+      const elementWidth = elementRect.width;
+      const right = this.tabMenu.clientWidth - left - elementWidth;
 
-    this.tabMenu.style.setProperty('--tab-bar-left-offset', Math.floor(left) + 'px');
-    this.tabMenu.style.setProperty('--tab-bar-right-offset', Math.ceil(right) + 'px');
+      this.tabMenu.style.setProperty('--tab-bar-left-offset', Math.floor(left) + 'px');
+      this.tabMenu.style.setProperty('--tab-bar-right-offset', Math.ceil(right) + 'px');
+    }
 
     element.classList.add('active');
   }
@@ -227,6 +231,36 @@ class Tab extends AxentixComponent {
     this.select(target.split('#')[1]);
   }
 
+  _getPreviousItemIndex(step) {
+    let previousItemIndex = 0;
+    let index = this.currentItemIndex;
+    for (let i = 0; i < step; i++) {
+      if (index > 0) {
+        previousItemIndex = index - 1;
+        index--;
+      } else {
+        index = this.tabLinks.length - 1;
+        previousItemIndex = index;
+      }
+    }
+    return previousItemIndex;
+  }
+
+  _getNextItemIndex(step) {
+    let nextItemIndex = 0;
+    let index = this.currentItemIndex;
+    for (let i = 0; i < step; i++) {
+      if (index < this.tabLinks.length - 1) {
+        nextItemIndex = index + 1;
+        index++;
+      } else {
+        index = 0;
+        nextItemIndex = index;
+      }
+    }
+    return nextItemIndex;
+  }
+
   /**
    * Select tab
    * @param {String} itemId
@@ -268,12 +302,43 @@ class Tab extends AxentixComponent {
    */
   updateActiveElement() {
     let itemSelected;
-    this.tabLinks.forEach(item => {
-      item.classList.contains('active') ? (itemSelected = item) : '';
+    this.tabLinks.forEach((item, index) => {
+      item.classList.contains('active') ? ((itemSelected = item), (this.currentItemIndex = index)) : '';
     });
 
-    itemSelected ? '' : (itemSelected = this.tabLinks.item(0));
+    itemSelected ? '' : ((itemSelected = this.tabLinks.item(0)), (this.currentItemIndex = 0));
     const target = itemSelected.children[0].getAttribute('href');
+    this.tabSelected = target;
+    this.select(target.split('#')[1]);
+  }
+
+  /**
+   * Go to previous tab
+   */
+  prev(step = 1) {
+    if (this.isAnimated) {
+      return;
+    }
+
+    Axentix.createEvent(this.el, 'tab.prev', { step });
+    const previousItemIndex = this._getPreviousItemIndex(step);
+    this.currentItemIndex = previousItemIndex;
+    const target = this.tabLinks[previousItemIndex].children[0].getAttribute('href');
+    this.select(target.split('#')[1]);
+  }
+
+  /**
+   * Go to next tab
+   */
+  next(step = 1) {
+    if (this.isAnimated) {
+      return;
+    }
+
+    Axentix.createEvent(this.el, 'tab.next', { step });
+    const nextItemIndex = this._getNextItemIndex(step);
+    this.currentItemIndex = nextItemIndex;
+    const target = this.tabLinks[nextItemIndex].children[0].getAttribute('href');
     this.select(target.split('#')[1]);
   }
 }

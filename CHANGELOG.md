@@ -1,3 +1,12 @@
+# 0.6.0 - Under development
+
+- ADDED
+  - next & prev methods on Tab
+  - disableActiveBar option to disable indicator on tabs
+- REMOVED
+- IMPROVED
+- BUGFIXES
+
 # 0.5.2 - 2020-03-19
 
 - ADDED
