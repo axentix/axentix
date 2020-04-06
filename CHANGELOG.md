@@ -1,3 +1,11 @@
+# 0.5.3 - Under development
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Grix pos-row & pos classes improvement
+
 # 0.5.2 - 2020-03-19
 
 - ADDED
