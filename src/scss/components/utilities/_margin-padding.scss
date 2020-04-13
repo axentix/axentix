@@ -1,4 +1,4 @@
-@each $number, $value in $spaces {
+@each $number, $value in $mp-spaces {
   .m-#{$number} {
     margin: #{$value} !important;
   }
@@ -10,7 +10,7 @@
   }
 }
 
-@each $number, $value in $spaces {
+@each $number, $value in $mp-spaces {
   .mx-#{$number} {
     margin-left: #{$value} !important;
     margin-right: #{$value} !important;
@@ -34,7 +34,7 @@
   }
 }
 
-@each $number, $value in $spaces {
+@each $number, $value in $mp-spaces {
   .mt-#{$number} {
     margin-top: #{$value} !important;
   }

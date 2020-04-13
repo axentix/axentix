@@ -105,15 +105,7 @@
 }
 
 // Rounded
-.rounded-0 {
-  border-radius: 0 !important;
-}
-
-@each $name, $value in $rounded {
-  .rounded-#{$name} {
-    border-radius: #{$value};
-  }
-}
+@import './utilities/rounded';
 
 // Text format
 .lowercase {
@@ -160,5 +152,22 @@
 
   .overflow-y-#{$overflow} {
     overflow-y: #{$overflow} !important;
+  }
+}
+
+// Line heights
+.lh-normal {
+  line-height: normal !important;
+}
+
+@each $name, $value in $lh-relative {
+  .lh-#{$name} {
+    line-height: #{$value} !important;
+  }
+}
+
+@each $name, $value in $lh-rem {
+  .lh-rem-#{$name} {
+    line-height: #{$value} !important;
   }
 }

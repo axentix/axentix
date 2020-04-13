@@ -1,6 +1,7 @@
 # 0.5.3 - Under development
 
 - ADDED
+  - `.lh-{nb}` & `.lh-rem-{nb}` line height classes
 - REMOVED
 - IMPROVED
   - Material forms label color

@@ -1,0 +1,23 @@
+@each $name, $value in $rounded {
+  @if ($value == 0) {
+    .rounded-#{$name} {
+      border-radius: #{$value} !important;
+    }
+  }
+
+  .rounded-#{$name} {
+    border-radius: #{$value};
+  }
+}
+
+// @each $name, $value in $rounded {
+//   @if ($value == 0) {
+//     .rounded-t#{$name} {
+//       border-radius: #{$value} !important;
+//     }
+//   }
+
+//   .rounded-#{$name} {
+//     border-radius: #{$value};
+//   }
+// }
