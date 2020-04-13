@@ -3,6 +3,7 @@
 - ADDED
 - REMOVED
 - IMPROVED
+  - Rework margin / padding generation
 - BUGFIXES
   - Grix pos-row & pos classes improvement
 
