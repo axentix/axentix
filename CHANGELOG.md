@@ -10,6 +10,7 @@
 - BUGFIXES
   - Grix pos-row & pos classes improvement
   - Sidenav link height with safari
+  - Card image rounded
 
 # 0.5.2 - 2020-03-19
 
