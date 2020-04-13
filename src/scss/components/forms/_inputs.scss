@@ -119,11 +119,16 @@
       label {
         top: 0.1rem;
         font-size: 0.8rem;
-        color: var(--form-material-color);
       }
 
-      &.is-focused::after {
-        width: 100%;
+      &.is-focused {
+        label {
+          color: var(--form-material-color);
+        }
+
+        &::after {
+          width: 100%;
+        }
       }
 
       .form-control {

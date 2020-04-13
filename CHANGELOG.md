@@ -3,7 +3,9 @@
 - ADDED
 - REMOVED
 - IMPROVED
+  - Material forms label color
   - Rework margin / padding generation
+  - Update dependencies
 - BUGFIXES
   - Grix pos-row & pos classes improvement
 
