@@ -2,6 +2,8 @@
 
 - ADDED
   - `.lh-{nb}` & `.lh-rem-{nb}` line height classes
+  - `.z-index-{0, 1, ...10}` classes
+  - `.opacity-{0, 10, ..., 100}` classes
 - REMOVED
 - IMPROVED
   - Material forms label color

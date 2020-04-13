@@ -1,7 +1,7 @@
 /*** Some helpers classes ***/
 
 // Typography
-@for $i from 1 to 9 {
+@for $i from 1 through 9 {
   .font-w#{$i}00 {
     font-weight: #{$i}00 !important;
   }
@@ -170,4 +170,26 @@
   .lh-rem-#{$name} {
     line-height: #{$value} !important;
   }
+}
+
+// Z-index
+@for $i from 0 through 10 {
+  .z-index-#{$i} {
+    z-index: #{$i} !important;
+  }
+}
+
+// Opacity
+.opacity-0 {
+  opacity: 0 !important;
+}
+
+@for $i from 1 through 9 {
+  .opacity-#{$i * 10} {
+    opacity: unquote(0 + '.' + #{$i}) !important;
+  }
+}
+
+.opacity-100 {
+  opacity: 1 !important;
 }
