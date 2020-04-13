@@ -9,6 +9,7 @@
   - Update dependencies
 - BUGFIXES
   - Grix pos-row & pos classes improvement
+  - Sidenav link height with safari
 
 # 0.5.2 - 2020-03-19
 
