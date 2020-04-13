@@ -215,6 +215,15 @@
   align-self: start;
 }
 
+// Utilities fix
+.vcenter .btn {
+  align-self: center;
+}
+
+.vbottom .btn {
+  align-self: end;
+}
+
 // Table fix
 table .btn {
   display: inline-block;

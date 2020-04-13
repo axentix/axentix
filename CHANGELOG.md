@@ -5,6 +5,7 @@
 - IMPROVED
   - Material forms label color
   - Rework margin / padding generation
+  - Buttons with alignments utilities
   - Update dependencies
 - BUGFIXES
   - Grix pos-row & pos classes improvement
