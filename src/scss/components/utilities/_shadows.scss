@@ -1,0 +1,69 @@
+// Box shadows
+.shadow-0 {
+  box-shadow: none !important;
+}
+.light-shadow-0 {
+  box-shadow: none !important;
+}
+
+@each $number, $value in $shadows {
+  .shadow-#{$number} {
+    box-shadow: #{$value};
+  }
+}
+
+@each $number, $value in $light-shadows {
+  .light-shadow-#{$number} {
+    box-shadow: #{$value};
+  }
+}
+
+// Hoverable
+@each $number, $value in $hoverable {
+  .hoverable-#{$number}:not(.press):not(.push):not(.outline) {
+    transition-property: box-shadow, transform;
+    transition-timing-function: ease;
+    transition-duration: $hoverable-delay;
+
+    &:hover {
+      box-shadow: #{$value} !important;
+      transform: translateY(-5px);
+    }
+  }
+}
+
+// Light hoverable
+@each $number, $value in $light-hoverable {
+  .light-hoverable-#{$number}:not(.press):not(.push):not(.outline) {
+    transition-property: box-shadow, transform;
+    transition-timing-function: ease-out;
+    transition-duration: $light-hoverable-delay;
+
+    &:hover {
+      box-shadow: #{$value} !important;
+      transform: translateY(-5px);
+    }
+  }
+}
+
+// Drop shadows
+.dropshadow-0 {
+  filter: none !important;
+}
+
+@each $number, $value in $drop-shadows {
+  .dropshadow-#{$number} {
+    filter: #{$value};
+  }
+}
+
+// Text shadows
+.textshadow-0 {
+  text-shadow: none !important;
+}
+
+@each $number, $value in $text-shadows {
+  .textshadow-#{$number} {
+    text-shadow: #{$value};
+  }
+}

@@ -1,3 +1,22 @@
+# 0.5.3 - 2020-04-15
+
+- ADDED
+  - `.lh-{nb}` & `.lh-rem-{nb}` & `lh-normal` line height classes
+  - `.z-index-{0, 1, ..., 10}` classes
+  - `.opacity-{0, 10, ..., 100}` classes
+  - Rounded classes on specific corners
+- REMOVED
+- IMPROVED
+  - Material forms label color
+  - Rework margin / padding generation
+  - Buttons alignments with alignment utilities
+  - Pagination hover effect
+  - Update dependencies
+- BUGFIXES
+  - Grix pos-row & pos classes improvement
+  - Sidenav link height with safari
+  - Card image rounded
+
 # 0.5.2 - 2020-03-19
 
 - ADDED

@@ -1,0 +1,47 @@
+@each $name, $value in $rounded {
+  @if ($value == 0) {
+    .rounded-#{$name} {
+      border-radius: #{$value} !important;
+    }
+  }
+
+  .rounded-#{$name} {
+    border-radius: #{$value};
+  }
+}
+
+@each $name, $value in $rounded {
+  @if ($value == 0) {
+    .rounded-tl#{$name} {
+      border-top-left-radius: #{$value} !important;
+    }
+
+    .rounded-tr#{$name} {
+      border-top-right-radius: #{$value} !important;
+    }
+
+    .rounded-bl#{$name} {
+      border-bottom-left-radius: #{$value} !important;
+    }
+
+    .rounded-br#{$name} {
+      border-bottom-right-radius: #{$value} !important;
+    }
+  }
+
+  .rounded-tl#{$name} {
+    border-top-left-radius: #{$value};
+  }
+
+  .rounded-tr#{$name} {
+    border-top-right-radius: #{$value};
+  }
+
+  .rounded-bl#{$name} {
+    border-bottom-left-radius: #{$value};
+  }
+
+  .rounded-br#{$name} {
+    border-bottom-right-radius: #{$value};
+  }
+}

@@ -36,6 +36,8 @@
 
   .card-image {
     position: relative;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
 
     img {
       background-size: cover;
