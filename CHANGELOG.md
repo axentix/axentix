@@ -1,8 +1,8 @@
-# 0.5.3 - Under development
+# 0.5.3 - 2020-04-15
 
 - ADDED
   - `.lh-{nb}` & `.lh-rem-{nb}` & `lh-normal` line height classes
-  - `.z-index-{0, 1, ...10}` classes
+  - `.z-index-{0, 1, ..., 10}` classes
   - `.opacity-{0, 10, ..., 100}` classes
   - Rounded classes on specific corners
 - REMOVED
