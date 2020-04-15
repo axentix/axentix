@@ -10,6 +10,7 @@
   - Material forms label color
   - Rework margin / padding generation
   - Buttons alignments with alignment utilities
+  - Pagination hover effect
   - Update dependencies
 - BUGFIXES
   - Grix pos-row & pos classes improvement
