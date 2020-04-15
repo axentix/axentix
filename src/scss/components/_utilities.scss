@@ -1,82 +1,14 @@
 /*** Some helpers classes ***/
 
 // Typography
-@for $i from 1 to 9 {
+@for $i from 1 through 9 {
   .font-w#{$i}00 {
     font-weight: #{$i}00 !important;
   }
 }
 
 /// Shadows
-// Box shadows
-.shadow-0 {
-  box-shadow: none !important;
-}
-.light-shadow-0 {
-  box-shadow: none !important;
-}
-
-@each $number, $value in $shadows {
-  .shadow-#{$number} {
-    box-shadow: #{$value};
-  }
-}
-
-@each $number, $value in $light-shadows {
-  .light-shadow-#{$number} {
-    box-shadow: #{$value};
-  }
-}
-
-// Hoverable
-@each $number, $value in $hoverable {
-  .hoverable-#{$number}:not(.press):not(.push):not(.outline) {
-    transition-property: box-shadow, transform;
-    transition-timing-function: ease;
-    transition-duration: $hoverable-delay;
-
-    &:hover {
-      box-shadow: #{$value} !important;
-      transform: translateY(-5px);
-    }
-  }
-}
-
-// Light hoverable
-@each $number, $value in $light-hoverable {
-  .light-hoverable-#{$number}:not(.press):not(.push):not(.outline) {
-    transition-property: box-shadow, transform;
-    transition-timing-function: ease-out;
-    transition-duration: $light-hoverable-delay;
-
-    &:hover {
-      box-shadow: #{$value} !important;
-      transform: translateY(-5px);
-    }
-  }
-}
-
-// Drop shadows
-.dropshadow-0 {
-  filter: none !important;
-}
-
-@each $number, $value in $drop-shadows {
-  .dropshadow-#{$number} {
-    filter: #{$value};
-  }
-}
-
-// Text shadows
-.textshadow-0 {
-  text-shadow: none !important;
-}
-
-@each $number, $value in $text-shadows {
-  .textshadow-#{$number} {
-    text-shadow: #{$value};
-  }
-}
+@import './utilities/shadows';
 
 // Width
 .w100 {
@@ -121,6 +53,7 @@
     }
   }
 }
+
 @each $name, $value in $extra-breakpoints {
   @media #{$value} {
     .hide-#{$name} {
@@ -130,158 +63,10 @@
 }
 
 // Alignments
-.txt-left {
-  text-align: left !important;
-}
-
-.txt-center {
-  text-align: center !important;
-}
-
-.txt-right {
-  text-align: right !important;
-}
-
-.center {
-  justify-items: center !important;
-}
-
-.left {
-  justify-items: start !important;
-}
-
-.right {
-  justify-items: end !important;
-}
-
-.fx-center {
-  justify-content: center !important;
-}
-
-.fx-right {
-  justify-content: flex-end !important;
-}
-
-.fx-left {
-  justify-content: flex-start !important;
-}
-
-.self-center {
-  justify-self: center !important;
-}
-
-.self-left {
-  justify-self: start !important;
-}
-
-.self-right {
-  justify-self: end !important;
-}
-
-.vtop {
-  align-items: start !important;
-}
-
-.vcenter {
-  align-items: center !important;
-}
-
-.vbottom {
-  align-items: end !important;
-}
-
-.vstretch {
-  align-items: stretch !important;
-}
-
-.vself-top {
-  align-self: start !important;
-}
-
-.vself-center {
-  align-self: center !important;
-}
-
-.vself-bottom {
-  align-self: end !important;
-}
-
-.vself-stretch {
-  align-self: stretch !important;
-}
-
-.float-left {
-  float: left !important;
-}
-
-.float-right {
-  float: right !important;
-}
+@import './utilities/alignments';
 
 // Margin / Padding
-@each $number, $value in $spaces {
-  .m-#{$number} {
-    margin: #{$value} !important;
-  }
-
-  .mt-#{$number} {
-    margin-top: #{$value} !important;
-  }
-
-  .mr-#{$number} {
-    margin-right: #{$value} !important;
-  }
-
-  .mb-#{$number} {
-    margin-bottom: #{$value} !important;
-  }
-
-  .ml-#{$number} {
-    margin-left: #{$value} !important;
-  }
-
-  .mx-#{$number} {
-    margin-left: #{$value} !important;
-    margin-right: #{$value} !important;
-  }
-
-  .my-#{$number} {
-    margin-top: #{$value} !important;
-    margin-bottom: #{$value} !important;
-  }
-
-  @if ($value != 'auto') {
-    .p-#{$number} {
-      padding: #{$value} !important;
-    }
-
-    .pt-#{$number} {
-      padding-top: #{$value} !important;
-    }
-
-    .pr-#{$number} {
-      padding-right: #{$value} !important;
-    }
-
-    .pb-#{$number} {
-      padding-bottom: #{$value} !important;
-    }
-
-    .pl-#{$number} {
-      padding-left: #{$value} !important;
-    }
-
-    .px-#{$number} {
-      padding-left: #{$value} !important;
-      padding-right: #{$value} !important;
-    }
-
-    .py-#{$number} {
-      padding-top: #{$value} !important;
-      padding-bottom: #{$value} !important;
-    }
-  }
-}
+@import './utilities/margin-padding';
 
 // Truncate
 .truncate {
@@ -320,15 +105,7 @@
 }
 
 // Rounded
-.rounded-0 {
-  border-radius: 0 !important;
-}
-
-@each $name, $value in $rounded {
-  .rounded-#{$name} {
-    border-radius: #{$value};
-  }
-}
+@import './utilities/rounded';
 
 // Text format
 .lowercase {
@@ -376,4 +153,43 @@
   .overflow-y-#{$overflow} {
     overflow-y: #{$overflow} !important;
   }
+}
+
+// Line heights
+.lh-normal {
+  line-height: normal !important;
+}
+
+@each $name, $value in $lh-relative {
+  .lh-#{$name} {
+    line-height: #{$value} !important;
+  }
+}
+
+@each $name, $value in $lh-rem {
+  .lh-rem-#{$name} {
+    line-height: #{$value} !important;
+  }
+}
+
+// Z-index
+@for $i from 0 through 10 {
+  .z-index-#{$i} {
+    z-index: #{$i} !important;
+  }
+}
+
+// Opacity
+.opacity-0 {
+  opacity: 0 !important;
+}
+
+@for $i from 1 through 9 {
+  .opacity-#{$i * 10} {
+    opacity: unquote(0 + '.' + #{$i}) !important;
+  }
+}
+
+.opacity-100 {
+  opacity: 1 !important;
 }
