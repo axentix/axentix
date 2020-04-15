@@ -1,7 +1,7 @@
 # 0.5.3 - Under development
 
 - ADDED
-  - `.lh-{nb}` & `.lh-rem-{nb}` line height classes
+  - `.lh-{nb}` & `.lh-rem-{nb}` & `lh-normal` line height classes
   - `.z-index-{0, 1, ...10}` classes
   - `.opacity-{0, 10, ..., 100}` classes
   - Rounded classes on specific corners
@@ -9,7 +9,7 @@
 - IMPROVED
   - Material forms label color
   - Rework margin / padding generation
-  - Buttons with alignments utilities
+  - Buttons alignments with alignment utilities
   - Update dependencies
 - BUGFIXES
   - Grix pos-row & pos classes improvement
