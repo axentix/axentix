@@ -1,11 +1,17 @@
-# 0.6.0 - Under development
+# 1.0.0 - Under development
 
 - ADDED
-  - next & prev methods on Tab
-  - disableActiveBar option to disable indicator on tabs
+  - `next()` & `prev()` methods on Tab
+  - `disableActiveBar` option to disable indicator on tabs
 - REMOVED
 - IMPROVED
+  - Rework material forms
 - BUGFIXES
+  - Material forms border not set correctly inside collapsible in some case
+  - Material forms textarea spacement
+  - Checkbox bug with lots of text
+  - Material forms textarea active label color
+  - Material forms default background-color with some browsers
 
 # 0.5.3 - 2020-04-15
 
