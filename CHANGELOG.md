@@ -13,6 +13,7 @@
   - Material forms textarea active label color
   - Material forms default background-color with some browsers
   - Material select don't init correctly with empty selected value
+  - Button circle width inside inline form
 
 # 0.5.3 - 2020-04-15
 
