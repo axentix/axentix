@@ -16,8 +16,8 @@ class Collapsible extends AxentixComponent {
       sidenav: {
         activeClass: true,
         activeWhenOpen: true,
-        autoCloseOtherCollapsible: true
-      }
+        autoCloseOtherCollapsible: true,
+      },
     };
 
     this.el = document.querySelector(element);
@@ -55,23 +55,34 @@ class Collapsible extends AxentixComponent {
    */
   _setupListeners() {
     this.listenerRef = this._onClickTrigger.bind(this);
-    this.collapsibleTriggers.forEach(trigger => {
+    this.collapsibleTriggers.forEach((trigger) => {
       if (trigger.dataset.target === this.el.id) {
         trigger.addEventListener('click', this.listenerRef);
       }
     });
+
+    window.addEventListener('resize', this._handleResize);
   }
 
   /**
    * Remove listeners
    */
   _removeListeners() {
-    this.collapsibleTriggers.forEach(trigger => {
+    this.collapsibleTriggers.forEach((trigger) => {
       if (trigger.dataset.target === this.el.id) {
         trigger.removeEventListener('click', this.listenerRef);
       }
     });
     this.listenerRef = undefined;
+
+    window.removeEventListener('resize', this._handleResize);
+  }
+
+  /**
+   * Reset collapsible maxHeight
+   */
+  _handleResize() {
+    this.el.style.maxHeight = this.el.scrollHeight + 'px';
   }
 
   /**
@@ -105,7 +116,7 @@ class Collapsible extends AxentixComponent {
   _addActiveInSidenav() {
     if (this.childIsActive && this.isInSidenav) {
       const triggers = document.querySelectorAll('.sidenav .collapsible-trigger');
-      triggers.forEach(trigger => {
+      triggers.forEach((trigger) => {
         if (trigger.dataset.target === this.el.id) {
           trigger.classList.add('active');
         }
@@ -123,7 +134,7 @@ class Collapsible extends AxentixComponent {
    */
   _addActiveToTrigger(state) {
     const triggers = document.querySelectorAll('.sidenav .collapsible-trigger');
-    triggers.forEach(trigger => {
+    triggers.forEach((trigger) => {
       if (trigger.dataset.target === this.el.id) {
         state ? trigger.classList.add('active') : trigger.classList.remove('active');
       }
@@ -135,7 +146,7 @@ class Collapsible extends AxentixComponent {
    */
   _autoCloseOtherCollapsible() {
     if (!this.isInitialStart && this.isInSidenav) {
-      this.sidenavCollapsibles.forEach(collapsible => {
+      this.sidenavCollapsibles.forEach((collapsible) => {
         if (collapsible.id !== this.el.id) {
           collapsible.Collapsible.close();
         }
