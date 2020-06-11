@@ -12,6 +12,7 @@
   - Checkbox bug with lots of text
   - Material forms textarea active label color
   - Material forms default background-color with some browsers
+  - Material select don't init correctly with empty selected value
 
 # 0.5.3 - 2020-04-15
 

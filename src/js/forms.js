@@ -34,7 +34,8 @@ Axentix.Forms = (() => {
     const isActive = input.parentElement.classList.contains('active');
     const hasContent =
       input.value.length > 0 ||
-      input.placeholder.length > 0 ||
+      (input.tagName !== 'SELECT' && input.placeholder.length > 0) ||
+      input.tagName === 'SELECT' ||
       input.matches('[type="date"]') ||
       input.matches('[type="month"]') ||
       input.matches('[type="week"]') ||
