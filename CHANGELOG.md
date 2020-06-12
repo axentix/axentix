@@ -1,7 +1,7 @@
 # 1.0.0 - Under development
 
 - ADDED
-  - `next()` & `prev()` methods on Tab
+  - `next()` & `prev()` methods on Tab with events
   - `disableActiveBar` option to disable indicator on tabs
 - REMOVED
 - IMPROVED

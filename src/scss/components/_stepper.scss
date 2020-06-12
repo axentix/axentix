@@ -1,18 +1,18 @@
 .stepper {
   .stepper-menu {
     position: relative;
+    justify-content: space-around;
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: 20%;
+    &:not(.no-progress)::before {
       left: 0;
-      right: 0;
-      bottom: unset;
+      width: var(--stepper-progress);
+      bottom: 50%;
+      transform: translateY(50%);
+      transition-property: width;
     }
 
-    .stepper-link {
-      width: 100%;
+    .stepper-link a {
+      padding: 1rem;
     }
   }
 }

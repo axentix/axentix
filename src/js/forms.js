@@ -29,8 +29,6 @@ Axentix.Forms = (() => {
    * @param {Element} input
    */
   const detectInput = (input) => {
-    Axentix.createEvent(input, 'form.input');
-
     const isActive = input.parentElement.classList.contains('active');
     const hasContent =
       input.value.length > 0 ||

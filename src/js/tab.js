@@ -15,15 +15,15 @@ class Tab extends AxentixComponent {
     this.caroulixOptions = {
       animationDelay: this.defaultAnimDelay,
       autoplay: {
-        enabled: false
-      }
+        enabled: false,
+      },
     };
 
     this.defaultOptions = {
       animationDelay: this.defaultAnimDelay,
       animationType: 'none',
       disableActiveBar: false,
-      caroulix: {}
+      caroulix: {},
     };
 
     this.el = document.querySelector(element);
@@ -65,7 +65,7 @@ class Tab extends AxentixComponent {
    * Setup listeners
    */
   _setupListeners() {
-    this.tabLinks.forEach(item => {
+    this.tabLinks.forEach((item) => {
       item.listenerRef = this._onClickItem.bind(this, item);
       item.addEventListener('click', item.listenerRef);
     });
@@ -88,7 +88,7 @@ class Tab extends AxentixComponent {
    * Remove listeners
    */
   _removeListeners() {
-    this.tabLinks.forEach(item => {
+    this.tabLinks.forEach((item) => {
       item.removeEventListener('click', item.listenerRef);
       item.listenerRef = undefined;
     });
@@ -130,19 +130,17 @@ class Tab extends AxentixComponent {
    * Hide all tab items
    */
   _hideContent() {
-    this.tabItems.map(item => (item.style.display = 'none'));
+    this.tabItems.map((item) => (item.style.display = 'none'));
   }
 
   /**
    * Init slide animation
    */
   _enableSlideAnimation() {
-    this.tabItems.map(item => item.classList.add('caroulix-item'));
+    this.tabItems.map((item) => item.classList.add('caroulix-item'));
     this.tabCaroulix = Axentix.wrap(this.tabItems);
     this.tabCaroulix.classList.add('caroulix');
-    const nb = Math.random()
-      .toString()
-      .split('.')[1];
+    const nb = Math.random().toString().split('.')[1];
     this.tabCaroulix.id = 'tab-caroulix-' + nb;
     this.tabCaroulixInit = true;
 
@@ -158,7 +156,7 @@ class Tab extends AxentixComponent {
    * @param {Element} element
    */
   _setActiveElement(element) {
-    this.tabLinks.forEach(item => item.classList.remove('active'));
+    this.tabLinks.forEach((item) => item.classList.remove('active'));
 
     if (!this.options.disableActiveBar) {
       const elementRect = element.getBoundingClientRect();
@@ -271,13 +269,15 @@ class Tab extends AxentixComponent {
     }
 
     this.isAnimated = true;
-    const menuItem = document.querySelector(this.elQuery + ' .tab-menu a[href="#' + itemId + '"]');
-    Axentix.createEvent(menuItem, 'tab.select');
+    const menuItem = this.el.querySelector('.tab-menu a[href="#' + itemId + '"]');
+    this.currentItemIndex = Array.from(this.tabLinks).findIndex((item) => item.children[0] === menuItem);
+
+    Axentix.createEvent(menuItem, 'tab.select', { currentIndex: this.currentItemIndex });
 
     this._setActiveElement(menuItem.parentElement);
 
     if (this.tabCaroulixInit) {
-      this.tabItems.map(item => (item.id === itemId ? item.classList.add('active') : ''));
+      this.tabItems.map((item) => (item.id === itemId ? item.classList.add('active') : ''));
       this.caroulixInstance = new Caroulix('#' + this.tabCaroulix.id, this.options.caroulix);
       this.tabCaroulixInit = false;
       this.isAnimated = false;
@@ -285,14 +285,14 @@ class Tab extends AxentixComponent {
     }
 
     if (this.options.animationType === 'slide') {
-      const nb = this.tabItems.findIndex(item => item.id === itemId);
+      const nb = this.tabItems.findIndex((item) => item.id === itemId);
       this.caroulixInstance.goTo(nb);
       setTimeout(() => {
         this.isAnimated = false;
       }, this.options.animationDelay);
     } else {
       this._hideContent();
-      this.tabItems.map(item => (item.id === itemId ? (item.style.display = 'block') : ''));
+      this.tabItems.map((item) => (item.id === itemId ? (item.style.display = 'block') : ''));
       this.isAnimated = false;
     }
   }
@@ -320,9 +320,10 @@ class Tab extends AxentixComponent {
       return;
     }
 
-    Axentix.createEvent(this.el, 'tab.prev', { step });
     const previousItemIndex = this._getPreviousItemIndex(step);
     this.currentItemIndex = previousItemIndex;
+    Axentix.createEvent(this.el, 'tab.prev', { step });
+
     const target = this.tabLinks[previousItemIndex].children[0].getAttribute('href');
     this.select(target.split('#')[1]);
   }
@@ -335,9 +336,10 @@ class Tab extends AxentixComponent {
       return;
     }
 
-    Axentix.createEvent(this.el, 'tab.next', { step });
     const nextItemIndex = this._getNextItemIndex(step);
     this.currentItemIndex = nextItemIndex;
+    Axentix.createEvent(this.el, 'tab.next', { step });
+
     const target = this.tabLinks[nextItemIndex].children[0].getAttribute('href');
     this.select(target.split('#')[1]);
   }

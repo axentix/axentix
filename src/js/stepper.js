@@ -15,7 +15,7 @@ class Stepper extends AxentixComponent {
       animationDelay: 300,
       animationType: 'none',
       linear: true,
-      validation: true
+      validation: true,
     };
 
     this.el = document.querySelector(element);
@@ -39,15 +39,17 @@ class Stepper extends AxentixComponent {
     this.stepperNext = [];
     this.stepperPrev = [];
     this._getItems();
-    this.totalSteps = this.stepperLinks.length - 1;
+    this.totalSteps = this.stepperLinks.length;
     this.activeStep =
-      Array.from(this.stepperLinks).filter(link => link.classList.contains('active'))[0] ||
-      this.stepperLinks[0];
+      Array.from(this.stepperLinks).findIndex((link) => link.classList.contains('active')) + 1;
+    this.activeStep === 0 ? (this.activeStep = 1) : '';
 
     this._setupListeners();
     this.el.style.transitionDuration = this.options.animationDelay + 'ms';
 
     this._createTabInstance();
+
+    this._updateProgressBar();
   }
 
   /**
@@ -55,27 +57,33 @@ class Stepper extends AxentixComponent {
    */
   _setupListeners() {
     this.nextRef = this.next.bind(this);
-    this.stepperNext.map(nextElem => nextElem.addEventListener('click', this.nextRef));
+    this.stepperNext.map((nextElem) => nextElem.addEventListener('click', this.nextRef));
 
     this.prevRef = this.prev.bind(this);
-    this.stepperPrev.map(prevElem => prevElem.addEventListener('click', this.prevRef));
+    this.stepperPrev.map((prevElem) => prevElem.addEventListener('click', this.prevRef));
 
     this.submitRef = this.submit.bind(this);
     this.stepperSubmit.addEventListener('click', this.submitRef);
+
+    this.handleTabChangeRef = this._handleTabChange.bind(this);
+    this.el.addEventListener('ax.tab.select', this.handleTabChangeRef);
   }
 
   /**
    * Remove listeners
    */
   _removeListeners() {
-    this.stepperNext.map(nextElem => nextElem.removeEventListener('click', this.nextRef));
+    this.stepperNext.map((nextElem) => nextElem.removeEventListener('click', this.nextRef));
     this.nextRef = undefined;
 
-    this.stepperPrev.map(prevElem => prevElem.removeEventListener('click', this.prevRef));
+    this.stepperPrev.map((prevElem) => prevElem.removeEventListener('click', this.prevRef));
     this.prevRef = undefined;
 
     this.stepperSubmit.removeEventListener('click', this.submitRef);
     this.submitRef = undefined;
+
+    this.el.removeEventListener('ax.tab.select', this.handleTabChangeRef);
+    this.handleTabChangeRef = undefined;
   }
 
   /**
@@ -97,15 +105,36 @@ class Stepper extends AxentixComponent {
     }, []);
   }
 
+  /**
+   * Handle tab change
+   * @param {Event} e
+   */
+  _handleTabChange(e) {
+    this.activeStep = e.detail.currentIndex + 1;
+    console.log(this.activeStep);
+    this._updateProgressBar();
+  }
+
   _createTabInstance() {
     this.el.classList.add('tab');
     this.stepperMenu.classList.add('tab-menu');
-    this.stepperLinks.forEach(link => link.classList.add('tab-link'));
+    this.stepperLinks.forEach((link) => link.classList.add('tab-link'));
+
     this.tabInstance = new Tab(this.elQuery, {
       animationDelay: this.options.animationDelay,
       animationType: this.options.animationType,
-      disableActiveBar: true
+      disableActiveBar: true,
     });
+  }
+
+  _updateProgressBar() {
+    const item = this.stepperLinks[this.activeStep - 1];
+    const itemPos = item.offsetLeft + item.clientWidth / 2;
+
+    let progress = (itemPos / this.stepperMenu.clientWidth) * 100;
+    progress = Math.round(progress);
+
+    this.stepperMenu.style.setProperty('--stepper-progress', progress + '%');
   }
 
   /**
@@ -117,6 +146,7 @@ class Stepper extends AxentixComponent {
     if (this.tabInstance.currentItemIndex === 0) {
       return;
     }
+
     this.tabInstance.prev();
   }
 
@@ -129,6 +159,7 @@ class Stepper extends AxentixComponent {
     if (this.tabInstance.currentItemIndex === this.totalSteps) {
       return;
     }
+
     this.tabInstance.next();
   }
 
