@@ -1,0 +1,6 @@
+.tooltip {
+  position: absolute;
+  opacity: 0;
+  transition-property: margin, opacity;
+  transition-timing-function: ease;
+}
