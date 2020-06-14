@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <title>Axentix - Tooltips</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+  </head>
+
+  <body class="layout">
+    <header>
+      <nav class="navbar primary">
+        <a href="#" class="navbar-brand">Axentix</a>
+        <div class="navbar-menu ml-auto">
+          <a class="navbar-link" href="#">Link 1</a>
+          <a class="navbar-link" href="#">Link 2</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <div class="grix xs4 mt-5">
+        <div id="tooltip1" class="btn airforce dark-3 mx-auto">Top</div>
+
+        <div id="tooltip2" class="btn airforce dark-3 mx-auto">Right</div>
+
+        <div id="tooltip3" class="btn airforce dark-3 mx-auto">Bottom</div>
+
+        <div id="tooltip4" class="btn airforce dark-3 mx-auto">Left</div>
+      </div>
+    </main>
+
+    <footer class="footer primary">
+      Copyright © 2020 - Example
+    </footer>
+    <script src="../dist/js/axentix.min.js"></script>
+    <script>
+      var tooltipTop = new Tooltip('#tooltip1', 'This is a tooltip', {
+        classes: 'grey dark-4 light-shadow-2 p-2',
+        position: 'top',
+      });
+      var tooltipRight = new Tooltip('#tooltip2', 'This is a tooltip', {
+        classes: 'grey dark-4 light-shadow-2 p-2',
+        position: 'right',
+      });
+      var tooltipBottom = new Tooltip('#tooltip3', 'This is a tooltip', {
+        classes: 'grey dark-4 light-shadow-2 p-2',
+        position: 'bottom',
+      });
+      var tooltipLeft = new Tooltip('#tooltip4', 'This is a tooltip', {
+        classes: 'grey dark-4 light-shadow-2 p-2',
+        position: 'left',
+      });
+    </script>
+  </body>
+</html>

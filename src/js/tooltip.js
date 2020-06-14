@@ -6,73 +6,75 @@ class Tooltip extends AxentixComponent {
   /**
    * Tooltip constructor
    * @constructor
+   * @param {String} content
    * @param {Object} options
    */
-  constructor(element, options) {
+  constructor(element, content, options) {
     super();
     this.defaultOptions = {
-      // do we keep animation delay ?
       animationDelay: 0,
-      transitionDuration: 300,
-      classes: 'grey dark-4 light-shadow-2 p-2',
+      transitionDuration: 200,
+      classes: '',
       position: '',
     };
 
     this.el = document.querySelector(element);
-
+    this.content = content;
     this.options = Axentix.extend(this.defaultOptions, options);
-    this.options.position = this.options.position.toLowetCase();
+    this.options.position = this.options.position.toLowerCase();
     this._setup();
   }
 
   _setup() {
     this.tooltip = document.createElement('div');
-    this.tooltip.classList.add('tooltip');
-    this.tooltip.style.transitionDuration = this.options.transitionDuration;
+    this.tooltip.className = 'tooltip ' + this.options.classes;
+    this.tooltip.style.transitionDuration = this.options.transitionDuration + 'ms';
+    this.tooltip.innerHTML = this.content;
+    document.body.appendChild(this.tooltip);
 
-    this.el.style.position = 'relative';
+    this.elRect = this.el.getBoundingClientRect();
+
+    console.log(this.elRect);
+
+    let position = this.options.position;
 
     const positionList = ['right', 'left', 'top', 'bottom'];
     positionList.includes(this.options.position) ? '' : (this.options.position = 'bottom');
 
     if (position == 'top' || position == 'bottom') {
-      tooltip.isVertical = true;
-      tooltip.style.left = '50%';
-      tooltip.style.transform = 'translateX(-50%)';
+      position == 'top'
+        ? (this.tooltip.style.top = this.elRect.top)
+        : (this.tooltip.style.top = this.elRect.top + this.elRect.height);
     } else if (position == 'left' || position == 'right') {
-      tooltip.isVertical = true;
-      tooltip.style.top = '50%';
-      tooltip.style.transform = 'translateY(-50%)';
+      position == 'right' ? (this.tooltip.style.left = this.elRect.left + this.elRect.width) : '';
     }
 
-    position == 'top'
-      ? (tooltip.style.top = '-100%')
-      : position == 'bottom'
-      ? (tooltip.style.bottom = '-100%')
-      : position == 'left'
-      ? (tooltip.style.left = '-100%')
-      : position == 'right'
-      ? (tooltip.style.right = '-100%')
-      : '';
+    this.tooltipRect = this.tooltip.getBoundingClientRect();
+    // console.log(this.tooltipRect);
 
+    // manual transform
+    if (position == 'top' || position == 'bottom') {
+      this.tooltip.style.left = this.elRect.left + this.elRect.width / 2 - this.tooltipRect.width / 2 + 'px';
+    } else if (position == 'left' || position == 'right') {
+      this.tooltip.style.top = this.elRect.top + this.elRect.height / 2 - this.tooltipRect.height / 2 + 'px';
+    }
+
+    if (position == 'top') {
+      this.tooltip.style.top = this.tooltipRect.top - this.tooltipRect.height + 'px';
+    } else if (position == 'left') {
+      this.tooltip.style.left = this.elRect.left - this.tooltipRect.width + 'px';
+    }
+
+    this.position = position;
     this._setupListeners();
-    // if (position == 'top') {
-    //   tooltip.style.top = '-100%';
-    // } else if (position == 'bottom') {
-    //   tooltip.style.bottom = '-100%';
-    // } else if (position == 'left') {
-    //   tooltip.style.left = '-100%';
-    // } else if (position == 'right') {
-    //   tooltip.style.right = '-100%';
-    // }
   }
 
   /**
    * Setup listeners
    */
   _setupListeners() {
-    this.el.addEventListener('mouseenter', _onHover.bind(this));
-    this.el.addEventListener('mouseleave', _onHoverOut.bind(this));
+    this.el.addEventListener('mouseenter', this._onHover.bind(this));
+    this.el.addEventListener('mouseleave', this._onHoverOut.bind(this));
   }
 
   /**
@@ -82,9 +84,17 @@ class Tooltip extends AxentixComponent {
   _onHover(e) {
     e.preventDefault();
 
-    this.isVertical
-      ? (this.tooltip.style.marginTop = this.tooltip.style.marginBottom = '1.5rem')
-      : (this.tooltip.style.marginLeft = this.tooltip.style.marginRight = '1.5rem');
+    console.log(this.position);
+
+    this.position == 'top'
+      ? (this.tooltip.style.transform = 'translateY(-20px)')
+      : this.position == 'right'
+      ? (this.tooltip.style.transform = 'translateX(20px)')
+      : this.position == 'bottom'
+      ? (this.tooltip.style.transform = 'translateY(20px)')
+      : this.position == 'left'
+      ? (this.tooltip.style.transform = 'translateX(-20px)')
+      : '';
 
     this.tooltip.style.opacity = 1;
   }
@@ -96,7 +106,7 @@ class Tooltip extends AxentixComponent {
   _onHoverOut(e) {
     e.preventDefault();
 
-    this.tooltip.style.margin = 0;
+    this.tooltip.style.transform = 'translate(0)';
     this.tooltip.style.opacity = 0;
   }
 }
