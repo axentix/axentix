@@ -6,6 +6,7 @@
 - REMOVED
 - IMPROVED
   - Rework material forms
+  - Update dependencies
 - BUGFIXES
   - Material forms border not set correctly inside collapsible in some case
   - Material forms textarea spacement
