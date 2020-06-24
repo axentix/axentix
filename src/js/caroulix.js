@@ -19,13 +19,13 @@ class Caroulix extends AxentixComponent {
       indicators: {
         enabled: false,
         isFlat: false,
-        customClasses: ''
+        customClasses: '',
       },
       autoplay: {
         enabled: true,
         interval: 5000,
-        side: 'right'
-      }
+        side: 'right',
+      },
     };
 
     this.el = document.querySelector(element);
@@ -43,6 +43,19 @@ class Caroulix extends AxentixComponent {
     autoplaySides.includes(this.options.autoplay.side) ? '' : (this.options.autoplay.side = 'right');
     this.currentItemIndex = 0;
     this.isAnimated = false;
+    this.animFunction =
+      '_animation' +
+      this.options.animationType.charAt(0).toUpperCase() +
+      this.options.animationType.substring(1);
+
+    this.isPressed = false;
+    this.isDragged = false;
+    this.xPos = 0;
+    this.yPos = 0;
+    this.oldDragPercent = 0;
+    this.dragSide = 'right';
+    this.currentDragIndex = -1;
+
     this._getChildrens();
     this.options.indicators.enabled ? this._enableIndicators() : '';
     this._getActiveElementIndex();
@@ -65,6 +78,14 @@ class Caroulix extends AxentixComponent {
       this.arrowPrev.addEventListener('click', this.arrowPrevRef);
       this.arrowNext.addEventListener('click', this.arrowNextRef);
     }
+
+    this.handleSlideStartRef = this._handleSlideStart.bind(this);
+    this.handleSlideMoveRef = this._handleSlideMove.bind(this);
+    this.handleSlideEndRef = this._handleSlideEnd.bind(this);
+    this.el.addEventListener('mousedown', this.handleSlideStartRef);
+    this.el.addEventListener('mousemove', this.handleSlideMoveRef);
+    this.el.addEventListener('mouseup', this.handleSlideEndRef);
+    this.el.addEventListener('mouseleave', this.handleSlideEndRef);
   }
 
   /**
@@ -80,6 +101,84 @@ class Caroulix extends AxentixComponent {
       this.arrowPrevRef = undefined;
       this.arrowNextRef = undefined;
     }
+
+    this.el.removeEventListener('mousedown', this.handleSlideStartRef);
+    this.el.removeEventListener('mousemove', this.handleSlideMoveRef);
+    this.el.removeEventListener('mouseup', this.handleSlideEndRef);
+    this.el.removeEventListener('mouseleave', this.handleSlideEndRef);
+    this.handleSlideStartRef = undefined;
+    this.handleSlideMoveRef = undefined;
+    this.handleSlideEndRef = undefined;
+  }
+
+  /**
+   *
+   * @param {Event} e
+   */
+  _handleSlideStart(e) {
+    e.preventDefault();
+
+    this.isPressed = true;
+    this.isDragged = false;
+
+    this.xPos = e.clientX;
+    this.yPos = e.clientY;
+  }
+
+  /**
+   *
+   * @param {Event} e
+   */
+  _handleSlideMove(e) {
+    if (this.isPressed) {
+      const x = e.clientX,
+        y = e.clientY,
+        delta = this.xPos - x,
+        deltaY = this.yPos - y;
+
+      if (delta > 2 || delta < -2) {
+        this.xPos = x;
+        const side = delta > 2 ? 'right' : 'left';
+        this.isDragged = true;
+
+        this.dragSide = side;
+        this.currentDragIndex !== -1
+          ? ''
+          : (this.currentDragIndex =
+              this.dragSide === 'left' ? this._getPreviousItemIndex(1) : this._getNextItemIndex(1));
+
+        // if (this.currentDragIndex === -1) {
+        //   if (this.dragSide === side) {
+        //     this.currentDragIndex =
+        //       this.dragSide === 'left' ? this._getPreviousItemIndex(1) : this._getNextItemIndex(1);
+        //   } else {
+        //     this.currentDragIndex = this.currentItemIndex;
+        //   }
+        // }
+
+        console.log('currentDragIndex', this.currentDragIndex);
+
+        const percent = this.oldDragPercent + Math.abs(delta);
+        console.log('percent', percent);
+
+        this[this.animFunction](this.currentDragIndex, this.dragSide, percent);
+      }
+    }
+  }
+
+  /**
+   *
+   * @param {Event} e
+   */
+  _handleSlideEnd(e) {
+    if (!this.isPressed) {
+      return;
+    }
+
+    this.isPressed = false;
+    this.isDragged = false;
+    this[this.animFunction](this.currentDragIndex, this.dragSide);
+    this.currentDragIndex = -1;
   }
 
   /**
@@ -124,7 +223,7 @@ class Caroulix extends AxentixComponent {
       this.totalLoadChild = 0;
       this.totalLoadedChild = 0;
 
-      this.childrens.map(child => {
+      this.childrens.map((child) => {
         const waitItem = child.querySelector('img, video');
         if (waitItem) {
           isImage = true;
@@ -190,7 +289,7 @@ class Caroulix extends AxentixComponent {
       return;
     }
 
-    const childrensHeight = this.childrens.map(child => {
+    const childrensHeight = this.childrens.map((child) => {
       return child.offsetHeight;
     });
     this.maxHeight = Math.max(...childrensHeight);
@@ -233,40 +332,58 @@ class Caroulix extends AxentixComponent {
    * Slide animation
    * @param {number} number
    * @param {string} side
+   * @param {number} percent
    */
-  _animationSlide(number, side) {
+  _animationSlide(number, side, percent = 100) {
     const nextItem = this.childrens[number];
     const currentItem = this.childrens[this.currentItemIndex];
     let nextItemPercentage = '',
       currentItemPercentage = '';
 
     if (side === 'right') {
-      nextItemPercentage = '100%';
-      currentItemPercentage = '-100%';
+      nextItemPercentage = `${100 - percent}%`;
+      currentItemPercentage = `-${percent}%`;
     } else {
-      nextItemPercentage = '-100%';
-      currentItemPercentage = '100%';
+      nextItemPercentage = `-${100 - percent}%`;
+      currentItemPercentage = `${percent}%`;
     }
 
-    nextItem.style.transform = `translateX(${nextItemPercentage})`;
+    const oldPercent = this.oldDragPercent !== 0 ? 100 - this.oldDragPercent : 100;
+    console.log('oldpercent', oldPercent);
+    nextItem.style.transform = `translateX(${side === 'right' ? `${oldPercent}%` : `-${oldPercent}%`})`;
     nextItem.classList.add('active');
 
+    this.isPressed && percent === 100 ? (this.isPressed = false) : '';
+
+    const animDelay = this.isDragged ? '50ms' : this.options.animationDelay + 'ms';
     setTimeout(() => {
-      nextItem.style.transitionDuration = this.options.animationDelay + 'ms';
-      nextItem.style.transform = '';
-      currentItem.style.transitionDuration = this.options.animationDelay + 'ms';
+      nextItem.style.transitionDuration = animDelay;
+      nextItem.style.transform = percent !== 100 ? `translateX(${nextItemPercentage})` : '';
+      currentItem.style.transitionDuration = animDelay;
       currentItem.style.transform = `translateX(${currentItemPercentage})`;
+      currentItem.currPercent = percent;
+
+      this.oldDragPercent = percent === 100 ? 0 : percent;
     }, 50);
 
     setTimeout(() => {
-      nextItem.removeAttribute('style');
-      currentItem.classList.remove('active');
-      currentItem.removeAttribute('style');
-
-      this.currentItemIndex = number;
-      this.isAnimated = false;
-      this.options.autoplay.enabled ? this.play() : '';
+      currentItem.currPercent >= 80
+        ? currentItem.currPercent === 100
+          ? this._endAnimationSlide(nextItem, currentItem, number)
+          : this._animationSlide(number, side)
+        : '';
     }, this.options.animationDelay + 50);
+  }
+
+  _endAnimationSlide(nextItem, currentItem, number) {
+    nextItem.removeAttribute('style');
+    currentItem.classList.remove('active');
+    currentItem.removeAttribute('style');
+    currentItem.currPercent = undefined;
+
+    this.currentItemIndex = number;
+    this.isAnimated = false;
+    this.options.autoplay.enabled ? this.play() : '';
   }
 
   /***** [END] Animation Section [END] *****/
@@ -341,23 +458,19 @@ class Caroulix extends AxentixComponent {
     Axentix.createEvent(this.el, 'caroulix.slide', {
       side,
       nextElement: this.childrens[number],
-      currentElement: this.childrens[this.currentItemIndex]
+      currentElement: this.childrens[this.currentItemIndex],
     });
     this.isAnimated = true;
-    const animFunction =
-      '_animation' +
-      this.options.animationType.charAt(0).toUpperCase() +
-      this.options.animationType.substring(1);
 
     if (this.options.indicators.enabled) {
-      Array.from(this.indicators.children).map(li => {
+      Array.from(this.indicators.children).map((li) => {
         li.removeAttribute('class');
       });
       this.indicators.children[number].classList.add('active');
     }
 
     this.options.fixedHeight ? '' : this.updateHeight(number);
-    this[animFunction](number, side);
+    this[this.animFunction](number, side);
   }
 
   prev(step = 1) {
