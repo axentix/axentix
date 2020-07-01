@@ -2,7 +2,7 @@
  * Class Axentix
  * @class
  */
-class Axentix {
+export class Axentix {
   /**
    * Construct Axentix instance
    * @constructor
@@ -29,7 +29,7 @@ class Axentix {
       Dropdown: document.querySelectorAll('.dropdown:not(.no-axentix-init)'),
       Tab: document.querySelectorAll('.tab:not(.no-axentix-init)'),
       Fab: document.querySelectorAll('.fab:not(i):not(.no-axentix-init)'),
-      Caroulix: document.querySelectorAll('.caroulix:not(.no-axentix-init)')
+      Caroulix: document.querySelectorAll('.caroulix:not(.no-axentix-init)'),
     };
 
     const isInList = componentList.hasOwnProperty(this.component);
@@ -37,7 +37,7 @@ class Axentix {
       const ids = this._detectIds(componentList[this.component]);
       this._instanciate(ids, this.component);
     } else if (this.isAll) {
-      Object.keys(componentList).map(component => {
+      Object.keys(componentList).map((component) => {
         let ids = this._detectIds(componentList[component]);
         ids.length > 0 ? this._instanciate(ids, component) : '';
       });
@@ -51,7 +51,7 @@ class Axentix {
    */
   _detectIds(component) {
     let idList = [];
-    component.forEach(el => {
+    component.forEach((el) => {
       idList.push('#' + el.id);
     });
     return idList;
@@ -63,7 +63,7 @@ class Axentix {
    * @param {String} component
    */
   _instanciate(ids, component) {
-    ids.map(id => {
+    ids.map((id) => {
       let constructor = Axentix[component];
       let args = [id, this.options];
 
@@ -80,7 +80,7 @@ class Axentix {
    * @param {String} element Id of element
    */
   getInstance(element) {
-    return this.instances.filter(instance => '#' + instance.el.id === element)[0];
+    return this.instances.filter((instance) => '#' + instance.el.id === element)[0];
   }
 
   /**
@@ -102,7 +102,7 @@ class Axentix {
    * Sync all instances
    */
   syncAll() {
-    this.instances.map(instance => instance.sync());
+    this.instances.map((instance) => instance.sync());
   }
 
   /**
@@ -117,6 +117,6 @@ class Axentix {
    * Reset all instances
    */
   resetAll() {
-    this.instances.map(instance => instance.reset());
+    this.instances.map((instance) => instance.reset());
   }
 }

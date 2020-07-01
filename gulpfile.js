@@ -15,14 +15,14 @@ function compileJSMinified() {
     .pipe(concat('axentix.min.js'))
     .pipe(
       babel({
-        presets: ['@babel/env']
+        presets: ['@babel/env'],
       })
     )
     .pipe(
       minify({
         mangle: {
-          keepClassName: true
-        }
+          keepClassName: true,
+        },
       })
     )
     .pipe(dest('dist/js/'))
@@ -34,7 +34,7 @@ function compileJS() {
     .pipe(concat('axentix.js'))
     .pipe(
       babel({
-        presets: ['@babel/env']
+        presets: ['@babel/env'],
       })
     )
     .pipe(dest('dist/js/'))
@@ -46,7 +46,7 @@ function compileSassMinified() {
     .pipe(sass({ fiber: Fiber, outputStyle: 'compressed' }).on('error', sass.logError))
     .pipe(
       autoprefixer({
-        cascade: false
+        cascade: false,
       })
     )
     .pipe(rename({ extname: '.min.css' }))
@@ -59,7 +59,7 @@ function compileSass() {
     .pipe(sass({ fiber: Fiber }).on('error', sass.logError))
     .pipe(
       autoprefixer({
-        cascade: false
+        cascade: false,
       })
     )
     .pipe(dest('dist/css/'))
@@ -68,7 +68,7 @@ function compileSass() {
 
 function initBrowserSync() {
   browserSync.init({
-    server: './'
+    server: './',
   });
   watch(['examples/**/*.html', 'examples/**/*.css', 'examples/**/*.js']).on('change', browserSync.reload);
 }
@@ -78,18 +78,18 @@ exports.js = compileJS;
 exports.sassmin = compileSassMinified;
 exports.sass = compileSass;
 
-exports.watch = function() {
+exports.watch = function () {
   initBrowserSync();
   watch('src/js/**/*.js', series(compileJSMinified, compileJS));
   watch('src/scss/**/*.scss', series(compileSassMinified, compileSass));
 };
 
-exports.watchjs = function() {
+exports.watchjs = function () {
   initBrowserSync();
   watch('src/js/**/*.js', series(compileJSMinified, compileJS));
 };
 
-exports.watchsass = function() {
+exports.watchsass = function () {
   initBrowserSync();
   watch('src/scss/**/*.scss', series(compileSassMinified, compileSass));
 };
