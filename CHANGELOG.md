@@ -1,9 +1,11 @@
 # 1.0.0 - Under development
 
 - ADDED
+  - `Axentix.updateInputs()` method on material forms
   - `next()` & `prev()` methods on Tab with events
   - `disableActiveBar` option to disable indicator on tabs
 - REMOVED
+  - `Axentix.setupFormsListeners()` & `Axentix.detectAllInputs()` methods on material forms
 - IMPROVED
   - Rework material forms
   - Update dependencies

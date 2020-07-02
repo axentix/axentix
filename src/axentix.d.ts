@@ -6,7 +6,7 @@
 // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/bootstrap/index.d.ts
 // https://github.com/foundation/foundation-sites/blob/develop/js/typescript/foundation.d.ts
 
-declare namespace Axentix {
+declare module Axentix {
   interface Caroulix {
     updateHeight(): void;
     goTo(number: number, side: string): void;
@@ -171,7 +171,7 @@ declare namespace Axentix {
     overlay(state: boolean): void;
   }
 
-  interface ModelOptions {
+  interface ModalOptions {
     /**
      * @default true
      */
@@ -232,4 +232,89 @@ declare namespace Axentix {
      */
     caroulix: CaroulixOptions | '';
   }
+
+  interface Toast {
+    show(): void;
+    change(content: string, options: ToastOptions): void;
+  }
+
+  interface ToastOptions {
+    /**
+     * @default 400
+     */
+    animationDelay: number;
+
+    /**
+     * @default 4000
+     */
+    duration: number;
+
+    /**
+     * @default ''
+     */
+    classes: string;
+
+    /**
+     * @default 'right'
+     */
+    position: 'right' | 'left';
+
+    /**
+     * @default 'top'
+     */
+    direction: 'top' | 'bottom';
+
+    /**
+     * @default 'bottom'
+     */
+    mobileDirection: 'top' | 'bottom';
+  }
+
+  interface AxentixStatic {
+    // JS Utilities
+    createEvent(element: Element, eventName: string, extraData?: object): void;
+    wrap(target: Array<Element>, wrapper?: Element): Element;
+    extend(defaultObject: object, object: object): object;
+
+    // Material forms
+    updateInputs(inputElements?: NodeListOf<Element>): void;
+
+    Caroulix: {
+      new (el: string, options?: CaroulixOptions): Caroulix;
+    };
+
+    Collapsible: {
+      new (el: string, options?: CollapsibleOptions): Collapsible;
+    };
+
+    Dropdown: {
+      new (el: string, options?: DropdownOptions): Dropdown;
+    };
+
+    Fab: {
+      new (el: string, options?: FabOptions): Fab;
+    };
+
+    Modal: {
+      new (el: string, options?: ModalOptions): Modal;
+    };
+
+    Sidenav: {
+      new (el: string, options?: SidenavOptions): Sidenav;
+    };
+
+    Tab: {
+      new (el: string, options?: TabOptions): Tab;
+    };
+
+    Toast: {
+      new (content: string, options?: ToastOptions): Toast;
+    };
+  }
+}
+
+declare var Axentix: Axentix.AxentixStatic;
+
+declare module 'Axentix' {
+  export = Axentix;
 }
