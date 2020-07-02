@@ -6,8 +6,10 @@
 // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/bootstrap/index.d.ts
 // https://github.com/foundation/foundation-sites/blob/develop/js/typescript/foundation.d.ts
 
-declare module Axentix {
-  interface Caroulix {
+export namespace Axentix {
+  export class Caroulix {
+    constructor(el: string, options?: CaroulixOptions);
+
     updateHeight(): void;
     goTo(number: number, side: string): void;
 
@@ -77,7 +79,9 @@ declare module Axentix {
     };
   }
 
-  interface Collapsible {
+  export class Collapsible {
+    constructor(el: string, options?: CollapsibleOptions);
+
     open(): void;
     close(): void;
   }
@@ -106,7 +110,9 @@ declare module Axentix {
     };
   }
 
-  interface Dropdown {
+  export class Dropdown {
+    constructor(el: string, options?: DropdownOptions);
+
     open(): void;
     close(): void;
   }
@@ -128,7 +134,9 @@ declare module Axentix {
     animationDelay: number;
   }
 
-  interface Fab {
+  export class Fab {
+    constructor(el: string, options?: FabOptions);
+
     open(): void;
     close(): void;
   }
@@ -165,7 +173,9 @@ declare module Axentix {
     offsetY: string;
   }
 
-  interface Modal {
+  export class Modal {
+    constructor(el: string, options?: ModalOptions);
+
     open(): void;
     close(): void;
     overlay(state: boolean): void;
@@ -188,7 +198,9 @@ declare module Axentix {
     bodyScrolling: boolean;
   }
 
-  interface Sidenav {
+  export class Sidenav {
+    constructor(el: string, options?: SidenavOptions);
+
     open(): void;
     close(): void;
     overlay(state: boolean): void;
@@ -211,7 +223,9 @@ declare module Axentix {
     animationDelay: number;
   }
 
-  interface Tab {
+  export class Tab {
+    constructor(el: string, options?: TabOptions);
+
     updateActiveElement(): void;
     select(itemId: string): void;
   }
@@ -233,7 +247,9 @@ declare module Axentix {
     caroulix: CaroulixOptions | '';
   }
 
-  interface Toast {
+  export class Toast {
+    constructor(content: string, options?: ToastOptions);
+
     show(): void;
     change(content: string, options: ToastOptions): void;
   }
@@ -270,51 +286,19 @@ declare module Axentix {
     mobileDirection: 'top' | 'bottom';
   }
 
-  interface AxentixStatic {
-    // JS Utilities
-    createEvent(element: Element, eventName: string, extraData?: object): void;
-    wrap(target: Array<Element>, wrapper?: Element): Element;
-    extend(defaultObject: object, object: object): object;
+  // JS Utilities
+  export function createEvent(element: Element, eventName: string, extraData?: object): void;
+  export function wrap(target: Array<Element>, wrapper?: Element): Element;
+  export function extend(defaultObject: object, object: object): object;
 
-    // Material forms
-    updateInputs(inputElements?: NodeListOf<Element>): void;
-
-    Caroulix: {
-      new (el: string, options?: CaroulixOptions): Caroulix;
-    };
-
-    Collapsible: {
-      new (el: string, options?: CollapsibleOptions): Collapsible;
-    };
-
-    Dropdown: {
-      new (el: string, options?: DropdownOptions): Dropdown;
-    };
-
-    Fab: {
-      new (el: string, options?: FabOptions): Fab;
-    };
-
-    Modal: {
-      new (el: string, options?: ModalOptions): Modal;
-    };
-
-    Sidenav: {
-      new (el: string, options?: SidenavOptions): Sidenav;
-    };
-
-    Tab: {
-      new (el: string, options?: TabOptions): Tab;
-    };
-
-    Toast: {
-      new (content: string, options?: ToastOptions): Toast;
-    };
-  }
+  // Material forms
+  export function updateInputs(inputElements?: NodeListOf<Element>): void;
 }
 
-declare var Axentix: Axentix.AxentixStatic;
+export class Axentix {
+  constructor(component: string | 'all', options?: object);
 
-declare module 'Axentix' {
-  export = Axentix;
+  // Core
+  getInstance(element: string): Axentix.Caroulix | Axentix.Dropdown | Axentix.Collapsible;
+  getAllInstances(): Array<Axentix.Caroulix | Axentix.Dropdown>;
 }
