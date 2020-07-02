@@ -3,11 +3,13 @@
 // Definitions by: Axel SIMONET <https://github.com/Xelzs>
 //                 Vincent LEVEQUE <https://github.com/Stallos11>
 
-// https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/bootstrap/index.d.ts
-// https://github.com/foundation/foundation-sites/blob/develop/js/typescript/foundation.d.ts
-
 export namespace Axentix {
-  export class Caroulix {
+  class AxentixComponent {
+    sync(): void;
+    reset(): void;
+  }
+
+  class Caroulix extends AxentixComponent {
     constructor(el: string, options?: CaroulixOptions);
 
     updateHeight(): void;
@@ -79,7 +81,7 @@ export namespace Axentix {
     };
   }
 
-  export class Collapsible {
+  class Collapsible extends AxentixComponent {
     constructor(el: string, options?: CollapsibleOptions);
 
     open(): void;
@@ -110,7 +112,7 @@ export namespace Axentix {
     };
   }
 
-  export class Dropdown {
+  class Dropdown extends AxentixComponent {
     constructor(el: string, options?: DropdownOptions);
 
     open(): void;
@@ -134,7 +136,7 @@ export namespace Axentix {
     animationDelay: number;
   }
 
-  export class Fab {
+  class Fab extends AxentixComponent {
     constructor(el: string, options?: FabOptions);
 
     open(): void;
@@ -173,7 +175,7 @@ export namespace Axentix {
     offsetY: string;
   }
 
-  export class Modal {
+  class Modal extends AxentixComponent {
     constructor(el: string, options?: ModalOptions);
 
     open(): void;
@@ -198,7 +200,7 @@ export namespace Axentix {
     bodyScrolling: boolean;
   }
 
-  export class Sidenav {
+  class Sidenav extends AxentixComponent {
     constructor(el: string, options?: SidenavOptions);
 
     open(): void;
@@ -223,7 +225,7 @@ export namespace Axentix {
     animationDelay: number;
   }
 
-  export class Tab {
+  class Tab extends AxentixComponent {
     constructor(el: string, options?: TabOptions);
 
     updateActiveElement(): void;
@@ -247,7 +249,7 @@ export namespace Axentix {
     caroulix: CaroulixOptions | '';
   }
 
-  export class Toast {
+  class Toast {
     constructor(content: string, options?: ToastOptions);
 
     show(): void;
@@ -287,18 +289,42 @@ export namespace Axentix {
   }
 
   // JS Utilities
-  export function createEvent(element: Element, eventName: string, extraData?: object): void;
-  export function wrap(target: Array<Element>, wrapper?: Element): Element;
-  export function extend(defaultObject: object, object: object): object;
+  function createEvent(element: Element, eventName: string, extraData?: object): void;
+  function wrap(target: Array<Element>, wrapper?: Element): Element;
+  function extend(defaultObject: object, object: object): object;
 
   // Material forms
-  export function updateInputs(inputElements?: NodeListOf<Element>): void;
+  function updateInputs(inputElements?: NodeListOf<Element>): void;
 }
 
 export class Axentix {
   constructor(component: string | 'all', options?: object);
 
   // Core
-  getInstance(element: string): Axentix.Caroulix | Axentix.Dropdown | Axentix.Collapsible;
-  getAllInstances(): Array<Axentix.Caroulix | Axentix.Dropdown>;
+  getInstance(
+    element: string
+  ):
+    | Axentix.Caroulix
+    | Axentix.Collapsible
+    | Axentix.Dropdown
+    | Axentix.Fab
+    | Axentix.Modal
+    | Axentix.Sidenav
+    | Axentix.Tab;
+  getAllInstances(): Array<
+    | Axentix.Caroulix
+    | Axentix.Collapsible
+    | Axentix.Dropdown
+    | Axentix.Fab
+    | Axentix.Modal
+    | Axentix.Sidenav
+    | Axentix.Tab
+    | []
+  >;
+
+  sync(element: string): void;
+  syncAll(): void;
+
+  reset(element: string): void;
+  resetAll(): void;
 }
