@@ -4,6 +4,17 @@
    * @class
    */
   class Fab extends AxentixComponent {
+    static getDefaultOptions() {
+      return {
+        animationDelay: 300,
+        hover: true,
+        direction: 'top',
+        position: 'bottom-right',
+        offsetX: '1rem',
+        offsetY: '1.5rem',
+      };
+    }
+
     /**
      * Construct Fab instance
      * @constructor
@@ -12,18 +23,10 @@
      */
     constructor(element, options) {
       super();
-      this.defaultOptions = {
-        animationDelay: 300,
-        hover: true,
-        direction: 'top',
-        position: 'bottom-right',
-        offsetX: '1rem',
-        offsetY: '1.5rem',
-      };
 
       this.el = document.querySelector(element);
 
-      this.options = Axentix.extend(this.defaultOptions, options);
+      this.options = Axentix.extend(Fab.getDefaultOptions(), options);
       this._setup();
     }
 

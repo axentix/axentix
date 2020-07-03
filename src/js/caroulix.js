@@ -55,7 +55,7 @@
       this.yPos = 0;
       this.oldDragPercent = 0;
       this.dragSide = 'right';
-      this.currentDragIndex = -1;
+      this.nextItemIndex = -1;
 
       this._getChildrens();
       this.options.indicators.enabled ? this._enableIndicators() : '';
@@ -142,27 +142,32 @@
           const side = delta > 2 ? 'right' : 'left';
           this.isDragged = true;
 
+          let currIndex = this.currentItemIndex;
+
+          // this.currentDragIndex !== -1
+          //   ? ''
+          //   : (this.currentDragIndex =
+          //       this.dragSide === 'left' ? this._getPreviousItemIndex(1) : this._getNextItemIndex(1));
+
+          if (this.nextItemIndex !== -1) {
+            if (side !== this.dragSide) {
+              currIndex = this.nextItemIndex;
+              this.nextItemIndex = this.currentItemIndex;
+            }
+          } else {
+            this.nextItemIndex =
+              this.dragSide === 'left' ? this._getPreviousItemIndex(1) : this._getNextItemIndex(1);
+          }
+
           this.dragSide = side;
-          this.currentDragIndex !== -1
-            ? ''
-            : (this.currentDragIndex =
-                this.dragSide === 'left' ? this._getPreviousItemIndex(1) : this._getNextItemIndex(1));
 
-          // if (this.currentDragIndex === -1) {
-          //   if (this.dragSide === side) {
-          //     this.currentDragIndex =
-          //       this.dragSide === 'left' ? this._getPreviousItemIndex(1) : this._getNextItemIndex(1);
-          //   } else {
-          //     this.currentDragIndex = this.currentItemIndex;
-          //   }
-          // }
+          console.log('currentDragIndex', this.nextItemIndex);
 
-          console.log('currentDragIndex', this.currentDragIndex);
-
+          console.log(x);
           const percent = this.oldDragPercent + Math.abs(delta);
           console.log('percent', percent);
 
-          this[this.animFunction](this.currentDragIndex, this.dragSide, percent);
+          this[this.animFunction](this.nextItemIndex, this.dragSide, percent);
         }
       }
     }
@@ -178,8 +183,16 @@
 
       this.isPressed = false;
       this.isDragged = false;
-      this[this.animFunction](this.currentDragIndex, this.dragSide);
-      this.currentDragIndex = -1;
+      this[this.animFunction](this.nextItemIndex, this.dragSide);
+      this._resetSlideVar();
+    }
+
+    _resetSlideVar() {
+      this.xPos = 0;
+      this.yPos = 0;
+      this.oldDragPercent = 0;
+      this.dragSide = 'right';
+      this.nextItemIndex = -1;
     }
 
     /**
@@ -332,13 +345,14 @@
 
     /**
      * Slide animation
-     * @param {number} number
+     * @param {number} nextIndex
      * @param {string} side
      * @param {number} percent
+     * @param {number} currentIndex
      */
-    _animationSlide(number, side, percent = 100) {
-      const nextItem = this.childrens[number];
-      const currentItem = this.childrens[this.currentItemIndex];
+    _animationSlide(nextIndex, side, percent = 100, currentIndex = this.currentItemIndex) {
+      const nextItem = this.childrens[nextIndex];
+      const currentItem = this.childrens[currentIndex];
       let nextItemPercentage = '',
         currentItemPercentage = '';
 
@@ -351,13 +365,12 @@
       }
 
       const oldPercent = this.oldDragPercent !== 0 ? 100 - this.oldDragPercent : 100;
-      console.log('oldpercent', oldPercent);
       nextItem.style.transform = `translateX(${side === 'right' ? `${oldPercent}%` : `-${oldPercent}%`})`;
       nextItem.classList.add('active');
 
-      this.isPressed && percent === 100 ? (this.isPressed = false) : '';
+      this.isPressed && percent >= 100 ? (this.isPressed = false) : '';
 
-      const animDelay = this.isDragged ? '50ms' : this.options.animationDelay + 'ms';
+      const animDelay = this.isDragged ? '100ms' : this.options.animationDelay + 'ms';
       setTimeout(() => {
         nextItem.style.transitionDuration = animDelay;
         nextItem.style.transform = percent !== 100 ? `translateX(${nextItemPercentage})` : '';
@@ -368,23 +381,22 @@
         this.oldDragPercent = percent === 100 ? 0 : percent;
       }, 50);
 
+      const currItemPercent = currentItem.currPercent;
       setTimeout(() => {
-        currentItem.currPercent >= 80
-          ? currentItem.currPercent === 100
-            ? this._endAnimationSlide(nextItem, currentItem, number)
-            : this._animationSlide(number, side)
-          : '';
+        currItemPercent >= 100 ? this._endAnimationSlide(nextItem, currentItem, nextIndex) : '';
       }, this.options.animationDelay + 50);
     }
 
-    _endAnimationSlide(nextItem, currentItem, number) {
+    _endAnimationSlide(nextItem, currentItem, nextIndex) {
+      console.log(nextItem, currentItem);
       nextItem.removeAttribute('style');
       currentItem.classList.remove('active');
       currentItem.removeAttribute('style');
       currentItem.currPercent = undefined;
 
-      this.currentItemIndex = number;
+      this.currentItemIndex = nextIndex;
       this.isAnimated = false;
+      this._resetSlideVar();
       this.options.autoplay.enabled ? this.play() : '';
     }
 

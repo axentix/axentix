@@ -1,5 +1,5 @@
 // By https://gomakethings.com/vanilla-javascript-version-of-jquery-extend/ | MIT License
-Axentix.extend = function() {
+Axentix.extend = function () {
   let extended = {};
   let deep = false;
   let i = 0;
@@ -10,7 +10,7 @@ Axentix.extend = function() {
     i++;
   }
 
-  let merge = function(obj) {
+  let merge = function (obj) {
     for (let prop in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, prop)) {
         if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
@@ -38,7 +38,7 @@ Axentix.extend = function() {
  */
 Axentix.wrap = (target, wrapper = document.createElement('div')) => {
   const parent = target[0].parentElement;
-  target.forEach(elem => wrapper.appendChild(elem));
+  target.forEach((elem) => wrapper.appendChild(elem));
   parent.appendChild(wrapper);
   return wrapper;
 };
@@ -52,7 +52,11 @@ Axentix.wrap = (target, wrapper = document.createElement('div')) => {
 Axentix.createEvent = (element, eventName, extraData) => {
   const event = new CustomEvent('ax.' + eventName, {
     detail: extraData || {},
-    bubbles: true
+    bubbles: true,
   });
   element.dispatchEvent(event);
+};
+
+Axentix.isTouchEnabled = () => {
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 };
