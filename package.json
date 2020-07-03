@@ -35,6 +35,7 @@
   "sass": "src/scss/axentix.scss",
   "main": "dist/js/axentix.js",
   "module": "dist/js/axentix.esm.js",
+  "typings": "dist/axentix.d.ts",
   "files": [
     "dist",
     "src",
@@ -43,7 +44,6 @@
     "README",
     "CHANGELOG"
   ],
-  "typings": "src/axentix.d.ts",
   "engine": "node >= 10",
   "devDependencies": {
     "@babel/core": "^7.10.4",

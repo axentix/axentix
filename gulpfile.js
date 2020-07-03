@@ -11,6 +11,10 @@ const { src, dest, watch, series, parallel } = require('gulp'),
 
 sass.compiler = require('sass');
 
+function definitionExport() {
+  return src('src/axentix.d.ts').pipe(dest('dist'));
+}
+
 function compileJSESM() {
   return src('src/js/**/*.js')
     .pipe(concat('axentix.esm.js'))
@@ -110,5 +114,6 @@ exports.watchsass = function () {
 
 exports.default = parallel(
   series(compileJSMinified, compileJS, compileJSESM),
-  series(compileSassMinified, compileSass)
+  series(compileSassMinified, compileSass),
+  definitionExport
 );
