@@ -1,6 +1,8 @@
 # 1.0.0 - Under development
 
 - ADDED
+  - Better JS isolation : `new Axentix.Collapsible` instead of `new Collapsible`
+  - ESM js file, now import / require work with autocompletion
   - `Axentix.updateInputs()` method on material forms
   - `next()` & `prev()` methods on Tab with events
   - `disableActiveBar` option to disable indicator on tabs

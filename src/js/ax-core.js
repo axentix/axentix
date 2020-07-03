@@ -2,7 +2,7 @@
  * Class Axentix
  * @class
  */
-export class Axentix {
+class Axentix {
   /**
    * Construct Axentix instance
    * @constructor
