@@ -4,15 +4,8 @@
    * @class
    */
   class Toast {
-    /**
-     * Construct Toast instance
-     * @constructor
-     * @param {String} content
-     * @param {Object} options
-     */
-
-    constructor(content, options) {
-      this.defaultOptions = {
+    static getDefaultOptions() {
+      return {
         animationDelay: 400,
         duration: 4000,
         classes: '',
@@ -21,7 +14,16 @@
         mobileDirection: 'bottom',
         isClosable: false,
       };
+    }
 
+    /**
+     * Construct Toast instance
+     * @constructor
+     * @param {String} content
+     * @param {Object} options
+     */
+
+    constructor(content, options, isLoadedWithData) {
       if (Axentix.toastInstanceExist) {
         console.error("Don't try to create multiple toast instances");
         return;
@@ -30,7 +32,7 @@
       }
 
       this.content = content;
-      this.options = Axentix.extend(this.defaultOptions, options);
+      this.options = Axentix.getComponentOptions('Toast', options, this.el, isLoadedWithData);
       this.options.position = this.options.position.toLowerCase();
       this.options.direction = this.options.direction.toLowerCase();
       this.options.mobileDirection = this.options.mobileDirection.toLowerCase();

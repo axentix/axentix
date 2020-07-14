@@ -4,23 +4,27 @@
    * @class
    */
   class Modal extends AxentixComponent {
+    static getDefaultOptions() {
+      return {
+        overlay: true,
+        bodyScrolling: false,
+        animationDelay: 400,
+      };
+    }
+
     /**
      * Construct Modal instance
      * @constructor
      * @param {String} element
      * @param {Object} options
      */
-    constructor(element, options) {
+    constructor(element, options, isLoadedWithData) {
       super();
-      this.defaultOptions = {
-        overlay: true,
-        bodyScrolling: false,
-        animationDelay: 400,
-      };
 
       this.el = document.querySelector(element);
 
-      this.options = Axentix.extend(this.defaultOptions, options);
+      this.options = Axentix.getComponentOptions('Modal', options, this.el, isLoadedWithData);
+
       this._setup();
     }
 

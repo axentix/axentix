@@ -4,33 +4,35 @@
    * @class
    */
   class Tab extends AxentixComponent {
+    static getDefaultOptions() {
+      return {
+        animationDelay: 300,
+        animationType: 'none',
+        disableActiveBar: false,
+        caroulix: {},
+      };
+    }
+
     /**
      * Construct Tab instance
      * @constructor
      * @param {String} element
      * @param {Object} options
      */
-    constructor(element, options) {
+    constructor(element, options, isLoadedWithData) {
       super();
-      this.defaultAnimDelay = 300;
       this.caroulixOptions = {
-        animationDelay: this.defaultAnimDelay,
+        animationDelay: 300,
         autoplay: {
           enabled: false,
         },
       };
 
-      this.defaultOptions = {
-        animationDelay: this.defaultAnimDelay,
-        animationType: 'none',
-        disableActiveBar: false,
-        caroulix: {},
-      };
-
       this.el = document.querySelector(element);
       this.elQuery = element;
 
-      this.options = Axentix.extend(this.defaultOptions, options);
+      this.options = Axentix.getComponentOptions('Tab', options, this.el, isLoadedWithData);
+
       this._setup();
     }
 
@@ -283,7 +285,14 @@
 
       if (this.tabCaroulixInit) {
         this.tabItems.map((item) => (item.id === itemId ? item.classList.add('active') : ''));
-        this.caroulixInstance = new Axentix.Caroulix('#' + this.tabCaroulix.id, this.options.caroulix);
+
+        this.caroulixInstance = new Axentix.Caroulix(
+          '#' + this.tabCaroulix.id,
+          this.options.caroulix,
+          this.el,
+          true
+        );
+
         this.tabCaroulixInit = false;
         this.isAnimated = false;
         return;

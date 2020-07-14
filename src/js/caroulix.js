@@ -4,15 +4,8 @@
    * @class
    */
   class Caroulix extends AxentixComponent {
-    /**
-     * Construct Caroulix instance
-     * @constructor
-     * @param {String} element
-     * @param {Object} options
-     */
-    constructor(element, options) {
-      super();
-      this.defaultOptions = {
+    static getDefaultOptions() {
+      return {
         fixedHeight: true,
         height: '',
         animationDelay: 500,
@@ -28,10 +21,21 @@
           side: 'right',
         },
       };
+    }
+
+    /**
+     * Construct Caroulix instance
+     * @constructor
+     * @param {String} element
+     * @param {Object} options
+     */
+    constructor(element, options, isLoadedWithData) {
+      super();
 
       this.el = document.querySelector(element);
 
-      this.options = Axentix.extend(this.defaultOptions, options);
+      this.options = Axentix.getComponentOptions('Caroulix', options, this.el, isLoadedWithData);
+
       this._setup();
     }
 
@@ -80,13 +84,13 @@
         this.arrowNext.addEventListener('click', this.arrowNextRef);
       }
 
-      this.handleSlideStartRef = this._handleSlideStart.bind(this);
-      this.handleSlideMoveRef = this._handleSlideMove.bind(this);
-      this.handleSlideEndRef = this._handleSlideEnd.bind(this);
-      this.el.addEventListener('mousedown', this.handleSlideStartRef);
-      this.el.addEventListener('mousemove', this.handleSlideMoveRef);
-      this.el.addEventListener('mouseup', this.handleSlideEndRef);
-      this.el.addEventListener('mouseleave', this.handleSlideEndRef);
+      // this.handleSlideStartRef = this._handleSlideStart.bind(this);
+      // this.handleSlideMoveRef = this._handleSlideMove.bind(this);
+      // this.handleSlideEndRef = this._handleSlideEnd.bind(this);
+      // this.el.addEventListener('mousedown', this.handleSlideStartRef);
+      // this.el.addEventListener('mousemove', this.handleSlideMoveRef);
+      // this.el.addEventListener('mouseup', this.handleSlideEndRef);
+      // this.el.addEventListener('mouseleave', this.handleSlideEndRef);
     }
 
     /**
@@ -103,97 +107,97 @@
         this.arrowNextRef = undefined;
       }
 
-      this.el.removeEventListener('mousedown', this.handleSlideStartRef);
-      this.el.removeEventListener('mousemove', this.handleSlideMoveRef);
-      this.el.removeEventListener('mouseup', this.handleSlideEndRef);
-      this.el.removeEventListener('mouseleave', this.handleSlideEndRef);
-      this.handleSlideStartRef = undefined;
-      this.handleSlideMoveRef = undefined;
-      this.handleSlideEndRef = undefined;
+      // this.el.removeEventListener('mousedown', this.handleSlideStartRef);
+      // this.el.removeEventListener('mousemove', this.handleSlideMoveRef);
+      // this.el.removeEventListener('mouseup', this.handleSlideEndRef);
+      // this.el.removeEventListener('mouseleave', this.handleSlideEndRef);
+      // this.handleSlideStartRef = undefined;
+      // this.handleSlideMoveRef = undefined;
+      // this.handleSlideEndRef = undefined;
     }
 
-    /**
-     *
-     * @param {Event} e
-     */
-    _handleSlideStart(e) {
-      e.preventDefault();
+    // /**
+    //  *
+    //  * @param {Event} e
+    //  */
+    // _handleSlideStart(e) {
+    //   e.preventDefault();
 
-      this.isPressed = true;
-      this.isDragged = false;
+    //   this.isPressed = true;
+    //   this.isDragged = false;
 
-      this.xPos = e.clientX;
-      this.yPos = e.clientY;
-    }
+    //   this.xPos = e.clientX;
+    //   this.yPos = e.clientY;
+    // }
 
-    /**
-     *
-     * @param {Event} e
-     */
-    _handleSlideMove(e) {
-      if (this.isPressed) {
-        const x = e.clientX,
-          y = e.clientY,
-          delta = this.xPos - x,
-          deltaY = this.yPos - y;
+    // /**
+    //  *
+    //  * @param {Event} e
+    //  */
+    // _handleSlideMove(e) {
+    //   if (this.isPressed) {
+    //     const x = e.clientX,
+    //       y = e.clientY,
+    //       delta = this.xPos - x,
+    //       deltaY = this.yPos - y;
 
-        if (delta > 2 || delta < -2) {
-          this.xPos = x;
-          const side = delta > 2 ? 'right' : 'left';
-          this.isDragged = true;
+    //     if (delta > 2 || delta < -2) {
+    //       this.xPos = x;
+    //       const side = delta > 2 ? 'right' : 'left';
+    //       this.isDragged = true;
 
-          let currIndex = this.currentItemIndex;
+    //       let currIndex = this.currentItemIndex;
 
-          // this.currentDragIndex !== -1
-          //   ? ''
-          //   : (this.currentDragIndex =
-          //       this.dragSide === 'left' ? this._getPreviousItemIndex(1) : this._getNextItemIndex(1));
+    //       // this.currentDragIndex !== -1
+    //       //   ? ''
+    //       //   : (this.currentDragIndex =
+    //       //       this.dragSide === 'left' ? this._getPreviousItemIndex(1) : this._getNextItemIndex(1));
 
-          if (this.nextItemIndex !== -1) {
-            if (side !== this.dragSide) {
-              currIndex = this.nextItemIndex;
-              this.nextItemIndex = this.currentItemIndex;
-            }
-          } else {
-            this.nextItemIndex =
-              this.dragSide === 'left' ? this._getPreviousItemIndex(1) : this._getNextItemIndex(1);
-          }
+    //       if (this.nextItemIndex !== -1) {
+    //         if (side !== this.dragSide) {
+    //           currIndex = this.nextItemIndex;
+    //           this.nextItemIndex = this.currentItemIndex;
+    //         }
+    //       } else {
+    //         this.nextItemIndex =
+    //           this.dragSide === 'left' ? this._getPreviousItemIndex(1) : this._getNextItemIndex(1);
+    //       }
 
-          this.dragSide = side;
+    //       this.dragSide = side;
 
-          console.log('currentDragIndex', this.nextItemIndex);
+    //       console.log('currentDragIndex', this.nextItemIndex);
 
-          console.log(x);
-          const percent = this.oldDragPercent + Math.abs(delta);
-          console.log('percent', percent);
+    //       console.log(x);
+    //       const percent = this.oldDragPercent + Math.abs(delta);
+    //       console.log('percent', percent);
 
-          this[this.animFunction](this.nextItemIndex, this.dragSide, percent);
-        }
-      }
-    }
+    //       this[this.animFunction](this.nextItemIndex, this.dragSide, percent);
+    //     }
+    //   }
+    // }
 
-    /**
-     *
-     * @param {Event} e
-     */
-    _handleSlideEnd(e) {
-      if (!this.isPressed) {
-        return;
-      }
+    // /**
+    //  *
+    //  * @param {Event} e
+    //  */
+    // _handleSlideEnd(e) {
+    //   if (!this.isPressed) {
+    //     return;
+    //   }
 
-      this.isPressed = false;
-      this.isDragged = false;
-      this[this.animFunction](this.nextItemIndex, this.dragSide);
-      this._resetSlideVar();
-    }
+    //   this.isPressed = false;
+    //   this.isDragged = false;
+    //   this[this.animFunction](this.nextItemIndex, this.dragSide);
+    //   this._resetSlideVar();
+    // }
 
-    _resetSlideVar() {
-      this.xPos = 0;
-      this.yPos = 0;
-      this.oldDragPercent = 0;
-      this.dragSide = 'right';
-      this.nextItemIndex = -1;
-    }
+    // _resetSlideVar() {
+    //   this.xPos = 0;
+    //   this.yPos = 0;
+    //   this.oldDragPercent = 0;
+    //   this.dragSide = 'right';
+    //   this.nextItemIndex = -1;
+    // }
 
     /**
      * Handle resize event
@@ -345,60 +349,101 @@
 
     /**
      * Slide animation
-     * @param {number} nextIndex
+     * @param {number} number
      * @param {string} side
-     * @param {number} percent
-     * @param {number} currentIndex
      */
-    _animationSlide(nextIndex, side, percent = 100, currentIndex = this.currentItemIndex) {
-      const nextItem = this.childrens[nextIndex];
-      const currentItem = this.childrens[currentIndex];
+    _animationSlide(number, side) {
+      const nextItem = this.childrens[number];
+      const currentItem = this.childrens[this.currentItemIndex];
       let nextItemPercentage = '',
         currentItemPercentage = '';
 
       if (side === 'right') {
-        nextItemPercentage = `${100 - percent}%`;
-        currentItemPercentage = `-${percent}%`;
+        nextItemPercentage = '100%';
+        currentItemPercentage = '-100%';
       } else {
-        nextItemPercentage = `-${100 - percent}%`;
-        currentItemPercentage = `${percent}%`;
+        nextItemPercentage = '-100%';
+        currentItemPercentage = '100%';
       }
 
-      const oldPercent = this.oldDragPercent !== 0 ? 100 - this.oldDragPercent : 100;
-      nextItem.style.transform = `translateX(${side === 'right' ? `${oldPercent}%` : `-${oldPercent}%`})`;
+      nextItem.style.transform = `translateX(${nextItemPercentage})`;
       nextItem.classList.add('active');
 
-      this.isPressed && percent >= 100 ? (this.isPressed = false) : '';
-
-      const animDelay = this.isDragged ? '100ms' : this.options.animationDelay + 'ms';
       setTimeout(() => {
-        nextItem.style.transitionDuration = animDelay;
-        nextItem.style.transform = percent !== 100 ? `translateX(${nextItemPercentage})` : '';
-        currentItem.style.transitionDuration = animDelay;
+        nextItem.style.transitionDuration = this.options.animationDelay + 'ms';
+        nextItem.style.transform = '';
+        currentItem.style.transitionDuration = this.options.animationDelay + 'ms';
         currentItem.style.transform = `translateX(${currentItemPercentage})`;
-        currentItem.currPercent = percent;
-
-        this.oldDragPercent = percent === 100 ? 0 : percent;
       }, 50);
 
-      const currItemPercent = currentItem.currPercent;
       setTimeout(() => {
-        currItemPercent >= 100 ? this._endAnimationSlide(nextItem, currentItem, nextIndex) : '';
+        nextItem.removeAttribute('style');
+        currentItem.classList.remove('active');
+        currentItem.removeAttribute('style');
+
+        this.currentItemIndex = number;
+        this.isAnimated = false;
+        this.options.autoplay.enabled ? this.play() : '';
       }, this.options.animationDelay + 50);
     }
 
-    _endAnimationSlide(nextItem, currentItem, nextIndex) {
-      console.log(nextItem, currentItem);
-      nextItem.removeAttribute('style');
-      currentItem.classList.remove('active');
-      currentItem.removeAttribute('style');
-      currentItem.currPercent = undefined;
+    // don't work
+    // /**
+    //  * Slide animation
+    //  * @param {number} nextIndex
+    //  * @param {string} side
+    //  * @param {number} percent
+    //  * @param {number} currentIndex
+    //  */
+    // _animationSlide(nextIndex, side, percent = 100, currentIndex = this.currentItemIndex) {
+    //   const nextItem = this.childrens[nextIndex];
+    //   const currentItem = this.childrens[currentIndex];
+    //   let nextItemPercentage = '',
+    //     currentItemPercentage = '';
 
-      this.currentItemIndex = nextIndex;
-      this.isAnimated = false;
-      this._resetSlideVar();
-      this.options.autoplay.enabled ? this.play() : '';
-    }
+    //   if (side === 'right') {
+    //     nextItemPercentage = `${100 - percent}%`;
+    //     currentItemPercentage = `-${percent}%`;
+    //   } else {
+    //     nextItemPercentage = `-${100 - percent}%`;
+    //     currentItemPercentage = `${percent}%`;
+    //   }
+
+    //   const oldPercent = this.oldDragPercent !== 0 ? 100 - this.oldDragPercent : 100;
+    //   nextItem.style.transform = `translateX(${side === 'right' ? `${oldPercent}%` : `-${oldPercent}%`})`;
+    //   nextItem.classList.add('active');
+
+    //   this.isPressed && percent >= 100 ? (this.isPressed = false) : '';
+
+    //   const animDelay = this.isDragged ? '100ms' : this.options.animationDelay + 'ms';
+    //   setTimeout(() => {
+    //     nextItem.style.transitionDuration = animDelay;
+    //     nextItem.style.transform = percent !== 100 ? `translateX(${nextItemPercentage})` : '';
+    //     currentItem.style.transitionDuration = animDelay;
+    //     currentItem.style.transform = `translateX(${currentItemPercentage})`;
+    //     currentItem.currPercent = percent;
+
+    //     this.oldDragPercent = percent === 100 ? 0 : percent;
+    //   }, 50);
+
+    //   const currItemPercent = currentItem.currPercent;
+    //   setTimeout(() => {
+    //     currItemPercent >= 100 ? this._endAnimationSlide(nextItem, currentItem, nextIndex) : '';
+    //   }, this.options.animationDelay + 50);
+    // }
+
+    // _endAnimationSlide(nextItem, currentItem, nextIndex) {
+    //   console.log(nextItem, currentItem);
+    //   nextItem.removeAttribute('style');
+    //   currentItem.classList.remove('active');
+    //   currentItem.removeAttribute('style');
+    //   currentItem.currPercent = undefined;
+
+    //   this.currentItemIndex = nextIndex;
+    //   this.isAnimated = false;
+    //   this._resetSlideVar();
+    //   this.options.autoplay.enabled ? this.play() : '';
+    // }
 
     /***** [END] Animation Section [END] *****/
 

@@ -29,7 +29,7 @@
         <h2>Cards</h2>
         <div class="grix xs3 center">
           <div class="btn airforce" onclick="caroulix.prev()">Previous</div>
-          <div class="caroulix" id="example-caroulix">
+          <div class="caroulix" id="example-caroulix" data-ax="caroulix">
             <div class="caroulix-item">
               <div class="card airforce m-2">
                 <div class="card-content">
@@ -100,18 +100,18 @@
       //   animationType: 'material',
       // });
 
-      var imgCaroulix = new Axentix.Caroulix('#img-caroulix', {
-        animationDelay: 2000,
-        indicators: {
-          enabled: true,
-          isFlat: true,
-          customClasses: 'test toto',
-        },
-        autoplay: {
-          enabled: false,
-        },
-        // fixedHeight: false,
-      });
+      // var imgCaroulix = new Axentix.Caroulix('#img-caroulix', {
+      //   animationDelay: 2000,
+      //   indicators: {
+      //     enabled: true,
+      //     isFlat: true,
+      //     customClasses: 'test toto',
+      //   },
+      //   autoplay: {
+      //     enabled: false,
+      //   },
+      //   // fixedHeight: false,
+      // });
 
       // document.addEventListener('ax.caroulix.slide', function (e) {
       //   console.log('slide', e);

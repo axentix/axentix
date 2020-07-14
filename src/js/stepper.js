@@ -4,25 +4,29 @@
    * @class
    */
   class Stepper extends AxentixComponent {
+    static getDefaultOptions() {
+      return {
+        animationDelay: 300,
+        animationType: 'none',
+        linear: true,
+        validation: true,
+      };
+    }
+
     /**
      * Construct Stepper instance
      * @constructor
      * @param {String} element
      * @param {Object} options
      */
-    constructor(element, options) {
+    constructor(element, options, isLoadedWithData) {
       super();
-      this.defaultOptions = {
-        animationDelay: 300,
-        animationType: 'none',
-        linear: true,
-        validation: true,
-      };
 
       this.el = document.querySelector(element);
       this.elQuery = element;
 
-      this.options = Axentix.extend(this.defaultOptions, options);
+      this.options = Axentix.getComponentOptions('Stepper', options, this.el, isLoadedWithData);
+
       this._setup();
     }
 

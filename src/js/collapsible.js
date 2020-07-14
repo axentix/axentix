@@ -4,15 +4,8 @@
    * @class
    */
   class Collapsible extends AxentixComponent {
-    /**
-     * Construct Collapsible instance
-     * @constructor
-     * @param {String} element
-     * @param {Object} options
-     */
-    constructor(element, options) {
-      super();
-      this.defaultOptions = {
+    static getDefaultOptions() {
+      return {
         animationDelay: 300,
         sidenav: {
           activeClass: true,
@@ -20,10 +13,21 @@
           autoCloseOtherCollapsible: true,
         },
       };
+    }
+
+    /**
+     * Construct Collapsible instance
+     * @constructor
+     * @param {String} element
+     * @param {Object} options
+     */
+    constructor(element, options, isLoadedWithData) {
+      super();
 
       this.el = document.querySelector(element);
 
-      this.options = Axentix.extend(this.defaultOptions, options);
+      this.options = Axentix.getComponentOptions('Collapsible', options, this.el, isLoadedWithData);
+
       this._setup();
     }
 

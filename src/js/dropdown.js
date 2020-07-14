@@ -4,23 +4,27 @@
    * @class
    */
   class Dropdown extends AxentixComponent {
+    static getDefaultOptions() {
+      return {
+        animationDelay: 300,
+        animationType: 'none',
+        hover: false,
+      };
+    }
+
     /**
      * Construct Dropdown instance
      * @constructor
      * @param {String} element
      * @param {Object} options
      */
-    constructor(element, options) {
+    constructor(element, options, isLoadedWithData) {
       super();
-      this.defaultOptions = {
-        animationDelay: 300,
-        animationType: 'none',
-        hover: false,
-      };
 
       this.el = document.querySelector(element);
 
-      this.options = Axentix.extend(this.defaultOptions, options);
+      this.options = Axentix.getComponentOptions('Dropdown', options, this.el, isLoadedWithData);
+
       this._setup();
     }
 

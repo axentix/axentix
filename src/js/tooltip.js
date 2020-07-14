@@ -4,30 +4,34 @@
    * @Class
    */
   class Tooltip extends AxentixComponent {
-    /**
-     * Tooltip constructor
-     * @constructor
-     * @param {String} content
-     * @param {Object} options
-     */
-    constructor(element, content, options) {
-      super();
-      this.defaultOptions = {
+    static getDefaultOptions() {
+      return {
+        content: '',
         animationDelay: 0,
         offset: '10px',
         animationDuration: 200,
         classes: 'grey dark-4 light-shadow-2 p-2',
         position: '',
       };
+    }
+
+    /**
+     * Tooltip constructor
+     * @constructor
+     * @param {Object} options
+     */
+    constructor(element, options, isLoadedWithData) {
+      super();
 
       this.el = document.querySelector(element);
-      this.content = content;
-      this.options = Axentix.extend(this.defaultOptions, options);
-      this.options.position = this.options.position.toLowerCase();
+      this.options = Axentix.getComponentOptions('Tooltip', options, this.el, isLoadedWithData);
+
       this._setup();
     }
 
     _setup() {
+      this.options.position = this.options.position.toLowerCase();
+
       let tooltips = document.querySelectorAll('.tooltip');
 
       tooltips.forEach((tooltip) => {
@@ -45,7 +49,7 @@
 
       this.tooltip.className = 'tooltip ' + this.options.classes;
       this.tooltip.style.transitionDuration = this.options.animationDuration + 'ms';
-      this.tooltip.innerHTML = this.content;
+      this.tooltip.innerHTML = this.options.content;
       document.body.appendChild(this.tooltip);
 
       this.elRect = this.el.getBoundingClientRect();
@@ -122,7 +126,7 @@
     _onHover(e) {
       e.preventDefault();
 
-      console.log(this.position);
+      // console.log(this.position);
 
       this.position == 'top'
         ? (this.tooltip.style.transform = `translateY(-${this.options.offset})`)

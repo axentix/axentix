@@ -21,12 +21,13 @@
      * @param {String} element
      * @param {Object} options
      */
-    constructor(element, options) {
+    constructor(element, options, isLoadedWithData) {
       super();
 
       this.el = document.querySelector(element);
 
-      this.options = Axentix.extend(Fab.getDefaultOptions(), options);
+      this.options = Axentix.getComponentOptions('Fab', options, this.el, isLoadedWithData);
+
       this._setup();
     }
 

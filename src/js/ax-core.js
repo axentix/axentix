@@ -10,7 +10,7 @@ class Axentix {
    * @param {Object} options
    */
   constructor(component, options) {
-    this.component = component[0].toUpperCase() + component.slice(1);
+    this.component = component[0].toUpperCase() + component.slice(1).toLowerCase();
     this.isAll = component === 'all' ? true : false;
     this.options = this.isAll ? {} : options;
     this.instances = [];
@@ -120,79 +120,3 @@ class Axentix {
     this.instances.map((instance) => instance.reset());
   }
 }
-
-Axentix.DataDetection = (() => {
-  const availableComponents = [
-    'Caroulix',
-    'Collapsible',
-    'Dropdown',
-    'Fab',
-    'Modal',
-    'Sidenav',
-    'Stepper',
-    'Tab',
-    'Tooltip',
-  ];
-
-  /**
-   * Format options provided
-   * @param {Element} element
-   * @param {string} component
-   * @return {object}
-   */
-  const formatOptions = (element, component) => {
-    const defaultOptions = Axentix[component].getDefaultOptions();
-    const defaultOptionKeys = Object.keys(defaultOptions);
-    let options = {};
-
-    defaultOptionKeys.map((name) => {
-      const formattedName = name
-        .replace(/[\w]([A-Z])/g, (s) => {
-          return s[0] + '-' + s[1];
-        })
-        .toLowerCase();
-
-      const dataAttribute = 'data-' + component.toLowerCase() + '-' + formattedName;
-      if (element.hasAttribute(dataAttribute)) {
-        options[name] = element.getAttribute(dataAttribute);
-      }
-    });
-
-    return options;
-  };
-
-  const setup = () => {
-    const elements = document.querySelectorAll('[data-ax]');
-    let instanciateElements = [];
-
-    elements.forEach((el) => {
-      let component = el.dataset.ax;
-      component = component[0].toUpperCase() + component.slice(1);
-
-      if (!availableComponents.includes(component)) {
-        console.error("Error: Component don't exist.", el);
-        return;
-      }
-
-      const options = formatOptions(el, component);
-
-      instanciateElements.push(new Axentix[component](...[`#${el.id}`, options]));
-    });
-
-    Axentix.dataElements = instanciateElements;
-  };
-
-  const setupAll = () => {
-    Axentix.axentix = new Axentix('all');
-  };
-
-  return {
-    setup,
-    setupAll,
-  };
-})();
-
-document.addEventListener('DOMContentLoaded', () => {
-  document.documentElement.dataset.axentix ? Axentix.DataDetection.setupAll() : '';
-  Axentix.DataDetection.setup();
-});
