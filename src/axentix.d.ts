@@ -14,11 +14,6 @@ export namespace Axentix {
 
     updateHeight(): void;
     goTo(number: number, side: string): void;
-
-    /**
-     * Go to previous {step}
-     * @param step DESC HERE
-     */
     prev(step?: number): void;
     next(step?: number): void;
     play(): void;
