@@ -1,15 +1,21 @@
 Axentix.extend = (...args) => {
   return args.reduce((acc, obj) => {
     for (let key in obj) {
-      if (typeof obj[key] === 'object' && obj[key] !== null) {
-        acc[key] = Axentix.extend(acc[key], obj[key]);
-      } else {
-        acc[key] = obj[key];
-      }
+      typeof obj[key] === 'object' && obj[key] !== null
+        ? (acc[key] = Axentix.extend(acc[key], obj[key]))
+        : (acc[key] = obj[key]);
     }
 
     return acc;
   }, {});
+};
+
+Axentix.getComponentOptions = (component, options, el, isLoadedWithData) => {
+  return Axentix.extend(
+    Axentix[component].getDefaultOptions(),
+    isLoadedWithData ? {} : Axentix.DataDetection.formatOptions(component, el),
+    options
+  );
 };
 
 /**
@@ -41,12 +47,4 @@ Axentix.createEvent = (element, eventName, extraData) => {
 
 Axentix.isTouchEnabled = () => {
   return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-};
-
-Axentix.getComponentOptions = (component, options, el, isLoadedWithData) => {
-  return Axentix.extend(
-    Axentix[component].getDefaultOptions(),
-    isLoadedWithData ? {} : Axentix.DataDetection.formatOptions(component, el),
-    options
-  );
 };

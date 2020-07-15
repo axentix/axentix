@@ -66,7 +66,8 @@
         }
       });
 
-      window.addEventListener('resize', this._handleResize);
+      this.resizeRef = this._handleResize.bind(this);
+      window.addEventListener('resize', this.resizeRef);
     }
 
     /**
@@ -80,14 +81,15 @@
       });
       this.listenerRef = undefined;
 
-      window.removeEventListener('resize', this._handleResize);
+      window.removeEventListener('resize', this.resizeRef);
+      this.resizeRef = undefined;
     }
 
     /**
      * Reset collapsible maxHeight
      */
     _handleResize() {
-      this.el.style.maxHeight = this.el.scrollHeight + 'px';
+      this.isActive && !this.isInSidenav ? (this.el.style.maxHeight = this.el.scrollHeight + 'px') : '';
     }
 
     /**
@@ -192,7 +194,7 @@
       Axentix.createEvent(this.el, 'collapsible.open');
       this.isActive = true;
       this.isAnimated = true;
-      this.el.style.display = 'block';
+      this.el.style.display = 'flex';
       this._applyOverflow();
       this.el.style.maxHeight = this.el.scrollHeight + 'px';
 

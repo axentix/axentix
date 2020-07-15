@@ -1,6 +1,8 @@
-# 1.0.0 - Under development
+# 1.0.0-beta.0 - Under development
 
 - ADDED
+  - Tooltips
+  - Data- init methods & options handle
   - Better JS isolation : `new Axentix.Collapsible` instead of `new Collapsible`
   - ESM js file, now import / require work with autocompletion
   - Definition file
@@ -10,8 +12,9 @@
 - REMOVED
   - `Axentix.setupFormsListeners()` & `Axentix.detectAllInputs()` methods on material forms
 - IMPROVED
+  - Clean both css and js code
   - Rework material forms
-  - Update dependencies
+  - Update dev-dependencies
 - BUGFIXES
   - Material forms border not set correctly inside collapsible in some case
   - Material forms textarea spacement
@@ -20,6 +23,7 @@
   - Material forms default background-color with some browsers
   - Material select don't init correctly with empty selected value
   - Button circle width inside inline form
+  - Collapsible don't handled correctly elements with margin
   - Collapsible resize event
 
 # 0.5.3 - 2020-04-15
