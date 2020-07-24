@@ -6,7 +6,6 @@ Axentix.DataDetection = (() => {
     'Fab',
     'Modal',
     'Sidenav',
-    'Stepper',
     'Tab',
     'Tooltip',
   ];

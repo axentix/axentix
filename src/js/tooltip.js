@@ -126,8 +126,6 @@
     _onHover(e) {
       e.preventDefault();
 
-      // console.log(this.position);
-
       this.position == 'top'
         ? (this.tooltip.style.transform = `translateY(-${this.options.offset})`)
         : this.position == 'right'
