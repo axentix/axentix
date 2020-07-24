@@ -6,7 +6,7 @@ const { src, dest, watch, series, parallel } = require('gulp'),
   minify = require('gulp-babel-minify'),
   browserSync = require('browser-sync').create(),
   autoprefixer = require('gulp-autoprefixer'),
-  header = require('gulp-header'),
+  insert = require('gulp-insert'),
   Fiber = require('fibers');
 
 sass.compiler = require('sass');
@@ -18,7 +18,7 @@ function definitionExport() {
 function compileJSESM() {
   return src('src/js/**/*.js')
     .pipe(concat('axentix.esm.js'))
-    .pipe(header('export { Axentix };'))
+    .pipe(insert.prepend('export { Axentix };'))
     .pipe(
       babel({
         presets: ['@babel/env'],
