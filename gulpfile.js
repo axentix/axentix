@@ -16,14 +16,9 @@ function definitionExport() {
 }
 
 function compileJSESM() {
-  return src('src/js/**/*.js')
-    .pipe(concat('axentix.esm.js'))
+  return src('dist/js/axentix.js')
+    .pipe(rename('axentix.esm.js'))
     .pipe(insert.prepend('export { Axentix };'))
-    .pipe(
-      babel({
-        presets: ['@babel/env'],
-      })
-    )
     .pipe(dest('dist/js/'));
 }
 
@@ -113,7 +108,7 @@ exports.watchsass = function () {
 };
 
 exports.default = parallel(
-  series(compileJSMinified, compileJS, compileJSESM),
-  series(compileSassMinified, compileSass),
+  series(parallel(compileJSMinified, compileJS), compileJSESM),
+  parallel(compileSassMinified, compileSass),
   definitionExport
 );
