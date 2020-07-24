@@ -34,20 +34,24 @@
     </footer>
     <script src="../dist/js/axentix.min.js"></script>
     <script>
-      var tooltipTop = new Tooltip('#tooltip1', 'This is a tooltip', {
+      var tooltipTop = new Axentix.Tooltip('#tooltip1', {
+        content: 'This is a tooltip',
         classes: 'grey dark-4 light-shadow-2 p-2',
         position: 'top',
       });
-      var tooltipRight = new Tooltip('#tooltip2', 'This is a tooltip', {
+      var tooltipRight = new Axentix.Tooltip('#tooltip2', {
+        content: 'This is a tooltip',
         classes: 'grey dark-4 light-shadow-2 p-2',
         position: 'right',
       });
-      var tooltipBottom = new Tooltip('#tooltip3', 'This is a tooltip', {
+      var tooltipBottom = new Axentix.Tooltip('#tooltip3', {
+        content: 'This is a tooltip',
         classes: 'grey dark-4 light-shadow-2 p-2',
         position: 'bottom',
       });
-      var tooltipLeft = new Tooltip('#tooltip4', 'This is a tooltip', {
-        classes: 'grey dark-4 light-shadow-2 p-2',
+      var tooltipLeft = new Axentix.Tooltip('#tooltip4', {
+        content: 'This is a tooltip',
+        classes: 'grey dark-4 light-shadow-2 p-2 rounded-2',
         position: 'left',
       });
     </script>

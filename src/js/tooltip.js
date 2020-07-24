@@ -32,7 +32,7 @@
     _setup() {
       this.options.position = this.options.position.toLowerCase();
 
-      let tooltips = document.querySelectorAll('.tooltip');
+      const tooltips = document.querySelectorAll('.tooltip');
 
       tooltips.forEach((tooltip) => {
         tooltip.dataset.tooltipId
@@ -52,50 +52,12 @@
       this.tooltip.innerHTML = this.options.content;
       document.body.appendChild(this.tooltip);
 
-      this.elRect = this.el.getBoundingClientRect();
-
       const positionList = ['right', 'left', 'top', 'bottom'];
       positionList.includes(this.options.position) ? '' : (this.options.position = 'bottom');
 
-      this.position = this.options.position;
-      this._setBasicPosition();
-
-      this.tooltipRect = this.tooltip.getBoundingClientRect();
-      this._manualTransform();
-
       this._setupListeners();
-    }
 
-    /**
-     * Set basic tooltip position
-     */
-    _setBasicPosition() {
-      if (this.position == 'top' || this.position == 'bottom') {
-        this.position == 'top'
-          ? (this.tooltip.style.top = this.elRect.top)
-          : (this.tooltip.style.top = this.elRect.top + this.elRect.height);
-      } else if (this.position == 'left' || this.position == 'right') {
-        this.position == 'right' ? (this.tooltip.style.left = this.elRect.left + this.elRect.width) : '';
-      }
-    }
-
-    /**
-     * Manually transform the tooltip location
-     */
-    _manualTransform() {
-      if (this.position == 'top' || this.position == 'bottom') {
-        this.tooltip.style.left =
-          this.elRect.left + this.elRect.width / 2 - this.tooltipRect.width / 2 + 'px';
-      } else if (this.position == 'left' || this.position == 'right') {
-        this.tooltip.style.top =
-          this.elRect.top + this.elRect.height / 2 - this.tooltipRect.height / 2 + 'px';
-      }
-
-      if (this.position == 'top') {
-        this.tooltip.style.top = this.tooltipRect.top - this.tooltipRect.height + 'px';
-      } else if (this.position == 'left') {
-        this.tooltip.style.left = this.elRect.left - this.tooltipRect.width + 'px';
-      }
+      this.updatePosition();
     }
 
     /**
@@ -104,8 +66,12 @@
     _setupListeners() {
       this.listenerEnterRef = this._onHover.bind(this);
       this.listenerLeaveRef = this._onHoverOut.bind(this);
+
       this.el.addEventListener('mouseenter', this.listenerEnterRef);
       this.el.addEventListener('mouseleave', this.listenerLeaveRef);
+
+      this.resizeRef = this.updatePosition.bind(this);
+      window.addEventListener('resize', this.resizeRef);
     }
 
     /**
@@ -117,6 +83,43 @@
 
       this.el.removeEventListener('mouseleave', this.listenerLeaveRef);
       this.listenerLeaveRef = undefined;
+
+      window.removeEventListener('resize', this.resizeRef);
+      this.resizeRef = undefined;
+    }
+
+    /**
+     * Set basic tooltip position
+     */
+    _setBasicPosition() {
+      if (this.options.position == 'top' || this.options.position == 'bottom') {
+        this.options.position == 'top'
+          ? (this.tooltip.style.top = this.elRect.top)
+          : (this.tooltip.style.top = this.elRect.top + this.elRect.height);
+      } else if (this.options.position == 'left' || this.options.position == 'right') {
+        this.options.position == 'right'
+          ? (this.tooltip.style.left = this.elRect.left + this.elRect.width)
+          : '';
+      }
+    }
+
+    /**
+     * Manually transform the tooltip location
+     */
+    _manualTransform() {
+      if (this.options.position == 'top' || this.options.position == 'bottom') {
+        this.tooltip.style.left =
+          this.elRect.left + this.elRect.width / 2 - this.tooltipRect.width / 2 + 'px';
+      } else if (this.options.position == 'left' || this.options.position == 'right') {
+        this.tooltip.style.top =
+          this.elRect.top + this.elRect.height / 2 - this.tooltipRect.height / 2 + 'px';
+      }
+
+      if (this.options.position == 'top') {
+        this.tooltip.style.top = this.tooltipRect.top - this.tooltipRect.height + 'px';
+      } else if (this.options.position == 'left') {
+        this.tooltip.style.left = this.elRect.left - this.tooltipRect.width + 'px';
+      }
     }
 
     /**
@@ -126,13 +129,13 @@
     _onHover(e) {
       e.preventDefault();
 
-      this.position == 'top'
+      this.options.position == 'top'
         ? (this.tooltip.style.transform = `translateY(-${this.options.offset})`)
-        : this.position == 'right'
+        : this.options.position == 'right'
         ? (this.tooltip.style.transform = `translateX(${this.options.offset})`)
-        : this.position == 'bottom'
+        : this.options.position == 'bottom'
         ? (this.tooltip.style.transform = `translateY(${this.options.offset})`)
-        : this.position == 'left'
+        : this.options.position == 'left'
         ? (this.tooltip.style.transform = `translateX(-${this.options.offset})`)
         : '';
 
@@ -148,6 +151,16 @@
 
       this.tooltip.style.transform = 'translate(0)';
       this.tooltip.style.opacity = 0;
+    }
+
+    /** Update current tooltip position */
+    updatePosition() {
+      this.elRect = this.el.getBoundingClientRect();
+
+      this._setBasicPosition();
+
+      this.tooltipRect = this.tooltip.getBoundingClientRect();
+      this._manualTransform();
     }
   }
   Axentix.Tooltip = Tooltip;

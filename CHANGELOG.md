@@ -15,6 +15,7 @@
   - Clean both css and js code
   - Rework material forms
   - Update dev-dependencies
+  - Improve compilation
 - BUGFIXES
   - Material forms border not set correctly inside collapsible in some case
   - Material forms textarea spacement

@@ -109,6 +109,7 @@ exports.watchsass = function () {
 
 exports.default = parallel(
   series(parallel(compileJSMinified, compileJS), compileJSESM),
-  parallel(compileSassMinified, compileSass),
+  compileSassMinified,
+  compileSass,
   definitionExport
 );
