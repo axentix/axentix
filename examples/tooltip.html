@@ -49,6 +49,15 @@
         classes: 'grey dark-4 light-shadow-2 p-2',
         position: 'bottom',
       });
+
+      function test() {
+        tooltipBottom.change({
+          content: 'Hello guys',
+          position: 'right',
+          classes: 'red dark-1 shadow-5 p-3 rounded-tl3',
+        });
+      }
+
       var tooltipLeft = new Axentix.Tooltip('#tooltip4', {
         content: 'This is a tooltip',
         classes: 'grey dark-4 light-shadow-2 p-2 rounded-2',

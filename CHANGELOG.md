@@ -1,7 +1,7 @@
 # 1.0.0-beta.0 - Under development
 
 - ADDED
-  - Tooltips
+  - Tooltips (with `updatePosition()` & `change(options)` methods)
   - Data- init methods & options handle
   - Better JS isolation : `new Axentix.Collapsible` instead of `new Collapsible`
   - ESM js file, now import / require work with autocompletion

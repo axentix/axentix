@@ -225,6 +225,8 @@ export namespace Axentix {
 
     updateActiveElement(): void;
     select(itemId: string): void;
+    prev(step?: number): void;
+    next(step?: number): void;
   }
 
   interface TabOptions {
@@ -237,6 +239,11 @@ export namespace Axentix {
      * @default 300
      */
     animationDelay: number;
+
+    /**
+     * @default false
+     */
+    disableActiveBar: boolean;
 
     /**
      * @default ''
@@ -283,10 +290,56 @@ export namespace Axentix {
     mobileDirection: 'top' | 'bottom';
   }
 
+  class Tooltip extends AxentixComponent {
+    constructor(el: string, options?: TooltipOptions);
+
+    updatePosition(): void;
+    change(options: object): void;
+  }
+
+  interface TooltipOptions {
+    /**
+     * @default ''
+     */
+    content: string;
+
+    /**
+     * @default 0
+     */
+    animationDelay: number;
+
+    /**
+     * @default '10px'
+     */
+    offset: string;
+
+    /**
+     * @default 200
+     */
+    animationDuration: number;
+
+    /**
+     * @default 'grey dark-4 light-shadow-2 p-2'
+     */
+    classes: string;
+
+    /**
+     * @default 'top'
+     */
+    position: string;
+  }
+
   // JS Utilities
   function createEvent(element: Element, eventName: string, extraData?: object): void;
   function wrap(target: Array<Element>, wrapper?: Element): Element;
-  function extend(defaultObject: object, object: object): object;
+  function extend(...args: object): object;
+  function getComponentOptions(
+    component: string,
+    options: object,
+    el: Element,
+    isLoadedWithData: boolean
+  ): object;
+  function isTouchEnabled(): boolean;
 
   // Material forms
   function updateInputs(inputElements?: NodeListOf<Element>): void;

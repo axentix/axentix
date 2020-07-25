@@ -11,7 +11,7 @@
         offset: '10px',
         animationDuration: 200,
         classes: 'grey dark-4 light-shadow-2 p-2',
-        position: '',
+        position: 'top',
       };
     }
 
@@ -44,16 +44,12 @@
 
       this.tooltip ? '' : (this.tooltip = document.createElement('div'));
       this.tooltip.dataset.tooltipId === this.el.id ? '' : (this.tooltip.dataset.tooltipId = this.el.id);
-      this.tooltip.style.transform = 'translate(0)';
-      this.tooltip.style.opacity = 0;
 
-      this.tooltip.className = 'tooltip ' + this.options.classes;
-      this.tooltip.style.transitionDuration = this.options.animationDuration + 'ms';
-      this.tooltip.innerHTML = this.options.content;
+      this._setProperties();
       document.body.appendChild(this.tooltip);
 
-      const positionList = ['right', 'left', 'top', 'bottom'];
-      positionList.includes(this.options.position) ? '' : (this.options.position = 'bottom');
+      this.positionList = ['right', 'left', 'top', 'bottom'];
+      this.positionList.includes(this.options.position) ? '' : (this.options.position = 'top');
 
       this._setupListeners();
 
@@ -86,6 +82,17 @@
 
       window.removeEventListener('resize', this.resizeRef);
       this.resizeRef = undefined;
+    }
+
+    /**
+     * Set properties to tooltip
+     */
+    _setProperties() {
+      this.tooltip.style.transform = 'translate(0)';
+      this.tooltip.style.opacity = 0;
+      this.tooltip.className = 'tooltip ' + this.options.classes;
+      this.tooltip.style.transitionDuration = this.options.animationDuration + 'ms';
+      this.tooltip.innerHTML = this.options.content;
     }
 
     /**
@@ -153,7 +160,9 @@
       this.tooltip.style.opacity = 0;
     }
 
-    /** Update current tooltip position */
+    /**
+     * Update current tooltip position
+     */
     updatePosition() {
       this.elRect = this.el.getBoundingClientRect();
 
@@ -161,6 +170,19 @@
 
       this.tooltipRect = this.tooltip.getBoundingClientRect();
       this._manualTransform();
+    }
+
+    /**
+     * Change current options
+     * @param {Object} options
+     */
+    change(options) {
+      this.options = Axentix.getComponentOptions('Tooltip', options, this.el, true);
+
+      this.positionList.includes(this.options.position) ? '' : (this.options.position = 'top');
+
+      this._setProperties();
+      this.updatePosition();
     }
   }
   Axentix.Tooltip = Tooltip;
