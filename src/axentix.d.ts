@@ -294,7 +294,9 @@ export namespace Axentix {
     constructor(el: string, options?: TooltipOptions);
 
     updatePosition(): void;
-    change(options: object): void;
+    show(): void;
+    hide(): void;
+    change(options?: TooltipOptions): void;
   }
 
   interface TooltipOptions {

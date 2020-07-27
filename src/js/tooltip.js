@@ -135,18 +135,7 @@
      */
     _onHover(e) {
       e.preventDefault();
-
-      this.options.position == 'top'
-        ? (this.tooltip.style.transform = `translateY(-${this.options.offset})`)
-        : this.options.position == 'right'
-        ? (this.tooltip.style.transform = `translateX(${this.options.offset})`)
-        : this.options.position == 'bottom'
-        ? (this.tooltip.style.transform = `translateY(${this.options.offset})`)
-        : this.options.position == 'left'
-        ? (this.tooltip.style.transform = `translateX(-${this.options.offset})`)
-        : '';
-
-      this.tooltip.style.opacity = 1;
+      this.show();
     }
 
     /**
@@ -155,9 +144,7 @@
      */
     _onHoverOut(e) {
       e.preventDefault();
-
-      this.tooltip.style.transform = 'translate(0)';
-      this.tooltip.style.opacity = 0;
+      this.hide();
     }
 
     /**
@@ -173,10 +160,37 @@
     }
 
     /**
+     * Show tooltip
+     */
+    show() {
+      setTimeout(() => {
+        this.options.position == 'top'
+          ? (this.tooltip.style.transform = `translateY(-${this.options.offset})`)
+          : this.options.position == 'right'
+          ? (this.tooltip.style.transform = `translateX(${this.options.offset})`)
+          : this.options.position == 'bottom'
+          ? (this.tooltip.style.transform = `translateY(${this.options.offset})`)
+          : this.options.position == 'left'
+          ? (this.tooltip.style.transform = `translateX(-${this.options.offset})`)
+          : '';
+
+        this.tooltip.style.opacity = 1;
+      }, this.options.animationDelay);
+    }
+
+    /**
+     * Hide tooltip
+     */
+    hide() {
+      this.tooltip.style.transform = 'translate(0)';
+      this.tooltip.style.opacity = 0;
+    }
+
+    /**
      * Change current options
      * @param {Object} options
      */
-    change(options) {
+    change(options = {}) {
       this.options = Axentix.getComponentOptions('Tooltip', options, this.el, true);
 
       this.positionList.includes(this.options.position) ? '' : (this.options.position = 'top');
