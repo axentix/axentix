@@ -6,7 +6,7 @@
   class Dropdown extends AxentixComponent {
     static getDefaultOptions() {
       return {
-        animationDelay: 300,
+        animationDuration: 300,
         animationType: 'none',
         hover: false,
       };
@@ -87,9 +87,9 @@
 
       if (this.options.animationType !== 'none' && !this.options.hover) {
         if (this.options.hover) {
-          this.el.style.animationDuration = this.options.animationDelay + 'ms';
+          this.el.style.animationDuration = this.options.animationDuration + 'ms';
         } else {
-          this.el.style.transitionDuration = this.options.animationDelay + 'ms';
+          this.el.style.transitionDuration = this.options.animationDuration + 'ms';
         }
         this.el.classList.add('anim-' + this.options.animationType);
       }
@@ -141,7 +141,7 @@
         setTimeout(() => {
           this.isAnimated = false;
           Axentix.createEvent(this.el, 'dropdown.opened');
-        }, this.options.animationDelay);
+        }, this.options.animationDuration);
       } else {
         Axentix.createEvent(this.el, 'dropdown.opened');
       }
@@ -164,7 +164,7 @@
           this.isAnimated = false;
           this.isActive = false;
           Axentix.createEvent(this.el, 'dropdown.closed');
-        }, this.options.animationDelay);
+        }, this.options.animationDuration);
       } else {
         this.dropdownContent.style.display = '';
         this.isAnimated = false;

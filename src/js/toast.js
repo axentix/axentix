@@ -6,7 +6,7 @@
   class Toast {
     static getDefaultOptions() {
       return {
-        animationDelay: 400,
+        animationDuration: 400,
         duration: 4000,
         classes: '',
         position: 'right',
@@ -89,7 +89,7 @@
 
         setTimeout(() => {
           Axentix.createEvent(toast, 'toast.shown');
-        }, this.options.animationDelay);
+        }, this.options.animationDuration);
       }, 50);
     }
 
@@ -101,7 +101,7 @@
       setTimeout(() => {
         Axentix.createEvent(toast, 'toast.hide');
         this._hide(toast);
-      }, this.options.duration + this.options.animationDelay);
+      }, this.options.duration + this.options.animationDuration);
     }
 
     /**
@@ -124,7 +124,7 @@
 
       toast.className = 'toast shadow-1 ' + this.options.classes;
       toast.innerHTML = this.content;
-      toast.style.transitionDuration = this.options.animationDelay + 'ms';
+      toast.style.transitionDuration = this.options.animationDuration + 'ms';
 
       if (this.options.isClosable) {
         let trigger = document.createElement('i');
@@ -164,7 +164,7 @@
 
       toast.style.opacity = 0;
       toast.isAnimated = true;
-      const delay = timer * this.options.animationDelay + this.options.animationDelay;
+      const delay = timer * this.options.animationDuration + this.options.animationDuration;
       setTimeout(() => {
         this._animOut(toast);
       }, delay / 2);

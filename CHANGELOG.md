@@ -15,6 +15,7 @@
 - IMPROVED
   - Clean both css and js code
   - Rework material forms
+  - All js options animationDelay changed to animationDuration
   - Update dev-dependencies
   - Improve compilation
 - BUGFIXES

@@ -8,7 +8,7 @@
       return {
         fixedHeight: true,
         height: '',
-        animationDelay: 500,
+        animationDuration: 500,
         animationType: 'slide',
         indicators: {
           enabled: false,
@@ -262,9 +262,9 @@
       nextItem.classList.add('active');
 
       setTimeout(() => {
-        nextItem.style.transitionDuration = this.options.animationDelay + 'ms';
+        nextItem.style.transitionDuration = this.options.animationDuration + 'ms';
         nextItem.style.transform = '';
-        currentItem.style.transitionDuration = this.options.animationDelay + 'ms';
+        currentItem.style.transitionDuration = this.options.animationDuration + 'ms';
         currentItem.style.transform = `translateX(${currentItemPercentage})`;
       }, 50);
 
@@ -276,7 +276,7 @@
         this.currentItemIndex = number;
         this.isAnimated = false;
         this.options.autoplay.enabled ? this.play() : '';
-      }, this.options.animationDelay + 50);
+      }, this.options.animationDuration + 50);
     }
 
     /***** [END] Animation Section [END] *****/

@@ -8,7 +8,7 @@
       return {
         overlay: true,
         bodyScrolling: false,
-        animationDelay: 300,
+        animationDuration: 300,
       };
     }
 
@@ -47,7 +47,7 @@
         : document.body.classList.remove('sidenav-large');
 
       this._handleRightSidenav();
-      this.el.style.transitionDuration = this.options.animationDelay + 'ms';
+      this.el.style.transitionDuration = this.options.animationDuration + 'ms';
     }
 
     /**
@@ -139,7 +139,7 @@
 
       setTimeout(() => {
         Axentix.createEvent(this.el, 'sidenav.opened');
-      }, this.options.animationDelay);
+      }, this.options.animationDuration);
     }
 
     /**
@@ -156,7 +156,7 @@
         this._toggleBodyScroll(true);
         this.isActive = false;
         Axentix.createEvent(this.el, 'sidenav.closed');
-      }, this.options.animationDelay);
+      }, this.options.animationDuration);
     }
 
     /**

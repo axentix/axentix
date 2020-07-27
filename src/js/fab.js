@@ -6,7 +6,7 @@
   class Fab extends AxentixComponent {
     static getDefaultOptions() {
       return {
-        animationDelay: 300,
+        animationDuration: 300,
         hover: true,
         direction: 'top',
         position: 'bottom-right',
@@ -44,7 +44,7 @@
 
       this._verifOptions();
       this._setupListeners();
-      this.el.style.transitionDuration = this.options.animationDelay + 'ms';
+      this.el.style.transitionDuration = this.options.animationDuration + 'ms';
       this._setProperties();
     }
 
@@ -167,7 +167,7 @@
       this.el.classList.add('active');
       setTimeout(() => {
         this.isAnimated = false;
-      }, this.options.animationDelay);
+      }, this.options.animationDuration);
     }
 
     /**
@@ -183,7 +183,7 @@
       this.el.classList.remove('active');
       setTimeout(() => {
         this.isAnimated = false;
-      }, this.options.animationDelay);
+      }, this.options.animationDuration);
     }
   }
   Axentix.Fab = Fab;

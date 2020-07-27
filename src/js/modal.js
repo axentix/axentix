@@ -8,7 +8,7 @@
       return {
         overlay: true,
         bodyScrolling: false,
-        animationDelay: 400,
+        animationDuration: 400,
       };
     }
 
@@ -39,7 +39,7 @@
 
       this._setupListeners();
       this.options.overlay ? this._createOverlay() : '';
-      this.el.style.transitionDuration = this.options.animationDelay + 'ms';
+      this.el.style.transitionDuration = this.options.animationDuration + 'ms';
     }
 
     /**
@@ -77,7 +77,7 @@
         this.overlayElement = document.createElement('div');
       }
       this.overlayElement.classList.add('modal-overlay');
-      this.overlayElement.style.transitionDuration = this.options.animationDelay + 'ms';
+      this.overlayElement.style.transitionDuration = this.options.animationDuration + 'ms';
       this.overlayElement.dataset.target = this.el.id;
     }
 
@@ -134,7 +134,7 @@
       setTimeout(() => {
         this.isAnimated = false;
         Axentix.createEvent(this.el, 'modal.opened');
-      }, this.options.animationDelay);
+      }, this.options.animationDuration);
     }
 
     /**
@@ -154,7 +154,7 @@
         this.isActive = false;
         this._toggleBodyScroll(true);
         Axentix.createEvent(this.el, 'modal.closed');
-      }, this.options.animationDelay);
+      }, this.options.animationDuration);
     }
 
     /**
@@ -174,7 +174,7 @@
           setTimeout(() => {
             this.overlayElement.removeEventListener('click', this.listenerRef);
             document.body.removeChild(this.overlayElement);
-          }, this.options.animationDelay);
+          }, this.options.animationDuration);
         }
       }
     }

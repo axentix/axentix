@@ -6,7 +6,7 @@
   class Tab extends AxentixComponent {
     static getDefaultOptions() {
       return {
-        animationDelay: 300,
+        animationDuration: 300,
         animationType: 'none',
         disableActiveBar: false,
         caroulix: {},
@@ -22,7 +22,7 @@
     constructor(element, options, isLoadedWithData) {
       super();
       this.caroulixOptions = {
-        animationDelay: 300,
+        animationDuration: 300,
         autoplay: {
           enabled: false,
         },
@@ -60,7 +60,7 @@
 
       this._setupListeners();
 
-      this.el.style.transitionDuration = this.options.animationDelay + 'ms';
+      this.el.style.transitionDuration = this.options.animationDuration + 'ms';
       this.options.animationType === 'slide' ? this._enableSlideAnimation() : this.updateActiveElement();
     }
 
@@ -150,8 +150,8 @@
       this.tabCaroulixInit = true;
 
       this.options.caroulix = Axentix.extend(this.caroulixOptions, this.options.caroulix);
-      this.options.animationDelay !== this.defaultAnimDelay
-        ? (this.options.caroulix.animationDelay = this.options.animationDelay)
+      this.options.animationDuration !== 300
+        ? (this.options.caroulix.animationDuration = this.options.animationDuration)
         : '';
       this.updateActiveElement();
     }
@@ -303,7 +303,7 @@
         this.caroulixInstance.goTo(nb);
         setTimeout(() => {
           this.isAnimated = false;
-        }, this.options.animationDelay);
+        }, this.options.animationDuration);
       } else {
         this._hideContent();
         this.tabItems.map((item) => (item.id === itemId ? (item.style.display = 'block') : ''));

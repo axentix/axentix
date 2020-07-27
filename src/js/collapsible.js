@@ -6,7 +6,7 @@
   class Collapsible extends AxentixComponent {
     static getDefaultOptions() {
       return {
-        animationDelay: 300,
+        animationDuration: 300,
         sidenav: {
           activeClass: true,
           activeWhenOpen: true,
@@ -45,7 +45,7 @@
       this.childIsActive = false;
 
       this._setupListeners();
-      this.el.style.transitionDuration = this.options.animationDelay + 'ms';
+      this.el.style.transitionDuration = this.options.animationDuration + 'ms';
 
       this._detectSidenav();
       this._detectChild();
@@ -168,7 +168,7 @@
       this.el.style.overflow = 'hidden';
       setTimeout(() => {
         this.el.style.overflow = '';
-      }, this.options.animationDelay);
+      }, this.options.animationDuration);
     }
 
     /**
@@ -203,7 +203,7 @@
 
       setTimeout(() => {
         this.isAnimated = false;
-      }, this.options.animationDelay);
+      }, this.options.animationDuration);
     }
 
     /**
@@ -224,7 +224,7 @@
         this.el.style.display = '';
         this.isAnimated = false;
         this.isActive = false;
-      }, this.options.animationDelay);
+      }, this.options.animationDuration);
     }
   }
   Axentix.Collapsible = Collapsible;
