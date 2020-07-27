@@ -332,7 +332,7 @@ export namespace Axentix {
   // JS Utilities
   function createEvent(element: Element, eventName: string, extraData?: object): void;
   function wrap(target: Array<Element>, wrapper?: Element): Element;
-  function extend(...args: object): object;
+  function extend(...args: Array<object>): object;
   function getComponentOptions(
     component: string,
     options: object,

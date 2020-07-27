@@ -10,6 +10,7 @@
   - `next()` & `prev()` methods on Tab with events
   - `disableActiveBar` option to disable indicator on tabs
 - REMOVED
+  - Push buttons
   - `Axentix.setupFormsListeners()` & `Axentix.detectAllInputs()` methods on material forms
 - IMPROVED
   - Clean both css and js code
