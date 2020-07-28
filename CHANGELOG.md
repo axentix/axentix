@@ -14,6 +14,7 @@
   - `Axentix.setupFormsListeners()` & `Axentix.detectAllInputs()` methods on material forms
 - IMPROVED
   - Clean both css and js code
+  - Rework card
   - Rework material forms
   - All js options animationDelay changed to animationDuration
   - Remove all @extends in source file

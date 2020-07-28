@@ -41,6 +41,10 @@
   flex-direction: row-reverse !important;
 }
 
+.fx-grow {
+  flex-grow: 1 !important;
+}
+
 // Hide elements
 .hide {
   display: none !important;

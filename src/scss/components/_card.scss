@@ -3,16 +3,18 @@
   margin: 0.5rem 0;
   align-self: start;
   word-break: break-word;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 
   .card-header {
     font-size: 1.5rem;
     padding: 1.5rem;
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
   }
 
   .card-content {
     padding: 1.5rem;
+    flex-grow: 1;
 
     .card-header {
       padding: 0 0 3rem 0;
@@ -29,17 +31,12 @@
 
   .card-footer {
     padding: 1.5rem;
-    border-bottom-left-radius: inherit;
-    border-bottom-right-radius: inherit;
   }
 
   .card-image {
     position: relative;
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
 
     img {
-      background-size: cover;
       width: 100%;
       display: block;
     }
