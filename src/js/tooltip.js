@@ -73,9 +73,6 @@
 
       this.el.addEventListener('mouseenter', this.listenerEnterRef);
       this.el.addEventListener('mouseleave', this.listenerLeaveRef);
-
-      this.updatePositionRef = this.updatePosition.bind(this);
-      window.addEventListener('resize', this.updatePositionRef);
     }
 
     /**
@@ -83,13 +80,10 @@
      */
     _removeListeners() {
       this.el.removeEventListener('mouseenter', this.listenerEnterRef);
-      this.listenerEnterRef = undefined;
-
       this.el.removeEventListener('mouseleave', this.listenerLeaveRef);
-      this.listenerLeaveRef = undefined;
 
-      window.removeEventListener('resize', this.updatePositionRef);
-      this.updatePositionRef = undefined;
+      this.listenerEnterRef = undefined;
+      this.listenerLeaveRef = undefined;
     }
 
     /**
@@ -135,6 +129,13 @@
       } else if (this.options.position == 'left') {
         this.tooltip.style.left = this.elRect.left - this.tooltipRect.width + 'px';
       }
+
+      const scrollY = window.scrollY;
+      const tooltipTop = parseFloat(this.tooltip.style.top);
+
+      this.options.position === 'top'
+        ? (this.tooltip.style.top = scrollY * 2 + tooltipTop + 'px')
+        : (this.tooltip.style.top = scrollY + tooltipTop + 'px');
     }
 
     /**
@@ -172,6 +173,8 @@
      * Show tooltip
      */
     show() {
+      this.updatePosition();
+
       setTimeout(() => {
         Axentix.createEvent(this.el, 'tooltip.show');
 
