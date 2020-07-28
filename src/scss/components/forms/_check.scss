@@ -126,7 +126,7 @@
       input[type='radio'] + span {
         &::before {
           border: var(--form-material-color) solid 2px;
-          @extend .rounded-full;
+          border-radius: #{map-get($rounded, 'full')};
         }
 
         &::after {
@@ -135,7 +135,7 @@
           background-color: var(--form-material-color);
           transform: scale(0) translateY(-100%);
           transition: transform 0.2s ease;
-          @extend .rounded-full;
+          border-radius: #{map-get($rounded, 'full')};
         }
 
         &.full::after {

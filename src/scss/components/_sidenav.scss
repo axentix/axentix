@@ -10,7 +10,6 @@
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  @extend .shadow-1;
   transform: translateX(-105%);
   transition: transform ease;
   overflow: hidden;
@@ -63,7 +62,7 @@
     position: relative;
     flex-shrink: 0;
 
-    .logo {
+    .sidenav-logo {
       height: 3rem;
     }
 

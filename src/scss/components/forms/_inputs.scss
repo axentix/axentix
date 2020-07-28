@@ -40,12 +40,11 @@
   width: 100%;
   appearance: none;
   line-height: 1.3;
-  @extend .rounded-1;
 
   &:focus {
     outline: 0;
     border-color: transparent;
-    @extend .shadow-1;
+    box-shadow: #{map-get($shadows, '1')};
   }
 
   &[disabled],

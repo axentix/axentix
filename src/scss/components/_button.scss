@@ -14,7 +14,6 @@
   padding: calc(0.6rem + 2px) 1.25rem;
   overflow: hidden;
   word-wrap: normal;
-  @extend .shadow-1, .rounded-1;
 
   [class*='hoverable-'],
   [class*='light-hoverable-'] {

@@ -16,6 +16,8 @@
   - Clean both css and js code
   - Rework material forms
   - All js options animationDelay changed to animationDuration
+  - Remove all @extends in source file
+  - `.sidenav-logo` class instead of `.logo` in sidenav
   - Update dev-dependencies
   - Improve compilation
 - BUGFIXES
