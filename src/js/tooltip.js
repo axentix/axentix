@@ -34,6 +34,8 @@
         return console.error('Tooltip #' + this.el.id + ' : empty content.');
       }
 
+      Axentix.createEvent(this.el, 'tooltip.setup');
+
       this.options.position = this.options.position.toLowerCase();
 
       const tooltips = document.querySelectorAll('.tooltip');
@@ -169,6 +171,8 @@
      */
     show() {
       setTimeout(() => {
+        Axentix.createEvent(this.el, 'tooltip.show');
+
         this.options.position == 'top'
           ? (this.tooltip.style.transform = `translateY(-${this.options.offset})`)
           : this.options.position == 'right'
@@ -187,6 +191,8 @@
      * Hide tooltip
      */
     hide() {
+      Axentix.createEvent(this.el, 'tooltip.hide');
+
       this.tooltip.style.transform = 'translate(0)';
       this.tooltip.style.opacity = 0;
     }
