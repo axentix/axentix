@@ -19,7 +19,14 @@
 
     <main class="container">
       <div class="grix xs1 md4 mt-5">
-        <div id="tooltip1" class="btn airforce dark-3 mx-auto">Top</div>
+        <div
+          id="tooltip1"
+          class="btn airforce dark-3 mx-auto"
+          data-ax="tooltip"
+          data-tooltip-content="Hey guys"
+        >
+          Top
+        </div>
 
         <div id="tooltip2" class="btn airforce dark-3 mx-auto">Right</div>
 
@@ -34,19 +41,15 @@
     </footer>
     <script src="../dist/js/axentix.min.js"></script>
     <script>
-      var tooltipTop = new Axentix.Tooltip('#tooltip1', {
-        content: 'This is a tooltip',
-        classes: 'grey dark-4 light-shadow-2 p-2',
-        position: 'top',
-      });
+      // var tooltipTop = new Axentix.Tooltip('#tooltip1', {
+      //   content: 'This is a tooltip',
+      // });
       var tooltipRight = new Axentix.Tooltip('#tooltip2', {
         content: 'This is a tooltip',
-        classes: 'grey dark-4 light-shadow-2 p-2',
         position: 'right',
       });
       var tooltipBottom = new Axentix.Tooltip('#tooltip3', {
         content: 'This is a tooltip',
-        classes: 'grey dark-4 light-shadow-2 p-2',
         position: 'bottom',
       });
 
@@ -60,7 +63,6 @@
 
       var tooltipLeft = new Axentix.Tooltip('#tooltip4', {
         content: 'This is a tooltip',
-        classes: 'grey dark-4 light-shadow-2 p-2 rounded-2',
         position: 'left',
       });
     </script>

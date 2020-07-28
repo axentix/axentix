@@ -20,11 +20,14 @@
   height: 100% !important;
 }
 
-// Flex
-.flex {
-  display: flex;
+// Display
+@each $display in $displays {
+  .d-#{$display} {
+    display: #{$display} !important;
+  }
 }
 
+// Flex
 .fx-col {
   flex-direction: column !important;
 }

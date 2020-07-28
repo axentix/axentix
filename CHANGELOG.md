@@ -9,8 +9,11 @@
   - `Axentix.updateInputs()` method on material forms
   - `next()` & `prev()` methods on Tab with events
   - `disableActiveBar` option to disable indicator on tabs
+  - `.fx-grow` utilities
+  - `.d-` display utilities
 - REMOVED
   - Push buttons
+  - `.flex` in favour of `.d-flex`
   - `Axentix.setupFormsListeners()` & `Axentix.detectAllInputs()` methods on material forms
 - IMPROVED
   - Clean both css and js code

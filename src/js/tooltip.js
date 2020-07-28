@@ -101,11 +101,11 @@
     _setBasicPosition() {
       if (this.options.position == 'top' || this.options.position == 'bottom') {
         this.options.position == 'top'
-          ? (this.tooltip.style.top = this.elRect.top)
-          : (this.tooltip.style.top = this.elRect.top + this.elRect.height);
+          ? (this.tooltip.style.top = this.elRect.top + 'px')
+          : (this.tooltip.style.top = this.elRect.top + this.elRect.height + 'px');
       } else if (this.options.position == 'left' || this.options.position == 'right') {
         this.options.position == 'right'
-          ? (this.tooltip.style.left = this.elRect.left + this.elRect.width)
+          ? (this.tooltip.style.left = this.elRect.left + this.elRect.width + 'px')
           : '';
       }
     }
@@ -156,6 +156,7 @@
       this._setBasicPosition();
 
       this.tooltipRect = this.tooltip.getBoundingClientRect();
+
       this._manualTransform();
     }
 
