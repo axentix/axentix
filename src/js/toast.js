@@ -31,6 +31,8 @@
         Axentix.toastInstanceExist = true;
       }
 
+      Axentix.instances.push(this);
+
       this.content = content;
       this.options = Axentix.getComponentOptions('Toast', options, this.el, isLoadedWithData);
       this.options.position = this.options.position.toLowerCase();

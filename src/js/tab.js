@@ -21,6 +21,9 @@
      */
     constructor(element, options, isLoadedWithData) {
       super();
+
+      Axentix.instances.push(this);
+
       this.caroulixOptions = {
         animationDuration: 300,
         autoplay: {

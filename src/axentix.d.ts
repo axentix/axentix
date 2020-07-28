@@ -345,13 +345,9 @@ export namespace Axentix {
 
   // Material forms
   function updateInputs(inputElements?: NodeListOf<Element>): void;
-}
-
-export class Axentix {
-  constructor(component: string | 'all', options?: object);
 
   // Core
-  getInstance(
+  function getInstance(
     element: string
   ):
     | Axentix.Caroulix
@@ -361,7 +357,7 @@ export class Axentix {
     | Axentix.Modal
     | Axentix.Sidenav
     | Axentix.Tab;
-  getAllInstances(): Array<
+  function getAllInstances(): Array<
     | Axentix.Caroulix
     | Axentix.Collapsible
     | Axentix.Dropdown
@@ -372,9 +368,13 @@ export class Axentix {
     | []
   >;
 
-  sync(element: string): void;
-  syncAll(): void;
+  function sync(element: string): void;
+  function syncAll(): void;
 
-  reset(element: string): void;
-  resetAll(): void;
+  function reset(element: string): void;
+  function resetAll(): void;
+}
+
+export class Axentix {
+  constructor(component: string | 'all', options?: object);
 }

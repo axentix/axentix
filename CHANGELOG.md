@@ -9,6 +9,7 @@
   - `Axentix.updateInputs()` method on material forms
   - `next()` & `prev()` methods on Tab with events
   - `disableActiveBar` option to disable indicator on tabs
+  - All instances are now saved in global Axentix.instances array. Methods `getInstance()` etc.. are now accessible globally.
   - `.fx-grow` utilities
   - `.d-` display utilities
 - REMOVED

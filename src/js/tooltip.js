@@ -23,6 +23,8 @@
     constructor(element, options, isLoadedWithData) {
       super();
 
+      Axentix.instances.push(this);
+
       this.el = document.querySelector(element);
       this.options = Axentix.getComponentOptions('Tooltip', options, this.el, isLoadedWithData);
 
@@ -72,8 +74,8 @@
       this.el.addEventListener('mouseenter', this.listenerEnterRef);
       this.el.addEventListener('mouseleave', this.listenerLeaveRef);
 
-      this.resizeRef = this.updatePosition.bind(this);
-      window.addEventListener('resize', this.resizeRef);
+      this.updatePositionRef = this.updatePosition.bind(this);
+      window.addEventListener('resize', this.updatePositionRef);
     }
 
     /**
@@ -86,8 +88,8 @@
       this.el.removeEventListener('mouseleave', this.listenerLeaveRef);
       this.listenerLeaveRef = undefined;
 
-      window.removeEventListener('resize', this.resizeRef);
-      this.resizeRef = undefined;
+      window.removeEventListener('resize', this.updatePositionRef);
+      this.updatePositionRef = undefined;
     }
 
     /**

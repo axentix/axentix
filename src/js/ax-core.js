@@ -13,7 +13,6 @@ class Axentix {
     this.component = component[0].toUpperCase() + component.slice(1).toLowerCase();
     this.isAll = component === 'all' ? true : false;
     this.options = this.isAll ? {} : options;
-    this.instances = [];
 
     this._init();
   }
@@ -68,55 +67,12 @@ class Axentix {
       let args = [id, this.options];
 
       try {
-        this.instances.push(new constructor(...args));
+        new constructor(...args);
       } catch (error) {
         console.error('Axentix : Unable to load ' + component);
       }
     });
   }
-
-  /**
-   * Get instance of element
-   * @param {String} element Id of element
-   */
-  getInstance(element) {
-    return this.instances.filter((instance) => '#' + instance.el.id === element)[0];
-  }
-
-  /**
-   * Get all instances
-   */
-  getAllInstances() {
-    return this.instances;
-  }
-
-  /**
-   * Sync instance of element
-   * @param {String} element Id of element
-   */
-  sync(element) {
-    this.getInstance(element).sync();
-  }
-
-  /**
-   * Sync all instances
-   */
-  syncAll() {
-    this.instances.map((instance) => instance.sync());
-  }
-
-  /**
-   * Reset instance of element
-   * @param {String} element Id of element
-   */
-  reset(element) {
-    this.getInstance(element).reset();
-  }
-
-  /**
-   * Reset all instances
-   */
-  resetAll() {
-    this.instances.map((instance) => instance.reset());
-  }
 }
+
+Axentix.instances = [];

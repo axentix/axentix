@@ -233,7 +233,7 @@
     </footer>
     <script src="../dist/js/axentix.min.js"></script>
     <script>
-      var axentix = new Axentix('all');
+      new Axentix('all');
       var collapsible = new Axentix.Collapsible('#sidenav-collapsible3', {
         // sidenav: {
         //   activeClass: false
@@ -243,13 +243,13 @@
         bodyScrolling: true,
       });
 
-      const sidenav = axentix.getInstance('#example-sidenav');
+      const sidenav = Axentix.getInstance('#example-sidenav');
       function testSidenavReset() {
         sidenav.el.classList.toggle('large');
         sidenav.el.classList.toggle('right-aligned');
 
         setTimeout(() => {
-          axentix.reset('#example-sidenav');
+          Axentix.reset('#example-sidenav');
         }, 1000);
       }
 

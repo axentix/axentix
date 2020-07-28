@@ -68,7 +68,6 @@ Axentix.DataDetection = (() => {
 
   const setup = () => {
     const elements = document.querySelectorAll('[data-ax]');
-    let instanciateElements = [];
 
     elements.forEach((el) => {
       let component = el.dataset.ax;
@@ -82,17 +81,15 @@ Axentix.DataDetection = (() => {
       const options = formatOptions(component, el);
 
       try {
-        instanciateElements.push(new Axentix[component](`#${el.id}`, options, true));
+        new Axentix[component](`#${el.id}`, options, true);
       } catch (error) {
         console.error('Axentix Data: Unable to load ' + component);
       }
     });
-
-    Axentix.dataInstances = instanciateElements;
   };
 
   const setupAll = () => {
-    Axentix.dataAx = new Axentix('all');
+    new Axentix('all');
   };
 
   return {

@@ -24,6 +24,8 @@
     constructor(element, options, isLoadedWithData) {
       super();
 
+      Axentix.instances.push(this);
+
       this.el = document.querySelector(element);
 
       this.options = Axentix.getComponentOptions('Collapsible', options, this.el, isLoadedWithData);
