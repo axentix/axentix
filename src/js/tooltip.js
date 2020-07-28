@@ -30,6 +30,10 @@
     }
 
     _setup() {
+      if (!this.options.content) {
+        return console.error('Tooltip #' + this.el.id + ' : empty content.');
+      }
+
       this.options.position = this.options.position.toLowerCase();
 
       const tooltips = document.querySelectorAll('.tooltip');
