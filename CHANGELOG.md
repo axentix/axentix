@@ -22,6 +22,7 @@
   - All js options animationDelay changed to animationDuration
   - Remove all @extends in source file
   - `.sidenav-logo` class instead of `.logo` in sidenav
+  - Layouts
   - Update dev-dependencies
   - Improve compilation
 - BUGFIXES

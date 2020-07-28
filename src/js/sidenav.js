@@ -38,13 +38,15 @@
       this.isFixed = this.el.classList.contains('fixed');
       this.isLarge = this.el.classList.contains('large');
 
+      this.layoutEl = document.querySelector('.layout');
+
       this._setupListeners();
 
       this.options.overlay ? this._createOverlay() : '';
 
-      this.el.classList.contains('large')
-        ? document.body.classList.add('sidenav-large')
-        : document.body.classList.remove('sidenav-large');
+      this.el.classList.contains('large') && this.layoutEl
+        ? this.layoutEl.classList.add('sidenav-large')
+        : this.layoutEl.classList.remove('sidenav-large');
 
       this._handleRightSidenav();
       this.el.style.transitionDuration = this.options.animationDuration + 'ms';
@@ -85,10 +87,10 @@
       const sidenavs = document.querySelectorAll('.sidenav');
       const found = Array.from(sidenavs).some((sidenav) => sidenav.classList.contains('right-aligned'));
 
-      if (found && !document.body.classList.contains('sidenav-right')) {
-        document.body.classList.add('sidenav-right');
-      } else if (!found && document.body.classList.contains('sidenav-right')) {
-        document.body.classList.remove('sidenav-right');
+      if (found && this.layoutEl && !this.layoutEl.classList.contains('sidenav-right')) {
+        this.layoutEl.classList.add('sidenav-right');
+      } else if (!found && this.layoutEl && this.layoutEl.classList.contains('sidenav-right')) {
+        this.layoutEl.classList.remove('sidenav-right');
       }
     }
 
