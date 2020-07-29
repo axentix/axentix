@@ -328,19 +328,14 @@ export namespace Axentix {
     /**
      * @default 'top'
      */
-    position: string;
+    position: 'top' | 'bottom' | 'left' | 'right';
   }
 
   // JS Utilities
-  function createEvent(element: Element, eventName: string, extraData?: object): void;
+  function createEvent(element: Element, eventName: string, extraData?: any): void;
   function wrap(target: Array<Element>, wrapper?: Element): Element;
-  function extend(...args: Array<object>): object;
-  function getComponentOptions(
-    component: string,
-    options: object,
-    el: Element,
-    isLoadedWithData: boolean
-  ): object;
+  function extend(...args: Array<any>): any;
+  function getComponentOptions(component: string, options: any, el: Element, isLoadedWithData: boolean): any;
   function isTouchEnabled(): boolean;
 
   // Material forms
@@ -356,7 +351,9 @@ export namespace Axentix {
     | Axentix.Fab
     | Axentix.Modal
     | Axentix.Sidenav
-    | Axentix.Tab;
+    | Axentix.Tab
+    | Axentix.Toast
+    | Axentix.Tooltip;
   function getAllInstances(): Array<
     | Axentix.Caroulix
     | Axentix.Collapsible
@@ -365,6 +362,8 @@ export namespace Axentix {
     | Axentix.Modal
     | Axentix.Sidenav
     | Axentix.Tab
+    | Axentix.Toast
+    | Axentix.Tooltip
     | []
   >;
 
@@ -376,5 +375,5 @@ export namespace Axentix {
 }
 
 export class Axentix {
-  constructor(component: string | 'all', options?: object);
+  constructor(component: string | 'all', options?: any);
 }
