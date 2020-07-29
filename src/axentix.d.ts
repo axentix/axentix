@@ -335,7 +335,12 @@ export namespace Axentix {
   function createEvent(element: Element, eventName: string, extraData?: any): void;
   function wrap(target: Array<Element>, wrapper?: Element): Element;
   function extend(...args: Array<any>): any;
-  function getComponentOptions(component: string, options: any, el: Element, isLoadedWithData: boolean): any;
+  function getComponentOptions(
+    component: string,
+    options: any,
+    el: Element | '',
+    isLoadedWithData: boolean
+  ): any;
   function isTouchEnabled(): boolean;
 
   // Material forms

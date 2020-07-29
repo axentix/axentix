@@ -34,7 +34,7 @@
       Axentix.instances.push(this);
 
       this.content = content;
-      this.options = Axentix.getComponentOptions('Toast', options, this.el, true);
+      this.options = Axentix.getComponentOptions('Toast', options, '', true);
       this.options.position = this.options.position.toLowerCase();
       this.options.direction = this.options.direction.toLowerCase();
       this.options.mobileDirection = this.options.mobileDirection.toLowerCase();
