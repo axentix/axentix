@@ -196,7 +196,7 @@
       Axentix.createEvent(this.el, 'collapsible.open');
       this.isActive = true;
       this.isAnimated = true;
-      this.isInSidenav ? (this.el.style.display = 'block') : (this.el.style.display = 'flex');
+      this.el.style.display = 'block';
       this._applyOverflow();
       this.el.style.maxHeight = this.el.scrollHeight + 'px';
 

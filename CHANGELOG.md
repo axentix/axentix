@@ -35,7 +35,6 @@
   - Material forms default background-color with some browsers
   - Material select don't init correctly with empty selected value
   - Button circle width inside inline form
-  - Collapsible don't handle correctly elements with margin
   - Collapsible resize event
 
 # 0.5.3 - 2020-04-15
