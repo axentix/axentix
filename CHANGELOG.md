@@ -10,7 +10,7 @@
   - `next()` & `prev()` methods on Tab with events
   - `disableActiveBar` option to disable indicator on tabs
   - All instances are now saved in global Axentix.instances array. Methods `getInstance()` etc.. are now accessible globally.
-  - `.fx-grow` utilities
+  - `.fx-grow` utility
   - `.d-` display utilities
 - REMOVED
   - Push buttons
@@ -21,7 +21,7 @@
   - Rework card
   - Rework material forms
   - All js options animationDelay changed to animationDuration
-  - Remove all @extends in source file
+  - Remove all @extends in source files
   - `.sidenav-logo` class instead of `.logo` in sidenav
   - Increase padding on footer
   - Layouts
@@ -30,12 +30,12 @@
 - BUGFIXES
   - Material forms border not set correctly inside collapsible in some case
   - Material forms textarea spacement
-  - Checkbox bug with lots of text
+  - Checkbox bug with a lot of text
   - Material forms textarea active label color
   - Material forms default background-color with some browsers
   - Material select don't init correctly with empty selected value
   - Button circle width inside inline form
-  - Collapsible don't handled correctly elements with margin
+  - Collapsible don't handle correctly elements with margin
   - Collapsible resize event
 
 # 0.5.3 - 2020-04-15
