@@ -23,7 +23,7 @@
      * @param {Object} options
      */
 
-    constructor(content, options, isLoadedWithData) {
+    constructor(content, options) {
       if (Axentix.toastInstanceExist) {
         console.error("Don't try to create multiple toast instances");
         return;
@@ -34,7 +34,7 @@
       Axentix.instances.push(this);
 
       this.content = content;
-      this.options = Axentix.getComponentOptions('Toast', options, this.el, isLoadedWithData);
+      this.options = Axentix.getComponentOptions('Toast', options, this.el, true);
       this.options.position = this.options.position.toLowerCase();
       this.options.direction = this.options.direction.toLowerCase();
       this.options.mobileDirection = this.options.mobileDirection.toLowerCase();
