@@ -1,33 +1,21 @@
-// By https://gomakethings.com/vanilla-javascript-version-of-jquery-extend/ | MIT License
-Axentix.extend = function() {
-  let extended = {};
-  let deep = false;
-  let i = 0;
-  let length = arguments.length;
-
-  if (Object.prototype.toString.call(arguments[0]) === '[object Boolean]') {
-    deep = arguments[0];
-    i++;
-  }
-
-  let merge = function(obj) {
-    for (let prop in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, prop)) {
-        if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
-          extended[prop] = extend(true, extended[prop], obj[prop]);
-        } else {
-          extended[prop] = obj[prop];
-        }
-      }
+Axentix.extend = (...args) => {
+  return args.reduce((acc, obj) => {
+    for (let key in obj) {
+      typeof obj[key] === 'object' && obj[key] !== null
+        ? (acc[key] = Axentix.extend(acc[key], obj[key]))
+        : (acc[key] = obj[key]);
     }
-  };
 
-  for (; i < length; i++) {
-    let obj = arguments[i];
-    merge(obj);
-  }
+    return acc;
+  }, {});
+};
 
-  return extended;
+Axentix.getComponentOptions = (component, options, el, isLoadedWithData) => {
+  return Axentix.extend(
+    Axentix[component].getDefaultOptions(),
+    isLoadedWithData ? {} : Axentix.DataDetection.formatOptions(component, el),
+    options
+  );
 };
 
 /**
@@ -38,7 +26,7 @@ Axentix.extend = function() {
  */
 Axentix.wrap = (target, wrapper = document.createElement('div')) => {
   const parent = target[0].parentElement;
-  target.forEach(elem => wrapper.appendChild(elem));
+  target.forEach((elem) => wrapper.appendChild(elem));
   parent.appendChild(wrapper);
   return wrapper;
 };
@@ -52,7 +40,56 @@ Axentix.wrap = (target, wrapper = document.createElement('div')) => {
 Axentix.createEvent = (element, eventName, extraData) => {
   const event = new CustomEvent('ax.' + eventName, {
     detail: extraData || {},
-    bubbles: true
+    bubbles: true,
   });
   element.dispatchEvent(event);
+};
+
+Axentix.isTouchEnabled = () => {
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+};
+
+/**
+ * Get instance of element
+ * @param {String} element Id of element
+ */
+Axentix.getInstance = (element) => {
+  return Axentix.instances.filter((instance) => '#' + instance.el.id === element)[0];
+};
+
+/**
+ * Get all instances
+ */
+Axentix.getAllInstances = () => {
+  return Axentix.instances;
+};
+
+/**
+ * Sync instance of element
+ * @param {String} element Id of element
+ */
+Axentix.sync = (element) => {
+  Axentix.getInstance(element).sync();
+};
+
+/**
+ * Sync all instances
+ */
+Axentix.syncAll = () => {
+  Axentix.instances.map((instance) => instance.sync());
+};
+
+/**
+ * Reset instance of element
+ * @param {String} element Id of element
+ */
+Axentix.reset = (element) => {
+  Axentix.getInstance(element).reset();
+};
+
+/**
+ * Reset all instances
+ */
+Axentix.resetAll = () => {
+  Axentix.instances.map((instance) => instance.reset());
 };

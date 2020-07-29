@@ -14,7 +14,13 @@
 
     <main>
       <div class="container mt-4">
-        <div class="tab  shadow-1" id="example-tab">
+        <div
+          class="tab shadow-1"
+          id="example-tab"
+          data-ax="tab"
+          data-tab-animation-type="slide"
+          data-tab-caroulix-height="500px"
+        >
           <ul class="tab-menu">
             <li class="tab-link">
               <a href="#tab1">Tab 1</a>
@@ -159,7 +165,8 @@
           </button>
         </div>
       </div>
-      <div class="fab" id="example-fab2">
+
+      <div class="fab" id="example-fab2" data-ax="fab" data-fab-position="bottom-left" data-fab-offset-y="8%">
         <button class="btn circle large secondary fab-trigger">
           <i class="fas fa-plus" aria-hidden="true"></i>
         </button>
@@ -177,35 +184,35 @@
     <footer class="footer primary">
       Copyright © 2020 - Example
     </footer>
-    <script src="../dist/js/axentix.min.js"></script>
+    <script src="../dist/js/axentix.js"></script>
     <script>
       // document.addEventListener('ax.tab.select', function(e) {
       //   console.log('hey', e);
       // });
 
-      var tab = new Tab('#example-tab');
-      var tab2 = new Tab('#example-tab2');
+      // var tab = new Axentix.Tab('#example-tab');
+      var tab2 = new Axentix.Tab('#example-tab2');
 
-      var slideTab = new Tab('#slide-tab', {
+      var slideTab = new Axentix.Tab('#slide-tab', {
         animationType: 'slide',
         caroulix: {
-          fixedHeight: false
-        }
+          fixedHeight: false,
+        },
       });
 
       // Floating Action Button
-      var fab = new Fab('#example-fab', {
+      var fab = new Axentix.Fab('#example-fab', {
         // hover: false,
         // direction: 'bottom',
         // position: 'top-right'
       });
 
-      var fab2 = new Fab('#example-fab2', {
-        hover: false,
-        direction: 'right',
-        position: 'bottom-left',
-        offsetY: '8%'
-      });
+      // var fab2 = new Axentix.Fab('#example-fab2', {
+      //   hover: false,
+      //   direction: 'right',
+      //   position: 'bottom-left',
+      //   offsetY: '8%',
+      // });
 
       // var axentix = new Axentix('all');
     </script>

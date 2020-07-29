@@ -1,3 +1,42 @@
+# 1.0.0-beta.0 - Under development
+
+- ADDED
+  - Tooltips (with methods)
+  - Data- init methods & options handle
+  - Better JS isolation : `new Axentix.Collapsible` instead of `new Collapsible`
+  - ESM js file, now import / require work with autocompletion
+  - Definition file
+  - `Axentix.updateInputs()` method on material forms
+  - `next()` & `prev()` methods on Tab with events
+  - `disableActiveBar` option to disable indicator on tabs
+  - All instances are now saved in global Axentix.instances array. Methods `getInstance()` etc.. are now accessible globally.
+  - `.fx-grow` utility
+  - `.d-` display utilities
+- REMOVED
+  - Push buttons
+  - `.flex` in favour of `.d-flex`
+  - `Axentix.setupFormsListeners()` & `Axentix.detectAllInputs()` methods on material forms
+- IMPROVED
+  - Clean both css and js code
+  - Rework card
+  - Rework material forms
+  - All js options animationDelay changed to animationDuration
+  - Remove all @extends in source files
+  - `.sidenav-logo` class instead of `.logo` in sidenav
+  - Increase padding on footer
+  - Layouts
+  - Update dev-dependencies
+  - Improve compilation
+- BUGFIXES
+  - Material forms border not set correctly inside collapsible in some case
+  - Material forms textarea spacement
+  - Checkbox bug with a lot of text
+  - Material forms textarea active label color
+  - Material forms default background-color with some browsers
+  - Material select don't init correctly with empty selected value
+  - Button circle width inside inline form
+  - Collapsible resize event
+
 # 0.5.3 - 2020-04-15
 
 - ADDED

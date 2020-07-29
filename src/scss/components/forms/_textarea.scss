@@ -15,7 +15,7 @@ textarea.form-control {
 .form-material {
   .form-field:not(.form-default) {
     textarea.form-control {
-      padding-top: 0.75rem;
+      margin-top: 0.75rem;
       transition: $material-animation-duration ease border;
     }
 
@@ -27,8 +27,14 @@ textarea.form-control {
         }
       }
 
-      &.is-txtarea-focused textarea.form-control {
-        border-bottom: 0.1rem solid var(--form-material-color);
+      &.is-txtarea-focused {
+        label {
+          color: var(--form-material-color);
+        }
+
+        textarea.form-control {
+          border-bottom: 0.1rem solid var(--form-material-color);
+        }
       }
     }
   }

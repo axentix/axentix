@@ -6,23 +6,35 @@ const { src, dest, watch, series, parallel } = require('gulp'),
   minify = require('gulp-babel-minify'),
   browserSync = require('browser-sync').create(),
   autoprefixer = require('gulp-autoprefixer'),
+  insert = require('gulp-insert'),
   Fiber = require('fibers');
 
 sass.compiler = require('sass');
+
+function definitionExport() {
+  return src('src/axentix.d.ts').pipe(dest('dist'));
+}
+
+function compileJSESM() {
+  return src('dist/js/axentix.js')
+    .pipe(rename('axentix.esm.js'))
+    .pipe(insert.prepend('export { Axentix };'))
+    .pipe(dest('dist/js/'));
+}
 
 function compileJSMinified() {
   return src('src/js/**/*.js')
     .pipe(concat('axentix.min.js'))
     .pipe(
       babel({
-        presets: ['@babel/env']
+        presets: ['@babel/env'],
       })
     )
     .pipe(
       minify({
         mangle: {
-          keepClassName: true
-        }
+          keepClassName: true,
+        },
       })
     )
     .pipe(dest('dist/js/'))
@@ -34,7 +46,7 @@ function compileJS() {
     .pipe(concat('axentix.js'))
     .pipe(
       babel({
-        presets: ['@babel/env']
+        presets: ['@babel/env'],
       })
     )
     .pipe(dest('dist/js/'))
@@ -46,7 +58,7 @@ function compileSassMinified() {
     .pipe(sass({ fiber: Fiber, outputStyle: 'compressed' }).on('error', sass.logError))
     .pipe(
       autoprefixer({
-        cascade: false
+        cascade: false,
       })
     )
     .pipe(rename({ extname: '.min.css' }))
@@ -59,7 +71,7 @@ function compileSass() {
     .pipe(sass({ fiber: Fiber }).on('error', sass.logError))
     .pipe(
       autoprefixer({
-        cascade: false
+        cascade: false,
       })
     )
     .pipe(dest('dist/css/'))
@@ -68,7 +80,7 @@ function compileSass() {
 
 function initBrowserSync() {
   browserSync.init({
-    server: './'
+    server: './',
   });
   watch(['examples/**/*.html', 'examples/**/*.css', 'examples/**/*.js']).on('change', browserSync.reload);
 }
@@ -77,21 +89,27 @@ exports.jsmin = compileJSMinified;
 exports.js = compileJS;
 exports.sassmin = compileSassMinified;
 exports.sass = compileSass;
+exports.jsesm = compileJSESM;
 
-exports.watch = function() {
+exports.watch = function () {
   initBrowserSync();
   watch('src/js/**/*.js', series(compileJSMinified, compileJS));
   watch('src/scss/**/*.scss', series(compileSassMinified, compileSass));
 };
 
-exports.watchjs = function() {
+exports.watchjs = function () {
   initBrowserSync();
   watch('src/js/**/*.js', series(compileJSMinified, compileJS));
 };
 
-exports.watchsass = function() {
+exports.watchsass = function () {
   initBrowserSync();
   watch('src/scss/**/*.scss', series(compileSassMinified, compileSass));
 };
 
-exports.default = parallel(series(compileJSMinified, compileJS), series(compileSassMinified, compileSass));
+exports.default = parallel(
+  series(parallel(compileJSMinified, compileJS), compileJSESM),
+  compileSassMinified,
+  compileSass,
+  definitionExport
+);

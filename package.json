@@ -8,6 +8,7 @@
   "scripts": {
     "build:js": "gulp js",
     "build:js-min": "gulp jsmin",
+    "build:js-esm": "gulp jsesm",
     "build:sass-min": "gulp sassmin",
     "build:sass": "gulp sass",
     "build": "gulp",
@@ -33,6 +34,8 @@
   "style": "dist/css/axentix.css",
   "sass": "src/scss/axentix.scss",
   "main": "dist/js/axentix.js",
+  "module": "dist/js/axentix.esm.js",
+  "typings": "dist/axentix.d.ts",
   "files": [
     "dist",
     "src",
@@ -43,18 +46,20 @@
   ],
   "engine": "node >= 10",
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
-    "browser-sync": "^2.26.7",
-    "fibers": "^4.0.2",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "browser-sync": "^2.26.12",
+    "fibers": "^4.0.3",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-babel": "^8.0.0",
     "gulp-babel-minify": "^0.5.1",
     "gulp-concat": "^2.6.1",
     "gulp-rename": "^1.4.0",
-    "gulp-sass": "^4.0.2",
-    "sass": "^1.26.3"
+    "gulp-sass": "^4.1.0",
+    "sass": "^1.26.10"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gulp-insert": "^0.5.0"
+  }
 }

@@ -31,7 +31,11 @@
     <div id="example-sidenav" class="sidenav large fixed white">
       <div class="sidenav-header">
         <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-        <img class="logo dropshadow-1" src="https://axentix-web.test/img/axentix-250.png" alt="Logo" />
+        <img
+          class="sidenav-logo dropshadow-1"
+          src="https://axentix-web.test/img/axentix-250.png"
+          alt="Logo"
+        />
       </div>
       <a href="#" class="sidenav-link active">Link 1</a>
       <a href="#" class="sidenav-link">Link 2</a>
@@ -168,7 +172,7 @@
           <div class="form-field">
             <label class="txt-center" for="select">Select an option</label>
             <select class="form-control" id="select">
-              <option>plage</option>
+              <option selected disabled value="">plage</option>
               <option>2</option>
               <option>3</option>
             </select>
@@ -199,7 +203,7 @@
     </footer>
     <script src="../dist/js/axentix.min.js"></script>
     <script>
-      var sidenav = new Sidenav('#example-sidenav');
+      var sidenav = new Axentix.Sidenav('#example-sidenav');
     </script>
   </body>
 </html>

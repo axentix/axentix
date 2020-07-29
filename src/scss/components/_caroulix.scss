@@ -39,7 +39,7 @@
     transition: box-shadow 0.2s ease;
 
     &:hover {
-      @extend .shadow-2;
+      box-shadow: #{map-get($shadows, '2')};
     }
 
     &.caroulix-prev {

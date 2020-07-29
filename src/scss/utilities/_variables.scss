@@ -219,3 +219,6 @@ $lh-rem: (
   '4': 1.75rem,
   '5': 2rem,
 ) !default;
+
+// Display
+$displays: 'block', 'flex', 'grid', 'table', 'inline', 'inline-block', 'inline-flex', 'inline-table' !default;

@@ -1,0 +1,8 @@
+.tooltip {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: ease;
+}

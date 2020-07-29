@@ -10,7 +10,6 @@
     flex-direction: column;
     overflow: hidden;
     white-space: nowrap;
-    @extend .shadow-1, .rounded-1;
 
     &.right-aligned {
       right: 0;

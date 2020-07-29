@@ -95,6 +95,7 @@
 .responsive-table-2 {
   width: 100%;
   max-width: 100vw;
+
   @include responsive('xs') {
     table {
       thead {
@@ -127,32 +128,6 @@
           }
         }
       }
-    }
-  }
-}
-
-.responsive-table-3 {
-  width: 100%;
-  max-width: 100vw;
-
-  @include responsive('xs') {
-    table thead {
-      display: none;
-    }
-
-    table tr {
-      display: block;
-    }
-
-    table td {
-      display: block;
-      text-align: right;
-    }
-
-    table td::before {
-      content: attr(data-col);
-      float: left;
-      font-weight: 600;
     }
   }
 }
