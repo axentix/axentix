@@ -328,7 +328,7 @@ export namespace Axentix {
     /**
      * @default 'top'
      */
-    position: string;
+    position: 'top' | 'bottom' | 'left' | 'right';
   }
 
   // JS Utilities
