@@ -1,4 +1,4 @@
-# 1.0.0-beta.0 - Under development
+# 1.0.0-beta.0 - 2020-07-29
 
 - ADDED
   - Tooltips (with methods)
