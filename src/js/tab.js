@@ -361,5 +361,14 @@
       this.select(target.split('#')[1]);
     }
   }
-  Axentix.Tab = Tab;
+
+  Axentix.Config.registerComponent({
+    class: Tab,
+    name: 'Tab',
+    dataDetection: true,
+    autoInit: {
+      enabled: true,
+      selector: '.tab:not(.no-axentix-init)',
+    },
+  });
 })();

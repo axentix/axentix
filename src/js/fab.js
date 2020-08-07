@@ -188,5 +188,14 @@
       }, this.options.animationDuration);
     }
   }
-  Axentix.Fab = Fab;
+
+  Axentix.Config.registerComponent({
+    class: Fab,
+    name: 'Fab',
+    dataDetection: true,
+    autoInit: {
+      enabled: true,
+      selector: '.fab:not(i):not(.no-axentix-init)',
+    },
+  });
 })();

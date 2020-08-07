@@ -9,32 +9,19 @@
     />
   </head>
 
-  <body class="layout with-sidenav fixed-sidenav">
+  <body class="layout">
     <header>
       <nav class="navbar primary">
         <a href="#" target="_blank" class="navbar-brand">Axentix</a>
-        <ul class="right">
-          <li><a href="#">Link 1</a></li>
-          <li><a href="#">Link 2</a></li>
-          <li><a href="#">Link 3</a></li>
-          <li><a href="#">Link 4</a></li>
+        <div class="navbar-menu ml-auto">
+          <a href="#" class="navbar-link">Link 1</a>
+          <a href="#" class="navbar-link">Link 2</a>
+          <a href="#" class="navbar-link">Link 3</a>
+          <a href="#" class="navbar-link">Link 4</a>
+        </div>
         </ul>
       </nav>
     </header>
-
-    <div id="example-sidenav" class="sidenav large fixed white">
-      <div class="sidenav-header">
-        <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-        <img class="logo dropshadow-1" src="https://axentix-web.test/img/axentix-250.png" alt="Logo" />
-      </div>
-      <a href="#" class="active">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-      <a href="#">Link 4</a>
-      <div class="sidenav-footer viride">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </div>
-    </div>
 
     <main class="container">
       <h2>NORMAL BUTTONS</h2>
@@ -242,11 +229,8 @@
     </main>
 
     <footer class="footer primary">
-      Copyright © 2019 - Example
+      Copyright © 2020 - Example
     </footer>
     <script src="../dist/js/axentix.min.js"></script>
-    <script>
-      var sidenav = new Sidenav('#example-sidenav');
-    </script>
   </body>
 </html>

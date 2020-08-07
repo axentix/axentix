@@ -215,5 +215,10 @@
       this.updatePosition();
     }
   }
-  Axentix.Tooltip = Tooltip;
+
+  Axentix.Config.registerComponent({
+    class: Tooltip,
+    name: 'Tooltip',
+    dataDetection: true,
+  });
 })();

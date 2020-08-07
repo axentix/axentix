@@ -175,5 +175,14 @@
       }
     }
   }
-  Axentix.Dropdown = Dropdown;
+
+  Axentix.Config.registerComponent({
+    class: Dropdown,
+    name: 'Dropdown',
+    dataDetection: true,
+    autoInit: {
+      enabled: true,
+      selector: '.dropdown:not(.no-axentix-init)',
+    },
+  });
 })();

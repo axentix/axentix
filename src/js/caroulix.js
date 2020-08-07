@@ -399,5 +399,14 @@
       this.autoTimeout = false;
     }
   }
-  Axentix.Caroulix = Caroulix;
+
+  Axentix.Config.registerComponent({
+    class: Caroulix,
+    name: 'Caroulix',
+    dataDetection: true,
+    autoInit: {
+      enabled: true,
+      selector: '.caroulix:not(.no-axentix-init)',
+    },
+  });
 })();

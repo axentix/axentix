@@ -179,5 +179,14 @@
       }
     }
   }
-  Axentix.Sidenav = Sidenav;
+
+  Axentix.Config.registerComponent({
+    class: Sidenav,
+    name: 'Sidenav',
+    dataDetection: true,
+    autoInit: {
+      enabled: true,
+      selector: '.sidenav:not(.no-axentix-init)',
+    },
+  });
 })();

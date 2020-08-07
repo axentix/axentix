@@ -197,5 +197,9 @@
       this.options = Axentix.extend(this.options, options);
     }
   }
-  Axentix.Toast = Toast;
+
+  Axentix.Config.registerComponent({
+    class: Toast,
+    name: 'Toast',
+  });
 })();

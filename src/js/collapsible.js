@@ -229,5 +229,14 @@
       }, this.options.animationDuration);
     }
   }
-  Axentix.Collapsible = Collapsible;
+
+  Axentix.Config.registerComponent({
+    class: Collapsible,
+    name: 'Collapsible',
+    dataDetection: true,
+    autoInit: {
+      enabled: true,
+      selector: '.collapsible:not(.no-axentix-init)',
+    },
+  });
 })();

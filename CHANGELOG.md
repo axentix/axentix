@@ -1,3 +1,12 @@
+# 1.0.0-beta.1 - Under development
+
+- ADDED
+  - Axentix.Config with methods
+- REMOVED
+- IMPROVED
+  - Registration of our js components
+- BUGFIXES
+
 # 1.0.0-beta.0 - 2020-07-29
 
 - ADDED

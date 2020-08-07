@@ -181,5 +181,14 @@
       }
     }
   }
-  Axentix.Modal = Modal;
+
+  Axentix.Config.registerComponent({
+    class: Modal,
+    name: 'Modal',
+    dataDetection: true,
+    autoInit: {
+      enabled: true,
+      selector: '.modal:not(.no-axentix-init)',
+    },
+  });
 })();
