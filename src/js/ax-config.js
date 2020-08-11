@@ -1,6 +1,4 @@
-/* requires:
-ax-core.js
-*/
+// require: ax-core.js
 Axentix.Config = (() => {
   const config = {
     components: [],
