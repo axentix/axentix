@@ -32,26 +32,33 @@ Axentix.Config = (() => {
   };
 
   /**
-   * Register component
-   * @param {{ name: string, dataDetection?: boolean, autoInit?: {enabled: boolean, selector: string}, class: any }} component
+   * Register an element
+   * @param {{ name: string, dataDetection?: boolean, autoInit?: {enabled: boolean, selector: string}, class: any }} el
+   * @param {String} term
    */
-  const registerComponent = (component) => {
-    if (!component.name || !component.class) {
-      console.error('Error registering component : Missing required parameters.');
+  const register = (el, term) => {
+    if (!el.name || !el.class) {
+      console.error(`Error registering ${term} : Missing required parameters.`);
       return;
     }
 
-    if (config.components.some((cmp) => cmp.name === component.name)) {
-      console.error('Error registering component : Already exist.');
+    if (config[term + 's'].some((elem) => elem.name === el.name)) {
+      console.error(`Error registering ${term} : Already exist.`);
       return;
     }
 
-    config.components.push(component);
+    config[term + 's'].push(el);
 
-    Axentix[component.name] = component.class;
+    Axentix[el.name] = el.class;
   };
 
-  const registerPlugin = (plugin) => {};
+  const registerComponent = (component) => {
+    register(component, 'component');
+  };
+
+  const registerPlugin = (plugin) => {
+    register(plugin, 'plugin');
+  };
 
   return {
     get,
