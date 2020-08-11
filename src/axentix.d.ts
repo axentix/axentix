@@ -103,7 +103,7 @@ export namespace Axentix {
       /**
        * @default true
        */
-      autoCloseOtherCollapsible: boolean;
+      autoClose: boolean;
     };
   }
 
@@ -129,6 +129,11 @@ export namespace Axentix {
      * @default 300
      */
     animationDelay: number;
+
+    /**
+     * @default true
+     */
+    autoClose: boolean;
   }
 
   class Fab extends AxentixComponent {
@@ -331,6 +336,34 @@ export namespace Axentix {
     position: 'top' | 'bottom' | 'left' | 'right';
   }
 
+  namespace Config {
+    function get(): {
+      components: Array<any>;
+      plugins: Array<any>;
+    };
+
+    function getDataElements(): Array<string>;
+    function getAutoInitElements(): Array<any>;
+    function registerComponent(component: {
+      name: string;
+      class: any;
+      dataDetection?: boolean;
+      autoInit?: { enabled: boolean; selector: string };
+    }): void;
+
+    function registerPlugin(plugin: {
+      name: string;
+      class: any;
+      dataDetection?: boolean;
+      autoInit?: { enabled: boolean; selector: string };
+      author?: string;
+      description?: string;
+    }): void;
+  }
+
+  // Material forms
+  function updateInputs(inputElements?: NodeListOf<Element>): void;
+
   // JS Utilities
   function createEvent(element: Element, eventName: string, extraData?: any): void;
   function wrap(target: Array<Element>, wrapper?: Element): Element;
@@ -343,10 +376,21 @@ export namespace Axentix {
   ): any;
   function isTouchEnabled(): boolean;
 
-  // Material forms
-  function updateInputs(inputElements?: NodeListOf<Element>): void;
+  function getInstanceType(
+    type: string
+  ): Array<
+    | Axentix.Caroulix
+    | Axentix.Collapsible
+    | Axentix.Dropdown
+    | Axentix.Fab
+    | Axentix.Modal
+    | Axentix.Sidenav
+    | Axentix.Tab
+    | Axentix.Toast
+    | Axentix.Tooltip
+    | []
+  >;
 
-  // Core
   function getInstance(
     element: string
   ):
@@ -358,7 +402,9 @@ export namespace Axentix {
     | Axentix.Sidenav
     | Axentix.Tab
     | Axentix.Toast
-    | Axentix.Tooltip;
+    | Axentix.Tooltip
+    | 'Not Found';
+
   function getAllInstances(): Array<
     | Axentix.Caroulix
     | Axentix.Collapsible
