@@ -128,6 +128,15 @@
       });
     }
 
+    _setContentHeight() {
+      const elRect = this.dropdownContent.getBoundingClientRect();
+
+      const bottom =
+        elRect.height - (elRect.bottom - (window.innerHeight || document.documentElement.clientHeight)) - 10;
+
+      this.dropdownContent.style.maxHeight = bottom + 'px';
+    }
+
     /**
      * Open dropdown
      */
@@ -137,6 +146,8 @@
       }
       Axentix.createEvent(this.el, 'dropdown.open');
       this.dropdownContent.style.display = 'flex';
+
+      this._setContentHeight();
 
       setTimeout(() => {
         this.el.classList.add('active');

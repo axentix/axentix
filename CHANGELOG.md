@@ -11,6 +11,7 @@
   - Registration of our js components
   - Update definition file
 - BUGFIXES
+  - Dropdown height can exceed viewport size
 
 # 1.0.0-beta.0 - 2020-07-29
 
