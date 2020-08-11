@@ -31,7 +31,7 @@
         Axentix.toastInstanceExist = true;
       }
 
-      Axentix.instances.push(this);
+      Axentix.instances.push({ type: 'Toast', instance: this });
 
       this.content = content;
       this.options = Axentix.getComponentOptions('Toast', options, '', true);

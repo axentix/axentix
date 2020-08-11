@@ -32,7 +32,7 @@
     constructor(element, options, isLoadedWithData) {
       super();
 
-      Axentix.instances.push(this);
+      Axentix.instances.push({ type: 'Caroulix', instance: this });
 
       this.el = document.querySelector(element);
 

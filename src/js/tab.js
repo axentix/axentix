@@ -22,7 +22,7 @@
     constructor(element, options, isLoadedWithData) {
       super();
 
-      Axentix.instances.push(this);
+      Axentix.instances.push({ type: 'Tab', instance: this });
 
       this.caroulixOptions = {
         animationDuration: 300,

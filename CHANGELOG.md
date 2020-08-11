@@ -1,10 +1,15 @@
 # 1.0.0-beta.1 - Under development
 
 - ADDED
-  - Axentix.Config with methods
+  - `autoClose` option in Dropdown (default: true)
+  - Axentix.Config with methods : Now, you can register to Axentix your own plugin. (See documentation for more informations)
+  - `Axentix.getInstanceType(type)` utilities | Example: `Axentix.getInstanceType('Collapsible')`
 - REMOVED
 - IMPROVED
+  - Collapsible autoClose option in Sidenav
+  - Rename option autoCloseOtherCollapsible to autoClose in Collapsible
   - Registration of our js components
+  - Update definition file
 - BUGFIXES
 
 # 1.0.0-beta.0 - 2020-07-29

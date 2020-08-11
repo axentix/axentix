@@ -49,47 +49,35 @@ Axentix.isTouchEnabled = () => {
   return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 };
 
-/**
- * Get instance of element
- * @param {String} element Id of element
- */
-Axentix.getInstance = (element) => {
-  return Axentix.instances.filter((instance) => '#' + instance.el.id === element)[0];
+Axentix.getInstanceType = (type) => {
+  return Axentix.instances.filter((ins) => ins.type === type).map((ins) => ins.instance);
 };
 
-/**
- * Get all instances
- */
+Axentix.getInstance = (element) => {
+  const el = Axentix.instances.find((ins) => '#' + ins.instance.el.id === element);
+
+  if (el) {
+    return el.instance;
+  }
+  return 'Not Found';
+};
+
 Axentix.getAllInstances = () => {
   return Axentix.instances;
 };
 
-/**
- * Sync instance of element
- * @param {String} element Id of element
- */
 Axentix.sync = (element) => {
   Axentix.getInstance(element).sync();
 };
 
-/**
- * Sync all instances
- */
 Axentix.syncAll = () => {
-  Axentix.instances.map((instance) => instance.sync());
+  Axentix.instances.map((ins) => ins.instance.sync());
 };
 
-/**
- * Reset instance of element
- * @param {String} element Id of element
- */
 Axentix.reset = (element) => {
   Axentix.getInstance(element).reset();
 };
 
-/**
- * Reset all instances
- */
 Axentix.resetAll = () => {
-  Axentix.instances.map((instance) => instance.reset());
+  Axentix.instances.map((ins) => ins.instance.reset());
 };
