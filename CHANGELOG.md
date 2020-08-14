@@ -12,6 +12,7 @@
   - Update definition file
 - BUGFIXES
   - Dropdown height can exceed viewport size
+  - Outline buttons disabled state
 
 # 1.0.0-beta.0 - 2020-07-29
 
