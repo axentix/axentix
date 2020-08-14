@@ -6,7 +6,7 @@
   - `Axentix.getInstanceType(type)` utilities | Example: `Axentix.getInstanceType('Collapsible')`
 - REMOVED
 - IMPROVED
-  - Collapsible autoClose option in Sidenav
+  - Collapsible autoClose option rework
   - Rename option autoCloseOtherCollapsible to autoClose in Collapsible
   - Registration of our js components
   - Update definition file
