@@ -9,7 +9,11 @@
       .txt-#{$name}.txt-dark-#{abs($i)} {
         color: darken($value, abs($i) * 8%) !important;
       }
+      .bd-#{$name}.bd-dark-#{abs($i)} {
+        border-color: darken($value, abs($i) * 8%) !important;
+      }
     }
+
     @if $i == 0 {
       .#{$name} {
         background-color: #{$value};
@@ -18,7 +22,11 @@
       .txt-#{$name} {
         color: #{$value} !important;
       }
+      .bd-#{$name} {
+        border-color: #{$value} !important;
+      }
     }
+
     @if $i > 0 {
       .#{$name}.light-#{$i} {
         background-color: lighten($value, $i * 8%);
@@ -26,6 +34,9 @@
       }
       .txt-#{$name}.txt-light-#{$i} {
         color: lighten($value, $i * 8%) !important;
+      }
+      .bd-#{$name}.bd-light-#{$i} {
+        border-color: lighten($value, $i * 8%) !important;
       }
     }
   }
@@ -38,5 +49,8 @@
   }
   .txt-#{$name} {
     color: #{$value} !important;
+  }
+  .bd-#{$name} {
+    border-color: #{$value} !important;
   }
 }
