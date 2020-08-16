@@ -5,6 +5,8 @@
   - `autoClose` option in Dropdown (default: true)
   - Axentix.Config with methods : Now, you can register to Axentix your own plugin. (See documentation for more informations)
   - `Axentix.getInstanceType(type)` utilities | Example: `Axentix.getInstanceType('Collapsible')`
+  - `.spinner-txt` class
+  - Progress bar width transition
 - REMOVED
 - IMPROVED
   - Collapsible autoClose option rework
