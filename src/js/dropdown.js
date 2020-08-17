@@ -123,7 +123,7 @@
     }
 
     _autoClose() {
-      Axentix.getInstanceType('Dropdown').map((dropdown) => {
+      Axentix.getInstanceByType('Dropdown').map((dropdown) => {
         dropdown.el.id !== this.el.id ? dropdown.close() : '';
       });
     }

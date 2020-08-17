@@ -49,7 +49,7 @@ Axentix.isTouchEnabled = () => {
   return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 };
 
-Axentix.getInstanceType = (type) => {
+Axentix.getInstanceByType = (type) => {
   return Axentix.instances.filter((ins) => ins.type === type).map((ins) => ins.instance);
 };
 

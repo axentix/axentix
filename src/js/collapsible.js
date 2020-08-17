@@ -154,7 +154,7 @@
      */
     _autoClose() {
       if (!this.isInitialStart && this.isInSidenav) {
-        Axentix.getInstanceType('Collapsible').map((collapsible) => {
+        Axentix.getInstanceByType('Collapsible').map((collapsible) => {
           if (
             collapsible.isInSidenav &&
             collapsible.sidenavId === this.sidenavId &&

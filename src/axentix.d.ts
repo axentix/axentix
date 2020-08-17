@@ -376,7 +376,7 @@ export namespace Axentix {
   ): any;
   function isTouchEnabled(): boolean;
 
-  function getInstanceType(
+  function getInstanceByType(
     type: string
   ): Array<
     | Axentix.Caroulix

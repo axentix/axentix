@@ -4,7 +4,7 @@
   - `bd-{color}` Border colors
   - `autoClose` option in Dropdown (default: true)
   - Axentix.Config with methods : Now, you can register to Axentix your own plugin. (See documentation for more informations)
-  - `Axentix.getInstanceType(type)` utilities | Example: `Axentix.getInstanceType('Collapsible')`
+  - `Axentix.getInstanceByType(type)` utilities | Example: `Axentix.getInstanceByType('Collapsible')`
   - `.spinner-txt` class
   - Progress bar width transition
 - REMOVED

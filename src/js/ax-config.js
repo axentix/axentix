@@ -42,22 +42,22 @@ Axentix.Config = (() => {
       return;
     }
 
-    if (config[term + 's'].some((elem) => elem.name === el.name)) {
+    if (config[term].some((elem) => elem.name === el.name)) {
       console.error(`Error registering ${term} : Already exist.`);
       return;
     }
 
-    config[term + 's'].push(el);
+    config[term].push(el);
 
     Axentix[el.name] = el.class;
   };
 
   const registerComponent = (component) => {
-    register(component, 'component');
+    register(component, 'components');
   };
 
   const registerPlugin = (plugin) => {
-    register(plugin, 'plugin');
+    register(plugin, 'plugins');
   };
 
   return {
