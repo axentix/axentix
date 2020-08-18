@@ -15,13 +15,35 @@
 [![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/axentix/badge?style=rounded)](https://www.jsdelivr.com/package/npm/axentix)
 ![David](https://img.shields.io/david/axentix/axentix)
 ![David](https://img.shields.io/david/dev/axentix/axentix)
-![Discord](https://img.shields.io/discord/727545620683816980)
+[![install size](https://packagephobia.com/badge?p=axentix)](https://packagephobia.com/result?p=axentix)
+[![Known Vulnerabilities](https://snyk.io/test/github/axentix/axentix/badge.svg?targetFile=package.json)](https://snyk.io/test/github/axentix/axentix?targetFile=package.json)
+![GitHub](https://img.shields.io/github/license/axentix/axentix)
+[![Discord](https://img.shields.io/discord/727545620683816980)](https://discord.gg/8tgRDED)
+[![Rate on Openbase](https://badges.openbase.io/js/rating/axentix.svg)](https://openbase.io/js/axentix?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge)
 
 ## Quickstart
 
-- You can download the latest release from [Github](https://github.com/axentix/axentix/releases/latest).
-- Clone the repo : `git clone https://github.com/axentix/axentix.git`
-- Install with [npm](https://www.npmjs.com/) : `npm install axentix`
+### NPM
+```
+npm install axentix
+```
+
+### Yarn
+```
+yarn add axentix
+```
+
+### CDN
+
+Include the files with [jsDelivr](https://www.jsdelivr.com/package/npm/axentix).
+
+### Github Release  
+You can download the latest release from [Github](https://github.com/axentix/axentix/releases/latest).
+
+### Clone the repo
+```
+git clone https://github.com/axentix/axentix.git
+```
 
 ## Documentation
 
