@@ -134,6 +134,11 @@ export namespace Axentix {
      * @default true
      */
     autoClose: boolean;
+
+    /**
+     * @default false
+     */
+    preventViewport: boolean;
   }
 
   class Fab extends AxentixComponent {

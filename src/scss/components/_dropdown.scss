@@ -3,13 +3,16 @@
   display: inline-block;
   z-index: $dropdown-zindex;
 
+  &.dropdown-vp .dropdown-content {
+    overflow-y: auto;
+  }
+
   .dropdown-content {
     position: absolute;
     left: 0;
     display: none;
     flex-direction: column;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
     white-space: nowrap;
 
     &.right-aligned {

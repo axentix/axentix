@@ -10,6 +10,7 @@
         animationType: 'none',
         hover: false,
         autoClose: true,
+        preventViewport: false,
       };
     }
 
@@ -43,6 +44,8 @@
       this.isActive = this.el.classList.contains('active') ? true : false;
 
       this.options.hover ? this.el.classList.add('active-hover') : this._setupListeners();
+
+      this.options.preventViewport ? this.el.classList.add('dropdown-vp') : '';
 
       this._setupAnimation();
     }
@@ -147,7 +150,7 @@
       Axentix.createEvent(this.el, 'dropdown.open');
       this.dropdownContent.style.display = 'flex';
 
-      this._setContentHeight();
+      this.options.preventViewport ? this._setContentHeight() : '';
 
       setTimeout(() => {
         this.el.classList.add('active');
