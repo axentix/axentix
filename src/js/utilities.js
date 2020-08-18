@@ -59,7 +59,7 @@ Axentix.getInstance = (element) => {
   if (el) {
     return el.instance;
   }
-  return 'Not Found';
+  return false;
 };
 
 Axentix.getAllInstances = () => {

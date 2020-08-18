@@ -403,7 +403,7 @@ export namespace Axentix {
     | Axentix.Tab
     | Axentix.Toast
     | Axentix.Tooltip
-    | 'Not Found';
+    | false;
 
   function getAllInstances(): Array<
     | Axentix.Caroulix

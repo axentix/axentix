@@ -2,6 +2,7 @@
 
 - ADDED
   - `bd-{color}` Border colors
+  - `bd-{nb}, bd-{position}-{nb}, bd-{style}, bd-{position}-{style}` classes
   - `autoClose` option in Dropdown (default: true)
   - Axentix.Config with methods : Now, you can register to Axentix your own plugin. (See documentation for more informations)
   - `Axentix.getInstanceByType(type)` utilities | Example: `Axentix.getInstanceByType('Collapsible')`

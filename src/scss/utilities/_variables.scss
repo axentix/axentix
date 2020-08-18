@@ -222,3 +222,17 @@ $lh-rem: (
 
 // Display
 $displays: 'block', 'flex', 'grid', 'table', 'inline', 'inline-block', 'inline-flex', 'inline-table' !default;
+
+// Borders
+$bd-base-width: 1px;
+$bd-width: (
+  '0': 0,
+  '1': $bd-base-width * 1,
+  '2': $bd-base-width * 1.5,
+  '3': $bd-base-width * 2,
+  '4': $bd-base-width * 4,
+  '5': $bd-base-width * 6,
+) !default;
+
+$bd-style: 'dashed', 'dotted', 'double', 'groove', 'hidden', 'none', 'inset', 'outset', 'ridge', 'solid',
+  'revert' !default;
