@@ -7,19 +7,41 @@
 <h3 align="center">Axentix - Front-end framework</h3>
 
 <p align="center">
+  <a href="https://useaxentix.com/"><strong>Home</strong></a> |
   <a href="https://useaxentix.com/docs/"><strong>Documentation</strong></a>
 </p>
 
-[![npm version](https://badge.fury.io/js/axentix.svg)](https://badge.fury.io/js/axentix)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/axentix/axentix)
-[![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/axentix/badge?style=rounded)](https://www.jsdelivr.com/package/npm/axentix)
-![David](https://img.shields.io/david/axentix/axentix)
-![David](https://img.shields.io/david/dev/axentix/axentix)
-[![install size](https://packagephobia.com/badge?p=axentix)](https://packagephobia.com/result?p=axentix)
-[![Known Vulnerabilities](https://snyk.io/test/github/axentix/axentix/badge.svg?targetFile=package.json)](https://snyk.io/test/github/axentix/axentix?targetFile=package.json)
-![GitHub](https://img.shields.io/github/license/axentix/axentix)
-[![Discord](https://img.shields.io/discord/727545620683816980)](https://discord.gg/8tgRDED)
-[![Rate on Openbase](https://badges.openbase.io/js/rating/axentix.svg)](https://openbase.io/js/axentix?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge)
+<br>
+
+<p align="center">
+  <a href="https://badge.fury.io/js/axentix">
+    <img src="https://badge.fury.io/js/axentix.svg" alt="npm version" />
+  </a>
+  <img src="https://img.shields.io/github/v/release/axentix/axentix" alt="GitHub release (latest by date)" />
+  <a href="https://www.jsdelivr.com/package/npm/axentix">
+    <img src="https://data.jsdelivr.com/v1/package/npm/axentix/badge?style=rounded" alt="jsDelivr Hits" />
+  </a>
+  <img src="https://img.shields.io/david/axentix/axentix" alt="David" />
+  <img src="https://img.shields.io/david/dev/axentix/axentix" alt="David" />
+  <a href="https://packagephobia.com/result?p=axentix">
+    <img src="https://packagephobia.com/badge?p=axentix" alt="install size" />
+  </a>
+  <a href="https://snyk.io/test/github/axentix/axentix?targetFile=package.json">
+    <img src="https://snyk.io/test/github/axentix/axentix/badge.svg?targetFile=package.json" alt="Known Vulnerabilities" />
+  </a>
+  <img src="https://img.shields.io/github/license/axentix/axentix" alt="License" />
+</p>
+
+<p align="center">
+  <a href="https://discord.gg/8tgRDED">
+    <img src="https://img.shields.io/discord/727545620683816980" alt="Discord" />
+  </a>
+  <a href="https://openbase.io/js/axentix?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge">
+    <img src="https://badges.openbase.io/js/rating/axentix.svg" alt="Rate on Openbase" />
+  </a>
+</p>
+
+Axentix is an open source Framework based on CSS Grid using HTML, CSS and JS. The easy layout control and grid system makes it one of the most easy to learn framework.
 
 ## Quickstart
 
@@ -47,8 +69,7 @@ git clone https://github.com/axentix/axentix.git
 
 ## Documentation
 
-Found the documentation at <https://useaxentix.com/>.  
-You can't run the documentation locally due to future features we have planned.
+Found the documentation at <https://useaxentix.com/docs/>.  
 
 ## Changelog
 
@@ -56,14 +77,18 @@ Changelog is accessible in the [CHANGELOG.md](CHANGELOG.md) file or in [the rele
 
 ## Creators
 
-- Axel SIMONET  
+- Axel SIMONET - (Xelzs)  
+  [Github](https://github.com/Xelzs)  
   [Linkedin](https://www.linkedin.com/in/axel-simonet/)  
   [Website](https://axelsimonet.fr/)
-- Vincent LEVEQUE  
+- Vincent LEVEQUE - (Stallos11)  
+  [Github](https://github.com/Stallos11)  
   [Linkedin](https://www.linkedin.com/in/leveque-vincent/)
 
-#
+<br>
+
+___
 
 <p align="center">
-Axentix Framework - Made with ♥ by Axel SIMONET & Vincent LEVEQUE
+Axentix Framework - Made with ❤️ by Axel SIMONET & Vincent LEVEQUE
 </p>
