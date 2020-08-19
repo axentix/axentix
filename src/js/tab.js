@@ -22,7 +22,7 @@
     constructor(element, options, isLoadedWithData) {
       super();
 
-      Axentix.instances.push(this);
+      Axentix.instances.push({ type: 'Tab', instance: this });
 
       this.caroulixOptions = {
         animationDuration: 300,
@@ -32,8 +32,6 @@
       };
 
       this.el = document.querySelector(element);
-      this.elQuery = element;
-
       this.options = Axentix.getComponentOptions('Tab', options, this.el, isLoadedWithData);
 
       this._setup();
@@ -48,17 +46,17 @@
       const animationList = ['none', 'slide'];
       animationList.includes(this.options.animationType) ? '' : (this.options.animationType = 'none');
       this.isAnimated = false;
-      this.resizeEventDelay = 0;
-      this.tabArrow = document.querySelector(this.elQuery + ' .tab-arrow');
-      this.tabLinks = document.querySelectorAll(this.elQuery + ' .tab-menu .tab-link');
-      this.tabMenu = document.querySelector(this.elQuery + ' .tab-menu');
+
+      this.tabArrow = this.el.querySelector('.tab-arrow');
+      this.tabLinks = this.el.querySelectorAll('.tab-menu .tab-link');
+      this.tabMenu = this.el.querySelector('.tab-menu');
       this.currentItemIndex = 0;
       this._getItems();
 
       if (this.tabArrow) {
         this._toggleArrowMode();
-        this.leftArrow = document.querySelector(this.elQuery + ' .tab-arrow .tab-prev');
-        this.rightArrow = document.querySelector(this.elQuery + ' .tab-arrow .tab-next');
+        this.leftArrow = this.el.querySelector('.tab-arrow .tab-prev');
+        this.rightArrow = this.el.querySelector('.tab-arrow .tab-next');
       }
 
       this._setupListeners();
@@ -361,5 +359,14 @@
       this.select(target.split('#')[1]);
     }
   }
-  Axentix.Tab = Tab;
+
+  Axentix.Config.registerComponent({
+    class: Tab,
+    name: 'Tab',
+    dataDetection: true,
+    autoInit: {
+      enabled: true,
+      selector: '.tab:not(.no-axentix-init)',
+    },
+  });
 })();

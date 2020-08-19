@@ -31,7 +31,7 @@
         Axentix.toastInstanceExist = true;
       }
 
-      Axentix.instances.push(this);
+      Axentix.instances.push({ type: 'Toast', instance: this });
 
       this.content = content;
       this.options = Axentix.getComponentOptions('Toast', options, '', true);
@@ -197,5 +197,9 @@
       this.options = Axentix.extend(this.options, options);
     }
   }
-  Axentix.Toast = Toast;
+
+  Axentix.Config.registerComponent({
+    class: Toast,
+    name: 'Toast',
+  });
 })();

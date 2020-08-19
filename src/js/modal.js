@@ -21,7 +21,7 @@
     constructor(element, options, isLoadedWithData) {
       super();
 
-      Axentix.instances.push(this);
+      Axentix.instances.push({ type: 'Modal', instance: this });
 
       this.el = document.querySelector(element);
 
@@ -181,5 +181,14 @@
       }
     }
   }
-  Axentix.Modal = Modal;
+
+  Axentix.Config.registerComponent({
+    class: Modal,
+    name: 'Modal',
+    dataDetection: true,
+    autoInit: {
+      enabled: true,
+      selector: '.modal:not(.no-axentix-init)',
+    },
+  });
 })();

@@ -1,3 +1,23 @@
+# 1.0.0-beta.1 - 2020-08-19
+
+- ADDED
+  - `bd-{color}` Border colors
+  - `bd-{nb}, bd-{position}-{nb}, bd-{style}, bd-{position}-{style}` classes
+  - `autoClose` option in Dropdown (default: true)
+  - `preventViewport` option in Dropdown (default: false)
+  - Axentix.Config with methods : Now, you can register to Axentix your own plugin. (See documentation for more informations)
+  - `Axentix.getInstanceByType(type)` utilities | Example: `Axentix.getInstanceByType('Collapsible')`
+  - `.spinner-txt` class
+  - Progress bar width transition
+- REMOVED
+- IMPROVED
+  - Collapsible autoClose option rework
+  - Rename option autoCloseOtherCollapsible to autoClose in Collapsible
+  - Registration of our js components
+  - Update definition file
+- BUGFIXES
+  - Outline buttons disabled state
+
 # 1.0.0-beta.0 - 2020-07-29
 
 - ADDED

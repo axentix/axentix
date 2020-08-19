@@ -1,0 +1,47 @@
+@each $number, $value in $bd-width {
+  .bd-#{$number} {
+    border-width: #{$value} !important;
+  }
+}
+
+@each $number, $value in $bd-width {
+  .bd-t#{$number} {
+    border-top-width: #{$value} !important;
+  }
+
+  .bd-r#{$number} {
+    border-right-width: #{$value} !important;
+  }
+
+  .bd-b#{$number} {
+    border-bottom-width: #{$value} !important;
+  }
+
+  .bd-l#{$number} {
+    border-left-width: #{$value} !important;
+  }
+}
+
+@each $style in $bd-style {
+  .bd-#{$style} {
+    border-style: #{$style} !important;
+  }
+}
+
+@each $style in $bd-style {
+  .bd-t-#{$style} {
+    border-top-style: #{$style} !important;
+  }
+
+  .bd-r-#{$style} {
+    border-right-style: #{$style} !important;
+  }
+
+  .bd-b-#{$style} {
+    border-bottom-style: #{$style} !important;
+  }
+
+  .bd-l-#{$style} {
+    border-left-style: #{$style} !important;
+  }
+}

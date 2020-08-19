@@ -87,6 +87,10 @@
     background-color: rgb(200, 200, 200) !important;
     color: rgb(120, 120, 120) !important;
     box-shadow: none;
+
+    &.outline {
+      border-color: rgb(200, 200, 200);
+    }
   }
 
   &.outline {

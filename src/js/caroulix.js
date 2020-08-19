@@ -32,7 +32,7 @@
     constructor(element, options, isLoadedWithData) {
       super();
 
-      Axentix.instances.push(this);
+      Axentix.instances.push({ type: 'Caroulix', instance: this });
 
       this.el = document.querySelector(element);
 
@@ -399,5 +399,14 @@
       this.autoTimeout = false;
     }
   }
-  Axentix.Caroulix = Caroulix;
+
+  Axentix.Config.registerComponent({
+    class: Caroulix,
+    name: 'Caroulix',
+    dataDetection: true,
+    autoInit: {
+      enabled: true,
+      selector: '.caroulix:not(.no-axentix-init)',
+    },
+  });
 })();

@@ -1,15 +1,4 @@
 Axentix.DataDetection = (() => {
-  const availableComponents = [
-    'Caroulix',
-    'Collapsible',
-    'Dropdown',
-    'Fab',
-    'Modal',
-    'Sidenav',
-    'Tab',
-    'Tooltip',
-  ];
-
   const getFormattedName = (name) => {
     return name
       .replace(/[\w]([A-Z])/g, (s) => {
@@ -28,7 +17,9 @@ Axentix.DataDetection = (() => {
       if (typeof obj[name] === 'object' && obj[name] !== null) {
         const tmpOptName = name[0].toUpperCase() + name.slice(1).toLowerCase();
 
-        availableComponents.includes(tmpOptName) && component !== 'Collapsible' && tmpOptName !== 'Sidenav'
+        Axentix.Config.getDataElements().includes(tmpOptName) &&
+        component !== 'Collapsible' &&
+        tmpOptName !== 'Sidenav'
           ? (obj[name] = Axentix[tmpOptName].getDefaultOptions())
           : '';
 
@@ -73,7 +64,7 @@ Axentix.DataDetection = (() => {
       let component = el.dataset.ax;
       component = component[0].toUpperCase() + component.slice(1).toLowerCase();
 
-      if (!availableComponents.includes(component)) {
+      if (!Axentix.Config.getDataElements().includes(component)) {
         console.error("Error: This component doesn't exist.", el);
         return;
       }

@@ -1,5 +1,6 @@
 .spinner {
   position: relative;
+  display: flex;
   width: 3.5rem;
 
   &:before {
@@ -31,16 +32,29 @@
     }
   }
 
+  .spinner-txt {
+    margin: auto;
+    font-size: 0.9rem;
+  }
+
   &.rainbow svg .spinner-path {
     animation: sp-dash 1.5s ease-in-out infinite, sp-colors 6s ease-in-out infinite;
   }
 
   &.large {
     width: 5rem;
+
+    .spinner-txt {
+      font-size: 1.1rem;
+    }
   }
 
   &.small {
     width: 2rem;
+
+    .spinner-txt {
+      font-size: 0.5rem;
+    }
   }
 }
 

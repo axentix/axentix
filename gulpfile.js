@@ -7,6 +7,7 @@ const { src, dest, watch, series, parallel } = require('gulp'),
   browserSync = require('browser-sync').create(),
   autoprefixer = require('gulp-autoprefixer'),
   insert = require('gulp-insert'),
+  deporder = require('gulp-deporder'),
   Fiber = require('fibers');
 
 sass.compiler = require('sass');
@@ -24,6 +25,7 @@ function compileJSESM() {
 
 function compileJSMinified() {
   return src('src/js/**/*.js')
+    .pipe(deporder())
     .pipe(concat('axentix.min.js'))
     .pipe(
       babel({
@@ -43,6 +45,7 @@ function compileJSMinified() {
 
 function compileJS() {
   return src('src/js/**/*.js')
+    .pipe(deporder())
     .pipe(concat('axentix.js'))
     .pipe(
       babel({

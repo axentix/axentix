@@ -9,6 +9,8 @@
         animationDuration: 300,
         animationType: 'none',
         hover: false,
+        autoClose: true,
+        preventViewport: false,
       };
     }
 
@@ -21,7 +23,7 @@
     constructor(element, options, isLoadedWithData) {
       super();
 
-      Axentix.instances.push(this);
+      Axentix.instances.push({ type: 'Dropdown', instance: this });
 
       this.el = document.querySelector(element);
 
@@ -35,16 +37,15 @@
      */
     _setup() {
       Axentix.createEvent(this.el, 'dropdown.setup');
-      this.dropdownContent = document.querySelector('#' + this.el.id + ' .dropdown-content');
-      this.dropdownTrigger = document.querySelector('#' + this.el.id + ' .dropdown-trigger');
+
+      this.dropdownContent = this.el.querySelector('.dropdown-content');
+      this.dropdownTrigger = this.el.querySelector('.dropdown-trigger');
       this.isAnimated = false;
       this.isActive = this.el.classList.contains('active') ? true : false;
 
-      if (this.options.hover) {
-        this.el.classList.add('active-hover');
-      } else {
-        this._setupListeners();
-      }
+      this.options.hover ? this.el.classList.add('active-hover') : this._setupListeners();
+
+      this.options.preventViewport ? this.el.classList.add('dropdown-vp') : '';
 
       this._setupAnimation();
     }
@@ -124,6 +125,21 @@
       this.isActive ? this.close() : this.open();
     }
 
+    _autoClose() {
+      Axentix.getInstanceByType('Dropdown').map((dropdown) => {
+        dropdown.el.id !== this.el.id ? dropdown.close() : '';
+      });
+    }
+
+    _setContentHeight() {
+      const elRect = this.dropdownContent.getBoundingClientRect();
+
+      const bottom =
+        elRect.height - (elRect.bottom - (window.innerHeight || document.documentElement.clientHeight)) - 10;
+
+      this.dropdownContent.style.maxHeight = bottom + 'px';
+    }
+
     /**
      * Open dropdown
      */
@@ -133,10 +149,15 @@
       }
       Axentix.createEvent(this.el, 'dropdown.open');
       this.dropdownContent.style.display = 'flex';
+
+      this.options.preventViewport ? this._setContentHeight() : '';
+
       setTimeout(() => {
         this.el.classList.add('active');
         this.isActive = true;
       }, 10);
+
+      this.options.autoClose ? this._autoClose() : '';
 
       if (this.options.animationType !== 'none') {
         this.isAnimated = true;
@@ -175,5 +196,14 @@
       }
     }
   }
-  Axentix.Dropdown = Dropdown;
+
+  Axentix.Config.registerComponent({
+    class: Dropdown,
+    name: 'Dropdown',
+    dataDetection: true,
+    autoInit: {
+      enabled: true,
+      selector: '.dropdown:not(.no-axentix-init)',
+    },
+  });
 })();

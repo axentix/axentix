@@ -10,7 +10,7 @@
         sidenav: {
           activeClass: true,
           activeWhenOpen: true,
-          autoCloseOtherCollapsible: true,
+          autoClose: true,
         },
       };
     }
@@ -24,7 +24,7 @@
     constructor(element, options, isLoadedWithData) {
       super();
 
-      Axentix.instances.push(this);
+      Axentix.instances.push({ type: 'Collapsible', instance: this });
 
       this.el = document.querySelector(element);
 
@@ -38,7 +38,7 @@
      */
     _setup() {
       Axentix.createEvent(this.el, 'collapsible.setup');
-      this.el.Collapsible = this;
+
       this.collapsibleTriggers = document.querySelectorAll('.collapsible-trigger');
       this.isInitialStart = true;
       this.isActive = this.el.classList.contains('active') ? true : false;
@@ -99,12 +99,11 @@
      */
     _detectSidenav() {
       const sidenavElem = this.el.closest('.sidenav');
+
       if (sidenavElem) {
         this.isInSidenav = true;
         this.sidenavId = sidenavElem.id;
       }
-
-      this.sidenavCollapsibles = document.querySelectorAll('#' + this.sidenavId + ' .collapsible');
     }
 
     /**
@@ -153,11 +152,15 @@
     /**
      * Auto close others collapsible
      */
-    _autoCloseOtherCollapsible() {
+    _autoClose() {
       if (!this.isInitialStart && this.isInSidenav) {
-        this.sidenavCollapsibles.forEach((collapsible) => {
-          if (collapsible.id !== this.el.id) {
-            collapsible.Collapsible.close();
+        Axentix.getInstanceByType('Collapsible').map((collapsible) => {
+          if (
+            collapsible.isInSidenav &&
+            collapsible.sidenavId === this.sidenavId &&
+            collapsible.el.id !== this.el.id
+          ) {
+            collapsible.close();
           }
         });
       }
@@ -201,7 +204,7 @@
       this.el.style.maxHeight = this.el.scrollHeight + 'px';
 
       this.options.sidenav.activeWhenOpen ? this._addActiveToTrigger(true) : '';
-      this.options.sidenav.autoCloseOtherCollapsible ? this._autoCloseOtherCollapsible() : '';
+      this.options.sidenav.autoClose ? this._autoClose() : '';
 
       setTimeout(() => {
         this.isAnimated = false;
@@ -229,5 +232,14 @@
       }, this.options.animationDuration);
     }
   }
-  Axentix.Collapsible = Collapsible;
+
+  Axentix.Config.registerComponent({
+    class: Collapsible,
+    name: 'Collapsible',
+    dataDetection: true,
+    autoInit: {
+      enabled: true,
+      selector: '.collapsible:not(.no-axentix-init)',
+    },
+  });
 })();

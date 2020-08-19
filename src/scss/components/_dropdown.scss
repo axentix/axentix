@@ -3,6 +3,10 @@
   display: inline-block;
   z-index: $dropdown-zindex;
 
+  &.dropdown-vp .dropdown-content {
+    overflow-y: auto;
+  }
+
   .dropdown-content {
     position: absolute;
     left: 0;
