@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://useaxentix.com/">
-    <img src="https://useaxentix.com/img/axentix-250.png" alt="Axentix Logo" width="120" height="120">
+    <img src="https://useaxentix.com/img/axentix.svg" alt="Axentix Logo" width="120" height="120">
   </a>
 </p>
 
@@ -21,8 +21,8 @@
   <a href="https://www.jsdelivr.com/package/npm/axentix">
     <img src="https://data.jsdelivr.com/v1/package/npm/axentix/badge?style=rounded" alt="jsDelivr Hits" />
   </a>
-  <img src="https://img.shields.io/david/axentix/axentix" alt="David" />
-  <img src="https://img.shields.io/david/dev/axentix/axentix" alt="David" />
+  <img src="https://img.shields.io/david/axentix/axentix" alt="Dependencies" />
+  <img src="https://img.shields.io/david/dev/axentix/axentix" alt="Dev Dependencies" />
   <a href="https://packagephobia.com/result?p=axentix">
     <img src="https://packagephobia.com/badge?p=axentix" alt="install size" />
   </a>
@@ -69,13 +69,13 @@ cd axentix
 npm install
 ```
 
-After installation you have access of our source files.  
+After installation you have access to our source files.  
 You can build project with `npm run build` or watch it with `npm run watch`.  
 We use BrowserSync for our development process.
 
 ## Documentation
 
-Found the documentation at <https://useaxentix.com/docs/>.  
+Find the documentation at <https://useaxentix.com/docs/>.
 
 ## Changelog
 
