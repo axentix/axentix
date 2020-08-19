@@ -1,4 +1,4 @@
-# 1.0.0-beta.1 - Under development
+# 1.0.0-beta.1 - 2020-08-19
 
 - ADDED
   - `bd-{color}` Border colors
