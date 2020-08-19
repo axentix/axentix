@@ -65,7 +65,13 @@ You can download the latest release from [Github](https://github.com/axentix/axe
 ### Clone the repo
 ```
 git clone https://github.com/axentix/axentix.git
+cd axentix
+npm install
 ```
+
+After installation you have access of our source files.  
+You can build project with `npm run build` or watch it with `npm run watch`.  
+We use BrowserSync for our development process.
 
 ## Documentation
 
