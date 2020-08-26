@@ -3,6 +3,7 @@
 - ADDED
 - REMOVED
 - IMPROVED
+  - `word-break: normal` to entire table inside a card
   - Update dependencies
 - BUGFIXES
   - SVG Icon encoding of select
