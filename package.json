@@ -46,7 +46,7 @@
   ],
   "engine": "node >= 10",
   "devDependencies": {
-    "@babel/core": "^7.11.1",
+    "@babel/core": "^7.11.4",
     "@babel/preset-env": "^7.11.0",
     "browser-sync": "^2.26.12",
     "fibers": "^4.0.3",

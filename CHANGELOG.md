@@ -1,3 +1,12 @@
+# 1.0.0-beta.2 - Under Development
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - SVG Icon encoding of select
+
 # 1.0.0-beta.1 - 2020-08-19
 
 - ADDED
