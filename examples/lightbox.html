@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Axentix Layout - Fixed sidenav</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+  </head>
+
+  <body class="layout">
+    <header>
+      <nav class="navbar primary">
+        <a href="#" target="_blank" class="navbar-brand">Axentix</a>
+        <div class="navbar-menu ml-auto">
+          <a href="#" class="navbar-link">Link 1</a>
+          <a href="#" class="navbar-link">Link 2</a>
+          <a href="#" class="navbar-link">Link 3</a>
+          <a href="#" class="navbar-link">Link 4</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <img id="lightbox" class="lightbox" src="https://picsum.photos/500/300" alt="picsum" />
+      <p>text here</p>
+    </main>
+
+    <script src="../dist/js/axentix.min.js"></script>
+
+    <script>
+      let lightbox = new Axentix.Lightbox('#lightbox');
+    </script>
+  </body>
+</html>

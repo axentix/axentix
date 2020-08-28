@@ -1,0 +1,16 @@
+.lightbox {
+  will-change: top, left, width, height, filter, transform;
+  transition-timing-function: ease;
+  transition-property: top, left, width, height, filter, transform;
+  cursor: zoom-in;
+
+  &:hover {
+    filter: brightness(115%);
+  }
+
+  &.active {
+    position: fixed;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+  }
+}
