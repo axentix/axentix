@@ -7,6 +7,7 @@
   - `Axentix.wrap()` utilities
   - Update dependencies
 - BUGFIXES
+  - Layout can exceed viewport size in specific case (for example, with a `.responsive-table`)
   - SVG Icon encoding of select
 
 # 1.0.0-beta.1 - 2020-08-19
