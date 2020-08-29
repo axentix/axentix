@@ -10,7 +10,6 @@
         overlay: true,
         overlayColor: 'grey dark-4',
         caption: '',
-        //   bodyScrolling: false,
         animationDuration: 400,
       };
     }
@@ -54,6 +53,7 @@
 
       this.onResizeRef = this._updatePosition.bind(this);
       window.addEventListener('resize', this.onResizeRef);
+      window.addEventListener('scroll', this.onResizeRef);
 
       this.closeEventRef = this._unsetActiveLightbox.bind(this);
       window.addEventListener('keyup', this.closeEventRef);
@@ -79,15 +79,21 @@
         return;
       }
 
+      const centerTop = window.innerHeight / 2;
+      const centerLeft = window.innerWidth / 2;
+
       const rect = this.el.getBoundingClientRect();
-      this.el.style.top = this.top = rect.top;
-      this.el.style.left = this.left = rect.left;
+      const containerRect = this.el.getBoundingClientRect();
+
+      // this.newTop = centerTop + window.scrollY + (this.containerRect.top - (window.scrollY + centerTop));
+      this.el.style.top = rect.top;
+      this.el.style.left = rect.left;
+      console.log(this.el.style.top);
+      this.newTop = centerTop + window.scrollY - containerRect.height / 2;
+      this.newLeft = centerLeft + window.scrollX - containerRect.width / 2;
 
       this.el.width = this.basicWidth = rect.width;
       this.el.height = this.basicHeight = rect.height;
-
-      const centerTop = window.innerHeight / 2;
-      const centerLeft = window.innerWidth / 2;
 
       this._calculateRatio();
 
@@ -103,22 +109,21 @@
 
         this.el.width = this.newWidth;
         this.el.height = this.newHeight;
-        this.el.style.top = centerTop + 'px';
-        this.el.style.left = centerLeft + 'px';
-
-        // this.el.style.height =
+        this.el.style.top = this.newTop + 'px';
+        this.el.style.left = this.newLeft + 'px';
       }, 50);
     }
 
     /**
      * Unset active lightbox
      */
-    _unsetActiveLightbox() {
-      if (!this.isActive) {
+    _unsetActiveLightbox(e) {
+      if (!this.isActive || (e && e.key && e.key !== 'Escape')) {
         return;
       }
-      this.el.style.top = this.top;
-      this.el.style.left = this.left;
+
+      this.el.style.top = 0;
+      this.el.style.left = 0;
       this.el.style.transform = 'translate(0)';
 
       this.el.width = this.basicWidth;
@@ -140,8 +145,14 @@
      * Reset basic position on resize event
      */
     _updatePosition() {
+      if (this.isActive) {
+        return;
+      }
+
       const rect = this.el.getBoundingClientRect();
-      this.el.style.top = this.top = rect.top;
+      this.top = rect.top;
+
+      console.log(this.el.style.top);
       this.el.style.left = this.left = rect.left;
     }
 
@@ -165,7 +176,6 @@
     }
 
     _calculateRatio() {
-      // returns true if the img is more vertical than the page
       if (window.innerWidth / window.innerHeight >= this.basicWidth / this.basicHeight) {
         this.newHeight = window.innerHeight - 100;
         this.newWidth = (this.newHeight * this.basicWidth) / this.basicHeight;
