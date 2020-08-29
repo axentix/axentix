@@ -85,15 +85,15 @@
       const rect = this.el.getBoundingClientRect();
       const containerRect = this.el.getBoundingClientRect();
 
-      // this.newTop = centerTop + window.scrollY + (this.containerRect.top - (window.scrollY + centerTop));
-      this.el.style.top = rect.top;
-      this.el.style.left = rect.left;
-      console.log(this.el.style.top);
-      this.newTop = centerTop + window.scrollY - containerRect.height / 2;
-      this.newLeft = centerLeft + window.scrollX - containerRect.width / 2;
-
       this.el.width = this.basicWidth = rect.width;
       this.el.height = this.basicHeight = rect.height;
+
+      this.el.style.top = 0;
+      this.el.style.left = 0;
+
+      this.newTop = centerTop + window.scrollY - (containerRect.top + window.scrollY);
+      this.newLeft = centerLeft + window.scrollX - (containerRect.left + window.scrollX);
+      console.log(centerTop, window.scrollY, containerRect.top, this.basicHeight / 2);
 
       this._calculateRatio();
 
@@ -109,8 +109,8 @@
 
         this.el.width = this.newWidth;
         this.el.height = this.newHeight;
-        this.el.style.top = this.newTop + 'px';
-        this.el.style.left = this.newLeft + 'px';
+        this.el.style.top = this.newTop - this.newHeight / 2 + 'px';
+        this.el.style.left = this.newLeft - this.newWidth / 2 + 'px';
       }, 50);
     }
 

@@ -13,7 +13,7 @@
     position: absolute;
     cursor: zoom-out;
     z-index: 1000;
-    transform: translate(-50%, -50%);
+    // transform: translate(-50%, -50%);
   }
 }
 
@@ -21,7 +21,6 @@
   position: fixed;
   transition-timing-function: ease;
   transition-property: opacity, background-color;
-  background-color: #fff;
   opacity: 0;
   z-index: 999;
   top: 0;
