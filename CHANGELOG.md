@@ -4,6 +4,7 @@
 - REMOVED
 - IMPROVED
   - `word-break: normal` to entire table inside a card
+  - `Axentix.wrap()` utilities
   - Update dependencies
 - BUGFIXES
   - SVG Icon encoding of select
