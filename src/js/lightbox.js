@@ -83,11 +83,13 @@
       this.el.style.top = this.top = rect.top;
       this.el.style.left = this.left = rect.left;
 
-      this.basicWidth = rect.width;
-      this.basicHeight = rect.height;
+      this.el.width = this.basicWidth = rect.width;
+      this.el.height = this.basicHeight = rect.height;
 
       const centerTop = window.innerHeight / 2;
       const centerLeft = window.innerWidth / 2;
+
+      this._calculateRatio();
 
       this.container.style.position = 'relative';
       this._setOverlay();
@@ -99,8 +101,12 @@
         this.container.style.width = this.basicWidth;
         this.container.style.height = this.basicHeight;
 
+        this.el.width = this.newWidth;
+        this.el.height = this.newHeight;
         this.el.style.top = centerTop + 'px';
         this.el.style.left = centerLeft + 'px';
+
+        // this.el.style.height =
       }, 50);
     }
 
@@ -115,6 +121,8 @@
       this.el.style.left = this.left;
       this.el.style.transform = 'translate(0)';
 
+      this.el.width = this.basicWidth;
+      this.el.height = this.basicHeight;
       this._unsetOverlay();
 
       setTimeout(() => {
@@ -154,6 +162,17 @@
       setTimeout(() => {
         this.overlay.remove();
       }, this.options.animationDuration);
+    }
+
+    _calculateRatio() {
+      // returns true if the img is more vertical than the page
+      if (window.innerWidth / window.innerHeight >= this.basicWidth / this.basicHeight) {
+        this.newHeight = window.innerHeight - 100;
+        this.newWidth = (this.newHeight * this.basicWidth) / this.basicHeight;
+      } else {
+        this.newWidth = window.innerWidth - 100;
+        this.newHeight = (this.newWidth * this.basicHeight) / this.basicWidth;
+      }
     }
   }
 
