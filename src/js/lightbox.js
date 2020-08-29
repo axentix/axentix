@@ -74,45 +74,58 @@
      * Set position of active lightbox
      */
     _setActiveLightbox() {
-      if (this.el.classList.contains('active')) {
+      if (this.isActive) {
         this._unsetActiveLightbox();
         return;
       }
 
       const rect = this.el.getBoundingClientRect();
-      this.top = rect.top;
-      this.left = rect.left;
+      this.el.style.top = this.top = rect.top;
+      this.el.style.left = this.left = rect.left;
+
       this.basicWidth = rect.width;
       this.basicHeight = rect.height;
 
       const centerTop = window.innerHeight / 2;
       const centerLeft = window.innerWidth / 2;
 
-      this.el.style.top = centerTop + 'px';
-      this.el.style.left = centerLeft + 'px';
-
       this.container.style.position = 'relative';
-      this.container.style.width = this.basicWidth;
-      this.container.style.height = this.basicHeight;
+      this._setOverlay();
 
-      this.el.classList.add('active');
+      setTimeout(() => {
+        this.el.classList.add('active');
+        this.isActive = true;
+        this._showOverlay();
+        this.container.style.width = this.basicWidth;
+        this.container.style.height = this.basicHeight;
+
+        this.el.style.top = centerTop + 'px';
+        this.el.style.left = centerLeft + 'px';
+      }, 50);
     }
 
     /**
      * Unset active lightbox
      */
     _unsetActiveLightbox() {
-      this.el.classList.remove('active');
-
-      setTimeout(() => {
-        this.el.style.position = '';
-      }, this.options.animationDuration);
-
+      if (!this.isActive) {
+        return;
+      }
       this.el.style.top = this.top;
       this.el.style.left = this.left;
+      this.el.style.transform = 'translate(0)';
 
-      this.container.style.width = '';
-      this.container.style.height = '';
+      this._unsetOverlay();
+
+      setTimeout(() => {
+        this.el.classList.remove('active');
+        this.isActive = false;
+        this.container.style.width = '';
+        this.container.style.height = '';
+        this.el.style.left = '';
+        this.el.style.top = '';
+        this.el.style.transform = '';
+      }, this.options.animationDuration);
     }
 
     /**
@@ -122,6 +135,25 @@
       const rect = this.el.getBoundingClientRect();
       this.el.style.top = this.top = rect.top;
       this.el.style.left = this.left = rect.left;
+    }
+
+    _setOverlay() {
+      this.overlay = document.createElement('div');
+      this.overlay.style.transitionDuration = this.options.animationDuration + 'ms';
+      this.overlay.className = 'lightbox-overlay ' + this.options.overlayColor;
+      this.container.appendChild(this.overlay);
+    }
+
+    _showOverlay() {
+      this.overlay.style.opacity = 1;
+    }
+
+    _unsetOverlay() {
+      this.overlay.style.opacity = 0;
+
+      setTimeout(() => {
+        this.overlay.remove();
+      }, this.options.animationDuration);
     }
   }
 
