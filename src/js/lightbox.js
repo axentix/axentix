@@ -9,6 +9,7 @@
       return {
         overlay: true,
         overlayColor: 'grey dark-4',
+        offset: '150',
         caption: '',
         animationDuration: 400,
       };
@@ -74,7 +75,7 @@
      * Set position of active lightbox
      */
     _setActiveLightbox() {
-      if (this.isActive) {
+      if (this.isActive || this.isAnimated) {
         this._unsetActiveLightbox();
         return;
       }
@@ -93,7 +94,6 @@
 
       this.newTop = centerTop + window.scrollY - (containerRect.top + window.scrollY);
       this.newLeft = centerLeft + window.scrollX - (containerRect.left + window.scrollX);
-      console.log(centerTop, window.scrollY, containerRect.top, this.basicHeight / 2);
 
       this._calculateRatio();
 
@@ -122,9 +122,10 @@
         return;
       }
 
+      this.isAnimated = true;
+
       this.el.style.top = 0;
       this.el.style.left = 0;
-      this.el.style.transform = 'translate(0)';
 
       this.el.width = this.basicWidth;
       this.el.height = this.basicHeight;
@@ -133,12 +134,15 @@
       setTimeout(() => {
         this.el.classList.remove('active');
         this.isActive = false;
-        this.container.style.width = '';
-        this.container.style.height = '';
+        this.container.removeAttribute('style');
+        this.el.removeAttribute('width');
+        this.el.removeAttribute('height');
         this.el.style.left = '';
         this.el.style.top = '';
         this.el.style.transform = '';
       }, this.options.animationDuration);
+
+      this.isAnimated = false;
     }
 
     /**
@@ -152,7 +156,6 @@
       const rect = this.el.getBoundingClientRect();
       this.top = rect.top;
 
-      console.log(this.el.style.top);
       this.el.style.left = this.left = rect.left;
     }
 
@@ -161,6 +164,16 @@
       this.overlay.style.transitionDuration = this.options.animationDuration + 'ms';
       this.overlay.className = 'lightbox-overlay ' + this.options.overlayColor;
       this.container.appendChild(this.overlay);
+
+      if (this.options.caption) {
+        this.caption = document.createElement('p');
+        this.caption.className = 'lightbox-caption';
+        this.caption.innerHTML = this.options.caption;
+        this.overlay.appendChild(this.caption);
+      }
+
+      this.overlayClickEventRef = this._unsetActiveLightbox.bind(this);
+      this.overlay.addEventListener('click', this.overlayClickEventRef);
     }
 
     _showOverlay() {
@@ -170,6 +183,7 @@
     _unsetOverlay() {
       this.overlay.style.opacity = 0;
 
+      this.overlay.removeEventListener('click', this.overlayClickEventRef);
       setTimeout(() => {
         this.overlay.remove();
       }, this.options.animationDuration);
@@ -177,10 +191,10 @@
 
     _calculateRatio() {
       if (window.innerWidth / window.innerHeight >= this.basicWidth / this.basicHeight) {
-        this.newHeight = window.innerHeight - 100;
+        this.newHeight = window.innerHeight - this.options.offset;
         this.newWidth = (this.newHeight * this.basicWidth) / this.basicHeight;
       } else {
-        this.newWidth = window.innerWidth - 100;
+        this.newWidth = window.innerWidth - this.options.offset;
         this.newHeight = (this.newWidth * this.basicHeight) / this.basicWidth;
       }
     }
