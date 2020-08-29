@@ -26,8 +26,8 @@ Axentix.getComponentOptions = (component, options, el, isLoadedWithData) => {
  */
 Axentix.wrap = (target, wrapper = document.createElement('div')) => {
   const parent = target[0].parentElement;
+  parent.insertBefore(wrapper, target[0]);
   target.forEach((elem) => wrapper.appendChild(elem));
-  parent.appendChild(wrapper);
   return wrapper;
 };
 
