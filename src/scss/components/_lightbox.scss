@@ -1,7 +1,7 @@
 .lightbox {
-  will-change: top, left, width, height, filter, transform, position;
+  will-change: top, left, width, height, filter, position;
   transition-timing-function: ease;
-  transition-property: top, left, width, height, filter, transform, position;
+  transition-property: top, left, width, height, filter, position;
   cursor: zoom-in;
   transform: translate(0);
 
@@ -10,10 +10,9 @@
   }
 
   &.active {
-    position: fixed;
+    position: absolute;
     cursor: zoom-out;
     z-index: 1000;
-    transform: translate(-50%, -50%);
   }
 }
 
@@ -21,11 +20,19 @@
   position: fixed;
   transition-timing-function: ease;
   transition-property: opacity, background-color;
-  background-color: #fff;
   opacity: 0;
   z-index: 999;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+
+  .lightbox-caption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

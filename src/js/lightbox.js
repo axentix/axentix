@@ -9,8 +9,8 @@
       return {
         overlay: true,
         overlayColor: 'grey dark-4',
+        offset: '150',
         caption: '',
-        //   bodyScrolling: false,
         animationDuration: 400,
       };
     }
@@ -54,6 +54,7 @@
 
       this.onResizeRef = this._updatePosition.bind(this);
       window.addEventListener('resize', this.onResizeRef);
+      window.addEventListener('scroll', this.onResizeRef);
 
       this.closeEventRef = this._unsetActiveLightbox.bind(this);
       window.addEventListener('keyup', this.closeEventRef);
@@ -77,17 +78,24 @@
       if (this.isActive) {
         this._unsetActiveLightbox();
         return;
+      } else if (this.isAnimated) {
+        return;
       }
 
+      const centerTop = window.innerHeight / 2;
+      const centerLeft = window.innerWidth / 2;
+
       const rect = this.el.getBoundingClientRect();
-      this.el.style.top = this.top = rect.top;
-      this.el.style.left = this.left = rect.left;
+      const containerRect = this.el.getBoundingClientRect();
 
       this.el.width = this.basicWidth = rect.width;
       this.el.height = this.basicHeight = rect.height;
 
-      const centerTop = window.innerHeight / 2;
-      const centerLeft = window.innerWidth / 2;
+      this.el.style.top = 0;
+      this.el.style.left = 0;
+
+      this.newTop = centerTop + window.scrollY - (containerRect.top + window.scrollY);
+      this.newLeft = centerLeft + window.scrollX - (containerRect.left + window.scrollX);
 
       this._calculateRatio();
 
@@ -95,31 +103,38 @@
       this._setOverlay();
 
       setTimeout(() => {
+        this.isAnimated = true;
+
         this.el.classList.add('active');
         this.isActive = true;
+
         this._showOverlay();
         this.container.style.width = this.basicWidth;
         this.container.style.height = this.basicHeight;
 
         this.el.width = this.newWidth;
         this.el.height = this.newHeight;
-        this.el.style.top = centerTop + 'px';
-        this.el.style.left = centerLeft + 'px';
+        this.el.style.top = this.newTop - this.newHeight / 2 + 'px';
+        this.el.style.left = this.newLeft - this.newWidth / 2 + 'px';
 
-        // this.el.style.height =
+        this.isAnimated = false;
       }, 50);
     }
 
     /**
      * Unset active lightbox
      */
-    _unsetActiveLightbox() {
-      if (!this.isActive) {
+    _unsetActiveLightbox(e) {
+      if (!this.isActive || (e && e.key && e.key !== 'Escape')) {
+        return;
+      } else if (this.isAnimated) {
         return;
       }
-      this.el.style.top = this.top;
-      this.el.style.left = this.left;
-      this.el.style.transform = 'translate(0)';
+
+      this.isAnimated = true;
+
+      this.el.style.top = 0;
+      this.el.style.left = 0;
 
       this.el.width = this.basicWidth;
       this.el.height = this.basicHeight;
@@ -127,21 +142,29 @@
 
       setTimeout(() => {
         this.el.classList.remove('active');
-        this.isActive = false;
-        this.container.style.width = '';
-        this.container.style.height = '';
+        this.container.removeAttribute('style');
+        this.el.removeAttribute('width');
+        this.el.removeAttribute('height');
         this.el.style.left = '';
         this.el.style.top = '';
         this.el.style.transform = '';
-      }, this.options.animationDuration);
+
+        this.isActive = false;
+        this.isAnimated = false;
+      }, this.options.animationDuration + 50);
     }
 
     /**
      * Reset basic position on resize event
      */
     _updatePosition() {
+      if (this.isActive) {
+        return;
+      }
+      return;
       const rect = this.el.getBoundingClientRect();
-      this.el.style.top = this.top = rect.top;
+      this.top = rect.top;
+
       this.el.style.left = this.left = rect.left;
     }
 
@@ -150,6 +173,16 @@
       this.overlay.style.transitionDuration = this.options.animationDuration + 'ms';
       this.overlay.className = 'lightbox-overlay ' + this.options.overlayColor;
       this.container.appendChild(this.overlay);
+
+      if (this.options.caption) {
+        this.caption = document.createElement('p');
+        this.caption.className = 'lightbox-caption';
+        this.caption.innerHTML = this.options.caption;
+        this.overlay.appendChild(this.caption);
+      }
+
+      this.overlayClickEventRef = this._unsetActiveLightbox.bind(this);
+      this.overlay.addEventListener('click', this.overlayClickEventRef);
     }
 
     _showOverlay() {
@@ -159,18 +192,18 @@
     _unsetOverlay() {
       this.overlay.style.opacity = 0;
 
+      this.overlay.removeEventListener('click', this.overlayClickEventRef);
       setTimeout(() => {
         this.overlay.remove();
       }, this.options.animationDuration);
     }
 
     _calculateRatio() {
-      // returns true if the img is more vertical than the page
       if (window.innerWidth / window.innerHeight >= this.basicWidth / this.basicHeight) {
-        this.newHeight = window.innerHeight - 100;
+        this.newHeight = window.innerHeight - this.options.offset;
         this.newWidth = (this.newHeight * this.basicWidth) / this.basicHeight;
       } else {
-        this.newWidth = window.innerWidth - 100;
+        this.newWidth = window.innerWidth - this.options.offset;
         this.newHeight = (this.newWidth * this.basicHeight) / this.basicWidth;
       }
     }
