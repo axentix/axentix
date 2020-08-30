@@ -1,7 +1,7 @@
 .lightbox {
-  will-change: top, left, width, height, filter, transform, position;
+  will-change: top, left, width, height, filter, position;
   transition-timing-function: ease;
-  transition-property: top, left, width, height, filter, transform, position;
+  transition-property: top, left, width, height, filter, position;
   cursor: zoom-in;
   transform: translate(0);
 

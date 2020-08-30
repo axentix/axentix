@@ -75,8 +75,10 @@
      * Set position of active lightbox
      */
     _setActiveLightbox() {
-      if (this.isActive || this.isAnimated) {
+      if (this.isActive) {
         this._unsetActiveLightbox();
+        return;
+      } else if (this.isAnimated) {
         return;
       }
 
@@ -101,8 +103,11 @@
       this._setOverlay();
 
       setTimeout(() => {
+        this.isAnimated = true;
+
         this.el.classList.add('active');
         this.isActive = true;
+
         this._showOverlay();
         this.container.style.width = this.basicWidth;
         this.container.style.height = this.basicHeight;
@@ -111,6 +116,8 @@
         this.el.height = this.newHeight;
         this.el.style.top = this.newTop - this.newHeight / 2 + 'px';
         this.el.style.left = this.newLeft - this.newWidth / 2 + 'px';
+
+        this.isAnimated = false;
       }, 50);
     }
 
@@ -119,6 +126,8 @@
      */
     _unsetActiveLightbox(e) {
       if (!this.isActive || (e && e.key && e.key !== 'Escape')) {
+        return;
+      } else if (this.isAnimated) {
         return;
       }
 
@@ -133,16 +142,16 @@
 
       setTimeout(() => {
         this.el.classList.remove('active');
-        this.isActive = false;
         this.container.removeAttribute('style');
         this.el.removeAttribute('width');
         this.el.removeAttribute('height');
         this.el.style.left = '';
         this.el.style.top = '';
         this.el.style.transform = '';
-      }, this.options.animationDuration);
 
-      this.isAnimated = false;
+        this.isActive = false;
+        this.isAnimated = false;
+      }, this.options.animationDuration + 50);
     }
 
     /**
@@ -152,7 +161,7 @@
       if (this.isActive) {
         return;
       }
-
+      return;
       const rect = this.el.getBoundingClientRect();
       this.top = rect.top;
 
