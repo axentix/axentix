@@ -11,9 +11,9 @@
         <nav class="navbar primary">
           <a href="#" target="_blank" class="navbar-brand">Axentix</a>
           <div class="navbar-menu ml-auto scrollspy" id="navbar-scrollspy">
-            <a href="#hey" class="navbar-link">hey</a>
+            <!-- <a href="#hey" class="navbar-link">hey</a>
             <a href="#oh" class="navbar-link">oh</a>
-            <a href="#guys" class="navbar-link">guys</a>
+            <a href="#guys" class="navbar-link">guys</a> -->
           </div>
         </nav>
       </div>
@@ -115,7 +115,14 @@
     <script src="../dist/js/axentix.min.js"></script>
 
     <script>
-      const scrollSpy = new Axentix.ScrollSpy('#navbar-scrollspy');
+      // const scrollSpy = new Axentix.ScrollSpy('#navbar-scrollspy');
+      const scrollSpy = new Axentix.ScrollSpy('#navbar-scrollspy', {
+        auto: {
+          enabled: true,
+          classes: 'navbar-link',
+          selector: 'h2',
+        },
+      });
     </script>
   </body>
 </html>

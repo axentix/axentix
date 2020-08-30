@@ -9,6 +9,11 @@
         offset: 200,
         linkSelector: 'a',
         classes: 'active',
+        auto: {
+          enabled: false,
+          classes: '',
+          selector: '',
+        },
       };
     }
 
@@ -34,8 +39,7 @@
      * Setup component
      */
     _setup() {
-      this.links = Array.from(this.el.querySelectorAll(this.options.linkSelector));
-      this.elements = this.links.map((link) => document.querySelector(link.getAttribute('href')));
+      this.options.auto.enabled ? this._setupAuto() : this._setupBasic();
       this.options.classes = this.options.classes.split(' ');
       this.oldLink = '';
 
@@ -59,6 +63,24 @@
       window.removeEventListener('scroll', this.updateRef);
       window.removeEventListener('resize', this.updateRef);
       this.updateRef = undefined;
+    }
+
+    _setupBasic() {
+      this.links = Array.from(this.el.querySelectorAll(this.options.linkSelector));
+      this.elements = this.links.map((link) => document.querySelector(link.getAttribute('href')));
+    }
+
+    _setupAuto() {
+      this.elements = Array.from(document.querySelectorAll(this.options.auto.selector));
+      this.links = this.elements.map((el) => {
+        const link = document.createElement('a');
+        link.className = this.options.auto.classes;
+        link.setAttribute('href', '#' + el.id);
+        link.innerHTML = el.innerHTML;
+        this.el.appendChild(link);
+
+        return link;
+      });
     }
 
     _getElement() {
