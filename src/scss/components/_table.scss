@@ -94,39 +94,37 @@
 
 .responsive-table-2 {
   width: 100%;
-  max-width: 100vw;
+  display: block;
 
   @include responsive('xs') {
-    table {
+    .table {
+      display: flex;
+
       thead {
-        display: block;
-        float: left;
-
         tr {
-          display: block;
-
-          th {
-            display: block;
-            max-width: 25vw;
-            overflow-wrap: break-word;
-          }
+          display: flex;
+          height: 100%;
+          flex-direction: column;
+          border-right: 1px solid rgb(210, 210, 210);
+          padding-right: 0.25rem;
         }
       }
 
       tbody {
-        display: block;
+        display: flex;
+        white-space: nowrap;
         overflow-x: auto;
-        max-width: 75vw;
 
         tr {
-          display: table-cell;
-
-          td {
-            display: block;
-            text-align: right;
-            overflow-wrap: break-word;
-          }
+          display: flex;
+          flex-direction: column;
+          height: 100%;
         }
+      }
+
+      td,
+      th {
+        border: 0;
       }
     }
   }

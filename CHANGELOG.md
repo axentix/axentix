@@ -4,6 +4,7 @@
 - REMOVED
 - IMPROVED
   - `word-break: normal` to entire table inside a card
+  - Table (two responsive methods)
   - `Axentix.wrap()` utilities
   - Update dependencies
 - BUGFIXES
