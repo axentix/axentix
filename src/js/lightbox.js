@@ -66,6 +66,11 @@
      * Remove event listeners
      */
     _removeListeners() {
+      this.el.removeEventListener('click', this.openOnClickRef);
+
+      window.removeEventListener('resize', this.onResizeRef);
+      window.removeEventListener('scroll', this.onResizeRef);
+
       window.removeEventListener('keyup', this.closeEventRef);
       window.removeEventListener('scroll', this.closeEventRef);
       window.removeEventListener('resize', this.closeEventRef);
@@ -103,6 +108,8 @@
       this._setOverlay();
 
       setTimeout(() => {
+        Axentix.createEvent(this.el, 'lightbox.open');
+
         this.isAnimated = true;
 
         this.el.classList.add('active');
@@ -118,6 +125,7 @@
         this.el.style.left = this.newLeft - this.newWidth / 2 + 'px';
 
         this.isAnimated = false;
+        Axentix.createEvent(this.el, 'lightbox.opened');
       }, 50);
     }
 
@@ -141,6 +149,8 @@
       this._unsetOverlay();
 
       setTimeout(() => {
+        Axentix.createEvent(this.el, 'lightbox.close');
+
         this.el.classList.remove('active');
         this.container.removeAttribute('style');
         this.el.removeAttribute('width');
@@ -151,6 +161,8 @@
 
         this.isActive = false;
         this.isAnimated = false;
+
+        Axentix.createEvent(this.el, 'lightbox.closed');
       }, this.options.animationDuration + 50);
     }
 
@@ -199,11 +211,13 @@
     }
 
     _calculateRatio() {
+      let offset = window.innerWidth >= 960 ? this.options.offset : 100;
+
       if (window.innerWidth / window.innerHeight >= this.basicWidth / this.basicHeight) {
-        this.newHeight = window.innerHeight - this.options.offset;
+        this.newHeight = window.innerHeight - offset;
         this.newWidth = (this.newHeight * this.basicWidth) / this.basicHeight;
       } else {
-        this.newWidth = window.innerWidth - this.options.offset;
+        this.newWidth = window.innerWidth - offset;
         this.newHeight = (this.newWidth * this.basicHeight) / this.basicWidth;
       }
     }
