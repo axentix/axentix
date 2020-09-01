@@ -9,7 +9,8 @@
       return {
         overlay: true,
         overlayColor: 'grey dark-4',
-        offset: '150',
+        offset: 450,
+        mobileOffset: 100,
         caption: '',
         animationDuration: 400,
       };
@@ -74,6 +75,10 @@
       window.removeEventListener('keyup', this.closeEventRef);
       window.removeEventListener('scroll', this.closeEventRef);
       window.removeEventListener('resize', this.closeEventRef);
+
+      this.openOnClickRef = undefined;
+      this.onResizeRef = undefined;
+      this.closeEventRef = undefined;
     }
 
     /**
@@ -125,8 +130,11 @@
         this.el.style.left = this.newLeft - this.newWidth / 2 + 'px';
 
         this.isAnimated = false;
-        Axentix.createEvent(this.el, 'lightbox.opened');
       }, 50);
+
+      setTimeout(() => {
+        Axentix.createEvent(this.el, 'lightbox.opened');
+      }, this.options.animationDuration + 50);
     }
 
     /**
@@ -148,9 +156,9 @@
       this.el.height = this.basicHeight;
       this._unsetOverlay();
 
-      setTimeout(() => {
-        Axentix.createEvent(this.el, 'lightbox.close');
+      Axentix.createEvent(this.el, 'lightbox.close');
 
+      setTimeout(() => {
         this.el.classList.remove('active');
         this.container.removeAttribute('style');
         this.el.removeAttribute('width');
@@ -211,7 +219,7 @@
     }
 
     _calculateRatio() {
-      let offset = window.innerWidth >= 960 ? this.options.offset : 100;
+      let offset = window.innerWidth >= 960 ? this.options.offset : this.options.mobileOffset;
 
       if (window.innerWidth / window.innerHeight >= this.basicWidth / this.basicHeight) {
         this.newHeight = window.innerHeight - offset;
