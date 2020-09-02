@@ -91,8 +91,10 @@
       const rect = this.el.getBoundingClientRect();
       const containerRect = this.el.getBoundingClientRect();
 
-      this.el.width = this.basicWidth = rect.width;
-      this.el.height = this.basicHeight = rect.height;
+      this.basicWidth = rect.width;
+      this.el.style.width = this.basicWidth + 'px';
+      this.basicHeight = rect.height;
+      this.el.style.height = this.basicHeight + 'px';
 
       this.el.style.top = 0;
       this.el.style.left = 0;
@@ -111,14 +113,22 @@
         this.isAnimated = true;
 
         this.el.classList.add('active');
+
+        if (this.el.classList.contains('responsive-img')) {
+          this.el.classList.remove('responsive-img');
+          this.isResponsive = true;
+        } else {
+          this.isResponsive = false;
+        }
+
         this.isActive = true;
 
         this._showOverlay();
-        this.container.style.width = this.basicWidth;
-        this.container.style.height = this.basicHeight;
+        this.container.style.width = this.basicWidth + 'px';
+        this.container.style.height = this.basicHeight + 'px';
 
-        this.el.width = this.newWidth;
-        this.el.height = this.newHeight;
+        this.el.style.width = this.newWidth + 'px';
+        this.el.style.height = this.newHeight + 'px';
         this.el.style.top = this.newTop - this.newHeight / 2 + 'px';
         this.el.style.left = this.newLeft - this.newWidth / 2 + 'px';
 
@@ -145,19 +155,22 @@
       this.el.style.top = 0;
       this.el.style.left = 0;
 
-      this.el.width = this.basicWidth;
-      this.el.height = this.basicHeight;
+      this.el.style.width = this.basicWidth + 'px';
+      this.el.style.height = this.basicHeight + 'px';
       this._unsetOverlay();
 
       Axentix.createEvent(this.el, 'lightbox.close');
 
       setTimeout(() => {
         this.el.classList.remove('active');
+
+        this.isResponsive ? this.el.classList.add('responsive-img') : '';
+
         this.container.removeAttribute('style');
-        this.el.removeAttribute('width');
-        this.el.removeAttribute('height');
         this.el.style.left = '';
         this.el.style.top = '';
+        this.el.style.width = '';
+        this.el.style.height = '';
         this.el.style.transform = '';
 
         this.isActive = false;
