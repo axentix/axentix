@@ -53,10 +53,6 @@
       this.openOnClickRef = this._setActiveLightbox.bind(this);
       this.el.addEventListener('click', this.openOnClickRef);
 
-      this.onResizeRef = this._updatePosition.bind(this);
-      window.addEventListener('resize', this.onResizeRef);
-      window.addEventListener('scroll', this.onResizeRef);
-
       this.closeEventRef = this._unsetActiveLightbox.bind(this);
       window.addEventListener('keyup', this.closeEventRef);
       window.addEventListener('scroll', this.closeEventRef);
@@ -68,9 +64,6 @@
      */
     _removeListeners() {
       this.el.removeEventListener('click', this.openOnClickRef);
-
-      window.removeEventListener('resize', this.onResizeRef);
-      window.removeEventListener('scroll', this.onResizeRef);
 
       window.removeEventListener('keyup', this.closeEventRef);
       window.removeEventListener('scroll', this.closeEventRef);
@@ -172,20 +165,6 @@
 
         Axentix.createEvent(this.el, 'lightbox.closed');
       }, this.options.animationDuration + 50);
-    }
-
-    /**
-     * Reset basic position on resize event
-     */
-    _updatePosition() {
-      if (this.isActive) {
-        return;
-      }
-      return;
-      const rect = this.el.getBoundingClientRect();
-      this.top = rect.top;
-
-      this.el.style.left = this.left = rect.left;
     }
 
     _setOverlay() {
