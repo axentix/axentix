@@ -9,8 +9,8 @@
       return {
         overlay: true,
         overlayColor: 'grey dark-4',
-        offset: 450,
-        mobileOffset: 100,
+        offset: 150,
+        mobileOffset: 80,
         caption: '',
         animationDuration: 400,
       };
