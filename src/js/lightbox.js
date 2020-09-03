@@ -7,7 +7,6 @@
   class Lightbox extends AxentixComponent {
     static getDefaultOptions() {
       return {
-        overlay: true,
         overlayColor: 'grey dark-4',
         offset: 150,
         mobileOffset: 80,
