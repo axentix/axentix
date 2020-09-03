@@ -39,6 +39,7 @@
      * Setup component
      */
     _setup() {
+      Axentix.createEvent(this.el, 'scrollspy.setup');
       this.options.auto.enabled ? this._setupAuto() : this._setupBasic();
       this.options.classes = this.options.classes.split(' ');
       this.oldLink = '';
@@ -132,6 +133,7 @@
       if (link === this.oldLink) {
         return;
       }
+      Axentix.createEvent(this.el, 'scrollspy.update');
       this._removeOldLink();
 
       this.options.classes.map((cl) => link.classList.add(cl));
