@@ -3,7 +3,7 @@
 - ADDED
   - Lightboxes
   - Scrollspy, featuring a simple automatic detection method
-  - `.responsive-img` class
+  - `.responsive-img` && `.responsive-video` classes
 - REMOVED
 - IMPROVED
   - `word-break: normal` to entire table inside a card

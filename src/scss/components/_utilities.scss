@@ -204,8 +204,9 @@
   opacity: 1 !important;
 }
 
-//image
-.responsive-img {
+// Media
+.responsive-img,
+.responsive-video {
   max-width: 100%;
   height: auto;
 }
