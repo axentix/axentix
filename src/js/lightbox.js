@@ -7,11 +7,11 @@
   class Lightbox extends AxentixComponent {
     static getDefaultOptions() {
       return {
+        animationDuration: 400,
         overlayColor: 'grey dark-4',
         offset: 150,
         mobileOffset: 80,
         caption: '',
-        animationDuration: 400,
       };
     }
 
@@ -49,10 +49,10 @@
      * Setup listeners
      */
     _setupListeners() {
-      this.openOnClickRef = this._setActiveLightbox.bind(this);
+      this.openOnClickRef = this.open.bind(this);
       this.el.addEventListener('click', this.openOnClickRef);
 
-      this.closeEventRef = this._unsetActiveLightbox.bind(this);
+      this.closeEventRef = this.close.bind(this);
       window.addEventListener('keyup', this.closeEventRef);
       window.addEventListener('scroll', this.closeEventRef);
       window.addEventListener('resize', this.closeEventRef);
@@ -73,12 +73,54 @@
       this.closeEventRef = undefined;
     }
 
+    _setOverlay() {
+      this.overlay = document.createElement('div');
+      this.overlay.style.transitionDuration = this.options.animationDuration + 'ms';
+      this.overlay.className = 'lightbox-overlay ' + this.options.overlayColor;
+      this.container.appendChild(this.overlay);
+
+      if (this.options.caption) {
+        this.caption = document.createElement('p');
+        this.caption.className = 'lightbox-caption';
+        this.caption.innerHTML = this.options.caption;
+        this.overlay.appendChild(this.caption);
+      }
+
+      this.overlayClickEventRef = this.close.bind(this);
+      this.overlay.addEventListener('click', this.overlayClickEventRef);
+    }
+
+    _showOverlay() {
+      this.overlay.style.opacity = 1;
+    }
+
+    _unsetOverlay() {
+      this.overlay.style.opacity = 0;
+
+      this.overlay.removeEventListener('click', this.overlayClickEventRef);
+      setTimeout(() => {
+        this.overlay.remove();
+      }, this.options.animationDuration);
+    }
+
+    _calculateRatio() {
+      let offset = window.innerWidth >= 960 ? this.options.offset : this.options.mobileOffset;
+
+      if (window.innerWidth / window.innerHeight >= this.basicWidth / this.basicHeight) {
+        this.newHeight = window.innerHeight - offset;
+        this.newWidth = (this.newHeight * this.basicWidth) / this.basicHeight;
+      } else {
+        this.newWidth = window.innerWidth - offset;
+        this.newHeight = (this.newWidth * this.basicHeight) / this.basicWidth;
+      }
+    }
+
     /**
      * Set position of active lightbox
      */
-    _setActiveLightbox() {
+    open() {
       if (this.isActive) {
-        this._unsetActiveLightbox();
+        this.close();
         return;
       } else if (this.isAnimated) {
         return;
@@ -142,7 +184,7 @@
     /**
      * Unset active lightbox
      */
-    _unsetActiveLightbox(e) {
+    close(e) {
       if (!this.isActive || (e && e.key && e.key !== 'Escape')) {
         return;
       } else if (this.isAnimated) {
@@ -177,48 +219,6 @@
 
         Axentix.createEvent(this.el, 'lightbox.closed');
       }, this.options.animationDuration + 50);
-    }
-
-    _setOverlay() {
-      this.overlay = document.createElement('div');
-      this.overlay.style.transitionDuration = this.options.animationDuration + 'ms';
-      this.overlay.className = 'lightbox-overlay ' + this.options.overlayColor;
-      this.container.appendChild(this.overlay);
-
-      if (this.options.caption) {
-        this.caption = document.createElement('p');
-        this.caption.className = 'lightbox-caption';
-        this.caption.innerHTML = this.options.caption;
-        this.overlay.appendChild(this.caption);
-      }
-
-      this.overlayClickEventRef = this._unsetActiveLightbox.bind(this);
-      this.overlay.addEventListener('click', this.overlayClickEventRef);
-    }
-
-    _showOverlay() {
-      this.overlay.style.opacity = 1;
-    }
-
-    _unsetOverlay() {
-      this.overlay.style.opacity = 0;
-
-      this.overlay.removeEventListener('click', this.overlayClickEventRef);
-      setTimeout(() => {
-        this.overlay.remove();
-      }, this.options.animationDuration);
-    }
-
-    _calculateRatio() {
-      let offset = window.innerWidth >= 960 ? this.options.offset : this.options.mobileOffset;
-
-      if (window.innerWidth / window.innerHeight >= this.basicWidth / this.basicHeight) {
-        this.newHeight = window.innerHeight - offset;
-        this.newWidth = (this.newHeight * this.basicWidth) / this.basicHeight;
-      } else {
-        this.newWidth = window.innerWidth - offset;
-        this.newHeight = (this.newWidth * this.basicHeight) / this.basicWidth;
-      }
     }
   }
 

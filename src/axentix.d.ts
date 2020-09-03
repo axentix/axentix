@@ -24,7 +24,7 @@ export namespace Axentix {
     /**
      * @default 500
      */
-    animationDelay: number;
+    animationDuration: number;
 
     /**
      * @default 'slide'
@@ -87,7 +87,7 @@ export namespace Axentix {
     /**
      * @default 300
      */
-    animationDelay: number;
+    animationDuration: number;
 
     sidenav: {
       /**
@@ -128,7 +128,7 @@ export namespace Axentix {
     /**
      * @default 300
      */
-    animationDelay: number;
+    animationDuration: number;
 
     /**
      * @default true
@@ -152,7 +152,7 @@ export namespace Axentix {
     /**
      * @default 300
      */
-    animationDelay: number;
+    animationDuration: number;
 
     /**
      * @default true
@@ -180,6 +180,40 @@ export namespace Axentix {
     offsetY: string;
   }
 
+  class Lightbox extends AxentixComponent {
+    constructor(el: string, options?: LightboxOptions);
+
+    open(): void;
+    close(): void;
+  }
+
+  interface LightboxOptions {
+    /**
+     * @default 400
+     */
+    animationDuration: number;
+
+    /**
+     * @default 'grey dark 4' 
+     */
+    overlayColor: string;
+
+     /**
+     * @default 150 
+     */
+    offset: number;
+
+         /**
+     * @default 80 
+     */
+    mobileOffset: number;
+
+    /**
+     * @default ''
+     */
+    caption: string;
+  }
+
   class Modal extends AxentixComponent {
     constructor(el: string, options?: ModalOptions);
 
@@ -197,12 +231,49 @@ export namespace Axentix {
     /**
      * @default 400
      */
-    animationDelay: number;
+    animationDuration: number;
 
     /**
      * @default false
      */
     bodyScrolling: boolean;
+  }
+
+  class ScrollSpy extends AxentixComponent {
+    constructor(el: string, options?: ScrollSpyOptions);
+  }
+  interface ScrollSpyOptions {
+    /**
+     * @default 200
+     */
+    offset: number;
+
+    /**
+     * @default 'a'
+     */
+    linkSelector: string;
+
+    /**
+     * @default 'active'
+     */
+    classes: string;
+    
+    auto : {
+      /**
+       * @default false
+       */
+      enabled: boolean;
+
+      /**
+       * @default ''
+       */
+      classes: string;
+
+      /**
+       * @default ''
+       */
+      selector: string;
+    }
   }
 
   class Sidenav extends AxentixComponent {
@@ -227,7 +298,7 @@ export namespace Axentix {
     /**
      * @default 300
      */
-    animationDelay: number;
+    animationDuration: number;
   }
 
   class Tab extends AxentixComponent {
@@ -248,7 +319,7 @@ export namespace Axentix {
     /**
      * @default 300
      */
-    animationDelay: number;
+    animationDuration: number;
 
     /**
      * @default false
@@ -272,7 +343,7 @@ export namespace Axentix {
     /**
      * @default 400
      */
-    animationDelay: number;
+    animationDuration: number;
 
     /**
      * @default 4000
@@ -388,7 +459,9 @@ export namespace Axentix {
     | Axentix.Collapsible
     | Axentix.Dropdown
     | Axentix.Fab
+    | Axentix.Lightbox
     | Axentix.Modal
+    | Axentix.ScrollSpy
     | Axentix.Sidenav
     | Axentix.Tab
     | Axentix.Toast
@@ -403,7 +476,9 @@ export namespace Axentix {
     | Axentix.Collapsible
     | Axentix.Dropdown
     | Axentix.Fab
+    | Axentix.Lightbox
     | Axentix.Modal
+    | Axentix.ScrollSpy
     | Axentix.Sidenav
     | Axentix.Tab
     | Axentix.Toast
@@ -415,7 +490,9 @@ export namespace Axentix {
     | Axentix.Collapsible
     | Axentix.Dropdown
     | Axentix.Fab
+    | Axentix.Lightbox
     | Axentix.Modal
+    | Axentix.ScrollSpy
     | Axentix.Sidenav
     | Axentix.Tab
     | Axentix.Toast
