@@ -1,4 +1,5 @@
 .lightbox {
+  display: block;
   will-change: top, left, width, height, filter, position;
   transition-timing-function: ease;
   transition-property: top, left, width, height, filter, position;
