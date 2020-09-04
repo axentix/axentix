@@ -155,8 +155,8 @@
 
         this.el.classList.add('active');
 
-        if (this.el.classList.contains('responsive-img')) {
-          this.el.classList.remove('responsive-img');
+        if (this.el.classList.contains('responsive-media')) {
+          this.el.classList.remove('responsive-media');
           this.isResponsive = true;
         } else {
           this.isResponsive = false;
@@ -205,7 +205,7 @@
       setTimeout(() => {
         this.el.classList.remove('active');
 
-        this.isResponsive ? this.el.classList.add('responsive-img') : '';
+        this.isResponsive ? this.el.classList.add('responsive-media') : '';
 
         this.container.removeAttribute('style');
         this.el.style.left = '';
