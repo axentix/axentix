@@ -194,17 +194,17 @@ export namespace Axentix {
     animationDuration: number;
 
     /**
-     * @default 'grey dark 4' 
+     * @default 'grey dark 4'
      */
     overlayColor: string;
 
-     /**
-     * @default 150 
+    /**
+     * @default 150
      */
     offset: number;
 
-         /**
-     * @default 80 
+    /**
+     * @default 80
      */
     mobileOffset: number;
 
@@ -242,6 +242,7 @@ export namespace Axentix {
   class ScrollSpy extends AxentixComponent {
     constructor(el: string, options?: ScrollSpyOptions);
   }
+
   interface ScrollSpyOptions {
     /**
      * @default 200
@@ -257,8 +258,8 @@ export namespace Axentix {
      * @default 'active'
      */
     classes: string;
-    
-    auto : {
+
+    auto: {
       /**
        * @default false
        */
@@ -273,7 +274,7 @@ export namespace Axentix {
        * @default ''
        */
       selector: string;
-    }
+    };
   }
 
   class Sidenav extends AxentixComponent {
