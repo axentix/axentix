@@ -91,6 +91,10 @@
         bottom = window.innerHeight,
         topBreakpoint = top + this.options.offset;
 
+      if (bottom + top >= document.body.offsetHeight - 2) {
+        return this.elements[this.elements.length - 1];
+      }
+
       return this.elements.find((el) => {
         const elRect = el.getBoundingClientRect();
         return (
