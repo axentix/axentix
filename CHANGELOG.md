@@ -1,7 +1,7 @@
-# 1.0.0-beta.2 - Under Development
+# 1.0.0-beta.2 - 2020-09-05
 
 - ADDED
-  - Lightboxes
+  - Lightbox
   - Scrollspy, featuring a simple automatic detection method
   - `.responsive-media` class
 - REMOVED
