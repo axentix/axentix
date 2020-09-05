@@ -1,3 +1,20 @@
+# 1.0.0-beta.2 - 2020-09-05
+
+- ADDED
+  - Lightbox
+  - Scrollspy, featuring a simple automatic detection method
+  - `.responsive-media` class
+- REMOVED
+- IMPROVED
+  - `word-break: normal` to entire table inside a card
+  - Table (two responsive methods)
+  - `Axentix.wrap()` utilities
+  - Update dependencies
+  - Border syntax
+- BUGFIXES
+  - Layout can exceed viewport size in specific case (for example, with a `.responsive-table`)
+  - SVG Icon encoding of select
+
 # 1.0.0-beta.1 - 2020-08-19
 
 - ADDED

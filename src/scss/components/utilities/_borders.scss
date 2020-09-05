@@ -5,19 +5,19 @@
 }
 
 @each $number, $value in $bd-width {
-  .bd-t#{$number} {
+  .bd-t-#{$number} {
     border-top-width: #{$value} !important;
   }
 
-  .bd-r#{$number} {
+  .bd-r-#{$number} {
     border-right-width: #{$value} !important;
   }
 
-  .bd-b#{$number} {
+  .bd-b-#{$number} {
     border-bottom-width: #{$value} !important;
   }
 
-  .bd-l#{$number} {
+  .bd-l-#{$number} {
     border-left-width: #{$value} !important;
   }
 }
