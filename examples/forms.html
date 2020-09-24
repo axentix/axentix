@@ -41,9 +41,7 @@
       <a href="#" class="sidenav-link">Link 2</a>
       <a href="#" class="sidenav-link">Link 3</a>
       <a href="#" class="sidenav-link">Link 4</a>
-      <div class="sidenav-footer viride">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </div>
+      <div class="sidenav-footer viride">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
     </div>
 
     <main>
@@ -83,8 +81,10 @@
           </div>
           <div class="form-field inline form-default">
             <label for="inline2">inline2</label>
-            <input type="text" id="inline2" class="form-control" />
+            <div class="input-prefix">Test</div>
+            <input type="text" id="inline2" class="form-control rounded-2" />
           </div>
+
           <div class="form-field">
             <label class="form-check">
               <input type="radio" checked="true" name="yon" />
@@ -198,9 +198,7 @@
       ipsa similique nostrum inventore, saepe nesciunt ab deserunt.
     </main>
 
-    <footer class="footer primary">
-      Copyright © 2019 - Example
-    </footer>
+    <footer class="footer primary">Copyright © 2019 - Example</footer>
     <script src="../dist/js/axentix.min.js"></script>
     <script>
       var sidenav = new Axentix.Sidenav('#example-sidenav');

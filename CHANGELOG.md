@@ -1,3 +1,10 @@
+# 1.0.0-beta.3 - 
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+
 # 1.0.0-beta.2 - 2020-09-05
 
 - ADDED

@@ -21,25 +21,23 @@
   }
 
   &.toaster-left {
-    left: 5%;
     align-items: flex-start;
   }
 
   &.toaster-right {
-    right: 5%;
     align-items: flex-end;
   }
 
   @include responsive('sm-down') {
     &.toaster-mobile-bottom {
+      width: var(--toaster-width);
       flex-direction: column-reverse;
       top: unset;
       bottom: 0;
-      left: 50%;
+      left: 50% !important;
       transform: translateX(-50%);
       max-width: unset;
       align-items: unset;
-      width: 90%;
 
       .toast {
         margin-top: 0;
@@ -53,13 +51,13 @@
     }
 
     &.toaster-mobile-top {
+      width: var(--toaster-width);
       flex-direction: column;
       top: 0;
       bottom: unset;
-      left: 50%;
+      left: 50% !important;
       transform: translateX(-50%);
       max-width: unset;
-      width: 90%;
 
       .toast {
         margin-top: 5rem;
