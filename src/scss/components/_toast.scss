@@ -2,9 +2,14 @@
   position: fixed;
   display: flex;
   flex-direction: column;
+  pointer-events: none;
   top: 0;
   z-index: 5000;
   max-width: 50%;
+
+  .toast {
+    pointer-events: auto;
+  }
 
   &.toast-bottom {
     flex-direction: column-reverse;
@@ -29,14 +34,15 @@
   }
 
   @include responsive('sm-down') {
-    &.toaster-mobile-bottom {
-      width: var(--toaster-width);
+    width: var(--toaster-width);
+    left: 50% !important;
+    transform: translateX(-50%);
+    max-width: unset;
+
+    &.toaster-m-bottom {
       flex-direction: column-reverse;
       top: unset;
       bottom: 0;
-      left: 50% !important;
-      transform: translateX(-50%);
-      max-width: unset;
       align-items: unset;
 
       .toast {
@@ -50,14 +56,10 @@
       }
     }
 
-    &.toaster-mobile-top {
-      width: var(--toaster-width);
+    &.toaster-m-top {
       flex-direction: column;
       top: 0;
       bottom: unset;
-      left: 50% !important;
-      transform: translateX(-50%);
-      max-width: unset;
 
       .toast {
         margin-top: 5rem;

@@ -71,7 +71,7 @@
         this.options.position +
         ' toast-' +
         this.options.direction +
-        ' toaster-mobile-' +
+        ' toaster-m-' +
         this.options.mobileDirection;
 
       this.toasters[this.options.position] = toaster;
