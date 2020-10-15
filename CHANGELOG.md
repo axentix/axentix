@@ -1,8 +1,10 @@
 # 1.0.0-beta.3 - 
 
 - ADDED
+  - Toast offset option
 - REMOVED
 - IMPROVED
+  - Toast scss optimization
 - BUGFIXES
 
 # 1.0.0-beta.2 - 2020-09-05
