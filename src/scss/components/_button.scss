@@ -1,5 +1,5 @@
 .btn {
-  display: table;
+  display: inline-block;
   position: relative;
   text-align: center;
   transition-duration: 0.3s;
@@ -10,6 +10,7 @@
   text-decoration: none;
   outline-style: none;
   width: fit-content;
+  height: fit-content;
   font-size: 1.2rem;
   padding: calc(0.6rem + 2px) 1.25rem;
   overflow: hidden;
@@ -49,7 +50,6 @@
   }
 
   &.circle {
-    position: relative;
     padding: 0;
     font-size: 1.5rem;
     width: 2.8rem;
@@ -99,7 +99,6 @@
     padding: 0.6rem calc(1.25rem - 2px);
 
     &.circle {
-      position: relative;
       .outline-text {
         position: absolute;
         top: 50%;
@@ -133,9 +132,6 @@
       transition-property: opacity;
       background-color: currentColor;
       z-index: -2;
-      @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
-        border-radius: inherit;
-      }
 
       @media not all and (min-resolution: 0.001dpcm) {
         @supports (-webkit-appearance: none) {
@@ -148,14 +144,11 @@
       animation-name: fix-outline-button;
       animation-delay: 0.001s;
       animation-fill-mode: forwards;
-      @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
-        animation: none;
-      }
 
       .outline-text {
         color: #fff !important;
         &.outline-invert {
-          color: black !important;
+          color: #000 !important;
         }
       }
       &::before {
@@ -183,57 +176,11 @@
   }
 }
 
-// Firefox fix
-@supports (-moz-appearance: none) {
-  button.btn.outline:hover {
-    animation: initial;
-    animation-name: fix-outline-button;
-    animation-delay: 0.001s;
-    animation-fill-mode: forwards;
-  }
-}
-
 @keyframes fix-outline-button {
   from {
     background-color: transparent;
   }
   to {
     background-color: currentColor;
-  }
-}
-
-// Grix fix
-.grix .btn {
-  align-self: start;
-}
-
-// Utilities fix
-.vcenter .btn {
-  align-self: center;
-}
-
-.vbottom .btn {
-  align-self: end;
-}
-
-// Table fix
-table .btn {
-  display: inline-block;
-
-  &.outline {
-    &::before {
-      @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
-        border-radius: 0;
-      }
-    }
-
-    &:hover {
-      @supports (-ms-ime-align: auto) or (-moz-appearance: none) {
-        animation: initial;
-        animation-name: fix-outline-button;
-        animation-delay: 0.001s;
-        animation-fill-mode: forwards;
-      }
-    }
   }
 }

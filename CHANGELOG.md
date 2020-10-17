@@ -3,8 +3,11 @@
 - ADDED
   - Toast offset option
 - REMOVED
+  - Support for Edge Legacy
 - IMPROVED
+  - Button rework
   - Toast scss optimization
+  - Update dependencies
 - BUGFIXES
 
 # 1.0.0-beta.2 - 2020-09-05
