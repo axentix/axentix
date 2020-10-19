@@ -16,7 +16,7 @@
     top: 0;
     transition-property: transform;
     transition-duration: inherit;
-    transition-timing-function: ease-in-out;
+    transition-timing-function: ease-out;
 
     &.active {
       transform: translateX(0px);

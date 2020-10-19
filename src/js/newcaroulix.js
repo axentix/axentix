@@ -32,6 +32,7 @@
       Axentix.createEvent(this.el, 'caroulix.setup');
 
       this.activeIndex = 0;
+      this.draggedPositionX = 0;
 
       this._getChildren();
       this.children[0].classList.add('active');
@@ -82,7 +83,6 @@
       if (this.totalMediaToLoad == this.loadedMediaCount) {
         this._setBasicCaroulixHeight();
         this._setItemsPosition(true);
-        // recall setItemsPosition on resize event
       }
     }
 
@@ -95,19 +95,18 @@
       this.children.forEach(
         (child, index) =>
           (child.style.transform = `translateX(${
-            caroulixWidth * index - caroulixWidth * this.activeIndex
+            caroulixWidth * index - caroulixWidth * this.activeIndex - this.draggedPositionX
           }px)`)
       );
-
-      init
-        ? setTimeout(() => (this.el.style.transitionDuration = this.options.animationDuration + 'ms'), 50)
-        : '';
+      console.log('setPos');
+      init ? setTimeout(() => this._setTransitionDuration(this.options.animationDuration), 50) : '';
     }
 
     next(step = 1) {
       if (this.activeIndex < this.children.length - 1) {
         this.activeIndex += step;
         this._setItemsPosition();
+        console.log('next');
       }
     }
 
@@ -115,6 +114,7 @@
       if (this.activeIndex > 0) {
         this.activeIndex -= step;
         this._setItemsPosition();
+        console.log('prev');
       }
     }
 
@@ -145,26 +145,46 @@
     _handleDragStart(e) {
       e.preventDefault();
 
+      this._setTransitionDuration(0);
       this.isPressed = true;
       this.isDragged = false;
       this.isVerticallyDragged = false;
+
+      this.deltaX = 0;
+      this.deltaY = 0;
       this.xStart = this._getXPosition(e);
       this.yStart = this._getYPosition(e);
     }
 
     _handleDragMove(e) {
-      e.preventDefault();
-      let x, y;
-
-      if (this.isPressed) {
-        x = this._getXPosition(e);
-        y = this._getYPosition(e);
+      if (!this.isPressed) {
+        return;
       }
+
+      e.preventDefault();
+
+      let x, y;
+      x = this._getXPosition(e);
+      y = this._getYPosition(e);
+
+      this.deltaX = this.xStart - x;
+      this.deltaY = this.yStart - y;
+      console.log(x, y, this.deltaX, this.deltaY);
+      this.draggedPositionX = this.deltaX;
+      this._setItemsPosition();
     }
 
     _handleDragRelease(e) {
       e.preventDefault();
-      this.isPressed ? (this.isPressed = false) : '';
+      if (this.isPressed) {
+        this._setTransitionDuration(this.options.animationDuration);
+
+        this.isPressed ? (this.isPressed = false) : '';
+        this.deltaX > 0 ? this.next() : this.prev();
+        this.deltaX = 0;
+        this.draggedPositionX = 0;
+        this._setItemsPosition();
+      }
     }
 
     _getXPosition(e) {
@@ -181,6 +201,10 @@
       }
 
       return e.clientY;
+    }
+
+    _setTransitionDuration(duration) {
+      this.el.style.transitionDuration = duration + 'ms';
     }
 
     /**
