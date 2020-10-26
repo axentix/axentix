@@ -2,6 +2,7 @@
 
 - ADDED
   - Toast offset option
+  - `.h{x}` classes
 - REMOVED
   - Support for Edge Legacy
 - IMPROVED
