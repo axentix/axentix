@@ -49,17 +49,42 @@
       this.children[0].classList.add('active');
 
       if (this.options.isInfinite && this.children.length > 2) {
-        this.options.isInfinite ? (this.options.backToOpposite = true) : '';
+        this.options.backToOpposite = true;
       } else if (this.options.isInfinite) {
         this.options.isInfinite = false;
       }
 
       this._waitForLoad();
 
-      this._handleDrag();
+      this._setupListeners();
 
       this.options.autoplay.enabled ? this._setAutoPlay() : '';
     }
+
+    /**
+     * Setup listeners
+     */
+    _setupListeners() {
+      this.touchStartRef = this._handleDragStart.bind(this);
+      this.touchMoveRef = this._handleDragMove.bind(this);
+      this.touchReleaseRef = this._handleDragRelease.bind(this);
+
+      if (Axentix.isTouchEnabled()) {
+        this.el.addEventListener('touchstart', this.touchStartRef);
+        this.el.addEventListener('touchmove', this.touchMoveRef);
+        this.el.addEventListener('touchend', this.touchReleaseRef);
+      }
+
+      this.el.addEventListener('mousedown', this.touchStartRef);
+      this.el.addEventListener('mousemove', this.touchMoveRef);
+      this.el.addEventListener('mouseup', this.touchReleaseRef);
+      this.el.addEventListener('mouseleave', this.touchReleaseRef);
+    }
+
+    /**
+     * Remove listeners
+     */
+    _removeListeners() {}
 
     /**
      * Get the children (caroulix-item...)
@@ -82,7 +107,6 @@
       this.loadedMediaCount = 0;
 
       this.children.forEach((item, index) => {
-        item.dataset.index = index;
         let media = item.querySelector('img, video');
 
         if (media) {
@@ -115,65 +139,64 @@
       let reversedChildren = this.children.slice().reverse();
       let leftItemCount = -1;
 
-      this.children.forEach((child, index) => {});
-
       // a voir si on peut SORTIR LE ACTIVEINDEX A SET HORS DES 3 GROS IF, en tous les cas je le place au centre
       if (this.options.isInfinite) {
         if (this.activeIndex == 0) {
-          this.children.forEach((child, index) => {
+          this.children.map((child, index) => {
             if (index <= 1) {
-              child.style.transform = `translateX(${caroulixWidth * index - this.draggedPositionX}px)`;
+              this._translate(child, caroulixWidth * index - this.draggedPositionX);
             }
           });
-          reversedChildren.forEach((child, index) => {
+          reversedChildren.map((child, index) => {
             if (index < this.children.length - 2) {
-              child.style.transform = `translateX(${-caroulixWidth * (index + 1) - this.draggedPositionX}px)`;
+              this._translate(child, -caroulixWidth * (index + 1) - this.draggedPositionX);
             }
           });
         } else if (this.activeIndex < this.children.length - 1) {
-          this.children.forEach((child, index) => {
+          this.children.map((child, index) => {
             if (index == this.activeIndex + 1) {
-              child.style.transform = `translateX(${caroulixWidth - this.draggedPositionX}px)`;
+              this._translate(child, caroulixWidth - this.draggedPositionX);
             }
           });
 
           this.children
             .slice(0, this.activeIndex)
             .reverse()
-            .forEach((child, index) => {
-              child.style.transform = `translateX(${-caroulixWidth * (index + 1) - this.draggedPositionX}px)`;
+            .map((child, index) => {
+              this._translate(child, -caroulixWidth * (index + 1) - this.draggedPositionX);
               leftItemCount++;
             });
 
-          this.children.slice(this.activeIndex).forEach((child, index) => {
+          this.children.slice(this.activeIndex).map((child, index) => {
             if (index == 1) {
-              child.style.transform = `translateX(${caroulixWidth - this.draggedPositionX}px)`;
+              this._translate(child, caroulixWidth - this.draggedPositionX);
               return;
             }
-            child.style.transform = `translateX(${
-              -caroulixWidth * (leftItemCount + index) - this.draggedPositionX
-            }px)`;
+            this._translate(child, -caroulixWidth * (leftItemCount + index) - this.draggedPositionX);
           });
 
           this.children[this.activeIndex].style.transform = `translateX(${-this.draggedPositionX}px)`;
           leftItemCount = 0;
         } else if (this.activeIndex == this.children.length - 1) {
           console.log('lafin');
+          let translateValue;
+
           this.children
             .slice()
             .reverse()
-            .forEach((child, index) => {
-              if (child.dataset.index != this.activeIndex && index != this.children.length - 1) {
-                child.style.transform = `translateX(${-caroulixWidth * index - this.draggedPositionX}px)`;
+            .map((child, index) => {
+              if (this.children.indexOf(child) != this.activeIndex && index != this.children.length - 1) {
+                translateValue = -caroulixWidth * index - this.draggedPositionX;
               } else if (index != this.children.length - 1) {
-                child.style.transform = `translateX(${-this.draggedPositionX}px)`;
+                translateValue = -this.draggedPositionX;
               } else if (index == this.children.length - 1) {
-                child.style.transform = `translateX(${caroulixWidth - this.draggedPositionX}px)`;
+                translateValue = caroulixWidth - this.draggedPositionX;
               }
+              this._translate(child, translateValue);
             });
         }
       } else {
-        this.children.forEach((child, index) => {
+        this.children.map((child, index) => {
           child.style.transform = `translateX(${
             caroulixWidth * index - caroulixWidth * this.activeIndex - this.draggedPositionX
           }px)`;
@@ -187,24 +210,8 @@
      * Set the basic height of the Caroulix
      */
     _setBasicCaroulixHeight() {
-      this.el.style.height = this.el.querySelector('.caroulix-item').getBoundingClientRect().height;
-    }
-
-    _handleDrag() {
-      this.touchStartRef = this._handleDragStart.bind(this);
-      this.touchMoveRef = this._handleDragMove.bind(this);
-      this.touchReleaseRef = this._handleDragRelease.bind(this);
-
-      if (Axentix.isTouchEnabled()) {
-        this.el.addEventListener('touchstart', this.touchStartRef);
-        this.el.addEventListener('touchmove', this.touchMoveRef);
-        this.el.addEventListener('touchend', this.touchReleaseRef);
-      }
-
-      this.el.addEventListener('mousedown', this.touchStartRef);
-      this.el.addEventListener('mousemove', this.touchMoveRef);
-      this.el.addEventListener('mouseup', this.touchReleaseRef);
-      this.el.addEventListener('mouseleave', this.touchReleaseRef);
+      // mettre l'el actif pas children[0]
+      this.el.style.height = this.children[0].getBoundingClientRect().height;
     }
 
     _handleDragStart(e) {
@@ -288,19 +295,12 @@
 
       setInterval(() => {
         this.options.autoplay.side === 'right' ? this.next() : this.prev();
-        this._setItemsPosition();
       }, this.options.autoplay.interval);
     }
 
-    /**
-     * Setup listeners
-     */
-    _setupListeners() {}
-
-    /**
-     * Remove listeners
-     */
-    _removeListeners() {}
+    _translate(child, value) {
+      child.style.transform = `translateX(${value}px)`;
+    }
 
     next(step = 1) {
       if (this.activeIndex < this.children.length - 1) {
