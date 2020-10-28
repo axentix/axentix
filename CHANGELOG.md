@@ -2,6 +2,7 @@
 
 - ADDED
   - Toast offset option
+  - `.h{x}` classes
 - REMOVED
   - Support for Edge Legacy
 - IMPROVED
@@ -9,6 +10,7 @@
   - Toast scss optimization
   - Update dependencies
 - BUGFIXES
+  - `.form-control` don't inherit colors from parent
 
 # 1.0.0-beta.2 - 2020-09-05
 
