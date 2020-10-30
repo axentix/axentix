@@ -44,6 +44,7 @@
 
       this.activeIndex = 0;
       this.draggedPositionX = 0;
+      this.isAnimated = false;
 
       this._getChildren();
       this.children[0].classList.add('active');
@@ -110,7 +111,7 @@
         let media = item.querySelector('img, video');
 
         if (media) {
-          media.loadRef = this._newItemLoaded.bind(this, media);
+          media.loadRef = this._newItemLoaded.bind(this);
           media.addEventListener('load', media.loadRef);
           this.totalMediaToLoad++;
         }
@@ -121,8 +122,7 @@
      * Event sent when an item is loaded
      * @param {*} item
      */
-    _newItemLoaded(item) {
-      console.log(item, 'loaded');
+    _newItemLoaded() {
       this.loadedMediaCount++;
 
       if (this.totalMediaToLoad == this.loadedMediaCount) {
@@ -153,11 +153,7 @@
             }
           });
         } else if (this.activeIndex < this.children.length - 1) {
-          this.children.map((child, index) => {
-            if (index == this.activeIndex + 1) {
-              this._translate(child, caroulixWidth - this.draggedPositionX);
-            }
-          });
+          this._translate(this.children[this.activeIndex + 1], caroulixWidth - this.draggedPositionX);
 
           this.children
             .slice(0, this.activeIndex)
@@ -178,7 +174,6 @@
           this.children[this.activeIndex].style.transform = `translateX(${-this.draggedPositionX}px)`;
           leftItemCount = 0;
         } else if (this.activeIndex == this.children.length - 1) {
-          console.log('lafin');
           let translateValue;
 
           this.children
@@ -229,7 +224,7 @@
     }
 
     _handleDragMove(e) {
-      if (!this.isPressed) {
+      if (!this.isPressed || (this.options.isInfinite && this.isAnimated)) {
         return;
       }
 
@@ -241,7 +236,7 @@
 
       this.deltaX = this.xStart - x;
       this.deltaY = this.yStart - y;
-      // console.log(x, y, this.deltaX, this.deltaY);
+
       this.draggedPositionX = this.deltaX;
       this._setItemsPosition();
     }
@@ -302,7 +297,42 @@
       child.style.transform = `translateX(${value}px)`;
     }
 
+    _teleportItem(direction) {
+      if (this.activeIndex == 0) {
+        direction === 'next'
+          ? this._timeoutTransition(this.children[2])
+          : this._timeoutTransition(this.children[1]);
+      } else if (this.activeIndex < this.children.length - 2) {
+        direction === 'next'
+          ? this._timeoutTransition(this.children[this.activeIndex + 2])
+          : this._timeoutTransition(this.children[this.activeIndex + 1]);
+      } else if (this.activeIndex == this.children.length - 2) {
+        direction === 'next'
+          ? this._timeoutTransition(this.children[0])
+          : this._timeoutTransition(this.children[this.children.length - 1]);
+      } else if (this.activeIndex == this.children.length - 1) {
+        direction === 'next'
+          ? this._timeoutTransition(this.children[1])
+          : this._timeoutTransition(this.children[0]);
+      }
+    }
+
+    _timeoutTransition(child) {
+      child.style.transitionDuration = '0ms';
+
+      setTimeout(() => {
+        child.style.transitionDuration = '';
+      }, this.options.animationDuration);
+    }
+
     next(step = 1) {
+      if (this.options.isInfinite && this.isAnimated === false) {
+        this.isAnimated = true;
+        this.options.isInfinite ? this._teleportItem('next') : '';
+      } else {
+        return;
+      }
+
       if (this.activeIndex < this.children.length - 1) {
         this.activeIndex += step;
         this._setItemsPosition();
@@ -310,15 +340,34 @@
         this.activeIndex = 0;
         this._setItemsPosition();
       }
+
+      if (this.isAnimated) {
+        setTimeout(() => {
+          this.isAnimated = false;
+        }, this.options.animationDuration);
+      }
     }
 
     prev(step = 1) {
+      if (this.options.isInfinite && this.isAnimated === false) {
+        this.isAnimated = true;
+        this.options.isInfinite ? this._teleportItem('prev') : '';
+      } else {
+        return;
+      }
+
       if (this.activeIndex > 0) {
         this.activeIndex -= step;
         this._setItemsPosition();
       } else if (this.options.backToOpposite) {
         this.activeIndex = this.children.length - 1;
         this._setItemsPosition();
+      }
+
+      if (this.isAnimated) {
+        setTimeout(() => {
+          this.isAnimated = false;
+        }, this.options.animationDuration);
       }
     }
   }
