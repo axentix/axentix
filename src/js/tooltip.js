@@ -23,12 +23,17 @@
     constructor(element, options, isLoadedWithData) {
       super();
 
-      Axentix.instances.push({ type: 'Tooltip', instance: this });
+      try {
+        this.preventDbInstance(element);
+        Axentix.instances.push({ type: 'Tooltip', instance: this });
 
-      this.el = document.querySelector(element);
-      this.options = Axentix.getComponentOptions('Tooltip', options, this.el, isLoadedWithData);
+        this.el = document.querySelector(element);
+        this.options = Axentix.getComponentOptions('Tooltip', options, this.el, isLoadedWithData);
 
-      this._setup();
+        this._setup();
+      } catch (error) {
+        console.error('[Axentix] Tooltip init error', error);
+      }
     }
 
     _setup() {

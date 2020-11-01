@@ -38,12 +38,12 @@ Axentix.Config = (() => {
    */
   const register = (el, term) => {
     if (!el.name || !el.class) {
-      console.error(`Error registering ${term} : Missing required parameters.`);
+      console.error(`[Axentix] Error registering ${term} : Missing required parameters.`);
       return;
     }
 
     if (config[term].some((elem) => elem.name === el.name)) {
-      console.error(`Error registering ${term} : Already exist.`);
+      console.error(`[Axentix] Error registering ${term} : Already exist.`);
       return;
     }
 

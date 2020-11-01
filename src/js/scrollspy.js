@@ -26,13 +26,18 @@
     constructor(element, options, isLoadedWithData) {
       super();
 
-      Axentix.instances.push({ type: 'ScrollSpy', instance: this });
+      try {
+        this.preventDbInstance(element);
+        Axentix.instances.push({ type: 'ScrollSpy', instance: this });
 
-      this.el = document.querySelector(element);
+        this.el = document.querySelector(element);
 
-      this.options = Axentix.getComponentOptions('ScrollSpy', options, this.el, isLoadedWithData);
+        this.options = Axentix.getComponentOptions('ScrollSpy', options, this.el, isLoadedWithData);
 
-      this._setup();
+        this._setup();
+      } catch (error) {
+        console.error('[Axentix] ScrollSpy init error', error);
+      }
     }
 
     /**

@@ -65,16 +65,15 @@ Axentix.DataDetection = (() => {
       component = component[0].toUpperCase() + component.slice(1).toLowerCase();
 
       if (!Axentix.Config.getDataElements().includes(component)) {
-        console.error("Error: This component doesn't exist.", el);
+        console.error("[Axentix] Error: This component doesn't exist.", el);
         return;
       }
 
-      const options = formatOptions(component, el);
-
       try {
+        const options = formatOptions(component, el);
         new Axentix[component](`#${el.id}`, options, true);
       } catch (error) {
-        console.error('Axentix Data: Unable to load ' + component);
+        console.error('[Axentix] Data: Unable to load ' + component, error);
       }
     });
   };

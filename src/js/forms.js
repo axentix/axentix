@@ -142,8 +142,12 @@ Axentix.Forms = (() => {
     const setupInputs = Array.from(inputElements).filter((el) => !el.isInit);
     const detectInputs = Array.from(inputElements).filter((el) => el.isInit);
 
-    setupInputs.length > 0 ? setupFormsListeners(setupInputs) : '';
-    detectInputs.length > 0 ? detectAllInputs(detectInputs) : '';
+    try {
+      setupInputs.length > 0 ? setupFormsListeners(setupInputs) : '';
+      detectInputs.length > 0 ? detectAllInputs(detectInputs) : '';
+    } catch (error) {
+      console.error('[Axentix] Material forms error', error);
+    }
   };
 })();
 

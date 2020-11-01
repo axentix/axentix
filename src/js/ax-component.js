@@ -3,6 +3,12 @@
  * @class
  */
 class AxentixComponent {
+  preventDbInstance(element) {
+    if (element && Axentix.getInstance(element)) {
+      throw new Error(`Instance already exist on ${element}`);
+    }
+  }
+
   /**
    * Sync all listeners
    */

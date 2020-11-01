@@ -7,6 +7,9 @@
   - Support for Edge Legacy
 - IMPROVED
   - Button rework
+  - Core & Data now show errors
+  - Error handling
+  - Prevent double instanciate of same element
   - Toast scss optimization
   - Update dependencies
 - BUGFIXES

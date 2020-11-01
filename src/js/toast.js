@@ -26,7 +26,7 @@
 
     constructor(content, options) {
       if (Axentix.toastInstanceExist) {
-        console.error("Don't try to create multiple toast instances");
+        console.error("[Axentix] Toast: Don't try to create multiple toast instances");
         return;
       } else {
         Axentix.toastInstanceExist = true;
@@ -192,10 +192,14 @@
      * Showing the toast
      */
     show() {
-      if (!Object.keys(this.toasters).includes(this.options.position)) {
-        this._createToaster();
+      try {
+        if (!Object.keys(this.toasters).includes(this.options.position)) {
+          this._createToaster();
+        }
+        this._createToast();
+      } catch (error) {
+        console.error('[Axentix] Toast error', error);
       }
-      this._createToast();
     }
 
     /**
