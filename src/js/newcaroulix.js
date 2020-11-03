@@ -10,6 +10,11 @@
         animationType: 'slide',
         backToOpposite: true,
         isInfinite: true,
+        indicators: {
+          enabled: true,
+          isFlat: true,
+          customClasses: '',
+        },
         autoplay: {
           enabled: false,
           interval: 4000,
@@ -52,6 +57,7 @@
       this.isAnimated = false;
 
       this._getChildren();
+      this.options.indicators.enabled ? this._enableIndicators() : '';
       this.children[0].classList.add('active');
 
       if (this.options.isInfinite && this.children.length > 2) {
@@ -203,6 +209,10 @@
         });
       }
 
+      if (this.options.indicators.enabled) {
+        this._resetIndocators();
+      }
+
       init ? setTimeout(() => this._setTransitionDuration(this.options.animationDuration), 50) : '';
     }
 
@@ -265,6 +275,41 @@
 
         this._setItemsPosition();
       }
+    }
+
+    _enableIndicators() {
+      this.indicators = document.createElement('ul');
+      this.indicators.classList.add('caroulix-indicators');
+      this.options.indicators.isFlat ? this.indicators.classList.add('caroulix-flat') : '';
+
+      this.options.indicators.customClasses
+        ? (this.indicators.className =
+            this.indicators.className + ' ' + this.options.indicators.customClasses)
+        : '';
+      for (let i = 0; i < this.children.length; i++) {
+        const li = document.createElement('li');
+        li.triggerRef = this._handleIndicatorClick.bind(this, i);
+        li.addEventListener('click', li.triggerRef);
+        this.indicators.appendChild(li);
+      }
+      this.el.appendChild(this.indicators);
+    }
+
+    _handleIndicatorClick(i, e) {
+      e.preventDefault();
+
+      if (i === this.activeIndex) {
+        return;
+      }
+
+      this.goTo(i);
+    }
+
+    _resetIndocators() {
+      Array.from(this.indicators.children).map((li) => {
+        li.removeAttribute('class');
+      });
+      this.indicators.children[this.activeIndex].classList.add('active');
     }
 
     _getXPosition(e) {
@@ -330,13 +375,41 @@
       }, this.options.animationDuration);
     }
 
+    goTo(number) {
+      if (this.isAnimated || number === this.activeIndex) {
+        return;
+      }
+
+      console.log('goto');
+      let side;
+      number > this.activeIndex ? (side = 'right') : (side = 'left');
+
+      // this.options.autoplay.enabled && this.autoTimeout ? this.stop() : '';
+
+      Axentix.createEvent(this.el, 'caroulix.slide', {
+        side,
+        nextElement: this.children[number],
+        currentElement: this.children[this.activeIndex],
+      });
+
+      side === 'left'
+        ? this.prev(Math.abs(this.activeIndex - number))
+        : this.next(Math.abs(this.activeIndex - number));
+
+      if (this.options.indicators.enabled) {
+        this._resetIndocators();
+      }
+    }
+
     next(step = 1) {
+      console.log('next1');
       if (this.options.isInfinite && this.isAnimated === false) {
         this.isAnimated = true;
         this.options.isInfinite ? this._teleportItem('next') : '';
-      } else {
+      } else if (this.options.isInfinite) {
         return;
       }
+      console.log('next2');
 
       if (this.activeIndex < this.children.length - 1) {
         this.activeIndex += step;
@@ -357,7 +430,7 @@
       if (this.options.isInfinite && this.isAnimated === false) {
         this.isAnimated = true;
         this.options.isInfinite ? this._teleportItem('prev') : '';
-      } else {
+      } else if (this.options.isInfinite) {
         return;
       }
 
