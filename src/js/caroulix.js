@@ -371,6 +371,9 @@
       if (this.isResizing) {
         return;
       }
+
+      Axentix.createEvent(this.el, 'caroulix.next', { step });
+
       this.isAnimated = true;
 
       resetAutoplay && this.options.autoplay.enabled ? this.stop() : '';
@@ -390,6 +393,8 @@
       if (this.isResizing) {
         return;
       }
+
+      Axentix.createEvent(this.el, 'caroulix.prev', { step });
 
       this.isAnimated = true;
 

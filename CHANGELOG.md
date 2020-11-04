@@ -1,19 +1,21 @@
 # 1.0.0-beta.3 - 
 
 - ADDED
+  - Caroulix touch & mouse handle
   - Toast offset option
   - `.h{x}` classes
 - REMOVED
-  - Support for Edge Legacy
+  - Support for Edge Legacy (current edge (chromium) still works)
 - IMPROVED
-  - Button rework
-  - Core & Data now show errors
+  - Total caroulix rework
+  - Buttons rework
+  - Core & Data are now showing errors
   - Error handling
-  - Prevent double instanciate of same element
+  - Prevent double instanciation of the same element
   - Toast scss optimization
   - Update dependencies
 - BUGFIXES
-  - `.form-control` don't inherit colors from parent
+  - `.form-control` doesn't inherit colors from parent
 
 # 1.0.0-beta.2 - 2020-09-05
 
