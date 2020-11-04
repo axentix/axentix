@@ -12,10 +12,9 @@ export namespace Axentix {
   class Caroulix extends AxentixComponent {
     constructor(el: string, options?: CaroulixOptions);
 
-    updateHeight(): void;
     goTo(number: number, side: string): void;
-    prev(step?: number): void;
-    next(step?: number): void;
+    prev(step?: number, resetAutoplay?: boolean): void;
+    next(step?: number, resetAutoplay?: boolean): void;
     play(): void;
     stop(): void;
   }
@@ -27,14 +26,9 @@ export namespace Axentix {
     animationDuration: number;
 
     /**
-     * @default 'slide'
-     */
-    animationType: 'slide';
-
-    /**
      * @default true
      */
-    fixedHeight: boolean;
+    backToOpposite: boolean,
 
     /**
      * @default ''
