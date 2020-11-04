@@ -66,6 +66,7 @@
       }
 
       this._waitForLoad();
+      this.totalMediaToLoad === 0 ? this._setBasicCaroulixHeight() : '';
 
       this._setupListeners();
 
@@ -180,7 +181,7 @@
       });
 
       if (this.options.indicators.enabled) {
-        this._resetIndocators();
+        this._resetIndicators();
       }
 
       setTimeout(() => {
@@ -202,7 +203,7 @@
       if (this.options.height) {
         this.el.style.height = this.options.height;
       } else {
-        this.el.style.height = this.children[this.activeIndex].getBoundingClientRect().height;
+        this.el.style.height = this.children[this.activeIndex].getBoundingClientRect().height + 'px';
       }
 
       this._setItemsPosition();
@@ -307,7 +308,7 @@
       this.goTo(i);
     }
 
-    _resetIndocators() {
+    _resetIndicators() {
       Array.from(this.indicators.children).map((li) => {
         li.removeAttribute('class');
       });
@@ -353,7 +354,7 @@
         : this.next(Math.abs(this.activeIndex - number));
 
       if (this.options.indicators.enabled) {
-        this._resetIndocators();
+        this._resetIndicators();
       }
     }
 
