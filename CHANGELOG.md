@@ -1,4 +1,4 @@
-# 1.0.0-beta.3 - 
+# 1.0.0-beta.3 - 2020-11-04
 
 - ADDED
   - Caroulix touch & mouse handle
