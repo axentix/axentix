@@ -184,11 +184,6 @@
       activeElement.classList.remove('active');
       this.children[this.activeIndex].classList.add('active');
 
-      Axentix.createEvent(this.el, 'caroulix.slide', {
-        nextElement: this.children[this.activeIndex],
-        currentElement: this.children[this.children.indexOf(activeElement)],
-      });
-
       setTimeout(() => {
         this.isAnimated = false;
       }, this.options.animationDuration);
@@ -342,6 +337,13 @@
       this.el.style.transitionDuration = duration + 'ms';
     }
 
+    _emitSlideEvent() {
+      Axentix.createEvent(this.el, 'caroulix.slide', {
+        nextElement: this.children[this.activeIndex],
+        currentElement: this.children[this.children.findIndex((child) => child.classList.contains('active'))],
+      });
+    }
+
     goTo(number) {
       if (number === this.activeIndex) {
         return;
@@ -369,7 +371,10 @@
     }
 
     next(step = 1, resetAutoplay = true) {
-      if (this.isResizing) {
+      if (
+        this.isResizing ||
+        (this.activeIndex === this.children.length - 1 && !this.options.backToOpposite)
+      ) {
         return;
       }
 
@@ -381,17 +386,18 @@
 
       if (this.activeIndex < this.children.length - 1) {
         this.activeIndex += step;
-        this._setItemsPosition();
       } else if (this.options.backToOpposite) {
         this.activeIndex = 0;
-        this._setItemsPosition();
       }
+
+      this._emitSlideEvent();
+      this._setItemsPosition();
 
       resetAutoplay && this.options.autoplay.enabled ? this.play() : '';
     }
 
     prev(step = 1, resetAutoplay = true) {
-      if (this.isResizing) {
+      if (this.isResizing || (this.activeIndex === 0 && !this.options.backToOpposite)) {
         return;
       }
 
@@ -403,11 +409,12 @@
 
       if (this.activeIndex > 0) {
         this.activeIndex -= step;
-        this._setItemsPosition();
       } else if (this.options.backToOpposite) {
         this.activeIndex = this.children.length - 1;
-        this._setItemsPosition();
       }
+
+      this._emitSlideEvent();
+      this._setItemsPosition();
 
       resetAutoplay && this.options.autoplay.enabled ? this.play() : '';
     }

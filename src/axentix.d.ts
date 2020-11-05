@@ -28,7 +28,7 @@ export namespace Axentix {
     /**
      * @default true
      */
-    backToOpposite: boolean,
+    backToOpposite: boolean;
 
     /**
      * @default ''
@@ -322,9 +322,28 @@ export namespace Axentix {
     disableActiveBar: boolean;
 
     /**
-     * @default ''
+     * @default TabCaroulixOptions
      */
-    caroulix: CaroulixOptions | '';
+    caroulix: TabCaroulixOptions | CaroulixOptions;
+  }
+
+  interface TabCaroulixOptions {
+    /**
+     * @default 300
+     */
+    animationDuration: number;
+
+    /**
+     * @default false
+     */
+    backToOpposite: boolean;
+
+    autoplay: {
+      /**
+       * @default false
+       */
+      enabled: boolean;
+    };
   }
 
   class Toast {

@@ -2,6 +2,8 @@
 
 - ADDED
   - Caroulix touch & mouse handle
+  - Form file
+  - Tab touch & mouse handle
   - Toast offset option
   - `.h{x}` classes
 - REMOVED
