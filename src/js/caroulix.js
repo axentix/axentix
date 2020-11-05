@@ -190,6 +190,11 @@
       activeElement.classList.remove('active');
       this.children[this.activeIndex].classList.add('active');
 
+      Axentix.createEvent(this.el, 'caroulix.slide', {
+        nextElement: this.children[this.activeIndex],
+        currentElement: this.children[this.children.indexOf(activeElement)],
+      });
+
       setTimeout(() => {
         this.isAnimated = false;
       }, this.options.animationDuration);
@@ -353,12 +358,6 @@
 
       let side;
       number > this.activeIndex ? (side = 'right') : (side = 'left');
-
-      Axentix.createEvent(this.el, 'caroulix.slide', {
-        side,
-        nextElement: this.children[number],
-        currentElement: this.children[this.activeIndex],
-      });
 
       side === 'left'
         ? this.prev(Math.abs(this.activeIndex - number))
