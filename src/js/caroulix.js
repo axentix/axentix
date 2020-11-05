@@ -63,6 +63,8 @@
       let activeEl = this.el.querySelector('.active');
       if (activeEl) {
         this.activeIndex = this.children.indexOf(activeEl);
+      } else {
+        this.children[0].classList.add('active');
       }
 
       this._waitForLoad();
@@ -184,6 +186,10 @@
         this._resetIndicators();
       }
 
+      const activeElement = this.children.find((child) => child.classList.contains('active'));
+      activeElement.classList.remove('active');
+      this.children[this.activeIndex].classList.add('active');
+
       setTimeout(() => {
         this.isAnimated = false;
       }, this.options.animationDuration);
@@ -203,7 +209,12 @@
       if (this.options.height) {
         this.el.style.height = this.options.height;
       } else {
-        this.el.style.height = this.children[this.activeIndex].getBoundingClientRect().height + 'px';
+        const childrenHeight = this.children.map((child) => {
+          return child.offsetHeight;
+        });
+        const maxHeight = Math.max(...childrenHeight);
+
+        this.el.style.height = maxHeight + 'px';
       }
 
       this._setItemsPosition();
