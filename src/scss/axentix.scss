@@ -8,7 +8,6 @@
 @import './utilities/functions';
 @import './utilities/variables';
 @import './core/base';
-@import './core/colors';
 
 // Grix system
 @import './components/grix';
@@ -34,3 +33,6 @@
 @import './components/caroulix';
 @import './components/tooltip';
 @import './components/lightbox';
+
+// Colors
+@import './core/colors';

@@ -1,18 +1,33 @@
 .form-file {
   position: relative;
   display: flex;
+  width: 100%;
+  padding-top: 0.75rem;
+  margin: 0.25rem 0 0.5rem 0;
 
-  .btn {
-    align-self: center;
-  }
-
-  .form-field {
-    width: unset;
-    flex-grow: 1;
+  label {
+    z-index: 2;
+    flex-shrink: 0;
   }
 
   input[type='file'] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     opacity: 0;
     cursor: pointer;
+  }
+
+  .form-file-path {
+    width: 100%;
+    border-bottom: 1px solid #c7c7c7;
+    margin: auto 0 0.25rem 0.5rem;
+    height: 1.75rem;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
