@@ -63,9 +63,12 @@
       let activeEl = this.el.querySelector('.active');
       if (activeEl) {
         this.activeIndex = this.children.indexOf(activeEl);
+      } else {
+        this.children[0].classList.add('active');
       }
 
       this._waitForLoad();
+      this.totalMediaToLoad === 0 ? this._setBasicCaroulixHeight() : '';
 
       this._setupListeners();
 
@@ -180,8 +183,17 @@
       });
 
       if (this.options.indicators.enabled) {
-        this._resetIndocators();
+        this._resetIndicators();
       }
+
+      const activeElement = this.children.find((child) => child.classList.contains('active'));
+      activeElement.classList.remove('active');
+      this.children[this.activeIndex].classList.add('active');
+
+      Axentix.createEvent(this.el, 'caroulix.slide', {
+        nextElement: this.children[this.activeIndex],
+        currentElement: this.children[this.children.indexOf(activeElement)],
+      });
 
       setTimeout(() => {
         this.isAnimated = false;
@@ -202,7 +214,12 @@
       if (this.options.height) {
         this.el.style.height = this.options.height;
       } else {
-        this.el.style.height = this.children[this.activeIndex].getBoundingClientRect().height;
+        const childrenHeight = this.children.map((child) => {
+          return child.offsetHeight;
+        });
+        const maxHeight = Math.max(...childrenHeight);
+
+        this.el.style.height = maxHeight + 'px';
       }
 
       this._setItemsPosition();
@@ -307,7 +324,7 @@
       this.goTo(i);
     }
 
-    _resetIndocators() {
+    _resetIndicators() {
       Array.from(this.indicators.children).map((li) => {
         li.removeAttribute('class');
       });
@@ -342,18 +359,12 @@
       let side;
       number > this.activeIndex ? (side = 'right') : (side = 'left');
 
-      Axentix.createEvent(this.el, 'caroulix.slide', {
-        side,
-        nextElement: this.children[number],
-        currentElement: this.children[this.activeIndex],
-      });
-
       side === 'left'
         ? this.prev(Math.abs(this.activeIndex - number))
         : this.next(Math.abs(this.activeIndex - number));
 
       if (this.options.indicators.enabled) {
-        this._resetIndocators();
+        this._resetIndicators();
       }
     }
 
