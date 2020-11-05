@@ -76,7 +76,7 @@
     }
 
     _setupListeners() {
-      this.windowResizeRef = this._handleResizeEvent.bind(this);
+      this.windowResizeRef = this._setBasicCaroulixHeight.bind(this);
       window.addEventListener('resize', this.windowResizeRef);
 
       this.touchStartRef = this._handleDragStart.bind(this);
@@ -135,10 +135,6 @@
       this.touchReleaseRef = undefined;
     }
 
-    _handleResizeEvent() {
-      this._setBasicCaroulixHeight();
-    }
-
     _getChildren() {
       this.children = Array.from(this.el.children).reduce((acc, child) => {
         child.classList.contains('caroulix-item') ? acc.push(child) : '';
@@ -153,8 +149,8 @@
       this.totalMediaToLoad = 0;
       this.loadedMediaCount = 0;
 
-      this.children.forEach((item, index) => {
-        let media = item.querySelector('img, video');
+      this.children.map((item) => {
+        const media = item.querySelector('img, video');
 
         if (media) {
           media.loadRef = this._newItemLoaded.bind(this);
@@ -182,9 +178,7 @@
         }px)`;
       });
 
-      if (this.options.indicators.enabled) {
-        this._resetIndicators();
-      }
+      this.options.indicators.enabled ? this._resetIndicators() : '';
 
       const activeElement = this.children.find((child) => child.classList.contains('active'));
       activeElement.classList.remove('active');
@@ -206,10 +200,7 @@
       this.isResizing = true;
       this.el.style.transitionDuration = '';
 
-      if (this.options.autoplay.enabled) {
-        this.stop();
-        this.play();
-      }
+      this.options.autoplay.enabled ? this.play() : '';
 
       if (this.options.height) {
         this.el.style.height = this.options.height;
@@ -363,12 +354,11 @@
         ? this.prev(Math.abs(this.activeIndex - number))
         : this.next(Math.abs(this.activeIndex - number));
 
-      if (this.options.indicators.enabled) {
-        this._resetIndicators();
-      }
+      this.options.indicators.enabled ? this._resetIndicators() : '';
     }
 
     play() {
+      this.stop();
       this.autoplayInterval = setInterval(() => {
         this.options.autoplay.side === 'right' ? this.next(1, false) : this.prev(1, false);
       }, this.options.autoplay.interval);
