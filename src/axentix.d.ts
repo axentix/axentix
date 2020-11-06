@@ -388,6 +388,28 @@ export namespace Axentix {
      * @default 'bottom'
      */
     mobileDirection: 'top' | 'bottom';
+
+    offset: {
+      /**
+       * @default '5%'
+       */
+      x: string;
+
+      /**
+       * @default '0%'
+       */
+      y: string;
+
+      /**
+       * @default '10%'
+       */
+      mobileX: string;
+
+      /**
+       * @default '0%'
+       */
+      mobileY: string;
+    };
   }
 
   class Tooltip extends AxentixComponent {

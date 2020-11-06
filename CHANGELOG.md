@@ -1,4 +1,4 @@
-# 1.0.0-beta.3 - 2020-11-05
+# 1.0.0-beta.3 - 2020-11-06
 
 - ADDED
   - Caroulix touch & mouse handle
@@ -17,7 +17,7 @@
   - Toast scss optimization
   - Update dependencies
 - BUGFIXES
-  - `.form-control` doesn't inherit colors from parent.
+  - `.form-control` doesn't inherit colors from parent
   - Tooltip z-index
 
 # 1.0.0-beta.2 - 2020-09-05
