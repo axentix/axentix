@@ -9,6 +9,7 @@
         animationDuration: 500,
         height: '',
         backToOpposite: true,
+        enableTouch: true,
         indicators: {
           enabled: false,
           isFlat: false,
@@ -60,7 +61,7 @@
       this._getChildren();
       this.options.indicators.enabled ? this._enableIndicators() : '';
 
-      let activeEl = this.el.querySelector('.active');
+      const activeEl = this.el.querySelector('.active');
       if (activeEl) {
         this.activeIndex = this.children.indexOf(activeEl);
       } else {
@@ -79,10 +80,6 @@
       this.windowResizeRef = this._setBasicCaroulixHeight.bind(this);
       window.addEventListener('resize', this.windowResizeRef);
 
-      this.touchStartRef = this._handleDragStart.bind(this);
-      this.touchMoveRef = this._handleDragMove.bind(this);
-      this.touchReleaseRef = this._handleDragRelease.bind(this);
-
       if (this.arrowNext) {
         this.arrowNextRef = this.next.bind(this, 1);
         this.arrowNext.addEventListener('click', this.arrowNextRef);
@@ -93,16 +90,22 @@
         this.arrowPrev.addEventListener('click', this.arrowPrevRef);
       }
 
-      if (Axentix.isTouchEnabled()) {
-        this.el.addEventListener('touchstart', this.touchStartRef);
-        this.el.addEventListener('touchmove', this.touchMoveRef);
-        this.el.addEventListener('touchend', this.touchReleaseRef);
-      }
+      if (this.options.enableTouch) {
+        this.touchStartRef = this._handleDragStart.bind(this);
+        this.touchMoveRef = this._handleDragMove.bind(this);
+        this.touchReleaseRef = this._handleDragRelease.bind(this);
 
-      this.el.addEventListener('mousedown', this.touchStartRef);
-      this.el.addEventListener('mousemove', this.touchMoveRef);
-      this.el.addEventListener('mouseup', this.touchReleaseRef);
-      this.el.addEventListener('mouseleave', this.touchReleaseRef);
+        if (Axentix.isTouchEnabled()) {
+          this.el.addEventListener('touchstart', this.touchStartRef);
+          this.el.addEventListener('touchmove', this.touchMoveRef);
+          this.el.addEventListener('touchend', this.touchReleaseRef);
+        }
+
+        this.el.addEventListener('mousedown', this.touchStartRef);
+        this.el.addEventListener('mousemove', this.touchMoveRef);
+        this.el.addEventListener('mouseup', this.touchReleaseRef);
+        this.el.addEventListener('mouseleave', this.touchReleaseRef);
+      }
     }
 
     _removeListeners() {
@@ -119,20 +122,22 @@
         this.arrowPrevRef = undefined;
       }
 
-      if (Axentix.isTouchEnabled()) {
-        this.el.removeEventListener('touchstart', this.touchStartRef);
-        this.el.removeEventListener('touchmove', this.touchMoveRef);
-        this.el.removeEventListener('touchend', this.touchReleaseRef);
+      if (this.options.enableTouch) {
+        if (Axentix.isTouchEnabled()) {
+          this.el.removeEventListener('touchstart', this.touchStartRef);
+          this.el.removeEventListener('touchmove', this.touchMoveRef);
+          this.el.removeEventListener('touchend', this.touchReleaseRef);
+        }
+
+        this.el.removeEventListener('mousedown', this.touchStartRef);
+        this.el.removeEventListener('mousemove', this.touchMoveRef);
+        this.el.removeEventListener('mouseup', this.touchReleaseRef);
+        this.el.removeEventListener('mouseleave', this.touchReleaseRef);
+
+        this.touchStartRef = undefined;
+        this.touchMoveRef = undefined;
+        this.touchReleaseRef = undefined;
       }
-
-      this.el.removeEventListener('mousedown', this.touchStartRef);
-      this.el.removeEventListener('mousemove', this.touchMoveRef);
-      this.el.removeEventListener('mouseup', this.touchReleaseRef);
-      this.el.removeEventListener('mouseleave', this.touchReleaseRef);
-
-      this.touchStartRef = undefined;
-      this.touchMoveRef = undefined;
-      this.touchReleaseRef = undefined;
     }
 
     _getChildren() {
@@ -153,15 +158,24 @@
         const media = item.querySelector('img, video');
 
         if (media) {
-          media.loadRef = this._newItemLoaded.bind(this);
-          media.addEventListener('load', media.loadRef);
           this.totalMediaToLoad++;
+          if (media.complete) {
+            this._newItemLoaded(media, true);
+          } else {
+            media.loadRef = this._newItemLoaded.bind(this, media);
+            media.addEventListener('load', media.loadRef);
+          }
         }
       });
     }
 
-    _newItemLoaded() {
+    _newItemLoaded(media, alreadyLoad) {
       this.loadedMediaCount++;
+
+      if (!alreadyLoad) {
+        media.removeEventListener('load', media.loadRef);
+        media.loadRef = undefined;
+      }
 
       if (this.totalMediaToLoad == this.loadedMediaCount) {
         this._setBasicCaroulixHeight();

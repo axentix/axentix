@@ -31,6 +31,11 @@ export namespace Axentix {
     backToOpposite: boolean;
 
     /**
+     * @default true
+     */
+    enableTouch: boolean;
+
+    /**
      * @default ''
      */
     height: string;
