@@ -235,12 +235,13 @@
         return;
       }
 
-      e.preventDefault();
+      e.type === 'mousedown' ? e.preventDefault() : '';
+
       if (this.isAnimated) {
         return;
       }
 
-      this.stop();
+      this.options.autoplay.enabled ? this.stop() : '';
 
       this._setTransitionDuration(0);
       this.isPressed = true;
@@ -258,14 +259,19 @@
         return;
       }
 
-      e.preventDefault();
-
       let x, y;
       x = this._getXPosition(e);
       y = this._getYPosition(e);
 
       this.deltaX = this.xStart - x;
-      this.deltaY = this.yStart - y;
+      this.deltaY = Math.abs(this.yStart - y);
+
+      if (e.type !== 'mousemove' && this.deltaY > 30) {
+        this.deltaX = 0;
+        return false;
+      }
+
+      e.cancelable ? e.preventDefault() : '';
 
       this.draggedPositionX = this.deltaX;
       this._setItemsPosition();
@@ -273,10 +279,11 @@
 
     _handleDragRelease(e) {
       if (e.target.closest('.caroulix-arrow') || e.target.closest('.caroulix-indicators')) {
-        return;
+        return false;
       }
 
-      e.preventDefault();
+      e.cancelable ? e.preventDefault() : '';
+
       if (this.isPressed) {
         this._setTransitionDuration(this.options.animationDuration);
         let caroulixWidth = this.el.getBoundingClientRect().width;
@@ -303,7 +310,7 @@
         this.draggedPositionX = 0;
 
         this._setItemsPosition();
-        this.play();
+        this.options.autoplay.enabled ? this.play() : '';
       }
     }
 
@@ -385,6 +392,10 @@
     }
 
     play() {
+      if (!this.options.autoplay.enabled) {
+        return;
+      }
+
       this.stop();
       this.autoplayInterval = setInterval(() => {
         this.options.autoplay.side === 'right' ? this.next(1, false) : this.prev(1, false);
@@ -392,6 +403,10 @@
     }
 
     stop() {
+      if (!this.options.autoplay.enabled) {
+        return;
+      }
+
       clearInterval(this.autoplayInterval);
     }
 

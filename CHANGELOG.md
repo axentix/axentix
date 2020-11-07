@@ -1,3 +1,13 @@
+# 1.0.0-beta.3.1 - 2020-11-07
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Mobile scrolling swiping on a caroulix
+  - Caroulix autoplay with touch option automatically enabled
+  - Tab with slide animation
+
 # 1.0.0-beta.3 - 2020-11-07
 
 - ADDED
