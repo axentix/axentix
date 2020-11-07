@@ -231,10 +231,15 @@
     }
 
     _handleDragStart(e) {
+      if (e.target.closest('.caroulix-arrow') || e.target.closest('.caroulix-indicators')) {
+        return;
+      }
       e.preventDefault();
       if (this.isAnimated) {
         return;
       }
+
+      this.stop();
 
       this._setTransitionDuration(0);
       this.isPressed = true;
@@ -293,6 +298,7 @@
         this.draggedPositionX = 0;
 
         this._setItemsPosition();
+        this.play();
       }
     }
 

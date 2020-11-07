@@ -41,6 +41,12 @@
     cursor: pointer;
     transition: box-shadow 0.2s ease;
 
+    @include responsive('xs') {
+      width: 2rem;
+      height: 2rem;
+      font-size: 0.8rem;
+    }
+
     &:hover {
       box-shadow: #{map-get($shadows, '2')};
     }
@@ -90,6 +96,19 @@
         width: 1.75rem;
         height: 1.25rem;
         background-clip: padding-box;
+      }
+    }
+
+    @include responsive('xs') {
+      bottom: 0.75rem;
+
+      li {
+        height: 0.75rem;
+        width: 0.75rem;
+      }
+
+      &.caroulix-flat {
+        bottom: 0.5rem;
       }
     }
   }

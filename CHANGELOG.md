@@ -1,9 +1,9 @@
-# 1.0.0-beta.3 - 2020-11-06
+# 1.0.0-beta.3 - 2020-11-07
 
 - ADDED
-  - Caroulix touch & mouse handle
+  - Caroulix touch & mouse handling
   - Form file
-  - Tab touch & mouse handle
+  - Tab touch & mouse handling
   - Toast offset option
   - `.h{x}` classes
 - REMOVED
