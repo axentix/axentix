@@ -5,4 +5,5 @@
   opacity: 0;
   transition-property: opacity, transform;
   transition-timing-function: ease;
+  z-index: $tooltip-z-index;
 }

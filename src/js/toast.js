@@ -12,6 +12,7 @@
         position: 'right',
         direction: 'top',
         mobileDirection: 'bottom',
+        offset: { x: '5%', y: '0%', mobileX: '10%', mobileY: '0%' },
         isClosable: false,
       };
     }
@@ -25,7 +26,7 @@
 
     constructor(content, options) {
       if (Axentix.toastInstanceExist) {
-        console.error("Don't try to create multiple toast instances");
+        console.error("[Axentix] Toast: Don't try to create multiple toast instances");
         return;
       } else {
         Axentix.toastInstanceExist = true;
@@ -50,17 +51,27 @@
       const positionList = ['right', 'left'];
       positionList.includes(this.options.position) ? '' : (this.options.position = 'right');
 
+      this.options.position === 'right'
+        ? (toaster.style.right = this.options.offset.x)
+        : (toaster.style.left = this.options.offset.x);
+
       const directionList = ['bottom', 'top'];
       directionList.includes(this.options.direction) ? '' : (this.options.direction = 'top');
 
+      this.options.direction === 'top'
+        ? (toaster.style.top = this.options.offset.y)
+        : (toaster.style.bottom = this.options.offset.y);
+
       directionList.includes(this.options.mobileDirection) ? '' : (this.options.mobileDirection = 'bottom');
+
+      toaster.style.setProperty('--toaster-width', 100 - this.options.offset.mobileX.slice(0, -1) + '%');
 
       toaster.className =
         'toaster toaster-' +
         this.options.position +
         ' toast-' +
         this.options.direction +
-        ' toaster-mobile-' +
+        ' toaster-m-' +
         this.options.mobileDirection;
 
       this.toasters[this.options.position] = toaster;
@@ -181,10 +192,14 @@
      * Showing the toast
      */
     show() {
-      if (!Object.keys(this.toasters).includes(this.options.position)) {
-        this._createToaster();
+      try {
+        if (!Object.keys(this.toasters).includes(this.options.position)) {
+          this._createToaster();
+        }
+        this._createToast();
+      } catch (error) {
+        console.error('[Axentix] Toast error', error);
       }
-      this._createToast();
     }
 
     /**

@@ -1,24 +1,27 @@
 .caroulix {
+  position: relative;
   display: flex;
   flex-direction: row;
   width: 100%;
-  position: relative;
-  transform-style: preserve-3d;
   overflow: hidden;
   align-items: center;
+  transition-property: none;
 
   .caroulix-item {
-    visibility: hidden;
     position: absolute;
+    width: 100%;
     left: 0;
-    right: 0;
+    top: 0;
+    transition-property: transform;
+    transition-duration: inherit;
+    transition-timing-function: ease-out;
+
+    &.active {
+      transform: translateX(0px);
+    }
 
     img {
       width: 100%;
-    }
-
-    &.active {
-      visibility: visible;
     }
   }
 
@@ -37,6 +40,12 @@
     z-index: 50;
     cursor: pointer;
     transition: box-shadow 0.2s ease;
+
+    @include responsive('xs') {
+      width: 2rem;
+      height: 2rem;
+      font-size: 0.8rem;
+    }
 
     &:hover {
       box-shadow: #{map-get($shadows, '2')};
@@ -89,13 +98,18 @@
         background-clip: padding-box;
       }
     }
-  }
 
-  &.anim-slide {
-    .caroulix-item {
-      transition-property: transform;
-      transition-timing-function: ease-in-out;
-      will-change: transform;
+    @include responsive('xs') {
+      bottom: 0.75rem;
+
+      li {
+        height: 0.75rem;
+        width: 0.75rem;
+      }
+
+      &.caroulix-flat {
+        bottom: 0.5rem;
+      }
     }
   }
 }

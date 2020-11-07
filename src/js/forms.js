@@ -6,7 +6,7 @@ Axentix.Forms = (() => {
    * @param {NodeListOf<Element>} inputElements
    */
   const detectAllInputs = (inputElements) => {
-    inputElements.forEach((input) => detectInput(input));
+    inputElements.forEach(detectInput);
   };
 
   /**
@@ -132,6 +132,41 @@ Axentix.Forms = (() => {
     document.addEventListener('reset', handleResetRef);
   };
 
+  const handleFileInput = (input, filePath) => {
+    const files = input.files;
+    if (files.length > 1) {
+      filePath.innerHTML = Array.from(files)
+        .reduce((acc, file) => {
+          acc.push(file.name);
+          return acc;
+        }, [])
+        .join(', ');
+    } else if (files[0]) {
+      filePath.innerHTML = files[0].name;
+    }
+  };
+
+  const setupFormFile = (element) => {
+    if (element.isInit) {
+      return;
+    }
+
+    element.isInit = true;
+    const input = element.querySelector('input[type="file"]');
+    const filePath = element.querySelector('.form-file-path');
+    input.handleRef = handleFileInput.bind(null, input, filePath);
+    input.addEventListener('change', input.handleRef);
+  };
+
+  Axentix.updateInputsFile = () => {
+    const elements = Array.from(document.querySelectorAll('.form-file'));
+    try {
+      elements.map(setupFormFile);
+    } catch (error) {
+      console.error('[Axentix] Form file error', error);
+    }
+  };
+
   /**
    * Update inputs state
    * @param {NodeListOf<Element>} inputElements
@@ -142,10 +177,15 @@ Axentix.Forms = (() => {
     const setupInputs = Array.from(inputElements).filter((el) => !el.isInit);
     const detectInputs = Array.from(inputElements).filter((el) => el.isInit);
 
-    setupInputs.length > 0 ? setupFormsListeners(setupInputs) : '';
-    detectInputs.length > 0 ? detectAllInputs(detectInputs) : '';
+    try {
+      setupInputs.length > 0 ? setupFormsListeners(setupInputs) : '';
+      detectInputs.length > 0 ? detectAllInputs(detectInputs) : '';
+    } catch (error) {
+      console.error('[Axentix] Material forms error', error);
+    }
   };
 })();
 
 // Init
 document.addEventListener('DOMContentLoaded', () => Axentix.updateInputs());
+document.addEventListener('DOMContentLoaded', () => Axentix.updateInputsFile());

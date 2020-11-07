@@ -22,19 +22,25 @@
     constructor(element, options, isLoadedWithData) {
       super();
 
-      Axentix.instances.push({ type: 'Tab', instance: this });
+      try {
+        this.preventDbInstance(element);
+        Axentix.instances.push({ type: 'Tab', instance: this });
 
-      this.caroulixOptions = {
-        animationDuration: 300,
-        autoplay: {
-          enabled: false,
-        },
-      };
+        this.caroulixOptions = {
+          animationDuration: 300,
+          backToOpposite: false,
+          autoplay: {
+            enabled: false,
+          },
+        };
 
-      this.el = document.querySelector(element);
-      this.options = Axentix.getComponentOptions('Tab', options, this.el, isLoadedWithData);
+        this.el = document.querySelector(element);
+        this.options = Axentix.getComponentOptions('Tab', options, this.el, isLoadedWithData);
 
-      this._setup();
+        this._setup();
+      } catch (error) {
+        console.error('[Axentix] Tab init error', error);
+      }
     }
 
     /**
@@ -109,6 +115,11 @@
         this.scrollLeftListener = undefined;
         this.scrollRightLstener = undefined;
       }
+
+      if (this.caroulixSlideRef) {
+        this.el.removeEventListener('ax.caroulix.slide', this.caroulixSlideRef);
+        this.caroulixSlideRef = undefined;
+      }
     }
 
     _handleResizeEvent() {
@@ -117,6 +128,13 @@
         setTimeout(() => {
           this.updateActiveElement();
         }, i);
+      }
+    }
+
+    _handleCaroulixSlide() {
+      if (this.currentItemIndex !== this.caroulixInstance.activeIndex) {
+        this.currentItemIndex = this.caroulixInstance.activeIndex;
+        this._setActiveElement(this.tabLinks[this.currentItemIndex]);
       }
     }
 
@@ -293,6 +311,9 @@
           this.el,
           true
         );
+
+        this.caroulixSlideRef = this._handleCaroulixSlide.bind(this);
+        this.el.addEventListener('ax.caroulix.slide', this.caroulixSlideRef);
 
         this.tabCaroulixInit = false;
         this.isAnimated = false;

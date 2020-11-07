@@ -12,10 +12,9 @@ export namespace Axentix {
   class Caroulix extends AxentixComponent {
     constructor(el: string, options?: CaroulixOptions);
 
-    updateHeight(): void;
     goTo(number: number, side: string): void;
-    prev(step?: number): void;
-    next(step?: number): void;
+    prev(step?: number, resetAutoplay?: boolean): void;
+    next(step?: number, resetAutoplay?: boolean): void;
     play(): void;
     stop(): void;
   }
@@ -27,14 +26,14 @@ export namespace Axentix {
     animationDuration: number;
 
     /**
-     * @default 'slide'
+     * @default true
      */
-    animationType: 'slide';
+    backToOpposite: boolean;
 
     /**
      * @default true
      */
-    fixedHeight: boolean;
+    enableTouch: boolean;
 
     /**
      * @default ''
@@ -328,9 +327,28 @@ export namespace Axentix {
     disableActiveBar: boolean;
 
     /**
-     * @default ''
+     * @default TabCaroulixOptions
      */
-    caroulix: CaroulixOptions | '';
+    caroulix: TabCaroulixOptions | CaroulixOptions;
+  }
+
+  interface TabCaroulixOptions {
+    /**
+     * @default 300
+     */
+    animationDuration: number;
+
+    /**
+     * @default false
+     */
+    backToOpposite: boolean;
+
+    autoplay: {
+      /**
+       * @default false
+       */
+      enabled: boolean;
+    };
   }
 
   class Toast {
@@ -370,6 +388,28 @@ export namespace Axentix {
      * @default 'bottom'
      */
     mobileDirection: 'top' | 'bottom';
+
+    offset: {
+      /**
+       * @default '5%'
+       */
+      x: string;
+
+      /**
+       * @default '0%'
+       */
+      y: string;
+
+      /**
+       * @default '10%'
+       */
+      mobileX: string;
+
+      /**
+       * @default '0%'
+       */
+      mobileY: string;
+    };
   }
 
   class Tooltip extends AxentixComponent {

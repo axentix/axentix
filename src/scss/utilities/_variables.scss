@@ -236,3 +236,5 @@ $bd-width: (
 
 $bd-style: 'dashed', 'dotted', 'double', 'groove', 'hidden', 'none', 'inset', 'outset', 'ridge', 'solid',
   'revert' !default;
+
+$tooltip-z-index: 999 !default;

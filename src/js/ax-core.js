@@ -61,7 +61,7 @@ class Axentix {
       try {
         new constructor(...args);
       } catch (error) {
-        console.error('Axentix : Unable to load ' + component);
+        console.error('[Axentix] Unable to load ' + component, error);
       }
     });
   }
