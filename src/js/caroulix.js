@@ -234,6 +234,7 @@
       if (e.target.closest('.caroulix-arrow') || e.target.closest('.caroulix-indicators')) {
         return;
       }
+
       e.preventDefault();
       if (this.isAnimated) {
         return;
@@ -271,6 +272,10 @@
     }
 
     _handleDragRelease(e) {
+      if (e.target.closest('.caroulix-arrow') || e.target.closest('.caroulix-indicators')) {
+        return;
+      }
+
       e.preventDefault();
       if (this.isPressed) {
         this._setTransitionDuration(this.options.animationDuration);
