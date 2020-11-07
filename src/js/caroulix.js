@@ -245,7 +245,7 @@
 
       this._setTransitionDuration(0);
       this.isPressed = true;
-      this.isDragged = false;
+      this.isScrolling = false;
       this.isVerticallyDragged = false;
 
       this.deltaX = 0;
@@ -255,7 +255,7 @@
     }
 
     _handleDragMove(e) {
-      if (!this.isPressed) {
+      if (!this.isPressed || this.isScrolling) {
         return;
       }
 
@@ -266,7 +266,8 @@
       this.deltaX = this.xStart - x;
       this.deltaY = Math.abs(this.yStart - y);
 
-      if (e.type !== 'mousemove' && this.deltaY > 30) {
+      if (e.type !== 'mousemove' && this.deltaY > Math.abs(this.deltaX)) {
+        this.isScrolling = true;
         this.deltaX = 0;
         return false;
       }
