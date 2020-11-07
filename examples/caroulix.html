@@ -97,7 +97,11 @@
     <footer class="footer blue">Copyright © 2020 - Example</footer>
     <script src="../dist/js/axentix.min.js"></script>
     <script>
-      let caroulix = new Axentix.Caroulix('#caroulix');
+      let caroulix = new Axentix.Caroulix('#caroulix', {
+        autoplay: {
+          enabled: false,
+        },
+      });
     </script>
   </body>
 </html>

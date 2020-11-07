@@ -240,7 +240,7 @@
         return;
       }
 
-      this.stop();
+      this.options.autoplay.enabled ? this.stop() : '';
 
       this._setTransitionDuration(0);
       this.isPressed = true;
@@ -303,7 +303,7 @@
         this.draggedPositionX = 0;
 
         this._setItemsPosition();
-        this.play();
+        this.options.autoplay.enabled ? this.play() : '';
       }
     }
 
@@ -385,6 +385,10 @@
     }
 
     play() {
+      if (!this.options.autoplay.enabled) {
+        return;
+      }
+
       this.stop();
       this.autoplayInterval = setInterval(() => {
         this.options.autoplay.side === 'right' ? this.next(1, false) : this.prev(1, false);
@@ -392,6 +396,10 @@
     }
 
     stop() {
+      if (!this.options.autoplay.enabled) {
+        return;
+      }
+
       clearInterval(this.autoplayInterval);
     }
 

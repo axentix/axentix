@@ -343,6 +343,11 @@ export namespace Axentix {
      */
     backToOpposite: boolean;
 
+    /**
+     * @default false
+     */
+    enableTouch: boolean;
+
     autoplay: {
       /**
        * @default false

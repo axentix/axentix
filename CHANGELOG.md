@@ -1,3 +1,12 @@
+# 1.0.0-beta.3.1 - 2020-11-07
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Caroulix autoplay with touch option enabled
+  - Tab with slide animation
+
 # 1.0.0-beta.3 - 2020-11-07
 
 - ADDED

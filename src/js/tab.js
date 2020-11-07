@@ -29,6 +29,7 @@
         this.caroulixOptions = {
           animationDuration: 300,
           backToOpposite: false,
+          enableTouch: false,
           autoplay: {
             enabled: false,
           },
