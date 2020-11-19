@@ -1,3 +1,13 @@
+# 1.0.0-beta.4 - Under development
+
+- ADDED
+  - `.destroy()` method to all of our components
+- REMOVED
+- IMPROVED
+  - Toast double instanciation
+  - Enhance caroulix touch handling
+- BUGFIXES
+
 # 1.0.0-beta.3.1 - 2020-11-07
 
 - ADDED
