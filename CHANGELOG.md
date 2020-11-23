@@ -7,6 +7,7 @@
   - Toast double instanciation
   - Enhance caroulix touch handling
 - BUGFIXES
+  - `Axentix.getInstance()` can throw error with Toast
 
 # 1.0.0-beta.3.1 - 2020-11-07
 

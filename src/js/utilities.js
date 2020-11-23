@@ -54,7 +54,7 @@ Axentix.getInstanceByType = (type) => {
 };
 
 Axentix.getInstance = (element) => {
-  const el = Axentix.instances.find((ins) => '#' + ins.instance.el.id === element);
+  const el = Axentix.instances.find((ins) => '#' + ins.type !== 'Toast' && ins.instance.el.id === element);
 
   if (el) {
     return el.instance;
