@@ -51,6 +51,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
+    "@xelzs/code-size": "^1.1.0",
     "browser-sync": "^2.26.13",
     "fibers": "^4.0.3",
     "gulp": "^4.0.2",
@@ -63,8 +64,5 @@
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.1.0",
     "sass": "^1.29.0"
-  },
-  "dependencies": {
-    "@xelzs/code-size": "^1.1.0"
   }
 }
