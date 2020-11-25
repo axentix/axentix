@@ -9,6 +9,7 @@
   - Update dependencies
 - BUGFIXES
   - `Axentix.getInstance()` can throw error with Toast
+  - Lightbox parents `overflow: hidden` handling
 
 # 1.0.0-beta.3.1 - 2020-11-07
 
