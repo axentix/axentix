@@ -120,6 +120,20 @@
       }
     }
 
+    _setOverflowParents() {
+      this.overflowParents = [];
+      for (let elem = this.el; elem && elem !== document; elem = elem.parentNode) {
+        if (window.getComputedStyle(elem).overflow === 'hidden') {
+          this.overflowParents.push(elem);
+          elem.style.overflow = 'visible';
+        }
+      }
+    }
+
+    _unsetOverflowParents() {
+      this.overflowParents.map((parent) => (parent.style.overflow = ''));
+    }
+
     /**
      * Set position of active lightbox
      */
@@ -130,6 +144,11 @@
       } else if (this.isAnimated) {
         return;
       }
+
+      let element = this.el;
+      this.overflowElements = [];
+
+      this._setOverflowParents();
 
       const centerTop = window.innerHeight / 2;
       const centerLeft = window.innerWidth / 2;
@@ -218,6 +237,8 @@
         this.el.style.width = '';
         this.el.style.height = '';
         this.el.style.transform = '';
+
+        this._unsetOverflowParents();
 
         this.isActive = false;
         this.isAnimated = false;
