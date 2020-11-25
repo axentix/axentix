@@ -12,7 +12,10 @@
     "build:sass-min": "gulp sassmin",
     "build:sass": "gulp sass",
     "build": "gulp",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "size": "npm run size:css && npm run size:js",
+    "size:css": "npm run build:sass && code-size -f dist/css/axentix.css -bgm -l css",
+    "size:js": "npm run build:js && code-size -f dist/js/axentix.js -bgm -l js"
   },
   "keywords": [
     "axentix",
@@ -46,7 +49,7 @@
   ],
   "engine": "node >= 10",
   "devDependencies": {
-    "@babel/core": "^7.12.7",
+    "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
     "browser-sync": "^2.26.13",
     "fibers": "^4.0.3",
@@ -61,5 +64,7 @@
     "gulp-sass": "^4.1.0",
     "sass": "^1.29.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@xelzs/code-size": "^1.1.0"
+  }
 }

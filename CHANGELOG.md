@@ -2,6 +2,7 @@
 
 - ADDED
   - `.destroy()` method to all of our components
+  - `npm run size` show the estimates size of our js and css in various format
 - REMOVED
 - IMPROVED
   - Toast double instanciation
