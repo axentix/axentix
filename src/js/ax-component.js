@@ -26,4 +26,15 @@ class AxentixComponent {
     this._removeListeners();
     this._setup();
   }
+
+  /**
+   * Destroy component
+   */
+  destroy() {
+    Axentix.createEvent(this.el, 'component.destroy');
+    this._removeListeners();
+
+    const index = Axentix.instances.findIndex((ins) => ins.instance.el.id === this.el.id);
+    Axentix.instances.splice(index, 1);
+  }
 }
