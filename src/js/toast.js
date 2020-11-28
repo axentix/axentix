@@ -41,6 +41,7 @@
     }
 
     destroy() {
+      Axentix.createEvent(this.el, 'component.destroy');
       const index = Axentix.instances.findIndex((ins) => ins.instance.el.id === this.el.id);
       Axentix.instances.splice(index, 1);
     }
