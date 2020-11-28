@@ -25,7 +25,7 @@
     <div id="example-sidenav" class="sidenav white fixed right-aligned">
       <div class="sidenav-header">
         <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-        <img class="logo dropshadow-1" src="your_img_path" alt="Axentix Logo" />
+        <img class="sidenav-logo dropshadow-1" src="https://useaxentix.com/img/axentix.svg" alt="Axentix Logo" />
       </div>
       <a href="#" class="sidenav-link">Link 1</a>
       <a href="#" class="collapsible-trigger sidenav-link" data-target="sidenav-collapsible">Collapsible</a>
@@ -49,11 +49,11 @@
       <a href="#" class="sidenav-link">Link 2</a>
     </div>
 
-    <div id="example-sidenav2" class="sidenav secondary">
+    <div id="example-sidenav2" class="sidenav fixed  secondary">
       <div class="sidenav-header">
         <button data-target="example-sidenav2" class="sidenav-trigger"><i class="fas fa-times"></i></button>
         <img
-          class="logo dropshadow-1"
+          class="sidenav-logo dropshadow-1"
           src="https://www.ps-ecublens.ch/wp-content/uploads/2019/05/img-logo-lg.png"
           alt="Axentix Logo"
         />
@@ -246,11 +246,11 @@
         //   activeClass: false
         // }
       });
-      var tt = new Axentix.Collapsible('#sidenav-collapsible3', {
-        // sidenav: {
-        //   activeClass: false
-        // }
-      });
+      // var tt = new Axentix.Collapsible('#sidenav-collapsible3', {
+      //   // sidenav: {
+      //   //   activeClass: false
+      //   // }
+      // });
       var modal = new Axentix.Modal('#example-modal', {
         bodyScrolling: true,
       });
