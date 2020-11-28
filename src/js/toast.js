@@ -25,11 +25,9 @@
      */
 
     constructor(content, options) {
-      if (Axentix.toastInstanceExist) {
+      if (Axentix.getInstanceByType('Toast').length > 0) {
         console.error("[Axentix] Toast: Don't try to create multiple toast instances");
         return;
-      } else {
-        Axentix.toastInstanceExist = true;
       }
 
       Axentix.instances.push({ type: 'Toast', instance: this });
@@ -40,6 +38,12 @@
       this.options.direction = this.options.direction.toLowerCase();
       this.options.mobileDirection = this.options.mobileDirection.toLowerCase();
       this.toasters = {};
+    }
+
+    destroy() {
+      Axentix.createEvent(this.el, 'component.destroy');
+      const index = Axentix.instances.findIndex((ins) => ins.instance.el.id === this.el.id);
+      Axentix.instances.splice(index, 1);
     }
 
     /**

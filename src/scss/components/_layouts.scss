@@ -1,5 +1,4 @@
 /** Different layouts **/
-// Basic layout
 .layout {
   display: grid;
   grid-gap: 0;
@@ -24,7 +23,6 @@
   }
 }
 
-// With sidenav
 .layout.with-sidenav {
   grid-template-areas:
     'header header'
@@ -38,6 +36,22 @@
       'main sidenav'
       'footer footer';
     grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  &.sidenav-both {
+    grid-template-areas:
+      'header header header'
+      'sidenav-left main sidenav-right'
+      'footer footer footer';
+    grid-template-columns: auto minmax(0, 1fr) auto;
+
+    .sidenav {
+      grid-area: sidenav-left;
+
+      &.right-aligned {
+        grid-area: sidenav-right;
+      }
+    }
   }
 
   @include responsive('sm-down') {
@@ -96,6 +110,16 @@
       z-index: $layouts-sidenav-fixed-zindex-mdup;
     }
 
+    &.sidenav-both {
+      .sidenav.fixed {
+        grid-area: sidenav-left;
+
+        &.right-aligned {
+          grid-area: sidenav-right;
+        }
+      }
+    }
+
     &.fixed-sidenav {
       header,
       main {
@@ -125,6 +149,26 @@
         footer {
           padding-right: $sidenav-width + 0.5rem;
           padding-left: 0.5rem;
+        }
+      }
+
+      &.sidenav-both {
+        header,
+        main {
+          padding-right: $sidenav-width;
+          padding-left: $sidenav-width;
+        }
+
+        &:not(.under-navbar) {
+          .navbar-fixed .navbar {
+            margin-right: $sidenav-width;
+            margin-left: $sidenav-width;
+          }
+        }
+
+        footer {
+          padding-right: $sidenav-width + 0.5rem;
+          padding-left: $sidenav-width + 0.5rem;
         }
       }
 
@@ -167,6 +211,60 @@
           footer {
             padding-right: $sidenav-large-width + 0.5rem;
             padding-left: 0.5rem;
+          }
+        }
+
+        &.sidenav-both {
+          header,
+          main {
+            padding-right: $sidenav-large-width;
+            padding-left: $sidenav-large-width;
+          }
+
+          &:not(.under-navbar) {
+            .navbar-fixed .navbar {
+              margin-right: $sidenav-large-width;
+              margin-left: $sidenav-large-width;
+            }
+          }
+
+          footer {
+            padding-right: $sidenav-large-width + 0.5rem;
+            padding-left: $sidenav-large-width + 0.5rem;
+          }
+
+          &.sidenav-large-right {
+            header,
+            main {
+              padding-left: $sidenav-width;
+            }
+
+            &:not(.under-navbar) {
+              .navbar-fixed .navbar {
+                margin-left: $sidenav-width;
+              }
+            }
+
+            footer {
+              padding-left: $sidenav-width + 0.5rem;
+            }
+          }
+
+          &.sidenav-large-left {
+            header,
+            main {
+              padding-right: $sidenav-width;
+            }
+
+            &:not(.under-navbar) {
+              .navbar-fixed .navbar {
+                margin-right: $sidenav-width;
+              }
+            }
+
+            footer {
+              padding-right: $sidenav-width + 0.5rem;
+            }
           }
         }
       }

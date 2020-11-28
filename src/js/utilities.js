@@ -54,7 +54,7 @@ Axentix.getInstanceByType = (type) => {
 };
 
 Axentix.getInstance = (element) => {
-  const el = Axentix.instances.find((ins) => '#' + ins.instance.el.id === element);
+  const el = Axentix.instances.find((ins) => ins.type !== 'Toast' && '#' + ins.instance.el.id === element);
 
   if (el) {
     return el.instance;
@@ -80,4 +80,12 @@ Axentix.reset = (element) => {
 
 Axentix.resetAll = () => {
   Axentix.instances.map((ins) => ins.instance.reset());
+};
+
+Axentix.destroy = (element) => {
+  Axentix.getInstance(element).destroy();
+};
+
+Axentix.destroyAll = () => {
+  Axentix.instances.map((ins) => ins.instance.destroy());
 };

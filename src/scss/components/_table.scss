@@ -95,6 +95,7 @@
 .responsive-table-2 {
   width: 100%;
   display: block;
+  overflow-x: auto;
 
   @include responsive('xs') {
     .table {

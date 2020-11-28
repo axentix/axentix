@@ -1,3 +1,92 @@
+# 1.0.0 - 2020-11-28
+
+- ADDED
+  - Axentix JavaScript
+    - Javascript data-init
+    - JS isolation inside Axentix class
+    - ESM JS file, allowing import / require with autocompletion
+    - Definition file
+    - Axentix.instances array containing all axentix components instances
+    - `Axentix.Config` with methods -> register plugns
+    - `Axentix.getInstanceByType(type)` utilities
+    - `destroy()` option to all our components
+    - `npm run size` show the estimates size of our js and css in various format
+  - Components
+    - Tooltips
+    - Lightbox
+    - Scrollspy
+    - Caroulix swipe & mouse handling
+    - Toast offset option
+    - Form file
+  - Layouts
+    - Double sidenav handling 
+  - Tabs
+    - `next()` & `prev()` methods on Tabs with events
+  - Dropdown
+    - `autoClose` dropdown option
+    - `preventViewport` dropdown option
+  - Axentix CSS
+    - `.spinner-txt` class 
+    - Progress bar width transition
+    - `.responsive-media` class
+    - `.fx-grow` classes
+    - `.d-` display classes
+    - `.bd-{color}` border colors
+    - `.bd-{x}, bd-{position}-{x}, bd-{style}, bd-{position}-{style}` classes
+    - `.h{x}` option
+- REWORKED
+  - Cards
+  - Buttons
+  - Material forms
+  - Collapsible autoClose option
+- IMPROVED
+  - Table
+    - Responsive methods
+  - Toast 
+    - Scss optimization
+    - Double instanciation
+  - Collapsible
+    - Rename option autoCloseOtherCollapsible to autoClose
+  - Footer
+    - Increase padding on footer
+  - Sidenav
+    - `.sidenav-logo` class instead of `.logo` 
+  - Clean both css and js code
+  - Core & Data are now showing errors
+  - Components error handling
+  - Prevent double instanciation of the same element
+  - Registration of our js components
+  - All js options `animationDelay` changed to `animationDuration`
+  - Remove all `@extends` in source files
+  - `word-break: normal` to entire table inside a card
+  - `Axentix.wrap()` utilities
+  - Border syntax
+  - Update definition file
+  - Update dependencies
+  - Improve compilation
+- BUGFIXES
+  - Toast
+    - `Axentix.getInstance()` was throwing an error
+  - Tooltip 
+    - Z-index improved
+  - Material forms
+    - textarea active label color
+    - default background-color with some browsers
+    - textarea spacement
+    - border not set correctly inside collapsible in some case
+    - select don't init correctly with empty selected value
+    - `.form-control` doesn't inherit colors from parent
+    - Checkbox bug with a lot of text
+  - Collapsible
+    - resize event
+  - Lightbox 
+    - parents `overflow: hidden` handling
+  - Buttons
+    - Button circle width inside inline form
+    - Outline buttons disabled state
+  - Layout can exceed viewport size in specific case (for example, with a `.responsive-table`)
+  - SVG Icon encoding of select
+
 # 1.0.0-beta.3.1 - 2020-11-07
 
 - ADDED

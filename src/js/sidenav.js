@@ -43,19 +43,28 @@
       this.sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
       this.isActive = false;
       this.isFixed = this.el.classList.contains('fixed');
-      this.isLarge = this.el.classList.contains('large');
+
+      const sidenavFixed = Axentix.getInstanceByType('Sidenav').find((sidenav) => sidenav.isFixed);
+      this.firstSidenavInit = sidenavFixed && sidenavFixed.el === this.el;
+
+      this.extraClasses = [
+        'sidenav-right',
+        'sidenav-both',
+        'sidenav-large',
+        'sidenav-large-left',
+        'sidenav-large-right',
+      ];
 
       this.layoutEl = document.querySelector('.layout');
+
+      this.layoutEl && this.firstSidenavInit ? this._cleanLayout() : '';
 
       this._setupListeners();
 
       this.options.overlay ? this._createOverlay() : '';
 
-      this.el.classList.contains('large') && this.layoutEl
-        ? this.layoutEl.classList.add('sidenav-large')
-        : this.layoutEl.classList.remove('sidenav-large');
+      this.layoutEl && this.isFixed ? this._handleMultipleSidenav() : '';
 
-      this._handleRightSidenav();
       this.el.style.transitionDuration = this.options.animationDuration + 'ms';
     }
 
@@ -87,17 +96,58 @@
       this.windowResizeRef = undefined;
     }
 
-    /**
-     * Handle right sidenav detection
-     */
-    _handleRightSidenav() {
-      const sidenavs = document.querySelectorAll('.sidenav');
-      const found = Array.from(sidenavs).some((sidenav) => sidenav.classList.contains('right-aligned'));
+    destroy() {
+      Axentix.createEvent(this.el, 'component.destroy');
+      this._removeListeners();
 
-      if (found && this.layoutEl && !this.layoutEl.classList.contains('sidenav-right')) {
+      this.layoutEl ? this._cleanLayout() : '';
+
+      const index = Axentix.instances.findIndex((ins) => ins.instance.el.id === this.el.id);
+      Axentix.instances.splice(index, 1);
+    }
+
+    _cleanLayout() {
+      this.extraClasses.map((classes) => this.layoutEl.classList.remove(classes));
+    }
+
+    _handleMultipleSidenav() {
+      if (!this.firstSidenavInit) {
+        return;
+      }
+
+      const sidenavs = Array.from(document.querySelectorAll('.sidenav')).filter((sidenav) =>
+        sidenav.classList.contains('fixed')
+      );
+
+      const { sidenavsRight, sidenavsLeft } = sidenavs.reduce(
+        (acc, sidenav) => {
+          sidenav.classList.contains('right-aligned')
+            ? acc.sidenavsRight.push(sidenav)
+            : acc.sidenavsLeft.push(sidenav);
+          return acc;
+        },
+        { sidenavsRight: [], sidenavsLeft: [] }
+      );
+
+      const isBoth = sidenavsLeft.length > 0 && sidenavsRight.length > 0;
+      const sidenavRightLarge = sidenavsRight.some((sidenav) => sidenav.classList.contains('large'));
+      const sidenavLeftLarge = sidenavsLeft.some((sidenav) => sidenav.classList.contains('large'));
+      const isLarge = sidenavRightLarge || sidenavLeftLarge;
+
+      isLarge ? this.layoutEl.classList.add('sidenav-large') : '';
+
+      if (sidenavsRight.length > 0 && !isBoth) {
         this.layoutEl.classList.add('sidenav-right');
-      } else if (!found && this.layoutEl && this.layoutEl.classList.contains('sidenav-right')) {
-        this.layoutEl.classList.remove('sidenav-right');
+      } else if (isBoth) {
+        this.layoutEl.classList.add('sidenav-both');
+      }
+
+      if (isLarge && isBoth) {
+        if (sidenavRightLarge && !sidenavLeftLarge) {
+          this.layoutEl.classList.add('sidenav-large-right');
+        } else if (!sidenavRightLarge && sidenavLeftLarge) {
+          this.layoutEl.classList.add('sidenav-large-left');
+        }
       }
     }
 
