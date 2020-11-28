@@ -18,7 +18,7 @@
     - Caroulix swipe & mouse handling
     - Toast offset option
     - Form file
-  - Sidenav
+  - Layouts
     - Double sidenav handling 
   - Tabs
     - `next()` & `prev()` methods on Tabs with events
@@ -64,7 +64,6 @@
   - Update definition file
   - Update dependencies
   - Improve compilation
-
 - BUGFIXES
   - Toast
     - `Axentix.getInstance()` was throwing an error
@@ -87,20 +86,6 @@
     - Outline buttons disabled state
   - Layout can exceed viewport size in specific case (for example, with a `.responsive-table`)
   - SVG Icon encoding of select
-
-# 1.0.0-beta.4 - Under development
-
-- ADDED
-  - `.destroy()` method to all of our components
-  - `npm run size` show the estimates size of our js and css in various format
-- REMOVED
-- IMPROVED
-  - Toast double instanciation
-  - Enhance caroulix touch handling
-  - Update dependencies
-- BUGFIXES
-  - `Axentix.getInstance()` can throw error with Toast
-  - Lightbox parents `overflow: hidden` handling
 
 # 1.0.0-beta.3.1 - 2020-11-07
 

@@ -7,6 +7,7 @@ export namespace Axentix {
   class AxentixComponent {
     sync(): void;
     reset(): void;
+    destroy(): void;
   }
 
   class Caroulix extends AxentixComponent {
@@ -361,6 +362,7 @@ export namespace Axentix {
 
     show(): void;
     change(content: string, options: ToastOptions): void;
+    destroy(): void;
   }
 
   interface ToastOptions {
