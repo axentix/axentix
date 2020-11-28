@@ -553,6 +553,9 @@ export namespace Axentix {
 
   function reset(element: string): void;
   function resetAll(): void;
+
+  function destroy(element: string): void;
+  function destroyAll(): void;
 }
 
 export class Axentix {

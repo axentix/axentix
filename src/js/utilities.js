@@ -81,3 +81,11 @@ Axentix.reset = (element) => {
 Axentix.resetAll = () => {
   Axentix.instances.map((ins) => ins.instance.reset());
 };
+
+Axentix.destroy = (element) => {
+  Axentix.getInstance(element).destroy();
+};
+
+Axentix.destroyAll = () => {
+  Axentix.instances.map((ins) => ins.instance.destroy());
+};
