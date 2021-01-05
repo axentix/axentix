@@ -49,8 +49,8 @@
   ],
   "engine": "node >= 10",
   "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/preset-env": "^7.12.7",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
     "@xelzs/code-size": "^1.1.0",
     "browser-sync": "^2.26.13",
     "fibers": "^4.0.3",
@@ -63,6 +63,6 @@
     "gulp-insert": "^0.5.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.1.0",
-    "sass": "^1.29.0"
+    "sass": "^1.32.0"
   }
 }
