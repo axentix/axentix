@@ -18,12 +18,6 @@ Axentix.getComponentOptions = (component, options, el, isLoadedWithData) => {
   );
 };
 
-/**
- * Wrap content inside an element (<div> by default)
- * @param {Array<Element>} target
- * @param {Element} wrapper
- * @return {Element}
- */
 Axentix.wrap = (target, wrapper = document.createElement('div')) => {
   const parent = target[0].parentElement;
   parent.insertBefore(wrapper, target[0]);
@@ -31,12 +25,10 @@ Axentix.wrap = (target, wrapper = document.createElement('div')) => {
   return wrapper;
 };
 
-/**
- * Create custom event
- * @param {Element} element
- * @param {string} eventName
- * @param {Object} extraData
- */
+Axentix.unwrap = (wrapper) => {
+  wrapper.replaceWith(...wrapper.childNodes);
+};
+
 Axentix.createEvent = (element, eventName, extraData) => {
   const event = new CustomEvent('ax.' + eventName, {
     detail: extraData || {},

@@ -35,26 +35,20 @@
       <a href="#" class="sidenav-link">Link 2</a>
       <a href="#" class="sidenav-link">Link 3</a>
       <a href="#" class="sidenav-link">Link 4</a>
-      <div class="sidenav-footer viride">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </div>
+      <div class="sidenav-footer viride">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
     </div>
 
     <main class="container">
-      <div class="grix xs3 vstretch">
+      <div class="grix xs3 vstretch" id="toto">
         <div class="card grey rounded-3 hoverable-1 light-4">
-          <div class="card-header primary">
-            Header
-          </div>
+          <div class="card-header primary">Header</div>
           <div class="card-content">Content</div>
           <div class="divider"></div>
           <div class="card-footer secondary">Footer</div>
         </div>
 
         <div class="card grey rounded-3 hoverable-1 light-4">
-          <div class="card-header">
-            Header
-          </div>
+          <div class="card-header">Header</div>
           <div class="card-content">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto unde perferendis neque non, ratione
             totam beatae illo quo esse aspernatur saepe ad perspiciatis. Accusantium ipsam tempora ullam quam
@@ -65,9 +59,7 @@
         </div>
         <div class="card grey rounded-3 hoverable-1 light-4">
           <div class="card-content">
-            <div class="card-header">
-              Header
-            </div>
+            <div class="card-header">Header</div>
             Content
           </div>
           <div class="divider"></div>
@@ -75,28 +67,23 @@
         </div>
 
         <div class="card grey rounded-3 hoverable-1 light-4 col-xs2 fx-row">
-          <div class="primary flex vcenter fx-center px-4">
-            hey les amis
-          </div>
+          <div class="primary flex vcenter fx-center px-4">hey les amis</div>
           <div class="flex fx-col fx-grow">
-            <div class="card-header">
-              Header
-            </div>
-            <div class="card-content">
-              Content
-            </div>
+            <div class="card-header">Header</div>
+            <div class="card-content">Content</div>
             <div class="card-footer">Footer</div>
           </div>
         </div>
       </div>
     </main>
 
-    <footer class="footer primary">
-      Copyright © 2019 - Example
-    </footer>
+    <footer class="footer primary">Copyright © 2019 - Example</footer>
     <script src="../dist/js/axentix.min.js"></script>
     <script>
       var sidenav = new Axentix.Sidenav('#example-sidenav');
+
+      const to = document.querySelector('#toto');
+      Axentix.unwrap(to);
     </script>
   </body>
 </html>

@@ -1,3 +1,11 @@
+# 1.1.0 - Under development
+
+- ADDED
+  - `Axentix.unwrap()` utility
+- REMOVED
+- IMPROVED
+- BUGFIXES
+
 # 1.0.0 - 2020-11-28
 
 - ADDED
