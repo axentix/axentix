@@ -5,6 +5,7 @@
 - REMOVED
 - IMPROVED
 - BUGFIXES
+  - Lightbox overflowX and overflowY handling
 
 # 1.0.0 - 2020-11-28
 
