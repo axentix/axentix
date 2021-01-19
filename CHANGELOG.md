@@ -1,9 +1,12 @@
 # 1.1.0 - Under development
 
 - ADDED
+  - `font-s{x}` classes
   - `Axentix.unwrap()` utility
 - REMOVED
 - IMPROVED
+  - Update definition file
+  - Update dependencies
 - BUGFIXES
   - Lightbox overflowX and overflowY handling
 
