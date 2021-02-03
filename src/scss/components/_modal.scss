@@ -7,14 +7,14 @@
   width: 50vw;
   transition-timing-function: ease-in-out;
   transition-property: transform, opacity;
-  transform: scaleX(0) scaleY(0);
+  transform: scale(0);
   opacity: 0;
   top: 10%;
   max-height: 80%;
   overflow: auto;
 
   &.active {
-    transform: scaleX(1) scaleY(1);
+    transform: scale(1);
     opacity: 1;
   }
 
@@ -55,6 +55,32 @@
 
     &.active {
       top: 10%;
+    }
+  }
+
+  &.bouncing {
+    transition: unset !important;
+    animation: bouncing;
+    animation-timing-function: ease;
+    // animation-duration: .4s;
+    will-change: transform;
+  }
+
+  @keyframes bouncing {
+    from {
+      transform: scale(0);
+    }
+
+    50% {
+      transform: scale(1.1);
+    }
+
+    75% {
+      transform: scale(0.9);
+    }
+
+    to {
+      transform: scale(1);
     }
   }
 }

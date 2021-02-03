@@ -1,8 +1,10 @@
-# 1.1.0 - Under development
+# 1.1.0 - 2021-02-03
 
 - ADDED
   - `font-s{x}` classes
   - `Axentix.unwrap()` utility
+  - Modal bouncing animation
+  - `flex-wrap` utilities
 - REMOVED
 - IMPROVED
   - Update definition file

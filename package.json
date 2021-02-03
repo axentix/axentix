@@ -12,7 +12,7 @@
     "build:sass-min": "gulp sassmin",
     "build:sass": "gulp sass",
     "build": "gulp",
-    "watch": "gulp watch",
+    "watch": "npm run build && gulp watch",
     "size": "npm run size:css && npm run size:js",
     "size:css": "npm run build:sass && code-size -f dist/css/axentix.css -bgm -l css",
     "size:js": "npm run build:js && code-size -f dist/js/axentix.js -bgm -l js"
