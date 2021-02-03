@@ -47,6 +47,7 @@
       this._setupListeners();
       this.options.overlay ? this._createOverlay() : '';
       this.el.style.transitionDuration = this.options.animationDuration + 'ms';
+      this.el.style.animationDuration = this.options.animationDuration + 'ms';
     }
 
     /**

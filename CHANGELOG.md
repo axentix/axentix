@@ -1,3 +1,17 @@
+# 1.1.0 - 2021-02-03
+
+- ADDED
+  - `font-s{x}` classes
+  - `Axentix.unwrap()` utility
+  - Modal bouncing animation
+  - `flex-wrap` utilities
+- REMOVED
+- IMPROVED
+  - Update definition file
+  - Update dependencies
+- BUGFIXES
+  - Lightbox overflowX and overflowY handling
+
 # 1.0.0 - 2020-11-28
 
 - ADDED

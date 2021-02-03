@@ -123,15 +123,22 @@
     _setOverflowParents() {
       this.overflowParents = [];
       for (let elem = this.el; elem && elem !== document; elem = elem.parentNode) {
-        if (window.getComputedStyle(elem).overflow === 'hidden') {
+        const elementSyle = window.getComputedStyle(elem);
+        if (
+          elementSyle.overflow === 'hidden' ||
+          elementSyle.overflowX === 'hidden' ||
+          elementSyle.overflowY === 'hidden'
+        ) {
           this.overflowParents.push(elem);
-          elem.style.overflow = 'visible';
+          elem.style.setProperty('overflow', 'visible', 'important');
+          document.body.style.overflowX = 'hidden';
         }
       }
     }
 
     _unsetOverflowParents() {
       this.overflowParents.map((parent) => (parent.style.overflow = ''));
+      document.body.style.overflowX = '';
     }
 
     /**

@@ -1,4 +1,4 @@
-/*** Here are defined all variables that was used by Axentix sass files ***/
+/*** Here are defined all variables that was used by Axentix scss files ***/
 /* IMPORTANT : Don't forget to add !default flag to all variables in this file */
 
 // Breakpoints based on FlexLayout by Angular | https://github.com/angular/flex-layout/wiki/Responsive-API
@@ -88,7 +88,6 @@ $cursors: 'default', 'pointer', 'not-allowed', 'grab', 'wait', 'zoom-in', 'zoom-
 $overflows: 'visible', 'auto', 'hidden', 'scroll', 'initial', 'inherit' !default;
 
 // Shadow
-
 $light-shadows: (
   '1': '0 6px 10px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
   '2': '0 8px 12px -2px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
@@ -105,8 +104,8 @@ $shadows: (
   '5': '0 8px 9px 0 rgba(0, 0, 0, 0.12),  0 10px 25px 8px rgba(0,0,0,0.15)',
 ) !default;
 
-$light-hoverable-delay: 0.3s;
-$hoverable-delay: 0.2s;
+$light-hoverable-delay: 0.3s !default;
+$hoverable-delay: 0.2s !default;
 
 $light-hoverable: (
   '1': '0 11px 10px -5px rgba(0, 0, 0, 0.1), 0 9px 6px -2px rgba(0, 0, 0, 0.06)',
@@ -188,7 +187,7 @@ $dropdown-zindex-navbar: 20 !default;
 $dropdown-zindex-sidenav: 30 !default;
 
 // Margins & paddings
-$mp-base-space: 1rem;
+$mp-base-space: 1rem !default;
 $mp-spaces: (
   '0': 0,
   '1': $mp-base-space * 0.25,
@@ -224,7 +223,7 @@ $lh-rem: (
 $displays: 'block', 'flex', 'grid', 'table', 'inline', 'inline-block', 'inline-flex', 'inline-table' !default;
 
 // Borders
-$bd-base-width: 1px;
+$bd-base-width: 1px !default;
 $bd-width: (
   '0': 0,
   '1': $bd-base-width * 1,
@@ -238,3 +237,19 @@ $bd-style: 'dashed', 'dotted', 'double', 'groove', 'hidden', 'none', 'inset', 'o
   'revert' !default;
 
 $tooltip-z-index: 999 !default;
+
+$font-base-size: 1rem !default;
+$font-sizes: (
+  '1': $font-base-size * 0.75,
+  '2': $font-base-size * 1,
+  '3': $font-base-size * 1.25,
+  '4': $font-base-size * 1.5,
+  '5': $font-base-size * 1.75,
+  '6': $font-base-size * 2,
+  '7': $font-base-size * 2.5,
+  '8': $font-base-size * 3,
+  '9': $font-base-size * 3.5,
+  '10': $font-base-size * 4.25,
+  '11': $font-base-size * 5,
+  '12': $font-base-size * 6,
+) !default;

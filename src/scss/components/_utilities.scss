@@ -7,6 +7,12 @@
   }
 }
 
+@each $name, $size in $font-sizes {
+  .font-s#{$name} {
+    font-size: #{$size} !important;
+  }
+}
+
 /// Shadows
 @import './utilities/shadows';
 
@@ -46,6 +52,18 @@
 
 .fx-grow {
   flex-grow: 1 !important;
+}
+
+.fx-wrap {
+  flex-wrap: wrap !important;
+}
+
+.fx-nowrap {
+  flex-wrap: nowrap !important;
+}
+
+.fx-wrap-reverse {
+  flex-wrap: wrap-reverse !important;
 }
 
 // Hide elements
