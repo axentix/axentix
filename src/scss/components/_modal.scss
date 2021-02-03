@@ -12,6 +12,7 @@
   top: 10%;
   max-height: 80%;
   overflow: auto;
+  will-change: transform, opacity;
 
   &.active {
     transform: scale(1);
@@ -50,6 +51,7 @@
 
   &.falling {
     top: -20%;
+    will-change: opacity, top;
     transition-property: top, opacity;
     transform: none;
 
@@ -59,24 +61,23 @@
   }
 
   &.bouncing {
-    transition: unset !important;
     animation: bouncing;
     animation-timing-function: ease;
-    // animation-duration: .4s;
-    will-change: transform;
   }
 
   @keyframes bouncing {
     from {
       transform: scale(0);
+      opacity: 0;
     }
 
     50% {
-      transform: scale(1.1);
+      transform: scale(1.05);
+      opacity: 1;
     }
 
     75% {
-      transform: scale(0.9);
+      transform: scale(0.95);
     }
 
     to {
