@@ -43,7 +43,7 @@
 
 Axentix is an open source Framework based on CSS Grid using HTML, CSS and JS. The easy layout control and grid system makes it one of the most easy to learn framework.
 
-![home gif](https://useaxentix.com/img/giff-home.gif)
+![home gif](https://useaxentix.com/img/gif-home.gif)
 
 ## Quickstart
 
