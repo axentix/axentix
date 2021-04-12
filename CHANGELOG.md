@@ -1,6 +1,7 @@
 # 1.3.1 - 2021-06-15
 
 - ADDED
+  - Button group
 - REMOVED
 - IMPROVED
   - Set all definition file options optional
