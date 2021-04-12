@@ -1,3 +1,10 @@
+# 1.2.0 - Under development
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+
 # 1.1.0 - 2021-02-03
 
 - ADDED
