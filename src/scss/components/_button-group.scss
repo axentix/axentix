@@ -4,6 +4,10 @@
   width: fit-content;
 
   &:not(.btn-group-vertical) {
+    .btn {
+      height: unset;
+    }
+
     :first-child {
       border-right-width: 1px;
       border-top-left-radius: inherit;
@@ -27,6 +31,10 @@
 
   &.btn-group-vertical {
     flex-direction: column;
+
+    .btn {
+      width: unset;
+    }
 
     :first-child {
       border-bottom-width: 1px;

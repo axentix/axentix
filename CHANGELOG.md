@@ -1,6 +1,7 @@
 # 1.2.0 - Under development
 
 - ADDED
+  - Button group
 - REMOVED
 - IMPROVED
 - BUGFIXES
