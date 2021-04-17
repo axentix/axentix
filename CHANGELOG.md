@@ -2,6 +2,7 @@
 
 - ADDED
   - Button group
+  - Background transition to sidenav overlay
 - REMOVED
 - IMPROVED
   - Set all definition file options optional
