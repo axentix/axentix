@@ -10,7 +10,7 @@
   @if ($name == 'xs') {
     @for $i from 1 through $max-cols {
       .grix.#{$name}#{$i} {
-        grid-template-columns: repeat($i, 1fr);
+        grid-template-columns: repeat($i, minmax(0, 1fr));
       }
 
       .col-#{$name}#{$i} {
@@ -33,7 +33,7 @@
     @for $i from 1 through $max-cols {
       @media #{$value} {
         .grix.#{$name}#{$i} {
-          grid-template-columns: repeat($i, 1fr);
+          grid-template-columns: repeat($i, minmax(0, 1fr));
         }
 
         .col-#{$name}#{$i} {

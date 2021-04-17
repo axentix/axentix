@@ -5,6 +5,7 @@
 - REMOVED
 - IMPROVED
 - BUGFIXES
+  - In specific case grix children can exceed width define by the grix
 
 # 1.1.0 - 2021-02-03
 
