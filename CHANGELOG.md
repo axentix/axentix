@@ -2,6 +2,7 @@
 
 - ADDED
   - Button group
+  - Background transition to sidenav overlay
 - REMOVED
 - IMPROVED
   - Include update of file input inside `Axentix.updateInputs()` method

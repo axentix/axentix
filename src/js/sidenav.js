@@ -157,6 +157,7 @@
     _createOverlay() {
       this.overlayElement = document.createElement('div');
       this.overlayElement.classList.add('sidenav-overlay');
+      this.overlayElement.style.transitionDuration = this.options.animationDuration + 'ms';
       this.overlayElement.dataset.target = this.el.id;
     }
 
@@ -227,9 +228,15 @@
         if (state) {
           this.overlayElement.addEventListener('click', this.listenerRef);
           document.body.appendChild(this.overlayElement);
+          setTimeout(() => {
+            this.overlayElement.classList.add('active');
+          }, 50);
         } else {
-          this.overlayElement.removeEventListener('click', this.listenerRef);
-          document.body.removeChild(this.overlayElement);
+          this.overlayElement.classList.remove('active');
+          setTimeout(() => {
+            this.overlayElement.removeEventListener('click', this.listenerRef);
+            document.body.removeChild(this.overlayElement);
+          }, this.options.animationDuration);
         }
       }
     }

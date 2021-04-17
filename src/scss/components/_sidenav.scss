@@ -120,7 +120,12 @@
   top: 0;
   height: 100%;
   z-index: $sidenav-overlay-zindex;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color ease;
+
+  &.active {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 }
 
 .sidenav .dropdown {
