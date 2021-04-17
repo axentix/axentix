@@ -158,7 +158,7 @@ Axentix.Forms = (() => {
     input.addEventListener('change', input.handleRef);
   };
 
-  Axentix.updateInputsFile = () => {
+  const updateInputsFile = () => {
     const elements = Array.from(document.querySelectorAll('.form-file'));
     try {
       elements.map(setupFormFile);
@@ -177,6 +177,8 @@ Axentix.Forms = (() => {
     const setupInputs = Array.from(inputElements).filter((el) => !el.isInit);
     const detectInputs = Array.from(inputElements).filter((el) => el.isInit);
 
+    updateInputsFile();
+
     try {
       setupInputs.length > 0 ? setupFormsListeners(setupInputs) : '';
       detectInputs.length > 0 ? detectAllInputs(detectInputs) : '';
@@ -188,4 +190,3 @@ Axentix.Forms = (() => {
 
 // Init
 document.addEventListener('DOMContentLoaded', () => Axentix.updateInputs());
-document.addEventListener('DOMContentLoaded', () => Axentix.updateInputsFile());

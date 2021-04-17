@@ -4,6 +4,7 @@
   - Button group
 - REMOVED
 - IMPROVED
+  - Include update of file input inside `Axentix.updateInputs()` method
 - BUGFIXES
   - In specific case grix children can exceed width define by the grix
 
