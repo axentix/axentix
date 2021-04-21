@@ -143,12 +143,10 @@
      * Get all items
      */
     _getItems() {
-      this.tabItems = Array.from(this.el.children).reduce((acc, child) => {
-        !child.classList.contains('tab-menu') && !child.classList.contains('tab-arrow')
-          ? acc.push(child)
-          : '';
-        return acc;
-      }, []);
+      this.tabItems = Array.from(this.tabLinks).map((link) => {
+        const id = link.children[0].getAttribute('href');
+        return this.el.querySelector(id);
+      });
     }
 
     /**
