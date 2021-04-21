@@ -6,6 +6,7 @@
 - REMOVED
 - IMPROVED
   - Include update of file input inside `Axentix.updateInputs()` method
+  - Switch `normalize` to `modern-normalize`
 - BUGFIXES
   - In specific case grix children can exceed width define by the grix
 
