@@ -4,6 +4,7 @@
   - Button group
   - `.form-group`, support of prefix / suffix on inputs 
   - Background transition to sidenav overlay
+  - Css variable to custom the tab bar border
 - REMOVED
 - IMPROVED
   - Include update of file input inside `Axentix.updateInputs()` method

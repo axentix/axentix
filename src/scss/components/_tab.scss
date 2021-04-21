@@ -15,7 +15,7 @@
     white-space: nowrap;
     margin: 0;
     padding: 0;
-    --tab-active-color: #{getColor('primary')};
+    --tab-bar-bottom: 0.1rem solid #{getColor('primary')};
 
     .tab-link {
       position: relative;
@@ -36,7 +36,7 @@
       bottom: 0;
       left: var(--tab-bar-left-offset);
       right: var(--tab-bar-right-offset);
-      border-bottom: 0.1rem solid var(--tab-active-color);
+      border-bottom: var(--tab-bar-bottom);
       transition-property: left, right;
       transition-timing-function: ease;
       transition-duration: inherit;
