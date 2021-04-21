@@ -68,7 +68,7 @@
 
       this._setupListeners();
 
-      this.el.style.transitionDuration = this.options.animationDuration + 'ms';
+      this.tabMenu.style.transitionDuration = this.options.animationDuration + 'ms';
       this.options.animationType === 'slide' ? this._enableSlideAnimation() : this.updateActiveElement();
     }
 
