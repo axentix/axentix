@@ -2,13 +2,17 @@
 
 - ADDED
   - Button group
+  - `.form-group`, support of prefix / suffix on inputs 
   - Background transition to sidenav overlay
 - REMOVED
 - IMPROVED
   - Include update of file input inside `Axentix.updateInputs()` method
   - Switch `normalize` to `modern-normalize`
+  - Possibility to change border-color on classic form input
+  - Update dependencies
 - BUGFIXES
   - In specific case grix children can exceed width define by the grix
+  - Form material handle now padding & `.form-group`
 
 # 1.1.0 - 2021-02-03
 

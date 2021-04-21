@@ -49,29 +49,33 @@
         Open sidenav
       </button>
       <form class="container form-material">
-        <div class="grix xs1 sm2">
-          <div class="form-field form-rtl">
-            <input type="text" id="name" class="form-control" />
-            <label for="name">Name</label>
+        <div class="grix xs1 md2">
+          <div class="form-field">
+            <div class="form-group rounded-1">
+              <span class="form-group-txt">@</span>
+              <label for="name">Name</label>
+              <input type="text" id="name" class="form-control" />
+              <span class="form-group-txt"><3</span>
+            </div>
           </div>
           <div class="form-field">
             <input type="date" id="date" class="form-control" />
             <label for="date">Date</label>
           </div>
-          <div class="form-field col-sm2">
+          <div class="form-field col-md2">
             <input type="email" id="email" class="form-control" placeholder="contact@example.com" />
             <label for="email">Email</label>
           </div>
-          <div class="form-field col-sm2">
+          <div class="form-field col-md2">
             <input type="text" id="subject" class="form-control" disabled placeholder="Disabled input" />
             <label for="subject">Subject</label>
           </div>
-          <div class="form-field col-sm2">
+          <div class="form-field col-md2">
             <input type="text" id="address" class="form-control" />
             <label for="address">Address</label>
             <span class="form-helper txt-center">You can click but not edit in readonly mode.</span>
           </div>
-          <div class="form-field col-sm2">
+          <div class="form-field col-md2">
             <label for="textarea">A textarea</label>
             <textarea id="textarea" class="form-control"></textarea>
           </div>
@@ -189,7 +193,7 @@
             </select>
           </div>
 
-          <div class="form-file col-xs2 mb-4">
+          <div class="form-file col-md2 mb-4">
             <label for="img" class="btn primary rounded-1 shadow-1">Image</label>
             <input type="file" name="img" id="img" multiple accept="image/png, image/jpeg" />
             <div class="form-file-path"></div>
