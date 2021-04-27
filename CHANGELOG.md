@@ -10,10 +10,12 @@
   - Include update of file input inside `Axentix.updateInputs()` method
   - Switch `normalize` to `modern-normalize`
   - Possibility to change border-color on classic form input
+  - Form material position rework
   - Update dependencies
 - BUGFIXES
   - In specific case grix children can exceed width define by the grix
   - Form material handle now padding & `.form-group`
+  - Sidenav opened throw error when resize event is called 
 
 # 1.1.0 - 2021-02-03
 

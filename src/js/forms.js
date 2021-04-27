@@ -87,10 +87,10 @@ Axentix.Forms = (() => {
    * @param {Element} formField
    */
   const setFormPosition = (input, formField) => {
-    const inputWidth = parseFloat(input.clientWidth),
-      inputLeftOffset = parseFloat(input.offsetLeft);
+    const inputWidth = input.clientWidth,
+      inputLeftOffset = input.offsetLeft;
 
-    const topOffset = parseFloat(input.clientHeight) + parseFloat(input.offsetTop) + 'px';
+    const topOffset = input.clientHeight + input.offsetTop + 'px';
 
     formField.style.setProperty('--form-material-position', topOffset);
 
@@ -101,7 +101,7 @@ Axentix.Forms = (() => {
 
     if (formField.classList.contains('form-rtl')) {
       side = 'right';
-      offset = parseFloat(formField.clientWidth) - inputWidth - inputLeftOffset;
+      offset = formField.clientWidth - inputWidth - inputLeftOffset;
     }
 
     formField.style.setProperty(`--form-material-${side}-offset`, offset + 'px');
