@@ -17,6 +17,7 @@
   - Form material can now handle padding & `.form-group`
   - Opened sidenav was throwing error when resize event was called 
   - Safari basic input border-radius removed
+  - Laptop touch screens caroulix handling
 
 # 1.1.0 - 2021-02-03
 

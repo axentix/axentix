@@ -6,6 +6,7 @@
   overflow: hidden;
   align-items: center;
   transition-property: none;
+  touch-action: pan-y;
 
   .caroulix-item {
     position: absolute;
