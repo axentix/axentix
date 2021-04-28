@@ -1,7 +1,6 @@
-/*** Some basics rules ***/
 *,
-::after,
-::before {
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
@@ -9,6 +8,11 @@ html {
   font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
+}
+
+textarea,
+input {
+  border-radius: 0;
 }
 
 h1,

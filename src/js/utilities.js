@@ -10,13 +10,12 @@ Axentix.extend = (...args) => {
   }, {});
 };
 
-Axentix.getComponentOptions = (component, options, el, isLoadedWithData) => {
-  return Axentix.extend(
+Axentix.getComponentOptions = (component, options, el, isLoadedWithData) =>
+  Axentix.extend(
     Axentix[component].getDefaultOptions(),
     isLoadedWithData ? {} : Axentix.DataDetection.formatOptions(component, el),
     options
   );
-};
 
 Axentix.wrap = (target, wrapper = document.createElement('div')) => {
   const parent = target[0].parentElement;
@@ -25,9 +24,7 @@ Axentix.wrap = (target, wrapper = document.createElement('div')) => {
   return wrapper;
 };
 
-Axentix.unwrap = (wrapper) => {
-  wrapper.replaceWith(...wrapper.childNodes);
-};
+Axentix.unwrap = (wrapper) => wrapper.replaceWith(...wrapper.childNodes);
 
 Axentix.createEvent = (element, eventName, extraData) => {
   const event = new CustomEvent('ax.' + eventName, {
@@ -37,15 +34,14 @@ Axentix.createEvent = (element, eventName, extraData) => {
   element.dispatchEvent(event);
 };
 
-Axentix.isTouchEnabled = () => {
-  return 'ontouchstart' in window || 
-  navigator.maxTouchPoints > 0 || 
-  navigator.msMaxTouchPoints > 0;
-};
+Axentix.isTouchEnabled = () =>
+  'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
-Axentix.getInstanceByType = (type) => {
-  return Axentix.instances.filter((ins) => ins.type === type).map((ins) => ins.instance);
-};
+Axentix.isPointerEnabled = () =>
+  !!window.PointerEvent && 'maxTouchPoints' in window.navigator && window.navigator.maxTouchPoints >= 0;
+
+Axentix.getInstanceByType = (type) =>
+  Axentix.instances.filter((ins) => ins.type === type).map((ins) => ins.instance);
 
 Axentix.getInstance = (element) => {
   const el = Axentix.instances.find((ins) => ins.type !== 'Toast' && '#' + ins.instance.el.id === element);
@@ -56,30 +52,16 @@ Axentix.getInstance = (element) => {
   return false;
 };
 
-Axentix.getAllInstances = () => {
-  return Axentix.instances;
-};
+Axentix.getAllInstances = () => Axentix.instances;
 
-Axentix.sync = (element) => {
-  Axentix.getInstance(element).sync();
-};
+Axentix.sync = (element) => Axentix.getInstance(element).sync();
 
-Axentix.syncAll = () => {
-  Axentix.instances.map((ins) => ins.instance.sync());
-};
+Axentix.syncAll = () => Axentix.instances.map((ins) => ins.instance.sync());
 
-Axentix.reset = (element) => {
-  Axentix.getInstance(element).reset();
-};
+Axentix.reset = (element) => Axentix.getInstance(element).reset();
 
-Axentix.resetAll = () => {
-  Axentix.instances.map((ins) => ins.instance.reset());
-};
+Axentix.resetAll = () => Axentix.instances.map((ins) => ins.instance.reset());
 
-Axentix.destroy = (element) => {
-  Axentix.getInstance(element).destroy();
-};
+Axentix.destroy = (element) => Axentix.getInstance(element).destroy();
 
-Axentix.destroyAll = () => {
-  Axentix.instances.map((ins) => ins.instance.destroy());
-};
+Axentix.destroyAll = () => Axentix.instances.map((ins) => ins.instance.destroy());

@@ -45,7 +45,7 @@
 
   &:focus {
     outline: 0;
-    border-color: transparent;
+    border-color: transparent !important;
     box-shadow: #{map-get($shadows, '1')};
   }
 
@@ -54,6 +54,36 @@
     background-color: #c8c8c8 !important;
     color: $form-disabled-color !important;
     border-color: #c8c8c8;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-wrap: wrap;
+
+  .form-group-txt {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .form-control {
+    width: auto;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .form-group-txt,
+  .form-control {
+    &:first-child {
+      border-bottom-left-radius: inherit;
+      border-top-left-radius: inherit;
+    }
+
+    &:last-child {
+      border-top-right-radius: inherit;
+      border-bottom-right-radius: inherit;
+    }
   }
 }
 
@@ -81,7 +111,7 @@
 
     .form-control {
       border: none;
-      border-bottom: 1px solid $material-border-color;
+      border-bottom: 1px solid $material-border-color !important;
       padding: 0;
       border-radius: 0;
       background-color: transparent;
@@ -106,7 +136,7 @@
       content: '';
       position: absolute;
       top: var(--form-material-position);
-      left: 0;
+      left: var(--form-material-left-offset);
       width: 0;
       border-bottom: var(--form-material-color) solid 0.1rem;
       transition: width $material-animation-duration ease;
@@ -114,7 +144,7 @@
 
     &.form-rtl::after {
       left: unset;
-      right: 0;
+      right: var(--form-material-right-offset);
     }
 
     &.active {
@@ -129,7 +159,7 @@
         }
 
         &::after {
-          width: 100%;
+          width: var(--form-material-width);
         }
       }
 

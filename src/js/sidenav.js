@@ -42,6 +42,7 @@
       Axentix.createEvent(this.el, 'sidenav.setup');
       this.sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
       this.isActive = false;
+      this.isAnimated = false;
       this.isFixed = this.el.classList.contains('fixed');
 
       const sidenavFixed = Axentix.getInstanceByType('Sidenav').find((sidenav) => sidenav.isFixed);
@@ -157,6 +158,7 @@
     _createOverlay() {
       this.overlayElement = document.createElement('div');
       this.overlayElement.classList.add('sidenav-overlay');
+      this.overlayElement.style.transitionDuration = this.options.animationDuration + 'ms';
       this.overlayElement.dataset.target = this.el.id;
     }
 
@@ -187,16 +189,18 @@
      * Open sidenav
      */
     open() {
-      if (this.isActive) {
+      if (this.isActive || this.isAnimated) {
         return;
       }
       Axentix.createEvent(this.el, 'sidenav.open');
       this.isActive = true;
+      this.isAnimated = true;
       this.el.classList.add('active');
       this.overlay(true);
       this._toggleBodyScroll(false);
 
       setTimeout(() => {
+        this.isAnimated = false;
         Axentix.createEvent(this.el, 'sidenav.opened');
       }, this.options.animationDuration);
     }
@@ -205,15 +209,17 @@
      * Close sidenav
      */
     close() {
-      if (!this.isActive) {
+      if (!this.isActive || this.isAnimated) {
         return;
       }
+      this.isAnimated = true;
       Axentix.createEvent(this.el, 'sidenav.close');
       this.el.classList.remove('active');
       this.overlay(false);
       setTimeout(() => {
         this._toggleBodyScroll(true);
         this.isActive = false;
+        this.isAnimated = false;
         Axentix.createEvent(this.el, 'sidenav.closed');
       }, this.options.animationDuration);
     }
@@ -227,9 +233,15 @@
         if (state) {
           this.overlayElement.addEventListener('click', this.listenerRef);
           document.body.appendChild(this.overlayElement);
+          setTimeout(() => {
+            this.overlayElement.classList.add('active');
+          }, 50);
         } else {
-          this.overlayElement.removeEventListener('click', this.listenerRef);
-          document.body.removeChild(this.overlayElement);
+          this.overlayElement.classList.remove('active');
+          setTimeout(() => {
+            this.overlayElement.removeEventListener('click', this.listenerRef);
+            document.body.removeChild(this.overlayElement);
+          }, this.options.animationDuration);
         }
       }
     }

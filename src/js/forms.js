@@ -29,7 +29,11 @@ Axentix.Forms = (() => {
    * @param {Element} input
    */
   const detectInput = (input) => {
-    const isActive = input.parentElement.classList.contains('active');
+    const formField = input.parentElement.classList.contains('form-group')
+      ? input.parentElement.parentElement
+      : input.parentElement;
+
+    const isActive = formField.classList.contains('active');
     const hasContent =
       input.value.length > 0 ||
       (input.tagName !== 'SELECT' && input.placeholder.length > 0) ||
@@ -42,11 +46,11 @@ Axentix.Forms = (() => {
     const isDisabled = input.hasAttribute('disabled') || input.hasAttribute('readonly');
 
     if (input.firstInit) {
-      updateInput(input, isActive, hasContent, isFocused);
+      updateInput(input, isActive, hasContent, isFocused, formField);
       input.firstInit = false;
       input.isInit = true;
     } else {
-      isDisabled ? '' : updateInput(input, isActive, hasContent, isFocused);
+      isDisabled ? '' : updateInput(input, isActive, hasContent, isFocused, formField);
     }
   };
 
@@ -57,38 +61,59 @@ Axentix.Forms = (() => {
    * @param {boolean} hasContent
    * @param {boolean} isFocused
    */
-  const updateInput = (input, isActive, hasContent, isFocused) => {
+  const updateInput = (input, isActive, hasContent, isFocused, formField) => {
     const isTextArea = input.type === 'textarea';
+
     if (!isActive && (hasContent || isFocused)) {
-      input.parentElement.classList.add('active');
+      formField.classList.add('active');
     } else if (isActive && !(hasContent || isFocused)) {
-      input.parentElement.classList.remove('active');
+      formField.classList.remove('active');
     }
 
-    isTextArea ? '' : setFormPosition(input);
+    isTextArea ? '' : setFormPosition(input, formField);
 
     isFocused && !isTextArea
-      ? input.parentElement.classList.add('is-focused')
-      : input.parentElement.classList.remove('is-focused');
+      ? formField.classList.add('is-focused')
+      : formField.classList.remove('is-focused');
 
     isFocused && isTextArea
-      ? input.parentElement.classList.add('is-txtarea-focused')
-      : input.parentElement.classList.remove('is-txtarea-focused');
+      ? formField.classList.add('is-txtarea-focused')
+      : formField.classList.remove('is-txtarea-focused');
   };
 
   /**
    * Add bottom position variable to form
    * @param {Element} input
+   * @param {Element} formField
    */
-  const setFormPosition = (input) => {
-    const style = window.getComputedStyle(input.parentElement);
-    const height = parseFloat(input.clientHeight),
-      padding = parseFloat(style.paddingTop),
-      border = parseFloat(style.borderTopWidth);
+  const setFormPosition = (input, formField) => {
+    const inputWidth = input.clientWidth,
+      inputLeftOffset = input.offsetLeft;
 
-    const pos = padding + border + height + 'px';
+    const topOffset = input.clientHeight + input.offsetTop + 'px';
 
-    input.parentElement.style.setProperty('--form-material-position', pos);
+    formField.style.setProperty('--form-material-position', topOffset);
+
+    let offset = inputLeftOffset,
+      side = 'left',
+      width = '100%',
+      labelLeft = '0';
+
+    if (formField.classList.contains('form-rtl')) {
+      side = 'right';
+      offset = formField.clientWidth - inputWidth - inputLeftOffset;
+    }
+
+    formField.style.setProperty(`--form-material-${side}-offset`, offset + 'px');
+
+    const label = formField.querySelector('label');
+    if (offset != 0) {
+      width = inputWidth + 'px';
+      labelLeft = inputLeftOffset;
+    }
+
+    label.style.left = labelLeft + 'px';
+    formField.style.setProperty('--form-material-width', width);
   };
 
   /**
@@ -130,6 +155,9 @@ Axentix.Forms = (() => {
 
     const handleResetRef = handleResetEvent.bind(null, inputElements);
     document.addEventListener('reset', handleResetRef);
+
+    const detectAllInputsRef = detectAllInputs.bind(null, inputElements);
+    window.addEventListener('resize', detectAllInputsRef);
   };
 
   const handleFileInput = (input, filePath) => {
@@ -158,7 +186,7 @@ Axentix.Forms = (() => {
     input.addEventListener('change', input.handleRef);
   };
 
-  Axentix.updateInputsFile = () => {
+  const updateInputsFile = () => {
     const elements = Array.from(document.querySelectorAll('.form-file'));
     try {
       elements.map(setupFormFile);
@@ -177,6 +205,8 @@ Axentix.Forms = (() => {
     const setupInputs = Array.from(inputElements).filter((el) => !el.isInit);
     const detectInputs = Array.from(inputElements).filter((el) => el.isInit);
 
+    updateInputsFile();
+
     try {
       setupInputs.length > 0 ? setupFormsListeners(setupInputs) : '';
       detectInputs.length > 0 ? detectAllInputs(detectInputs) : '';
@@ -188,4 +218,3 @@ Axentix.Forms = (() => {
 
 // Init
 document.addEventListener('DOMContentLoaded', () => Axentix.updateInputs());
-document.addEventListener('DOMContentLoaded', () => Axentix.updateInputsFile());

@@ -95,16 +95,22 @@
         this.touchMoveRef = this._handleDragMove.bind(this);
         this.touchReleaseRef = this._handleDragRelease.bind(this);
 
-        if (Axentix.isTouchEnabled()) {
-          this.el.addEventListener('touchstart', this.touchStartRef);
-          this.el.addEventListener('touchmove', this.touchMoveRef);
-          this.el.addEventListener('touchend', this.touchReleaseRef);
-        }
+        const isTouch = Axentix.isTouchEnabled(),
+          isPointer = Axentix.isPointerEnabled();
 
-        this.el.addEventListener('mousedown', this.touchStartRef);
-        this.el.addEventListener('mousemove', this.touchMoveRef);
-        this.el.addEventListener('mouseup', this.touchReleaseRef);
-        this.el.addEventListener('mouseleave', this.touchReleaseRef);
+        this.el.addEventListener(
+          isTouch ? 'touchstart' : isPointer ? 'pointerdown' : 'mousestart',
+          this.touchStartRef
+        );
+        this.el.addEventListener(
+          isTouch ? 'touchmove' : isPointer ? 'pointermove' : 'mousemove',
+          this.touchMoveRef
+        );
+        this.el.addEventListener(
+          isTouch ? 'touchend' : isPointer ? 'pointerup' : 'mouseup',
+          this.touchReleaseRef
+        );
+        this.el.addEventListener(isPointer ? 'pointerleave' : 'mouseleave', this.touchReleaseRef);
       }
     }
 
@@ -123,16 +129,22 @@
       }
 
       if (this.options.enableTouch) {
-        if (Axentix.isTouchEnabled()) {
-          this.el.removeEventListener('touchstart', this.touchStartRef);
-          this.el.removeEventListener('touchmove', this.touchMoveRef);
-          this.el.removeEventListener('touchend', this.touchReleaseRef);
-        }
+        const isTouch = Axentix.isTouchEnabled(),
+          isPointer = Axentix.isPointerEnabled();
 
-        this.el.removeEventListener('mousedown', this.touchStartRef);
-        this.el.removeEventListener('mousemove', this.touchMoveRef);
-        this.el.removeEventListener('mouseup', this.touchReleaseRef);
-        this.el.removeEventListener('mouseleave', this.touchReleaseRef);
+        this.el.removeEventListener(
+          isTouch ? 'touchstart' : isPointer ? 'pointerdown' : 'mousestart',
+          this.touchStartRef
+        );
+        this.el.removeEventListener(
+          isTouch ? 'touchmove' : isPointer ? 'pointermove' : 'mousemove',
+          this.touchMoveRef
+        );
+        this.el.removeEventListener(
+          isTouch ? 'touchend' : isPointer ? 'pointerup' : 'mouseup',
+          this.touchReleaseRef
+        );
+        this.el.removeEventListener(isPointer ? 'pointerleave' : 'mouseleave', this.touchReleaseRef);
 
         this.touchStartRef = undefined;
         this.touchMoveRef = undefined;
@@ -231,15 +243,11 @@
     }
 
     _handleDragStart(e) {
-      if (e.target.closest('.caroulix-arrow') || e.target.closest('.caroulix-indicators')) {
-        return;
-      }
+      if (e.target.closest('.caroulix-arrow') || e.target.closest('.caroulix-indicators')) return;
 
-      e.type === 'mousedown' ? e.preventDefault() : '';
+      e.type !== 'touchstart' ? e.preventDefault() : '';
 
-      if (this.isAnimated) {
-        return;
-      }
+      if (this.isAnimated) return;
 
       this.options.autoplay.enabled ? this.stop() : '';
 
@@ -255,18 +263,15 @@
     }
 
     _handleDragMove(e) {
-      if (!this.isPressed || this.isScrolling) {
-        return;
-      }
+      if (!this.isPressed || this.isScrolling) return;
 
-      let x, y;
-      x = this._getXPosition(e);
-      y = this._getYPosition(e);
+      let x = this._getXPosition(e),
+        y = this._getYPosition(e);
 
       this.deltaX = this.xStart - x;
       this.deltaY = Math.abs(this.yStart - y);
 
-      if (e.type !== 'mousemove' && this.deltaY > Math.abs(this.deltaX)) {
+      if (e.type === 'touchmove' && this.deltaY > Math.abs(this.deltaX)) {
         this.isScrolling = true;
         this.deltaX = 0;
         return false;
@@ -279,9 +284,7 @@
     }
 
     _handleDragRelease(e) {
-      if (e.target.closest('.caroulix-arrow') || e.target.closest('.caroulix-indicators')) {
-        return false;
-      }
+      if (e.target.closest('.caroulix-arrow') || e.target.closest('.caroulix-indicators')) return false;
 
       e.cancelable ? e.preventDefault() : '';
 
@@ -336,9 +339,7 @@
     _handleIndicatorClick(i, e) {
       e.preventDefault();
 
-      if (i === this.activeIndex) {
-        return;
-      }
+      if (i === this.activeIndex) return;
 
       this.goTo(i);
     }
@@ -378,9 +379,7 @@
     }
 
     goTo(number) {
-      if (number === this.activeIndex) {
-        return;
-      }
+      if (number === this.activeIndex) return;
 
       let side;
       number > this.activeIndex ? (side = 'right') : (side = 'left');
@@ -393,9 +392,7 @@
     }
 
     play() {
-      if (!this.options.autoplay.enabled) {
-        return;
-      }
+      if (!this.options.autoplay.enabled) return;
 
       this.stop();
       this.autoplayInterval = setInterval(() => {
@@ -404,20 +401,14 @@
     }
 
     stop() {
-      if (!this.options.autoplay.enabled) {
-        return;
-      }
+      if (!this.options.autoplay.enabled) return;
 
       clearInterval(this.autoplayInterval);
     }
 
     next(step = 1, resetAutoplay = true) {
-      if (
-        this.isResizing ||
-        (this.activeIndex === this.children.length - 1 && !this.options.backToOpposite)
-      ) {
+      if (this.isResizing || (this.activeIndex === this.children.length - 1 && !this.options.backToOpposite))
         return;
-      }
 
       Axentix.createEvent(this.el, 'caroulix.next', { step });
 
@@ -438,9 +429,7 @@
     }
 
     prev(step = 1, resetAutoplay = true) {
-      if (this.isResizing || (this.activeIndex === 0 && !this.options.backToOpposite)) {
-        return;
-      }
+      if (this.isResizing || (this.activeIndex === 0 && !this.options.backToOpposite)) return;
 
       Axentix.createEvent(this.el, 'caroulix.prev', { step });
 

@@ -33,7 +33,7 @@ textarea.form-control {
         }
 
         textarea.form-control {
-          border-bottom: 0.1rem solid var(--form-material-color);
+          border-bottom: 0.1rem solid var(--form-material-color) !important;
         }
       }
     }

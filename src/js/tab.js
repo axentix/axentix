@@ -68,7 +68,7 @@
 
       this._setupListeners();
 
-      this.el.style.transitionDuration = this.options.animationDuration + 'ms';
+      this.tabMenu.style.transitionDuration = this.options.animationDuration + 'ms';
       this.options.animationType === 'slide' ? this._enableSlideAnimation() : this.updateActiveElement();
     }
 
@@ -143,12 +143,10 @@
      * Get all items
      */
     _getItems() {
-      this.tabItems = Array.from(this.el.children).reduce((acc, child) => {
-        !child.classList.contains('tab-menu') && !child.classList.contains('tab-arrow')
-          ? acc.push(child)
-          : '';
-        return acc;
-      }, []);
+      this.tabItems = Array.from(this.tabLinks).map((link) => {
+        const id = link.children[0].getAttribute('href');
+        return this.el.querySelector(id);
+      });
     }
 
     /**

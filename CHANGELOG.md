@@ -1,3 +1,24 @@
+# 1.2.0 - 2021-04-28
+
+- ADDED
+  - Button group
+  - `.form-group`, support of prefix / suffix on inputs 
+  - Background transition on sidenav overlay
+  - Css variable to custom the tab bar
+- REMOVED
+- IMPROVED
+  - Include update of file input inside `Axentix.updateInputs()` method
+  - Switch `normalize` to `modern-normalize`
+  - Possibility to change border-color on classic form input
+  - Form material position rework
+  - Update dependencies
+- BUGFIXES
+  - In specific case, grix children could exceed width defined by the grix
+  - Form material can now handle padding & `.form-group`
+  - Opened sidenav was throwing error when resize event was called 
+  - Safari basic input border-radius removed
+  - Laptop touch screens caroulix handling
+
 # 1.1.0 - 2021-02-03
 
 - ADDED
