@@ -3,7 +3,7 @@ name: axentix new release
 
 steps:
 - name: install
-  image: node:11-alpine
+  image: node:14-alpine
   commands:
   - apk add python make g++
   - npm install
@@ -12,7 +12,7 @@ steps:
       - tag
 
 - name: build
-  image: node:11-alpine
+  image: node:14-alpine
   commands:
   - npm run build
   when:
@@ -20,7 +20,7 @@ steps:
       - tag
 
 - name: make zip folder
-  image: node:11-alpine
+  image: node:14-alpine
   commands:
   - apk add zip
   - cp -R ./dist ./axentix-v${DRONE_TAG}
