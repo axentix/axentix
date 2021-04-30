@@ -144,7 +144,8 @@
 
       &.sidenav-right {
         header,
-        .layout-header main,
+        .layout-header,
+        main,
         .layout-main {
           padding-right: $sidenav-width;
           padding-left: 0;
@@ -193,7 +194,8 @@
 
       &.sidenav-large {
         header,
-        .layout-header main,
+        .layout-header,
+        main,
         .layout-main {
           padding-left: $sidenav-large-width;
         }
@@ -211,7 +213,8 @@
 
         &.sidenav-right {
           header,
-          .layout-header main,
+          .layout-header,
+          main,
           .layout-main {
             padding-right: $sidenav-large-width;
             padding-left: 0;
