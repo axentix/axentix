@@ -1,3 +1,13 @@
+# 1.2.1 - 2021-04-30
+
+- ADDED
+  - `.layout-{x}` classes
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - Tab arrow didn't work with slide animation
+
 # 1.2.0 - 2021-04-28
 
 - ADDED

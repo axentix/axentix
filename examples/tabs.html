@@ -131,16 +131,16 @@
                 <a href="#tab3">Tabbbbbbbbb</a>
               </li>
               <li class="tab-link">
-                <a href="#tab3">Tabbbbbbbbb</a>
+                <a href="#tab4">Tabbbbbbbbb</a>
               </li>
               <li class="tab-link">
-                <a href="#tab3">Tabbbbbbbbb</a>
+                <a href="#tab5">Tabbbbbbbbb</a>
               </li>
               <li class="tab-link">
-                <a href="#tab3">Tabbbbbbbbb</a>
+                <a href="#tab6">Tabbbbbbbbb</a>
               </li>
               <li class="tab-link">
-                <a href="#tab3">Tabbbbbbbbb</a>
+                <a href="#tab7">Tabbbbbbbbb</a>
               </li>
             </ul>
             <div class="tab-next white">
@@ -150,6 +150,10 @@
           <div id="tab1">Content 1</div>
           <div id="tab2">Content 2</div>
           <div id="tab3">Content 3</div>
+          <div id="tab4">Content 4</div>
+          <div id="tab5">Content 5</div>
+          <div id="tab6">Content 6</div>
+          <div id="tab7">Content 7</div>
         </div>
       </div>
       <div class="fab" id="example-fab">
@@ -181,9 +185,7 @@
       </div>
     </main>
 
-    <footer class="footer primary">
-      Copyright © 2020 - Example
-    </footer>
+    <footer class="footer primary">Copyright © 2020 - Example</footer>
     <script src="../dist/js/axentix.js"></script>
     <script>
       // document.addEventListener('ax.tab.select', function(e) {
@@ -191,7 +193,9 @@
       // });
 
       // var tab = new Axentix.Tab('#example-tab');
-      var tab2 = new Axentix.Tab('#example-tab2');
+      var tab2 = new Axentix.Tab('#example-tab2', {
+        animationType: 'slide',
+      });
 
       var slideTab = new Axentix.Tab('#slide-tab', {
         animationType: 'slide',
