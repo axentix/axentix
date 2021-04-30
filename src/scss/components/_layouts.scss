@@ -10,15 +10,18 @@
     'main'
     'footer';
 
-  header {
+  header,
+  .layout-header {
     grid-area: header;
   }
 
-  main {
+  main,
+  .layout-main {
     grid-area: main;
   }
 
-  footer {
+  footer,
+  .layout-footer {
     grid-area: footer;
   }
 }
@@ -81,7 +84,8 @@
     }
 
     &.under-navbar {
-      header {
+      header,
+      .layout-header {
         padding-left: initial;
       }
 
@@ -90,7 +94,8 @@
       }
 
       &.sidenav-right {
-        header {
+        header,
+        .layout-header {
           padding-right: initial;
         }
 
@@ -122,7 +127,9 @@
 
     &.fixed-sidenav {
       header,
-      main {
+      .layout-header,
+      main,
+      .layout-main {
         padding-left: $sidenav-width;
       }
 
@@ -130,13 +137,16 @@
         margin-left: $sidenav-width;
       }
 
-      footer {
+      footer,
+      .layout-footer {
         padding-left: $sidenav-width + 0.5rem;
       }
 
       &.sidenav-right {
         header,
-        main {
+        .layout-header,
+        main,
+        .layout-main {
           padding-right: $sidenav-width;
           padding-left: 0;
         }
@@ -146,7 +156,8 @@
           margin-left: 0;
         }
 
-        footer {
+        footer,
+        .layout-footer {
           padding-right: $sidenav-width + 0.5rem;
           padding-left: 0.5rem;
         }
@@ -154,7 +165,9 @@
 
       &.sidenav-both {
         header,
-        main {
+        .layout-header,
+        main,
+        .layout-main {
           padding-right: $sidenav-width;
           padding-left: $sidenav-width;
         }
@@ -166,7 +179,8 @@
           }
         }
 
-        footer {
+        footer,
+        .layout-footer {
           padding-right: $sidenav-width + 0.5rem;
           padding-left: $sidenav-width + 0.5rem;
         }
@@ -180,7 +194,9 @@
 
       &.sidenav-large {
         header,
-        main {
+        .layout-header,
+        main,
+        .layout-main {
           padding-left: $sidenav-large-width;
         }
 
@@ -190,13 +206,16 @@
           }
         }
 
-        footer {
+        footer,
+        .layout-footer {
           padding-left: $sidenav-large-width + 0.5rem;
         }
 
         &.sidenav-right {
           header,
-          main {
+          .layout-header,
+          main,
+          .layout-main {
             padding-right: $sidenav-large-width;
             padding-left: 0;
           }
@@ -208,7 +227,8 @@
             }
           }
 
-          footer {
+          footer,
+          .layout-footer {
             padding-right: $sidenav-large-width + 0.5rem;
             padding-left: 0.5rem;
           }
@@ -216,7 +236,9 @@
 
         &.sidenav-both {
           header,
-          main {
+          .layout-header,
+          main,
+          .layout-main {
             padding-right: $sidenav-large-width;
             padding-left: $sidenav-large-width;
           }
@@ -228,14 +250,17 @@
             }
           }
 
-          footer {
+          footer,
+          .layout-footer {
             padding-right: $sidenav-large-width + 0.5rem;
             padding-left: $sidenav-large-width + 0.5rem;
           }
 
           &.sidenav-large-right {
             header,
-            main {
+            .layout-header,
+            main,
+            .layout-main {
               padding-left: $sidenav-width;
             }
 
@@ -245,14 +270,17 @@
               }
             }
 
-            footer {
+            footer,
+            .layout-footer {
               padding-left: $sidenav-width + 0.5rem;
             }
           }
 
           &.sidenav-large-left {
             header,
-            main {
+            .layout-header,
+            main,
+            .layout-main {
               padding-right: $sidenav-width;
             }
 
@@ -262,7 +290,8 @@
               }
             }
 
-            footer {
+            footer,
+            .layout-footer {
               padding-right: $sidenav-width + 0.5rem;
             }
           }

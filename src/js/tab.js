@@ -217,8 +217,6 @@
           ? this.tabArrow.classList.remove('tab-arrow-show')
           : '';
       }
-
-      this.updateActiveElement();
     }
 
     /**
