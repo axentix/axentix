@@ -54,21 +54,21 @@
         classes: 'airforce rounded-4 shadow-3',
         isClosable: true,
       });
-      var mytoast = new Axentix.Toast('Bonjour Axel', {
-        classes: 'airforce rounded-4 shadow-3',
-        isClosable: true,
-      });
 
       function show1() {
-        mytoast.change('Salut 20 100<br/>yoooooooooooooooooooooooooo<br/>yoooooooooooo<br/>ffffffffffff', {
-          position: 'left',
-          classes: 'red dark-2 rounded-2',
-          duration: 4000,
-          animationDelay: 400,
-          offset: {
-            y: '0%',
-          },
-        });
+        mytoast.change(
+          'Salut 20 100<br/>yoooooooo oo ooooooooooo ooooo<br/>yoooooo oooooo<br/>ffffffffffff',
+          {
+            position: 'left',
+            classes: 'red dark-2 rounded-2',
+            duration: 10000,
+            animationDelay: 400,
+            offset: {
+              y: '5%',
+              mobileY: '20%',
+            },
+          }
+        );
         mytoast.show();
       }
 

@@ -34,7 +34,7 @@
   }
 
   @include responsive('sm-down') {
-    width: var(--toaster-width);
+    width: var(--toaster-m-width);
     left: 50% !important;
     transform: translateX(-50%);
     max-width: unset;
@@ -42,7 +42,7 @@
     &.toaster-m-bottom {
       flex-direction: column-reverse;
       top: unset;
-      bottom: 0;
+      bottom: var(--toaster-m-offset);
       align-items: unset;
 
       .toast {
@@ -58,8 +58,9 @@
 
     &.toaster-m-top {
       flex-direction: column;
-      top: 0;
       bottom: unset;
+      top: var(--toaster-m-offset) !important;
+      align-items: unset;
 
       .toast {
         margin-top: 5rem;

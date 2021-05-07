@@ -68,7 +68,8 @@
 
       directionList.includes(this.options.mobileDirection) ? '' : (this.options.mobileDirection = 'bottom');
 
-      toaster.style.setProperty('--toaster-width', 100 - this.options.offset.mobileX.slice(0, -1) + '%');
+      toaster.style.setProperty('--toaster-m-width', 100 - this.options.offset.mobileX.slice(0, -1) + '%');
+      toaster.style.setProperty('--toaster-m-offset', this.options.offset.mobileY);
 
       toaster.className =
         'toaster toaster-' +
