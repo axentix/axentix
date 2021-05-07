@@ -14,6 +14,10 @@
         mobileDirection: 'bottom',
         offset: { x: '5%', y: '0%', mobileX: '10%', mobileY: '0%' },
         isClosable: false,
+        loading: {
+          isLoading: false,
+          color: '#E2E2E2',
+        },
       };
     }
 
@@ -71,6 +75,10 @@
       toaster.style.setProperty('--toaster-m-width', 100 - this.options.offset.mobileX.slice(0, -1) + '%');
       toaster.style.setProperty('--toaster-m-offset', this.options.offset.mobileY);
 
+      if (this.options.loading.isLoading) {
+        toaster.style.setProperty('--toast-loading-color', this.options.loading.color);
+      }
+
       toaster.className =
         'toaster toaster-' +
         this.options.position +
@@ -103,10 +111,15 @@
     _fadeInToast(toast) {
       setTimeout(() => {
         Axentix.createEvent(toast, 'toast.show');
+        if (this.options.loading.isLoading) {
+          toast.classList.add('loading');
+          toast.style.setProperty('--toast-loading-duration', this.options.duration + 'ms');
+        }
         toast.classList.add('toast-animated');
 
         setTimeout(() => {
           Axentix.createEvent(toast, 'toast.shown');
+          if (this.options.loading.isLoading) toast.classList.add('load');
         }, this.options.animationDuration);
       }, 50);
     }

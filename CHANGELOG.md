@@ -1,3 +1,11 @@
+# 1.3.0 - Under development
+
+- ADDED
+  - Toast loading option
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Toast `mobileY` option wans't handled
 # 1.2.1 - 2021-04-30
 
 - ADDED
