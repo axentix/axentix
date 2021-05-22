@@ -14,6 +14,11 @@
         mobileDirection: 'bottom',
         offset: { x: '5%', y: '0%', mobileX: '10%', mobileY: '0%' },
         isClosable: false,
+        closableContent: 'x',
+        loading: {
+          enabled: true,
+          border: '2px solid #E2E2E2'
+        },
       };
     }
 
@@ -68,7 +73,12 @@
 
       directionList.includes(this.options.mobileDirection) ? '' : (this.options.mobileDirection = 'bottom');
 
-      toaster.style.setProperty('--toaster-width', 100 - this.options.offset.mobileX.slice(0, -1) + '%');
+      toaster.style.setProperty('--toaster-m-width', 100 - this.options.offset.mobileX.slice(0, -1) + '%');
+      toaster.style.setProperty('--toaster-m-offset', this.options.offset.mobileY);
+
+      if (this.options.loading.enabled) {
+        toaster.style.setProperty('--toast-loading-border', this.options.loading.border);
+      }
 
       toaster.className =
         'toaster toaster-' +
@@ -102,10 +112,15 @@
     _fadeInToast(toast) {
       setTimeout(() => {
         Axentix.createEvent(toast, 'toast.show');
+        if (this.options.loading.enabled) {
+          toast.classList.add('loading');
+          toast.style.setProperty('--toast-loading-duration', this.options.duration + 'ms');
+        }
         toast.classList.add('toast-animated');
 
         setTimeout(() => {
           Axentix.createEvent(toast, 'toast.shown');
+          if (this.options.loading.enabled) toast.classList.add('load');
         }, this.options.animationDuration);
       }, 50);
     }
@@ -144,8 +159,9 @@
       toast.style.transitionDuration = this.options.animationDuration + 'ms';
 
       if (this.options.isClosable) {
-        let trigger = document.createElement('i');
-        trigger.className = 'toast-trigger fas fa-times';
+        let trigger = document.createElement('div');
+        trigger.className = 'toast-trigger';
+        trigger.innerHTML = this.options.closableContent;
         trigger.listenerRef = this._hide.bind(this, toast, trigger);
         trigger.addEventListener('click', trigger.listenerRef);
         toast.appendChild(trigger);

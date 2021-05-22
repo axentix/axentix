@@ -9,7 +9,7 @@
     />
   </head>
 
-  <body class="layout with-sidenav fixed-sidenav">
+  <body class="layout">
     <header>
       <nav class="navbar primary">
         <a href="#" class="navbar-brand">Axentix</a>
@@ -28,60 +28,41 @@
       </nav>
     </header>
 
-    <div id="example-sidenav" class="sidenav large fixed white">
-      <div class="sidenav-header">
-        <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-        <img class="logo dropshadow-1" src="https://axentix-web.test/img/axentix-250.png" alt="Logo" />
-      </div>
-      <a href="#" class="sidenav-link active">Link 1</a>
-      <a href="#" class="sidenav-link">Link 2</a>
-      <a href="#" class="sidenav-link">Link 3</a>
-      <a href="#" class="sidenav-link">Link 4</a>
-      <div class="sidenav-footer viride">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-    </div>
-
     <main class="container">
-      <button class="btn primary rounded-2 shadow-1 mt-2" onclick="show1()">1</button>
-      <button class="btn primary rounded-2 shadow-1 mt-2" onclick="show2()">2</button>
+      <div class="d-flex fx-center w100 mt-3">
+        <button class="btn primary rounded-2 shadow-1 mr-2" onclick="show1()">1</button>
+        <button class="btn primary rounded-2 shadow-1 ml-2" onclick="show2()">2</button>
+      </div>
     </main>
 
-    <footer class="footer primary">Copyright © 2019 - Example</footer>
+    <footer class="footer primary">Copyright © 2021</footer>
     <script src="../dist/js/axentix.min.js"></script>
     <script>
-      var sidenav = new Axentix.Sidenav('#example-sidenav');
-
-      var mytoast = new Axentix.Toast('Bonjour Axel', {
-        classes: 'airforce rounded-4 shadow-3',
-        isClosable: true,
-      });
       var mytoast = new Axentix.Toast('Bonjour Axel', {
         classes: 'airforce rounded-4 shadow-3',
         isClosable: true,
       });
 
       function show1() {
-        mytoast.change('Salut 20 100<br/>yoooooooooooooooooooooooooo<br/>yoooooooooooo<br/>ffffffffffff', {
-          position: 'left',
-          classes: 'red dark-2 rounded-2',
-          duration: 4000,
-          animationDelay: 400,
-          offset: {
-            y: '0%',
-          },
-        });
+        mytoast.change(
+          `<div><p class="my-1"> Hello dear <br> <strong>Welcome</strong> on this website</p> <br> 
+          <button class="btn white press small rounded-1">Button</button></div>`,
+          {
+            position: 'left',
+            classes: 'airforce dark-2 rounded-2',
+            duration: 10000,
+            animationDelay: 400,
+          }
+        );
         mytoast.show();
       }
 
       function show2() {
-        mytoast.change('Bonjour Axel <div class="btn blue">TOAST POWER</div>', {
+        mytoast.change('Bonjour Axel', {
           position: 'right',
           classes: 'green dark-2 rounded-2',
-          duration: 150000,
+          duration: 2000,
           animationDelay: 400,
-          offset: {
-            y: '10%',
-            mobileX: '20%',
-          },
         });
         mytoast.show();
       }

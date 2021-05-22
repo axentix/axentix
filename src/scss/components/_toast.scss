@@ -7,10 +7,6 @@
   z-index: 5000;
   max-width: 50%;
 
-  .toast {
-    pointer-events: auto;
-  }
-
   &.toast-bottom {
     flex-direction: column-reverse;
     top: unset;
@@ -34,7 +30,7 @@
   }
 
   @include responsive('sm-down') {
-    width: var(--toaster-width);
+    width: var(--toaster-m-width);
     left: 50% !important;
     transform: translateX(-50%);
     max-width: unset;
@@ -42,7 +38,7 @@
     &.toaster-m-bottom {
       flex-direction: column-reverse;
       top: unset;
-      bottom: 0;
+      bottom: var(--toaster-m-offset);
       align-items: unset;
 
       .toast {
@@ -58,8 +54,9 @@
 
     &.toaster-m-top {
       flex-direction: column;
-      top: 0;
       bottom: unset;
+      top: var(--toaster-m-offset) !important;
+      align-items: unset;
 
       .toast {
         margin-top: 5rem;
@@ -75,6 +72,8 @@
 
   .toast {
     display: flex;
+    position: relative;
+    pointer-events: auto;
     align-items: center;
     justify-items: center;
     padding: 1rem;
@@ -82,6 +81,25 @@
     transition-property: height, margin, opacity, padding, transform, box-shadow;
     transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     opacity: 0.2;
+    overflow: hidden;
+
+    &.loading {
+      &::after {
+        content: '';
+        position: absolute;
+        transition-duration: var(--toast-loading-duration);
+        transition-property: width;
+        transition-timing-function: ease;
+        border-bottom: var(--toast-loading-border);
+        width: 0%;
+        left: 0;
+        bottom: 0;
+      }
+
+      &.load::after {
+        width: 100%;
+      }
+    }
 
     .toast-trigger {
       margin-left: auto;

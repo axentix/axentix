@@ -1,3 +1,14 @@
+# 1.3.0 - Under development
+
+- ADDED
+  - Toast loading animation option
+  - Toast closable content option
+- REMOVED
+  - Font awesome toast closable option dependency
+- IMPROVED
+- BUGFIXES
+  - Toast `mobileY` option wans't handled
+
 # 1.2.1 - 2021-04-30
 
 - ADDED
