@@ -90,7 +90,7 @@
         transition-duration: var(--toast-loading-duration);
         transition-property: width;
         transition-timing-function: ease;
-        border-bottom: 2px solid var(--toast-loading-color);
+        border-bottom: var(--toast-loading-border);
         width: 0%;
         left: 0;
         bottom: 0;

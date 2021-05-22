@@ -16,8 +16,8 @@
         isClosable: false,
         closableContent: 'x',
         loading: {
-          enabled: false,
-          color: '#E2E2E2',
+          enabled: true,
+          border: '2px solid #E2E2E2'
         },
       };
     }
@@ -77,7 +77,7 @@
       toaster.style.setProperty('--toaster-m-offset', this.options.offset.mobileY);
 
       if (this.options.loading.enabled) {
-        toaster.style.setProperty('--toast-loading-color', this.options.loading.color);
+        toaster.style.setProperty('--toast-loading-border', this.options.loading.border);
       }
 
       toaster.className =
