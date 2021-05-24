@@ -6,7 +6,7 @@ steps:
   image: node:14-alpine
   commands:
   - apk add python make g++
-  - npm install
+  - npm ci
   when:
     event:
       - tag
