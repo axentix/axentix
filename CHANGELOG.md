@@ -6,6 +6,7 @@
 - REMOVED
   - Font awesome toast closable option dependency
 - IMPROVED
+  - Update dependencies
 - BUGFIXES
   - Toast `mobileY` option wans't handled
 
