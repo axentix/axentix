@@ -8,10 +8,10 @@
 - IMPROVED
   - Update dependencies
 - BUGFIXES
-  - Toast `mobileY` option wans't handled
-  - Form material can throw an error when label is not set
-  - Text is not vertically centered with thin form switch
-  - Form material disabled & readonly not work 
+  - Toast `mobileY` option wasn't handled
+  - Form material was throwing an error when no label was set
+  - Text was not vertically centered with thin form switch
+  - Form material disabled & readonly were not working properly
 
 # 1.2.1 - 2021-04-30
 
