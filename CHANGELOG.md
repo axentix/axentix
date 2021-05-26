@@ -1,4 +1,4 @@
-# 1.3.0 - Under development
+# 1.3.0 - 2021-05-26
 
 - ADDED
   - Toast loading animation option
