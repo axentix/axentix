@@ -1,3 +1,18 @@
+# 1.3.0 - 2021-05-26
+
+- ADDED
+  - Toast loading animation option
+  - Toast closable content option
+- REMOVED
+  - Font awesome toast closable option dependency
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - Toast `mobileY` option wasn't handled
+  - Form material was throwing an error when no label was set
+  - Text was not vertically centered with thin form switch
+  - Form material disabled & readonly were not working properly
+
 # 1.2.1 - 2021-04-30
 
 - ADDED

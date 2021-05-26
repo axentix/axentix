@@ -124,7 +124,7 @@
       &[readonly] {
         background: transparent !important;
         color: $form-disabled-color !important;
-        border-bottom: $material-border-color dashed thin;
+        border-bottom: $material-border-color dashed thin !important;
 
         + label {
           color: $form-disabled-color;

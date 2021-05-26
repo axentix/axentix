@@ -106,14 +106,14 @@ Axentix.Forms = (() => {
 
     formField.style.setProperty(`--form-material-${side}-offset`, offset + 'px');
 
-    const label = formField.querySelector('label');
     if (offset != 0) {
       width = inputWidth + 'px';
       labelLeft = inputLeftOffset;
     }
-
-    label.style.left = labelLeft + 'px';
     formField.style.setProperty('--form-material-width', width);
+
+    const label = formField.querySelector('label');
+    if (label) label.style.left = labelLeft + 'px';
   };
 
   /**
