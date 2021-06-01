@@ -1,3 +1,12 @@
+# 1.3.1
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Set all definition file options optional
+- BUGFIXES
+  - Bouncing modal animation was blinking on firefox
+
 # 1.3.0 - 2021-05-26
 
 - ADDED
