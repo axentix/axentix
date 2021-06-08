@@ -1,17 +1,14 @@
 <html>
   <head>
-    <title>Axentix Layout - Fixed sidenav</title>
+    <title>Axentix - Tabs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
   </head>
 
   <body class="layout">
-    <header></header>
-
     <main>
       <div class="container mt-4">
         <div
@@ -185,19 +182,18 @@
       </div>
     </main>
 
-    <footer class="footer primary">Copyright © 2020 - Example</footer>
-    <script src="../dist/js/axentix.js"></script>
-    <script>
+    <script type="module">
+      import { Tab, Fab, Caroulix } from '../src/index.js';
       // document.addEventListener('ax.tab.select', function(e) {
       //   console.log('hey', e);
       // });
 
-      // var tab = new Axentix.Tab('#example-tab');
-      var tab2 = new Axentix.Tab('#example-tab2', {
+      // var tab = new Tab('#example-tab');
+      var tab2 = new Tab('#example-tab2', {
         animationType: 'slide',
       });
 
-      var slideTab = new Axentix.Tab('#slide-tab', {
+      var slideTab = new Tab('#slide-tab', {
         animationType: 'slide',
         caroulix: {
           fixedHeight: false,
@@ -205,13 +201,13 @@
       });
 
       // Floating Action Button
-      var fab = new Axentix.Fab('#example-fab', {
+      var fab = new Fab('#example-fab', {
         // hover: false,
         // direction: 'bottom',
         // position: 'top-right'
       });
 
-      // var fab2 = new Axentix.Fab('#example-fab2', {
+      // var fab2 = new Fab('#example-fab2', {
       //   hover: false,
       //   direction: 'right',
       //   position: 'bottom-left',

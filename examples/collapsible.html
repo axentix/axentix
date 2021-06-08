@@ -1,29 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Axentix • Collapsible</title>
+    <title>Axentix - Collapsible</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
-    />
-    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
   </head>
 
   <body class="layout">
-    <header>
-      <div class="navbar-fixed">
-        <nav class="navbar primary">
-          <a href="#" target="_blank" class="navbar-brand">Axentix</a>
-          <div class="navbar-menu ml-auto">
-            <a href="#" class="navbar-link">Link 1</a>
-            <a href="#" class="navbar-link">Link 2</a>
-            <a href="#" class="navbar-link">Link 3</a>
-          </div>
-        </nav>
-      </div>
-    </header>
-
     <main>
       <div class="container">
         <h2>Collapsible</h2>
@@ -49,18 +31,11 @@
             </div>
           </div>
         </div>
-
-        <div class="grix xs3 mt-4 gutter-xs5">
-          <div class="p-2 bd-red bd-1 bd-solid"></div>
-          <div class="p-2 bd-red bd-2 bd-solid"></div>
-          <div class="p-2 bd-red bd-b3 bd-b-dashed"></div>
-          <div class="p-2 bd-red bd-t4 bd-t-solid"></div>
-          <div class="p-2 bd-red bd-5 bd-solid"></div>
-        </div>
       </div>
     </main>
 
-    <script src="../dist/js/axentix.min.js"></script>
-    <script></script>
+    <script type="module">
+      import { Collapsible } from '../src/index.js';
+    </script>
   </body>
 </html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Axentix Layout - Fixed sidenav</title>
+    <title>Axentix - Forms</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
     <style>
       .form-material .form-field:not(.form-default) {
         --form-material-color: #c91d34;
@@ -14,40 +14,8 @@
     </style>
   </head>
 
-  <body class="layout with-sidenav fixed-sidenav">
-    <header>
-      <div class="navbar-fixed">
-        <nav class="navbar primary">
-          <a href="#" target="_blank" class="navbar-brand">Axentix</a>
-          <ul class="navbar-menu ml-auto">
-            <li><a class="navbar-link" href="#">Link 1</a></li>
-            <li><a class="navbar-link" href="#">Link 2</a></li>
-            <li><a class="navbar-link" href="#">Link 3</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-
-    <div id="example-sidenav" class="sidenav large fixed white">
-      <div class="sidenav-header">
-        <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-        <img
-          class="sidenav-logo dropshadow-1"
-          src="https://axentix-web.test/img/axentix-250.png"
-          alt="Logo"
-        />
-      </div>
-      <a href="#" class="sidenav-link active">Link 1</a>
-      <a href="#" class="sidenav-link">Link 2</a>
-      <a href="#" class="sidenav-link">Link 3</a>
-      <a href="#" class="sidenav-link">Link 4</a>
-      <div class="sidenav-footer viride">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-    </div>
-
-    <main>
-      <button data-target="example-sidenav" class="btn press amaranth dark-1 sidenav-trigger">
-        Open sidenav
-      </button>
+  <body class="layout">
+    <main class="py-5">
       <form class="container form-material">
         <div class="grix xs1 md2">
           <div class="form-field">
@@ -55,7 +23,7 @@
               <span class="form-group-txt">@</span>
               <!-- <label for="name">Name</label> -->
               <input type="text" id="name" class="form-control" />
-              <span class="form-group-txt"><3</span>
+              <span class="form-group-txt">@</span>
             </div>
           </div>
           <div class="form-field">
@@ -208,10 +176,6 @@
       ipsa similique nostrum inventore, saepe nesciunt ab deserunt.
     </main>
 
-    <footer class="footer primary">Copyright © 2019 - Example</footer>
-    <script src="../dist/js/axentix.min.js"></script>
-    <script>
-      var sidenav = new Axentix.Sidenav('#example-sidenav');
-    </script>
+    <script type="module" src="../src/index.js"></script>
   </body>
 </html>

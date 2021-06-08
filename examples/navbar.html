@@ -2,7 +2,6 @@
   <head>
     <title>Axentix - Navbar / Dropdown</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
@@ -11,14 +10,6 @@
 
   <body class="layout with-sidenav fixed-sidenav">
     <header>
-      <!-- <nav class="navbar primary shadow-1">
-        <a href="#" target="_blank" class="navbar-brand">Axentix</a>
-        <ul class="navbar-menu ml-auto">
-          <li><a class="navbar-link" href="#">Link 1</a></li>
-          <li><a class="navbar-link" href="#">Link 2</a></li>
-          <li><a class="navbar-link" href="#">Link 3</a></li>
-        </ul>
-      </nav> -->
       <nav class="navbar primary shadow-1">
         <!-- <a href="#" class="navbar-logo centered">
           <img src="https://axelsimonet.fr/assets/images/logo.png" alt="Xelzs" />
@@ -28,9 +19,7 @@
           <a class="navbar-link" href="#">Link 1</a>
           <a class="navbar-link" href="#">Link 2</a>
           <div class="dropdown" id="nav-dropdown">
-            <div class="navbar-link secondary dropdown-trigger">
-              Toggle
-            </div>
+            <div class="navbar-link secondary dropdown-trigger">Toggle</div>
             <div class="dropdown-content right-aligned white rounded-1 shadow-1">
               <a class="dropdown-item" href="#">Drop122222222222222222</a>
               <a class="dropdown-item" href="#">Drop2</a>
@@ -63,18 +52,14 @@
       <a href="#" class="sidenav-link">Link 2</a>
       <a href="#" class="sidenav-link">Link 3</a>
       <div class="dropdown centered" id="sidenav-dropdown">
-        <div class="sidenav-link dropdown-trigger">
-          Toggle
-        </div>
+        <div class="sidenav-link dropdown-trigger">Toggle</div>
         <div class="dropdown-content white rounded-1 shadow-1">
           <a class="dropdown-item" href="#">Drop122222222222222222</a>
           <a class="dropdown-item" href="#">Drop2</a>
           <a class="dropdown-item active" href="#">Drop3</a>
         </div>
       </div>
-      <div class="sidenav-footer viride">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </div>
+      <div class="sidenav-footer viride">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
     </div>
 
     <main>
@@ -123,9 +108,7 @@
           deserunt aspernatur, magnam impedit eaque.
         </p>
         <div class="dropdown mx-auto" id="example-dropdown">
-          <button type="button" class="btn primary dropdown-trigger shadow-1 rounded-1">
-            Toggle
-          </button>
+          <button type="button" class="btn primary dropdown-trigger shadow-1 rounded-1">Toggle</button>
           <div class="dropdown-content constrain-width white rounded-1 shadow-1">
             <a class="dropdown-item" href="#">Drop1222222222</a>
             <a class="dropdown-item" href="#">Drop2</a>
@@ -161,15 +144,13 @@
       </div>
     </main>
 
-    <footer class="footer primary">
-      Copyright © 2020 - Example
-    </footer>
-    <script src="../dist/js/axentix.min.js"></script>
-    <script>
-      var sidenav = new Axentix.Sidenav('#example-sidenav');
+    <script type="module">
+      import { Sidenav, Axentix } from '../src/index.js';
+      var sidenav = new Sidenav('#example-sidenav');
       // var dropdown = new Dropdown('#example-dropdown', {
       //   animationType: 'fade'
       // });
+
       var axentixDropdown = new Axentix('dropdown', {
         // animationType: 'fade',
         preventViewport: true,

@@ -2,42 +2,9 @@
   <head>
     <title>Axentix Layout - Fixed sidenav</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
-    />
   </head>
 
   <body class="layout">
-    <header>
-      <nav class="navbar primary">
-        <a href="#" target="_blank" class="navbar-brand">Axentix</a>
-        <div class="navbar-menu ml-auto">
-          <a href="#" class="navbar-link">Link 1</a>
-          <a href="#" class="navbar-link">Link 2</a>
-          <a href="#" class="navbar-link">Link 3</a>
-          <a href="#" class="navbar-link">Link 4</a>
-        </div>
-      </nav>
-    </header>
-
-    <div id="example-sidenav" class="sidenav large white">
-      <div class="sidenav-header">
-        <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-        <img
-          class="sidenav-logo dropshadow-1"
-          src="https://axentix-web.test/img/axentix-250.png"
-          alt="Logo"
-        />
-      </div>
-      <a href="#" class="active sidenav-link">Link 1</a>
-      <a href="#" class="sidenav-link">Link 2</a>
-      <a href="#" class="sidenav-link">Link 3</a>
-      <a href="#" class="sidenav-link">Link 4</a>
-      <div class="sidenav-footer viride">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-    </div>
-
     <main class="container">
       <div class="grix xs3 vstretch" id="toto">
         <div class="card grey rounded-3 hoverable-1 light-4">
@@ -77,13 +44,6 @@
       </div>
     </main>
 
-    <footer class="footer primary">Copyright © 2019 - Example</footer>
-    <script src="../dist/js/axentix.min.js"></script>
-    <script>
-      var sidenav = new Axentix.Sidenav('#example-sidenav');
-
-      const to = document.querySelector('#toto');
-      Axentix.unwrap(to);
-    </script>
+    <script type="module" src="../src/index.js"></script>
   </body>
 </html>

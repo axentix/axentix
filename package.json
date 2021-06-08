@@ -6,16 +6,12 @@
   "author": "Axel SIMONET, Vincent LEVEQUE",
   "license": "MIT",
   "scripts": {
-    "build:js": "gulp js",
-    "build:js-min": "gulp jsmin",
-    "build:js-esm": "gulp jsesm",
-    "build:sass-min": "gulp sassmin",
-    "build:sass": "gulp sass",
-    "build": "gulp",
-    "watch": "npm run build && gulp watch",
+    "serve": "vite --host",
+    "build": "vite build",
+    "generate:examples": "node scripts/generate-examples.js",
     "size": "npm run size:css && npm run size:js",
-    "size:css": "npm run build:sass && code-size -f dist/css/axentix.css -bgm -l css",
-    "size:js": "npm run build:js && code-size -f dist/js/axentix.js -bgm -l js"
+    "size:css": "code-size -f dist/axentix.css -bgm -l css",
+    "size:js": "code-size -f dist/axentix.iife.js -bgm -l js"
   },
   "keywords": [
     "axentix",
@@ -63,6 +59,9 @@
     "gulp-insert": "^0.5.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.1.0",
-    "sass": "^1.34.0"
-  }
+    "sass": "^1.34.0",
+    "vite": "^2.3.6",
+    "vite-plugin-mpa": "^1.0.2"
+  },
+  "dependencies": {}
 }

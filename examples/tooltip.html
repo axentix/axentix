@@ -2,7 +2,6 @@
   <head>
     <title>Axentix - Tooltips</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
@@ -10,13 +9,6 @@
   </head>
 
   <body class="layout">
-    <header>
-      <nav class="navbar primary">
-        <a href="#" class="navbar-brand">Axentix</a>
-        <div class="navbar-menu ml-auto"></div>
-      </nav>
-    </header>
-
     <main class="px-5">
       <span class="font-s1">Size 1</span>
       <span class="font-s2">Size 2</span>
@@ -49,30 +41,29 @@
       </div>
     </main>
 
-    <footer class="footer primary">Copyright © 2020 - Example</footer>
-    <script src="../dist/js/axentix.min.js"></script>
-    <script>
-      // var tooltipTop = new Axentix.Tooltip('#tooltip1', {
+    <script type="module">
+      import { Tooltip } from '../src/index.js';
+      // var tooltipTop = new Tooltip('#tooltip1', {
       //   content: 'This is a tooltip',
       // });
-      var tooltipRight = new Axentix.Tooltip('#tooltip2', {
+      var tooltipRight = new Tooltip('#tooltip2', {
         content: 'This is a tooltip',
         position: 'right',
       });
-      var tooltipBottom = new Axentix.Tooltip('#tooltip3', {
+      var tooltipBottom = new Tooltip('#tooltip3', {
         content: 'This is a tooltip',
         position: 'bottom',
       });
 
-      function test() {
+      window.tooltipTest = () => {
         tooltipBottom.change({
           content: 'Hello guys',
           position: 'right',
           classes: 'red dark-1 shadow-5 p-3 rounded-tl3',
         });
-      }
+      };
 
-      var tooltipLeft = new Axentix.Tooltip('#tooltip4', {
+      var tooltipLeft = new Tooltip('#tooltip4', {
         content: 'This is a tooltip',
         position: 'left',
       });

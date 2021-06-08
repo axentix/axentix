@@ -7,7 +7,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
   </head>
 
   <body class="layout with-sidenav fixed-sidenav">
@@ -25,7 +24,11 @@
     <div id="example-sidenav" class="sidenav white fixed right-aligned">
       <div class="sidenav-header">
         <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-        <img class="sidenav-logo dropshadow-1" src="https://useaxentix.com/img/axentix.svg" alt="Axentix Logo" />
+        <img
+          class="sidenav-logo dropshadow-1"
+          src="https://useaxentix.com/img/axentix.svg"
+          alt="Axentix Logo"
+        />
       </div>
       <a href="#" class="sidenav-link">Link 1</a>
       <a href="#" class="collapsible-trigger sidenav-link" data-target="sidenav-collapsible">Collapsible</a>
@@ -49,7 +52,7 @@
       <a href="#" class="sidenav-link">Link 2</a>
     </div>
 
-    <div id="example-sidenav2" class="sidenav fixed  secondary">
+    <div id="example-sidenav2" class="sidenav fixed secondary">
       <div class="sidenav-header">
         <button data-target="example-sidenav2" class="sidenav-trigger"><i class="fas fa-times"></i></button>
         <img
@@ -75,16 +78,17 @@
     </div>
 
     <main>
-      <!-- Code here the main content -->
       <button data-target="example-sidenav" class="btn press amaranth dark-1 sidenav-trigger">
         Open sidenav
       </button>
+
       <button data-target="example-sidenav2" class="btn press airforce dark-1 sidenav-trigger">
         Open sidenav 2
       </button>
+
       <button data-target="example-modal" class="btn press amaranth dark-1 modal-trigger">Open modal</button>
 
-      <div class="modal white bouncing no-axentix-init" id="example-modal">
+      <div class="modal white no-axentix-init" id="example-modal">
         <div class="modal-header">
           <button data-target="example-modal" class="modal-trigger">
             <i class="fas fa-times"></i>
@@ -105,6 +109,7 @@
           <button data-target="example-modal" class="mg-l-auto btn primary modal-trigger">Close</button>
         </div>
       </div>
+
       <div class="card">
         <div class="card-content">
           <div class="responsive-table-2">
@@ -147,6 +152,8 @@
             </table>
           </div>
         </div>
+      </div>
+
       <ul class="pagination small">
         <li class="disabled">
           <a href=""><i class="fas fa-step-backward"></i></a>
@@ -164,6 +171,7 @@
           <a href=""><i class="fas fa-step-forward"></i></a>
         </li>
       </ul>
+
       <ul class="pagination">
         <li class="disabled">
           <a href=""><i class="fas fa-step-backward"></i></a>
@@ -181,6 +189,7 @@
           <a href=""><i class="fas fa-step-forward"></i></a>
         </li>
       </ul>
+
       <ul class="pagination large">
         <li class="disabled">
           <a href=""><i class="fas fa-step-backward"></i></a>
@@ -198,6 +207,7 @@
           <a href=""><i class="fas fa-step-forward"></i></a>
         </li>
       </ul>
+
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Error mollitia temporibus tempora commodi
       corporis sunt necessitatibus vel similique quia obcaecati architecto veniam repudiandae excepturi atque,
       quisquam quam dolores? Praesentium, sunt? Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
@@ -215,6 +225,7 @@
             accusantium! Adipisci est nam soluta!
           </p>
         </div>
+
         <div class="card primary">
           <div class="card-header">Card header</div>
           <p class="card-content">
@@ -223,6 +234,7 @@
             accusantium! Adipisci est nam soluta!
           </p>
         </div>
+
         <div class="card secondary">
           <div class="card-header">Card header</div>
           <p class="card-content">
@@ -238,37 +250,34 @@
       Copyright © 2019 - Example
       <a href="#">Hello guys</a>
     </footer>
-    <script src="../dist/js/axentix.min.js"></script>
-    <script>
+    <script type="module">
+      import { Axentix, Collapsible, Modal, getInstance, reset } from '../src/index.js';
+
       new Axentix('all');
-      var collapsible = new Axentix.Collapsible('#sidenav-collapsible3', {
+      var collapsible = new Collapsible('#sidenav-collapsible3', {
         // sidenav: {
         //   activeClass: false
         // }
       });
-      // var tt = new Axentix.Collapsible('#sidenav-collapsible3', {
-      //   // sidenav: {
-      //   //   activeClass: false
-      //   // }
-      // });
-      var modal = new Axentix.Modal('#example-modal', {
+
+      var modal = new Modal('#example-modal', {
         bodyScrolling: true,
       });
 
-      const sidenav = Axentix.getInstance('#example-sidenav');
-      function testSidenavReset() {
+      const sidenav = getInstance('#example-sidenav');
+      window.testSidenavReset = () => {
         sidenav.el.classList.toggle('large');
         sidenav.el.classList.toggle('right-aligned');
 
         setTimeout(() => {
-          Axentix.reset('#example-sidenav');
+          reset('#example-sidenav');
         }, 1000);
-      }
+      };
 
-      function testModalReset() {
+      window.testModalReset = () => {
         modal.el.classList.toggle('falling');
         modal.reset();
-      }
+      };
     </script>
   </body>
 </html>

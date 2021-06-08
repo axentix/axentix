@@ -2,7 +2,6 @@
   <head>
     <title>Axentix ScrollSpy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
   </head>
 
   <body class="layout">
@@ -112,11 +111,11 @@
       </p>
     </main>
 
-    <script src="../dist/js/axentix.min.js"></script>
+    <script type="module">
+      import { ScrollSpy } from '../src/index.js';
 
-    <script>
-      // const scrollSpy = new Axentix.ScrollSpy('#navbar-scrollspy');
-      const scrollSpy = new Axentix.ScrollSpy('#navbar-scrollspy', {
+      // const scrollSpy = new ScrollSpy('#navbar-scrollspy');
+      const scrollSpy = new ScrollSpy('#navbar-scrollspy', {
         auto: {
           enabled: true,
           classes: 'navbar-link',

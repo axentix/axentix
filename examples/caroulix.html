@@ -6,23 +6,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
   </head>
 
   <body class="layout">
-    <header>
-      <div class="navbar-fixed">
-        <nav class="navbar primary">
-          <a href="#" target="_blank" class="navbar-brand">Axentix</a>
-          <div class="navbar-menu ml-auto">
-            <a href="#" class="navbar-link">Link 1</a>
-            <a href="#" class="navbar-link">Link 2</a>
-            <a href="#" class="navbar-link">Link 3</a>
-          </div>
-        </nav>
-      </div>
-    </header>
-
     <main>
       <div
         id="caroulix"
@@ -159,14 +145,10 @@
       culpa eum.
     </main>
 
-    <footer class="footer blue">Copyright © 2020 - Example</footer>
-    <script src="../dist/js/axentix.min.js"></script>
-    <script>
-      let caroulix = new Axentix.Caroulix('#caroulix', {
-        autoplay: {
-          enabled: true,
-        },
-      });
+    <script type="module">
+      import { Caroulix } from '../src/index.js';
+
+      const caroulix = new Caroulix('#caroulix');
     </script>
   </body>
 </html>

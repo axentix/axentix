@@ -2,7 +2,6 @@
   <head>
     <title>Axentix Layout - Fixed sidenav</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../dist/css/axentix.min.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
@@ -10,18 +9,6 @@
   </head>
 
   <body class="layout">
-    <header>
-      <nav class="navbar primary">
-        <a href="#" target="_blank" class="navbar-brand">Axentix</a>
-        <div class="navbar-menu ml-auto">
-          <a href="#" class="navbar-link">Link 1</a>
-          <a href="#" class="navbar-link">Link 2</a>
-          <a href="#" class="navbar-link">Link 3</a>
-          <a href="#" class="navbar-link">Link 4</a>
-        </div>
-      </nav>
-    </header>
-
     <main class="container">
       <p>text here</p>
       <p>
@@ -99,15 +86,13 @@
       </p>
     </main>
 
-    <script src="../dist/js/axentix.min.js"></script>
+    <script type="module">
+      import { Lightbox } from '../src/index.js';
 
-    <script>
-      let lightbox = new Axentix.Lightbox('#lightbox', {
+      let lightbox = new Lightbox('#lightbox', {
         overlayColor: 'airforce dark-3',
         caption: 'Caption text <br> test',
       });
-      let toast = new Axentix.Toast('lol');
-      // let lightbox2 = new Axentix.Lightbox('#lightbox2');
     </script>
   </body>
 </html>
