@@ -2,7 +2,6 @@ import './axentix.scss';
 
 import './components/grix';
 import './components/layouts';
-import * as Forms from './components/forms';
 import Caroulix from './components/caroulix';
 import Collapsible from './components/collapsible';
 import Sidenav from './components/sidenav';
@@ -37,9 +36,9 @@ export {
   ScrollSpy,
   Toast,
   Tooltip,
-  Forms,
   Config,
 };
 
+export * from './components/forms';
 export * from './utils/core';
 export * from './utils/utilities';

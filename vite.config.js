@@ -2,13 +2,18 @@ import { defineConfig } from 'vite';
 import path from 'path';
 import mpa from 'vite-plugin-mpa';
 
+const plugins =
+  process.env.NODE_ENV === 'production'
+    ? []
+    : [
+        mpa({
+          scanDir: 'examples',
+          open: '/examples/',
+        }),
+      ];
+
 export default defineConfig({
-  plugins: [
-    mpa({
-      scanDir: 'examples',
-      open: '/examples/',
-    }),
-  ],
+  plugins,
   css: {
     preprocessorOptions: {
       scss: {
