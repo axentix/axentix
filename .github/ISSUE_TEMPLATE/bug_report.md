@@ -7,10 +7,6 @@ assignees: ''
 
 ---
 
-# Expected behavior
-
-Show/explain the expected behavior of the component.
-
 # Actual behavior
 
 Show/explain the actual problem.
@@ -20,6 +16,10 @@ Show/explain the actual problem.
 * First step
 * Second step
 * ...
+
+# Expected behavior
+
+Show/explain the expected behavior of the component.
 
 # Environment
 * [x] Axentix - version
