@@ -24,55 +24,55 @@ export namespace Axentix {
     /**
      * @default 500
      */
-    animationDuration: number;
+    animationDuration?: number;
 
     /**
      * @default true
      */
-    backToOpposite: boolean;
+    backToOpposite?: boolean;
 
     /**
      * @default true
      */
-    enableTouch: boolean;
+    enableTouch?: boolean;
 
     /**
      * @default ''
      */
-    height: string;
+    height?: string;
 
-    indicators: {
+    indicators?: {
       /**
        * @default false
        */
-      enabled: boolean;
+      enabled?: boolean;
 
       /**
        * @default false
        */
-      isFlat: boolean;
+      isFlat?: boolean;
 
       /**
        * @default ''
        */
-      customClasses: string;
+      customClasses?: string;
     };
 
-    autoplay: {
+    autoplay?: {
       /**
        * @default true
        */
-      enabled: boolean;
+      enabled?: boolean;
 
       /**
        * @default 5000
        */
-      interval: number;
+      interval?: number;
 
       /**
        * @default 'right'
        */
-      side: 'right' | 'left';
+      side?: 'right' | 'left';
     };
   }
 
@@ -87,23 +87,23 @@ export namespace Axentix {
     /**
      * @default 300
      */
-    animationDuration: number;
+    animationDuration?: number;
 
-    sidenav: {
+    sidenav?: {
       /**
        * @default true
        */
-      activeClass: boolean;
-
-      /**
-       * @default true
-       */
-      activeWhenOpen: boolean;
+      activeClass?: boolean;
 
       /**
        * @default true
        */
-      autoClose: boolean;
+      activeWhenOpen?: boolean;
+
+      /**
+       * @default true
+       */
+      autoClose?: boolean;
     };
   }
 
@@ -118,27 +118,27 @@ export namespace Axentix {
     /**
      * @default false
      */
-    hover: boolean;
+    hover?: boolean;
 
     /**
      * @default 'none'
      */
-    animationType: 'none' | 'fade';
+    animationType?: 'none' | 'fade';
 
     /**
      * @default 300
      */
-    animationDuration: number;
+    animationDuration?: number;
 
     /**
      * @default true
      */
-    autoClose: boolean;
+    autoClose?: boolean;
 
     /**
      * @default false
      */
-    preventViewport: boolean;
+    preventViewport?: boolean;
   }
 
   class Fab extends AxentixComponent {
@@ -152,32 +152,32 @@ export namespace Axentix {
     /**
      * @default 300
      */
-    animationDuration: number;
+    animationDuration?: number;
 
     /**
      * @default true
      */
-    hover: boolean;
+    hover?: boolean;
 
     /**
      * @default 'top'
      */
-    direction: 'top' | 'bottom' | 'left' | 'right';
+    direction?: 'top' | 'bottom' | 'left' | 'right';
 
     /**
      * @default 'bottom-right'
      */
-    position: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
+    position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
 
     /**
      * @default '1rem'
      */
-    offsetX: string;
+    offsetX?: string;
 
     /**
      * @default '1.5rem'
      */
-    offsetY: string;
+    offsetY?: string;
   }
 
   class Lightbox extends AxentixComponent {
@@ -191,27 +191,27 @@ export namespace Axentix {
     /**
      * @default 400
      */
-    animationDuration: number;
+    animationDuration?: number;
 
     /**
      * @default 'grey dark 4'
      */
-    overlayColor: string;
+    overlayColor?: string;
 
     /**
      * @default 150
      */
-    offset: number;
+    offset?: number;
 
     /**
      * @default 80
      */
-    mobileOffset: number;
+    mobileOffset?: number;
 
     /**
      * @default ''
      */
-    caption: string;
+    caption?: string;
   }
 
   class Modal extends AxentixComponent {
@@ -226,17 +226,17 @@ export namespace Axentix {
     /**
      * @default true
      */
-    overlay: boolean;
+    overlay?: boolean;
 
     /**
      * @default 400
      */
-    animationDuration: number;
+    animationDuration?: number;
 
     /**
      * @default false
      */
-    bodyScrolling: boolean;
+    bodyScrolling?: boolean;
   }
 
   class ScrollSpy extends AxentixComponent {
@@ -247,33 +247,33 @@ export namespace Axentix {
     /**
      * @default 200
      */
-    offset: number;
+    offset?: number;
 
     /**
      * @default 'a'
      */
-    linkSelector: string;
+    linkSelector?: string;
 
     /**
      * @default 'active'
      */
-    classes: string;
+    classes?: string;
 
-    auto: {
+    auto?: {
       /**
        * @default false
        */
-      enabled: boolean;
+      enabled?: boolean;
 
       /**
        * @default ''
        */
-      classes: string;
+      classes?: string;
 
       /**
        * @default ''
        */
-      selector: string;
+      selector?: string;
     };
   }
 
@@ -289,17 +289,17 @@ export namespace Axentix {
     /**
      * @default true
      */
-    overlay: boolean;
+    overlay?: boolean;
 
     /**
      * @default false
      */
-    bodyScrolling: boolean;
+    bodyScrolling?: boolean;
 
     /**
      * @default 300
      */
-    animationDuration: number;
+    animationDuration?: number;
   }
 
   class Tab extends AxentixComponent {
@@ -315,45 +315,45 @@ export namespace Axentix {
     /**
      * @default 'none'
      */
-    animationType: 'none' | 'slide';
+    animationType?: 'none' | 'slide';
 
     /**
      * @default 300
      */
-    animationDuration: number;
+    animationDuration?: number;
 
     /**
      * @default false
      */
-    disableActiveBar: boolean;
+    disableActiveBar?: boolean;
 
     /**
      * @default TabCaroulixOptions
      */
-    caroulix: TabCaroulixOptions | CaroulixOptions;
+    caroulix?: TabCaroulixOptions | CaroulixOptions;
   }
 
   interface TabCaroulixOptions {
     /**
      * @default 300
      */
-    animationDuration: number;
+    animationDuration?: number;
 
     /**
      * @default false
      */
-    backToOpposite: boolean;
+    backToOpposite?: boolean;
 
     /**
      * @default false
      */
-    enableTouch: boolean;
+    enableTouch?: boolean;
 
-    autoplay: {
+    autoplay?: {
       /**
        * @default false
        */
-      enabled: boolean;
+      enabled?: boolean;
     };
   }
 
@@ -361,7 +361,7 @@ export namespace Axentix {
     constructor(content: string, options?: ToastOptions);
 
     show(): void;
-    change(content: string, options: ToastOptions): void;
+    change(content: string, options?: ToastOptions): void;
     destroy(): void;
   }
 
@@ -369,53 +369,75 @@ export namespace Axentix {
     /**
      * @default 400
      */
-    animationDuration: number;
+    animationDuration?: number;
 
     /**
      * @default 4000
      */
-    duration: number;
+    duration?: number;
 
     /**
      * @default ''
      */
-    classes: string;
+    classes?: string;
 
     /**
      * @default 'right'
      */
-    position: 'right' | 'left';
+    position?: 'right' | 'left';
 
     /**
      * @default 'top'
      */
-    direction: 'top' | 'bottom';
+    direction?: 'top' | 'bottom';
 
     /**
      * @default 'bottom'
      */
-    mobileDirection: 'top' | 'bottom';
+    mobileDirection?: 'top' | 'bottom';
 
-    offset: {
+    offset?: {
       /**
        * @default '5%'
        */
-      x: string;
+      x?: string;
 
       /**
        * @default '0%'
        */
-      y: string;
+      y?: string;
 
       /**
        * @default '10%'
        */
-      mobileX: string;
+      mobileX?: string;
 
       /**
        * @default '0%'
        */
-      mobileY: string;
+      mobileY?: string;
+    };
+
+    /**
+     * @default false
+     */
+    isClosable?: boolean;
+
+    /**
+     * @default 'x'
+     */
+    closableContent?: string;
+
+    loading?: {
+      /**
+       * @default true
+       */
+      enabled?: boolean;
+
+      /**
+       * @default '2px solid #E2E2E2'
+       */
+      border?: string;
     };
   }
 
@@ -432,32 +454,32 @@ export namespace Axentix {
     /**
      * @default ''
      */
-    content: string;
+    content?: string;
 
     /**
      * @default 0
      */
-    animationDelay: number;
+    animationDelay?: number;
 
     /**
      * @default '10px'
      */
-    offset: string;
+    offset?: string;
 
     /**
      * @default 200
      */
-    animationDuration: number;
+    animationDuration?: number;
 
     /**
      * @default 'grey dark-4 light-shadow-2 p-2'
      */
-    classes: string;
+    classes?: string;
 
     /**
      * @default 'top'
      */
-    position: 'top' | 'bottom' | 'left' | 'right';
+    position?: 'top' | 'bottom' | 'left' | 'right';
   }
 
   namespace Config {

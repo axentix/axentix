@@ -75,9 +75,11 @@
     _setupListeners() {
       this.listenerEnterRef = this._onHover.bind(this);
       this.listenerLeaveRef = this._onHoverOut.bind(this);
+      this.listenerResizeRef = this.updatePosition.bind(this);
 
       this.el.addEventListener('mouseenter', this.listenerEnterRef);
       this.el.addEventListener('mouseleave', this.listenerLeaveRef);
+      window.addEventListener('resize', this.listenerResizeRef);
     }
 
     /**
@@ -86,9 +88,11 @@
     _removeListeners() {
       this.el.removeEventListener('mouseenter', this.listenerEnterRef);
       this.el.removeEventListener('mouseleave', this.listenerLeaveRef);
+      this.el.removeEventListener('resize', this.listenerResizeRef);
 
       this.listenerEnterRef = undefined;
       this.listenerLeaveRef = undefined;
+      this.listenerResizeRef = undefined;
     }
 
     /**

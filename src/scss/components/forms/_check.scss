@@ -2,7 +2,7 @@
 .form-check {
   span {
     cursor: pointer;
-    display: inline-block;
+    display: inline;
   }
 
   input {
@@ -27,7 +27,7 @@
   .form-check {
     font-weight: initial;
     margin-bottom: 0;
-    display: inline-block;
+    display: inline;
     align-self: flex-start;
   }
 }

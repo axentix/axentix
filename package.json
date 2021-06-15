@@ -1,6 +1,6 @@
 {
   "name": "axentix",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Axentix is an open source Framework based on CSS Grid using HTML, CSS and JS. The easy layout control and grid system makes it one of the most easy to learn framework.",
   "homepage": "https://useaxentix.com",
   "author": "Axel SIMONET, Vincent LEVEQUE",
@@ -49,8 +49,8 @@
   ],
   "engine": "node >= 10",
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/preset-env": "^7.14.2",
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.5",
     "@xelzs/code-size": "^1.1.0",
     "browser-sync": "^2.26.13",
     "fibers": "^4.0.3",
@@ -63,6 +63,6 @@
     "gulp-insert": "^0.5.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.1.0",
-    "sass": "^1.34.0"
+    "sass": "^1.35.0"
   }
 }
