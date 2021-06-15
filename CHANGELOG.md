@@ -1,4 +1,4 @@
-# 1.3.1 - Under development
+# 1.3.1 - 2021-06-15
 
 - ADDED
 - REMOVED
@@ -6,6 +6,8 @@
   - Set all definition file options optional
 - BUGFIXES
   - Bouncing modal animation was blinking on firefox
+  - Material form group wasn't working with suffix
+  - Material checkbox wasn't vertically centered
 
 # 1.3.0 - 2021-05-26
 
