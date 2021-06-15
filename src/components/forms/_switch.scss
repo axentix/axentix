@@ -12,7 +12,7 @@
     opacity: 0;
   }
 
-  .slider {
+  .form-slider {
     --form-switch-active-color: #{$switch-bg-active-color};
     position: relative;
     cursor: pointer;
@@ -37,7 +37,7 @@
       box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.5);
     }
 
-    &.small {
+    &.form-slider-small {
       width: 2.5rem;
       height: 1.5rem;
 
@@ -47,7 +47,7 @@
       }
     }
 
-    &.large {
+    &.form-slider-large {
       width: 3.5rem;
       height: 2rem;
 
@@ -57,7 +57,7 @@
       }
     }
 
-    &.thin {
+    &.form-slider-thin {
       height: 0.75rem;
       margin: 0.375rem 0.5rem;
 
@@ -67,26 +67,24 @@
         box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.75);
       }
 
-      &.small {
+      &.form-slider-small {
         height: 0.5rem;
       }
 
-      &.large {
+      &.form-slider-large {
         height: 1rem;
       }
     }
   }
 
-  input:checked + .slider {
+  input:checked + .form-slider {
     background-color: var(--form-switch-active-color);
-  }
 
-  input:checked + .slider {
     &::before {
       left: 50%;
     }
 
-    &.thin::before {
+    &.form-slider-thin::before {
       left: 60%;
     }
   }

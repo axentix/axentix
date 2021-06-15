@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       .form-material .form-field:not(.form-default) {
-        --form-material-color: #c91d34;
+        --form-material-color: #c91d34 !important;
       }
-      .form-switch .slider {
-        --form-switch-active-color: #c91d34;
+      .form-switch .form-slider {
+        --form-switch-active-color: #c91d34 !important;
       }
     </style>
   </head>
@@ -47,11 +47,11 @@
             <label for="textarea">A textarea</label>
             <textarea id="textarea" class="form-control"></textarea>
           </div>
-          <div class="form-field inline form-default">
+          <div class="form-field form-inline form-default">
             <label for="inline">inline</label>
             <input type="text" id="inline" class="form-control" />
           </div>
-          <div class="form-field inline form-default">
+          <div class="form-field form-inline form-default">
             <label for="inline2">inline2</label>
             <div class="input-prefix">Test</div>
             <input type="text" id="inline2" class="form-control rounded-2" />
@@ -81,64 +81,64 @@
             <label class="form-switch mt-2">
               dd
               <input type="checkbox" />
-              <span class="slider small"></span>
+              <span class="form-slider small"></span>
               Cc
             </label>
             <label class="form-switch mt-2">
               <input type="checkbox" checked />
-              <span class="slider small"></span>
+              <span class="form-slider small"></span>
             </label>
             <label class="form-switch mt-2">
               dd
               <input type="checkbox" />
-              <span class="slider"></span>
+              <span class="form-slider"></span>
               Cc
             </label>
             <label class="form-switch mt-2">
               <input type="checkbox" checked />
-              <span class="slider"></span>
+              <span class="form-slider"></span>
             </label>
             <label class="form-switch mt-2">
               dd
               <input type="checkbox" />
-              <span class="slider large"></span>
+              <span class="form-slider large"></span>
               Cc
             </label>
             <label class="form-switch mt-2">
               <input type="checkbox" checked />
-              <span class="slider large"></span>
+              <span class="form-slider large"></span>
             </label>
           </div>
           <div class="form-field form-default">
             <label class="form-switch mt-2">
               dd
               <input type="checkbox" />
-              <span class="slider small thin"></span>
+              <span class="form-slider form-slider-small form-slider-thin"></span>
               Cc
             </label>
             <label class="form-switch mt-2">
               <input type="checkbox" checked />
-              <span class="slider small thin"></span>
+              <span class="form-slider form-slider-small form-slider-thin"></span>
             </label>
             <label class="form-switch mt-2">
               dd
               <input type="checkbox" />
-              <span class="slider thin"></span>
+              <span class="form-slider form-slider-thin"></span>
               Cc
             </label>
             <label class="form-switch mt-2">
               <input type="checkbox" checked />
-              <span class="slider thin"></span>
+              <span class="form-slider form-slider-thin"></span>
             </label>
             <label class="form-switch mt-2">
               dd
               <input type="checkbox" />
-              <span class="slider large thin"></span>
+              <span class="form-slider form-slider-large form-slider-thin"></span>
               Cc
             </label>
             <label class="form-switch mt-2">
               <input type="checkbox" checked />
-              <span class="slider large thin"></span>
+              <span class="form-slider form-slider-large form-slider-thin"></span>
             </label>
           </div>
           <div class="form-field">
