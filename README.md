@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://useaxentix.com/">
-    <img src="https://useaxentix.com/img/axentix.svg" alt="Axentix Logo" width="120" height="120">
+    <img src="https://useaxentix.com/img/axentix.svg?" alt="Axentix Logo" width="120" height="120">
   </a>
 </p>
 
@@ -88,7 +88,7 @@ Changelog is accessible in the [CHANGELOG.md](CHANGELOG.md) file or in [the rele
 Support this project on [BuyMeACoffee](https://www.buymeacoffee.com/axentix) to become a sponsor and get **your logo here and on the docs** with a link to your website.
 
 <div align="center">
-  <a href="https://www.buymeacoffee.com/axentix" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Become a sponsor" style="height: 50px !important;width: 180px !important;" ></a>
+  <a href="https://www.buymeacoffee.com/axentix" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Become a sponsor" height="50" width="180"></a>
 </div>
 
 ## Backers
