@@ -7,12 +7,12 @@
   overflow: hidden;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 
-  &.large {
+  &.progress-large {
     height: 0.75rem;
     font-size: 0.7rem;
   }
 
-  &.small {
+  &.progress-small {
     height: 0.25rem;
     font-size: 0.3rem;
   }
@@ -24,13 +24,13 @@
     transition: width 0.5s ease;
   }
 
-  &.indeterminate {
+  &.progress-indeterminate {
     .progress-bar {
       animation: pbar-indeterminate 1s infinite linear;
       width: 100%;
       transform-origin: 0% 50%;
 
-      &.rainbow {
+      &.progress-bar-rainbow {
         animation: pbar-indeterminate 1s infinite linear, pbar-colors 3s ease-in-out infinite;
       }
     }
