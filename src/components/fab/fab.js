@@ -171,7 +171,7 @@ export class Fab extends AxentixComponent {
     createEvent(this.el, 'fab.open');
     this.isAnimated = true;
     this.isActive = true;
-    this.el.classList.add('fab-active');
+    this.el.classList.add('active');
     setTimeout(() => {
       this.isAnimated = false;
     }, this.options.animationDuration);
@@ -187,7 +187,7 @@ export class Fab extends AxentixComponent {
     createEvent(this.el, 'fab.close');
     this.isAnimated = true;
     this.isActive = false;
-    this.el.classList.remove('fab-active');
+    this.el.classList.remove('active');
     setTimeout(() => {
       this.isAnimated = false;
     }, this.options.animationDuration);

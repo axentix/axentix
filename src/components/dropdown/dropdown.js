@@ -46,9 +46,9 @@ export class Dropdown extends AxentixComponent {
     this.dropdownContent = this.el.querySelector('.dropdown-content');
     this.dropdownTrigger = this.el.querySelector('.dropdown-trigger');
     this.isAnimated = false;
-    this.isActive = this.el.classList.contains('dropdown-active') ? true : false;
+    this.isActive = this.el.classList.contains('active') ? true : false;
 
-    this.options.hover ? this.el.classList.add('dropdown-active-hover') : this._setupListeners();
+    this.options.hover ? this.el.classList.add('active-hover') : this._setupListeners();
 
     this.options.preventViewport ? this.el.classList.add('dropdown-vp') : '';
 
@@ -158,7 +158,7 @@ export class Dropdown extends AxentixComponent {
     this.options.preventViewport ? this._setContentHeight() : '';
 
     setTimeout(() => {
-      this.el.classList.add('dropdown-active');
+      this.el.classList.add('active');
       this.isActive = true;
     }, 10);
 
@@ -183,7 +183,7 @@ export class Dropdown extends AxentixComponent {
       return;
     }
     createEvent(this.el, 'dropdown.close');
-    this.el.classList.remove('dropdown-active');
+    this.el.classList.remove('active');
 
     if (this.options.animationType !== 'none') {
       this.isAnimated = true;

@@ -32,18 +32,18 @@
       padding: 1rem 1.25rem;
       transition: background-color 0.2s ease;
 
-      &.dropdown-active {
+      &.active {
         background-color: getColor('primary');
         color: txtColor(getColor('primary'));
       }
 
-      &:hover:not(.dropdown-active) {
+      &:hover:not(.active) {
         background-color: rgba(0, 0, 0, 0.2);
       }
     }
   }
 
-  &.dropdown-active-hover:hover .dropdown-content {
+  &.active-hover:hover .dropdown-content {
     display: flex;
   }
 }
@@ -58,7 +58,7 @@
       opacity: 0;
     }
 
-    &.dropdown-active .dropdown-content {
+    &.active .dropdown-content {
       opacity: 1;
     }
   }
