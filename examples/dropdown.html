@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Axentix - Dropdown</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body class="layout">
+    <main>
+      <div class="container">
+        <h2>Dropdown</h2>
+
+        <nav class="navbar shadow-1 primary">
+          <a href="#" target="_blank" class="navbar-brand">Axentix</a>
+          <div class="navbar-menu ml-auto">
+            <a class="navbar-link" href="#">Link 1</a>
+            <a class="navbar-link" href="#">Link 2</a>
+            <div class="dropdown" id="drop1" data-ax="dropdown">
+              <div class="navbar-link airforce dropdown-trigger">Toggle</div>
+              <div class="dropdown-content dropdown-right white shadow-1">
+                <a class="dropdown-item" href="#">Dropdown in navbar</a>
+                <a class="dropdown-item" href="#">Item 2</a>
+                <a class="dropdown-item dropdown-active" href="#">Item 3</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <div class="d-flex fx-wrap">
+          <div
+            class="dropdown mx-auto my-4"
+            id="dropdown"
+            data-ax="dropdown"
+            data-dropdown-animation-type="fade"
+          >
+            <button type="button" class="btn shadow-1 rounded-1 primary dropdown-trigger">Animated DD</button>
+            <div class="dropdown-content white shadow-1 rounded-1">
+              <a class="dropdown-item" href="#">This is the first item</a>
+              <a class="dropdown-item" href="#">Item 2</a>
+              <a class="dropdown-item dropdown-active" href="#">Item 3</a>
+            </div>
+          </div>
+
+          <div class="dropdown mx-auto my-4" id="example2" data-ax="dropdown">
+            <button type="button" class="btn shadow-1 rounded-1 primary dropdown-trigger">
+              Width constrained dropdown
+            </button>
+            <div class="dropdown-content dropdown-constrain-width white shadow-1 rounded-1">
+              <a class="dropdown-item" href="#">This is the first item</a>
+              <a class="dropdown-item" href="#">Item 2</a>
+              <a class="dropdown-item dropdown-active" href="#">Item 3</a>
+            </div>
+          </div>
+
+          <div class="dropdown mx-auto my-4" id="example" data-ax="dropdown">
+            <button type="button" class="btn shadow-1 rounded-1 primary dropdown-trigger">Right</button>
+            <div class="dropdown-content dropdown-right white shadow-1 rounded-1">
+              <a class="dropdown-item" href="#">This is the first item</a>
+              <a class="dropdown-item" href="#">Item 2</a>
+              <a class="dropdown-item dropdown-active" href="#">Item 3</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="module">
+      import { Dropdown } from '../src/index.js';
+    </script>
+  </body>
+</html>
