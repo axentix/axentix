@@ -16,12 +16,12 @@
       height: inherit;
     }
 
-    &.centered {
+    &.navbar-centered {
       margin: 0;
     }
   }
 
-  .centered {
+  .navbar-centered {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
