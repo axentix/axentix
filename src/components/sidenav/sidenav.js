@@ -43,7 +43,7 @@ export class Sidenav extends AxentixComponent {
     this.sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
     this.isActive = false;
     this.isAnimated = false;
-    this.isFixed = this.el.classList.contains('fixed');
+    this.isFixed = this.el.classList.contains('sidenav-fixed');
 
     const sidenavFixed = getInstanceByType('Sidenav').find((sidenav) => sidenav.isFixed);
     this.firstSidenavInit = sidenavFixed && sidenavFixed.el === this.el;
@@ -115,12 +115,12 @@ export class Sidenav extends AxentixComponent {
     if (!this.firstSidenavInit) return;
 
     const sidenavs = Array.from(document.querySelectorAll('.sidenav')).filter((sidenav) =>
-      sidenav.classList.contains('fixed')
+      sidenav.classList.contains('sidenav-fixed')
     );
 
     const { sidenavsRight, sidenavsLeft } = sidenavs.reduce(
       (acc, sidenav) => {
-        sidenav.classList.contains('right-aligned')
+        sidenav.classList.contains('sidenav-right')
           ? acc.sidenavsRight.push(sidenav)
           : acc.sidenavsLeft.push(sidenav);
         return acc;

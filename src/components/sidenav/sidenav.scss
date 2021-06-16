@@ -18,7 +18,7 @@
     flex-shrink: 0;
   }
 
-  &.right-aligned {
+  &.sidenav-right {
     left: initial;
     right: 0;
     transform: translateX(105%);
@@ -30,7 +30,7 @@
   }
 
   @include responsive('md-up') {
-    &.fixed {
+    &.sidenav-fixed {
       transform: none;
 
       .sidenav-header .sidenav-trigger {
@@ -39,7 +39,7 @@
     }
   }
 
-  &.large {
+  &.sidenav-large {
     width: $sidenav-large-width;
   }
 
