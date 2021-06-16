@@ -49,7 +49,7 @@
     padding: 1rem;
   }
 
-  &.falling {
+  &.modal-falling {
     top: -20%;
     will-change: opacity, top;
     transition-property: top, opacity;
@@ -60,7 +60,7 @@
     }
   }
 
-  &.bouncing {
+  &.modal-bouncing {
     animation: bouncing;
     animation-timing-function: ease;
   }
