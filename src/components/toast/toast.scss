@@ -83,7 +83,7 @@
     opacity: 0.2;
     overflow: hidden;
 
-    &.loading {
+    &.toast-loading {
       &::after {
         content: '';
         position: absolute;
@@ -96,7 +96,7 @@
         bottom: 0;
       }
 
-      &.load::after {
+      &.toast-load::after {
         width: 100%;
       }
     }
