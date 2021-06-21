@@ -9,22 +9,20 @@
     }
 
     :first-child {
-      border-right-width: 1px;
       border-top-left-radius: inherit;
       border-bottom-left-radius: inherit;
     }
 
     :last-child {
-      border-left-width: 1px;
       border-top-right-radius: inherit;
       border-bottom-right-radius: inherit;
     }
 
-    .outline:not(:first-child) {
+    .btn-outline:not(:first-child) {
       border-left-width: 1px;
     }
-    
-    .outline:not(:last-child) {
+
+    .btn-outline:not(:last-child) {
       border-right-width: 1px;
     }
   }
@@ -37,24 +35,22 @@
     }
 
     :first-child {
-      border-bottom-width: 1px;
       border-top-left-radius: inherit;
       border-top-right-radius: inherit;
     }
 
     :last-child {
-      border-top-width: 1px;
       border-bottom-left-radius: inherit;
       border-bottom-right-radius: inherit;
     }
 
-    .outline:not(:first-child){
+    .btn-outline:not(:first-child) {
       border-top-width: 1px;
     }
-    
-    .outline:not(:last-child) {
+
+    .btn-outline:not(:last-child) {
       border-bottom-width: 1px;
-    } 
+    }
   }
 
   .btn {

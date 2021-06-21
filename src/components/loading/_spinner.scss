@@ -37,11 +37,11 @@
     font-size: 0.9rem;
   }
 
-  &.rainbow svg .spinner-path {
+  &.spinner-rainbow svg .spinner-path {
     animation: sp-dash 1.5s ease-in-out infinite, sp-colors 6s ease-in-out infinite;
   }
 
-  &.large {
+  &.spinner-large {
     width: 5rem;
 
     .spinner-txt {
@@ -49,7 +49,7 @@
     }
   }
 
-  &.small {
+  &.spinner-small {
     width: 2rem;
 
     .spinner-txt {

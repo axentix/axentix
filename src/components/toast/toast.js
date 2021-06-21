@@ -112,14 +112,14 @@ export class Toast {
     setTimeout(() => {
       createEvent(toast, 'toast.show');
       if (this.options.loading.enabled) {
-        toast.classList.add('loading');
+        toast.classList.add('toast-loading');
         toast.style.setProperty('--toast-loading-duration', this.options.duration + 'ms');
       }
       toast.classList.add('toast-animated');
 
       setTimeout(() => {
         createEvent(toast, 'toast.shown');
-        if (this.options.loading.enabled) toast.classList.add('load');
+        if (this.options.loading.enabled) toast.classList.add('toast-load');
       }, this.options.animationDuration);
     }, 50);
   }

@@ -99,7 +99,7 @@ export class Dropdown extends AxentixComponent {
       } else {
         this.el.style.transitionDuration = this.options.animationDuration + 'ms';
       }
-      this.el.classList.add('anim-' + this.options.animationType);
+      this.el.classList.add('dropdown-anim-' + this.options.animationType);
     }
   }
 

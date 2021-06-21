@@ -15,12 +15,12 @@
     overflow: hidden;
     white-space: nowrap;
 
-    &.right-aligned {
+    &.dropdown-right {
       right: 0;
       left: unset;
     }
 
-    &.constrain-width {
+    &.dropdown-constrain-width {
       right: 0;
       left: 0;
       word-break: break-word;
@@ -50,7 +50,7 @@
 
 // Animation
 .dropdown {
-  &.anim-fade {
+  &.dropdown-anim-fade {
     .dropdown-content {
       transition-timing-function: ease-in-out;
       transition-property: opacity;

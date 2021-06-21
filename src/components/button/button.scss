@@ -18,8 +18,8 @@
 
   [class*='hoverable-'],
   [class*='light-hoverable-'] {
-    &:not(.press),
-    &:not(.outline) {
+    &:not(.btn-press),
+    &:not(.btn-outline) {
       transition-property: filter, transform, box-shadow;
     }
   }
@@ -28,17 +28,17 @@
     filter: brightness(115%);
   }
 
-  &.small {
+  &.btn-small {
     font-size: 1rem;
     padding: calc(0.45rem + 2px) 1rem;
   }
 
-  &.large {
+  &.btn-large {
     font-size: 1.4rem;
     padding: calc(1rem + 2px) 1.5rem;
   }
 
-  &.press {
+  &.btn-press {
     transition: 0.1s ease;
     transition-property: box-shadow, transform, filter;
     box-shadow: inset 0 -0.5rem 0 -0.25rem rgba(0, 0, 0, 0.25);
@@ -49,7 +49,7 @@
     }
   }
 
-  &.circle {
+  &.btn-circle {
     padding: 0;
     font-size: 1.5rem;
     width: 2.8rem;
@@ -66,14 +66,14 @@
       left: 50%;
     }
 
-    &.small {
+    &.btn-small {
       font-size: 0.9rem;
       width: 2rem;
       height: 2rem;
       line-height: 2rem;
     }
 
-    &.large {
+    &.btn-large {
       font-size: 1.8rem;
       width: 3.6rem;
       height: 3.6rem;
@@ -88,18 +88,18 @@
     color: rgb(120, 120, 120) !important;
     box-shadow: none;
 
-    &.outline {
+    &.btn-outline {
       border-color: rgb(200, 200, 200);
     }
   }
 
-  &.outline {
+  &.btn-outline {
     background-color: transparent;
     border: 2px solid currentColor;
     padding: 0.6rem calc(1.25rem - 2px);
 
-    &.circle {
-      .outline-text {
+    &.btn-circle {
+      .btn-outline-text {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -107,15 +107,15 @@
       }
     }
 
-    &.small {
+    &.btn-small {
       padding: 0.45rem calc(1rem - 2px);
     }
 
-    &.large {
+    &.btn-large {
       padding: 1rem calc(1.5rem - 2px);
     }
 
-    .outline-text {
+    .btn-outline-text {
       transition: color 0.3s ease;
     }
 
@@ -145,9 +145,9 @@
       animation-delay: 0.001s;
       animation-fill-mode: forwards;
 
-      .outline-text {
+      .btn-outline-text {
         color: #fff !important;
-        &.outline-invert {
+        &.btn-outline-invert {
           color: #000 !important;
         }
       }
@@ -156,7 +156,7 @@
       }
     }
 
-    &.opening {
+    &.btn-opening {
       &::before {
         left: 50%;
         right: 50%;

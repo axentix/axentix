@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Axentix - FAB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body class="layout">
+    <main>
+      <div class="container">
+        <h2>FAB</h2>
+      </div>
+
+      <div class="fab" id="fab-example" data-ax="fab">
+        <button class="btn btn-circle btn-large secondary shadow-1 fab-trigger">
+          <i class="fas fa-plus" aria-hidden="true"></i>
+        </button>
+
+        <div class="fab-menu">
+          <button class="btn shadow-1 btn-circle orange dark-1 txt-white fab-item mb-3">
+            <i class="fas fa-pen" aria-hidden="true"></i>
+          </button>
+          <button class="btn shadow-1 btn-circle red fab-item mb-3">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+          </button>
+          <button class="btn shadow-1 btn-circle primary fab-item mb-3">
+            <i class="fas fa-download" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script type="module">
+      import { Fab } from '../src/index.js';
+    </script>
+  </body>
+</html>

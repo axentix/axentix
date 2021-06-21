@@ -8,7 +8,7 @@
   border-collapse: collapse;
   border: none;
 
-  &.bordered {
+  &.table-bordered {
     td,
     th {
       border: 1px solid rgb(210, 210, 210);
@@ -19,22 +19,22 @@
     }
   }
 
-  &.centered {
+  &.table-centered {
     th,
     td {
       text-align: center;
     }
   }
 
-  &.border-0,
-  &.striped {
+  &.table-no-border,
+  &.table-striped {
     td,
     th {
       border: none;
     }
   }
 
-  &.hover {
+  &.table-hover {
     tbody > tr {
       transition: background-color 0.3s ease;
       &:hover {
@@ -43,7 +43,7 @@
     }
   }
 
-  &.striped {
+  &.table-striped {
     tbody > tr:nth-child(odd) {
       background-color: rgba(0, 0, 0, 0.07);
     }
@@ -80,7 +80,7 @@
   }
 }
 
-.responsive-table {
+.table-responsive {
   overflow-x: auto;
   width: 100%;
   display: block;
@@ -92,7 +92,7 @@
   }
 }
 
-.responsive-table-2 {
+.table-responsive-2 {
   width: 100%;
   display: block;
   overflow-x: auto;

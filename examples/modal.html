@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Axentix - Modal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body class="layout">
+    <main>
+      <div class="container">
+        <h2>Modal</h2>
+
+        <div class="grix xs1 gutter-xs6 mt-5">
+          <button class="btn primary rounded-1 shadow-1 modal-trigger mx-auto" data-target="normal">
+            Normal modal
+          </button>
+          <button class="btn primary rounded-1 shadow-1 modal-trigger mx-auto" data-target="falling">
+            Falling modal
+          </button>
+          <button class="btn primary rounded-1 shadow-1 modal-trigger mx-auto" data-target="bouncing">
+            Bouncing modal
+          </button>
+        </div>
+      </div>
+
+      <div class="modal white" id="normal" data-ax="modal">
+        <div class="modal-header">
+          Header
+          <button data-target="normal" class="modal-trigger">
+            <span>X</span>
+          </button>
+        </div>
+        <div class="modal-content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+        <div class="modal-footer">Footer</div>
+      </div>
+
+      <div class="modal modal-falling white" id="falling" data-ax="modal">
+        <div class="modal-header">
+          Header
+          <button data-target="falling" class="modal-trigger">
+            <span>X</span>
+          </button>
+        </div>
+        <div class="modal-content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+        <div class="modal-footer">Footer</div>
+      </div>
+
+      <div class="modal modal-bouncing white" id="bouncing" data-ax="modal">
+        <div class="modal-header">
+          Header
+          <button data-target="bouncing" class="modal-trigger">
+            <span>X</span>
+          </button>
+        </div>
+        <div class="modal-content">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+        <div class="modal-footer">Footer</div>
+      </div>
+    </main>
+
+    <script type="module">
+      import { Modal } from '../src/index.js';
+    </script>
+  </body>
+</html>
