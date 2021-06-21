@@ -30,7 +30,7 @@
       width: 100%;
       transform-origin: 0% 50%;
 
-      &.progress-bar-rainbow {
+      &.progress-rainbow {
         animation: pbar-indeterminate 1s infinite linear, pbar-colors 3s ease-in-out infinite;
       }
     }
