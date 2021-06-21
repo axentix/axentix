@@ -24,6 +24,8 @@ import './components/utilities';
 import './components/loading';
 import * as Config from './utils/config';
 
+import './core/_css_var.scss';
+
 export {
   Sidenav,
   Caroulix,
