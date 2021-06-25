@@ -26,4 +26,4 @@ Describe in detail how you tested your changes.
 ## Checklist:
 <!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
 - [ ] My code follows the code style of this project.
-- [ ] My change requires a change to the documentation.
+- [ ] Requires a change to the documentation.
