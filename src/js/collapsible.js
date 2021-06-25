@@ -198,7 +198,7 @@
      * Open collapsible
      */
     open() {
-      if (this.isActive) {
+      if (this.isActive && !this.isInitialStart) {
         return;
       }
       Axentix.createEvent(this.el, 'collapsible.open');
