@@ -20,6 +20,7 @@ $generated-css-vars: map.remove(
   ),
   x
 ) !default;
+$prefix: 'ax' !default;
 
 /** 
   1. BREAKPOINTS
@@ -99,9 +100,9 @@ $gutter: (
 /**
   4. Layouts
 **/
-$generated-css-vars: map.set($generated-css-vars, '--ax-layout-areas', 'header' 'main' 'footer');
-$generated-css-vars: map.set($generated-css-vars, '--ax-layout-columns', minmax(0, 1fr));
-$generated-css-vars: map.set($generated-css-vars, '--ax-layout-rows', auto 1fr auto);
+$generated-css-vars: map.set($generated-css-vars, 'layout-areas', 'header' 'main' 'footer');
+$generated-css-vars: map.set($generated-css-vars, 'layout-columns', minmax(0, 1fr));
+$generated-css-vars: map.set($generated-css-vars, 'layout-rows', auto 1fr auto);
 $layouts-sidenav-fixed-zindex: 710 !default;
 $layouts-sidenav-fixed-zindex-mdup: 690 !default;
 
