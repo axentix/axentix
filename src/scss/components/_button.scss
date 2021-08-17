@@ -16,8 +16,8 @@
   overflow: hidden;
   word-wrap: normal;
 
-  [class*='hoverable-'],
-  [class*='light-hoverable-'] {
+  &[class*='hoverable-'],
+  &[class*='light-hoverable-'] {
     &:not(.press),
     &:not(.outline) {
       transition-property: filter, transform, box-shadow;
