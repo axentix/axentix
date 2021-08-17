@@ -1,3 +1,11 @@
+# 1.3.3 - 2021-08-17
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - form-control border radius could not be applied in some cases
+
 # 1.3.2 - 2021-06-28
 
 - ADDED
