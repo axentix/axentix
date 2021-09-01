@@ -8,10 +8,7 @@
   "scripts": {
     "serve": "vite --host",
     "build": "vite build",
-    "generate:examples": "node scripts/generate-examples.js",
-    "size": "npm run size:css && npm run size:js",
-    "size:css": "code-size -f dist/axentix.css -bgm -l css",
-    "size:js": "code-size -f dist/axentix.iife.js -bgm -l js"
+    "generate:examples": "node scripts/generate-examples.js"
   },
   "keywords": [
     "axentix",
@@ -38,16 +35,14 @@
   "files": [
     "dist",
     "src",
-    "gulpfile.js",
     "LICENSE",
     "README",
     "CHANGELOG"
   ],
   "engine": "node >= 12",
   "devDependencies": {
-    "@xelzs/code-size": "^1.1.0",
-    "sass": "^1.35.1",
-    "vite": "^2.3.8",
+    "sass": "^1.38.2",
+    "vite": "^2.5.3",
     "vite-plugin-mpa": "^1.0.3"
   },
   "dependencies": {}

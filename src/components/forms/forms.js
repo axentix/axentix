@@ -93,7 +93,7 @@ const setFormPosition = (input, formField) => {
 
   let offset = inputLeftOffset,
     side = 'left',
-    width = '100%',
+    width = inputWidth + 'px',
     labelLeft = '0';
 
   if (formField.classList.contains('form-rtl')) {
@@ -103,10 +103,7 @@ const setFormPosition = (input, formField) => {
 
   formField.style.setProperty(`--form-material-${side}-offset`, offset + 'px');
 
-  if (offset != 0) {
-    width = inputWidth + 'px';
-    labelLeft = inputLeftOffset;
-  }
+  if (offset != 0) labelLeft = inputLeftOffset;
   formField.style.setProperty('--form-material-width', width);
 
   const label = formField.querySelector('label');

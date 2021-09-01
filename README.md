@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://useaxentix.com/">
-    <img src="https://useaxentix.com/img/axentix.svg" alt="Axentix Logo" width="120" height="120">
+    <img src="https://useaxentix.com/img/axentix.svg?" alt="Axentix Logo" width="120" height="120">
   </a>
 </p>
 
@@ -82,6 +82,21 @@ Find the documentation at <https://useaxentix.com/docs/>.
 ## Changelog
 
 Changelog is accessible in the [CHANGELOG.md](CHANGELOG.md) file or in [the release section](https://github.com/axentix/axentix/releases).
+
+## Sponsors
+
+Support this project on [BuyMeACoffee](https://www.buymeacoffee.com/axentix) to become a sponsor and get **your logo here and on the docs** with a link to your website.
+
+<div align="center">
+  <a href="https://www.buymeacoffee.com/axentix" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Become a sponsor" height="50" width="180"></a>
+</div>
+
+## Backers
+
+Support this project on [BuyMeACoffee](https://www.buymeacoffee.com/axentix) to become a backer and get **your github profile here**.
+
+[<img src="https://avatars.githubusercontent.com/u/32241342?v=4" width="40" style="border-radius:50%"/>](https://github.com/Xelzs)
+[<img src="https://avatars.githubusercontent.com/u/49057921?v=4" width="40" style="border-radius:50%"/>](https://github.com/Stallos11)
 
 ## Creators
 

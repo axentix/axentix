@@ -198,7 +198,7 @@ export class Collapsible extends AxentixComponent {
    * Open collapsible
    */
   open() {
-    if (this.isActive) {
+    if (this.isActive && !this.isInitialStart) {
       return;
     }
     createEvent(this.el, 'collapsible.open');
