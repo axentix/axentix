@@ -7,4 +7,4 @@
 
 # 1.x & 0.x Changelog
 
-Available on master branch.
+Available on [v1 branch](https://github.com/axentix/axentix/tree/develop).
