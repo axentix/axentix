@@ -78,8 +78,7 @@ npm install
 ```
 
 After installation you have access to our source files.  
-You can build project with `npm run build` or watch it with `npm run watch`.  
-We use BrowserSync for our development process.
+You can build project with `npm run build` or serve it with `npm run serve`.
 
 ## Documentation
 
