@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "serve": "vite --host",
-    "build": "vite build",
+    "build": "vite build && cp src/axentix.d.ts dist/axentix.d.ts",
     "generate:examples": "node scripts/generate-examples.js"
   },
   "keywords": [
