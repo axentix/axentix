@@ -2,7 +2,8 @@ $layoutRows: getCssVar(layout-rows);
 $layoutColumns: getCssVar(layout-columns);
 $layoutAreas: getCssVar(layout-areas);
 
-.layout {
+.layout,
+[class*='layout-'] {
   display: grid;
   grid-gap: 0;
   min-height: 100vh;
@@ -24,16 +25,16 @@ $layoutAreas: getCssVar(layout-areas);
   .layout-footer {
     grid-area: footer;
   }
+}
 
-  &.layout-sidenav {
-    #{$layoutAreas}: 'header header' 'sidenav main' 'footer footer';
-    #{$layoutColumns}: auto minmax(0, 1fr);
+.layout-sidenav {
+  #{$layoutAreas}: 'header header' 'sidenav main' 'footer footer';
+  #{$layoutColumns}: auto minmax(0, 1fr);
 
-    .sidenav.fixed {
-      position: initial;
-      z-index: $layouts-sidenav-fixed-zindex-mdup;
-      grid-area: sidenav;
-    }
+  .sidenav-fixed {
+    position: initial;
+    z-index: $layouts-sidenav-fixed-z-index;
+    grid-area: sidenav;
   }
 
   &.layout-sidenav-right {
@@ -53,256 +54,114 @@ $layoutAreas: getCssVar(layout-areas);
       }
     }
   }
+}
 
-  &.layout-sidenav-fixed {
-    #{$layoutAreas}: 'header' 'main' 'footer';
-    #{$layoutColumns}: minmax(0, 1fr);
+.layout-sidenav-fixed {
+  #{$layoutAreas}: 'header' 'main' 'footer';
+  #{$layoutColumns}: minmax(0, 1fr);
+}
+
+.layout-under-navbar {
+  header,
+  .layout-header {
+    padding-left: initial;
+    padding-right: initial;
   }
 
-  &.layout-under-navbar {
-    header,
-    .layout-header {
-      padding-left: initial;
-    }
-
-    .navbar-fixed .navbar {
-      margin-left: 0;
-    }
-
-    &.sidenav-right {
-      header,
-      .layout-header {
-        padding-right: initial;
-      }
-
-      .navbar-fixed .navbar {
-        margin-right: 0;
-      }
-    }
+  .navbar-fixed .navbar {
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
 @include responsive('sm-down') {
-  .layout.layout-sidenav {
+  .layout-sidenav {
     #{$layoutAreas}: 'header' 'main' 'footer';
     #{$layoutColumns}: minmax(0, 1fr);
   }
 }
 
-//     &.under-navbar {
-//       header,
-//       .layout-header {
-//         padding-left: initial;
-//       }
+$sidenavWidth: getCssVar(sidenav-width);
 
-//       .navbar-fixed .navbar {
-//         margin-left: 0;
-//       }
+@include responsive('md-up') {
+  .layout-sidenav,
+  .layout-sidenav-fixed,
+  .layout-under-navbar {
+    .sidenav-fixed {
+      z-index: $layouts-sidenav-fixed-z-index-mdup;
+    }
+  }
 
-//       &.sidenav-right {
-//         header,
-//         .layout-header {
-//           padding-right: initial;
-//         }
+  .layout-sidenav-fixed {
+    .navbar-fixed .navbar {
+      margin-left: var($sidenavWidth);
+    }
 
-//         .navbar-fixed .navbar {
-//           margin-right: 0;
-//         }
-//       }
-//     }
-//   }
-// }
+    &.layout-sidenav-right {
+      .navbar-fixed .navbar {
+        margin-right: var($sidenavWidth);
+        margin-left: 0;
+      }
+    }
 
-// @include responsive('md-up') {
-//   .layout.with-sidenav {
-//     .sidenav.fixed {
-//       grid-area: sidenav;
-//       position: initial;
-//       z-index: $layouts-sidenav-fixed-zindex-mdup;
-//     }
+    &.layout-sidenav-both {
+      .navbar-fixed .navbar {
+        margin-right: var($sidenavWidth);
+        margin-left: var($sidenavWidth);
+      }
+    }
+  }
 
-//     &.sidenav-both {
-//       .sidenav.fixed {
-//         grid-area: sidenav-left;
+  .layout-sidenav-fixed,
+  .layout-under-navbar {
+    header,
+    .layout-header,
+    main,
+    .layout-main {
+      padding-left: var($sidenavWidth);
+    }
 
-//         &.right-aligned {
-//           grid-area: sidenav-right;
-//         }
-//       }
-//     }
+    .footer,
+    .layout-footer {
+      padding-left: calc(var(#{$sidenavWidth}) + 0.5rem);
+    }
 
-//     &.fixed-sidenav {
-//       header,
-//       .layout-header,
-//       main,
-//       .layout-main {
-//         padding-left: $sidenav-width;
-//       }
+    &.layout-sidenav-right {
+      header,
+      .layout-header,
+      main,
+      .layout-main {
+        padding-right: var($sidenavWidth);
+        padding-left: 0;
+      }
 
-//       .navbar-fixed .navbar {
-//         margin-left: $sidenav-width;
-//       }
+      footer,
+      .layout-footer {
+        padding-right: calc(var(#{$sidenavWidth}) + 0.5rem);
+        padding-left: 0.5rem;
+      }
+    }
 
-//       footer,
-//       .layout-footer {
-//         padding-left: $sidenav-width + 0.5rem;
-//       }
+    &.layout-sidenav-both {
+      header,
+      .layout-header,
+      main,
+      .layout-main {
+        padding-right: var($sidenavWidth);
+        padding-left: var($sidenavWidth);
+      }
 
-//       &.sidenav-right {
-//         header,
-//         .layout-header,
-//         main,
-//         .layout-main {
-//           padding-right: $sidenav-width;
-//           padding-left: 0;
-//         }
+      footer,
+      .layout-footer {
+        padding-right: calc(var(#{$sidenavWidth}) + 0.5rem);
+        padding-left: calc(var(#{$sidenavWidth}) + 0.5rem);
+      }
+    }
+  }
 
-//         .navbar-fixed .navbar {
-//           margin-right: $sidenav-width;
-//           margin-left: 0;
-//         }
-
-//         footer,
-//         .layout-footer {
-//           padding-right: $sidenav-width + 0.5rem;
-//           padding-left: 0.5rem;
-//         }
-//       }
-
-//       &.sidenav-both {
-//         header,
-//         .layout-header,
-//         main,
-//         .layout-main {
-//           padding-right: $sidenav-width;
-//           padding-left: $sidenav-width;
-//         }
-
-//         &:not(.under-navbar) {
-//           .navbar-fixed .navbar {
-//             margin-right: $sidenav-width;
-//             margin-left: $sidenav-width;
-//           }
-//         }
-
-//         footer,
-//         .layout-footer {
-//           padding-right: $sidenav-width + 0.5rem;
-//           padding-left: $sidenav-width + 0.5rem;
-//         }
-//       }
-
-//       &.under-navbar {
-//         .sidenav.fixed {
-//           top: 3.5rem;
-//         }
-//       }
-
-//       &.sidenav-large {
-//         header,
-//         .layout-header,
-//         main,
-//         .layout-main {
-//           padding-left: $sidenav-large-width;
-//         }
-
-//         &:not(.under-navbar) {
-//           .navbar-fixed .navbar {
-//             margin-left: $sidenav-large-width;
-//           }
-//         }
-
-//         footer,
-//         .layout-footer {
-//           padding-left: $sidenav-large-width + 0.5rem;
-//         }
-
-//         &.sidenav-right {
-//           header,
-//           .layout-header,
-//           main,
-//           .layout-main {
-//             padding-right: $sidenav-large-width;
-//             padding-left: 0;
-//           }
-
-//           &:not(.under-navbar) {
-//             .navbar-fixed .navbar {
-//               margin-right: $sidenav-large-width;
-//               margin-left: 0;
-//             }
-//           }
-
-//           footer,
-//           .layout-footer {
-//             padding-right: $sidenav-large-width + 0.5rem;
-//             padding-left: 0.5rem;
-//           }
-//         }
-
-//         &.sidenav-both {
-//           header,
-//           .layout-header,
-//           main,
-//           .layout-main {
-//             padding-right: $sidenav-large-width;
-//             padding-left: $sidenav-large-width;
-//           }
-
-//           &:not(.under-navbar) {
-//             .navbar-fixed .navbar {
-//               margin-right: $sidenav-large-width;
-//               margin-left: $sidenav-large-width;
-//             }
-//           }
-
-//           footer,
-//           .layout-footer {
-//             padding-right: $sidenav-large-width + 0.5rem;
-//             padding-left: $sidenav-large-width + 0.5rem;
-//           }
-
-//           &.sidenav-large-right {
-//             header,
-//             .layout-header,
-//             main,
-//             .layout-main {
-//               padding-left: $sidenav-width;
-//             }
-
-//             &:not(.under-navbar) {
-//               .navbar-fixed .navbar {
-//                 margin-left: $sidenav-width;
-//               }
-//             }
-
-//             footer,
-//             .layout-footer {
-//               padding-left: $sidenav-width + 0.5rem;
-//             }
-//           }
-
-//           &.sidenav-large-left {
-//             header,
-//             .layout-header,
-//             main,
-//             .layout-main {
-//               padding-right: $sidenav-width;
-//             }
-
-//             &:not(.under-navbar) {
-//               .navbar-fixed .navbar {
-//                 margin-right: $sidenav-width;
-//               }
-//             }
-
-//             footer,
-//             .layout-footer {
-//               padding-right: $sidenav-width + 0.5rem;
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
+  .layout-under-navbar {
+    .sidenav-fixed {
+      top: 3.5rem;
+    }
+  }
+}

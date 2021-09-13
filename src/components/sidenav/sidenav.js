@@ -48,15 +48,9 @@ export class Sidenav extends AxentixComponent {
     const sidenavFixed = getInstanceByType('Sidenav').find((sidenav) => sidenav.isFixed);
     this.firstSidenavInit = sidenavFixed && sidenavFixed.el === this.el;
 
-    this.extraClasses = [
-      'sidenav-right',
-      'sidenav-both',
-      'sidenav-large',
-      'sidenav-large-left',
-      'sidenav-large-right',
-    ];
+    this.extraClasses = ['layout-sidenav-right', 'layout-sidenav-both'];
 
-    this.layoutEl = document.querySelector('.layout');
+    this.layoutEl = document.querySelector('.layout, [class*="layout-"]');
 
     this.layoutEl && this.firstSidenavInit ? this._cleanLayout() : '';
 
@@ -129,24 +123,11 @@ export class Sidenav extends AxentixComponent {
     );
 
     const isBoth = sidenavsLeft.length > 0 && sidenavsRight.length > 0;
-    const sidenavRightLarge = sidenavsRight.some((sidenav) => sidenav.classList.contains('large'));
-    const sidenavLeftLarge = sidenavsLeft.some((sidenav) => sidenav.classList.contains('large'));
-    const isLarge = sidenavRightLarge || sidenavLeftLarge;
-
-    isLarge ? this.layoutEl.classList.add('sidenav-large') : '';
 
     if (sidenavsRight.length > 0 && !isBoth) {
-      this.layoutEl.classList.add('sidenav-right');
+      this.layoutEl.classList.add('layout-sidenav-right');
     } else if (isBoth) {
-      this.layoutEl.classList.add('sidenav-both');
-    }
-
-    if (isLarge && isBoth) {
-      if (sidenavRightLarge && !sidenavLeftLarge) {
-        this.layoutEl.classList.add('sidenav-large-right');
-      } else if (!sidenavRightLarge && sidenavLeftLarge) {
-        this.layoutEl.classList.add('sidenav-large-left');
-      }
+      this.layoutEl.classList.add('layout-sidenav-both');
     }
   }
 

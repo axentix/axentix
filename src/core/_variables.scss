@@ -103,8 +103,8 @@ $gutter: (
 $generated-css-vars: map.set($generated-css-vars, 'layout-areas', 'header' 'main' 'footer');
 $generated-css-vars: map.set($generated-css-vars, 'layout-columns', minmax(0, 1fr));
 $generated-css-vars: map.set($generated-css-vars, 'layout-rows', auto 1fr auto);
-$layouts-sidenav-fixed-zindex: 710 !default;
-$layouts-sidenav-fixed-zindex-mdup: 690 !default;
+$layouts-sidenav-fixed-z-index: 710 !default;
+$layouts-sidenav-fixed-z-index-mdup: 690 !default;
 
 // Typography
 $font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif,
@@ -182,9 +182,10 @@ $navbar-zindex: 100 !default;
 
 // Sidenav
 $sidenav-width: 12rem !default;
-$sidenav-large-width: 15rem !default;
-$sidenav-zindex: 710 !default;
+$sidenav-z-index: 710 !default;
 $sidenav-overlay-zindex: 700 !default;
+$generated-css-vars: map.set($generated-css-vars, 'sidenav-width', $sidenav-width);
+$generated-css-vars: map.set($generated-css-vars, 'sidenav-z-index', $sidenav-z-index);
 
 // Rounded
 $rounded: (

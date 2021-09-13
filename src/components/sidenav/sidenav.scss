@@ -1,6 +1,6 @@
 .sidenav {
-  z-index: $sidenav-zindex;
-  width: $sidenav-width;
+  z-index: var(getCssVar(sidenav-z-index));
+  width: var(getCssVar(sidenav-width));
   position: fixed;
   left: 0;
   top: 0;
@@ -37,10 +37,6 @@
         display: none;
       }
     }
-  }
-
-  &.sidenav-large {
-    width: $sidenav-large-width;
   }
 
   &:hover {
