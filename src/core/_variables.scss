@@ -1,7 +1,31 @@
+@use "sass:map";
+
 /*** Here are defined all variables that was used by Axentix scss files ***/
 /* IMPORTANT : Don't forget to add !default flag to all variables in this file */
 
-// Breakpoints based on FlexLayout by Angular | https://github.com/angular/flex-layout/wiki/Responsive-API
+/**
+  0. Specials
+  1. Breakpoints
+  2. Colors
+  3. Grix
+  4. Layouts
+**/
+
+/**
+  0. Specials
+**/
+$generated-css-vars: map.remove(
+  (
+    x: x,
+  ),
+  x
+) !default;
+$prefix: 'ax' !default;
+
+/** 
+  1. BREAKPOINTS
+  Breakpoints based on FlexLayout by Angular | https://github.com/angular/flex-layout/wiki/Responsive-API
+ **/
 $breakpoints: (
   'xs': 'screen and (max-width: 599px)',
   'sm': 'screen and (min-width: 600px) and (max-width: 959px)',
@@ -28,7 +52,9 @@ $grid-breakpoints: (
   'xl': 'screen and (min-width: 1920px)',
 ) !default;
 
-// Colors
+/** 
+  2. Colors
+**/
 $colors: (
   'cyan': #28d1e7,
   'yellow': #f0de3b,
@@ -56,7 +82,9 @@ $axentix-palette: (
   'transparent': transparent,
 ) !default;
 
-// Grid
+/**
+  3. Grix
+**/
 $max-cols: 12 !default;
 $gutter: (
   '0': 0,
@@ -68,6 +96,19 @@ $gutter: (
   '6': 1.75rem,
   '7': 2rem,
 ) !default;
+
+/**
+  4. Layouts
+**/
+
+$layouts-areas: 'header' 'main' 'footer' !default;
+$layouts-columns: minmax(0, 1fr) !default;
+$layouts-rows: auto 1fr auto !default;
+$generated-css-vars: map.set($generated-css-vars, 'layout-areas', $layouts-areas);
+$generated-css-vars: map.set($generated-css-vars, 'layout-columns', $layouts-columns);
+$generated-css-vars: map.set($generated-css-vars, 'layout-rows', $layouts-rows);
+$layouts-sidenav-fixed-z-index: 710 !default;
+$layouts-sidenav-fixed-z-index-mdup: 690 !default;
 
 // Typography
 $font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif,
@@ -145,13 +186,10 @@ $navbar-zindex: 100 !default;
 
 // Sidenav
 $sidenav-width: 12rem !default;
-$sidenav-large-width: 15rem !default;
-$sidenav-zindex: 710 !default;
+$sidenav-z-index: 710 !default;
 $sidenav-overlay-zindex: 700 !default;
-
-// Layouts
-$layouts-sidenav-fixed-zindex: 710 !default;
-$layouts-sidenav-fixed-zindex-mdup: 690 !default;
+$generated-css-vars: map.set($generated-css-vars, 'sidenav-width', $sidenav-width);
+$generated-css-vars: map.set($generated-css-vars, 'sidenav-z-index', $sidenav-z-index);
 
 // Rounded
 $rounded: (

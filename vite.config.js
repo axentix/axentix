@@ -27,6 +27,7 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist/',
+    target: 'es6',
     lib: {
       entry: path.resolve(__dirname, 'src/index.js'),
       name: 'Axentix',

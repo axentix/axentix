@@ -1,0 +1,6 @@
+:root {
+  @each $name, $value in $generated-css-vars {
+    $var: getCssVar($name);
+    #{$var}: $value;
+  }
+}
