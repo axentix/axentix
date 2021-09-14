@@ -100,9 +100,13 @@ $gutter: (
 /**
   4. Layouts
 **/
-$generated-css-vars: map.set($generated-css-vars, 'layout-areas', 'header' 'main' 'footer');
-$generated-css-vars: map.set($generated-css-vars, 'layout-columns', minmax(0, 1fr));
-$generated-css-vars: map.set($generated-css-vars, 'layout-rows', auto 1fr auto);
+
+$layouts-areas: 'header' 'main' 'footer' !default;
+$layouts-columns: minmax(0, 1fr) !default;
+$layouts-rows: auto 1fr auto !default;
+$generated-css-vars: map.set($generated-css-vars, 'layout-areas', $layouts-areas);
+$generated-css-vars: map.set($generated-css-vars, 'layout-columns', $layouts-columns);
+$generated-css-vars: map.set($generated-css-vars, 'layout-rows', $layouts-rows);
 $layouts-sidenav-fixed-z-index: 710 !default;
 $layouts-sidenav-fixed-z-index-mdup: 690 !default;
 
