@@ -74,8 +74,8 @@ const updateInput = (input, isActive, hasContent, isFocused, formField) => {
   isFocused && !isTextArea ? formField.classList.add('is-focused') : formField.classList.remove('is-focused');
 
   isFocused && isTextArea
-    ? formField.classList.add('is-txtarea-focused')
-    : formField.classList.remove('is-txtarea-focused');
+    ? formField.classList.add('is-textarea-focused')
+    : formField.classList.remove('is-textarea-focused');
 };
 
 /**

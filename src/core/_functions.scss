@@ -2,7 +2,7 @@
 
 /*** Functions ***/
 // Get color contrast for text | By https://codepen.io/davidhalford/pen/wlDxL
-@function txtColor($n) {
+@function textColor($n) {
   @if ($n == transparent) {
     @return #000;
   }

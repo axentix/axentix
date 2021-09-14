@@ -4,7 +4,7 @@ const fs = require('fs');
 const files = fs.readdirSync(path.resolve(__dirname, '../examples/'));
 
 const tmpl =
-  '<a class="txt-airforce txt-dark-2 font-w600 font-s4 py-2 capitalize" target="_blank" href="/examples/{{LINK}}">{{NAME}}</a>';
+  '<a class="text-airforce text-dark-2 font-w600 font-s4 py-2 capitalize" target="_blank" href="/examples/{{LINK}}">{{NAME}}</a>';
 
 const links = [];
 files.map((file) => {

@@ -34,7 +34,7 @@
 
       &.active {
         background-color: getColor('primary');
-        color: txtColor(getColor('primary'));
+        color: textColor(getColor('primary'));
       }
 
       &:hover:not(.active) {

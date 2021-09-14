@@ -4,9 +4,9 @@
     @if $i < 0 {
       .#{$name}.dark-#{abs($i)} {
         background-color: darken($value, abs($i) * 8%);
-        color: txtColor(darken($value, abs($i) * 8%));
+        color: textColor(darken($value, abs($i) * 8%));
       }
-      .txt-#{$name}.txt-dark-#{abs($i)} {
+      .text-#{$name}.text-dark-#{abs($i)} {
         color: darken($value, abs($i) * 8%) !important;
       }
       .bd-#{$name}.bd-dark-#{abs($i)} {
@@ -17,9 +17,9 @@
     @if $i == 0 {
       .#{$name} {
         background-color: #{$value};
-        color: txtColor($value);
+        color: textColor($value);
       }
-      .txt-#{$name} {
+      .text-#{$name} {
         color: #{$value} !important;
       }
       .bd-#{$name} {
@@ -30,9 +30,9 @@
     @if $i > 0 {
       .#{$name}.light-#{$i} {
         background-color: lighten($value, $i * 8%);
-        color: txtColor(lighten($value, $i * 8%));
+        color: textColor(lighten($value, $i * 8%));
       }
-      .txt-#{$name}.txt-light-#{$i} {
+      .text-#{$name}.text-light-#{$i} {
         color: lighten($value, $i * 8%) !important;
       }
       .bd-#{$name}.bd-light-#{$i} {
@@ -45,9 +45,9 @@
 @each $name, $value in $axentix-palette {
   .#{$name} {
     background-color: #{$value};
-    color: txtColor($value);
+    color: textColor($value);
   }
-  .txt-#{$name} {
+  .text-#{$name} {
     color: #{$value} !important;
   }
   .bd-#{$name} {
