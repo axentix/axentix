@@ -61,7 +61,7 @@
   display: flex;
   flex-wrap: wrap;
 
-  .form-group-txt {
+  .form-group-text {
     display: flex;
     align-items: center;
     padding: 0.5rem 0.75rem;
@@ -73,7 +73,7 @@
     flex: 1 1 auto;
   }
 
-  .form-group-txt,
+  .form-group-text,
   .form-control {
     &:first-child {
       border-bottom-left-radius: inherit;

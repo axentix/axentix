@@ -32,7 +32,7 @@
 
     &.active {
       background-color: getColor('primary');
-      color: txtColor(getColor('primary'));
+      color: textColor(getColor('primary'));
     }
 
     &.disabled {
