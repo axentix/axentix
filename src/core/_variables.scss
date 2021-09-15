@@ -14,6 +14,7 @@
   7. Sidenav
   8. Dropdown
   9. Floating Action Button (FAB)
+  10. Tooltip
   #########################
 **/
 
@@ -171,6 +172,12 @@ $generated-css-vars: map.set($generated-css-vars, 'dropdown-z-index-sidenav', $d
 $fab-z-index: 200 !default;
 $generated-css-vars: map.set($generated-css-vars, 'fab-z-index', $fab-z-index);
 
+/**
+  10. Tooltip
+**/
+$tooltip-z-index: 999 !default;
+$generated-css-vars: map.set($generated-css-vars, 'tooltip-z-index', $tooltip-z-index);
+
 // Forms
 $form-helper-size: 0.75rem !default;
 $form-disabled-color: #787878 !default;
@@ -188,8 +195,6 @@ $switch-bg-disabled-color: #c7c7c7 !default;
 $switch-bg-active-color: getColor('viride', 'dark', 1) !default;
 $switch-btn-color: #fff !default;
 $switch-animation-duration: 0.3s !default;
-
-$tooltip-z-index: 999 !default;
 
 /**
   x. Utilities
