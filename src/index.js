@@ -1,18 +1,9 @@
-import './axentix.scss';
+// Core CSS
+import './core.scss';
 
+// CSS Only Components
 import './components/grix';
 import './components/layouts';
-import Caroulix from './components/caroulix';
-import Collapsible from './components/collapsible';
-import Sidenav from './components/sidenav';
-import Dropdown from './components/dropdown';
-import Fab from './components/fab';
-import Lightbox from './components/lightbox';
-import Modal from './components/modal';
-import Tab from './components/tab';
-import ScrollSpy from './components/scrollspy';
-import Toast from './components/toast';
-import Tooltip from './components/tooltip';
 import './components/button';
 import './components/button-group';
 import './components/card';
@@ -22,25 +13,22 @@ import './components/pagination';
 import './components/table';
 import './components/utilities';
 import './components/loading';
-import * as Config from './utils/config';
 
-import './core/_css_var.scss';
-
-export {
-  Sidenav,
-  Caroulix,
-  Collapsible,
-  Dropdown,
-  Fab,
-  Lightbox,
-  Modal,
-  Tab,
-  ScrollSpy,
-  Toast,
-  Tooltip,
-  Config,
-};
-
+// JS Components
+export { default as Caroulix } from './components/caroulix';
+export { default as Collapsible } from './components/collapsible';
+export { default as Sidenav } from './components/sidenav';
+export { default as Dropdown } from './components/dropdown';
+export { default as Fab } from './components/fab';
+export { default as Lightbox } from './components/lightbox';
+export { default as Modal } from './components/modal';
+export { default as Tab } from './components/tab';
+export { default as ScrollSpy } from './components/scrollspy';
+export { default as Toast } from './components/toast';
+export { default as Tooltip } from './components/tooltip';
 export * from './components/forms';
+
+// JS Utils
+export * as Config from './utils/config';
 export * from './utils/core';
 export * from './utils/utilities';

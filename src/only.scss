@@ -1,0 +1,32 @@
+/* Import only scss files | Developed by Axel SIMONET & Vincent LEVEQUE with ♥ | MIT License */
+@import './core/functions';
+@import './core/mixins';
+@import './core/variables';
+@import './core/normalize';
+@import './core/base';
+@import './core/css_var';
+@import './core/colors';
+
+// Components
+@import './components/button/button.scss';
+@import './components/button-group/button-group.scss';
+@import './components/card/card.scss';
+@import './components/caroulix/caroulix.scss';
+@import './components/collapsible/collapsible.scss';
+@import './components/dropdown/dropdown.scss';
+@import './components/fab/fab.scss';
+@import './components/footer/footer.scss';
+@import './components/forms/forms.scss';
+@import './components/grix/grix.scss';
+@import './components/layouts/layouts.scss';
+@import './components/lightbox/lightbox.scss';
+@import './components/loading/loading.scss';
+@import './components/modal/modal.scss';
+@import './components/navbar/navbar.scss';
+@import './components/pagination/pagination.scss';
+@import './components/sidenav/sidenav.scss';
+@import './components/tab/tab.scss';
+@import './components/table/table.scss';
+@import './components/toast/toast.scss';
+@import './components/tooltip/tooltip.scss';
+@import './components/utilities/utilities.scss';
