@@ -6,9 +6,9 @@
   grid-gap: 0.25rem;
 }
 
-@each $name, $value in $grid-breakpoints {
+@each $name, $value in $grix-breakpoints {
   @if ($name == 'xs') {
-    @for $i from 1 through $max-cols {
+    @for $i from 1 through $grix-max-cols {
       .grix.#{$name}#{$i} {
         grid-template-columns: repeat($i, minmax(0, 1fr));
       }
@@ -30,7 +30,7 @@
       }
     }
   } @else {
-    @for $i from 1 through $max-cols {
+    @for $i from 1 through $grix-max-cols {
       @media #{$value} {
         .grix.#{$name}#{$i} {
           grid-template-columns: repeat($i, minmax(0, 1fr));
@@ -57,8 +57,8 @@
 }
 
 // Gutters
-@each $num, $size in $gutter {
-  @each $name, $value in $grid-breakpoints {
+@each $num, $size in $grix-gutter {
+  @each $name, $value in $grix-breakpoints {
     @if ($name == 'xs') {
       .gutter-#{$name}#{$num} {
         grid-gap: $size;

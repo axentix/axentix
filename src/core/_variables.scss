@@ -1,14 +1,20 @@
 @use "sass:map";
 
-/*** Here are defined all variables that was used by Axentix scss files ***/
-/* IMPORTANT : Don't forget to add !default flag to all variables in this file */
+/* IMPORTANT : Don't forget to add !default flag to all SCSS variables in this file */
 
 /**
+  ######## Summary ########
   0. Specials
   1. Breakpoints
   2. Colors
   3. Grix
   4. Layouts
+  5. Core Typography
+  6. Navbar
+  7. Sidenav
+  8. Dropdown
+  9. Floating Action Button (FAB)
+  #########################
 **/
 
 /**
@@ -24,7 +30,6 @@ $prefix: 'ax' !default;
 
 /** 
   1. BREAKPOINTS
-  Breakpoints based on FlexLayout by Angular | https://github.com/angular/flex-layout/wiki/Responsive-API
  **/
 $breakpoints: (
   'xs': 'screen and (max-width: 599px)',
@@ -43,8 +48,8 @@ $extra-breakpoints: (
   'lg-up': 'screen and (min-width: 1280px)',
 ) !default;
 
-// Specific for grid generation
-$grid-breakpoints: (
+// Specific for grix generation
+$grix-breakpoints: (
   'xs': '',
   'sm': 'screen and (min-width: 600px)',
   'md': 'screen and (min-width: 960px)',
@@ -85,8 +90,8 @@ $axentix-palette: (
 /**
   3. Grix
 **/
-$max-cols: 12 !default;
-$gutter: (
+$grix-max-cols: 12 !default;
+$grix-gutter: (
   '0': 0,
   '1': 0.5rem,
   '2': 0.75rem,
@@ -100,19 +105,23 @@ $gutter: (
 /**
   4. Layouts
 **/
-
 $layouts-areas: 'header' 'main' 'footer' !default;
 $layouts-columns: minmax(0, 1fr) !default;
 $layouts-rows: auto 1fr auto !default;
 $generated-css-vars: map.set($generated-css-vars, 'layout-areas', $layouts-areas);
 $generated-css-vars: map.set($generated-css-vars, 'layout-columns', $layouts-columns);
 $generated-css-vars: map.set($generated-css-vars, 'layout-rows', $layouts-rows);
+
 $layouts-sidenav-fixed-z-index: 710 !default;
 $layouts-sidenav-fixed-z-index-mdup: 690 !default;
 
-// Typography
+/**
+  5. Core Typography
+**/
 $font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif,
   'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;
+
+$generated-css-vars: map.set($generated-css-vars, 'font-family', $font-family);
 
 $base-size: 1rem !default;
 $h1: $base-size * 2.75 !default;
@@ -122,84 +131,45 @@ $h4: $base-size * 1.75 !default;
 $h5: $base-size * 1.5 !default;
 $h6: $base-size * 1.25 !default;
 
-// Cursors
-$cursors: 'default', 'pointer', 'not-allowed', 'grab', 'wait', 'zoom-in', 'zoom-out', 'none' !default;
-
-// Overflow
-$overflows: 'visible', 'auto', 'hidden', 'scroll', 'initial', 'inherit' !default;
-
-// Shadow
-$light-shadows: (
-  '1': '0 6px 10px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-  '2': '0 8px 12px -2px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-  '3': '0 10px 15px -1px rgba(0, 0, 0, 0.1), 0 6px 8px 0px rgba(0, 0, 0, 0.05)',
-  '4': '0 15px 20px -1px rgba(0, 0, 0, 0.11), 0 8px 10px 0px rgba(0, 0, 0, 0.06)',
-  '5': '0 20px 30px 0px rgba(0, 0, 0, 0.12), 0 10px 10px -2px rgba(0, 0, 0, 0.06)',
-) !default;
-
-$shadows: (
-  '1': '0 4px 8px 0 rgba(0, 0, 0, 0.10),  0 2px 5px 2px rgba(0,0,0,0.06)',
-  '2': '0 5px 8px 0 rgba(0, 0, 0, 0.10),  0 3px 8px 3px rgba(0,0,0,0.1)',
-  '3': '0 6px 8px 0 rgba(0, 0, 0, 0.1), 0 5px 12px 4px rgba(0,0,0,0.15)',
-  '4': '0 7px 8px 0 rgba(0, 0, 0, 0.1), 0 7px 18px 6px rgba(0,0,0,0.15)',
-  '5': '0 8px 9px 0 rgba(0, 0, 0, 0.12),  0 10px 25px 8px rgba(0,0,0,0.15)',
-) !default;
-
-$light-hoverable-delay: 0.3s !default;
-$hoverable-delay: 0.2s !default;
-
-$light-hoverable: (
-  '1': '0 11px 10px -5px rgba(0, 0, 0, 0.1), 0 9px 6px -2px rgba(0, 0, 0, 0.06)',
-  '2': '0 13px 12px -2px rgba(0, 0, 0, 0.11), 0 9px 6px -7px rgba(0, 0, 0, 0.06)',
-  '3': '0 15px 15px -1px rgba(0, 0, 0, 0.11), 0 11px 8px 0px rgba(0, 0, 0, 0.06)',
-  '4': '0 20px 20px -1px rgba(0, 0, 0, 0.12), 0 13px 10px 0px rgba(0, 0, 0, 0.07)',
-  '5': '0 25px 30px -1px rgba(0, 0, 0, 0.13), 0 15px 10px -2px rgba(0, 0, 0, 0.07)',
-) !default;
-
-$hoverable: (
-  '1': '0px 9px 8px 0px rgba(0, 0, 0, 0.10),  0px 5px 8px 3px rgba(0,0,0,0.12)',
-  '2': '0 10px 8px 0 rgba(0, 0, 0, 0.10),  0 6px 8px 3px rgba(0,0,0,0.16)',
-  '3': '0 11px 8px 0 rgba(0, 0, 0, 0.1), 0 8px 12px 4px rgba(0,0,0,0.20)',
-  '4': '0 12px 8px 0 rgba(0, 0, 0, 0.1), 0 16px 18px 6px rgba(0,0,0,0.2)',
-  '5': '0 13px 9px 0 rgba(0, 0, 0, 0.12),  0 18px 25px 8px rgba(0,0,0,0.2)',
-) !default;
-
-$drop-shadows: (
-  '1': drop-shadow(0 0.15rem 0.1rem #808080),
-  '2': drop-shadow(0 0.15rem 0.125rem #5f5f5f),
-  '3': drop-shadow(0 0.15rem 0.15rem #494949),
-  '4': drop-shadow(0 0.15rem 0.15rem #292929),
-  '5': drop-shadow(0 0.15rem 0.2rem #000000),
-) !default;
-
-$text-shadows: (
-  '1': 0 2px 5px rgba(0, 0, 0, 0.4),
-  '2': 2px 4px 3px rgba(0, 0, 0, 0.3),
-  '3': 0px 4px 3px rgba(0, 0, 0, 0.5),
-  '4': 6px 6px 0px rgba(0, 0, 0, 0.2),
-) !default;
-
-// Navbar
+/**
+  6. Navbar
+**/
 $navbar-height: 3.5rem !default;
-$navbar-logo-height: 3rem !default;
-$navbar-zindex: 100 !default;
+$navbar-z-index: 100 !default;
 
-// Sidenav
+$generated-css-vars: map.set($generated-css-vars, 'navbar-height', $navbar-height);
+$generated-css-vars: map.set($generated-css-vars, 'navbar-z-index', $navbar-z-index);
+
+/**
+  7. Sidenav
+**/
 $sidenav-width: 12rem !default;
 $sidenav-z-index: 710 !default;
+$sidenav-logo-height: 3rem !default;
+$sidenav-header-height: 5rem !default;
 $sidenav-overlay-zindex: 700 !default;
+
 $generated-css-vars: map.set($generated-css-vars, 'sidenav-width', $sidenav-width);
 $generated-css-vars: map.set($generated-css-vars, 'sidenav-z-index', $sidenav-z-index);
+$generated-css-vars: map.set($generated-css-vars, 'sidenav-logo-height', $sidenav-logo-height);
+$generated-css-vars: map.set($generated-css-vars, 'sidenav-header-height', $sidenav-header-height);
 
-// Rounded
-$rounded: (
-  '0': '0',
-  '1': '5px',
-  '2': '10px',
-  '3': '20px',
-  '4': '30px',
-  'full': '100%',
-) !default;
+/**
+  8. Dropdown
+**/
+$dropdown-z-index: 10 !default;
+$dropdown-z-index-navbar: 20 !default;
+$dropdown-z-index-sidenav: 30 !default;
+
+$generated-css-vars: map.set($generated-css-vars, 'dropdown-z-index', $dropdown-z-index);
+$generated-css-vars: map.set($generated-css-vars, 'dropdown-z-index-navbar', $dropdown-z-index-navbar);
+$generated-css-vars: map.set($generated-css-vars, 'dropdown-z-index-sidenav', $dropdown-z-index-sidenav);
+
+/**
+  9. Floating Action Button (FAB)
+**/
+$fab-z-index: 200 !default;
+$generated-css-vars: map.set($generated-css-vars, 'fab-z-index', $fab-z-index);
 
 // Forms
 $form-helper-size: 0.75rem !default;
@@ -219,12 +189,103 @@ $switch-bg-active-color: getColor('viride', 'dark', 1) !default;
 $switch-btn-color: #fff !default;
 $switch-animation-duration: 0.3s !default;
 
-// Dropdown
-$dropdown-zindex: 10 !default;
-$dropdown-zindex-navbar: 20 !default;
-$dropdown-zindex-sidenav: 30 !default;
+$tooltip-z-index: 999 !default;
 
-// Margins & paddings
+/**
+  x. Utilities
+  x.1 Cursors
+  x.2 Overflow
+  x.3 Shadows
+  x.4 Hoverable
+  x.5 Rounded
+  x.6 Margins & paddings
+  x.7 Line height
+  x.8 Display
+  x.9 Borders
+  x.10 Typography
+**/
+
+/**
+  x.1 Cursors
+**/
+$cursors: 'default', 'pointer', 'not-allowed', 'grab', 'wait', 'zoom-in', 'zoom-out', 'none' !default;
+
+/**
+  x.2 Overflow
+**/
+$overflows: 'visible', 'auto', 'hidden', 'scroll', 'initial', 'inherit' !default;
+
+/**
+  x.3 Shadows
+**/
+$light-shadows: (
+  '1': '0 6px 10px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+  '2': '0 8px 12px -2px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+  '3': '0 10px 15px -1px rgba(0, 0, 0, 0.1), 0 6px 8px 0px rgba(0, 0, 0, 0.05)',
+  '4': '0 15px 20px -1px rgba(0, 0, 0, 0.11), 0 8px 10px 0px rgba(0, 0, 0, 0.06)',
+  '5': '0 20px 30px 0px rgba(0, 0, 0, 0.12), 0 10px 10px -2px rgba(0, 0, 0, 0.06)',
+) !default;
+
+$shadows: (
+  '1': '0 4px 8px 0 rgba(0, 0, 0, 0.10),  0 2px 5px 2px rgba(0,0,0,0.06)',
+  '2': '0 5px 8px 0 rgba(0, 0, 0, 0.10),  0 3px 8px 3px rgba(0,0,0,0.1)',
+  '3': '0 6px 8px 0 rgba(0, 0, 0, 0.1), 0 5px 12px 4px rgba(0,0,0,0.15)',
+  '4': '0 7px 8px 0 rgba(0, 0, 0, 0.1), 0 7px 18px 6px rgba(0,0,0,0.15)',
+  '5': '0 8px 9px 0 rgba(0, 0, 0, 0.12),  0 10px 25px 8px rgba(0,0,0,0.15)',
+) !default;
+
+$drop-shadows: (
+  '1': drop-shadow(0 0.15rem 0.1rem #808080),
+  '2': drop-shadow(0 0.15rem 0.125rem #5f5f5f),
+  '3': drop-shadow(0 0.15rem 0.15rem #494949),
+  '4': drop-shadow(0 0.15rem 0.15rem #292929),
+  '5': drop-shadow(0 0.15rem 0.2rem #000000),
+) !default;
+
+$text-shadows: (
+  '1': 0 2px 5px rgba(0, 0, 0, 0.4),
+  '2': 2px 4px 3px rgba(0, 0, 0, 0.3),
+  '3': 0px 4px 3px rgba(0, 0, 0, 0.5),
+  '4': 6px 6px 0px rgba(0, 0, 0, 0.2),
+) !default;
+
+/**
+  x.4 Hoverable
+**/
+$light-hoverable-delay: 0.3s !default;
+$hoverable-delay: 0.2s !default;
+
+$light-hoverable: (
+  '1': '0 11px 10px -5px rgba(0, 0, 0, 0.1), 0 9px 6px -2px rgba(0, 0, 0, 0.06)',
+  '2': '0 13px 12px -2px rgba(0, 0, 0, 0.11), 0 9px 6px -7px rgba(0, 0, 0, 0.06)',
+  '3': '0 15px 15px -1px rgba(0, 0, 0, 0.11), 0 11px 8px 0px rgba(0, 0, 0, 0.06)',
+  '4': '0 20px 20px -1px rgba(0, 0, 0, 0.12), 0 13px 10px 0px rgba(0, 0, 0, 0.07)',
+  '5': '0 25px 30px -1px rgba(0, 0, 0, 0.13), 0 15px 10px -2px rgba(0, 0, 0, 0.07)',
+) !default;
+
+$hoverable: (
+  '1': '0px 9px 8px 0px rgba(0, 0, 0, 0.10),  0px 5px 8px 3px rgba(0,0,0,0.12)',
+  '2': '0 10px 8px 0 rgba(0, 0, 0, 0.10),  0 6px 8px 3px rgba(0,0,0,0.16)',
+  '3': '0 11px 8px 0 rgba(0, 0, 0, 0.1), 0 8px 12px 4px rgba(0,0,0,0.20)',
+  '4': '0 12px 8px 0 rgba(0, 0, 0, 0.1), 0 16px 18px 6px rgba(0,0,0,0.2)',
+  '5': '0 13px 9px 0 rgba(0, 0, 0, 0.12),  0 18px 25px 8px rgba(0,0,0,0.2)',
+) !default;
+
+/**
+  x.5 Rounded
+**/
+$rounded: (
+  '0': '0',
+  '1': '5px',
+  '2': '10px',
+  '3': '20px',
+  '4': '30px',
+  'full': '100%',
+) !default;
+
+/**
+  x.6 Margins & paddings
+**/
 $mp-base-space: 1rem !default;
 $mp-spaces: (
   '0': 0,
@@ -236,10 +297,9 @@ $mp-spaces: (
   'auto': auto,
 ) !default;
 
-// Floating Action Button (FAB)
-$fab-zindex: 200 !default;
-
-// Line height
+/**
+  x.7 Line height
+**/
 $lh-relative: (
   '1': 1,
   '2': 1.25,
@@ -257,10 +317,14 @@ $lh-rem: (
   '5': 2rem,
 ) !default;
 
-// Display
+/**
+  x.8 Display
+**/
 $displays: 'block', 'flex', 'grid', 'table', 'inline', 'inline-block', 'inline-flex', 'inline-table' !default;
 
-// Borders
+/**
+  x.9 Borders
+**/
 $bd-base-width: 1px !default;
 $bd-width: (
   '0': 0,
@@ -274,8 +338,9 @@ $bd-width: (
 $bd-style: 'dashed', 'dotted', 'double', 'groove', 'hidden', 'none', 'inset', 'outset', 'ridge', 'solid',
   'revert' !default;
 
-$tooltip-z-index: 999 !default;
-
+/**
+  x.10 Typography
+**/
 $font-base-size: 1rem !default;
 $font-sizes: (
   '1': $font-base-size * 0.75,
