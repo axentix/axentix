@@ -4,7 +4,7 @@
   flex-direction: column;
   pointer-events: none;
   top: 0;
-  z-index: 5000;
+  z-index: var(getCssVar(toaster-z-index));
   max-width: 50%;
 
   &.toast-bottom {
@@ -30,7 +30,7 @@
   }
 
   @include responsive('sm-down') {
-    width: var(--toaster-m-width);
+    width: var(getCssVar(toaster-m-width));
     left: 50% !important;
     transform: translateX(-50%);
     max-width: unset;
@@ -38,7 +38,7 @@
     &.toaster-m-bottom {
       flex-direction: column-reverse;
       top: unset;
-      bottom: var(--toaster-m-offset);
+      bottom: var(getCssVar(toaster-m-offset));
       align-items: unset;
 
       .toast {
@@ -55,7 +55,7 @@
     &.toaster-m-top {
       flex-direction: column;
       bottom: unset;
-      top: var(--toaster-m-offset) !important;
+      top: var(getCssVar(toaster-m-offset)) !important;
       align-items: unset;
 
       .toast {
@@ -87,10 +87,10 @@
       &::after {
         content: '';
         position: absolute;
-        transition-duration: var(--toast-loading-duration);
+        transition-duration: var(getCssVar(toast-loading-duration));
         transition-property: width;
         transition-timing-function: ease;
-        border-bottom: var(--toast-loading-border);
+        border-bottom: var(getCssVar(toast-loading-border));
         width: 0%;
         left: 0;
         bottom: 0;

@@ -1,9 +1,11 @@
-const config = {
+export const config = {
   components: [],
   plugins: [],
+  prefix: 'ax',
+  mode: '', // can be '' or 'prefixed'
 };
 
-export const get = () => config;
+export const getCssVar = (variable) => `--${config.prefix}-${variable}`;
 
 export const getComponentClass = (component) => config.components.find((c) => c.name === component).class;
 

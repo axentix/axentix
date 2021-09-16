@@ -1,5 +1,5 @@
 import { AxentixComponent } from '../../utils/component';
-import { getComponentClass, registerComponent } from '../../utils/config';
+import { getComponentClass, registerComponent, getCssVar } from '../../utils/config';
 import { instances } from '../../utils/core';
 import { createEvent, extend, getComponentOptions, wrap } from '../../utils/utilities';
 
@@ -191,8 +191,8 @@ export class Tab extends AxentixComponent {
       const elementWidth = elementRect.width;
       const right = this.tabMenu.clientWidth - left - elementWidth;
 
-      this.tabMenu.style.setProperty('--tab-bar-left-offset', Math.floor(left) + 'px');
-      this.tabMenu.style.setProperty('--tab-bar-right-offset', Math.ceil(right) + 'px');
+      this.tabMenu.style.setProperty(getCssVar('tab-bar-left-offset'), Math.floor(left) + 'px');
+      this.tabMenu.style.setProperty(getCssVar('tab-bar-right-offset'), Math.ceil(right) + 'px');
     }
 
     element.classList.add('active');

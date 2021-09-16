@@ -15,6 +15,13 @@
   8. Dropdown
   9. Floating Action Button (FAB)
   10. Tooltip
+  11. Button
+  12. Footer
+  13. Loading
+  14. Modal
+  15. Tab
+  16. Table
+  x. Utilities
   #########################
 **/
 
@@ -30,7 +37,7 @@ $generated-css-vars: map.remove(
 $prefix: 'ax' !default;
 
 /** 
-  1. BREAKPOINTS
+  1. Breakpoints
  **/
 $breakpoints: (
   'xs': 'screen and (max-width: 599px)',
@@ -177,6 +184,52 @@ $generated-css-vars: map.set($generated-css-vars, 'fab-z-index', $fab-z-index);
 **/
 $tooltip-z-index: 999 !default;
 $generated-css-vars: map.set($generated-css-vars, 'tooltip-z-index', $tooltip-z-index);
+
+/**
+  11. Button
+**/
+$btn-disabled-bg-color: #c8c8c8 !default;
+$btn-disabled-color: #787878 !default;
+$generated-css-vars: map.set($generated-css-vars, 'btn-disabled-bg-color', $btn-disabled-bg-color);
+$generated-css-vars: map.set($generated-css-vars, 'btn-disabled-color', $btn-disabled-color);
+
+/**
+  12. Footer
+**/
+$footer-min-height: 3rem !default;
+$generated-css-vars: map.set($generated-css-vars, 'footer-min-height', $footer-min-height);
+
+/**
+  13. Loading
+**/
+$loading-pb-bg-color: getColor('airforce', 'light', 4) !default;
+$generated-css-vars: map.set($generated-css-vars, 'loading-pb-bg-color', $loading-pb-bg-color);
+
+/**
+  14. Modal
+**/
+$modal-top: 10% !default;
+$modal-max-height: 80% !default;
+$generated-css-vars: map.set($generated-css-vars, 'modal-top', $modal-top);
+$generated-css-vars: map.set($generated-css-vars, 'modal-max-height', $modal-max-height);
+
+/**
+  15. Tab
+**/
+$tab-bar-border: 0.1rem solid getColor('primary') !default;
+$generated-css-vars: map.set($generated-css-vars, 'tab-bar-border', $tab-bar-border);
+
+/**
+  16. Table
+**/
+$table-border: 1px solid #d2d2d2 !default;
+$generated-css-vars: map.set($generated-css-vars, 'table-border', $table-border);
+
+/**
+  17. Toast
+**/
+$toaster-z-index: 1000 !default;
+$generated-css-vars: map.set($generated-css-vars, 'toaster-z-index', $toaster-z-index);
 
 // Forms
 $form-helper-size: 0.75rem !default;
