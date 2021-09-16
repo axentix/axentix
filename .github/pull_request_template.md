@@ -1,12 +1,3 @@
----
-name: Pull request
-about: Create a pull request for this project
-title: ''
-labels: ''
-assignees: ''
-
----
-
 ## Description
 
 Describe your changes in detail
