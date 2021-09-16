@@ -1,3 +1,5 @@
+import { getCssVar } from '../../utils/config';
+
 let isInit = true;
 
 /**
@@ -89,7 +91,7 @@ const setFormPosition = (input, formField) => {
 
   const topOffset = input.clientHeight + input.offsetTop + 'px';
 
-  formField.style.setProperty('--form-material-position', topOffset);
+  formField.style.setProperty(getCssVar('form-material-position'), topOffset);
 
   let offset = inputLeftOffset,
     side = 'left',
@@ -101,10 +103,10 @@ const setFormPosition = (input, formField) => {
     offset = formField.clientWidth - inputWidth - inputLeftOffset;
   }
 
-  formField.style.setProperty(`--form-material-${side}-offset`, offset + 'px');
+  formField.style.setProperty(getCssVar(`form-material-${side}-offset`), offset + 'px');
 
   if (offset != 0) labelLeft = inputLeftOffset;
-  formField.style.setProperty('--form-material-width', width);
+  formField.style.setProperty(getCssVar('form-material-width'), width);
 
   const label = formField.querySelector('label');
   if (label) label.style.left = labelLeft + 'px';

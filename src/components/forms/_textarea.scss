@@ -16,24 +16,24 @@ textarea.form-control {
   .form-field:not(.form-default) {
     textarea.form-control {
       margin-top: 0.75rem;
-      transition: $material-animation-duration ease border;
+      transition: var(getCssVar(form-material-transition-duration)) ease border;
     }
 
     &.active {
       textarea.form-control {
         &[disabled] + label,
         &[readonly] + label {
-          color: $form-disabled-color;
+          color: var(getCssVar(form-disabled-color));
         }
       }
 
       &.is-textarea-focused {
         label {
-          color: var(--form-material-color);
+          color: var(getCssVar(form-material-color));
         }
 
         textarea.form-control {
-          border-bottom: 0.1rem solid var(--form-material-color) !important;
+          border-bottom: var(getCssVar(form-material-active-border)) !important;
         }
       }
     }

@@ -23,7 +23,7 @@
   }
 
   .form-helper {
-    font-size: $form-helper-size;
+    font-size: var(getCssVar(form-helper-size));
     color: #747474;
     margin-top: 0.5rem;
     display: block;
@@ -33,7 +33,7 @@
 .form-control {
   position: relative;
   display: block;
-  border: 1px solid #bbb8b8;
+  border: var(getCssVar(form-control-border));
   padding: 0.5rem 0.75rem;
   transition: border 0.2s ease, box-shadow 0.3s ease;
   height: 2.5rem;
@@ -51,9 +51,9 @@
 
   &[disabled],
   &[readonly] {
-    background-color: #c8c8c8 !important;
-    color: $form-disabled-color !important;
-    border-color: #c8c8c8;
+    background-color: var(getCssVar(form-disabled-bg-color)) !important;
+    color: var(getCssVar(form-disabled-color)) !important;
+    border-color: var(getCssVar(form-disabled-bg-color));
   }
 }
 
@@ -90,7 +90,6 @@
 // Material Style
 .form-material {
   .form-field:not(.form-default) {
-    --form-material-color: #{$material-color};
     padding-top: 0.75rem;
     align-self: start;
 
@@ -103,15 +102,15 @@
       pointer-events: none;
       transition-property: top, color, font-size;
       transition-timing-function: ease;
-      transition-duration: $material-animation-duration;
+      transition-duration: var(getCssVar(form-material-transition-duration));
       font-size: 1rem;
       z-index: 2;
-      color: $material-placeholder-color;
+      color: var(getCssVar(form-material-label-color));
     }
 
     .form-control {
       border: none;
-      border-bottom: 1px solid $material-border-color !important;
+      border-bottom: var(getCssVar(form-material-border)) !important;
       padding: 0;
       border-radius: 0;
       background-color: transparent;
@@ -123,11 +122,11 @@
       &[disabled],
       &[readonly] {
         background: transparent !important;
-        color: $form-disabled-color !important;
-        border-bottom: $material-border-color dashed thin !important;
+        color: var(getCssVar(form-disabled-color)) !important;
+        border-bottom: var(getCssVar(form-material-disabled-border)) !important;
 
         + label {
-          color: $form-disabled-color;
+          color: var(getCssVar(form-disabled-color));
         }
       }
     }
@@ -135,11 +134,11 @@
     &::after {
       content: '';
       position: absolute;
-      top: var(--form-material-position);
-      left: var(--form-material-left-offset);
+      top: var(getCssVar(form-material-position));
+      left: var(getCssVar(form-material-left-offset));
       width: 0;
-      border-bottom: var(--form-material-color) solid 0.1rem;
-      transition: width $material-animation-duration ease;
+      border-bottom: var(getCssVar(form-material-active-border));
+      transition: width var(getCssVar(form-material-transition-duration)) ease;
     }
 
     &.form-rtl::after {
@@ -155,18 +154,18 @@
 
       &.is-focused {
         label {
-          color: var(--form-material-color);
+          color: var(getCssVar(form-material-color));
         }
 
         &::after {
-          width: var(--form-material-width);
+          width: var(getCssVar(form-material-width));
         }
       }
 
       .form-control {
         &[disabled] + label,
         &[readonly] + label {
-          color: $form-disabled-color;
+          color: var(getCssVar(form-disabled-color));
         }
       }
     }

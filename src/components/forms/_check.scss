@@ -1,4 +1,6 @@
-// Default checkbox
+$formCheckDisabledColor: getCssVar(form-check-disabled-color);
+$formMaterialColor: getCssVar(form-material-color);
+
 .form-check {
   span {
     cursor: pointer;
@@ -14,7 +16,7 @@
   }
 
   input:disabled + span {
-    color: $form-checkbox-disabled-color !important;
+    color: var($formCheckDisabledColor) !important;
     cursor: default;
   }
 }
@@ -71,26 +73,26 @@
 
       input:disabled + span {
         &::before {
-          border-color: $form-checkbox-disabled-color !important;
+          border-color: var($formCheckDisabledColor) !important;
         }
       }
 
       input[type='checkbox']:checked:disabled + span {
         &::before {
-          background-color: $form-checkbox-disabled-color !important;
+          background-color: var($formCheckDisabledColor) !important;
         }
       }
 
       input[type='radio']:disabled + span {
         &::after {
-          background-color: $form-checkbox-disabled-color !important;
+          background-color: var($formCheckDisabledColor) !important;
         }
       }
 
       // For checkbox only
       input[type='checkbox'] + span {
         &::before {
-          border: var(--form-material-color) solid 2px;
+          border: var(getCssVar(form-material-color)) solid 2px;
           border-radius: 2px;
           transition: background-color 0.2s ease;
         }
@@ -113,7 +115,7 @@
 
       input[type='checkbox']:checked + span::before,
       input[type='checkbox']:indeterminate + span::before {
-        background-color: var(--form-material-color);
+        background-color: var($formMaterialColor);
       }
 
       input[type='checkbox']:indeterminate + span::after {
@@ -125,14 +127,14 @@
       // For radio only
       input[type='radio'] + span {
         &::before {
-          border: var(--form-material-color) solid 2px;
+          border: var($formMaterialColor) solid 2px;
           border-radius: #{map-get($rounded, 'full')};
         }
 
         &::after {
           width: 1rem;
           height: 1rem;
-          background-color: var(--form-material-color);
+          background-color: var($formMaterialColor);
           transform: scale(0) translateY(-100%);
           transition: transform 0.2s ease;
           border-radius: #{map-get($rounded, 'full')};

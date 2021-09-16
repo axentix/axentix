@@ -21,7 +21,9 @@
   14. Modal
   15. Tab
   16. Table
-  x. Utilities
+  17. Toast
+  18. Forms
+  19. Utilities
   #########################
 **/
 
@@ -231,50 +233,100 @@ $generated-css-vars: map.set($generated-css-vars, 'table-border', $table-border)
 $toaster-z-index: 1000 !default;
 $generated-css-vars: map.set($generated-css-vars, 'toaster-z-index', $toaster-z-index);
 
-// Forms
-$form-helper-size: 0.75rem !default;
-$form-disabled-color: #787878 !default;
-$form-checkbox-disabled-color: #afafaf !default;
-
-// Material Forms
-$material-animation-duration: 0.3s !default;
-$material-border-color: #c7c7c7 !default;
-$material-color: getColor('viride', 'dark', 1) !default;
-$material-placeholder-color: getColor('grey', 'dark', 2) !default;
-
-// Switch
-$switch-bg-color: #e2e2e2 !default;
-$switch-bg-disabled-color: #c7c7c7 !default;
-$switch-bg-active-color: getColor('viride', 'dark', 1) !default;
-$switch-btn-color: #fff !default;
-$switch-animation-duration: 0.3s !default;
-
 /**
-  x. Utilities
-  x.1 Cursors
-  x.2 Overflow
-  x.3 Shadows
-  x.4 Hoverable
-  x.5 Rounded
-  x.6 Margins & paddings
-  x.7 Line height
-  x.8 Display
-  x.9 Borders
-  x.10 Typography
+  18. Forms
+  18.1 Default
+  18.2 Material Forms
+  18.3 Switch
 **/
 
 /**
-  x.1 Cursors
+  18.1 Default
+**/
+$form-helper-size: 0.75rem !default;
+$form-control-border: 1px solid #bbb8b8 !default;
+$form-disabled-bg-color: #c8c8c8 !default;
+$form-disabled-color: #787878 !default;
+$form-check-disabled-color: #afafaf !default;
+
+$generated-css-vars: map.set($generated-css-vars, 'form-helper-size', $form-helper-size);
+$generated-css-vars: map.set($generated-css-vars, 'form-control-border', $form-control-border);
+$generated-css-vars: map.set($generated-css-vars, 'form-disabled-bg-color', $form-disabled-bg-color);
+$generated-css-vars: map.set($generated-css-vars, 'form-disabled-color', $form-disabled-color);
+$generated-css-vars: map.set($generated-css-vars, 'form-check-disabled-color', $form-check-disabled-color);
+
+/**
+  18.2 Material Forms
+**/
+$form-material-color: getColor('viride', 'dark', 1) !default;
+$form-material-transition-duration: 0.3s !default;
+$form-material-label-color: getColor('grey', 'dark', 2) !default;
+$form-material-border: 1px solid #c7c7c7 !default;
+$form-material-disabled-border: 1px dashed #c7c7c7 !default;
+$form-material-active-border: 1px solid var(getCssVar(form-material-color)) !default;
+
+$generated-css-vars: map.set($generated-css-vars, 'form-material-color', $form-material-color);
+$generated-css-vars: map.set(
+  $generated-css-vars,
+  'form-material-transition-duration',
+  $form-material-transition-duration
+);
+$generated-css-vars: map.set($generated-css-vars, 'form-material-label-color', $form-material-label-color);
+$generated-css-vars: map.set($generated-css-vars, 'form-material-border', $form-material-border);
+$generated-css-vars: map.set(
+  $generated-css-vars,
+  'form-material-disabled-border',
+  $form-material-disabled-border
+);
+$generated-css-vars: map.set(
+  $generated-css-vars,
+  'form-material-active-border',
+  $form-material-active-border
+);
+
+/**
+  18.3 Switch
+**/
+$form-switch-color: #e2e2e2 !default;
+$form-switch-active-color: getColor('viride', 'dark', 1) !default;
+$form-switch-btn-color: #fff !default;
+$form-switch-transition-duration: 0.3s !default;
+
+$generated-css-vars: map.set($generated-css-vars, 'form-switch-color', $form-switch-color);
+$generated-css-vars: map.set($generated-css-vars, 'form-switch-active-color', $form-switch-active-color);
+$generated-css-vars: map.set($generated-css-vars, 'form-switch-btn-color', $form-switch-btn-color);
+$generated-css-vars: map.set(
+  $generated-css-vars,
+  'form-switch-transition-duration',
+  $form-switch-transition-duration
+);
+
+/**
+  19. Utilities
+  19.1 Cursors
+  19.2 Overflow
+  19.3 Shadows
+  19.4 Hoverable
+  19.5 Rounded
+  19.6 Margins & paddings
+  19.7 Line height
+  19.8 Display
+  19.9 Borders
+  19.10 Typography
+**/
+
+/**
+  19.1 Cursors
 **/
 $cursors: 'default', 'pointer', 'not-allowed', 'grab', 'wait', 'zoom-in', 'zoom-out', 'none' !default;
 
 /**
-  x.2 Overflow
+  19.2 Overflow
 **/
 $overflows: 'visible', 'auto', 'hidden', 'scroll', 'initial', 'inherit' !default;
 
 /**
-  x.3 Shadows
+  19.3 Shadows
 **/
 $light-shadows: (
   '1': '0 6px 10px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
@@ -308,7 +360,7 @@ $text-shadows: (
 ) !default;
 
 /**
-  x.4 Hoverable
+  19.4 Hoverable
 **/
 $light-hoverable-delay: 0.3s !default;
 $hoverable-delay: 0.2s !default;
@@ -330,7 +382,7 @@ $hoverable: (
 ) !default;
 
 /**
-  x.5 Rounded
+  19.5 Rounded
 **/
 $rounded: (
   '0': '0',
@@ -342,7 +394,7 @@ $rounded: (
 ) !default;
 
 /**
-  x.6 Margins & paddings
+  19.6 Margins & paddings
 **/
 $mp-base-space: 1rem !default;
 $mp-spaces: (
@@ -356,7 +408,7 @@ $mp-spaces: (
 ) !default;
 
 /**
-  x.7 Line height
+  19.7 Line height
 **/
 $lh-relative: (
   '1': 1,
@@ -376,12 +428,12 @@ $lh-rem: (
 ) !default;
 
 /**
-  x.8 Display
+  19.8 Display
 **/
 $displays: 'block', 'flex', 'grid', 'table', 'inline', 'inline-block', 'inline-flex', 'inline-table' !default;
 
 /**
-  x.9 Borders
+  19.9 Borders
 **/
 $bd-base-width: 1px !default;
 $bd-width: (
@@ -397,7 +449,7 @@ $bd-style: 'dashed', 'dotted', 'double', 'groove', 'hidden', 'none', 'inset', 'o
   'revert' !default;
 
 /**
-  x.10 Typography
+  19.10 Typography
 **/
 $font-base-size: 1rem !default;
 $font-sizes: (
