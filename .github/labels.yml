@@ -1,0 +1,72 @@
+---
+# Common labels
+- name: bug
+  description: Something isn't working.
+  color: d73a4a
+- name: duplicate
+  description: This issue or pull request already exists.
+  color: cfd3d7
+- name: WIP
+  description: This pull request is in Work In Progress state.
+  color: ff0000
+- name: automerge
+  description: Automerge this PR when ready.
+  color: fbca04
+- name: autorebase
+  description: Autorebase this PR now.
+  color: fbca04
+- name: stale
+  description: No activity for at least 30 days.
+  color: ffccef
+- name: enhancement
+  description: New feature or request
+  color: a2eeef
+- name: help wanted
+  description: Extra attention is needed
+  color: 008672
+- name: invalid
+  description: This doesn't seem right
+  color: e4e669
+- name: question
+  description: Further information is requested
+  color: d876e3
+- name: wontfix
+  description: This will not be worked on
+  color: ffffff
+
+# Scope labels
+- name: scope/components
+  description: Improvements or additions to Components.
+  color: 0075ca
+- name: scope/core
+  description: Improvements or additions to Core CSS.
+  color: 0075ca
+- name: scope/utils
+  description: Improvements or additions to Utils.
+  color: 0075ca
+- name: scope/ci
+  description: Improvements or additions to CI.
+  color: 0075ca
+- name: scope/examples
+  description: Improvements or additions to Examples.
+  color: 0075ca
+
+# Sizing labels
+- name: size/XS
+  description: Denotes a PR that changes 0-9 lines.
+  color: 009900
+- name: size/S
+  description: Denotes a PR that changes 10-29 lines.
+  color: 77bb00
+- name: size/M
+  description: Denotes a PR that changes 30-99 lines.
+  color: eebb00
+- name: size/L
+  description: Denotes a PR that changes 100-499 lines.
+  color: ee9900
+- name: size/XL
+  description: Denotes a PR that changes 500-999 lines.
+  color: ee5500
+- name: size/XXL
+  description: Denotes a PR that changes 1000+ lines.
+  color: ee0000

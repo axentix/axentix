@@ -1,0 +1,44 @@
+---
+name: deploy
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install & Build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          access: "public"
+          tag: "next"
+
+      - uses: papeloto/action-zip@v1
+        with:
+          files: dist/ LICENSE CHANGELOG.md README.md
+          dest: axentix-${{ steps.get_version.outputs.VERSION }}.zip
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "axentix-${{ steps.get_version.outputs.VERSION }}.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: true
