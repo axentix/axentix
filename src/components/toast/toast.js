@@ -1,4 +1,4 @@
-import { registerComponent } from '../../utils/config';
+import { getCssVar, registerComponent } from '../../utils/config';
 import { instances } from '../../utils/core';
 import { createEvent, extend, getComponentOptions, getInstanceByType } from '../../utils/utilities';
 
@@ -72,20 +72,17 @@ export class Toast {
 
     directionList.includes(this.options.mobileDirection) ? '' : (this.options.mobileDirection = 'bottom');
 
-    toaster.style.setProperty('--toaster-m-width', 100 - this.options.offset.mobileX.slice(0, -1) + '%');
-    toaster.style.setProperty('--toaster-m-offset', this.options.offset.mobileY);
+    toaster.style.setProperty(
+      getCssVar('toaster-m-width'),
+      100 - this.options.offset.mobileX.slice(0, -1) + '%'
+    );
+    toaster.style.setProperty(getCssVar('toaster-m-offset'), this.options.offset.mobileY);
 
     if (this.options.loading.enabled) {
-      toaster.style.setProperty('--toast-loading-border', this.options.loading.border);
+      toaster.style.setProperty(getCssVar('toast-loading-border'), this.options.loading.border);
     }
 
-    toaster.className =
-      'toaster toaster-' +
-      this.options.position +
-      ' toast-' +
-      this.options.direction +
-      ' toaster-m-' +
-      this.options.mobileDirection;
+    toaster.className = `toaster toaster-${this.options.position} toast-${this.options.direction} toaster-m-${this.options.mobileDirection}`;
 
     this.toasters[this.options.position] = toaster;
     document.body.appendChild(toaster);
@@ -113,7 +110,7 @@ export class Toast {
       createEvent(toast, 'toast.show');
       if (this.options.loading.enabled) {
         toast.classList.add('toast-loading');
-        toast.style.setProperty('--toast-loading-duration', this.options.duration + 'ms');
+        toast.style.setProperty(getCssVar('toast-loading-duration'), this.options.duration + 'ms');
       }
       toast.classList.add('toast-animated');
 

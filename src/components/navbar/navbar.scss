@@ -1,15 +1,16 @@
-/*** Navbar ***/
+$navbarHeight: getCssVar(navbar-height);
+
 .navbar {
   display: flex;
   position: relative;
   flex-direction: row;
   align-items: center;
   padding: 0 0.5rem;
-  height: $navbar-height;
-  line-height: $navbar-height;
+  height: var($navbarHeight);
+  line-height: var($navbarHeight);
 
   .navbar-logo {
-    height: $navbar-logo-height;
+    height: calc(var($navbarHeight) - 5%);
     margin: 0 1rem;
 
     img {
@@ -63,12 +64,11 @@
   }
 }
 
-// Fixed navbar
 .navbar-fixed {
-  height: 3.5rem;
+  height: var($navbarHeight);
   width: 100%;
   position: relative;
-  z-index: $navbar-zindex;
+  z-index: var(getCssVar(navbar-z-index));
 
   .navbar {
     position: fixed;
@@ -78,9 +78,8 @@
   }
 }
 
-// Fix for dropdown
 .navbar .dropdown {
-  z-index: $dropdown-zindex-navbar;
+  z-index: var(getCssVar(dropdown-z-index-navbar));
 
   .dropdown-content {
     line-height: 1.15;

@@ -1,5 +1,5 @@
 .footer {
-  min-height: 3rem;
+  min-height: var(getCssVar(footer-min-height));
   width: 100%;
   padding: 0.5rem;
   display: flex;

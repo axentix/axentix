@@ -29,6 +29,6 @@ export { default as Tooltip } from './components/tooltip';
 export * from './components/forms';
 
 // JS Utils
-export * as Config from './utils/config';
+export * from './utils/config';
 export * from './utils/core';
 export * from './utils/utilities';

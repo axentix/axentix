@@ -1,6 +1,6 @@
 .fab:not(i) {
   position: fixed;
-  z-index: $fab-zindex;
+  z-index: var(getCssVar(fab-z-index));
 
   .fab-menu {
     position: absolute;

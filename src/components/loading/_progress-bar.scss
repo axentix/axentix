@@ -3,7 +3,7 @@
   height: 0.5rem;
   font-size: 0.5rem;
   width: 100%;
-  background-color: getColor('airforce', 'light', 4);
+  background-color: var(getCssVar(loading-pbar-bg-color));
   overflow: hidden;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 

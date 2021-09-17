@@ -84,12 +84,12 @@
   &.disabled,
   &[disabled] {
     pointer-events: none;
-    background-color: rgb(200, 200, 200) !important;
-    color: rgb(120, 120, 120) !important;
+    background-color: var(getCssVar(btn-disabled-bg-color)) !important;
+    color: var(getCssVar(btn-disabled-color)) !important;
     box-shadow: none;
 
     &.btn-outline {
-      border-color: rgb(200, 200, 200);
+      border-color: var(getCssVar(btn-disabled-bg-color));
     }
   }
 

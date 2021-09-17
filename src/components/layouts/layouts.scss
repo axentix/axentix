@@ -76,8 +76,12 @@ $layoutAreas: getCssVar(layout-areas);
 
 @include responsive('sm-down') {
   .layout-sidenav {
-    #{$layoutAreas}: 'header' 'main' 'footer';
-    #{$layoutColumns}: minmax(0, 1fr);
+    #{$layoutAreas}: 'header' 'main' 'footer' !important;
+    #{$layoutColumns}: minmax(0, 1fr) !important;
+
+    .sidenav-fixed {
+      position: fixed;
+    }
   }
 }
 
@@ -161,7 +165,7 @@ $sidenavWidth: getCssVar(sidenav-width);
 
   .layout-under-navbar {
     .sidenav-fixed {
-      top: 3.5rem;
+      top: var(getCssVar(navbar-height));
     }
   }
 }

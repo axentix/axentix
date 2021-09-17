@@ -23,7 +23,7 @@
 
   .form-file-path {
     width: 100%;
-    border-bottom: 1px solid #c7c7c7;
+    border-bottom: var(getCssVar(form-material-border));
     margin: auto 0 0.25rem 0.5rem;
     height: 1.75rem;
     display: inline-block;

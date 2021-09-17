@@ -1,7 +1,7 @@
 .dropdown {
   position: relative;
   display: inline-block;
-  z-index: $dropdown-zindex;
+  z-index: var(getCssVar(dropdown-z-index));
 
   &.dropdown-vp .dropdown-content {
     overflow-y: auto;
@@ -46,10 +46,7 @@
   &.active-hover:hover .dropdown-content {
     display: flex;
   }
-}
 
-// Animation
-.dropdown {
   &.dropdown-anim-fade {
     .dropdown-content {
       transition-timing-function: ease-in-out;
