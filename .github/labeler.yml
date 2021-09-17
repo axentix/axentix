@@ -11,6 +11,6 @@ scope/ci:
 scope/examples:
   - examples/**/*
 scope/js:
-  - '**/*.js'
+  - '**.js'
 scope/css:
-  - '**/*.css''
+  - '**.css''
