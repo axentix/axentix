@@ -1,0 +1,16 @@
+---
+scope/components:
+  - src/components/**/*
+scope/core:
+  - src/core/**/*
+scope/utils:
+  - src/utils/**/*
+scope/ci:
+  - .github/**/*
+  - scripts/**/*
+scope/examples:
+  - examples/**/*
+scope/js:
+  - '**/*.js'
+scope/css:
+  - '**/*.css''

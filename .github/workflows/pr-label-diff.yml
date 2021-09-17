@@ -1,0 +1,23 @@
+---
+name: label-diff
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  size:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: pascalgn/size-label-action@v0.4.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  paths:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/labeler@v3
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
