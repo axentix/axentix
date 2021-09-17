@@ -10,7 +10,7 @@ $navbarHeight: getCssVar(navbar-height);
   line-height: var($navbarHeight);
 
   .navbar-logo {
-    height: calc(var($navbarHeight) - 0.5rem);
+    height: calc(var($navbarHeight) - 5%);
     margin: 0 1rem;
 
     img {
