@@ -56,6 +56,9 @@
 - name: scope/css
   description: CSS Modifications.
   color: 016CB5
+- name: scope/yaml
+  description: Yaml Modifications.
+  color: 000000
 
 # Sizing labels
 - name: size/XS
