@@ -13,4 +13,4 @@ scope/examples:
 scope/js:
   - '**.js'
 scope/css:
-  - '**.css''
+  - '**.css'
