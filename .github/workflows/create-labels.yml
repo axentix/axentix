@@ -4,7 +4,7 @@ name: create-labels
 on:
   push:
     branches:
-      - develop
+      - v2
     paths:
       - .github/labels.yml
 
