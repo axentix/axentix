@@ -30,7 +30,7 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
           access: "public"
-          tag: ${{ steps.get_version.outputs.VERSION }}
+          tag: "next"
 
       - uses: papeloto/action-zip@v1
         with:
