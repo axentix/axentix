@@ -41,9 +41,9 @@
   ],
   "engine": "node >= 12",
   "devDependencies": {
-    "sass": "^1.39.2",
-    "vite": "^2.5.6",
-    "vite-plugin-mpa": "^1.0.4"
+    "sass": "^1.41.1",
+    "vite": "^2.5.8",
+    "vite-plugin-mpa": "^1.1.0"
   },
   "dependencies": {}
 }
