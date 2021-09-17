@@ -204,8 +204,8 @@ $generated-css-vars: map.set($generated-css-vars, 'footer-min-height', $footer-m
 /**
   13. Loading
 **/
-$loading-pb-bg-color: getColor('airforce', 'light', 4) !default;
-$generated-css-vars: map.set($generated-css-vars, 'loading-pb-bg-color', $loading-pb-bg-color);
+$loading-pbar-bg-color: getColor('airforce', 'light', 4) !default;
+$generated-css-vars: map.set($generated-css-vars, 'loading-pbar-bg-color', $loading-pbar-bg-color);
 
 /**
   14. Modal
