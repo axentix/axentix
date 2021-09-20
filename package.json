@@ -27,10 +27,10 @@
   "bugs": {
     "url": "https://github.com/axentix/axentix/issues"
   },
-  "style": "dist/css/axentix.css",
-  "sass": "src/scss/axentix.scss",
-  "main": "dist/js/axentix.js",
-  "module": "dist/js/axentix.esm.js",
+  "style": "dist/axentix.min.css",
+  "sass": "src/only.scss",
+  "main": "dist/axentix.min.js",
+  "module": "dist/axentix.esm.js",
   "typings": "dist/axentix.d.ts",
   "files": [
     "dist",

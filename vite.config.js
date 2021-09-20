@@ -31,12 +31,12 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.js'),
       name: 'Axentix',
-      formats: ['cjs', 'es', 'iife'],
-      fileName: 'axentix',
+      formats: ['es', 'umd'],
+      fileName: (format) => (format === 'umd' ? 'axentix.min.js' : 'axentix.esm.js'),
     },
     rollupOptions: {
       output: {
-        assetFileNames: `axentix.[ext]`,
+        assetFileNames: `axentix.min.[ext]`,
       },
     },
   },
