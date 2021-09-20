@@ -76,17 +76,3 @@ $modalTop: getCssVar(modal-top);
     }
   }
 }
-
-.modal-overlay {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0);
-  transition: background-color ease;
-
-  &.active {
-    background-color: rgba(0, 0, 0, 0.3);
-  }
-}

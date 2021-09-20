@@ -38,6 +38,9 @@ $generated-css-vars: map.remove(
 ) !default;
 $prefix: 'ax' !default;
 
+$ax-overlay-z-index: 700 !default;
+$generated-css-vars: map.set($generated-css-vars, 'ax-overlay-z-index', $ax-overlay-z-index);
+
 /** 
   1. Breakpoints
  **/
@@ -157,7 +160,6 @@ $sidenav-width: 12rem !default;
 $sidenav-z-index: 710 !default;
 $sidenav-logo-height: 3rem !default;
 $sidenav-header-height: 5rem !default;
-$sidenav-overlay-zindex: 700 !default;
 
 $generated-css-vars: map.set($generated-css-vars, 'sidenav-width', $sidenav-width);
 $generated-css-vars: map.set($generated-css-vars, 'sidenav-z-index', $sidenav-z-index);

@@ -1,7 +1,13 @@
 import { registerComponent } from '../../utils/config';
 import { AxentixComponent } from '../../utils/component';
 import { instances } from '../../utils/core';
-import { createEvent, getComponentOptions, getInstanceByType } from '../../utils/utilities';
+import {
+  createEvent,
+  createOverlay,
+  getComponentOptions,
+  getInstanceByType,
+  updateOverlay,
+} from '../../utils/utilities';
 
 export class Sidenav extends AxentixComponent {
   static getDefaultOptions() {
@@ -56,7 +62,13 @@ export class Sidenav extends AxentixComponent {
 
     this._setupListeners();
 
-    this.options.overlay ? this._createOverlay() : '';
+    if (this.options.overlay)
+      this.overlayElement = createOverlay(
+        this.isActive,
+        this.options.overlay,
+        this.el.id,
+        this.options.animationDuration
+      );
 
     this.layoutEl && this.isFixed ? this._handleMultipleSidenav() : '';
 
@@ -132,16 +144,6 @@ export class Sidenav extends AxentixComponent {
   }
 
   /**
-   * Create overlay element
-   */
-  _createOverlay() {
-    this.overlayElement = document.createElement('div');
-    this.overlayElement.classList.add('sidenav-overlay');
-    this.overlayElement.style.transitionDuration = this.options.animationDuration + 'ms';
-    this.overlayElement.dataset.target = this.el.id;
-  }
-
-  /**
    * Enable or disable body scroll when option is true
    * @param {boolean} state
    */
@@ -175,7 +177,8 @@ export class Sidenav extends AxentixComponent {
     this.isActive = true;
     this.isAnimated = true;
     this.el.classList.add('active');
-    this.overlay(true);
+    updateOverlay(this.options.overlay, this.overlayElement, this.listenerRef, true);
+
     this._toggleBodyScroll(false);
 
     setTimeout(() => {
@@ -194,35 +197,20 @@ export class Sidenav extends AxentixComponent {
     this.isAnimated = true;
     createEvent(this.el, 'sidenav.close');
     this.el.classList.remove('active');
-    this.overlay(false);
+    updateOverlay(
+      this.options.overlay,
+      this.overlayElement,
+      this.listenerRef,
+      false,
+      this.options.animationDuration
+    );
+
     setTimeout(() => {
       this._toggleBodyScroll(true);
       this.isActive = false;
       this.isAnimated = false;
       createEvent(this.el, 'sidenav.closed');
     }, this.options.animationDuration);
-  }
-
-  /**
-   * Manage overlay
-   * @param {boolean} state
-   */
-  overlay(state) {
-    if (this.options.overlay) {
-      if (state) {
-        this.overlayElement.addEventListener('click', this.listenerRef);
-        document.body.appendChild(this.overlayElement);
-        setTimeout(() => {
-          this.overlayElement.classList.add('active');
-        }, 50);
-      } else {
-        this.overlayElement.classList.remove('active');
-        setTimeout(() => {
-          this.overlayElement.removeEventListener('click', this.listenerRef);
-          document.body.removeChild(this.overlayElement);
-        }, this.options.animationDuration);
-      }
-    }
   }
 }
 
