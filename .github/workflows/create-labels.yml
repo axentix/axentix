@@ -7,6 +7,7 @@ on:
       - v2
     paths:
       - .github/labels.yml
+      - .github/workflows/create-labels.yml
 
 jobs:
   build:
