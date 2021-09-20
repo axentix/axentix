@@ -1,7 +1,7 @@
 import { AxentixComponent } from '../../utils/component';
 import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/core';
-import { createEvent, getComponentOptions } from '../../utils/utilities';
+import { createEvent, createOverlay, getComponentOptions, updateOverlay } from '../../utils/utilities';
 
 export class Modal extends AxentixComponent {
   static getDefaultOptions() {
@@ -45,7 +45,13 @@ export class Modal extends AxentixComponent {
     this.isAnimated = false;
 
     this._setupListeners();
-    this.options.overlay ? this._createOverlay() : '';
+    if (this.options.overlay)
+      this.overlayElement = createOverlay(
+        this.isActive,
+        this.options.overlay,
+        this.el.id,
+        this.options.animationDuration
+      );
     this.el.style.transitionDuration = this.options.animationDuration + 'ms';
     this.el.style.animationDuration = this.options.animationDuration + 'ms';
   }
@@ -72,21 +78,6 @@ export class Modal extends AxentixComponent {
       }
     });
     this.listenerRef = undefined;
-  }
-
-  /**
-   * Create overlay element
-   */
-  _createOverlay() {
-    if (this.isActive && this.options.overlay) {
-      this.overlayElement = document.querySelector('.modal-overlay[data-target="' + this.el.id + '"]');
-      this.overlayElement ? '' : (this.overlayElement = document.createElement('div'));
-    } else {
-      this.overlayElement = document.createElement('div');
-    }
-    this.overlayElement.classList.add('modal-overlay');
-    this.overlayElement.style.transitionDuration = this.options.animationDuration + 'ms';
-    this.overlayElement.dataset.target = this.el.id;
   }
 
   /**
@@ -133,7 +124,8 @@ export class Modal extends AxentixComponent {
     this.isAnimated = true;
     this._setZIndex();
     this.el.style.display = 'block';
-    this.overlay(true);
+    updateOverlay(this.options.overlay, this.overlayElement, this.listenerRef, true);
+
     this._toggleBodyScroll(false);
     setTimeout(() => {
       this.el.classList.add('active');
@@ -155,7 +147,14 @@ export class Modal extends AxentixComponent {
     createEvent(this.el, 'modal.close');
     this.isAnimated = true;
     this.el.classList.remove('active');
-    this.overlay(false);
+    updateOverlay(
+      this.options.overlay,
+      this.overlayElement,
+      this.listenerRef,
+      false,
+      this.options.animationDuration
+    );
+
     setTimeout(() => {
       this.el.style.display = '';
       this.isAnimated = false;
@@ -163,28 +162,6 @@ export class Modal extends AxentixComponent {
       this._toggleBodyScroll(true);
       createEvent(this.el, 'modal.closed');
     }, this.options.animationDuration);
-  }
-
-  /**
-   * Manage overlay
-   * @param {boolean} state
-   */
-  overlay(state) {
-    if (this.options.overlay) {
-      if (state) {
-        this.overlayElement.addEventListener('click', this.listenerRef);
-        document.body.appendChild(this.overlayElement);
-        setTimeout(() => {
-          this.overlayElement.classList.add('active');
-        }, 50);
-      } else {
-        this.overlayElement.classList.remove('active');
-        setTimeout(() => {
-          this.overlayElement.removeEventListener('click', this.listenerRef);
-          document.body.removeChild(this.overlayElement);
-        }, this.options.animationDuration);
-      }
-    }
   }
 }
 

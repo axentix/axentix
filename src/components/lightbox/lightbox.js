@@ -7,7 +7,7 @@ export class Lightbox extends AxentixComponent {
   static getDefaultOptions() {
     return {
       animationDuration: 400,
-      overlayColor: 'grey dark-4',
+      overlayClass: 'grey dark-4',
       offset: 150,
       mobileOffset: 80,
       caption: '',
@@ -80,7 +80,7 @@ export class Lightbox extends AxentixComponent {
   _setOverlay() {
     this.overlay = document.createElement('div');
     this.overlay.style.transitionDuration = this.options.animationDuration + 'ms';
-    this.overlay.className = 'lightbox-overlay ' + this.options.overlayColor;
+    this.overlay.className = 'lightbox-overlay ' + this.options.overlayClass;
     this.container.appendChild(this.overlay);
 
     if (this.options.caption) {

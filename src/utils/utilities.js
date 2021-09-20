@@ -69,3 +69,33 @@ export const resetAll = () => instances.map((ins) => ins.instance.reset());
 export const destroy = (element) => getInstance(element).destroy();
 
 export const destroyAll = () => instances.map((ins) => ins.instance.destroy());
+
+export const createOverlay = (isActive, overlay, id, animationDuration) => {
+  const overlayElement =
+    isActive && overlay
+      ? document.querySelector('.ax-overlay[data-target="' + id + '"]')
+      : document.createElement('div');
+  overlayElement.classList.add('ax-overlay');
+  overlayElement.style.transitionDuration = animationDuration + 'ms';
+  overlayElement.dataset.target = id;
+
+  return overlayElement;
+};
+
+export const updateOverlay = (overlay, overlayElement, listenerRef, state, animationDuration) => {
+  if (!overlay) return;
+
+  if (state) {
+    overlayElement.addEventListener('click', listenerRef);
+    document.body.appendChild(overlayElement);
+    setTimeout(() => {
+      overlayElement.classList.add('active');
+    }, 50);
+  } else {
+    overlayElement.classList.remove('active');
+    setTimeout(() => {
+      overlayElement.removeEventListener('click', listenerRef);
+      document.body.removeChild(overlayElement);
+    }, animationDuration);
+  }
+};
