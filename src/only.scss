@@ -5,7 +5,6 @@
 @import './core/normalize';
 @import './core/base';
 @import './core/css_var';
-@import './core/colors';
 
 // Components
 @import './components/button/button.scss';
@@ -30,3 +29,6 @@
 @import './components/toast/toast.scss';
 @import './components/tooltip/tooltip.scss';
 @import './components/utilities/utilities.scss';
+
+// Must be loaded at the end
+@import './core/colors';

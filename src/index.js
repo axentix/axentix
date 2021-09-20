@@ -11,8 +11,8 @@ import './components/footer';
 import './components/navbar';
 import './components/pagination';
 import './components/table';
-import './components/utilities';
 import './components/loading';
+import './components/utilities';
 
 // JS Components
 export { default as Caroulix } from './components/caroulix';
@@ -27,6 +27,9 @@ export { default as ScrollSpy } from './components/scrollspy';
 export { default as Toast } from './components/toast';
 export { default as Tooltip } from './components/tooltip';
 export * from './components/forms';
+
+// Must be loaded at the end
+import './core/_colors.scss';
 
 // JS Utils
 export * from './utils/config';
