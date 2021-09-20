@@ -9,12 +9,6 @@
 - name: WIP
   description: This pull request is in Work In Progress state.
   color: ff0000
-- name: automerge
-  description: Automerge this PR when ready.
-  color: fbca04
-- name: autorebase
-  description: Autorebase this PR now.
-  color: fbca04
 - name: stale
   description: No activity for at least 30 days.
   color: ffccef
