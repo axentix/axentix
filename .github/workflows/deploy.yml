@@ -17,10 +17,11 @@ jobs:
         with:
           node-version: 14
 
-      - name: Install & Build
-        run: |
-          npm ci
-          npm run build
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Axentix
+        run: npm run build
 
       - name: Get the version
         id: get_version

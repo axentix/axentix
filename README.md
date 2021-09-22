@@ -27,6 +27,9 @@ Find the LTS version on the <a href="https://github.com/axentix/axentix/tree/dev
   <a href="https://www.jsdelivr.com/package/npm/axentix">
     <img src="https://data.jsdelivr.com/v1/package/npm/axentix/badge?style=rounded" alt="jsDelivr Hits" />
   </a>
+  <a href="https://sonarcloud.io/dashboard?id=axentix_axentix">
+    <img src="https://sonarcloud.io/api/project_badges/measure?project=axentix_axentix&metric=alert_status">
+  </a>
   <img src="https://img.shields.io/david/axentix/axentix" alt="Dependencies" />
   <img src="https://img.shields.io/david/dev/axentix/axentix" alt="Dev Dependencies" />
   <a href="https://packagephobia.com/result?p=axentix">
@@ -55,12 +58,12 @@ Axentix is an open source Framework based on CSS Grid using HTML, CSS and JS. Th
 
 ### NPM
 ```
-npm install axentix
+npm install axentix@next
 ```
 
 ### Yarn
 ```
-yarn add axentix
+yarn add axentix@next
 ```
 
 ### CDN
@@ -74,7 +77,7 @@ You can download the latest release from [Github](https://github.com/axentix/axe
 ```
 git clone https://github.com/axentix/axentix.git
 cd axentix
-npm install
+npm ci
 ```
 
 After installation you have access to our source files.  
@@ -82,7 +85,7 @@ You can build project with `npm run build` or serve it with `npm run serve`.
 
 ## Documentation
 
-Find the documentation at <https://useaxentix.com/docs/>.
+Find the documentation at <https://useaxentix.com/2.0.x/docs/>.
 
 ## Changelog
 
