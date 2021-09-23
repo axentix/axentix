@@ -1,3 +1,7 @@
+export { version } from '../../package.json';
+
+export const instances = [];
+
 export const config = {
   components: [],
   plugins: [],

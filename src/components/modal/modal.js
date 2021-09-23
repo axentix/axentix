@@ -1,6 +1,6 @@
 import { AxentixComponent } from '../../utils/component';
 import { registerComponent } from '../../utils/config';
-import { instances } from '../../utils/core';
+import { instances } from '../../utils/config';
 import { createEvent, createOverlay, getComponentOptions, updateOverlay } from '../../utils/utilities';
 
 export class Modal extends AxentixComponent {

@@ -82,7 +82,11 @@ const setup = () => {
 };
 
 const setupAll = () => {
-  new Axentix('all');
+  try {
+    new Axentix.Axentix('all');
+  } catch (error) {
+    console.error('[Axentix] Unable to auto init.', error);
+  }
 };
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -1,5 +1,4 @@
 import { getAutoInitElements, getComponentClass } from './config';
-export { version } from '../../package.json';
 
 /**
  * Class Axentix
@@ -69,5 +68,3 @@ export class Axentix {
     });
   }
 }
-
-export const instances = [];

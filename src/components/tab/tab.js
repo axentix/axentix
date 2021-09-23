@@ -1,6 +1,6 @@
 import { AxentixComponent } from '../../utils/component';
 import { getComponentClass, registerComponent, getCssVar } from '../../utils/config';
-import { instances } from '../../utils/core';
+import { instances } from '../../utils/config';
 import { createEvent, extend, getComponentOptions, wrap } from '../../utils/utilities';
 
 export class Tab extends AxentixComponent {

@@ -1,4 +1,4 @@
-# 2.0.0-beta.0 - 2021-09-22
+# 2.0.0-beta.1 - 2021-09-24
 
 Axentix v2 is here !  
 This version is the first pre-release with a lot changes.

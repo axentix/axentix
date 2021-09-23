@@ -1,5 +1,4 @@
-import { getComponentClass } from './config';
-import { instances } from './core';
+import { instances, getComponentClass } from './config';
 import { formatOptions } from './data';
 
 export const extend = (...args) => {

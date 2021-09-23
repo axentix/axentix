@@ -1,4 +1,4 @@
-import { instances } from './core';
+import { instances } from './config';
 import { createEvent, getInstance } from './utilities';
 
 /**
