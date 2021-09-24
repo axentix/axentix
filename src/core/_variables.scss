@@ -1,4 +1,4 @@
-@use "sass:map";
+@use 'sass:map';
 
 /* IMPORTANT : Don't forget to add !default flag to all SCSS variables in this file */
 
@@ -263,9 +263,9 @@ $generated-css-vars: map.set($generated-css-vars, 'form-check-disabled-color', $
 $form-material-color: getColor('viride', 'dark', 1) !default;
 $form-material-transition-duration: 0.3s !default;
 $form-material-label-color: getColor('grey', 'dark', 2) !default;
-$form-material-border: 1px solid #c7c7c7 !default;
-$form-material-disabled-border: 1px dashed #c7c7c7 !default;
-$form-material-active-border: 1px solid var(getCssVar(form-material-color)) !default;
+$form-material-border: 0.08em solid #c7c7c7 !default;
+$form-material-disabled-border: 0.08em dashed #c7c7c7 !default;
+$form-material-active-border: 0.1em solid var(getCssVar(form-material-color)) !default;
 
 $generated-css-vars: map.set($generated-css-vars, 'form-material-color', $form-material-color);
 $generated-css-vars: map.set(
