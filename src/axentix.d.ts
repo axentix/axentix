@@ -514,7 +514,9 @@ export function registerPlugin(plugin: {
 }): void;
 
 // Material forms
-export function updateInputs(inputElements?: NodeListOf<Element>): void;
+export namespace Forms {
+  function updateInputs(inputElements?: NodeListOf<Element>): void;
+}
 
 // JS Utilities
 export function createEvent(element: Element, eventName: string, extraData?: any): void;

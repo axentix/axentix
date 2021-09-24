@@ -26,7 +26,7 @@ export { default as Tab } from './components/tab';
 export { default as ScrollSpy } from './components/scrollspy';
 export { default as Toast } from './components/toast';
 export { default as Tooltip } from './components/tooltip';
-export * from './components/forms';
+export { Forms } from './components/forms';
 
 // Must be loaded at the end
 import './core/_colors.scss';

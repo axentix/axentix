@@ -2,4 +2,4 @@ import './forms.scss';
 
 import { updateInputs } from './forms';
 
-export { updateInputs };
+export const Forms = { updateInputs };
