@@ -1,3 +1,14 @@
+# 2.0.0-beta.2 - Under development
+
+- ADDED
+  - `--ax-form-material-active-border-style` && `--ax-form-material-active-border-width` css variables
+- REMOVED
+  - `--ax-form-material-active-border` css variable
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+  - Material forms css variables unable user to personalize material color per element
+
 # 2.0.0-beta.1 - 2021-09-24
 
 Axentix v2 is here !  

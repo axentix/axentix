@@ -137,7 +137,8 @@
       top: var(getCssVar(form-material-position));
       left: var(getCssVar(form-material-left-offset));
       width: 0;
-      border-bottom: var(getCssVar(form-material-active-border));
+      border-bottom: var(getCssVar(form-material-active-border-width))
+        var(getCssVar(form-material-active-border-style)) var(getCssVar(form-material-color));
       transition: width var(getCssVar(form-material-transition-duration)) ease;
     }
 
