@@ -1,5 +1,5 @@
-let id = 0;
-const uid = () => ++id;
+let i = 0;
+const uid = () => ++i;
 const isMobile = 'ontouchstart' in document.documentElement;
 
 let wavesInstance = null;
