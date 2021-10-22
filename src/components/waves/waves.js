@@ -104,7 +104,6 @@ const handler = (e) => {
   const el = e.target;
   const id = el.getAttribute('ax-waves-id') || '';
   const target = getTarget(el, id);
-  console.log(target);
   
   if (!target || target.getAttribute('disabled')) return;
   
