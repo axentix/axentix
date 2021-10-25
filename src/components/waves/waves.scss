@@ -22,29 +22,27 @@ $prefix: ax-waves;
 [ax-waves] {
   cursor: pointer;
   user-select: none;
-  // -ms-user-select: none;
-  // -webkit-tap-highlight-color: transparent;
-  // -webkit-touch-callout: none;
-  // -webkit-user-select: none;
 }
 
-[ax-waves-item-box] {
+.ax-waves-box {
   position: relative;
   cursor: pointer;
   user-select: none;
 }
 
-[ax-waves-item-box-inner] {
+.ax-waves-item-inner {
   position: absolute;
   overflow: hidden;
   display: block;
+  pointer-events: none;
 }
 
-[ax-waves-item] {
+.ax-waves-item {
   position: absolute;
   display: block;
   background-color: $bgColor;
   animation: waves 0.78s ease-out forwards;
   border-radius: 50%;
+  pointer-events: none;
   z-index: 0;
 }
