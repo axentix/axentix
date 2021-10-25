@@ -32,15 +32,19 @@ const createWaveItem = (target) => {
 };
 
 
-const createWaves = ({id, size, x, y, container, item, target}) => {
+const createWaves = ({id, size, x, y, container, item, target}, color) => {
   const waves = document.createElement('span');
+
+  let style = `height:${size}px;
+           width:${size}px;
+           left:${x}px;
+           top:${y}px;`
+
+  if (color) style += `background-color: ${color};`; 
 
   waves.setAttribute('ax-waves-id', id);
   waves.classList.add('ax-waves-item');
-  waves.style = ('style', `height:${size}px;
-                           width:${size}px;
-                           left:${x}px;
-                           top:${y}px;`);
+  waves.style = ('style', style);
 
   waves.addEventListener('animationend', () => {
     container.removeChild(waves);
@@ -59,11 +63,9 @@ const getWavesParams = (clientX, clientY, id, target) => {
   const {top, left, width, height} = target.getBoundingClientRect();
   const x = clientX - left;
   const y = clientY - top;
-
   let item = itemMap[id];
 
   if (!item) item = createWaveItem(target);
-
   id = item.getAttribute('ax-waves-id') || uid();
 
   const container = item.children[0];
@@ -107,7 +109,8 @@ const handler = (e) => {
   const target = getTarget(el, id);
   
   if (!target || target.getAttribute('disabled')) return;
-  
+  const color = target.getAttribute('ax-waves');
+
   let { clientX, clientY } = e;
   if (isMobile) {
     const item = e.touches[0];
@@ -116,7 +119,7 @@ const handler = (e) => {
   }
 
   const wavesParams = getWavesParams(clientX, clientY, id, target);
-  const waves = createWaves(wavesParams);
+  const waves = createWaves(wavesParams, color);
   const { container, item } = wavesParams;
 
   container.setAttribute('style', getContainerStyle(target, item));  

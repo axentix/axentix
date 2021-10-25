@@ -1,7 +1,3 @@
-$bgColor: rgba(#fff, 0.1);
-$defaultBgColor: #f6f6f6;
-$prefix: ax-waves;
-
 @keyframes waves {
   0% {
     transform: translate(-50%, -50%) scale(0);
@@ -19,28 +15,28 @@ $prefix: ax-waves;
   }
 }
 
-[ax-waves] {
+[#{$prefix}-waves] {
   cursor: pointer;
   user-select: none;
 }
 
-.ax-waves-box {
+.#{$prefix}-waves-box {
   position: relative;
   cursor: pointer;
   user-select: none;
 }
 
-.ax-waves-item-inner {
+.#{$prefix}-waves-item-inner {
   position: absolute;
   overflow: hidden;
   display: block;
   pointer-events: none;
 }
 
-.ax-waves-item {
+.#{$prefix}-waves-item {
   position: absolute;
   display: block;
-  background-color: $bgColor;
+  background-color: $waves-color;
   animation: waves 0.78s ease-out forwards;
   border-radius: 50%;
   pointer-events: none;
