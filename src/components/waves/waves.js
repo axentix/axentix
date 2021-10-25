@@ -113,9 +113,9 @@ const handler = (e) => {
 
   let { clientX, clientY } = e;
   if (isMobile) {
-    const item = e.touches[0];
-    clientX = item.clientX;
-    clientY = item.clientY;
+    const click = e.touches[0];
+    clientX = click.clientX;
+    clientY = click.clientY;
   }
 
   const wavesParams = getWavesParams(clientX, clientY, id, target);
