@@ -3,31 +3,40 @@ import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions, isPointerEnabled, isTouchEnabled } from '../../utils/utilities';
 
+/**
+ * @namespace
+ */
+const CaroulixOptions = {
+  animationDuration: 500,
+  height: '',
+  backToOpposite: true,
+  enableTouch: true,
+  indicators: {
+    enabled: false,
+    isFlat: false,
+    customClasses: '',
+  },
+  autoplay: {
+    enabled: true,
+    interval: 5000,
+    side: 'right',
+  },
+};
+
+/**
+ * Caroulix component
+ * @class
+ * @extends AxentixComponent
+ */
 export class Caroulix extends AxentixComponent {
-  static getDefaultOptions() {
-    return {
-      animationDuration: 500,
-      height: '',
-      backToOpposite: true,
-      enableTouch: true,
-      indicators: {
-        enabled: false,
-        isFlat: false,
-        customClasses: '',
-      },
-      autoplay: {
-        enabled: true,
-        interval: 5000,
-        side: 'right',
-      },
-    };
-  }
+  static getDefaultOptions = () => CaroulixOptions;
 
   /**
    * Construct Caroulix instance
    * @constructor
-   * @param {String} element
-   * @param {Object} options
+   * @param {string} element
+   * @param {CaroulixOptions} options
+   * @param {boolean} isLoadedWithData
    */
   constructor(element, options, isLoadedWithData) {
     super();
@@ -40,13 +49,13 @@ export class Caroulix extends AxentixComponent {
 
       this.options = getComponentOptions('Caroulix', options, this.el, isLoadedWithData);
 
-      this._setup();
+      this.#setup();
     } catch (error) {
       console.error('[Axentix] Caroulix init error', error);
     }
   }
 
-  _setup() {
+  #setup() {
     createEvent(this.el, 'caroulix.setup');
 
     this.options.autoplay.side = this.options.autoplay.side.toLowerCase();
