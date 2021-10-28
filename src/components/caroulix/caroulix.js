@@ -3,9 +3,7 @@ import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions, isPointerEnabled, isTouchEnabled } from '../../utils/utilities';
 
-/**
- * @namespace
- */
+/** @namespace */
 const CaroulixOptions = {
   animationDuration: 500,
   height: '',
@@ -25,15 +23,42 @@ const CaroulixOptions = {
 
 /**
  * Caroulix component
- * @class
- * @extends AxentixComponent
  */
 export class Caroulix extends AxentixComponent {
   static getDefaultOptions = () => CaroulixOptions;
 
+  /** Private variables */
+  #activeIndex = 0;
+  #draggedPositionX = 0;
+  #isAnimated = false;
+  /** @type {Array<HTMLElement>} */
+  #children;
+  #totalMediaToLoad = 0;
+  #loadedMediaCount = 0;
+  #isResizing = false;
+  #isScrolling = false;
+  #isPressed = false;
+  #deltaX = 0;
+  #deltaY = 0;
+  #windowResizeRef;
+  /** @type {HTMLElement} */
+  #arrowPrev;
+  /** @type {HTMLElement} */
+  #arrowNext;
+  #arrowNextRef;
+  #arrowPrevRef;
+  #touchStartRef;
+  #touchMoveRef;
+  #touchReleaseRef;
+  #xStart = 0;
+  #yStart = 0;
+  /** @type {HTMLElement} */
+  #indicators;
+  /** @type {number} */
+  #autoplayInterval;
+
   /**
    * Construct Caroulix instance
-   * @constructor
    * @param {string} element
    * @param {CaroulixOptions} options
    * @param {boolean} isLoadedWithData
@@ -47,6 +72,7 @@ export class Caroulix extends AxentixComponent {
 
       this.el = document.querySelector(element);
 
+      /** @type {CaroulixOptions} */
       this.options = getComponentOptions('Caroulix', options, this.el, isLoadedWithData);
 
       this.#setup();
@@ -61,305 +87,274 @@ export class Caroulix extends AxentixComponent {
     this.options.autoplay.side = this.options.autoplay.side.toLowerCase();
 
     const sideList = ['right', 'left'];
-    sideList.includes(this.options.autoplay.side) ? '' : (this.options.autoplay.side = 'right');
+    if (!sideList.includes(this.options.autoplay.side)) this.options.autoplay.side = 'right';
 
-    this.activeIndex = 0;
-    this.draggedPositionX = 0;
-    this.isAnimated = false;
+    this.#activeIndex = 0;
+    this.#draggedPositionX = 0;
+    this.#isAnimated = false;
 
-    this._getChildren();
-    this.options.indicators.enabled ? this._enableIndicators() : '';
+    this.#children = this.#getChildren();
+    if (this.options.indicators.enabled) this.#enableIndicators();
 
     const activeEl = this.el.querySelector('.active');
-    if (activeEl) {
-      this.activeIndex = this.children.indexOf(activeEl);
-    } else {
-      this.children[0].classList.add('active');
-    }
+    if (activeEl) this.#activeIndex = this.#children.indexOf(activeEl);
+    else this.#children[0].classList.add('active');
 
-    this._waitForLoad();
-    this.totalMediaToLoad === 0 ? this._setBasicCaroulixHeight() : '';
+    this.#waitForLoad();
+    if (this.#totalMediaToLoad === 0) this.#setBasicCaroulixHeight();
 
-    this._setupListeners();
+    this.#setupListeners();
 
-    this.options.autoplay.enabled ? this.play() : '';
+    if (this.options.autoplay.enabled) this.play();
   }
 
-  _setupListeners() {
-    this.windowResizeRef = this._setBasicCaroulixHeight.bind(this);
-    window.addEventListener('resize', this.windowResizeRef);
+  #setupListeners() {
+    this.#windowResizeRef = this.#setBasicCaroulixHeight.bind(this);
+    window.addEventListener('resize', this.#windowResizeRef);
 
-    if (this.arrowNext) {
-      this.arrowNextRef = this.next.bind(this, 1);
-      this.arrowNext.addEventListener('click', this.arrowNextRef);
+    if (this.#arrowNext) {
+      this.#arrowNextRef = this.next.bind(this, 1);
+      this.#arrowNext.addEventListener('click', this.#arrowNextRef);
     }
 
-    if (this.arrowPrev) {
-      this.arrowPrevRef = this.prev.bind(this, 1);
-      this.arrowPrev.addEventListener('click', this.arrowPrevRef);
+    if (this.#arrowPrev) {
+      this.#arrowPrevRef = this.prev.bind(this, 1);
+      this.#arrowPrev.addEventListener('click', this.#arrowPrevRef);
     }
 
     if (this.options.enableTouch) {
-      this.touchStartRef = this._handleDragStart.bind(this);
-      this.touchMoveRef = this._handleDragMove.bind(this);
-      this.touchReleaseRef = this._handleDragRelease.bind(this);
+      this.#touchStartRef = this.#handleDragStart.bind(this);
+      this.#touchMoveRef = this.#handleDragMove.bind(this);
+      this.#touchReleaseRef = this.#handleDragRelease.bind(this);
 
       const isTouch = isTouchEnabled(),
         isPointer = isPointerEnabled();
 
       this.el.addEventListener(
         isTouch ? 'touchstart' : isPointer ? 'pointerdown' : 'mousestart',
-        this.touchStartRef
+        this.#touchStartRef
       );
       this.el.addEventListener(
         isTouch ? 'touchmove' : isPointer ? 'pointermove' : 'mousemove',
-        this.touchMoveRef
+        this.#touchMoveRef
       );
       this.el.addEventListener(
         isTouch ? 'touchend' : isPointer ? 'pointerup' : 'mouseup',
-        this.touchReleaseRef
+        this.#touchReleaseRef
       );
-      this.el.addEventListener(isPointer ? 'pointerleave' : 'mouseleave', this.touchReleaseRef);
+      this.el.addEventListener(isPointer ? 'pointerleave' : 'mouseleave', this.#touchReleaseRef);
     }
   }
 
-  _removeListeners() {
-    window.removeEventListener('resize', this.windowResizeRef);
-    this.windowResizeRef = undefined;
-
-    if (this.arrowNext) {
-      this.arrowNext.removeEventListener('click', this.arrowNextRef);
-      this.arrowNextRef = undefined;
-    }
-
-    if (this.arrowPrev) {
-      this.arrowPrev.removeEventListener('click', this.arrowPrevRef);
-      this.arrowPrevRef = undefined;
-    }
-
-    if (this.options.enableTouch) {
-      const isTouch = isTouchEnabled(),
-        isPointer = isPointerEnabled();
-
-      this.el.removeEventListener(
-        isTouch ? 'touchstart' : isPointer ? 'pointerdown' : 'mousestart',
-        this.touchStartRef
-      );
-      this.el.removeEventListener(
-        isTouch ? 'touchmove' : isPointer ? 'pointermove' : 'mousemove',
-        this.touchMoveRef
-      );
-      this.el.removeEventListener(
-        isTouch ? 'touchend' : isPointer ? 'pointerup' : 'mouseup',
-        this.touchReleaseRef
-      );
-      this.el.removeEventListener(isPointer ? 'pointerleave' : 'mouseleave', this.touchReleaseRef);
-
-      this.touchStartRef = undefined;
-      this.touchMoveRef = undefined;
-      this.touchReleaseRef = undefined;
-    }
-  }
-
-  _getChildren() {
-    this.children = Array.from(this.el.children).reduce((acc, child) => {
+  /** @returns {Array<HTMLElement>} */
+  #getChildren() {
+    return Array.from(this.el.children).reduce((acc, child) => {
       child.classList.contains('caroulix-item') ? acc.push(child) : '';
-      child.classList.contains('caroulix-prev') ? (this.arrowPrev = child) : '';
-      child.classList.contains('caroulix-next') ? (this.arrowNext = child) : '';
+      child.classList.contains('caroulix-prev') ? (this.#arrowPrev = child) : '';
+      child.classList.contains('caroulix-next') ? (this.#arrowNext = child) : '';
 
       return acc;
     }, []);
   }
 
-  _waitForLoad() {
-    this.totalMediaToLoad = 0;
-    this.loadedMediaCount = 0;
+  #waitForLoad() {
+    this.#totalMediaToLoad = 0;
+    this.#loadedMediaCount = 0;
 
-    this.children.map((item) => {
+    this.#children.map((item) => {
       const media = item.querySelector('img, video');
 
       if (media) {
-        this.totalMediaToLoad++;
+        this.#totalMediaToLoad++;
         if (media.complete) {
-          this._newItemLoaded(media, true);
+          this.#newItemLoaded(media, true);
         } else {
-          media.loadRef = this._newItemLoaded.bind(this, media);
+          media.loadRef = this.#newItemLoaded.bind(this, media);
           media.addEventListener('load', media.loadRef);
         }
       }
     });
   }
 
-  _newItemLoaded(media, alreadyLoad) {
-    this.loadedMediaCount++;
+  /**
+   * @param {HTMLElement} media
+   * @param {boolean} alreadyLoad
+   */
+  #newItemLoaded(media, alreadyLoad) {
+    this.#loadedMediaCount++;
 
     if (!alreadyLoad) {
       media.removeEventListener('load', media.loadRef);
       media.loadRef = undefined;
     }
 
-    if (this.totalMediaToLoad == this.loadedMediaCount) {
-      this._setBasicCaroulixHeight();
-      this._setItemsPosition(true);
+    if (this.#totalMediaToLoad == this.#loadedMediaCount) {
+      this.#setBasicCaroulixHeight();
+      this.#setItemsPosition(true);
     }
   }
 
-  _setItemsPosition(init = false) {
+  /** @param {boolean} init */
+  #setItemsPosition(init = false) {
     const caroulixWidth = this.el.getBoundingClientRect().width;
 
-    this.children.map((child, index) => {
+    this.#children.map((child, index) => {
       child.style.transform = `translateX(${
-        caroulixWidth * index - caroulixWidth * this.activeIndex - this.draggedPositionX
+        caroulixWidth * index - caroulixWidth * this.#activeIndex - this.#draggedPositionX
       }px)`;
     });
 
-    this.options.indicators.enabled ? this._resetIndicators() : '';
+    if (this.options.indicators.enabled) this.#resetIndicators();
 
-    const activeElement = this.children.find((child) => child.classList.contains('active'));
+    const activeElement = this.#children.find((child) => child.classList.contains('active'));
     activeElement.classList.remove('active');
-    this.children[this.activeIndex].classList.add('active');
+    this.#children[this.#activeIndex].classList.add('active');
 
     setTimeout(() => {
-      this.isAnimated = false;
+      this.#isAnimated = false;
     }, this.options.animationDuration);
 
-    init ? setTimeout(() => this._setTransitionDuration(this.options.animationDuration), 50) : '';
+    if (init) setTimeout(() => this.#setTransitionDuration(this.options.animationDuration), 50);
   }
 
-  _setBasicCaroulixHeight() {
-    this.isResizing = true;
+  #setBasicCaroulixHeight() {
+    this.#isResizing = true;
     this.el.style.transitionDuration = '';
 
-    this.options.autoplay.enabled ? this.play() : '';
+    if (this.options.autoplay.enabled) this.play();
 
     if (this.options.height) {
       this.el.style.height = this.options.height;
     } else {
-      const childrenHeight = this.children.map((child) => {
-        return child.offsetHeight;
-      });
+      const childrenHeight = this.#children.map((child) => child.offsetHeight);
       const maxHeight = Math.max(...childrenHeight);
 
       this.el.style.height = maxHeight + 'px';
     }
 
-    this._setItemsPosition();
+    this.#setItemsPosition();
 
     setTimeout(() => {
       this.el.style.transitionDuration = this.options.animationDuration + 'ms';
-      this.isResizing = false;
+      this.#isResizing = false;
     }, 50);
   }
 
-  _handleDragStart(e) {
-    if (e.target.closest('.caroulix-arrow') || e.target.closest('.caroulix-indicators')) return;
+  #handleDragStart(e) {
+    if (e.target.closest('.caroulix-arrow') || e.target.closest('.caroulix-#indicators') || this.#isAnimated)
+      return;
 
-    e.type !== 'touchstart' ? e.preventDefault() : '';
+    if (e.type !== 'touchstart') e.preventDefault();
 
-    if (this.isAnimated) return;
+    if (this.options.autoplay.enabled) this.stop();
 
-    this.options.autoplay.enabled ? this.stop() : '';
+    this.#setTransitionDuration(0);
+    this.#isPressed = true;
+    this.#isScrolling = false;
 
-    this._setTransitionDuration(0);
-    this.isPressed = true;
-    this.isScrolling = false;
-    this.isVerticallyDragged = false;
-
-    this.deltaX = 0;
-    this.deltaY = 0;
-    this.xStart = this._getXPosition(e);
-    this.yStart = this._getYPosition(e);
+    this.#deltaX = 0;
+    this.#deltaY = 0;
+    this.#xStart = this.#getXPosition(e);
+    this.#yStart = this.#getYPosition(e);
   }
 
-  _handleDragMove(e) {
-    if (!this.isPressed || this.isScrolling) return;
+  #handleDragMove(e) {
+    if (!this.#isPressed || this.#isScrolling) return;
 
-    let x = this._getXPosition(e),
-      y = this._getYPosition(e);
+    let x = this.#getXPosition(e),
+      y = this.#getYPosition(e);
 
-    this.deltaX = this.xStart - x;
-    this.deltaY = Math.abs(this.yStart - y);
+    this.#deltaX = this.#xStart - x;
+    this.#deltaY = Math.abs(this.#yStart - y);
 
-    if (e.type === 'touchmove' && this.deltaY > Math.abs(this.deltaX)) {
-      this.isScrolling = true;
-      this.deltaX = 0;
+    if (e.type === 'touchmove' && this.#deltaY > Math.abs(this.#deltaX)) {
+      this.#isScrolling = true;
+      this.#deltaX = 0;
       return false;
     }
 
-    e.cancelable ? e.preventDefault() : '';
+    if (e.cancelable) e.preventDefault();
 
-    this.draggedPositionX = this.deltaX;
-    this._setItemsPosition();
+    this.#draggedPositionX = this.#deltaX;
+    this.#setItemsPosition();
   }
 
-  _handleDragRelease(e) {
-    if (e.target.closest('.caroulix-arrow') || e.target.closest('.caroulix-indicators')) return false;
+  #handleDragRelease(e) {
+    if (e.target.closest('.caroulix-arrow') || e.target.closest('.caroulix-#indicators')) return;
 
-    e.cancelable ? e.preventDefault() : '';
+    if (e.cancelable) e.preventDefault();
 
-    if (this.isPressed) {
-      this._setTransitionDuration(this.options.animationDuration);
+    if (this.#isPressed) {
+      this.#setTransitionDuration(this.options.animationDuration);
       let caroulixWidth = this.el.getBoundingClientRect().width;
 
-      this.isPressed = false;
+      this.#isPressed = false;
 
       if (
         (this.options.backToOpposite &&
-          this.activeIndex !== this.children.length - 1 &&
-          this.deltaX > (caroulixWidth * 15) / 100) ||
-        (!this.options.backToOpposite && this.deltaX > (caroulixWidth * 15) / 100)
+          this.#activeIndex !== this.#children.length - 1 &&
+          this.#deltaX > (caroulixWidth * 15) / 100) ||
+        (!this.options.backToOpposite && this.#deltaX > (caroulixWidth * 15) / 100)
       ) {
         this.next();
       } else if (
         (this.options.backToOpposite &&
-          this.activeIndex !== 0 &&
-          this.deltaX < (-caroulixWidth * 15) / 100) ||
-        (!this.options.backToOpposite && this.deltaX < (-caroulixWidth * 15) / 100)
+          this.#activeIndex !== 0 &&
+          this.#deltaX < (-caroulixWidth * 15) / 100) ||
+        (!this.options.backToOpposite && this.#deltaX < (-caroulixWidth * 15) / 100)
       ) {
         this.prev();
       }
 
-      this.deltaX = 0;
-      this.draggedPositionX = 0;
+      this.#deltaX = 0;
+      this.#draggedPositionX = 0;
 
-      this._setItemsPosition();
-      this.options.autoplay.enabled ? this.play() : '';
+      this.#setItemsPosition();
+      if (this.options.autoplay.enabled) this.play();
     }
   }
 
-  _enableIndicators() {
-    this.indicators = document.createElement('ul');
-    this.indicators.classList.add('caroulix-indicators');
-    this.options.indicators.isFlat ? this.indicators.classList.add('caroulix-flat') : '';
+  #enableIndicators() {
+    this.#indicators = document.createElement('ul');
+    this.#indicators.classList.add('caroulix-#indicators');
+    if (this.options.indicators.isFlat) this.#indicators.classList.add('caroulix-flat');
 
-    this.options.indicators.customClasses
-      ? (this.indicators.className = this.indicators.className + ' ' + this.options.indicators.customClasses)
-      : '';
-    for (let i = 0; i < this.children.length; i++) {
+    if (this.options.indicators.customClasses)
+      this.#indicators.className = `${this.#indicators.className} ${this.options.indicators.customClasses}`;
+
+    for (let i = 0; i < this.#children.length; i++) {
       const li = document.createElement('li');
-      li.triggerRef = this._handleIndicatorClick.bind(this, i);
+      li.triggerRef = this.#handleIndicatorClick.bind(this, i);
       li.addEventListener('click', li.triggerRef);
-      this.indicators.appendChild(li);
+      this.#indicators.appendChild(li);
     }
-    this.el.appendChild(this.indicators);
+    this.el.appendChild(this.#indicators);
   }
 
-  _handleIndicatorClick(i, e) {
+  /**
+   * @param {number} i
+   * @param {Event} e
+   */
+  #handleIndicatorClick(i, e) {
     e.preventDefault();
 
-    if (i === this.activeIndex) return;
+    if (i === this.#activeIndex) return;
 
     this.goTo(i);
   }
 
-  _resetIndicators() {
-    Array.from(this.indicators.children).map((li) => {
+  #resetIndicators() {
+    Array.from(this.#indicators.children).map((li) => {
       li.removeAttribute('class');
     });
-    this.indicators.children[this.activeIndex].classList.add('active');
+    this.#indicators.children[this.#activeIndex].classList.add('active');
   }
 
-  _getXPosition(e) {
+  /**
+   * @param {MouseEvent} e
+   * @returns {number}
+   */
+  #getXPosition(e) {
     if (e.targetTouches && e.targetTouches.length >= 1) {
       return e.targetTouches[0].clientX;
     }
@@ -367,7 +362,11 @@ export class Caroulix extends AxentixComponent {
     return e.clientX;
   }
 
-  _getYPosition(e) {
+  /**
+   * @param {MouseEvent} e
+   * @returns {number}
+   */
+  #getYPosition(e) {
     if (e.targetTouches && e.targetTouches.length >= 1) {
       return e.targetTouches[0].clientY;
     }
@@ -375,86 +374,93 @@ export class Caroulix extends AxentixComponent {
     return e.clientY;
   }
 
-  _setTransitionDuration(duration) {
+  /** @param {number} duration */
+  #setTransitionDuration(duration) {
     this.el.style.transitionDuration = duration + 'ms';
   }
 
-  _emitSlideEvent() {
+  #emitSlideEvent() {
     createEvent(this.el, 'caroulix.slide', {
-      nextElement: this.children[this.activeIndex],
-      currentElement: this.children[this.children.findIndex((child) => child.classList.contains('active'))],
+      nextElement: this.#children[this.#activeIndex],
+      currentElement: this.#children[this.#children.findIndex((child) => child.classList.contains('active'))],
     });
   }
 
+  /** @param {number} number */
   goTo(number) {
-    if (number === this.activeIndex) return;
+    if (number === this.#activeIndex) return;
 
-    let side;
-    number > this.activeIndex ? (side = 'right') : (side = 'left');
+    const side = number > this.#activeIndex ? 'right' : 'left';
 
     side === 'left'
-      ? this.prev(Math.abs(this.activeIndex - number))
-      : this.next(Math.abs(this.activeIndex - number));
+      ? this.prev(Math.abs(this.#activeIndex - number))
+      : this.next(Math.abs(this.#activeIndex - number));
 
-    this.options.indicators.enabled ? this._resetIndicators() : '';
+    if (this.options.indicators.enabled) this.#resetIndicators();
   }
 
   play() {
     if (!this.options.autoplay.enabled) return;
 
     this.stop();
-    this.autoplayInterval = setInterval(() => {
-      this.options.autoplay.side === 'right' ? this.next(1, false) : this.prev(1, false);
+    this.#autoplayInterval = setInterval(() => {
+      if (this.options.autoplay.side === 'right') this.next(1, false);
+      else this.prev(1, false);
     }, this.options.autoplay.interval);
   }
 
   stop() {
     if (!this.options.autoplay.enabled) return;
 
-    clearInterval(this.autoplayInterval);
+    clearInterval(this.#autoplayInterval);
   }
 
+  /**
+   * @param {number} step
+   * @param {boolean} resetAutoplay
+   */
   next(step = 1, resetAutoplay = true) {
-    if (this.isResizing || (this.activeIndex === this.children.length - 1 && !this.options.backToOpposite))
+    if (this.#isResizing || (this.#activeIndex === this.#children.length - 1 && !this.options.backToOpposite))
       return;
 
     createEvent(this.el, 'caroulix.next', { step });
 
-    this.isAnimated = true;
+    this.#isAnimated = true;
 
-    resetAutoplay && this.options.autoplay.enabled ? this.stop() : '';
+    if (resetAutoplay && this.options.autoplay.enabled) this.stop();
 
-    if (this.activeIndex < this.children.length - 1) {
-      this.activeIndex += step;
-    } else if (this.options.backToOpposite) {
-      this.activeIndex = 0;
-    }
+    if (this.#activeIndex < this.#children.length - 1) this.#activeIndex += step;
+    else if (this.options.backToOpposite) this.#activeIndex = 0;
 
-    this._emitSlideEvent();
-    this._setItemsPosition();
+    this.#emitSlideEvent();
+    this.#setItemsPosition();
 
-    resetAutoplay && this.options.autoplay.enabled ? this.play() : '';
+    if (resetAutoplay && this.options.autoplay.enabled) this.play();
   }
 
+  /**
+   * @param {number} step
+   * @param {boolean} resetAutoplay
+   */
   prev(step = 1, resetAutoplay = true) {
-    if (this.isResizing || (this.activeIndex === 0 && !this.options.backToOpposite)) return;
+    if (this.#isResizing || (this.#activeIndex === 0 && !this.options.backToOpposite)) return;
 
     createEvent(this.el, 'caroulix.prev', { step });
 
-    this.isAnimated = true;
+    this.#isAnimated = true;
 
-    resetAutoplay && this.options.autoplay.enabled ? this.stop() : '';
+    if (resetAutoplay && this.options.autoplay.enabled) this.stop();
 
-    if (this.activeIndex > 0) {
-      this.activeIndex -= step;
+    if (this.#activeIndex > 0) {
+      this.#activeIndex -= step;
     } else if (this.options.backToOpposite) {
-      this.activeIndex = this.children.length - 1;
+      this.#activeIndex = this.#children.length - 1;
     }
 
-    this._emitSlideEvent();
-    this._setItemsPosition();
+    this.#emitSlideEvent();
+    this.#setItemsPosition();
 
-    resetAutoplay && this.options.autoplay.enabled ? this.play() : '';
+    if (resetAutoplay && this.options.autoplay.enabled) this.play();
   }
 }
 

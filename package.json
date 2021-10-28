@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "serve": "vite --host",
-    "build": "vite build && cp src/axentix.d.ts dist/axentix.d.ts",
+    "build": "vite build && npm run build:def",
     "build:def": "tsc",
     "generate:examples": "node scripts/generate-examples.js"
   },
@@ -42,9 +42,9 @@
   ],
   "engine": "node >= 12",
   "devDependencies": {
-    "sass": "^1.43.3",
+    "sass": "^1.43.4",
     "typescript": "^4.4.4",
-    "vite": "^2.6.10",
+    "vite": "^2.6.13",
     "vite-plugin-mpa": "^1.1.1"
   },
   "dependencies": {}
