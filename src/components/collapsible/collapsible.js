@@ -28,10 +28,9 @@ export class Collapsible extends AxentixComponent {
   #sidenavId = '';
 
   /**
-   * Construct Collapsible instance
    * @param {string} element
-   * @param {CollapsibleOptions} options
-   * @param {boolean} isLoadedWithData
+   * @param {CollapsibleOptions} [options]
+   * @param {boolean} [isLoadedWithData]
    */
   constructor(element, options, isLoadedWithData) {
     super();

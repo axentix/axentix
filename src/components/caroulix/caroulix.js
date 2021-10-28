@@ -58,10 +58,9 @@ export class Caroulix extends AxentixComponent {
   #autoplayInterval;
 
   /**
-   * Construct Caroulix instance
    * @param {string} element
-   * @param {CaroulixOptions} options
-   * @param {boolean} isLoadedWithData
+   * @param {CaroulixOptions} [options]
+   * @param {boolean} [isLoadedWithData]
    */
   constructor(element, options, isLoadedWithData) {
     super();
