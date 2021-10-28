@@ -103,12 +103,12 @@ export class Caroulix extends AxentixComponent {
     this.#waitForLoad();
     if (this.#totalMediaToLoad === 0) this.#setBasicCaroulixHeight();
 
-    this.#setupListeners();
+    this.setupListeners();
 
     if (this.options.autoplay.enabled) this.play();
   }
 
-  #setupListeners() {
+  setupListeners() {
     this.#windowResizeRef = this.#setBasicCaroulixHeight.bind(this);
     window.addEventListener('resize', this.#windowResizeRef);
 
@@ -146,12 +146,50 @@ export class Caroulix extends AxentixComponent {
     }
   }
 
+  removeListeners() {
+    window.removeEventListener('resize', this.#windowResizeRef);
+    this.#windowResizeRef = undefined;
+
+    if (this.#arrowNext) {
+      this.#arrowNext.removeEventListener('click', this.#arrowNextRef);
+      this.#arrowNextRef = undefined;
+    }
+
+    if (this.#arrowPrev) {
+      this.#arrowPrev.removeEventListener('click', this.#arrowPrevRef);
+      this.#arrowPrevRef = undefined;
+    }
+
+    if (this.options.enableTouch) {
+      const isTouch = isTouchEnabled(),
+        isPointer = isPointerEnabled();
+
+      this.el.removeEventListener(
+        isTouch ? 'touchstart' : isPointer ? 'pointerdown' : 'mousestart',
+        this.#touchStartRef
+      );
+      this.el.removeEventListener(
+        isTouch ? 'touchmove' : isPointer ? 'pointermove' : 'mousemove',
+        this.#touchMoveRef
+      );
+      this.el.removeEventListener(
+        isTouch ? 'touchend' : isPointer ? 'pointerup' : 'mouseup',
+        this.#touchReleaseRef
+      );
+      this.el.removeEventListener(isPointer ? 'pointerleave' : 'mouseleave', this.#touchReleaseRef);
+
+      this.#touchStartRef = undefined;
+      this.#touchMoveRef = undefined;
+      this.#touchReleaseRef = undefined;
+    }
+  }
+
   /** @returns {Array<HTMLElement>} */
   #getChildren() {
     return Array.from(this.el.children).reduce((acc, child) => {
-      child.classList.contains('caroulix-item') ? acc.push(child) : '';
-      child.classList.contains('caroulix-prev') ? (this.#arrowPrev = child) : '';
-      child.classList.contains('caroulix-next') ? (this.#arrowNext = child) : '';
+      if (child.classList.contains('caroulix-item')) acc.push(child);
+      if (child.classList.contains('caroulix-prev')) this.#arrowPrev = child;
+      if (child.classList.contains('caroulix-next')) this.#arrowNext = child;
 
       return acc;
     }, []);
@@ -161,7 +199,7 @@ export class Caroulix extends AxentixComponent {
     this.#totalMediaToLoad = 0;
     this.#loadedMediaCount = 0;
 
-    this.#children.map((item) => {
+    this.#children.forEach((item) => {
       const media = item.querySelector('img, video');
 
       if (media) {
@@ -198,7 +236,7 @@ export class Caroulix extends AxentixComponent {
   #setItemsPosition(init = false) {
     const caroulixWidth = this.el.getBoundingClientRect().width;
 
-    this.#children.map((child, index) => {
+    this.#children.forEach((child, index) => {
       child.style.transform = `translateX(${
         caroulixWidth * index - caroulixWidth * this.#activeIndex - this.#draggedPositionX
       }px)`;

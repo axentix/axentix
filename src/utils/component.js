@@ -17,8 +17,8 @@ export class AxentixComponent {
    */
   sync() {
     createEvent(this.el, 'component.sync');
-    this._removeListeners();
-    this._setupListeners();
+    this.removeListeners();
+    this.setupListeners();
   }
 
   /**
@@ -26,8 +26,8 @@ export class AxentixComponent {
    */
   reset() {
     createEvent(this.el, 'component.reset');
-    this._removeListeners();
-    this._setup();
+    this.removeListeners();
+    this.setup();
   }
 
   /**
@@ -35,7 +35,7 @@ export class AxentixComponent {
    */
   destroy() {
     createEvent(this.el, 'component.destroy');
-    this._removeListeners();
+    this.removeListeners();
 
     const index = instances.findIndex((ins) => ins.instance.el.id === this.el.id);
     instances.splice(index, 1);
