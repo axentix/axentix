@@ -3,13 +3,11 @@ import { createEvent, getInstance } from './utilities';
 
 /**
  * Class AxentixComponent
- * @class
  */
 export class AxentixComponent {
+  /** @param {string} element */
   preventDbInstance(element) {
-    if (element && getInstance(element)) {
-      throw new Error(`Instance already exist on ${element}`);
-    }
+    if (element && getInstance(element)) throw new Error(`Instance already exist on ${element}`);
   }
 
   /**

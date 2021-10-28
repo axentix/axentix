@@ -2,23 +2,36 @@ import { AxentixComponent } from '../../utils/component';
 import { instances, registerComponent } from '../../utils/config';
 import { createEvent, getComponentOptions, getInstanceByType } from '../../utils/utilities';
 
+/** @namespace */
+const CollapsibleOptions = {
+  animationDuration: 300,
+  sidenav: {
+    activeClass: true,
+    activeWhenOpen: true,
+    autoClose: true,
+  },
+};
+
 export class Collapsible extends AxentixComponent {
-  static getDefaultOptions() {
-    return {
-      animationDuration: 300,
-      sidenav: {
-        activeClass: true,
-        activeWhenOpen: true,
-        autoClose: true,
-      },
-    };
-  }
+  static getDefaultOptions = () => CollapsibleOptions;
+
+  /** Private variables */
+  /** @type {NodeListOf<HTMLElement>} */
+  #collapsibleTriggers;
+  #isInitialStart = true;
+  #isActive = false;
+  #isAnimated = false;
+  #isInSidenav = false;
+  #childIsActive = false;
+  #listenerRef;
+  #resizeRef;
+  #sidenavId = '';
 
   /**
    * Construct Collapsible instance
-   * @constructor
-   * @param {String} element
-   * @param {Object} options
+   * @param {string} element
+   * @param {CollapsibleOptions} options
+   * @param {boolean} isLoadedWithData
    */
   constructor(element, options, isLoadedWithData) {
     super();
@@ -29,210 +42,171 @@ export class Collapsible extends AxentixComponent {
 
       this.el = document.querySelector(element);
 
+      /** @type {CollapsibleOptions} */
       this.options = getComponentOptions('Collapsible', options, this.el, isLoadedWithData);
 
-      this._setup();
+      this.#setup();
     } catch (error) {
       console.error('[Axentix] Collapsible init error', error);
     }
   }
 
-  /**
-   * Setup component
-   */
-  _setup() {
+  #setup() {
     createEvent(this.el, 'collapsible.setup');
 
-    this.collapsibleTriggers = document.querySelectorAll('.collapsible-trigger');
-    this.isInitialStart = true;
-    this.isActive = this.el.classList.contains('active') ? true : false;
-    this.isAnimated = false;
-    this.isInSidenav = false;
-    this.childIsActive = false;
+    this.#collapsibleTriggers = document.querySelectorAll('.collapsible-trigger');
+    this.#isInitialStart = true;
+    this.#isActive = this.el.classList.contains('active') ? true : false;
+    this.#isAnimated = false;
+    this.#isInSidenav = false;
+    this.#childIsActive = false;
 
-    this._setupListeners();
+    this.setupListeners();
     this.el.style.transitionDuration = this.options.animationDuration + 'ms';
 
-    this._detectSidenav();
-    this._detectChild();
-    this.options.sidenav.activeClass ? this._addActiveInSidenav() : '';
+    this.#detectSidenav();
+    this.#detectChild();
+    if (this.options.sidenav.activeClass) this.#addActiveInSidenav();
 
-    this.isActive ? this.open() : '';
-    this.isInitialStart = false;
+    if (this.#isActive) this.open();
+    this.#isInitialStart = false;
   }
 
-  /**
-   * Setup listeners
-   */
-  _setupListeners() {
-    this.listenerRef = this._onClickTrigger.bind(this);
-    this.collapsibleTriggers.forEach((trigger) => {
+  setupListeners() {
+    this.#listenerRef = this.#onClickTrigger.bind(this);
+    this.#collapsibleTriggers.forEach((trigger) => {
       if (trigger.dataset.target === this.el.id) {
-        trigger.addEventListener('click', this.listenerRef);
+        trigger.addEventListener('click', this.#listenerRef);
       }
     });
 
-    this.resizeRef = this._handleResize.bind(this);
-    window.addEventListener('resize', this.resizeRef);
+    this.#resizeRef = this.#handleResize.bind(this);
+    window.addEventListener('resize', this.#resizeRef);
   }
 
-  /**
-   * Remove listeners
-   */
-  _removeListeners() {
-    this.collapsibleTriggers.forEach((trigger) => {
-      if (trigger.dataset.target === this.el.id) {
-        trigger.removeEventListener('click', this.listenerRef);
-      }
+  removeListeners() {
+    this.#collapsibleTriggers.forEach((trigger) => {
+      if (trigger.dataset.target === this.el.id) trigger.removeEventListener('click', this.#listenerRef);
     });
-    this.listenerRef = undefined;
+    this.#listenerRef = undefined;
 
-    window.removeEventListener('resize', this.resizeRef);
-    this.resizeRef = undefined;
+    window.removeEventListener('resize', this.#resizeRef);
+    this.#resizeRef = undefined;
   }
 
-  /**
-   * Reset collapsible maxHeight
-   */
-  _handleResize() {
-    this.isActive && !this.isInSidenav ? (this.el.style.maxHeight = this.el.scrollHeight + 'px') : '';
+  #handleResize() {
+    if (this.#isActive && !this.#isInSidenav) this.el.style.maxHeight = this.el.scrollHeight + 'px';
   }
 
-  /**
-   * Check if collapsible is in sidenav
-   */
-  _detectSidenav() {
+  #detectSidenav() {
     const sidenavElem = this.el.closest('.sidenav');
 
     if (sidenavElem) {
-      this.isInSidenav = true;
-      this.sidenavId = sidenavElem.id;
+      this.#isInSidenav = true;
+      this.#sidenavId = sidenavElem.id;
     }
   }
 
-  /**
-   * Check if collapsible have active childs
-   */
-  _detectChild() {
+  #detectChild() {
     for (const child of this.el.children) {
       if (child.classList.contains('active')) {
-        this.childIsActive = true;
+        this.#childIsActive = true;
         break;
       }
     }
   }
 
-  /**
-   * Add active class to trigger and collapsible
-   */
-  _addActiveInSidenav() {
-    if (this.childIsActive && this.isInSidenav) {
+  #addActiveInSidenav() {
+    if (this.#childIsActive && this.#isInSidenav) {
       const triggers = document.querySelectorAll('.sidenav .collapsible-trigger');
       triggers.forEach((trigger) => {
-        if (trigger.dataset.target === this.el.id) {
-          trigger.classList.add('active');
-        }
+        if (trigger.dataset.target === this.el.id) trigger.classList.add('active');
       });
 
       this.el.classList.add('active');
       this.open();
-      this.isActive = true;
+      this.#isActive = true;
     }
   }
 
   /**
    * Enable / disable active state to trigger when collapsible is in sidenav
-   * @param {boolean} state enable or disable
+   * @param {boolean} state
    */
-  _addActiveToTrigger(state) {
+  #addActiveToTrigger(state) {
     const triggers = document.querySelectorAll('.sidenav .collapsible-trigger');
+
     triggers.forEach((trigger) => {
       if (trigger.dataset.target === this.el.id) {
-        state ? trigger.classList.add('active') : trigger.classList.remove('active');
+        if (state) trigger.classList.add('active');
+        else trigger.classList.remove('active');
       }
     });
   }
 
-  /**
-   * Auto close others collapsible
-   */
-  _autoClose() {
-    if (!this.isInitialStart && this.isInSidenav) {
-      getInstanceByType('Collapsible').map((collapsible) => {
+  #autoClose() {
+    if (!this.#isInitialStart && this.#isInSidenav) {
+      getInstanceByType('Collapsible').forEach((collapsible) => {
         if (
-          collapsible.isInSidenav &&
-          collapsible.sidenavId === this.sidenavId &&
+          collapsible.#isInSidenav &&
+          collapsible.#sidenavId === this.#sidenavId &&
           collapsible.el.id !== this.el.id
-        ) {
+        )
           collapsible.close();
-        }
       });
     }
   }
 
-  /**
-   * Apply overflow hidden and automatically remove
-   */
-  _applyOverflow() {
+  #applyOverflow() {
     this.el.style.overflow = 'hidden';
     setTimeout(() => {
       this.el.style.overflow = '';
     }, this.options.animationDuration);
   }
 
-  /**
-   * Handle click on trigger
-   * @param {Event} e
-   */
-  _onClickTrigger(e) {
+  /** @param {Event} e */
+  #onClickTrigger(e) {
     e.preventDefault();
-    if (this.isAnimated) {
-      return;
-    }
+    if (this.#isAnimated) return;
 
-    this.isActive ? this.close() : this.open();
+    if (this.#isActive) this.close();
+    else this.open();
   }
 
-  /**
-   * Open collapsible
-   */
+  /** Open collapsible */
   open() {
-    if (this.isActive && !this.isInitialStart) {
-      return;
-    }
+    if (this.#isActive && !this.#isInitialStart) return;
+
     createEvent(this.el, 'collapsible.open');
-    this.isActive = true;
-    this.isAnimated = true;
+    this.#isActive = true;
+    this.#isAnimated = true;
     this.el.style.display = 'block';
-    this._applyOverflow();
+    this.#applyOverflow();
     this.el.style.maxHeight = this.el.scrollHeight + 'px';
 
-    this.options.sidenav.activeWhenOpen ? this._addActiveToTrigger(true) : '';
-    this.options.sidenav.autoClose ? this._autoClose() : '';
+    if (this.options.sidenav.activeWhenOpen) this.#addActiveToTrigger(true);
+    if (this.options.sidenav.autoClose) this.#autoClose();
 
     setTimeout(() => {
-      this.isAnimated = false;
+      this.#isAnimated = false;
     }, this.options.animationDuration);
   }
 
-  /**
-   * Close collapsible
-   */
+  /** Close collapsible */
   close() {
-    if (!this.isActive) {
-      return;
-    }
-    createEvent(this.el, 'collapsible.close');
-    this.isAnimated = true;
-    this.el.style.maxHeight = '';
-    this._applyOverflow();
+    if (!this.#isActive) return;
 
-    this.options.sidenav.activeWhenOpen ? this._addActiveToTrigger(false) : '';
+    createEvent(this.el, 'collapsible.close');
+    this.#isAnimated = true;
+    this.el.style.maxHeight = '';
+    this.#applyOverflow();
+
+    if (this.options.sidenav.activeWhenOpen) this.#addActiveToTrigger(false);
 
     setTimeout(() => {
       this.el.style.display = '';
-      this.isAnimated = false;
-      this.isActive = false;
+      this.#isAnimated = false;
+      this.#isActive = false;
     }, this.options.animationDuration);
   }
 }

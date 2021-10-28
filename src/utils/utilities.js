@@ -49,9 +49,8 @@ export const getInstanceByType = (type) =>
 export const getInstance = (element) => {
   const el = instances.find((ins) => ins.type !== 'Toast' && '#' + ins.instance.el.id === element);
 
-  if (el) {
-    return el.instance;
-  }
+  if (el) return el.instance;
+
   return false;
 };
 
