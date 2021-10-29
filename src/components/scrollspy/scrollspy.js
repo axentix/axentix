@@ -3,25 +3,34 @@ import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions } from '../../utils/utilities';
 
+/** @namespace */
+const ScrollSpyOptions = {
+  offset: 200,
+  linkSelector: 'a',
+  classes: 'active',
+  auto: {
+    enabled: false,
+    /** @type {string | Array<string>} */
+    classes: '',
+    selector: '',
+  },
+};
+
 export class ScrollSpy extends AxentixComponent {
-  static getDefaultOptions() {
-    return {
-      offset: 200,
-      linkSelector: 'a',
-      classes: 'active',
-      auto: {
-        enabled: false,
-        classes: '',
-        selector: '',
-      },
-    };
-  }
+  static getDefaultOptions = () => ScrollSpyOptions;
+
+  /** Private variables */
+  #oldLink;
+  #updateRef;
+  /** @type {Array<HTMLElement>} */
+  #links;
+  /** @type {Array<HTMLElement>} */
+  #elements;
 
   /**
-   * Construct ScrollSpy instance
-   * @constructor
-   * @param {String} element
-   * @param {Object} options
+   * @param {string} element
+   * @param {ScrollSpyOptions} [options]
+   * @param {boolean} [isLoadedWithData]
    */
   constructor(element, options, isLoadedWithData) {
     super();
@@ -32,53 +41,46 @@ export class ScrollSpy extends AxentixComponent {
 
       this.el = document.querySelector(element);
 
+      /** @type {ScrollSpyOptions} */
       this.options = getComponentOptions('ScrollSpy', options, this.el, isLoadedWithData);
 
-      this._setup();
+      this.#setup();
     } catch (error) {
       console.error('[Axentix] ScrollSpy init error', error);
     }
   }
 
-  /**
-   * Setup component
-   */
-  _setup() {
+  #setup() {
     createEvent(this.el, 'scrollspy.setup');
-    this.options.auto.enabled ? this._setupAuto() : this._setupBasic();
-    this.options.classes = this.options.classes.split(' ');
-    this.oldLink = '';
+    if (this.options.auto.enabled) this.#setupAuto();
+    else this.#setupBasic();
+    if (typeof this.options.classes === 'string') this.options.classes = this.options.classes.split(' ');
+    this.#oldLink = '';
 
-    this._setupListeners();
-    this._update();
+    this.setupListeners();
+    this.#update();
   }
 
-  /**
-   * Setup listeners
-   */
-  _setupListeners() {
-    this.updateRef = this._update.bind(this);
-    window.addEventListener('scroll', this.updateRef);
-    window.addEventListener('resize', this.updateRef);
+  setupListeners() {
+    this.#updateRef = this.#update.bind(this);
+    window.addEventListener('scroll', this.#updateRef);
+    window.addEventListener('resize', this.#updateRef);
   }
 
-  /**
-   * Remove listeners
-   */
-  _removeListeners() {
-    window.removeEventListener('scroll', this.updateRef);
-    window.removeEventListener('resize', this.updateRef);
-    this.updateRef = undefined;
+  removeListeners() {
+    window.removeEventListener('scroll', this.#updateRef);
+    window.removeEventListener('resize', this.#updateRef);
+    this.#updateRef = undefined;
   }
 
-  _setupBasic() {
-    this.links = Array.from(this.el.querySelectorAll(this.options.linkSelector));
-    this.elements = this.links.map((link) => document.querySelector(link.getAttribute('href')));
+  #setupBasic() {
+    this.#links = Array.from(this.el.querySelectorAll(this.options.linkSelector));
+    this.#elements = this.#links.map((link) => document.querySelector(link.getAttribute('href')));
   }
 
-  _setupAuto() {
-    this.elements = Array.from(document.querySelectorAll(this.options.auto.selector));
-    this.links = this.elements.map((el) => {
+  #setupAuto() {
+    this.#elements = Array.from(document.querySelectorAll(this.options.auto.selector));
+    this.#links = this.#elements.map((el) => {
       const link = document.createElement('a');
       link.className = this.options.auto.classes;
       link.setAttribute('href', '#' + el.id);
@@ -89,18 +91,16 @@ export class ScrollSpy extends AxentixComponent {
     });
   }
 
-  _getElement() {
+  #getElement() {
     const top = window.scrollY,
       left = window.scrollX,
       right = window.innerWidth,
       bottom = window.innerHeight,
       topBreakpoint = top + this.options.offset;
 
-    if (bottom + top >= document.body.offsetHeight - 2) {
-      return this.elements[this.elements.length - 1];
-    }
+    if (bottom + top >= document.body.offsetHeight - 2) return this.#elements[this.#elements.length - 1];
 
-    return this.elements.find((el) => {
+    return this.#elements.find((el) => {
       const elRect = el.getBoundingClientRect();
       return (
         elRect.top + top >= top &&
@@ -112,16 +112,15 @@ export class ScrollSpy extends AxentixComponent {
     });
   }
 
-  _removeOldLink() {
-    if (!this.oldLink) {
-      return;
-    }
-    this.options.classes.map((cl) => this.oldLink.classList.remove(cl));
+  #removeOldLink() {
+    if (!this.#oldLink) return;
+
+    this.options.classes.forEach((cl) => this.#oldLink.classList.remove(cl));
   }
 
-  _getClosestElem() {
+  #getClosestElem() {
     const top = window.scrollY;
-    return this.elements.reduce((prev, curr) => {
+    return this.#elements.reduce((prev, curr) => {
       const currTop = curr.getBoundingClientRect().top + top;
       const prevTop = prev.getBoundingClientRect().top + top;
 
@@ -133,20 +132,19 @@ export class ScrollSpy extends AxentixComponent {
     });
   }
 
-  _update() {
-    let element = this._getElement();
+  #update() {
+    let element = this.#getElement();
 
-    element ? '' : (element = this._getClosestElem());
+    if (!element) element = this.#getClosestElem();
 
-    const link = this.links.find((link) => link.getAttribute('href').split('#')[1] === element.id);
-    if (link === this.oldLink) {
-      return;
-    }
+    const link = this.#links.find((link) => link.getAttribute('href').split('#')[1] === element.id);
+    if (link === this.#oldLink) return;
+
     createEvent(this.el, 'scrollspy.update');
-    this._removeOldLink();
+    this.#removeOldLink();
 
     this.options.classes.map((cl) => link.classList.add(cl));
-    this.oldLink = link;
+    this.#oldLink = link;
   }
 }
 
