@@ -51,7 +51,7 @@ const getOptions = (obj, component, element, baseName = '') => {
  * @return {object}
  */
 export const formatOptions = (component, element) => {
-  const defaultOptions = getComponentClass(component).getDefaultOptions();
+  const defaultOptions = Object.assign({}, getComponentClass(component).getDefaultOptions());
 
   return getOptions(defaultOptions, component, element);
 };

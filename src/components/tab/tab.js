@@ -3,21 +3,55 @@ import { getComponentClass, registerComponent, getCssVar } from '../../utils/con
 import { instances } from '../../utils/config';
 import { createEvent, extend, getComponentOptions, wrap } from '../../utils/utilities';
 
+/** @namespace */
+const TabOptions = {
+  animationDuration: 300,
+  animationType: 'none',
+  disableActiveBar: false,
+  /** @type {typeof import('../caroulix/caroulix').CaroulixOptions} */
+  caroulix: {
+    animationDuration: 300,
+    backToOpposite: false,
+    enableTouch: false,
+    autoplay: {
+      enabled: false,
+    },
+  },
+};
+
 export class Tab extends AxentixComponent {
-  static getDefaultOptions() {
-    return {
-      animationDuration: 300,
-      animationType: 'none',
-      disableActiveBar: false,
-      caroulix: {},
-    };
-  }
+  static getDefaultOptions = () => TabOptions;
+
+  /** Private variables */
+  /** @type {HTMLElement} */
+  #tabArrow;
+  /** @type {NodeListOf<HTMLElement>} */
+  #tabLinks;
+  /** @type {HTMLElement} */
+  #tabMenu;
+  #currentItemIndex = 0;
+  /** @type {HTMLElement} */
+  #leftArrow;
+  /** @type {HTMLElement} */
+  #rightArrow;
+  #scrollLeftRef;
+  #scrollRightRef;
+  #arrowRef;
+  #caroulixSlideRef;
+  #resizeTabRef;
+  /** @type {Array<HTMLElement>} */
+  #tabItems;
+  /** @type {HTMLDivElement} */
+  #tabCaroulix;
+  #tabCaroulixInit = false;
+  /** @type {import('../caroulix/caroulix').Caroulix} */
+  #caroulixInstance;
+  #isAnimated = false;
 
   /**
-   * Construct Tab instance
-   * @constructor
-   * @param {String} element
-   * @param {Object} options
+   * @param {string} element
+   * @param {TabOptions} [options]
+   * @param {boolean} [isLoadedWithData]
    */
   constructor(element, options, isLoadedWithData) {
     super();
@@ -26,104 +60,90 @@ export class Tab extends AxentixComponent {
       this.preventDbInstance(element);
       instances.push({ type: 'Tab', instance: this });
 
-      this.caroulixOptions = {
-        animationDuration: 300,
-        backToOpposite: false,
-        enableTouch: false,
-        autoplay: {
-          enabled: false,
-        },
-      };
-
       this.el = document.querySelector(element);
-      this.options = getComponentOptions('Tab', options, this.el, isLoadedWithData);
 
-      this._setup();
+      /** @type {TabOptions} */
+      this.options = getComponentOptions('Tab', options, this.el, isLoadedWithData);
+      console.log(this.options.caroulix.animationDuration, this.options.animationDuration);
+
+      this.#setup();
     } catch (error) {
       console.error('[Axentix] Tab init error', error);
     }
   }
 
-  /**
-   * Setup component
-   */
-  _setup() {
+  #setup() {
     createEvent(this.el, 'tab.setup');
 
     const animationList = ['none', 'slide'];
-    animationList.includes(this.options.animationType) ? '' : (this.options.animationType = 'none');
-    this.isAnimated = false;
+    if (!animationList.includes(this.options.animationType)) this.options.animationType = 'none';
+    this.#isAnimated = false;
 
-    this.tabArrow = this.el.querySelector('.tab-arrow');
-    this.tabLinks = this.el.querySelectorAll('.tab-menu .tab-link');
-    this.tabMenu = this.el.querySelector('.tab-menu');
-    this.currentItemIndex = 0;
-    this._getItems();
+    this.#tabArrow = this.el.querySelector('.tab-arrow');
+    this.#tabLinks = this.el.querySelectorAll('.tab-menu .tab-link');
+    this.#tabMenu = this.el.querySelector('.tab-menu');
+    this.#currentItemIndex = 0;
+    this.#tabItems = this.#getItems();
 
-    if (this.tabArrow) {
-      this._toggleArrowMode();
-      this.leftArrow = this.el.querySelector('.tab-arrow .tab-prev');
-      this.rightArrow = this.el.querySelector('.tab-arrow .tab-next');
+    if (this.#tabArrow) {
+      this.#toggleArrowMode();
+      this.#leftArrow = this.el.querySelector('.tab-arrow .tab-prev');
+      this.#rightArrow = this.el.querySelector('.tab-arrow .tab-next');
     }
 
-    this._setupListeners();
+    this.setupListeners();
 
-    this.tabMenu.style.transitionDuration = this.options.animationDuration + 'ms';
-    this.options.animationType === 'slide' ? this._enableSlideAnimation() : this.updateActiveElement();
+    this.#tabMenu.style.transitionDuration = this.options.animationDuration + 'ms';
+    if (this.options.animationType === 'slide') this.#enableSlideAnimation();
+    else this.updateActiveElement();
   }
 
-  /**
-   * Setup listeners
-   */
-  _setupListeners() {
-    this.tabLinks.forEach((item) => {
-      item.listenerRef = this._onClickItem.bind(this, item);
+  setupListeners() {
+    this.#tabLinks.forEach((item) => {
+      item.listenerRef = this.#onClickItem.bind(this, item);
       item.addEventListener('click', item.listenerRef);
     });
 
-    this.resizeTabListener = this._handleResizeEvent.bind(this);
-    window.addEventListener('resize', this.resizeTabListener);
+    this.#resizeTabRef = this.#handleResizeEvent.bind(this);
+    window.addEventListener('resize', this.#resizeTabRef);
 
-    if (this.tabArrow) {
-      this.arrowListener = this._toggleArrowMode.bind(this);
-      window.addEventListener('resize', this.arrowListener);
+    if (this.#tabArrow) {
+      this.#arrowRef = this.#toggleArrowMode.bind(this);
+      window.addEventListener('resize', this.#arrowRef);
 
-      this.scrollLeftListener = this._scrollLeft.bind(this);
-      this.scrollRightLstener = this._scrollRight.bind(this);
-      this.leftArrow.addEventListener('click', this.scrollLeftListener);
-      this.rightArrow.addEventListener('click', this.scrollRightLstener);
+      this.#scrollLeftRef = this.#scrollLeft.bind(this);
+      this.#scrollRightRef = this.#scrollRight.bind(this);
+      this.#leftArrow.addEventListener('click', this.#scrollLeftRef);
+      this.#rightArrow.addEventListener('click', this.#scrollRightRef);
     }
   }
 
-  /**
-   * Remove listeners
-   */
-  _removeListeners() {
-    this.tabLinks.forEach((item) => {
+  removeListeners() {
+    this.#tabLinks.forEach((item) => {
       item.removeEventListener('click', item.listenerRef);
       item.listenerRef = undefined;
     });
 
-    window.removeEventListener('resize', this.resizeTabListener);
-    this.resizeTabListener = undefined;
+    window.removeEventListener('resize', this.#resizeTabRef);
+    this.#resizeTabRef = undefined;
 
-    if (this.tabArrow) {
-      window.removeEventListener('resize', this.arrowListener);
-      this.arrowListener = undefined;
+    if (this.#tabArrow) {
+      window.removeEventListener('resize', this.#arrowRef);
+      this.#arrowRef = undefined;
 
-      this.leftArrow.removeEventListener('click', this.scrollLeftListener);
-      this.rightArrow.removeEventListener('click', this.scrollRightLstener);
-      this.scrollLeftListener = undefined;
-      this.scrollRightLstener = undefined;
+      this.#leftArrow.removeEventListener('click', this.#scrollLeftRef);
+      this.#rightArrow.removeEventListener('click', this.#scrollRightRef);
+      this.#scrollLeftRef = undefined;
+      this.#scrollRightRef = undefined;
     }
 
-    if (this.caroulixSlideRef) {
-      this.el.removeEventListener('ax.caroulix.slide', this.caroulixSlideRef);
-      this.caroulixSlideRef = undefined;
+    if (this.#caroulixSlideRef) {
+      this.el.removeEventListener('ax.caroulix.slide', this.#caroulixSlideRef);
+      this.#caroulixSlideRef = undefined;
     }
   }
 
-  _handleResizeEvent() {
+  #handleResizeEvent() {
     this.updateActiveElement();
     for (let i = 100; i < 500; i += 100) {
       setTimeout(() => {
@@ -132,144 +152,122 @@ export class Tab extends AxentixComponent {
     }
   }
 
-  _handleCaroulixSlide() {
-    if (this.currentItemIndex !== this.caroulixInstance.activeIndex) {
-      this.currentItemIndex = this.caroulixInstance.activeIndex;
-      this._setActiveElement(this.tabLinks[this.currentItemIndex]);
+  #handleCaroulixSlide() {
+    if (this.#currentItemIndex !== this.#caroulixInstance.activeIndex) {
+      this.#currentItemIndex = this.#caroulixInstance.activeIndex;
+      this.#setActiveElement(this.#tabLinks[this.#currentItemIndex]);
     }
   }
 
-  /**
-   * Get all items
-   */
-  _getItems() {
-    this.tabItems = Array.from(this.tabLinks).map((link) => {
+  #getItems() {
+    return Array.from(this.#tabLinks).map((link) => {
       const id = link.children[0].getAttribute('href');
       return this.el.querySelector(id);
     });
   }
 
-  /**
-   * Hide all tab items
-   */
-  _hideContent() {
-    this.tabItems.map((item) => (item.style.display = 'none'));
+  #hideContent() {
+    this.#tabItems.map((item) => (item.style.display = 'none'));
   }
 
-  /**
-   * Init slide animation
-   */
-  _enableSlideAnimation() {
-    this.tabItems.map((item) => item.classList.add('caroulix-item'));
-    this.tabCaroulix = wrap(this.tabItems);
-    this.tabCaroulix.classList.add('caroulix');
+  #enableSlideAnimation() {
+    this.#tabItems.map((item) => item.classList.add('caroulix-item'));
+    this.#tabCaroulix = wrap(this.#tabItems);
+    this.#tabCaroulix.classList.add('caroulix');
     const nb = Math.random().toString().split('.')[1];
-    this.tabCaroulix.id = 'tab-caroulix-' + nb;
-    this.tabCaroulixInit = true;
+    this.#tabCaroulix.id = 'tab-caroulix-' + nb;
+    this.#tabCaroulixInit = true;
 
-    this.options.caroulix = extend(this.caroulixOptions, this.options.caroulix);
-    this.options.animationDuration !== 300
-      ? (this.options.caroulix.animationDuration = this.options.animationDuration)
-      : '';
+    if (this.options.animationDuration !== 300)
+      this.options.caroulix.animationDuration = this.options.animationDuration;
+
+    console.log(this.options.animationDuration, this.options.caroulix.animationDuration);
     this.updateActiveElement();
   }
 
-  /**
-   * Set active bar position
-   * @param {Element} element
-   */
-  _setActiveElement(element) {
-    this.tabLinks.forEach((item) => item.classList.remove('active'));
+  /** @param {HTMLElement} element */
+  #setActiveElement(element) {
+    this.#tabLinks.forEach((item) => item.classList.remove('active'));
 
     if (!this.options.disableActiveBar) {
       const elementRect = element.getBoundingClientRect();
 
       const elementPosLeft = elementRect.left;
-      const menuPosLeft = this.tabMenu.getBoundingClientRect().left;
-      const left = elementPosLeft - menuPosLeft + this.tabMenu.scrollLeft;
+      const menuPosLeft = this.#tabMenu.getBoundingClientRect().left;
+      const left = elementPosLeft - menuPosLeft + this.#tabMenu.scrollLeft;
 
       const elementWidth = elementRect.width;
-      const right = this.tabMenu.clientWidth - left - elementWidth;
+      const right = this.#tabMenu.clientWidth - left - elementWidth;
 
-      this.tabMenu.style.setProperty(getCssVar('tab-bar-left-offset'), Math.floor(left) + 'px');
-      this.tabMenu.style.setProperty(getCssVar('tab-bar-right-offset'), Math.ceil(right) + 'px');
+      this.#tabMenu.style.setProperty(getCssVar('tab-bar-left-offset'), Math.floor(left) + 'px');
+      this.#tabMenu.style.setProperty(getCssVar('tab-bar-right-offset'), Math.ceil(right) + 'px');
     }
 
     element.classList.add('active');
   }
 
-  /**
-   * Toggle arrow mode
-   */
-  _toggleArrowMode() {
-    const totalWidth = Array.from(this.tabLinks).reduce((acc, element) => {
+  #toggleArrowMode() {
+    const totalWidth = Array.from(this.#tabLinks).reduce((acc, element) => {
       acc += element.clientWidth;
       return acc;
     }, 0);
-    const arrowWidth = this.tabArrow.clientWidth;
+    const arrowWidth = this.#tabArrow.clientWidth;
 
     if (totalWidth > arrowWidth) {
-      this.tabArrow.classList.contains('tab-arrow-show') ? '' : this.tabArrow.classList.add('tab-arrow-show');
+      if (!this.#tabArrow.classList.contains('tab-arrow-show'))
+        this.#tabArrow.classList.add('tab-arrow-show');
     } else {
-      this.tabArrow.classList.contains('tab-arrow-show')
-        ? this.tabArrow.classList.remove('tab-arrow-show')
-        : '';
+      if (this.#tabArrow.classList.contains('tab-arrow-show'))
+        this.#tabArrow.classList.remove('tab-arrow-show');
     }
   }
 
-  /**
-   * Scroll left
-   * @param {Event} e
-   */
-  _scrollLeft(e) {
+  /** @param {Event} e */
+  #scrollLeft(e) {
     e.preventDefault();
-    this.tabMenu.scrollLeft -= 40;
+    this.#tabMenu.scrollLeft -= 40;
+  }
+
+  /** @param {Event} e */
+  #scrollRight(e) {
+    e.preventDefault();
+    this.#tabMenu.scrollLeft += 40;
   }
 
   /**
-   * Scroll right
+   * @param {HTMLElement} item
    * @param {Event} e
    */
-  _scrollRight(e) {
+  #onClickItem(item, e) {
     e.preventDefault();
-    this.tabMenu.scrollLeft += 40;
-  }
-
-  /**
-   * Handle click on menu item
-   * @param {Element} item
-   * @param {Event} e
-   */
-  _onClickItem(item, e) {
-    e.preventDefault();
-    if (this.isAnimated || item.classList.contains('active')) {
-      return;
-    }
+    if (this.#isAnimated || item.classList.contains('active')) return;
 
     const target = item.children[0].getAttribute('href');
     this.select(target.split('#')[1]);
   }
 
-  _getPreviousItemIndex(step) {
+  /** @param {number} step */
+  #getPreviousItemIndex(step) {
     let previousItemIndex = 0;
-    let index = this.currentItemIndex;
+    let index = this.#currentItemIndex;
     for (let i = 0; i < step; i++) {
       if (index > 0) {
         previousItemIndex = index - 1;
         index--;
       } else {
-        index = this.tabLinks.length - 1;
+        index = this.#tabLinks.length - 1;
         previousItemIndex = index;
       }
     }
     return previousItemIndex;
   }
 
-  _getNextItemIndex(step) {
+  /** @param {number} step */
+  #getNextItemIndex(step) {
     let nextItemIndex = 0;
-    let index = this.currentItemIndex;
+    let index = this.#currentItemIndex;
     for (let i = 0; i < step; i++) {
-      if (index < this.tabLinks.length - 1) {
+      if (index < this.#tabLinks.length - 1) {
         nextItemIndex = index + 1;
         index++;
       } else {
@@ -282,50 +280,47 @@ export class Tab extends AxentixComponent {
 
   /**
    * Select tab
-   * @param {String} itemId
+   * @param {string} itemId
    */
   select(itemId) {
-    if (this.isAnimated) {
-      return;
-    }
+    if (this.#isAnimated) return;
 
-    this.isAnimated = true;
+    this.#isAnimated = true;
     const menuItem = this.el.querySelector('.tab-menu a[href="#' + itemId + '"]');
-    this.currentItemIndex = Array.from(this.tabLinks).findIndex((item) => item.children[0] === menuItem);
+    this.#currentItemIndex = Array.from(this.#tabLinks).findIndex((item) => item.children[0] === menuItem);
 
-    createEvent(menuItem, 'tab.select', { currentIndex: this.currentItemIndex });
+    createEvent(menuItem, 'tab.select', { currentIndex: this.#currentItemIndex });
+    this.#setActiveElement(menuItem.parentElement);
 
-    this._setActiveElement(menuItem.parentElement);
-
-    if (this.tabCaroulixInit) {
-      this.tabItems.map((item) => (item.id === itemId ? item.classList.add('active') : ''));
+    if (this.#tabCaroulixInit) {
+      this.#tabItems.forEach((item) => (item.id === itemId ? item.classList.add('active') : ''));
 
       const caroulixClass = getComponentClass('Caroulix');
-      this.caroulixInstance = new caroulixClass(
-        '#' + this.tabCaroulix.id,
+      this.#caroulixInstance = new caroulixClass(
+        '#' + this.#tabCaroulix.id,
         this.options.caroulix,
         this.el,
         true
       );
 
-      this.caroulixSlideRef = this._handleCaroulixSlide.bind(this);
-      this.el.addEventListener('ax.caroulix.slide', this.caroulixSlideRef);
+      this.#caroulixSlideRef = this.#handleCaroulixSlide.bind(this);
+      this.el.addEventListener('ax.caroulix.slide', this.#caroulixSlideRef);
 
-      this.tabCaroulixInit = false;
-      this.isAnimated = false;
+      this.#tabCaroulixInit = false;
+      this.#isAnimated = false;
       return;
     }
 
     if (this.options.animationType === 'slide') {
-      const nb = this.tabItems.findIndex((item) => item.id === itemId);
-      this.caroulixInstance.goTo(nb);
+      const nb = this.#tabItems.findIndex((item) => item.id === itemId);
+      this.#caroulixInstance.goTo(nb);
       setTimeout(() => {
-        this.isAnimated = false;
+        this.#isAnimated = false;
       }, this.options.animationDuration);
     } else {
-      this._hideContent();
-      this.tabItems.map((item) => (item.id === itemId ? (item.style.display = 'block') : ''));
-      this.isAnimated = false;
+      this.#hideContent();
+      this.#tabItems.map((item) => (item.id === itemId ? (item.style.display = 'block') : ''));
+      this.#isAnimated = false;
     }
   }
 
@@ -334,13 +329,12 @@ export class Tab extends AxentixComponent {
    */
   updateActiveElement() {
     let itemSelected;
-    this.tabLinks.forEach((item, index) => {
-      item.classList.contains('active') ? ((itemSelected = item), (this.currentItemIndex = index)) : '';
+    this.#tabLinks.forEach((item, index) => {
+      if (item.classList.contains('active')) (itemSelected = item), (this.#currentItemIndex = index);
     });
 
-    itemSelected ? '' : ((itemSelected = this.tabLinks.item(0)), (this.currentItemIndex = 0));
+    if (!itemSelected) (itemSelected = this.#tabLinks.item(0)), (this.#currentItemIndex = 0);
     const target = itemSelected.children[0].getAttribute('href');
-    this.tabSelected = target;
     this.select(target.split('#')[1]);
   }
 
@@ -348,15 +342,13 @@ export class Tab extends AxentixComponent {
    * Go to previous tab
    */
   prev(step = 1) {
-    if (this.isAnimated) {
-      return;
-    }
+    if (this.#isAnimated) return;
 
-    const previousItemIndex = this._getPreviousItemIndex(step);
-    this.currentItemIndex = previousItemIndex;
+    const previousItemIndex = this.#getPreviousItemIndex(step);
+    this.#currentItemIndex = previousItemIndex;
     createEvent(this.el, 'tab.prev', { step });
 
-    const target = this.tabLinks[previousItemIndex].children[0].getAttribute('href');
+    const target = this.#tabLinks[previousItemIndex].children[0].getAttribute('href');
     this.select(target.split('#')[1]);
   }
 
@@ -364,15 +356,13 @@ export class Tab extends AxentixComponent {
    * Go to next tab
    */
   next(step = 1) {
-    if (this.isAnimated) {
-      return;
-    }
+    if (this.#isAnimated) return;
 
-    const nextItemIndex = this._getNextItemIndex(step);
-    this.currentItemIndex = nextItemIndex;
+    const nextItemIndex = this.#getNextItemIndex(step);
+    this.#currentItemIndex = nextItemIndex;
     createEvent(this.el, 'tab.next', { step });
 
-    const target = this.tabLinks[nextItemIndex].children[0].getAttribute('href');
+    const target = this.#tabLinks[nextItemIndex].children[0].getAttribute('href');
     this.select(target.split('#')[1]);
   }
 }

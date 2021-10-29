@@ -4,7 +4,7 @@ import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions, isPointerEnabled, isTouchEnabled } from '../../utils/utilities';
 
 /** @namespace */
-const CaroulixOptions = {
+export const CaroulixOptions = {
   animationDuration: 500,
   height: '',
   backToOpposite: true,
@@ -28,7 +28,6 @@ export class Caroulix extends AxentixComponent {
   static getDefaultOptions = () => CaroulixOptions;
 
   /** Private variables */
-  #activeIndex = 0;
   #draggedPositionX = 0;
   #isAnimated = false;
   /** @type {Array<HTMLElement>} */
@@ -88,7 +87,7 @@ export class Caroulix extends AxentixComponent {
     const sideList = ['right', 'left'];
     if (!sideList.includes(this.options.autoplay.side)) this.options.autoplay.side = 'right';
 
-    this.#activeIndex = 0;
+    this.activeIndex = 0;
     this.#draggedPositionX = 0;
     this.#isAnimated = false;
 
@@ -96,7 +95,7 @@ export class Caroulix extends AxentixComponent {
     if (this.options.indicators.enabled) this.#enableIndicators();
 
     const activeEl = this.el.querySelector('.active');
-    if (activeEl) this.#activeIndex = this.#children.indexOf(activeEl);
+    if (activeEl) this.activeIndex = this.#children.indexOf(activeEl);
     else this.#children[0].classList.add('active');
 
     this.#waitForLoad();
@@ -237,7 +236,7 @@ export class Caroulix extends AxentixComponent {
 
     this.#children.forEach((child, index) => {
       child.style.transform = `translateX(${
-        caroulixWidth * index - caroulixWidth * this.#activeIndex - this.#draggedPositionX
+        caroulixWidth * index - caroulixWidth * this.activeIndex - this.#draggedPositionX
       }px)`;
     });
 
@@ -245,7 +244,7 @@ export class Caroulix extends AxentixComponent {
 
     const activeElement = this.#children.find((child) => child.classList.contains('active'));
     activeElement.classList.remove('active');
-    this.#children[this.#activeIndex].classList.add('active');
+    this.#children[this.activeIndex].classList.add('active');
 
     setTimeout(() => {
       this.#isAnimated = false;
@@ -329,14 +328,14 @@ export class Caroulix extends AxentixComponent {
 
       if (
         (this.options.backToOpposite &&
-          this.#activeIndex !== this.#children.length - 1 &&
+          this.activeIndex !== this.#children.length - 1 &&
           this.#deltaX > (caroulixWidth * 15) / 100) ||
         (!this.options.backToOpposite && this.#deltaX > (caroulixWidth * 15) / 100)
       ) {
         this.next();
       } else if (
         (this.options.backToOpposite &&
-          this.#activeIndex !== 0 &&
+          this.activeIndex !== 0 &&
           this.#deltaX < (-caroulixWidth * 15) / 100) ||
         (!this.options.backToOpposite && this.#deltaX < (-caroulixWidth * 15) / 100)
       ) {
@@ -375,7 +374,7 @@ export class Caroulix extends AxentixComponent {
   #handleIndicatorClick(i, e) {
     e.preventDefault();
 
-    if (i === this.#activeIndex) return;
+    if (i === this.activeIndex) return;
 
     this.goTo(i);
   }
@@ -384,7 +383,7 @@ export class Caroulix extends AxentixComponent {
     Array.from(this.#indicators.children).map((li) => {
       li.removeAttribute('class');
     });
-    this.#indicators.children[this.#activeIndex].classList.add('active');
+    this.#indicators.children[this.activeIndex].classList.add('active');
   }
 
   /**
@@ -418,20 +417,20 @@ export class Caroulix extends AxentixComponent {
 
   #emitSlideEvent() {
     createEvent(this.el, 'caroulix.slide', {
-      nextElement: this.#children[this.#activeIndex],
+      nextElement: this.#children[this.activeIndex],
       currentElement: this.#children[this.#children.findIndex((child) => child.classList.contains('active'))],
     });
   }
 
   /** @param {number} number */
   goTo(number) {
-    if (number === this.#activeIndex) return;
+    if (number === this.activeIndex) return;
 
-    const side = number > this.#activeIndex ? 'right' : 'left';
+    const side = number > this.activeIndex ? 'right' : 'left';
 
     side === 'left'
-      ? this.prev(Math.abs(this.#activeIndex - number))
-      : this.next(Math.abs(this.#activeIndex - number));
+      ? this.prev(Math.abs(this.activeIndex - number))
+      : this.next(Math.abs(this.activeIndex - number));
 
     if (this.options.indicators.enabled) this.#resetIndicators();
   }
@@ -457,7 +456,7 @@ export class Caroulix extends AxentixComponent {
    * @param {boolean} resetAutoplay
    */
   next(step = 1, resetAutoplay = true) {
-    if (this.#isResizing || (this.#activeIndex === this.#children.length - 1 && !this.options.backToOpposite))
+    if (this.#isResizing || (this.activeIndex === this.#children.length - 1 && !this.options.backToOpposite))
       return;
 
     createEvent(this.el, 'caroulix.next', { step });
@@ -466,8 +465,8 @@ export class Caroulix extends AxentixComponent {
 
     if (resetAutoplay && this.options.autoplay.enabled) this.stop();
 
-    if (this.#activeIndex < this.#children.length - 1) this.#activeIndex += step;
-    else if (this.options.backToOpposite) this.#activeIndex = 0;
+    if (this.activeIndex < this.#children.length - 1) this.activeIndex += step;
+    else if (this.options.backToOpposite) this.activeIndex = 0;
 
     this.#emitSlideEvent();
     this.#setItemsPosition();
@@ -480,7 +479,7 @@ export class Caroulix extends AxentixComponent {
    * @param {boolean} resetAutoplay
    */
   prev(step = 1, resetAutoplay = true) {
-    if (this.#isResizing || (this.#activeIndex === 0 && !this.options.backToOpposite)) return;
+    if (this.#isResizing || (this.activeIndex === 0 && !this.options.backToOpposite)) return;
 
     createEvent(this.el, 'caroulix.prev', { step });
 
@@ -488,10 +487,10 @@ export class Caroulix extends AxentixComponent {
 
     if (resetAutoplay && this.options.autoplay.enabled) this.stop();
 
-    if (this.#activeIndex > 0) {
-      this.#activeIndex -= step;
+    if (this.activeIndex > 0) {
+      this.activeIndex -= step;
     } else if (this.options.backToOpposite) {
-      this.#activeIndex = this.#children.length - 1;
+      this.activeIndex = this.#children.length - 1;
     }
 
     this.#emitSlideEvent();
