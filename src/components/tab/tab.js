@@ -1,7 +1,7 @@
 import { AxentixComponent } from '../../utils/component';
 import { getComponentClass, registerComponent, getCssVar } from '../../utils/config';
 import { instances } from '../../utils/config';
-import { createEvent, extend, getComponentOptions, wrap } from '../../utils/utilities';
+import { createEvent, getComponentOptions, wrap } from '../../utils/utilities';
 
 /** @namespace */
 const TabOptions = {
@@ -167,11 +167,11 @@ export class Tab extends AxentixComponent {
   }
 
   #hideContent() {
-    this.#tabItems.map((item) => (item.style.display = 'none'));
+    this.#tabItems.forEach((item) => (item.style.display = 'none'));
   }
 
   #enableSlideAnimation() {
-    this.#tabItems.map((item) => item.classList.add('caroulix-item'));
+    this.#tabItems.forEach((item) => item.classList.add('caroulix-item'));
     this.#tabCaroulix = wrap(this.#tabItems);
     this.#tabCaroulix.classList.add('caroulix');
     const nb = Math.random().toString().split('.')[1];
@@ -319,7 +319,9 @@ export class Tab extends AxentixComponent {
       }, this.options.animationDuration);
     } else {
       this.#hideContent();
-      this.#tabItems.map((item) => (item.id === itemId ? (item.style.display = 'block') : ''));
+      this.#tabItems.forEach((item) => {
+        if (item.id === itemId) item.style.display = 'block';
+      });
       this.#isAnimated = false;
     }
   }
@@ -330,10 +332,16 @@ export class Tab extends AxentixComponent {
   updateActiveElement() {
     let itemSelected;
     this.#tabLinks.forEach((item, index) => {
-      if (item.classList.contains('active')) (itemSelected = item), (this.#currentItemIndex = index);
+      if (item.classList.contains('active')) {
+        itemSelected = item;
+        this.#currentItemIndex = index;
+      }
     });
 
-    if (!itemSelected) (itemSelected = this.#tabLinks.item(0)), (this.#currentItemIndex = 0);
+    if (!itemSelected) {
+      itemSelected = this.#tabLinks.item(0);
+      this.#currentItemIndex = 0;
+    }
     const target = itemSelected.children[0].getAttribute('href');
     this.select(target.split('#')[1]);
   }
