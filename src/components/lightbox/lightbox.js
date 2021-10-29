@@ -145,7 +145,7 @@ export class Lightbox extends AxentixComponent {
   }
 
   #unsetOverflowParents() {
-    this.#overflowParents.map((parent) => (parent.style.overflow = ''));
+    this.#overflowParents.forEach((parent) => (parent.style.overflow = ''));
     document.body.style.overflowX = '';
   }
 
