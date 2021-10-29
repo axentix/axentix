@@ -9,20 +9,34 @@ import {
   updateOverlay,
 } from '../../utils/utilities';
 
+/** @namespace */
+const SidenavOptions = {
+  overlay: true,
+  bodyScrolling: false,
+  animationDuration: 300,
+};
+
 export class Sidenav extends AxentixComponent {
-  static getDefaultOptions() {
-    return {
-      overlay: true,
-      bodyScrolling: false,
-      animationDuration: 300,
-    };
-  }
+  static getDefaultOptions = () => SidenavOptions;
+
+  /** Private variables */
+  /** @type {NodeListOf<HTMLElement>} */
+  #sidenavTriggers;
+  #isActive = false;
+  #isAnimated = false;
+  #isFixed = false;
+  #firstSidenavInit = false;
+  /** @type {HTMLElement} */
+  #layoutEl;
+  /** @type {HTMLElement} */
+  #overlayElement;
+  #listenerRef;
+  #windowResizeRef;
 
   /**
-   * Construct Sidenav instance
-   * @constructor
-   * @param {String} element
-   * @param {Object} options
+   * @param {string} element
+   * @param {SidenavOptions} [options]
+   * @param {boolean} [isLoadedWithData]
    */
   constructor(element, options, isLoadedWithData) {
     super();
@@ -33,92 +47,80 @@ export class Sidenav extends AxentixComponent {
 
       this.el = document.querySelector(element);
 
+      /** @type {SidenavOptions} */
       this.options = getComponentOptions('Sidenav', options, this.el, isLoadedWithData);
 
-      this._setup();
+      this.#setup();
     } catch (error) {
       console.error('[Axentix] Sidenav init error', error);
     }
   }
 
-  /**
-   * Setup component
-   */
-  _setup() {
+  #setup() {
     createEvent(this.el, 'sidenav.setup');
-    this.sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
-    this.isActive = false;
-    this.isAnimated = false;
-    this.isFixed = this.el.classList.contains('sidenav-fixed');
+    this.#sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
+    this.#isActive = false;
+    this.#isAnimated = false;
+    this.#isFixed = this.el.classList.contains('sidenav-fixed');
 
-    const sidenavFixed = getInstanceByType('Sidenav').find((sidenav) => sidenav.isFixed);
-    this.firstSidenavInit = sidenavFixed && sidenavFixed.el === this.el;
+    const sidenavFixed = getInstanceByType('Sidenav').find((sidenav) => sidenav.#isFixed);
+    this.#firstSidenavInit = sidenavFixed && sidenavFixed.el === this.el;
 
-    this.extraClasses = ['layout-sidenav-right', 'layout-sidenav-both'];
+    this.#layoutEl = document.querySelector('.layout, [class*="layout-"]');
 
-    this.layoutEl = document.querySelector('.layout, [class*="layout-"]');
+    if (this.#layoutEl && this.#firstSidenavInit) this.#cleanLayout();
 
-    this.layoutEl && this.firstSidenavInit ? this._cleanLayout() : '';
-
-    this._setupListeners();
+    this.setupListeners();
 
     if (this.options.overlay)
-      this.overlayElement = createOverlay(
-        this.isActive,
+      this.#overlayElement = createOverlay(
+        this.#isActive,
         this.options.overlay,
         this.el.id,
         this.options.animationDuration
       );
 
-    this.layoutEl && this.isFixed ? this._handleMultipleSidenav() : '';
+    if (this.#layoutEl && this.#isFixed) this.#handleMultipleSidenav();
 
     this.el.style.transitionDuration = this.options.animationDuration + 'ms';
   }
 
-  /**
-   * Setup listeners
-   */
-  _setupListeners() {
-    this.listenerRef = this._onClickTrigger.bind(this);
-    this.sidenavTriggers.forEach((trigger) => {
-      if (trigger.dataset.target === this.el.id) {
-        trigger.addEventListener('click', this.listenerRef);
-      }
+  setupListeners() {
+    this.#listenerRef = this.#onClickTrigger.bind(this);
+    this.#sidenavTriggers.forEach((trigger) => {
+      if (trigger.dataset.target === this.el.id) trigger.addEventListener('click', this.#listenerRef);
     });
-    this.windowResizeRef = this.close.bind(this);
-    window.addEventListener('resize', this.windowResizeRef);
+    this.#windowResizeRef = this.close.bind(this);
+    window.addEventListener('resize', this.#windowResizeRef);
   }
 
-  /**
-   * Remove listeners
-   */
-  _removeListeners() {
-    this.sidenavTriggers.forEach((trigger) => {
-      if (trigger.dataset.target === this.el.id) {
-        trigger.removeEventListener('click', this.listenerRef);
-      }
+  removeListeners() {
+    this.#sidenavTriggers.forEach((trigger) => {
+      if (trigger.dataset.target === this.el.id) trigger.removeEventListener('click', this.#listenerRef);
     });
-    this.listenerRef = undefined;
-    window.removeEventListener('resize', this.windowResizeRef);
-    this.windowResizeRef = undefined;
+    this.#listenerRef = undefined;
+    window.removeEventListener('resize', this.#windowResizeRef);
+    this.#windowResizeRef = undefined;
   }
 
   destroy() {
     createEvent(this.el, 'component.destroy');
-    this._removeListeners();
+    this.removeListeners();
 
-    this.layoutEl ? this._cleanLayout() : '';
+    if (this.#layoutEl) this.#cleanLayout();
 
     const index = instances.findIndex((ins) => ins.instance.el.id === this.el.id);
     instances.splice(index, 1);
   }
 
-  _cleanLayout() {
-    this.extraClasses.map((classes) => this.layoutEl.classList.remove(classes));
+  #cleanLayout() {
+    ['layout-sidenav-right', 'layout-sidenav-both'].forEach((classes) =>
+      this.#layoutEl.classList.remove(classes)
+    );
   }
 
-  _handleMultipleSidenav() {
-    if (!this.firstSidenavInit) return;
+  #handleMultipleSidenav() {
+    if (!this.#firstSidenavInit) return;
 
     const sidenavs = Array.from(document.querySelectorAll('.sidenav')).filter((sidenav) =>
       sidenav.classList.contains('sidenav-fixed')
@@ -136,79 +138,61 @@ export class Sidenav extends AxentixComponent {
 
     const isBoth = sidenavsLeft.length > 0 && sidenavsRight.length > 0;
 
-    if (sidenavsRight.length > 0 && !isBoth) {
-      this.layoutEl.classList.add('layout-sidenav-right');
-    } else if (isBoth) {
-      this.layoutEl.classList.add('layout-sidenav-both');
-    }
+    if (sidenavsRight.length > 0 && !isBoth) this.#layoutEl.classList.add('layout-sidenav-right');
+    else if (isBoth) this.#layoutEl.classList.add('layout-sidenav-both');
   }
 
-  /**
-   * Enable or disable body scroll when option is true
-   * @param {boolean} state
-   */
-  _toggleBodyScroll(state) {
-    if (!this.options.bodyScrolling) {
-      state ? (document.body.style.overflow = '') : (document.body.style.overflow = 'hidden');
-    }
+  /** @param {boolean} state */
+  #toggleBodyScroll(state) {
+    if (!this.options.bodyScrolling) document.body.style.overflow = state ? '' : 'hidden';
   }
 
-  /**
-   * Handle click on trigger
-   * @param {Event} e
-   */
-  _onClickTrigger(e) {
+  /** @param {Event} e */
+  #onClickTrigger(e) {
     e.preventDefault();
-    if (this.isFixed && window.innerWidth >= 960) {
-      return;
-    }
+    if (this.#isFixed && window.innerWidth >= 960) return;
 
-    this.isActive ? this.close() : this.open();
+    if (this.#isActive) this.close();
+    else this.open();
   }
 
-  /**
-   * Open sidenav
-   */
+  /** Open Sidenav */
   open() {
-    if (this.isActive || this.isAnimated) {
-      return;
-    }
-    createEvent(this.el, 'sidenav.open');
-    this.isActive = true;
-    this.isAnimated = true;
-    this.el.classList.add('active');
-    updateOverlay(this.options.overlay, this.overlayElement, this.listenerRef, true);
+    if (this.#isActive || this.#isAnimated) return;
 
-    this._toggleBodyScroll(false);
+    createEvent(this.el, 'sidenav.open');
+    this.#isActive = true;
+    this.#isAnimated = true;
+    this.el.classList.add('active');
+    updateOverlay(this.options.overlay, this.#overlayElement, this.#listenerRef, true);
+
+    this.#toggleBodyScroll(false);
 
     setTimeout(() => {
-      this.isAnimated = false;
+      this.#isAnimated = false;
       createEvent(this.el, 'sidenav.opened');
     }, this.options.animationDuration);
   }
 
-  /**
-   * Close sidenav
-   */
+  /** Close Sidenav */
   close() {
-    if (!this.isActive || this.isAnimated) {
-      return;
-    }
-    this.isAnimated = true;
+    if (!this.#isActive || this.#isAnimated) return;
+
+    this.#isAnimated = true;
     createEvent(this.el, 'sidenav.close');
     this.el.classList.remove('active');
     updateOverlay(
       this.options.overlay,
-      this.overlayElement,
-      this.listenerRef,
+      this.#overlayElement,
+      this.#listenerRef,
       false,
       this.options.animationDuration
     );
 
     setTimeout(() => {
-      this._toggleBodyScroll(true);
-      this.isActive = false;
-      this.isAnimated = false;
+      this.#toggleBodyScroll(true);
+      this.#isActive = false;
+      this.#isAnimated = false;
       createEvent(this.el, 'sidenav.closed');
     }, this.options.animationDuration);
   }
