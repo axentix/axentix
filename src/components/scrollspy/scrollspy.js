@@ -137,7 +137,7 @@ export class ScrollSpy extends AxentixComponent {
 
     if (!element) element = this.#getClosestElem();
 
-    const link = this.#links.find((link) => link.getAttribute('href').split('#')[1] === element.id);
+    const link = this.#links.find((l) => l.getAttribute('href').split('#')[1] === element.id);
     if (link === this.#oldLink) return;
 
     createEvent(this.el, 'scrollspy.update');
