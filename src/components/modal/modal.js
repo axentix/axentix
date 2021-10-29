@@ -3,20 +3,27 @@ import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, createOverlay, getComponentOptions, updateOverlay } from '../../utils/utilities';
 
+/** @namespace */
+const ModalOptions = {
+  overlay: true,
+  bodyScrolling: false,
+  animationDuration: 400,
+};
+
 export class Modal extends AxentixComponent {
-  static getDefaultOptions() {
-    return {
-      overlay: true,
-      bodyScrolling: false,
-      animationDuration: 400,
-    };
-  }
+  static getDefaultOptions = () => ModalOptions;
+
+  /** Private variables */
+  /** @type {NodeListOf<HTMLElement>} */
+  #modalTriggers;
+  #isActive = false;
+  #isAnimated = false;
+  #listenerRef;
 
   /**
-   * Construct Modal instance
-   * @constructor
-   * @param {String} element
-   * @param {Object} options
+   * @param {string} element
+   * @param {ModalOptions} [options]
+   * @param {boolean} [isLoadedWithData]
    */
   constructor(element, options, isLoadedWithData) {
     super();
@@ -27,27 +34,25 @@ export class Modal extends AxentixComponent {
 
       this.el = document.querySelector(element);
 
+      /** @type {ModalOptions} */
       this.options = getComponentOptions('Modal', options, this.el, isLoadedWithData);
 
-      this._setup();
+      this.#setup();
     } catch (error) {
       console.error('[Axentix] Modal init error', error);
     }
   }
 
-  /**
-   * Setup component
-   */
-  _setup() {
+  #setup() {
     createEvent(this.el, 'modal.setup');
-    this.modalTriggers = document.querySelectorAll('.modal-trigger');
-    this.isActive = this.el.classList.contains('active') ? true : false;
-    this.isAnimated = false;
+    this.#modalTriggers = document.querySelectorAll('.modal-trigger');
+    this.#isActive = this.el.classList.contains('active') ? true : false;
+    this.#isAnimated = false;
 
-    this._setupListeners();
+    this.setupListeners();
     if (this.options.overlay)
       this.overlayElement = createOverlay(
-        this.isActive,
+        this.#isActive,
         this.options.overlay,
         this.el.id,
         this.options.animationDuration
@@ -56,110 +61,87 @@ export class Modal extends AxentixComponent {
     this.el.style.animationDuration = this.options.animationDuration + 'ms';
   }
 
-  /**
-   * Setup listeners
-   */
-  _setupListeners() {
-    this.listenerRef = this._onClickTrigger.bind(this);
-    this.modalTriggers.forEach((trigger) => {
+  setupListeners() {
+    this.#listenerRef = this.#onClickTrigger.bind(this);
+    this.#modalTriggers.forEach((trigger) => {
       if (trigger.dataset.target === this.el.id) {
-        trigger.addEventListener('click', this.listenerRef);
+        trigger.addEventListener('click', this.#listenerRef);
       }
     });
   }
 
-  /**
-   * Remove listeners
-   */
-  _removeListeners() {
-    this.modalTriggers.forEach((trigger) => {
+  removeListeners() {
+    this.#modalTriggers.forEach((trigger) => {
       if (trigger.dataset.target === this.el.id) {
-        trigger.removeEventListener('click', this.listenerRef);
+        trigger.removeEventListener('click', this.#listenerRef);
       }
     });
-    this.listenerRef = undefined;
+    this.#listenerRef = undefined;
   }
 
-  /**
-   * Enable or disable body scroll when option is true
-   * @param {boolean} state Enable or disable body scroll
-   */
-  _toggleBodyScroll(state) {
-    if (!this.options.bodyScrolling) {
-      state ? (document.body.style.overflow = '') : (document.body.style.overflow = 'hidden');
-    }
+  /** @param {boolean} state */
+  #toggleBodyScroll(state) {
+    if (!this.options.bodyScrolling) document.body.style.overflow = state ? '' : 'hidden';
   }
 
-  /**
-   * Set Z-Index when modal is open
-   */
-  _setZIndex() {
+  #setZIndex() {
     const totalModals = document.querySelectorAll('.modal.active').length + 1;
 
-    this.options.overlay ? (this.overlayElement.style.zIndex = 800 + totalModals * 6) : '';
+    if (this.options.overlay) this.overlayElement.style.zIndex = 800 + totalModals * 6;
     this.el.style.zIndex = 800 + totalModals * 10;
   }
 
-  /**
-   * Handle click on trigger
-   */
-  _onClickTrigger(e) {
+  /** @param {Event} e */
+  #onClickTrigger(e) {
     e.preventDefault();
-    if (this.isAnimated) {
-      return;
-    }
+    if (this.#isAnimated) return;
 
-    this.isActive ? this.close() : this.open();
+    if (this.#isActive) this.close();
+    else this.open();
   }
 
-  /**
-   * Open the modal
-   */
+  /** Open Modal */
   open() {
-    if (this.isActive) {
-      return;
-    }
-    createEvent(this.el, 'modal.open');
-    this.isActive = true;
-    this.isAnimated = true;
-    this._setZIndex();
-    this.el.style.display = 'block';
-    updateOverlay(this.options.overlay, this.overlayElement, this.listenerRef, true);
+    if (this.#isActive) return;
 
-    this._toggleBodyScroll(false);
+    createEvent(this.el, 'modal.open');
+    this.#isActive = true;
+    this.#isAnimated = true;
+    this.#setZIndex();
+    this.el.style.display = 'block';
+    updateOverlay(this.options.overlay, this.overlayElement, this.#listenerRef, true);
+
+    this.#toggleBodyScroll(false);
     setTimeout(() => {
       this.el.classList.add('active');
     }, 50);
 
     setTimeout(() => {
-      this.isAnimated = false;
+      this.#isAnimated = false;
       createEvent(this.el, 'modal.opened');
     }, this.options.animationDuration);
   }
 
-  /**
-   * Close the modal
-   */
+  /** Close Modal */
   close() {
-    if (!this.isActive) {
-      return;
-    }
+    if (!this.#isActive) return;
+
     createEvent(this.el, 'modal.close');
-    this.isAnimated = true;
+    this.#isAnimated = true;
     this.el.classList.remove('active');
     updateOverlay(
       this.options.overlay,
       this.overlayElement,
-      this.listenerRef,
+      this.#listenerRef,
       false,
       this.options.animationDuration
     );
 
     setTimeout(() => {
       this.el.style.display = '';
-      this.isAnimated = false;
-      this.isActive = false;
-      this._toggleBodyScroll(true);
+      this.#isAnimated = false;
+      this.#isActive = false;
+      this.#toggleBodyScroll(true);
       createEvent(this.el, 'modal.closed');
     }, this.options.animationDuration);
   }
