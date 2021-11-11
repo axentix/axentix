@@ -5,7 +5,8 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "outDir": "dist",
-    "target": "es6"
+    "target": "es6",
+    "lib": ["ES2015", "DOM", "ES2016"]
   },
   "exclude": ["node_modules", "**/node_modules/*"]
 }

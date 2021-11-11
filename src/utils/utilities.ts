@@ -1,7 +1,7 @@
 import { instances, getComponentClass } from './config';
 import { formatOptions } from './data';
 
-export const extend = (...args) => {
+export const extend = (...args: any[]) => {
   return args.reduce((acc, obj) => {
     for (let key in obj) {
       typeof obj[key] === 'object' && obj[key] !== null
@@ -29,7 +29,7 @@ export const wrap = (target, wrapper = document.createElement('div')) => {
 
 export const unwrap = (wrapper) => wrapper.replaceWith(...wrapper.childNodes);
 
-export const createEvent = (element, eventName, extraData) => {
+export const createEvent = (element: HTMLElement, eventName: string, extraData?: any) => {
   const event = new CustomEvent('ax.' + eventName, {
     detail: extraData || {},
     bubbles: true,
@@ -38,6 +38,7 @@ export const createEvent = (element, eventName, extraData) => {
 };
 
 export const isTouchEnabled = () =>
+  // @ts-ignore
   'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
 export const isPointerEnabled = () =>
@@ -69,7 +70,7 @@ export const destroy = (element) => getInstance(element).destroy();
 export const destroyAll = () => instances.map((ins) => ins.instance.destroy());
 
 export const createOverlay = (isActive, overlay, id, animationDuration) => {
-  const overlayElement =
+  const overlayElement: HTMLElement =
     isActive && overlay
       ? document.querySelector('.ax-overlay[data-target="' + id + '"]')
       : document.createElement('div');

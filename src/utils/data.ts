@@ -1,6 +1,6 @@
 import { getComponentClass, getDataElements } from './config';
 
-const getFormattedName = (name) => {
+const getFormattedName = (name: string) => {
   return name
     .replace(/[\w]([A-Z])/g, (s) => {
       return s[0] + '-' + s[1];
@@ -8,7 +8,7 @@ const getFormattedName = (name) => {
     .toLowerCase();
 };
 
-const getName = (name, baseName = '') => {
+const getName = (name: string, baseName = '') => {
   const fmtName = getFormattedName(name);
   return baseName ? baseName + '-' + fmtName : fmtName;
 };
@@ -44,13 +44,7 @@ const getOptions = (obj, component, element, baseName = '') => {
   }, {});
 };
 
-/**
- * Format options provided
- * @param {string} component
- * @param {Element} element
- * @return {object}
- */
-export const formatOptions = (component, element) => {
+export const formatOptions = (component: string, element: Element): any => {
   const defaultOptions = Object.assign({}, getComponentClass(component).getDefaultOptions());
 
   return getOptions(defaultOptions, component, element);
@@ -59,7 +53,7 @@ export const formatOptions = (component, element) => {
 const setup = () => {
   const elements = document.querySelectorAll('[data-ax]');
 
-  elements.forEach((el) => {
+  elements.forEach((el: HTMLElement) => {
     let component = el.dataset.ax;
     component = component[0].toUpperCase() + component.slice(1).toLowerCase();
 
@@ -83,6 +77,7 @@ const setup = () => {
 
 const setupAll = () => {
   try {
+    // @ts-ignore : Axentix refer to window.Axentix
     new Axentix.Axentix('all');
   } catch (error) {
     console.error('[Axentix] Unable to auto init.', error);

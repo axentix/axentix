@@ -29,7 +29,7 @@ export default defineConfig({
     outDir: 'dist/',
     target: 'es6',
     lib: {
-      entry: path.resolve(__dirname, 'src/index.js'),
+      entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'Axentix',
       formats: ['es', 'umd'],
       fileName: (format) => (format === 'umd' ? 'axentix.min.js' : 'axentix.esm.js'),

@@ -1,17 +1,33 @@
+// @ts-ignore
 export { version } from '../../package.json';
+
+interface RegisterElement {
+  name: string;
+  dataDetection?: boolean;
+  autoInit?: { enabled: boolean; selector: string };
+  class: any;
+}
 
 export const instances = [];
 
-export const config = {
+interface Config {
+  components: Array<RegisterElement>;
+  plugins: Array<RegisterElement>;
+  prefix: string;
+  mode: '' | 'prefixed';
+}
+
+export const config: Config = {
   components: [],
   plugins: [],
   prefix: 'ax',
-  mode: '', // can be '' or 'prefixed'
+  mode: '',
 };
 
-export const getCssVar = (variable) => `--${config.prefix}-${variable}`;
+export const getCssVar = (variable: string) => `--${config.prefix}-${variable}`;
 
-export const getComponentClass = (component) => config.components.find((c) => c.name === component).class;
+export const getComponentClass = (component: string) =>
+  config.components.find((c) => c.name === component).class;
 
 export const getDataElements = () => {
   const dataComponents = config.components.filter((component) => component.dataDetection);
@@ -35,17 +51,13 @@ export const getAutoInitElements = () => {
   }, {});
 };
 
-/**
- * @param {{ name: string, dataDetection?: boolean, autoInit?: {enabled: boolean, selector: string}, class: any }} el
- * @param {String} term
- */
-const register = (el, term) => {
+const register = (el: RegisterElement, term: string) => {
   if (!el.name || !el.class) {
     console.error(`[Axentix] Error registering ${term} : Missing required parameters.`);
     return;
   }
 
-  if (config[term].some((elem) => elem.name === el.name)) {
+  if (config[term].some((elem: RegisterElement) => elem.name === el.name)) {
     console.error(`[Axentix] Error registering ${term} : Already exist.`);
     return;
   }
@@ -53,19 +65,21 @@ const register = (el, term) => {
   config[term].push(el);
 };
 
-export const registerComponent = (component) => {
+export const registerComponent = (component: RegisterElement) => {
   register(component, 'components');
 };
 
-export const registerPlugin = (plugin) => {
+export const registerPlugin = (plugin: RegisterElement) => {
   register(plugin, 'plugins');
 };
 
 export const exportToWindow = () => {
   if (!window) return;
 
+  // @ts-ignore
   if (!window.Axentix) window.Axentix = {};
   [...config.components, ...config.plugins].map((el) => {
+    // @ts-ignore
     window.Axentix[el.name] = el.class;
   });
 };
