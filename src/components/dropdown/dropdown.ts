@@ -1,10 +1,17 @@
-import { AxentixComponent } from '../../utils/component';
+import { AxentixComponent, Component } from '../../utils/component';
 import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions, getInstanceByType } from '../../utils/utilities';
 
-/** @namespace */
-const DropdownOptions = {
+interface DropdownOptions {
+  animationDuration?: number;
+  animationType?: 'none' | 'fade';
+  hover?: boolean;
+  autoClose?: boolean;
+  preventViewport?: boolean;
+}
+
+const DropdownOptions: DropdownOptions = {
   animationDuration: 300,
   animationType: 'none',
   hover: false,
@@ -12,25 +19,19 @@ const DropdownOptions = {
   preventViewport: false,
 };
 
-export class Dropdown extends AxentixComponent {
+export class Dropdown extends AxentixComponent implements Component {
   static getDefaultOptions = () => DropdownOptions;
 
-  /** Private variables */
-  /** @type {HTMLElement} */
-  #dropdownContent;
-  /** @type {HTMLElement} */
-  #dropdownTrigger;
+  options: DropdownOptions;
+
+  #dropdownContent: HTMLElement;
+  #dropdownTrigger: HTMLElement;
   #isAnimated = false;
   #isActive = false;
-  #documentClickRef;
-  #listenerRef;
+  #documentClickRef: any;
+  #listenerRef: any;
 
-  /**
-   * @param {string} element
-   * @param {DropdownOptions} [options]
-   * @param {boolean} [isLoadedWithData]
-   */
-  constructor(element, options, isLoadedWithData) {
+  constructor(element: string, options?: DropdownOptions, isLoadedWithData?: boolean) {
     super();
 
     try {
@@ -39,16 +40,15 @@ export class Dropdown extends AxentixComponent {
 
       this.el = document.querySelector(element);
 
-      /** @type {DropdownOptions} */
       this.options = getComponentOptions('Dropdown', options, this.el, isLoadedWithData);
 
-      this.#setup();
+      this.setup();
     } catch (error) {
       console.error('[Axentix] Dropdown init error', error);
     }
   }
 
-  #setup() {
+  setup() {
     createEvent(this.el, 'dropdown.setup');
 
     this.#dropdownContent = this.el.querySelector('.dropdown-content');
@@ -86,6 +86,7 @@ export class Dropdown extends AxentixComponent {
 
   #setupAnimation() {
     const animationList = ['none', 'fade'];
+    // @ts-ignore
     this.options.animationType = this.options.animationType.toLowerCase();
     animationList.includes(this.options.animationType) ? '' : (this.options.animationType = 'none');
 
@@ -99,15 +100,13 @@ export class Dropdown extends AxentixComponent {
     }
   }
 
-  /** @param {Event} e */
-  #onDocumentClick(e) {
+  #onDocumentClick(e: any) {
     if (e.target.matches('.dropdown-trigger') || this.#isAnimated || !this.#isActive) return;
 
     this.close();
   }
 
-  /** @param {Event} e */
-  #onClickTrigger(e) {
+  #onClickTrigger(e: Event) {
     e.preventDefault();
     if (this.#isAnimated) return;
 
@@ -157,9 +156,7 @@ export class Dropdown extends AxentixComponent {
     }
   }
 
-  /**
-   * Close dropdown
-   */
+  /** Close dropdown */
   close() {
     if (!this.#isActive) return;
 
