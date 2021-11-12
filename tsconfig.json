@@ -1,6 +1,8 @@
 {
   "include": ["src/**/*"],
   "compilerOptions": {
+    "isolatedModules": true,
+    "useDefineForClassFields": true,
     "allowJs": true,
     "declaration": true,
     "emitDeclarationOnly": true,
