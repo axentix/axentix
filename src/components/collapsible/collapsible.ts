@@ -1,9 +1,17 @@
-import { AxentixComponent } from '../../utils/component';
+import { AxentixComponent, Component } from '../../utils/component';
 import { instances, registerComponent } from '../../utils/config';
 import { createEvent, getComponentOptions, getInstanceByType } from '../../utils/utilities';
 
-/** @namespace */
-const CollapsibleOptions = {
+interface CollapsibleOptions {
+  animationDuration?: number;
+  sidenav?: {
+    activeClass?: boolean;
+    activeWhenOpen?: boolean;
+    autoClose?: boolean;
+  };
+}
+
+const CollapsibleOptions: CollapsibleOptions = {
   animationDuration: 300,
   sidenav: {
     activeClass: true,
@@ -12,27 +20,22 @@ const CollapsibleOptions = {
   },
 };
 
-export class Collapsible extends AxentixComponent {
+export class Collapsible extends AxentixComponent implements Component {
   static getDefaultOptions = () => CollapsibleOptions;
 
-  /** Private variables */
-  /** @type {NodeListOf<HTMLElement>} */
-  #collapsibleTriggers;
+  options: CollapsibleOptions;
+
+  #collapsibleTriggers: NodeListOf<HTMLElement>;
   #isInitialStart = true;
   #isActive = false;
   #isAnimated = false;
   #isInSidenav = false;
   #childIsActive = false;
-  #listenerRef;
-  #resizeRef;
+  #listenerRef: any;
+  #resizeRef: any;
   #sidenavId = '';
 
-  /**
-   * @param {string} element
-   * @param {CollapsibleOptions} [options]
-   * @param {boolean} [isLoadedWithData]
-   */
-  constructor(element, options, isLoadedWithData) {
+  constructor(element: string, options?: CollapsibleOptions, isLoadedWithData?: boolean) {
     super();
 
     try {
@@ -41,16 +44,15 @@ export class Collapsible extends AxentixComponent {
 
       this.el = document.querySelector(element);
 
-      /** @type {CollapsibleOptions} */
       this.options = getComponentOptions('Collapsible', options, this.el, isLoadedWithData);
 
-      this.#setup();
+      this.setup();
     } catch (error) {
       console.error('[Axentix] Collapsible init error', error);
     }
   }
 
-  #setup() {
+  setup() {
     createEvent(this.el, 'collapsible.setup');
 
     this.#collapsibleTriggers = document.querySelectorAll('.collapsible-trigger');
@@ -107,18 +109,13 @@ export class Collapsible extends AxentixComponent {
   }
 
   #detectChild() {
-    for (const child of this.el.children) {
-      if (child.classList.contains('active')) {
-        this.#childIsActive = true;
-        break;
-      }
-    }
+    this.#childIsActive = this.el.querySelector('active') ? true : false;
   }
 
   #addActiveInSidenav() {
     if (this.#childIsActive && this.#isInSidenav) {
       const triggers = document.querySelectorAll('.sidenav .collapsible-trigger');
-      triggers.forEach((trigger) => {
+      triggers.forEach((trigger: HTMLElement) => {
         if (trigger.dataset.target === this.el.id) trigger.classList.add('active');
       });
 
@@ -128,14 +125,11 @@ export class Collapsible extends AxentixComponent {
     }
   }
 
-  /**
-   * Enable / disable active state to trigger when collapsible is in sidenav
-   * @param {boolean} state
-   */
-  #addActiveToTrigger(state) {
+  /** Enable / disable active state to trigger when collapsible is in sidenav */
+  #addActiveToTrigger(state: boolean) {
     const triggers = document.querySelectorAll('.sidenav .collapsible-trigger');
 
-    triggers.forEach((trigger) => {
+    triggers.forEach((trigger: HTMLElement) => {
       if (trigger.dataset.target === this.el.id) {
         if (state) trigger.classList.add('active');
         else trigger.classList.remove('active');
@@ -163,8 +157,7 @@ export class Collapsible extends AxentixComponent {
     }, this.options.animationDuration);
   }
 
-  /** @param {Event} e */
-  #onClickTrigger(e) {
+  #onClickTrigger(e: Event) {
     e.preventDefault();
     if (this.#isAnimated) return;
 

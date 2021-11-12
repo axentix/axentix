@@ -3,7 +3,7 @@ import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions, isPointerEnabled, isTouchEnabled } from '../../utils/utilities';
 
-interface CaroulixOptions {
+export interface CaroulixOptions {
   animationDuration?: number;
   height?: string;
   backToOpposite?: boolean;
@@ -20,7 +20,7 @@ interface CaroulixOptions {
   };
 }
 
-export const options: CaroulixOptions = {
+export const CaroulixOptions: CaroulixOptions = {
   animationDuration: 500,
   height: '',
   backToOpposite: true,
@@ -38,7 +38,7 @@ export const options: CaroulixOptions = {
 };
 
 export class Caroulix extends AxentixComponent implements Component {
-  static getDefaultOptions = () => options;
+  static getDefaultOptions = () => CaroulixOptions;
 
   options: CaroulixOptions;
   activeIndex: number;
