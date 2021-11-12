@@ -15,18 +15,18 @@ import './components/loading';
 import './components/utilities';
 
 // JS Components
-export { default as Caroulix } from './components/caroulix';
-export { default as Collapsible } from './components/collapsible';
-export { default as Sidenav } from './components/sidenav';
-export { default as Dropdown } from './components/dropdown';
-export { default as Fab } from './components/fab';
-export { default as Lightbox } from './components/lightbox';
-export { default as Modal } from './components/modal';
-export { default as Tab } from './components/tab';
-export { default as ScrollSpy } from './components/scrollspy';
-export { default as Toast } from './components/toast';
-export { default as Tooltip } from './components/tooltip';
-export { Forms } from './components/forms';
+export { default as Caroulix } from './components/caroulix/index';
+export { default as Collapsible } from './components/collapsible/index';
+export { default as Sidenav } from './components/sidenav/index';
+export { default as Dropdown } from './components/dropdown/index';
+export { default as Fab } from './components/fab/index';
+export { default as Lightbox } from './components/lightbox/index';
+export { default as Modal } from './components/modal/index';
+export { default as Tab } from './components/tab/index';
+export { default as ScrollSpy } from './components/scrollspy/index';
+export { default as Toast } from './components/toast/index';
+export { default as Tooltip } from './components/tooltip/index';
+export { Forms } from './components/forms/index';
 
 // Must be loaded at the end
 import './core/_colors.scss';

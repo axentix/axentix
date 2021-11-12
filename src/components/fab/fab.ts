@@ -3,8 +3,16 @@ import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions } from '../../utils/utilities';
 
-/** @namespace */
-const FabOptions = {
+interface FabOptions {
+  animationDuration?: number;
+  hover?: boolean;
+  direction?: 'top' | 'bottom' | 'left' | 'right';
+  position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
+  offsetX?: string;
+  offsetY?: string;
+}
+
+const FabOptions: FabOptions = {
   animationDuration: 300,
   hover: true,
   direction: 'top',
@@ -16,24 +24,18 @@ const FabOptions = {
 export class Fab extends AxentixComponent {
   static getDefaultOptions = () => FabOptions;
 
-  /** Private variables */
+  options: FabOptions;
+
   #isAnimated = false;
   #isActive = false;
-  /** @type {HTMLElement} */
-  #trigger;
-  /** @type {HTMLElement} */
-  #fabMenu;
-  #openRef;
-  #closeRef;
-  #documentClickRef;
-  #listenerRef;
+  #trigger: HTMLElement;
+  #fabMenu: HTMLElement;
+  #openRef: any;
+  #closeRef: any;
+  #documentClickRef: any;
+  #listenerRef: any;
 
-  /**
-   * @param {string} element
-   * @param {FabOptions} [options]
-   * @param {boolean} [isLoadedWithData]
-   */
-  constructor(element, options, isLoadedWithData) {
+  constructor(element: string, options?: FabOptions, isLoadedWithData?: boolean) {
     super();
 
     try {
@@ -42,16 +44,15 @@ export class Fab extends AxentixComponent {
 
       this.el = document.querySelector(element);
 
-      /** @type {FabOptions} */
       this.options = getComponentOptions('Fab', options, this.el, isLoadedWithData);
 
-      this.#setup();
+      this.setup();
     } catch (error) {
       console.error('[Axentix] Fab init error', error);
     }
   }
 
-  #setup() {
+  setup() {
     createEvent(this.el, 'fab.setup');
 
     this.#isAnimated = false;
@@ -128,15 +129,13 @@ export class Fab extends AxentixComponent {
     }
   }
 
-  /** @param {Event} e */
-  #handleDocumentClick(e) {
+  #handleDocumentClick(e: any) {
     const isInside = this.el.contains(e.target);
 
     if (!isInside && this.#isActive) this.close();
   }
 
-  /** @param {Event} e */
-  #onClickTrigger(e) {
+  #onClickTrigger(e: Event) {
     e.preventDefault();
     if (this.#isAnimated) return;
 
@@ -144,9 +143,7 @@ export class Fab extends AxentixComponent {
     else this.open();
   }
 
-  /**
-   * Open fab
-   */
+  /** Open fab */
   open() {
     if (this.#isActive) return;
 
@@ -159,9 +156,7 @@ export class Fab extends AxentixComponent {
     }, this.options.animationDuration);
   }
 
-  /**
-   * Close fab
-   */
+  /** Close fab */
   close() {
     if (!this.#isActive) return;
 
