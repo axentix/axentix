@@ -1,10 +1,26 @@
-import { AxentixComponent } from '../../utils/component';
+import { AxentixComponent, Component } from '../../utils/component';
 import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions, isPointerEnabled, isTouchEnabled } from '../../utils/utilities';
 
-/** @namespace */
-export const CaroulixOptions = {
+interface CaroulixOptions {
+  animationDuration?: number;
+  height?: string;
+  backToOpposite?: boolean;
+  enableTouch?: boolean;
+  indicators?: {
+    enabled?: boolean;
+    isFlat?: boolean;
+    customClasses?: string;
+  };
+  autoplay?: {
+    enabled?: boolean;
+    interval?: number;
+    side?: 'right' | 'left';
+  };
+}
+
+export const options: CaroulixOptions = {
   animationDuration: 500,
   height: '',
   backToOpposite: true,
@@ -21,17 +37,15 @@ export const CaroulixOptions = {
   },
 };
 
-/**
- * Caroulix component
- */
-export class Caroulix extends AxentixComponent {
-  static getDefaultOptions = () => CaroulixOptions;
+export class Caroulix extends AxentixComponent implements Component {
+  static getDefaultOptions = () => options;
 
-  /** Private variables */
+  options: CaroulixOptions;
+  activeIndex: number;
+
   #draggedPositionX = 0;
   #isAnimated = false;
-  /** @type {Array<HTMLElement>} */
-  #children;
+  #children: Array<HTMLElement>;
   #totalMediaToLoad = 0;
   #loadedMediaCount = 0;
   #isResizing = false;
@@ -39,29 +53,20 @@ export class Caroulix extends AxentixComponent {
   #isPressed = false;
   #deltaX = 0;
   #deltaY = 0;
-  #windowResizeRef;
-  /** @type {HTMLElement} */
-  #arrowPrev;
-  /** @type {HTMLElement} */
-  #arrowNext;
-  #arrowNextRef;
-  #arrowPrevRef;
-  #touchStartRef;
-  #touchMoveRef;
-  #touchReleaseRef;
+  #windowResizeRef: any;
+  #arrowPrev: HTMLElement;
+  #arrowNext: HTMLElement;
+  #arrowNextRef: any;
+  #arrowPrevRef: any;
+  #touchStartRef: any;
+  #touchMoveRef: any;
+  #touchReleaseRef: any;
   #xStart = 0;
   #yStart = 0;
-  /** @type {HTMLElement} */
-  #indicators;
-  /** @type {number} */
-  #autoplayInterval;
+  #indicators: HTMLElement;
+  #autoplayInterval: number;
 
-  /**
-   * @param {string} element
-   * @param {CaroulixOptions} [options]
-   * @param {boolean} [isLoadedWithData]
-   */
-  constructor(element, options, isLoadedWithData) {
+  constructor(element: string, options?: CaroulixOptions, isLoadedWithData?: boolean) {
     super();
 
     try {
@@ -70,18 +75,18 @@ export class Caroulix extends AxentixComponent {
 
       this.el = document.querySelector(element);
 
-      /** @type {CaroulixOptions} */
       this.options = getComponentOptions('Caroulix', options, this.el, isLoadedWithData);
 
-      this.#setup();
+      this.setup();
     } catch (error) {
       console.error('[Axentix] Caroulix init error', error);
     }
   }
 
-  #setup() {
+  setup() {
     createEvent(this.el, 'caroulix.setup');
 
+    // @ts-ignore
     this.options.autoplay.side = this.options.autoplay.side.toLowerCase();
 
     const sideList = ['right', 'left'];
@@ -94,7 +99,7 @@ export class Caroulix extends AxentixComponent {
     this.#children = this.#getChildren();
     if (this.options.indicators.enabled) this.#enableIndicators();
 
-    const activeEl = this.el.querySelector('.active');
+    const activeEl: HTMLElement = this.el.querySelector('.active');
     if (activeEl) this.activeIndex = this.#children.indexOf(activeEl);
     else this.#children[0].classList.add('active');
 
@@ -182,9 +187,8 @@ export class Caroulix extends AxentixComponent {
     }
   }
 
-  /** @returns {Array<HTMLElement>} */
-  #getChildren() {
-    return Array.from(this.el.children).reduce((acc, child) => {
+  #getChildren(): Array<HTMLElement> {
+    return Array.from(this.el.children).reduce((acc: Array<HTMLElement>, child: HTMLElement) => {
       if (child.classList.contains('caroulix-item')) acc.push(child);
       if (child.classList.contains('caroulix-prev')) this.#arrowPrev = child;
       if (child.classList.contains('caroulix-next')) this.#arrowNext = child;
@@ -198,7 +202,7 @@ export class Caroulix extends AxentixComponent {
     this.#loadedMediaCount = 0;
 
     this.#children.forEach((item) => {
-      const media = item.querySelector('img, video');
+      const media: any = item.querySelector('img, video');
 
       if (media) {
         this.#totalMediaToLoad++;
@@ -212,11 +216,7 @@ export class Caroulix extends AxentixComponent {
     });
   }
 
-  /**
-   * @param {HTMLElement} media
-   * @param {boolean} alreadyLoad
-   */
-  #newItemLoaded(media, alreadyLoad) {
+  #newItemLoaded(media: any, alreadyLoad: boolean) {
     this.#loadedMediaCount++;
 
     if (!alreadyLoad) {
@@ -230,7 +230,6 @@ export class Caroulix extends AxentixComponent {
     }
   }
 
-  /** @param {boolean} init */
   #setItemsPosition(init = false) {
     const caroulixWidth = this.el.getBoundingClientRect().width;
 
@@ -276,8 +275,12 @@ export class Caroulix extends AxentixComponent {
     }, 50);
   }
 
-  #handleDragStart(e) {
-    if (e.target.closest('.caroulix-arrow') || e.target.closest('.caroulix-#indicators') || this.#isAnimated)
+  #handleDragStart(e: Event) {
+    if (
+      (e.target as HTMLElement).closest('.caroulix-arrow') ||
+      (e.target as HTMLElement).closest('.caroulix-#indicators') ||
+      this.#isAnimated
+    )
       return;
 
     if (e.type !== 'touchstart') e.preventDefault();
@@ -294,7 +297,7 @@ export class Caroulix extends AxentixComponent {
     this.#yStart = this.#getYPosition(e);
   }
 
-  #handleDragMove(e) {
+  #handleDragMove(e: Event) {
     if (!this.#isPressed || this.#isScrolling) return;
 
     let x = this.#getXPosition(e),
@@ -315,8 +318,12 @@ export class Caroulix extends AxentixComponent {
     this.#setItemsPosition();
   }
 
-  #handleDragRelease(e) {
-    if (e.target.closest('.caroulix-arrow') || e.target.closest('.caroulix-#indicators')) return;
+  #handleDragRelease(e: Event) {
+    if (
+      (e.target as HTMLElement).closest('.caroulix-arrow') ||
+      (e.target as HTMLElement).closest('.caroulix-#indicators')
+    )
+      return;
 
     if (e.cancelable) e.preventDefault();
 
@@ -359,7 +366,7 @@ export class Caroulix extends AxentixComponent {
       this.#indicators.className = `${this.#indicators.className} ${this.options.indicators.customClasses}`;
 
     for (let i = 0; i < this.#children.length; i++) {
-      const li = document.createElement('li');
+      const li: any = document.createElement('li');
       li.triggerRef = this.#handleIndicatorClick.bind(this, i);
       li.addEventListener('click', li.triggerRef);
       this.#indicators.appendChild(li);
@@ -367,11 +374,7 @@ export class Caroulix extends AxentixComponent {
     this.el.appendChild(this.#indicators);
   }
 
-  /**
-   * @param {number} i
-   * @param {Event} e
-   */
-  #handleIndicatorClick(i, e) {
+  #handleIndicatorClick(i: number, e: Event) {
     e.preventDefault();
 
     if (i === this.activeIndex) return;
@@ -380,38 +383,23 @@ export class Caroulix extends AxentixComponent {
   }
 
   #resetIndicators() {
-    Array.from(this.#indicators.children).map((li) => {
-      li.removeAttribute('class');
-    });
+    Array.from(this.#indicators.children).forEach((li) => li.removeAttribute('class'));
     this.#indicators.children[this.activeIndex].classList.add('active');
   }
 
-  /**
-   * @param {MouseEvent} e
-   * @returns {number}
-   */
-  #getXPosition(e) {
-    if (e.targetTouches && e.targetTouches.length >= 1) {
-      return e.targetTouches[0].clientX;
-    }
+  #getXPosition(e: any): number {
+    if (e.targetTouches && e.targetTouches.length >= 1) return e.targetTouches[0].clientX;
 
     return e.clientX;
   }
 
-  /**
-   * @param {MouseEvent} e
-   * @returns {number}
-   */
-  #getYPosition(e) {
-    if (e.targetTouches && e.targetTouches.length >= 1) {
-      return e.targetTouches[0].clientY;
-    }
+  #getYPosition(e: any): number {
+    if (e.targetTouches && e.targetTouches.length >= 1) return e.targetTouches[0].clientY;
 
     return e.clientY;
   }
 
-  /** @param {number} duration */
-  #setTransitionDuration(duration) {
+  #setTransitionDuration(duration: number) {
     this.el.style.transitionDuration = duration + 'ms';
   }
 
@@ -422,8 +410,7 @@ export class Caroulix extends AxentixComponent {
     });
   }
 
-  /** @param {number} number */
-  goTo(number) {
+  goTo(number: number) {
     if (number === this.activeIndex) return;
 
     const side = number > this.activeIndex ? 'right' : 'left';
@@ -451,10 +438,6 @@ export class Caroulix extends AxentixComponent {
     clearInterval(this.#autoplayInterval);
   }
 
-  /**
-   * @param {number} step
-   * @param {boolean} resetAutoplay
-   */
   next(step = 1, resetAutoplay = true) {
     if (this.#isResizing || (this.activeIndex === this.#children.length - 1 && !this.options.backToOpposite))
       return;
@@ -474,10 +457,6 @@ export class Caroulix extends AxentixComponent {
     if (resetAutoplay && this.options.autoplay.enabled) this.play();
   }
 
-  /**
-   * @param {number} step
-   * @param {boolean} resetAutoplay
-   */
   prev(step = 1, resetAutoplay = true) {
     if (this.#isResizing || (this.activeIndex === 0 && !this.options.backToOpposite)) return;
 

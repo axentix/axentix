@@ -13,7 +13,7 @@ const getName = (name: string, baseName = '') => {
   return baseName ? baseName + '-' + fmtName : fmtName;
 };
 
-const getOptions = (obj, component, element, baseName = '') => {
+const getOptions = (obj: any, component: string, element: HTMLElement, baseName = '') => {
   return Object.keys(obj).reduce((acc, name) => {
     if (typeof obj[name] === 'object' && obj[name] !== null) {
       const tmpOptName = name[0].toUpperCase() + name.slice(1).toLowerCase();
@@ -44,7 +44,7 @@ const getOptions = (obj, component, element, baseName = '') => {
   }, {});
 };
 
-export const formatOptions = (component: string, element: Element): any => {
+export const formatOptions = (component: string, element: HTMLElement): any => {
   const defaultOptions = Object.assign({}, getComponentClass(component).getDefaultOptions());
 
   return getOptions(defaultOptions, component, element);

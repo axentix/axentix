@@ -17,33 +17,33 @@ export interface Component {
 }
 
 export class AxentixComponent {
-  child: Component;
+  el: HTMLElement;
 
-  constructor(child: Component) {
-    this.child = child;
-  }
+  removeListeners() {}
+  setupListeners() {}
+  setup() {}
 
   preventDbInstance(element: string) {
     if (element && getInstance(element)) throw new Error(`Instance already exist on ${element}`);
   }
 
   sync() {
-    createEvent(this.child.el, 'component.sync');
-    this.child.removeListeners();
-    this.child.setupListeners();
+    createEvent(this.el, 'component.sync');
+    this.removeListeners();
+    this.setupListeners();
   }
 
   reset() {
-    createEvent(this.child.el, 'component.reset');
-    this.child.removeListeners();
-    this.child.setup();
+    createEvent(this.el, 'component.reset');
+    this.removeListeners();
+    this.setup();
   }
 
   destroy() {
-    createEvent(this.child.el, 'component.destroy');
-    this.child.removeListeners();
+    createEvent(this.el, 'component.destroy');
+    this.removeListeners();
 
-    const index = instances.findIndex((ins) => ins.instance.el.id === this.child.el.id);
+    const index = instances.findIndex((ins) => ins.instance.el.id === this.el.id);
     instances.splice(index, 1);
   }
 }

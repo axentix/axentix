@@ -4,7 +4,7 @@ export { version } from '../../package.json';
 interface RegisterElement {
   name: string;
   dataDetection?: boolean;
-  autoInit?: { enabled: boolean; selector: string };
+  autoInit?: { enabled?: boolean; selector?: string };
   class: any;
 }
 
