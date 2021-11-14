@@ -4,17 +4,15 @@ let isInit = true;
 
 /**
  * Detect attribute & state of all inputs
- * @param {NodeListOf<Element>} inputElements
  */
-const detectAllInputs = (inputElements) => {
+const detectAllInputs = (inputElements: NodeListOf<Element>) => {
   inputElements.forEach(detectInput);
 };
 
 /**
  * Delay detection of all inputs
- * @param {NodeListOf<Element>} inputElements
  */
-const delayDetectionAllInputs = (inputElements) => {
+const delayDetectionAllInputs = (inputElements: NodeListOf<Element>) => {
   if (isInit) {
     isInit = false;
     return;
@@ -27,9 +25,8 @@ const delayDetectionAllInputs = (inputElements) => {
 
 /**
  * Detect attribute & state of an input
- * @param {Element} input
  */
-const detectInput = (input) => {
+const detectInput = (input: any) => {
   const formField = input.parentElement.classList.contains('form-group')
     ? input.parentElement.parentElement
     : input.parentElement;
@@ -57,12 +54,8 @@ const detectInput = (input) => {
 
 /**
  * Update input field
- * @param {Element} input
- * @param {boolean} isActive
- * @param {boolean} hasContent
- * @param {boolean} isFocused
  */
-const updateInput = (input, isActive, hasContent, isFocused, formField) => {
+const updateInput = (input: any, isActive: boolean, hasContent: boolean, isFocused: boolean, formField) => {
   const isTextArea = input.type === 'textarea';
 
   if (!isActive && (hasContent || isFocused)) {
@@ -82,10 +75,8 @@ const updateInput = (input, isActive, hasContent, isFocused, formField) => {
 
 /**
  * Add bottom position variable to form
- * @param {Element} input
- * @param {Element} formField
  */
-const setFormPosition = (input, formField) => {
+const setFormPosition = (input: HTMLElement, formField: HTMLElement) => {
   const inputWidth = input.clientWidth,
     inputLeftOffset = input.offsetLeft;
 
@@ -96,7 +87,7 @@ const setFormPosition = (input, formField) => {
   let offset = inputLeftOffset,
     side = 'left',
     width = inputWidth + 'px',
-    labelLeft = '0';
+    labelLeft = 0;
 
   if (formField.classList.contains('form-rtl')) {
     side = 'right';
@@ -114,21 +105,17 @@ const setFormPosition = (input, formField) => {
 
 /**
  * Handle listeners
- * @param {NodeListOf<Element>} inputs
- * @param {Event} e
  */
-const handleListeners = (inputs, e) => {
+const handleListeners = (inputs: NodeListOf<Element>, e: Event) => {
   inputs.forEach((input) => {
-    input === e.target ? detectInput(input) : '';
+    if (input === e.target) detectInput(input);
   });
 };
 
 /**
  * Handle form reset event
- * @param {NodeListOf<Element>} inputs
- * @param {Event} e
  */
-const handleResetEvent = (inputs, e) => {
+const handleResetEvent = (inputs: NodeListOf<Element>, e: any) => {
   if (e.target.tagName === 'FORM' && e.target.classList.contains('form-material')) {
     delayDetectionAllInputs(inputs);
   }
@@ -136,9 +123,8 @@ const handleResetEvent = (inputs, e) => {
 
 /**
  * Setup forms fields listeners
- * @param {NodeListOf<Element>} inputElements
  */
-const setupFormsListeners = (inputElements) => {
+const setupFormsListeners = (inputElements: any) => {
   inputElements.forEach((input) => (input.firstInit = true));
   detectAllInputs(inputElements);
 
@@ -156,7 +142,7 @@ const setupFormsListeners = (inputElements) => {
   window.addEventListener('resize', detectAllInputsRef);
 };
 
-const handleFileInput = (input, filePath) => {
+const handleFileInput = (input: HTMLInputElement, filePath: HTMLElement) => {
   const files = input.files;
   if (files.length > 1) {
     filePath.innerHTML = Array.from(files)
@@ -193,19 +179,25 @@ const updateInputsFile = () => {
 
 /**
  * Update inputs state
- * @param {NodeListOf<Element>} inputElements
  */
 export const updateInputs = (
   inputElements = document.querySelectorAll('.form-material .form-field:not(.form-default) .form-control')
 ) => {
-  const setupInputs = Array.from(inputElements).filter((el) => !el.isInit);
-  const detectInputs = Array.from(inputElements).filter((el) => el.isInit);
+  const { setupInputs, detectInputs } = Array.from(inputElements).reduce(
+    (acc, el: any) => {
+      if (el.isInit) acc.setupInputs.push(el);
+      else acc.detectInputs.push(el);
+
+      return acc;
+    },
+    { setupInputs: [], detectInputs: [] }
+  );
 
   updateInputsFile();
 
   try {
-    setupInputs.length > 0 ? setupFormsListeners(setupInputs) : '';
-    detectInputs.length > 0 ? detectAllInputs(detectInputs) : '';
+    if (setupInputs.length > 0) setupFormsListeners(setupInputs);
+    if (detectInputs.length > 0) detectAllInputs(detectInputs as unknown as NodeListOf<HTMLElement>);
   } catch (error) {
     console.error('[Axentix] Material forms error', error);
   }
