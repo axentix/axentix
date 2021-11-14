@@ -1,10 +1,17 @@
-import { AxentixComponent } from '../../utils/component';
+import { AxentixComponent, Component } from '../../utils/component';
 import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions, wrap } from '../../utils/utilities';
 
-/** @namespace */
-const LightboxOptions = {
+interface LightboxOptions {
+  animationDuration?: number;
+  overlayClass?: string;
+  offset?: number;
+  mobileOffset?: number;
+  caption?: string;
+}
+
+const LightboxOptions: LightboxOptions = {
   animationDuration: 400,
   overlayClass: 'grey dark-4',
   offset: 150,
@@ -12,33 +19,28 @@ const LightboxOptions = {
   caption: '',
 };
 
-export class Lightbox extends AxentixComponent {
+export class Lightbox extends AxentixComponent implements Component {
   static getDefaultOptions = () => LightboxOptions;
 
-  /** Private variables */
-  #openOnClickRef;
-  #closeEventRef;
-  /** @type {HTMLElement} */
-  #overlay;
-  #overlayClickEventRef;
-  /** @type {Array<HTMLElement>} */
-  #overflowParents;
+  options: LightboxOptions;
+
+  #openOnClickRef: any;
+  #closeEventRef: any;
+  #overlay: HTMLElement;
+  #overlayClickEventRef: any;
+  #overflowParents: Array<HTMLElement>;
   #basicWidth = 0;
   #basicHeight = 0;
   #newTop = 0;
   #newLeft = 0;
+  #newHeight = 0;
+  #newWidth = 0;
   #isActive = false;
   #isAnimated = false;
   #isResponsive = false;
-  /** @type {HTMLDivElement} */
-  #container;
+  #container: HTMLDivElement;
 
-  /**
-   * @param {string} element
-   * @param {LightboxOptions} [options]
-   * @param {boolean} [isLoadedWithData]
-   */
-  constructor(element, options, isLoadedWithData) {
+  constructor(element: string, options?: LightboxOptions, isLoadedWithData?: boolean) {
     super();
 
     try {
@@ -47,16 +49,15 @@ export class Lightbox extends AxentixComponent {
 
       this.el = document.querySelector(element);
 
-      /** @type {LightboxOptions} */
       this.options = getComponentOptions('Lightbox', options, this.el, isLoadedWithData);
 
-      this.#setup();
+      this.setup();
     } catch (error) {
       console.error('[Axentix] Lightbox init error', error);
     }
   }
 
-  #setup() {
+  setup() {
     createEvent(this.el, 'lightbox.setup');
     this.el.style.transitionDuration = this.options.animationDuration + 'ms';
 
@@ -104,11 +105,11 @@ export class Lightbox extends AxentixComponent {
   }
 
   #showOverlay() {
-    this.#overlay.style.opacity = 1;
+    this.#overlay.style.opacity = '1';
   }
 
   #unsetOverlay() {
-    this.#overlay.style.opacity = 0;
+    this.#overlay.style.opacity = '0';
 
     this.#overlay.removeEventListener('click', this.#overlayClickEventRef);
     setTimeout(() => {
@@ -120,16 +121,17 @@ export class Lightbox extends AxentixComponent {
     const offset = window.innerWidth >= 960 ? this.options.offset : this.options.mobileOffset;
 
     if (window.innerWidth / window.innerHeight >= this.#basicWidth / this.#basicHeight) {
-      this.newHeight = window.innerHeight - offset;
-      this.newWidth = (this.newHeight * this.#basicWidth) / this.#basicHeight;
+      this.#newHeight = window.innerHeight - offset;
+      this.#newWidth = (this.#newHeight * this.#basicWidth) / this.#basicHeight;
     } else {
-      this.newWidth = window.innerWidth - offset;
-      this.newHeight = (this.newWidth * this.#basicHeight) / this.#basicWidth;
+      this.#newWidth = window.innerWidth - offset;
+      this.#newHeight = (this.#newWidth * this.#basicHeight) / this.#basicWidth;
     }
   }
 
   #setOverflowParents() {
     this.#overflowParents = [];
+    // @ts-ignore
     for (let elem = this.el; elem && elem !== document; elem = elem.parentNode) {
       const elementSyle = window.getComputedStyle(elem);
       if (
@@ -167,8 +169,8 @@ export class Lightbox extends AxentixComponent {
     this.#basicHeight = rect.height;
     this.el.style.height = this.#basicHeight + 'px';
 
-    this.el.style.top = 0;
-    this.el.style.left = 0;
+    this.el.style.top = '0';
+    this.el.style.left = '0';
 
     this.#newTop = centerTop + window.scrollY - (containerRect.top + window.scrollY);
     this.#newLeft = centerLeft + window.scrollX - (containerRect.left + window.scrollX);
@@ -198,10 +200,10 @@ export class Lightbox extends AxentixComponent {
       this.#container.style.width = this.#basicWidth + 'px';
       this.#container.style.height = this.#basicHeight + 'px';
 
-      this.el.style.width = this.newWidth + 'px';
-      this.el.style.height = this.newHeight + 'px';
-      this.el.style.top = this.#newTop - this.newHeight / 2 + 'px';
-      this.el.style.left = this.#newLeft - this.newWidth / 2 + 'px';
+      this.el.style.width = this.#newWidth + 'px';
+      this.el.style.height = this.#newHeight + 'px';
+      this.el.style.top = this.#newTop - this.#newHeight / 2 + 'px';
+      this.el.style.left = this.#newLeft - this.#newWidth / 2 + 'px';
 
       this.#isAnimated = false;
     }, 50);
@@ -212,13 +214,13 @@ export class Lightbox extends AxentixComponent {
   }
 
   /** Close lightbox */
-  close(e) {
+  close(e?: any) {
     if (!this.#isActive || (e && e.key && e.key !== 'Escape') || this.#isAnimated) return;
 
     this.#isAnimated = true;
 
-    this.el.style.top = 0;
-    this.el.style.left = 0;
+    this.el.style.top = '0';
+    this.el.style.left = '0';
 
     this.el.style.width = this.#basicWidth + 'px';
     this.el.style.height = this.#basicHeight + 'px';

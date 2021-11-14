@@ -1,4 +1,4 @@
-import { AxentixComponent } from '../../utils/component';
+import { AxentixComponent, Component } from '../../utils/component';
 import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions } from '../../utils/utilities';
@@ -21,7 +21,7 @@ const FabOptions: FabOptions = {
   offsetY: '1.5rem',
 };
 
-export class Fab extends AxentixComponent {
+export class Fab extends AxentixComponent implements Component {
   static getDefaultOptions = () => FabOptions;
 
   options: FabOptions;
