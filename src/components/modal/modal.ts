@@ -1,31 +1,32 @@
-import { AxentixComponent } from '../../utils/component';
+import { AxentixComponent, Component } from '../../utils/component';
 import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, createOverlay, getComponentOptions, updateOverlay } from '../../utils/utilities';
 
-/** @namespace */
-const ModalOptions = {
+interface ModalOptions {
+  overlay?: boolean;
+  bodyScrolling?: boolean;
+  animationDuration?: number;
+}
+
+const ModalOptions: ModalOptions = {
   overlay: true,
   bodyScrolling: false,
   animationDuration: 400,
 };
 
-export class Modal extends AxentixComponent {
+export class Modal extends AxentixComponent implements Component {
   static getDefaultOptions = () => ModalOptions;
 
-  /** Private variables */
-  /** @type {NodeListOf<HTMLElement>} */
-  #modalTriggers;
+  options: ModalOptions;
+  overlayElement: HTMLElement;
+
+  #modalTriggers: NodeListOf<HTMLElement>;
   #isActive = false;
   #isAnimated = false;
-  #listenerRef;
+  #listenerRef: any;
 
-  /**
-   * @param {string} element
-   * @param {ModalOptions} [options]
-   * @param {boolean} [isLoadedWithData]
-   */
-  constructor(element, options, isLoadedWithData) {
+  constructor(element: string, options?: ModalOptions, isLoadedWithData?: boolean) {
     super();
 
     try {
@@ -34,16 +35,15 @@ export class Modal extends AxentixComponent {
 
       this.el = document.querySelector(element);
 
-      /** @type {ModalOptions} */
       this.options = getComponentOptions('Modal', options, this.el, isLoadedWithData);
 
-      this.#setup();
+      this.setup();
     } catch (error) {
       console.error('[Axentix] Modal init error', error);
     }
   }
 
-  #setup() {
+  setup() {
     createEvent(this.el, 'modal.setup');
     this.#modalTriggers = document.querySelectorAll('.modal-trigger');
     this.#isActive = this.el.classList.contains('active') ? true : false;
@@ -79,20 +79,18 @@ export class Modal extends AxentixComponent {
     this.#listenerRef = undefined;
   }
 
-  /** @param {boolean} state */
-  #toggleBodyScroll(state) {
+  #toggleBodyScroll(state: boolean) {
     if (!this.options.bodyScrolling) document.body.style.overflow = state ? '' : 'hidden';
   }
 
   #setZIndex() {
     const totalModals = document.querySelectorAll('.modal.active').length + 1;
 
-    if (this.options.overlay) this.overlayElement.style.zIndex = 800 + totalModals * 6;
-    this.el.style.zIndex = 800 + totalModals * 10;
+    if (this.options.overlay) this.overlayElement.style.zIndex = String(800 + totalModals * 6);
+    this.el.style.zIndex = String(800 + totalModals * 10);
   }
 
-  /** @param {Event} e */
-  #onClickTrigger(e) {
+  #onClickTrigger(e: Event) {
     e.preventDefault();
     if (this.#isAnimated) return;
 
@@ -109,7 +107,13 @@ export class Modal extends AxentixComponent {
     this.#isAnimated = true;
     this.#setZIndex();
     this.el.style.display = 'block';
-    updateOverlay(this.options.overlay, this.overlayElement, this.#listenerRef, true);
+    updateOverlay(
+      this.options.overlay,
+      this.overlayElement,
+      this.#listenerRef,
+      true,
+      this.options.animationDuration
+    );
 
     this.#toggleBodyScroll(false);
     setTimeout(() => {
