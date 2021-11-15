@@ -78,8 +78,8 @@ export class Tooltip extends AxentixComponent implements Component {
   }
 
   setupListeners() {
-    this.#listenerEnterRef = this._onHover.bind(this);
-    this.#listenerLeaveRef = this._onHoverOut.bind(this);
+    this.#listenerEnterRef = this.#onHover.bind(this);
+    this.#listenerLeaveRef = this.#onHoverOut.bind(this);
     this.#listenerResizeRef = this.updatePosition.bind(this);
 
     this.el.addEventListener('mouseenter', this.#listenerEnterRef);
@@ -138,12 +138,12 @@ export class Tooltip extends AxentixComponent implements Component {
     else this.#tooltip.style.top = scrollY + tooltipTop + 'px';
   }
 
-  _onHover(e: Event) {
+  #onHover(e: Event) {
     e.preventDefault();
     this.show();
   }
 
-  _onHoverOut(e: Event) {
+  #onHoverOut(e: Event) {
     e.preventDefault();
     this.hide();
   }
@@ -192,7 +192,7 @@ export class Tooltip extends AxentixComponent implements Component {
   change(options?: ITooltipOptions) {
     this.options = getComponentOptions('Tooltip', options, this.el, true);
 
-    this.#positionList.includes(this.options.position) ? '' : (this.options.position = 'top');
+    if (!this.#positionList.includes(this.options.position)) this.options.position = 'top';
 
     this.#setProperties();
     this.updatePosition();
