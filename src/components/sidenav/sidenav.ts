@@ -1,5 +1,5 @@
 import { registerComponent } from '../../utils/config';
-import { AxentixComponent } from '../../utils/component';
+import { AxentixComponent, Component } from '../../utils/component';
 import { instances } from '../../utils/config';
 import {
   createEvent,
@@ -9,36 +9,34 @@ import {
   updateOverlay,
 } from '../../utils/utilities';
 
-/** @namespace */
-const SidenavOptions = {
+interface SidenavOptions {
+  overlay?: boolean;
+  bodyScrolling?: boolean;
+  animationDuration?: number;
+}
+
+const SidenavOptions: SidenavOptions = {
   overlay: true,
   bodyScrolling: false,
   animationDuration: 300,
 };
 
-export class Sidenav extends AxentixComponent {
+export class Sidenav extends AxentixComponent implements Component {
   static getDefaultOptions = () => SidenavOptions;
 
-  /** Private variables */
-  /** @type {NodeListOf<HTMLElement>} */
-  #sidenavTriggers;
+  options: SidenavOptions;
+
+  #sidenavTriggers: NodeListOf<HTMLElement>;
   #isActive = false;
   #isAnimated = false;
   #isFixed = false;
   #firstSidenavInit = false;
-  /** @type {HTMLElement} */
-  #layoutEl;
-  /** @type {HTMLElement} */
-  #overlayElement;
-  #listenerRef;
-  #windowResizeRef;
+  #layoutEl: HTMLElement;
+  #overlayElement: HTMLElement;
+  #listenerRef: any;
+  #windowResizeRef: any;
 
-  /**
-   * @param {string} element
-   * @param {SidenavOptions} [options]
-   * @param {boolean} [isLoadedWithData]
-   */
-  constructor(element, options, isLoadedWithData) {
+  constructor(element: string, options?: SidenavOptions, isLoadedWithData?: boolean) {
     super();
 
     try {
@@ -47,16 +45,15 @@ export class Sidenav extends AxentixComponent {
 
       this.el = document.querySelector(element);
 
-      /** @type {SidenavOptions} */
       this.options = getComponentOptions('Sidenav', options, this.el, isLoadedWithData);
 
-      this.#setup();
+      this.setup();
     } catch (error) {
       console.error('[Axentix] Sidenav init error', error);
     }
   }
 
-  #setup() {
+  setup() {
     createEvent(this.el, 'sidenav.setup');
     this.#sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
     this.#isActive = false;
@@ -142,13 +139,11 @@ export class Sidenav extends AxentixComponent {
     else if (isBoth) this.#layoutEl.classList.add('layout-sidenav-both');
   }
 
-  /** @param {boolean} state */
-  #toggleBodyScroll(state) {
+  #toggleBodyScroll(state: boolean) {
     if (!this.options.bodyScrolling) document.body.style.overflow = state ? '' : 'hidden';
   }
 
-  /** @param {Event} e */
-  #onClickTrigger(e) {
+  #onClickTrigger(e: Event) {
     e.preventDefault();
     if (this.#isFixed && window.innerWidth >= 960) return;
 
@@ -164,7 +159,13 @@ export class Sidenav extends AxentixComponent {
     this.#isActive = true;
     this.#isAnimated = true;
     this.el.classList.add('active');
-    updateOverlay(this.options.overlay, this.#overlayElement, this.#listenerRef, true);
+    updateOverlay(
+      this.options.overlay,
+      this.#overlayElement,
+      this.#listenerRef,
+      true,
+      this.options.animationDuration
+    );
 
     this.#toggleBodyScroll(false);
 
