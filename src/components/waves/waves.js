@@ -1,12 +1,8 @@
 let i = 0;
 const uid = () => ++i;
 const isMobile = 'ontouchstart' in document.documentElement;
-
-let wavesInstance = null;
-
 const targetMap = {};
 const itemMap = {};
-
 
 const createWaveItem = (target) => {
   const id = uid();
@@ -31,7 +27,6 @@ const createWaveItem = (target) => {
   return el;
 };
 
-
 const createWaves = ({id, size, x, y, container, item, target}, color) => {
   const waves = document.createElement('span');
 
@@ -44,12 +39,13 @@ const createWaves = ({id, size, x, y, container, item, target}, color) => {
 
   waves.setAttribute('ax-waves-id', id);
   waves.classList.add('ax-waves-item');
-  waves.style = ('style', style);
+  waves.style = (style);
 
   waves.addEventListener('animationend', () => {
     container.removeChild(waves);
     if (!container.children.length && item) {
-      item.parentNode?.removeChild(item);
+      if (item.parentNode) item.parentNode.removeChild(item);
+
       target.removeAttribute('ax-waves-id');
       delete itemMap[id];
       delete targetMap[id];
@@ -57,7 +53,6 @@ const createWaves = ({id, size, x, y, container, item, target}, color) => {
   }, { once: true });
   return waves;
 };
-
 
 const getWavesParams = (clientX, clientY, id, target) => {
   const {top, left, width, height} = target.getBoundingClientRect();
@@ -92,7 +87,6 @@ const getContainerStyle = (target, item) => {
           z-index:${zIndex};`;
 };
 
-
 const getTarget = (el, id) => {
   const target = targetMap[id];
   
@@ -101,7 +95,6 @@ const getTarget = (el, id) => {
 
   return el.closest('[ax-waves]') || null;
 };
-
 
 const handler = (e) => {
   const el = e.target;
@@ -122,37 +115,13 @@ const handler = (e) => {
   const waves = createWaves(wavesParams, color);
   const { container, item } = wavesParams;
 
-  container.setAttribute('style', getContainerStyle(target, item));  
+  container.setAttribute('style', getContainerStyle(target, item));
   container.appendChild(waves);
 };
 
-
-export class Waves {
-  static run() {
-    return new Waves();
-  }
-
-  static destroy() {
-    return wavesInstance.destroy();
-  }
-
-  constructor() {
-    if (wavesInstance) return wavesInstance;
-
-    const docEl = document.documentElement;
-    
-    if ('animation' in docEl.style) {
-      const eventType = isMobile ? 'touchstart' : 'mousedown';
-      wavesInstance = this;
-
-      window.addEventListener(eventType, handler);
-    }
-  }
-
-  destroy() {
-    const eventType = isMobile ? 'touchstart' : 'mousedown';
-    window.removeEventListener(eventType, handler);
-  }
+export const waves = () => {
+  const eventType = isMobile ? 'touchstart' : 'mousedown';
+  window.addEventListener(eventType, handler);
 }
 
-document.addEventListener('DOMContentLoaded', () => Waves.run());
+document.addEventListener('DOMContentLoaded', waves());

@@ -1,5 +1,5 @@
 import './waves.scss';
 
-import { Waves } from './waves';
+import { waves } from './waves';
 
-export default Waves;
+export default waves;
