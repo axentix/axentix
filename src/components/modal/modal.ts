@@ -3,13 +3,13 @@ import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, createOverlay, getComponentOptions, updateOverlay } from '../../utils/utilities';
 
-interface ModalOptions {
+interface IModalOptions {
   overlay?: boolean;
   bodyScrolling?: boolean;
   animationDuration?: number;
 }
 
-const ModalOptions: ModalOptions = {
+const ModalOptions: IModalOptions = {
   overlay: true,
   bodyScrolling: false,
   animationDuration: 400,
@@ -18,7 +18,7 @@ const ModalOptions: ModalOptions = {
 export class Modal extends AxentixComponent implements Component {
   static getDefaultOptions = () => ModalOptions;
 
-  options: ModalOptions;
+  options: IModalOptions;
   overlayElement: HTMLElement;
 
   #modalTriggers: NodeListOf<HTMLElement>;
@@ -26,7 +26,7 @@ export class Modal extends AxentixComponent implements Component {
   #isAnimated = false;
   #listenerRef: any;
 
-  constructor(element: string, options?: ModalOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: IModalOptions, isLoadedWithData?: boolean) {
     super();
 
     try {

@@ -3,7 +3,7 @@ import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions, wrap } from '../../utils/utilities';
 
-interface LightboxOptions {
+interface ILightboxOptions {
   animationDuration?: number;
   overlayClass?: string;
   offset?: number;
@@ -11,7 +11,7 @@ interface LightboxOptions {
   caption?: string;
 }
 
-const LightboxOptions: LightboxOptions = {
+const LightboxOptions: ILightboxOptions = {
   animationDuration: 400,
   overlayClass: 'grey dark-4',
   offset: 150,
@@ -22,7 +22,7 @@ const LightboxOptions: LightboxOptions = {
 export class Lightbox extends AxentixComponent implements Component {
   static getDefaultOptions = () => LightboxOptions;
 
-  options: LightboxOptions;
+  options: ILightboxOptions;
 
   #openOnClickRef: any;
   #closeEventRef: any;
@@ -40,7 +40,7 @@ export class Lightbox extends AxentixComponent implements Component {
   #isResponsive = false;
   #container: HTMLDivElement;
 
-  constructor(element: string, options?: LightboxOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: ILightboxOptions, isLoadedWithData?: boolean) {
     super();
 
     try {

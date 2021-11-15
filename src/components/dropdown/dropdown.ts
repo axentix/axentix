@@ -3,7 +3,7 @@ import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions, getInstanceByType } from '../../utils/utilities';
 
-interface DropdownOptions {
+interface IDropdownOptions {
   animationDuration?: number;
   animationType?: 'none' | 'fade';
   hover?: boolean;
@@ -11,7 +11,7 @@ interface DropdownOptions {
   preventViewport?: boolean;
 }
 
-const DropdownOptions: DropdownOptions = {
+const DropdownOptions: IDropdownOptions = {
   animationDuration: 300,
   animationType: 'none',
   hover: false,
@@ -22,7 +22,7 @@ const DropdownOptions: DropdownOptions = {
 export class Dropdown extends AxentixComponent implements Component {
   static getDefaultOptions = () => DropdownOptions;
 
-  options: DropdownOptions;
+  options: IDropdownOptions;
 
   #dropdownContent: HTMLElement;
   #dropdownTrigger: HTMLElement;
@@ -31,7 +31,7 @@ export class Dropdown extends AxentixComponent implements Component {
   #documentClickRef: any;
   #listenerRef: any;
 
-  constructor(element: string, options?: DropdownOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: IDropdownOptions, isLoadedWithData?: boolean) {
     super();
 
     try {

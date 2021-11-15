@@ -3,7 +3,7 @@ import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions } from '../../utils/utilities';
 
-interface FabOptions {
+interface IFabOptions {
   animationDuration?: number;
   hover?: boolean;
   direction?: 'top' | 'bottom' | 'left' | 'right';
@@ -12,7 +12,7 @@ interface FabOptions {
   offsetY?: string;
 }
 
-const FabOptions: FabOptions = {
+const FabOptions: IFabOptions = {
   animationDuration: 300,
   hover: true,
   direction: 'top',
@@ -24,7 +24,7 @@ const FabOptions: FabOptions = {
 export class Fab extends AxentixComponent implements Component {
   static getDefaultOptions = () => FabOptions;
 
-  options: FabOptions;
+  options: IFabOptions;
 
   #isAnimated = false;
   #isActive = false;
@@ -35,7 +35,7 @@ export class Fab extends AxentixComponent implements Component {
   #documentClickRef: any;
   #listenerRef: any;
 
-  constructor(element: string, options?: FabOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: IFabOptions, isLoadedWithData?: boolean) {
     super();
 
     try {

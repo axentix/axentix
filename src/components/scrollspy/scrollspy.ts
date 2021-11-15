@@ -3,7 +3,7 @@ import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions } from '../../utils/utilities';
 
-interface ScrollSpyOptions {
+interface IScrollSpyOptions {
   offset?: number;
   linkSelector?: string;
   classes?: string | Array<string>;
@@ -14,7 +14,7 @@ interface ScrollSpyOptions {
   };
 }
 
-const ScrollSpyOptions: ScrollSpyOptions = {
+const ScrollSpyOptions: IScrollSpyOptions = {
   offset: 200,
   linkSelector: 'a',
   classes: 'active',
@@ -28,14 +28,14 @@ const ScrollSpyOptions: ScrollSpyOptions = {
 export class ScrollSpy extends AxentixComponent implements Component {
   static getDefaultOptions = () => ScrollSpyOptions;
 
-  options: ScrollSpyOptions;
+  options: IScrollSpyOptions;
 
   #oldLink: any;
   #updateRef: any;
   #links: Array<HTMLElement>;
   #elements: Array<HTMLElement>;
 
-  constructor(element: string, options?: ScrollSpyOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: IScrollSpyOptions, isLoadedWithData?: boolean) {
     super();
 
     try {

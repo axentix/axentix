@@ -2,7 +2,7 @@ import { AxentixComponent, Component } from '../../utils/component';
 import { instances, registerComponent } from '../../utils/config';
 import { createEvent, getComponentOptions, getInstanceByType } from '../../utils/utilities';
 
-interface CollapsibleOptions {
+interface ICollapsibleOptions {
   animationDuration?: number;
   sidenav?: {
     activeClass?: boolean;
@@ -11,7 +11,7 @@ interface CollapsibleOptions {
   };
 }
 
-const CollapsibleOptions: CollapsibleOptions = {
+const CollapsibleOptions: ICollapsibleOptions = {
   animationDuration: 300,
   sidenav: {
     activeClass: true,
@@ -23,7 +23,7 @@ const CollapsibleOptions: CollapsibleOptions = {
 export class Collapsible extends AxentixComponent implements Component {
   static getDefaultOptions = () => CollapsibleOptions;
 
-  options: CollapsibleOptions;
+  options: ICollapsibleOptions;
 
   #collapsibleTriggers: NodeListOf<HTMLElement>;
   #isInitialStart = true;
@@ -35,7 +35,7 @@ export class Collapsible extends AxentixComponent implements Component {
   #resizeRef: any;
   #sidenavId = '';
 
-  constructor(element: string, options?: CollapsibleOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: ICollapsibleOptions, isLoadedWithData?: boolean) {
     super();
 
     try {

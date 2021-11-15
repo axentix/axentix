@@ -9,13 +9,13 @@ import {
   updateOverlay,
 } from '../../utils/utilities';
 
-interface SidenavOptions {
+interface ISidenavOptions {
   overlay?: boolean;
   bodyScrolling?: boolean;
   animationDuration?: number;
 }
 
-const SidenavOptions: SidenavOptions = {
+const SidenavOptions: ISidenavOptions = {
   overlay: true,
   bodyScrolling: false,
   animationDuration: 300,
@@ -24,7 +24,7 @@ const SidenavOptions: SidenavOptions = {
 export class Sidenav extends AxentixComponent implements Component {
   static getDefaultOptions = () => SidenavOptions;
 
-  options: SidenavOptions;
+  options: ISidenavOptions;
 
   #sidenavTriggers: NodeListOf<HTMLElement>;
   #isActive = false;
@@ -36,7 +36,7 @@ export class Sidenav extends AxentixComponent implements Component {
   #listenerRef: any;
   #windowResizeRef: any;
 
-  constructor(element: string, options?: SidenavOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: ISidenavOptions, isLoadedWithData?: boolean) {
     super();
 
     try {

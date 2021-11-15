@@ -2,16 +2,16 @@ import { AxentixComponent, Component } from '../../utils/component';
 import { getComponentClass, registerComponent, getCssVar } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions, wrap } from '../../utils/utilities';
-import { Caroulix, CaroulixOptions } from '../caroulix/caroulix';
+import { Caroulix, ICaroulixOptions } from '../caroulix/caroulix';
 
-interface TabOptions {
+interface ITabOptions {
   animationDuration?: number;
   animationType?: 'none' | 'slide';
   disableActiveBar?: boolean;
-  caroulix?: CaroulixOptions;
+  caroulix?: ICaroulixOptions;
 }
 
-const TabOptions: TabOptions = {
+const TabOptions: ITabOptions = {
   animationDuration: 300,
   animationType: 'none',
   disableActiveBar: false,
@@ -28,7 +28,7 @@ const TabOptions: TabOptions = {
 export class Tab extends AxentixComponent implements Component {
   static getDefaultOptions = () => TabOptions;
 
-  options: TabOptions;
+  options: ITabOptions;
 
   #tabArrow: HTMLElement;
   #tabLinks: NodeListOf<HTMLElement>;
@@ -47,7 +47,7 @@ export class Tab extends AxentixComponent implements Component {
   #caroulixInstance: Caroulix;
   #isAnimated = false;
 
-  constructor(element: string, options?: TabOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: ITabOptions, isLoadedWithData?: boolean) {
     super();
 
     try {
