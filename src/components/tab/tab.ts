@@ -1,14 +1,20 @@
-import { AxentixComponent } from '../../utils/component';
+import { AxentixComponent, Component } from '../../utils/component';
 import { getComponentClass, registerComponent, getCssVar } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions, wrap } from '../../utils/utilities';
+import { Caroulix, CaroulixOptions } from '../caroulix/caroulix';
 
-/** @namespace */
-const TabOptions = {
+interface TabOptions {
+  animationDuration?: number;
+  animationType?: 'none' | 'slide';
+  disableActiveBar?: boolean;
+  caroulix?: CaroulixOptions;
+}
+
+const TabOptions: TabOptions = {
   animationDuration: 300,
   animationType: 'none',
   disableActiveBar: false,
-  /** @type {typeof import('../caroulix/caroulix').CaroulixOptions} */
   caroulix: {
     animationDuration: 300,
     backToOpposite: false,
@@ -19,41 +25,29 @@ const TabOptions = {
   },
 };
 
-export class Tab extends AxentixComponent {
+export class Tab extends AxentixComponent implements Component {
   static getDefaultOptions = () => TabOptions;
 
-  /** Private variables */
-  /** @type {HTMLElement} */
-  #tabArrow;
-  /** @type {NodeListOf<HTMLElement>} */
-  #tabLinks;
-  /** @type {HTMLElement} */
-  #tabMenu;
+  options: TabOptions;
+
+  #tabArrow: HTMLElement;
+  #tabLinks: NodeListOf<HTMLElement>;
+  #tabMenu: HTMLElement;
   #currentItemIndex = 0;
-  /** @type {HTMLElement} */
-  #leftArrow;
-  /** @type {HTMLElement} */
-  #rightArrow;
-  #scrollLeftRef;
-  #scrollRightRef;
-  #arrowRef;
-  #caroulixSlideRef;
-  #resizeTabRef;
-  /** @type {Array<HTMLElement>} */
-  #tabItems;
-  /** @type {HTMLDivElement} */
-  #tabCaroulix;
+  #leftArrow: HTMLElement;
+  #rightArrow: HTMLElement;
+  #scrollLeftRef: any;
+  #scrollRightRef: any;
+  #arrowRef: any;
+  #caroulixSlideRef: any;
+  #resizeTabRef: any;
+  #tabItems: Array<HTMLElement>;
+  #tabCaroulix: HTMLDivElement;
   #tabCaroulixInit = false;
-  /** @type {import('../caroulix/caroulix').Caroulix} */
-  #caroulixInstance;
+  #caroulixInstance: Caroulix;
   #isAnimated = false;
 
-  /**
-   * @param {string} element
-   * @param {TabOptions} [options]
-   * @param {boolean} [isLoadedWithData]
-   */
-  constructor(element, options, isLoadedWithData) {
+  constructor(element: string, options?: TabOptions, isLoadedWithData?: boolean) {
     super();
 
     try {
@@ -62,17 +56,15 @@ export class Tab extends AxentixComponent {
 
       this.el = document.querySelector(element);
 
-      /** @type {TabOptions} */
       this.options = getComponentOptions('Tab', options, this.el, isLoadedWithData);
-      console.log(this.options.caroulix.animationDuration, this.options.animationDuration);
 
-      this.#setup();
+      this.setup();
     } catch (error) {
       console.error('[Axentix] Tab init error', error);
     }
   }
 
-  #setup() {
+  setup() {
     createEvent(this.el, 'tab.setup');
 
     const animationList = ['none', 'slide'];
@@ -99,7 +91,7 @@ export class Tab extends AxentixComponent {
   }
 
   setupListeners() {
-    this.#tabLinks.forEach((item) => {
+    this.#tabLinks.forEach((item: any) => {
       item.listenerRef = this.#onClickItem.bind(this, item);
       item.addEventListener('click', item.listenerRef);
     });
@@ -119,7 +111,7 @@ export class Tab extends AxentixComponent {
   }
 
   removeListeners() {
-    this.#tabLinks.forEach((item) => {
+    this.#tabLinks.forEach((item: any) => {
       item.removeEventListener('click', item.listenerRef);
       item.listenerRef = undefined;
     });
@@ -159,7 +151,7 @@ export class Tab extends AxentixComponent {
     }
   }
 
-  #getItems() {
+  #getItems(): Array<HTMLElement> {
     return Array.from(this.#tabLinks).map((link) => {
       const id = link.children[0].getAttribute('href');
       return this.el.querySelector(id);
@@ -185,8 +177,7 @@ export class Tab extends AxentixComponent {
     this.updateActiveElement();
   }
 
-  /** @param {HTMLElement} element */
-  #setActiveElement(element) {
+  #setActiveElement(element: HTMLElement) {
     this.#tabLinks.forEach((item) => item.classList.remove('active'));
 
     if (!this.options.disableActiveBar) {
@@ -222,23 +213,17 @@ export class Tab extends AxentixComponent {
     }
   }
 
-  /** @param {Event} e */
-  #scrollLeft(e) {
+  #scrollLeft(e: Event) {
     e.preventDefault();
     this.#tabMenu.scrollLeft -= 40;
   }
 
-  /** @param {Event} e */
-  #scrollRight(e) {
+  #scrollRight(e: Event) {
     e.preventDefault();
     this.#tabMenu.scrollLeft += 40;
   }
 
-  /**
-   * @param {HTMLElement} item
-   * @param {Event} e
-   */
-  #onClickItem(item, e) {
+  #onClickItem(item: HTMLElement, e: Event) {
     e.preventDefault();
     if (this.#isAnimated || item.classList.contains('active')) return;
 
@@ -246,8 +231,7 @@ export class Tab extends AxentixComponent {
     this.select(target.split('#')[1]);
   }
 
-  /** @param {number} step */
-  #getPreviousItemIndex(step) {
+  #getPreviousItemIndex(step: number) {
     let previousItemIndex = 0;
     let index = this.#currentItemIndex;
     for (let i = 0; i < step; i++) {
@@ -262,8 +246,7 @@ export class Tab extends AxentixComponent {
     return previousItemIndex;
   }
 
-  /** @param {number} step */
-  #getNextItemIndex(step) {
+  #getNextItemIndex(step: number) {
     let nextItemIndex = 0;
     let index = this.#currentItemIndex;
     for (let i = 0; i < step; i++) {
@@ -278,15 +261,12 @@ export class Tab extends AxentixComponent {
     return nextItemIndex;
   }
 
-  /**
-   * Select tab
-   * @param {string} itemId
-   */
-  select(itemId) {
+  /** Select tab */
+  select(itemId: string) {
     if (this.#isAnimated) return;
 
     this.#isAnimated = true;
-    const menuItem = this.el.querySelector('.tab-menu a[href="#' + itemId + '"]');
+    const menuItem: HTMLElement = this.el.querySelector('.tab-menu a[href="#' + itemId + '"]');
     this.#currentItemIndex = Array.from(this.#tabLinks).findIndex((item) => item.children[0] === menuItem);
 
     createEvent(menuItem, 'tab.select', { currentIndex: this.#currentItemIndex });
@@ -326,9 +306,7 @@ export class Tab extends AxentixComponent {
     }
   }
 
-  /**
-   * Detect active element & update component
-   */
+  /** Detect active element & update component */
   updateActiveElement() {
     let itemSelected;
     this.#tabLinks.forEach((item, index) => {
@@ -346,9 +324,7 @@ export class Tab extends AxentixComponent {
     this.select(target.split('#')[1]);
   }
 
-  /**
-   * Go to previous tab
-   */
+  /** Go to previous tab */
   prev(step = 1) {
     if (this.#isAnimated) return;
 
@@ -360,9 +336,7 @@ export class Tab extends AxentixComponent {
     this.select(target.split('#')[1]);
   }
 
-  /**
-   * Go to next tab
-   */
+  /** Go to next tab */
   next(step = 1) {
     if (this.#isAnimated) return;
 
