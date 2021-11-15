@@ -106,23 +106,24 @@ export class Tooltip extends AxentixComponent implements Component {
   }
 
   #setBasicPosition() {
-    if (this.options.position == 'top' || this.options.position == 'bottom') {
-      if (this.options.position == 'top') this.#tooltip.style.top = this.#elRect.top + 'px';
-      else this.#tooltip.style.top = this.#elRect.top + this.#elRect.height + 'px';
-    } else if (this.options.position == 'left' || this.options.position == 'right') {
-      if (this.options.position == 'right')
-        this.#tooltip.style.left = this.#elRect.left + this.#elRect.width + 'px';
+    const isHorizontalSide = this.options.position == 'top' || this.options.position == 'bottom';
+
+    if (isHorizontalSide) {
+      const top = this.options.position === 'top' ? this.#elRect.top : this.#elRect.top + this.#elRect.height
+      this.#tooltip.style.top =  top + 'px';
+    } else if (this.options.position == 'right'){
+      this.#tooltip.style.left = this.#elRect.left + this.#elRect.width + 'px';
     }
   }
 
   /** Manually transform the tooltip location */
   #manualTransform() {
-    if (this.options.position == 'top' || this.options.position == 'bottom') {
-      this.#tooltip.style.left =
-        this.#elRect.left + this.#elRect.width / 2 - this.#tooltipRect.width / 2 + 'px';
-    } else if (this.options.position == 'left' || this.options.position == 'right') {
-      this.#tooltip.style.top =
-        this.#elRect.top + this.#elRect.height / 2 - this.#tooltipRect.height / 2 + 'px';
+    const isVerticalSide = this.options.position == 'top' || this.options.position == 'bottom';
+
+    if (isVerticalSide) {
+      this.#tooltip.style.left = this.#elRect.left + this.#elRect.width / 2 - this.#tooltipRect.width / 2 + 'px';
+    } else {
+      this.#tooltip.style.top = this.#elRect.top + this.#elRect.height / 2 - this.#tooltipRect.height / 2 + 'px';
     }
 
     if (this.options.position == 'top') {
@@ -166,15 +167,10 @@ export class Tooltip extends AxentixComponent implements Component {
     setTimeout(() => {
       createEvent(this.el, 'tooltip.show');
 
-      this.options.position == 'top'
-        ? (this.#tooltip.style.transform = `translateY(-${this.options.offset})`)
-        : this.options.position == 'right'
-        ? (this.#tooltip.style.transform = `translateX(${this.options.offset})`)
-        : this.options.position == 'bottom'
-        ? (this.#tooltip.style.transform = `translateY(${this.options.offset})`)
-        : this.options.position == 'left'
-        ? (this.#tooltip.style.transform = `translateX(-${this.options.offset})`)
-        : '';
+      const negativity = this.options.position == 'top' || this.options.position == 'left' ? '-' : '';
+      const verticality = this.options.position == 'top' || this.options.position == 'bottom' ? 'Y': 'X';
+
+      this.#tooltip.style.transform = `translate${verticality}(${negativity}${this.options.offset})`;
 
       this.#tooltip.style.opacity = '1';
     }, this.options.animationDelay);
