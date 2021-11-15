@@ -1,38 +1,41 @@
-import { AxentixComponent } from '../../utils/component';
+import { AxentixComponent, Component } from '../../utils/component';
 import { registerComponent } from '../../utils/config';
 import { instances } from '../../utils/config';
 import { createEvent, getComponentOptions } from '../../utils/utilities';
 
-/** @namespace */
-const ScrollSpyOptions = {
+interface ScrollSpyOptions {
+  offset?: number;
+  linkSelector?: string;
+  classes?: string | Array<string>;
+  auto?: {
+    enabled?: boolean;
+    classes?: string | Array<string>;
+    selector?: string;
+  };
+}
+
+const ScrollSpyOptions: ScrollSpyOptions = {
   offset: 200,
   linkSelector: 'a',
   classes: 'active',
   auto: {
     enabled: false,
-    /** @type {string | Array<string>} */
     classes: '',
     selector: '',
   },
 };
 
-export class ScrollSpy extends AxentixComponent {
+export class ScrollSpy extends AxentixComponent implements Component {
   static getDefaultOptions = () => ScrollSpyOptions;
 
-  /** Private variables */
-  #oldLink;
-  #updateRef;
-  /** @type {Array<HTMLElement>} */
-  #links;
-  /** @type {Array<HTMLElement>} */
-  #elements;
+  options: ScrollSpyOptions;
 
-  /**
-   * @param {string} element
-   * @param {ScrollSpyOptions} [options]
-   * @param {boolean} [isLoadedWithData]
-   */
-  constructor(element, options, isLoadedWithData) {
+  #oldLink: any;
+  #updateRef: any;
+  #links: Array<HTMLElement>;
+  #elements: Array<HTMLElement>;
+
+  constructor(element: string, options?: ScrollSpyOptions, isLoadedWithData?: boolean) {
     super();
 
     try {
@@ -41,16 +44,15 @@ export class ScrollSpy extends AxentixComponent {
 
       this.el = document.querySelector(element);
 
-      /** @type {ScrollSpyOptions} */
       this.options = getComponentOptions('ScrollSpy', options, this.el, isLoadedWithData);
 
-      this.#setup();
+      this.setup();
     } catch (error) {
       console.error('[Axentix] ScrollSpy init error', error);
     }
   }
 
-  #setup() {
+  setup() {
     createEvent(this.el, 'scrollspy.setup');
     if (this.options.auto.enabled) this.#setupAuto();
     else this.#setupBasic();
@@ -82,7 +84,7 @@ export class ScrollSpy extends AxentixComponent {
     this.#elements = Array.from(document.querySelectorAll(this.options.auto.selector));
     this.#links = this.#elements.map((el) => {
       const link = document.createElement('a');
-      link.className = this.options.auto.classes;
+      link.className = this.options.auto.classes as string;
       link.setAttribute('href', '#' + el.id);
       link.innerHTML = el.innerHTML;
       this.el.appendChild(link);
@@ -115,7 +117,7 @@ export class ScrollSpy extends AxentixComponent {
   #removeOldLink() {
     if (!this.#oldLink) return;
 
-    this.options.classes.forEach((cl) => this.#oldLink.classList.remove(cl));
+    (this.options.classes as Array<string>).forEach((cl) => this.#oldLink.classList.remove(cl));
   }
 
   #getClosestElem() {
@@ -143,7 +145,7 @@ export class ScrollSpy extends AxentixComponent {
     createEvent(this.el, 'scrollspy.update');
     this.#removeOldLink();
 
-    this.options.classes.map((cl) => link.classList.add(cl));
+    (this.options.classes as Array<string>).forEach((cl) => link.classList.add(cl));
     this.#oldLink = link;
   }
 }
