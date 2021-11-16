@@ -56,8 +56,8 @@ export class Fab extends AxentixComponent implements Component {
 
     this.#isAnimated = false;
     this.#isActive = false;
-    this.#trigger = document.querySelector('#' + this.el.id + ' .fab-trigger');
-    this.#fabMenu = document.querySelector('#' + this.el.id + ' .fab-menu');
+    this.#trigger = document.querySelector(`#${this.el.id} .fab-trigger`);
+    this.#fabMenu = document.querySelector(`#${this.el.id} .fab-menu`);
 
     this.#verifOptions();
     this.setupListeners();

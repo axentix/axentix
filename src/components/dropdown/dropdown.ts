@@ -90,7 +90,7 @@ export class Dropdown extends AxentixComponent implements Component {
     if (!animationList.includes(this.options.animationType)) this.options.animationType = 'none';
 
     if (this.options.animationType === 'fade' && !this.options.hover) {
-      this.el.style.transitionDuration = this.options.animationDuration + 'ms';
+      this.#dropdownContent.style.transitionDuration = this.options.animationDuration + 'ms';
       this.el.classList.add('dropdown-anim-fade');
     }
   }
