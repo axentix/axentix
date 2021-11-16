@@ -1,6 +1,5 @@
 import { AxentixComponent, Component } from '../../utils/component';
-import { registerComponent } from '../../utils/config';
-import { instances } from '../../utils/config';
+import { registerComponent, instances } from '../../utils/config';
 import { createEvent, getComponentOptions, isPointerEnabled, isTouchEnabled } from '../../utils/utilities';
 
 export interface ICaroulixOptions {
@@ -65,6 +64,9 @@ export class Caroulix extends AxentixComponent implements Component {
   #yStart = 0;
   #indicators: HTMLElement;
   #autoplayInterval: number;
+  #pointerType: string;
+  #isTouch: boolean;
+  #isPointer: boolean;
 
   constructor(element: string, options?: ICaroulixOptions, isLoadedWithData?: boolean) {
     super();
@@ -95,6 +97,12 @@ export class Caroulix extends AxentixComponent implements Component {
     this.activeIndex = 0;
     this.#draggedPositionX = 0;
     this.#isAnimated = false;
+
+    this.#isPointer = isPointerEnabled();
+    this.#isTouch = isTouchEnabled();
+    this.#pointerType = 'touch';
+    if (this.#isPointer) this.#pointerType = 'pointer';
+    else this.#pointerType = 'mouse';
 
     this.#children = this.#getChildren();
     if (this.options.indicators.enabled) this.#enableIndicators();
@@ -130,22 +138,13 @@ export class Caroulix extends AxentixComponent implements Component {
       this.#touchMoveRef = this.#handleDragMove.bind(this);
       this.#touchReleaseRef = this.#handleDragRelease.bind(this);
 
-      const isTouch = isTouchEnabled(),
-        isPointer = isPointerEnabled();
-
       this.el.addEventListener(
-        isTouch ? 'touchstart' : isPointer ? 'pointerdown' : 'mousestart',
+        `${this.#pointerType}${this.#isPointer ? 'down' : 'start'}`,
         this.#touchStartRef
       );
-      this.el.addEventListener(
-        isTouch ? 'touchmove' : isPointer ? 'pointermove' : 'mousemove',
-        this.#touchMoveRef
-      );
-      this.el.addEventListener(
-        isTouch ? 'touchend' : isPointer ? 'pointerup' : 'mouseup',
-        this.#touchReleaseRef
-      );
-      this.el.addEventListener(isPointer ? 'pointerleave' : 'mouseleave', this.#touchReleaseRef);
+      this.el.addEventListener(`${this.#pointerType}move`, this.#touchMoveRef);
+      this.el.addEventListener(`${this.#pointerType}${this.#isTouch ? 'end' : 'up'}`, this.#touchReleaseRef);
+      this.el.addEventListener(this.#isPointer ? 'pointerleave' : 'mouseleave', this.#touchReleaseRef);
     }
   }
 
@@ -164,22 +163,16 @@ export class Caroulix extends AxentixComponent implements Component {
     }
 
     if (this.options.enableTouch) {
-      const isTouch = isTouchEnabled(),
-        isPointer = isPointerEnabled();
-
       this.el.removeEventListener(
-        isTouch ? 'touchstart' : isPointer ? 'pointerdown' : 'mousestart',
+        `${this.#pointerType}${this.#isPointer ? 'down' : 'start'}`,
         this.#touchStartRef
       );
+      this.el.removeEventListener(`${this.#pointerType}move`, this.#touchMoveRef);
       this.el.removeEventListener(
-        isTouch ? 'touchmove' : isPointer ? 'pointermove' : 'mousemove',
-        this.#touchMoveRef
-      );
-      this.el.removeEventListener(
-        isTouch ? 'touchend' : isPointer ? 'pointerup' : 'mouseup',
+        `${this.#pointerType}${this.#isTouch ? 'end' : 'up'}`,
         this.#touchReleaseRef
       );
-      this.el.removeEventListener(isPointer ? 'pointerleave' : 'mouseleave', this.#touchReleaseRef);
+      this.el.removeEventListener(this.#isPointer ? 'pointerleave' : 'mouseleave', this.#touchReleaseRef);
 
       this.#touchStartRef = undefined;
       this.#touchMoveRef = undefined;
