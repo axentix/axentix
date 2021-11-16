@@ -107,7 +107,7 @@ export class Toast {
   /** Remove toast container */
   #removeToaster() {
     for (const key in this.#toasters) {
-      let toaster = this.#toasters[key];
+      let toaster: HTMLElement = this.#toasters[key];
       if (toaster.childElementCount <= 0) {
         toaster.remove();
         delete this.#toasters[key];

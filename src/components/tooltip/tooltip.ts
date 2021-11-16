@@ -50,7 +50,7 @@ export class Tooltip extends AxentixComponent implements Component {
   }
 
   setup() {
-    if (!this.options.content) return console.error('Tooltip #' + this.el.id + ' : empty content.');
+    if (!this.options.content) return console.error(`Tooltip #${this.el.id} : empty content.`);
 
     createEvent(this.el, 'tooltip.setup');
 

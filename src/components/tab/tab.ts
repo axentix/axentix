@@ -172,7 +172,6 @@ export class Tab extends AxentixComponent implements Component {
     if (this.options.animationDuration !== 300)
       this.options.caroulix.animationDuration = this.options.animationDuration;
 
-    console.log(this.options.animationDuration, this.options.caroulix.animationDuration);
     this.updateActiveElement();
   }
 
