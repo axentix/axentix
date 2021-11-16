@@ -1,5 +1,4 @@
-import { getCssVar, registerComponent } from '../../utils/config';
-import { instances } from '../../utils/config';
+import { getCssVar, registerComponent, instances } from '../../utils/config';
 import { createEvent, extend, getComponentOptions, getInstanceByType } from '../../utils/utilities';
 
 interface IToastOptions {
