@@ -271,7 +271,7 @@ export class Caroulix extends AxentixComponent implements Component {
   #handleDragStart(e: Event) {
     if (
       (e.target as HTMLElement).closest('.caroulix-arrow') ||
-      (e.target as HTMLElement).closest('.caroulix-#indicators') ||
+      (e.target as HTMLElement).closest('.caroulix-indicators') ||
       this.#isAnimated
     )
       return;
@@ -314,7 +314,7 @@ export class Caroulix extends AxentixComponent implements Component {
   #handleDragRelease(e: Event) {
     if (
       (e.target as HTMLElement).closest('.caroulix-arrow') ||
-      (e.target as HTMLElement).closest('.caroulix-#indicators')
+      (e.target as HTMLElement).closest('.caroulix-indicators')
     )
       return;
 
@@ -325,20 +325,11 @@ export class Caroulix extends AxentixComponent implements Component {
       let caroulixWidth = this.el.getBoundingClientRect().width;
 
       this.#isPressed = false;
+      const percent = (caroulixWidth * 15) / 100;
 
-      if (
-        (this.options.backToOpposite &&
-          this.activeIndex !== this.#children.length - 1 &&
-          this.#deltaX > (caroulixWidth * 15) / 100) ||
-        (!this.options.backToOpposite && this.#deltaX > (caroulixWidth * 15) / 100)
-      ) {
+      if (this.activeIndex !== this.#children.length - 1 && this.#deltaX > percent) {
         this.next();
-      } else if (
-        (this.options.backToOpposite &&
-          this.activeIndex !== 0 &&
-          this.#deltaX < (-caroulixWidth * 15) / 100) ||
-        (!this.options.backToOpposite && this.#deltaX < (-caroulixWidth * 15) / 100)
-      ) {
+      } else if (this.activeIndex !== 0 && this.#deltaX < -percent) {
         this.prev();
       }
 
@@ -352,7 +343,7 @@ export class Caroulix extends AxentixComponent implements Component {
 
   #enableIndicators() {
     this.#indicators = document.createElement('ul');
-    this.#indicators.classList.add('caroulix-#indicators');
+    this.#indicators.classList.add('caroulix-indicators');
     if (this.options.indicators.isFlat) this.#indicators.classList.add('caroulix-flat');
 
     if (this.options.indicators.customClasses)
