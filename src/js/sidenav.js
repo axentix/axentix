@@ -43,6 +43,7 @@
       this.sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
       this.isActive = false;
       this.isAnimated = false;
+      this.windowWidth = window.innerWidth;
       this.isFixed = this.el.classList.contains('fixed');
 
       const sidenavFixed = Axentix.getInstanceByType('Sidenav').find((sidenav) => sidenav.isFixed);
@@ -79,7 +80,7 @@
           trigger.addEventListener('click', this.listenerRef);
         }
       });
-      this.windowResizeRef = this.close.bind(this);
+      this.windowResizeRef = this._resizeHandler.bind(this);
       window.addEventListener('resize', this.windowResizeRef);
     }
 
@@ -95,6 +96,11 @@
       this.listenerRef = undefined;
       window.removeEventListener('resize', this.windowResizeRef);
       this.windowResizeRef = undefined;
+    }
+
+    _resizeHandler(e) {
+      if (this.windowWidth !== e.target.innerWidth) this.close();
+      this.windowWidth = e.target.innerWidth;
     }
 
     destroy() {
