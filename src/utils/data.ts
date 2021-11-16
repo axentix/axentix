@@ -29,7 +29,6 @@ const getOptionsForObject = (
   const keys = getOptions(obj[name], component, element, fmtName);
 
   if (!(Object.keys(keys).length === 0 && obj.constructor === Object)) return keys;
-  return;
 };
 
 const getOptions = (obj: any, component: string, element: HTMLElement, baseName = '') => {
