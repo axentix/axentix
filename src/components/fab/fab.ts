@@ -175,6 +175,6 @@ registerComponent({
   dataDetection: true,
   autoInit: {
     enabled: true,
-    selector: '.fab:not(i):not(.no-axentix-init)',
+    selector: '.fab:not(i)',
   },
 });

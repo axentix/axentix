@@ -155,6 +155,6 @@ registerComponent({
   dataDetection: true,
   autoInit: {
     enabled: true,
-    selector: '.scrollspy:not(.no-axentix-init)',
+    selector: '.scrollspy',
   },
 });

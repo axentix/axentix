@@ -59,6 +59,8 @@ const register = (el: RegisterElement, term: string) => {
     return;
   }
 
+  if (el.autoInit) el.autoInit.selector = el.autoInit.selector += ':not(.no-axentix-init)';
+
   config[term].push(el);
 };
 

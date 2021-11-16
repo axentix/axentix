@@ -181,6 +181,6 @@ registerComponent({
   dataDetection: true,
   autoInit: {
     enabled: true,
-    selector: '.dropdown:not(.no-axentix-init)',
+    selector: '.dropdown',
   },
 });

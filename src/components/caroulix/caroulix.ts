@@ -474,6 +474,6 @@ registerComponent({
   dataDetection: true,
   autoInit: {
     enabled: true,
-    selector: '.caroulix:not(.no-axentix-init)',
+    selector: '.caroulix',
   },
 });

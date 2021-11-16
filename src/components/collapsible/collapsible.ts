@@ -209,6 +209,6 @@ registerComponent({
   dataDetection: true,
   autoInit: {
     enabled: true,
-    selector: '.collapsible:not(.no-axentix-init)',
+    selector: '.collapsible',
   },
 });
