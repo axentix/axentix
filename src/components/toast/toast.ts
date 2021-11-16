@@ -77,20 +77,18 @@ export class Toast {
     let toaster = document.createElement('div');
 
     const positionList = ['right', 'left'];
-    positionList.includes(this.options.position) ? '' : (this.options.position = 'right');
+    if (!positionList.includes(this.options.position)) this.options.position = 'right';
 
-    this.options.position === 'right'
-      ? (toaster.style.right = this.options.offset.x)
-      : (toaster.style.left = this.options.offset.x);
+    if (this.options.position === 'right') toaster.style.right = this.options.offset.x;
+    else toaster.style.left = this.options.offset.x;
 
     const directionList = ['bottom', 'top'];
-    directionList.includes(this.options.direction) ? '' : (this.options.direction = 'top');
+    if (!directionList.includes(this.options.direction)) this.options.direction = 'top';
 
-    this.options.direction === 'top'
-      ? (toaster.style.top = this.options.offset.y)
-      : (toaster.style.bottom = this.options.offset.y);
+    if (this.options.direction === 'top') toaster.style.top = this.options.offset.y;
+    else toaster.style.bottom = this.options.offset.y;
 
-    directionList.includes(this.options.mobileDirection) ? '' : (this.options.mobileDirection = 'bottom');
+    if (!directionList.includes(this.options.mobileDirection)) this.options.mobileDirection = 'bottom';
 
     toaster.style.setProperty(
       getCssVar('toaster-m-width'),
