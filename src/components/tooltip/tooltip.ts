@@ -70,7 +70,7 @@ export class Tooltip extends AxentixComponent implements Component {
     document.body.appendChild(this.#tooltip);
 
     this.#positionList = ['right', 'left', 'top', 'bottom'];
-    this.#positionList.includes(this.options.position) ? '' : (this.options.position = 'top');
+    if (!this.#positionList.includes(this.options.position)) this.options.position = 'top';
 
     this.setupListeners();
 
@@ -109,9 +109,9 @@ export class Tooltip extends AxentixComponent implements Component {
     const isHorizontalSide = this.options.position == 'top' || this.options.position == 'bottom';
 
     if (isHorizontalSide) {
-      const top = this.options.position === 'top' ? this.#elRect.top : this.#elRect.top + this.#elRect.height
-      this.#tooltip.style.top =  top + 'px';
-    } else if (this.options.position == 'right'){
+      const top = this.options.position === 'top' ? this.#elRect.top : this.#elRect.top + this.#elRect.height;
+      this.#tooltip.style.top = top + 'px';
+    } else if (this.options.position == 'right') {
       this.#tooltip.style.left = this.#elRect.left + this.#elRect.width + 'px';
     }
   }
@@ -121,9 +121,11 @@ export class Tooltip extends AxentixComponent implements Component {
     const isVerticalSide = this.options.position == 'top' || this.options.position == 'bottom';
 
     if (isVerticalSide) {
-      this.#tooltip.style.left = this.#elRect.left + this.#elRect.width / 2 - this.#tooltipRect.width / 2 + 'px';
+      this.#tooltip.style.left =
+        this.#elRect.left + this.#elRect.width / 2 - this.#tooltipRect.width / 2 + 'px';
     } else {
-      this.#tooltip.style.top = this.#elRect.top + this.#elRect.height / 2 - this.#tooltipRect.height / 2 + 'px';
+      this.#tooltip.style.top =
+        this.#elRect.top + this.#elRect.height / 2 - this.#tooltipRect.height / 2 + 'px';
     }
 
     if (this.options.position == 'top') {
@@ -168,7 +170,7 @@ export class Tooltip extends AxentixComponent implements Component {
       createEvent(this.el, 'tooltip.show');
 
       const negativity = this.options.position == 'top' || this.options.position == 'left' ? '-' : '';
-      const verticality = this.options.position == 'top' || this.options.position == 'bottom' ? 'Y': 'X';
+      const verticality = this.options.position == 'top' || this.options.position == 'bottom' ? 'Y' : 'X';
 
       this.#tooltip.style.transform = `translate${verticality}(${negativity}${this.options.offset})`;
 
