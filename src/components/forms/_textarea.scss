@@ -33,7 +33,8 @@ textarea.form-control {
         }
 
         textarea.form-control {
-          border-bottom: var(getCssVar(form-material-active-border)) !important;
+          border-bottom: var(getCssVar(form-material-active-border-width))
+            var(getCssVar(form-material-active-border-style)) var(getCssVar(form-material-color)) !important;
         }
       }
     }
