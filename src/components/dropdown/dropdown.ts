@@ -89,13 +89,9 @@ export class Dropdown extends AxentixComponent implements Component {
     this.options.animationType = this.options.animationType.toLowerCase();
     if (!animationList.includes(this.options.animationType)) this.options.animationType = 'none';
 
-    if (this.options.animationType !== 'none' && !this.options.hover) {
-      if (this.options.hover) {
-        this.el.style.animationDuration = this.options.animationDuration + 'ms';
-      } else {
-        this.el.style.transitionDuration = this.options.animationDuration + 'ms';
-      }
-      this.el.classList.add('dropdown-anim-' + this.options.animationType);
+    if (this.options.animationType === 'fade' && !this.options.hover) {
+      this.#dropdownContent.style.transitionDuration = this.options.animationDuration + 'ms';
+      this.el.classList.add('dropdown-anim-fade');
     }
   }
 
@@ -185,6 +181,6 @@ registerComponent({
   dataDetection: true,
   autoInit: {
     enabled: true,
-    selector: '.dropdown:not(.no-axentix-init)',
+    selector: '.dropdown',
   },
 });

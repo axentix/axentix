@@ -156,6 +156,6 @@ registerComponent({
   dataDetection: true,
   autoInit: {
     enabled: true,
-    selector: '.modal:not(.no-axentix-init)',
+    selector: '.modal',
   },
 });

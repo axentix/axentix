@@ -399,9 +399,8 @@ export class Caroulix extends AxentixComponent implements Component {
 
     const side = number > this.activeIndex ? 'right' : 'left';
 
-    side === 'left'
-      ? this.prev(Math.abs(this.activeIndex - number))
-      : this.next(Math.abs(this.activeIndex - number));
+    if (side === 'left') this.prev(Math.abs(this.activeIndex - number));
+    else this.next(Math.abs(this.activeIndex - number));
 
     if (this.options.indicators.enabled) this.#resetIndicators();
   }
@@ -450,11 +449,8 @@ export class Caroulix extends AxentixComponent implements Component {
 
     if (resetAutoplay && this.options.autoplay.enabled) this.stop();
 
-    if (this.activeIndex > 0) {
-      this.activeIndex -= step;
-    } else if (this.options.backToOpposite) {
-      this.activeIndex = this.#children.length - 1;
-    }
+    if (this.activeIndex > 0) this.activeIndex -= step;
+    else if (this.options.backToOpposite) this.activeIndex = this.#children.length - 1;
 
     this.#emitSlideEvent();
     this.#setItemsPosition();
@@ -469,6 +465,6 @@ registerComponent({
   dataDetection: true,
   autoInit: {
     enabled: true,
-    selector: '.caroulix:not(.no-axentix-init)',
+    selector: '.caroulix',
   },
 });

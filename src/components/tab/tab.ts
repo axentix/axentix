@@ -354,6 +354,6 @@ registerComponent({
   dataDetection: true,
   autoInit: {
     enabled: true,
-    selector: '.tab:not(.no-axentix-init)',
+    selector: '.tab',
   },
 });

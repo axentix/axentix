@@ -13,29 +13,38 @@ const getName = (name: string, baseName = '') => {
   return baseName ? baseName + '-' + fmtName : fmtName;
 };
 
+const getOptionsForObject = (
+  obj: any,
+  name: string,
+  component: string,
+  element: HTMLElement,
+  baseName = ''
+) => {
+  const tmpOptName = name[0].toUpperCase() + name.slice(1).toLowerCase();
+
+  if (getDataElements().includes(tmpOptName) && component !== 'Collapsible' && tmpOptName !== 'Sidenav')
+    obj[name] = getComponentClass(tmpOptName).getDefaultOptions();
+
+  const fmtName = baseName ? baseName + '-' + name : name;
+  const keys = getOptions(obj[name], component, element, fmtName);
+
+  if (!(Object.keys(keys).length === 0 && obj.constructor === Object)) return keys;
+};
+
 const getOptions = (obj: any, component: string, element: HTMLElement, baseName = '') => {
   return Object.keys(obj).reduce((acc, name) => {
     if (typeof obj[name] === 'object' && obj[name] !== null) {
-      const tmpOptName = name[0].toUpperCase() + name.slice(1).toLowerCase();
-
-      if (getDataElements().includes(tmpOptName) && component !== 'Collapsible' && tmpOptName !== 'Sidenav')
-        obj[name] = getComponentClass(tmpOptName).getDefaultOptions();
-
-      const fmtName = baseName ? baseName + '-' + name : name;
-      const keys = getOptions(obj[name], component, element, fmtName);
-
-      if (!(Object.keys(keys).length === 0 && obj.constructor === Object)) acc[name] = keys;
+      const opts = getOptionsForObject(obj, name, component, element, baseName);
+      if (opts) acc[name] = opts;
     } else if (obj[name] !== null) {
       const dataAttribute = 'data-' + component.toLowerCase() + '-' + getName(name, baseName);
 
       if (element.hasAttribute(dataAttribute)) {
         const attr = element.getAttribute(dataAttribute);
-        acc[name] =
-          typeof obj[name] === 'boolean'
-            ? attr === 'true'
-            : typeof obj[name] === 'number'
-            ? Number(attr)
-            : attr;
+
+        acc[name] = typeof obj[name] === 'number' ? Number(attr) : attr;
+
+        if (typeof obj[name] === 'boolean') acc[name] = attr === 'true';
       }
     }
 

@@ -55,6 +55,7 @@ export class ScrollSpy extends AxentixComponent implements Component {
     createEvent(this.el, 'scrollspy.setup');
     if (this.options.auto.enabled) this.#setupAuto();
     else this.#setupBasic();
+
     if (typeof this.options.classes === 'string') this.options.classes = this.options.classes.split(' ');
     this.#oldLink = '';
 
@@ -154,6 +155,6 @@ registerComponent({
   dataDetection: true,
   autoInit: {
     enabled: true,
-    selector: '.scrollspy:not(.no-axentix-init)',
+    selector: '.scrollspy',
   },
 });

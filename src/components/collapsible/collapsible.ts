@@ -139,7 +139,7 @@ export class Collapsible extends AxentixComponent implements Component {
 
   #autoClose() {
     if (!this.#isInitialStart && this.#isInSidenav) {
-      getInstanceByType('Collapsible').forEach((collapsible) => {
+      getInstanceByType('Collapsible').forEach((collapsible: Collapsible) => {
         if (
           collapsible.#isInSidenav &&
           collapsible.#sidenavId === this.#sidenavId &&
@@ -209,6 +209,6 @@ registerComponent({
   dataDetection: true,
   autoInit: {
     enabled: true,
-    selector: '.collapsible:not(.no-axentix-init)',
+    selector: '.collapsible',
   },
 });

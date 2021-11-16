@@ -255,6 +255,6 @@ registerComponent({
   dataDetection: true,
   autoInit: {
     enabled: true,
-    selector: '.lightbox:not(.no-axentix-init)',
+    selector: '.lightbox',
   },
 });

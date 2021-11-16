@@ -204,6 +204,6 @@ registerComponent({
   dataDetection: true,
   autoInit: {
     enabled: true,
-    selector: '.sidenav:not(.no-axentix-init)',
+    selector: '.sidenav',
   },
 });
