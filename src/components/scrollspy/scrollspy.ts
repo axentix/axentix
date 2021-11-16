@@ -1,6 +1,5 @@
 import { AxentixComponent, Component } from '../../utils/component';
-import { registerComponent } from '../../utils/config';
-import { instances } from '../../utils/config';
+import { registerComponent, instances } from '../../utils/config';
 import { createEvent, getComponentOptions } from '../../utils/utilities';
 
 interface IScrollSpyOptions {
@@ -126,11 +125,10 @@ export class ScrollSpy extends AxentixComponent implements Component {
       const currTop = curr.getBoundingClientRect().top + top;
       const prevTop = prev.getBoundingClientRect().top + top;
 
-      return currTop > top + this.options.offset
-        ? prev
-        : Math.abs(currTop - top) < Math.abs(prevTop - top)
-        ? curr
-        : prev;
+      if (currTop > top + this.options.offset) return prev;
+      else if (Math.abs(currTop - top) < Math.abs(prevTop - top)) return curr;
+
+      return prev;
     });
   }
 

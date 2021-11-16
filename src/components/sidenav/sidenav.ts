@@ -1,6 +1,5 @@
-import { registerComponent } from '../../utils/config';
+import { registerComponent, instances } from '../../utils/config';
 import { AxentixComponent, Component } from '../../utils/component';
-import { instances } from '../../utils/config';
 import {
   createEvent,
   createOverlay,

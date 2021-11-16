@@ -1,6 +1,5 @@
 import { AxentixComponent, Component } from '../../utils/component';
-import { getComponentClass, registerComponent, getCssVar } from '../../utils/config';
-import { instances } from '../../utils/config';
+import { getComponentClass, registerComponent, getCssVar, instances } from '../../utils/config';
 import { createEvent, getComponentOptions, wrap } from '../../utils/utilities';
 import { Caroulix, ICaroulixOptions } from '../caroulix/caroulix';
 

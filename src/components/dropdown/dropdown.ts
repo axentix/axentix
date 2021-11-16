@@ -1,6 +1,5 @@
 import { AxentixComponent, Component } from '../../utils/component';
-import { registerComponent } from '../../utils/config';
-import { instances } from '../../utils/config';
+import { registerComponent, instances } from '../../utils/config';
 import { createEvent, getComponentOptions, getInstanceByType } from '../../utils/utilities';
 
 interface IDropdownOptions {
