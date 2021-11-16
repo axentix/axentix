@@ -88,7 +88,7 @@ export class Dropdown extends AxentixComponent implements Component {
     const animationList = ['none', 'fade'];
     // @ts-ignore
     this.options.animationType = this.options.animationType.toLowerCase();
-    animationList.includes(this.options.animationType) ? '' : (this.options.animationType = 'none');
+    if (!animationList.includes(this.options.animationType)) this.options.animationType = 'none';
 
     if (this.options.animationType !== 'none' && !this.options.hover) {
       if (this.options.hover) {
@@ -115,7 +115,7 @@ export class Dropdown extends AxentixComponent implements Component {
   }
 
   #autoClose() {
-    getInstanceByType('Dropdown').map((dropdown) => {
+    getInstanceByType('Dropdown').forEach((dropdown) => {
       if (dropdown.el.id !== this.el.id) dropdown.close();
     });
   }
