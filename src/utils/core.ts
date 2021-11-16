@@ -21,9 +21,9 @@ export class Axentix {
       const ids = this.#detectIds(componentList[this.component]);
       this.#instanciate(ids, this.component);
     } else if (this.isAll) {
-      Object.keys(componentList).map((component) => {
-        let ids = this.#detectIds(componentList[component]);
-        ids.length > 0 ? this.#instanciate(ids, component) : '';
+      Object.keys(componentList).forEach((component) => {
+        const ids = this.#detectIds(componentList[component]);
+        if (ids.length > 0) this.#instanciate(ids, component);
       });
     }
   }
@@ -34,8 +34,8 @@ export class Axentix {
 
   #instanciate(ids: Array<string>, component: string) {
     ids.forEach((id) => {
-      let constructor = getComponentClass(component);
-      let args = [id, this.options];
+      const constructor = getComponentClass(component);
+      const args = [id, this.options];
 
       try {
         new constructor(...args);

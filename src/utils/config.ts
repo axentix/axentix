@@ -33,10 +33,7 @@ export const getDataElements = () => {
   const dataComponents = config.components.filter((component) => component.dataDetection);
   const dataPlugins = config.plugins.filter((plugin) => plugin.dataDetection);
 
-  return [...dataComponents, ...dataPlugins].reduce((acc, el) => {
-    acc.push(el.name);
-    return acc;
-  }, []);
+  return [...dataComponents, ...dataPlugins].map((el) => el.name);
 };
 
 export const getAutoInitElements = () => {
@@ -78,7 +75,7 @@ export const exportToWindow = () => {
 
   // @ts-ignore
   if (!window.Axentix) window.Axentix = {};
-  [...config.components, ...config.plugins].map((el) => {
+  [...config.components, ...config.plugins].forEach((el) => {
     // @ts-ignore
     window.Axentix[el.name] = el.class;
   });

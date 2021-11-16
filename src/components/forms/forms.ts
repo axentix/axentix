@@ -48,7 +48,7 @@ const detectInput = (input: any) => {
     input.firstInit = false;
     input.isInit = true;
   } else {
-    isDisabled ? '' : updateInput(input, isActive, hasContent, isFocused, formField);
+    if (!isDisabled) updateInput(input, isActive, hasContent, isFocused, formField);
   }
 };
 
@@ -64,13 +64,13 @@ const updateInput = (input: any, isActive: boolean, hasContent: boolean, isFocus
     formField.classList.remove('active');
   }
 
-  isTextArea ? '' : setFormPosition(input, formField);
+  if (!isTextArea) setFormPosition(input, formField);
 
-  isFocused && !isTextArea ? formField.classList.add('is-focused') : formField.classList.remove('is-focused');
+  if (isFocused && !isTextArea) formField.classList.add('is-focused');
+  else formField.classList.remove('is-focused');
 
-  isFocused && isTextArea
-    ? formField.classList.add('is-textarea-focused')
-    : formField.classList.remove('is-textarea-focused');
+  if (isFocused && isTextArea) formField.classList.add('is-textarea-focused');
+  else formField.classList.remove('is-textarea-focused');
 };
 
 /**
@@ -116,9 +116,8 @@ const handleListeners = (inputs: NodeListOf<Element>, e: Event) => {
  * Handle form reset event
  */
 const handleResetEvent = (inputs: NodeListOf<Element>, e: any) => {
-  if (e.target.tagName === 'FORM' && e.target.classList.contains('form-material')) {
+  if (e.target.tagName === 'FORM' && e.target.classList.contains('form-material'))
     delayDetectionAllInputs(inputs);
-  }
 };
 
 /**
@@ -146,10 +145,7 @@ const handleFileInput = (input: HTMLInputElement, filePath: HTMLElement) => {
   const files = input.files;
   if (files.length > 1) {
     filePath.innerHTML = Array.from(files)
-      .reduce((acc, file) => {
-        acc.push(file.name);
-        return acc;
-      }, [])
+      .map((file) => file.name)
       .join(', ');
   } else if (files[0]) {
     filePath.innerHTML = files[0].name;
@@ -157,9 +153,7 @@ const handleFileInput = (input: HTMLInputElement, filePath: HTMLElement) => {
 };
 
 const setupFormFile = (element) => {
-  if (element.isInit) {
-    return;
-  }
+  if (element.isInit) return;
 
   element.isInit = true;
   const input = element.querySelector('input[type="file"]');
@@ -171,7 +165,7 @@ const setupFormFile = (element) => {
 const updateInputsFile = () => {
   const elements = Array.from(document.querySelectorAll('.form-file'));
   try {
-    elements.map(setupFormFile);
+    elements.forEach(setupFormFile);
   } catch (error) {
     console.error('[Axentix] Form file error', error);
   }
@@ -185,8 +179,8 @@ export const updateInputs = (
 ) => {
   const { setupInputs, detectInputs } = Array.from(inputElements).reduce(
     (acc, el: any) => {
-      if (el.isInit) acc.setupInputs.push(el);
-      else acc.detectInputs.push(el);
+      if (el.isInit) acc.detectInputs.push(el);
+      else acc.setupInputs.push(el);
 
       return acc;
     },
