@@ -19,9 +19,17 @@ export interface Component {
 export class AxentixComponent {
   el: HTMLElement;
 
-  removeListeners() {}
-  setupListeners() {}
-  setup() {}
+  removeListeners() {
+    // Define this method for sync, reset and destroy method
+  }
+
+  setupListeners() {
+    // Define this method for sync, reset and destroy method
+  }
+
+  setup() {
+    // Define this method for sync, reset and destroy method
+  }
 
   preventDbInstance(element: string) {
     if (element && getInstance(element)) throw new Error(`Instance already exist on ${element}`);

@@ -18,14 +18,13 @@ const getOptions = (obj: any, component: string, element: HTMLElement, baseName 
     if (typeof obj[name] === 'object' && obj[name] !== null) {
       const tmpOptName = name[0].toUpperCase() + name.slice(1).toLowerCase();
 
-      getDataElements().includes(tmpOptName) && component !== 'Collapsible' && tmpOptName !== 'Sidenav'
-        ? (obj[name] = getComponentClass(tmpOptName).getDefaultOptions())
-        : '';
+      if (getDataElements().includes(tmpOptName) && component !== 'Collapsible' && tmpOptName !== 'Sidenav')
+        obj[name] = getComponentClass(tmpOptName).getDefaultOptions();
 
       const fmtName = baseName ? baseName + '-' + name : name;
       const keys = getOptions(obj[name], component, element, fmtName);
 
-      Object.keys(keys).length === 0 && obj.constructor === Object ? '' : (acc[name] = keys);
+      if (!(Object.keys(keys).length === 0 && obj.constructor === Object)) acc[name] = keys;
     } else if (obj[name] !== null) {
       const dataAttribute = 'data-' + component.toLowerCase() + '-' + getName(name, baseName);
 
@@ -85,6 +84,6 @@ const setupAll = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.documentElement.dataset.axentix ? setupAll() : '';
+  if (document.documentElement.dataset.axentix) setupAll();
   setup();
 });

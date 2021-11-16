@@ -4,9 +4,7 @@ import { formatOptions } from './data';
 export const extend = (...args: any[]) => {
   return args.reduce((acc, obj) => {
     for (let key in obj) {
-      typeof obj[key] === 'object' && obj[key] !== null
-        ? (acc[key] = extend(acc[key], obj[key]))
-        : (acc[key] = obj[key]);
+      acc[key] = typeof obj[key] === 'object' && obj[key] !== null ? extend(acc[key], obj[key]) : obj[key];
     }
 
     return acc;
