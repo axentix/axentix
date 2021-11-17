@@ -1,3 +1,12 @@
+# 1.3.4 - 2021-11-17
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Sidenav resize event handler
+  - Update dependencies
+- BUGFIXES
+
 # 1.3.3 - 2021-08-17
 
 - ADDED
