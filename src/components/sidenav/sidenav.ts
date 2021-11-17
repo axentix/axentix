@@ -34,6 +34,7 @@ export class Sidenav extends AxentixComponent implements Component {
   #overlayElement: HTMLElement;
   #listenerRef: any;
   #windowResizeRef: any;
+  #windowWidth: number;
 
   constructor(element: string, options?: ISidenavOptions, isLoadedWithData?: boolean) {
     super();
@@ -57,6 +58,7 @@ export class Sidenav extends AxentixComponent implements Component {
     this.#sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
     this.#isActive = false;
     this.#isAnimated = false;
+    this.#windowWidth = window.innerWidth;
     this.#isFixed = this.el.classList.contains('sidenav-fixed');
 
     const sidenavFixed = getInstanceByType('Sidenav').find((sidenav) => sidenav.#isFixed);
@@ -86,7 +88,7 @@ export class Sidenav extends AxentixComponent implements Component {
     this.#sidenavTriggers.forEach((trigger) => {
       if (trigger.dataset.target === this.el.id) trigger.addEventListener('click', this.#listenerRef);
     });
-    this.#windowResizeRef = this.close.bind(this);
+    this.#windowResizeRef = this.#resizeHandler.bind(this);
     window.addEventListener('resize', this.#windowResizeRef);
   }
 
@@ -107,6 +109,14 @@ export class Sidenav extends AxentixComponent implements Component {
 
     const index = instances.findIndex((ins) => ins.instance.el.id === this.el.id);
     instances.splice(index, 1);
+  }
+
+  #resizeHandler(e: Event) {
+    const target = e.target as Window;
+    const width = target.innerWidth;
+
+    if (this.#windowWidth !== width) this.close();
+    this.#windowWidth = width;
   }
 
   #cleanLayout() {
