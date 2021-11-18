@@ -1,10 +1,10 @@
 let i = 0;
 const uid = () => (++i).toString();
-const isMobile: Boolean = 'ontouchstart' in document.documentElement;
+const isMobile: boolean = 'ontouchstart' in document.documentElement;
 const targetMap = {};
 const itemMap = {};
 
-interface wavesParams {
+interface WavesParams {
   id: string,
   size: number,
   x: number,
@@ -37,7 +37,7 @@ const createWaveItem = (target: HTMLElement) => {
   return el;
 };
 
-const createWaves = ({id, size, x, y, container, item, target}: wavesParams, color: string) => {
+const createWaves = ({id, size, x, y, container, item, target}: WavesParams, color: string) => {
   const waves = document.createElement('span');
 
   let style = `height:${size}px;
@@ -64,7 +64,7 @@ const createWaves = ({id, size, x, y, container, item, target}: wavesParams, col
   return waves;
 };
 
-const getWavesParams = (clientX: number, clientY: number, id: string, target: HTMLElement): wavesParams => {
+const getWavesParams = (clientX: number, clientY: number, id: string, target: HTMLElement): WavesParams => {
   const {top, left, width, height} = target.getBoundingClientRect();
   const x: number = clientX - left;
   const y: number = clientY - top;
@@ -121,7 +121,7 @@ const handler = (e) => {
     clientY = click.clientY;
   }
 
-  const params: wavesParams = getWavesParams(clientX, clientY, id, target);
+  const params: WavesParams = getWavesParams(clientX, clientY, id, target);
   const waves = createWaves(params, color);
   const { container, item } = params;
   

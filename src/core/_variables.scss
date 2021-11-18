@@ -479,3 +479,4 @@ $font-sizes: (
   20 Waves
 **/
 $waves-color: rgba(#fff, 0.1);
+$generated-css-vars: map.set($generated-css-vars, 'waves-color', $waves-color);

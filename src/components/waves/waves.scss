@@ -36,7 +36,7 @@
 .#{$prefix}-waves-item {
   position: absolute;
   display: block;
-  background-color: $waves-color;
+  background-color: var(getCssVar(waves-color));
   animation: waves 0.78s ease-out forwards;
   border-radius: 50%;
   pointer-events: none;
