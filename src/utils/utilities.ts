@@ -53,6 +53,8 @@ export const getInstance = (element) => {
   return false;
 };
 
+export const getUid = () => Math.random().toString().split('.')[1];
+
 export const getAllInstances = () => instances;
 
 export const sync = (element) => getInstance(element).sync();
