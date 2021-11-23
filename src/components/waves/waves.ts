@@ -1,8 +1,8 @@
 import { getPointerType, getUid } from '../../utils/utilities';
 import { config, getCssVar } from '../../utils/config';
 
+let pointerType = '';
 const prefix = config.prefix;
-const pointerType = getPointerType();
 const targetMap = {};
 const itemMap = {};
 
@@ -72,8 +72,8 @@ const createWaves = ({ id, size, x, y, container, item, target }: WavesParams, c
 
 const getWavesParams = (clientX: number, clientY: number, id: string, target: HTMLElement): WavesParams => {
   const { top, left, width, height } = target.getBoundingClientRect();
-  const x: number = clientX - left;
-  const y: number = clientY - top;
+  const x = clientX - left;
+  const y = clientY - top;
   let item: any = itemMap[id];
 
   if (!item) item = createWaveItem(target);
@@ -121,7 +121,7 @@ const handler = (e) => {
   const color = target.getAttribute(`${prefix}-waves`);
 
   let { clientX, clientY } = e;
-  if (pointerType == 'touch') {
+  if (pointerType === 'touch') {
     const click = e.touches[0];
     clientX = click.clientX;
     clientY = click.clientY;
@@ -136,6 +136,7 @@ const handler = (e) => {
 };
 
 export const Waves = () => {
+  pointerType = getPointerType();
   const eventType = `${pointerType}${pointerType === 'touch' ? 'start' : 'down'}`;
   window.addEventListener(eventType, handler);
 };
