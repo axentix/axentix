@@ -30,11 +30,7 @@ Find the LTS version on the <a href="https://github.com/axentix/axentix/tree/dev
   <a href="https://sonarcloud.io/dashboard?id=axentix_axentix">
     <img src="https://sonarcloud.io/api/project_badges/measure?project=axentix_axentix&metric=alert_status">
   </a>
-  <img src="https://img.shields.io/david/axentix/axentix" alt="Dependencies" />
-  <img src="https://img.shields.io/david/dev/axentix/axentix" alt="Dev Dependencies" />
-  <a href="https://packagephobia.com/result?p=axentix">
-    <img src="https://packagephobia.com/badge?p=axentix" alt="install size" />
-  </a>
+  <img alt="npm bundle size (version)" src="https://img.shields.io/bundlephobia/minzip/axentix/next">
   <a href="https://snyk.io/test/github/axentix/axentix?targetFile=package.json">
     <img src="https://snyk.io/test/github/axentix/axentix/badge.svg?targetFile=package.json" alt="Known Vulnerabilities" />
   </a>
