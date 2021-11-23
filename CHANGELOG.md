@@ -1,10 +1,15 @@
 # 2.0.0-beta.2 - Under development
 
 - ADDED
+  - Waves (also known as ripple effect)
   - `--ax-form-material-active-border-style` && `--ax-form-material-active-border-width` css variables
+  - SonarCloud to scan code & help to follow best practices
 - REMOVED
   - `--ax-form-material-active-border` css variable
 - IMPROVED
+  - Typescript refactor : the whole codebase has been refactored for maintainability & IDE autocomplete feature
+  - Code optimization
+  - Sidenav resize event handler
   - Update dependencies
 - BUGFIXES
   - Material forms css variables unable user to personalize material color per element
