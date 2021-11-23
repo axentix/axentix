@@ -100,9 +100,10 @@ export class Caroulix extends AxentixComponent implements Component {
 
     this.#isPointer = isPointerEnabled();
     this.#isTouch = isTouchEnabled();
-    this.#pointerType = 'touch';
-    if (this.#isPointer) this.#pointerType = 'pointer';
-    else this.#pointerType = 'mouse';
+
+    this.#pointerType = 'mouse';
+    if (this.#isTouch) this.#pointerType = 'touch';
+    else if (this.#isPointer) this.#pointerType = 'pointer';
 
     this.#children = this.#getChildren();
     if (this.options.indicators.enabled) this.#enableIndicators();
@@ -139,7 +140,7 @@ export class Caroulix extends AxentixComponent implements Component {
       this.#touchReleaseRef = this.#handleDragRelease.bind(this);
 
       this.el.addEventListener(
-        `${this.#pointerType}${this.#isPointer ? 'down' : 'start'}`,
+        `${this.#pointerType}${this.#isTouch ? 'start' : 'down'}`,
         this.#touchStartRef
       );
       this.el.addEventListener(`${this.#pointerType}move`, this.#touchMoveRef);
