@@ -1,0 +1,44 @@
+@keyframes waves {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+
+  70% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+[#{$prefix}-waves] {
+  cursor: pointer;
+  user-select: none;
+}
+
+.#{$prefix}-waves-box {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.#{$prefix}-waves-item-inner {
+  position: absolute;
+  overflow: hidden;
+  display: block;
+  pointer-events: none;
+}
+
+.#{$prefix}-waves-item {
+  position: absolute;
+  display: block;
+  background-color: var(getCssVar(waves-color));
+  animation: waves 0.78s ease-out forwards;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
