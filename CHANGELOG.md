@@ -12,7 +12,7 @@
   - Sidenav resize event handler
   - Update dependencies
 - BUGFIXES
-  - Material forms css variables unable user to personalize material color per element
+  - Material forms css variables weren't personalizable per element but globally
 
 # 2.0.0-beta.1 - 2021-09-24
 
