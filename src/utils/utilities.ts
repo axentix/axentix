@@ -42,6 +42,12 @@ export const isTouchEnabled = () =>
 export const isPointerEnabled = () =>
   !!window.PointerEvent && 'maxTouchPoints' in window.navigator && window.navigator.maxTouchPoints >= 0;
 
+export const getPointerType = () => {
+  if (isTouchEnabled()) return 'touch';
+  else if (isPointerEnabled()) return 'pointer';
+  return 'mouse';
+};
+
 export const getInstanceByType = (type) =>
   instances.filter((ins) => ins.type === type).map((ins) => ins.instance);
 
