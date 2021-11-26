@@ -1,4 +1,4 @@
-# 2.0.0-beta.2 - 2021-11-26
+# 2.0.0-beta.3 - 2021-11-26
 
 - ADDED
   - Waves (also known as ripple effect)
