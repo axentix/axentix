@@ -109,7 +109,7 @@ export class Collapsible extends AxentixComponent implements Component {
   }
 
   #detectChild() {
-    this.#childIsActive = this.el.querySelector('active') ? true : false;
+    this.#childIsActive = this.el.querySelector('.active') ? true : false;
   }
 
   #addActiveInSidenav() {
