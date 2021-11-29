@@ -17,7 +17,7 @@
 # 2.0.0-beta.1 - 2021-09-24
 
 Axentix v2 is here !  
-This version is the first pre-release with a lot changes.
+This version is the first pre-release with a lot of changes.
 
 If you use Axentix v1, please follow this [migration guide](https://useaxentix.com/2.0.x/docs/migration/).
 
@@ -25,7 +25,7 @@ Install v2 with `npm install axentix@next` command.
 
 - ADDED
   - With v2, we want Axentix to be even more customizable. So, we have added a lot of css variables.  
-    You can see them with components having a `styling` parts on docs. 
+    You can see them with components having a `styling` part on the docs. 
   - New CI/CD for Axentix repo. We have switched from Drone CI to Github Actions.
   - We have switched from Gulp to new Vite bundler. Our dependencies are much smaller.
   - You can now import each component independently using our `npm` way to download Axentix.
@@ -45,7 +45,7 @@ Install v2 with `npm install axentix@next` command.
   - Our code organization was totally refactored
 - BUGFIXES
 
-**Don't forget, many features will be released with future releases.**  
+**Don't forget, many features will come with future releases.**  
 
 # 1.x & 0.x Changelog
 
