@@ -1,3 +1,11 @@
+# 2.0.0-beta.4 - Under development
+
+- ADDED
+  - Autoprefix css generation updated
+- REMOVED
+- IMPROVED
+- BUGFIXES
+
 # 2.0.0-beta.3 - 2021-11-26
 
 - ADDED

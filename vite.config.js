@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import path from 'path';
 import mpa from 'vite-plugin-mpa';
+import autoprefixer from 'autoprefixer';
 
 const plugins =
   process.env.NODE_ENV === 'production'
@@ -23,6 +24,9 @@ export default defineConfig({
           @import 'src/core/variables';
         `,
       },
+    },
+    postcss: {
+      plugins: [autoprefixer],
     },
   },
   build: {
