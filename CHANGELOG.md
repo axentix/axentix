@@ -1,9 +1,11 @@
-# 2.0.0-beta.4 - Under development
+# 2.0.0-beta.4 - 2021-12-16
 
 - ADDED
   - Autoprefix css generation updated
 - REMOVED
 - IMPROVED
+  - Handle more than 3 modals
+  - Update dependencies
 - BUGFIXES
 
 # 2.0.0-beta.3 - 2021-11-26

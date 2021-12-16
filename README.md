@@ -14,7 +14,7 @@
 <h3 align="center">
 WARNING: This branch corresponds to Axentix v2 which is still under development.
 <br/>
-Find the LTS version on the <a href="https://github.com/axentix/axentix/tree/develop">v1 branch</a>.
+Find the LTS version on the <a href="https://github.com/axentix/axentix/tree/v1">v1 branch</a>.
 </h3>
 
 <br>

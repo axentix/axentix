@@ -85,7 +85,7 @@ export class Modal extends AxentixComponent implements Component {
   #setZIndex() {
     const totalModals = document.querySelectorAll('.modal.active').length + 1;
 
-    if (this.options.overlay) this.overlayElement.style.zIndex = String(800 + totalModals * 6);
+    if (this.options.overlay) this.overlayElement.style.zIndex = String(800 + totalModals * 10 - 2);
     this.el.style.zIndex = String(800 + totalModals * 10);
   }
 
