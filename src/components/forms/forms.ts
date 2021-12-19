@@ -105,7 +105,7 @@ const setFormPosition = (input: HTMLElement, formField: HTMLElement) => {
 };
 
 const validate = (input: HTMLInputElement) => {
-  if (input.hasAttribute(`data-${config.prefix}-form-validate`)) validateInput(input);
+  if (input.hasAttribute(`${config.prefix}-form-validate`)) validateInput(input);
 };
 
 /**
