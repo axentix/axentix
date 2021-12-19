@@ -1,4 +1,5 @@
-import { getCssVar } from '../../utils/config';
+import { getCssVar, config } from '../../utils/config';
+import { validateInput } from './form-validation';
 
 let isInit = true;
 
@@ -103,6 +104,10 @@ const setFormPosition = (input: HTMLElement, formField: HTMLElement) => {
   if (label) label.style.left = labelLeft + 'px';
 };
 
+const validate = (input: HTMLInputElement) => {
+  if (input.hasAttribute(`data-${config.prefix}-form-validate`)) validateInput(input);
+};
+
 /**
  * Handle listeners
  */
@@ -124,7 +129,11 @@ const handleResetEvent = (inputs: NodeListOf<Element>, e: any) => {
  * Setup forms fields listeners
  */
 const setupFormsListeners = (inputElements: any) => {
-  inputElements.forEach((input) => (input.firstInit = true));
+  inputElements.forEach((input) => {
+    input.firstInit = true;
+    input.validateRef = validate.bind(null, input);
+    input.addEventListener('input', input.validateRef);
+  });
   detectAllInputs(inputElements);
 
   const handleListenersRef = handleListeners.bind(null, inputElements);
