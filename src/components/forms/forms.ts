@@ -1,5 +1,5 @@
 import { getCssVar, config } from '../../utils/config';
-import { validateInput } from './form-validation';
+import { validateInput } from './forms-validation';
 
 let isInit = true;
 
@@ -168,7 +168,9 @@ const setupFormFile = (element) => {
   const input = element.querySelector('input[type="file"]');
   const filePath = element.querySelector('.form-file-path');
   input.handleRef = handleFileInput.bind(null, input, filePath);
+  input.validateRef = validate.bind(null, input);
   input.addEventListener('change', input.handleRef);
+  input.addEventListener('input', input.validateRef);
 };
 
 const updateInputsFile = () => {

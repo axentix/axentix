@@ -22,11 +22,47 @@
     }
   }
 
-  .form-helper {
+  [class*='form-helper'] {
     font-size: var(getCssVar(form-helper-size));
     color: #747474;
     margin-top: 0.5rem;
     display: block;
+  }
+
+  .form-helper-valid,
+  .form-helper-invalid {
+    display: none;
+  }
+
+  .form-helper-valid {
+    color: var(getCssVar(form-valid-color));
+  }
+
+  .form-helper-invalid {
+    color: var(getCssVar(form-invalid-color));
+  }
+
+  &.form-valid:not(.form-no-helper),
+  &.form-invalid {
+    .form-helper {
+      display: none;
+    }
+  }
+
+  &.form-valid {
+    .form-helper-valid {
+      display: block;
+    }
+  }
+
+  &.form-invalid {
+    .form-helper {
+      display: none;
+    }
+
+    .form-helper-invalid {
+      display: block;
+    }
   }
 }
 
