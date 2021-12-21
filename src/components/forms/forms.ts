@@ -104,8 +104,8 @@ const setFormPosition = (input: HTMLElement, formField: HTMLElement) => {
   if (label) label.style.left = labelLeft + 'px';
 };
 
-const validate = (input: HTMLInputElement) => {
-  if (input.hasAttribute(`${config.prefix}-form-validate`)) validateInput(input);
+const validate = (input: HTMLInputElement, e: Event) => {
+  if (input.hasAttribute(`${config.prefix}-form-validate`)) validateInput(input, e.type);
 };
 
 /**
@@ -133,6 +133,7 @@ const setupFormsListeners = (inputElements: any) => {
     input.firstInit = true;
     input.validateRef = validate.bind(null, input);
     input.addEventListener('input', input.validateRef);
+    input.addEventListener('change', input.validateRef);
   });
   detectAllInputs(inputElements);
 
@@ -171,6 +172,7 @@ const setupFormFile = (element) => {
   input.validateRef = validate.bind(null, input);
   input.addEventListener('change', input.handleRef);
   input.addEventListener('input', input.validateRef);
+  input.addEventListener('change', input.validateRef);
 };
 
 const updateInputsFile = () => {
