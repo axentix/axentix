@@ -20,7 +20,12 @@ const clearAdvancedMode = (formField: HTMLElement) => {
   if ((helper as any).axGenerated) helper.remove();
 };
 
-export const validateInput = (input: HTMLInputElement, evtType: string) => {
+const resetInputValidation = (formField: HTMLElement) => {
+  formField.classList.remove('form-valid', 'form-invalid', 'form-no-helper');
+  clearAdvancedMode(formField);
+};
+
+export const validateInput = (input: HTMLInputElement, eType: string): boolean => {
   const advancedMode = input.getAttribute(`${config.prefix}-form-validate`);
   let auto = false;
 
@@ -28,25 +33,35 @@ export const validateInput = (input: HTMLInputElement, evtType: string) => {
     const advSplit = advancedMode.toLowerCase().split(',');
     auto = advSplit.includes('auto');
 
-    if (advSplit.includes('lazy') && evtType === 'input') return;
+    if (advSplit.includes('lazy') && eType === 'input') return;
   }
 
   const isValid = checkBrowserValidity(input);
 
-  const formField = input.parentElement.classList.contains('form-group')
-    ? input.parentElement.parentElement
-    : input.parentElement;
+  const formField: HTMLElement = input.closest('.form-field');
 
-  formField.classList.remove('form-valid', 'form-invalid', 'form-no-helper');
+  resetInputValidation(formField);
 
   if (isValid !== true) {
     if (auto && typeof isValid === 'string') setAdvancedMode(formField, isValid);
     else if (!formField.querySelector('.form-helper-invalid')) formField.classList.add('form-no-helper');
-    return formField.classList.add('form-invalid');
+
+    formField.classList.add('form-invalid');
+    return false;
   }
 
-  if (auto) clearAdvancedMode(formField);
   formField.classList.add('form-valid');
 
   if (!formField.querySelector('.form-helper-valid')) formField.classList.add('form-no-helper');
+  return true;
+};
+
+export const validateAll = (form: HTMLFormElement, reset?: boolean): boolean => {
+  const inputs = form.querySelectorAll(`[${config.prefix}-form-validate]`);
+  if (reset) {
+    inputs.forEach((input) => resetInputValidation(input.closest('.form-field')));
+    return true;
+  }
+
+  return ![...inputs].some((input: HTMLInputElement) => !validateInput(input, 'change'));
 };

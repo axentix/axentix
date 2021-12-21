@@ -28,9 +28,7 @@ const delayDetectionAllInputs = (inputElements: NodeListOf<Element>) => {
  * Detect attribute & state of an input
  */
 const detectInput = (input: any) => {
-  const formField = input.parentElement.classList.contains('form-group')
-    ? input.parentElement.parentElement
-    : input.parentElement;
+  const formField = input.closest('.form-field');
 
   const isActive = formField.classList.contains('active');
   const hasContent =
