@@ -1,3 +1,12 @@
+# 2.0.0-beta.5 - Under development
+
+- ADDED
+  - Form validation
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+
 # 2.0.0-beta.4 - 2021-12-16
 
 - ADDED

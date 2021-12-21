@@ -1,4 +1,5 @@
-import { getCssVar } from '../../utils/config';
+import { getCssVar, config } from '../../utils/config';
+import { validateInput } from './forms-validation';
 
 let isInit = true;
 
@@ -27,9 +28,7 @@ const delayDetectionAllInputs = (inputElements: NodeListOf<Element>) => {
  * Detect attribute & state of an input
  */
 const detectInput = (input: any) => {
-  const formField = input.parentElement.classList.contains('form-group')
-    ? input.parentElement.parentElement
-    : input.parentElement;
+  const formField = input.closest('.form-field');
 
   const isActive = formField.classList.contains('active');
   const hasContent =
@@ -103,6 +102,10 @@ const setFormPosition = (input: HTMLElement, formField: HTMLElement) => {
   if (label) label.style.left = labelLeft + 'px';
 };
 
+const validate = (input: HTMLInputElement, e: Event) => {
+  if (input.hasAttribute(`${config.prefix}-form-validate`)) validateInput(input, e.type);
+};
+
 /**
  * Handle listeners
  */
@@ -124,7 +127,12 @@ const handleResetEvent = (inputs: NodeListOf<Element>, e: any) => {
  * Setup forms fields listeners
  */
 const setupFormsListeners = (inputElements: any) => {
-  inputElements.forEach((input) => (input.firstInit = true));
+  inputElements.forEach((input) => {
+    input.firstInit = true;
+    input.validateRef = validate.bind(null, input);
+    input.addEventListener('input', input.validateRef);
+    input.addEventListener('change', input.validateRef);
+  });
   detectAllInputs(inputElements);
 
   const handleListenersRef = handleListeners.bind(null, inputElements);
@@ -159,7 +167,10 @@ const setupFormFile = (element) => {
   const input = element.querySelector('input[type="file"]');
   const filePath = element.querySelector('.form-file-path');
   input.handleRef = handleFileInput.bind(null, input, filePath);
+  input.validateRef = validate.bind(null, input);
   input.addEventListener('change', input.handleRef);
+  input.addEventListener('input', input.validateRef);
+  input.addEventListener('change', input.validateRef);
 };
 
 const updateInputsFile = () => {

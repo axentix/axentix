@@ -246,12 +246,18 @@ $generated-css-vars: map.set($generated-css-vars, 'toaster-z-index', $toaster-z-
   18.1 Default
 **/
 $form-helper-size: 0.75rem !default;
+$form-helper-color: #747474 !default;
+$form-valid-color: getColor('success') !default;
+$form-invalid-color: getColor('error') !default;
 $form-control-border: 1px solid #bbb8b8 !default;
 $form-disabled-bg-color: #c8c8c8 !default;
 $form-disabled-color: #787878 !default;
 $form-check-disabled-color: #afafaf !default;
 
 $generated-css-vars: map.set($generated-css-vars, 'form-helper-size', $form-helper-size);
+$generated-css-vars: map.set($generated-css-vars, 'form-helper-color', $form-helper-color);
+$generated-css-vars: map.set($generated-css-vars, 'form-valid-color', $form-valid-color);
+$generated-css-vars: map.set($generated-css-vars, 'form-invalid-color', $form-invalid-color);
 $generated-css-vars: map.set($generated-css-vars, 'form-control-border', $form-control-border);
 $generated-css-vars: map.set($generated-css-vars, 'form-disabled-bg-color', $form-disabled-bg-color);
 $generated-css-vars: map.set($generated-css-vars, 'form-disabled-color', $form-disabled-color);
