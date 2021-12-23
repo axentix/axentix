@@ -2,6 +2,7 @@
 
 - ADDED
   - Form validation
+  - `.glassmorphism` & `.claymorphism` classes to follow the new trends
 - REMOVED
 - IMPROVED
   - Update dependencies

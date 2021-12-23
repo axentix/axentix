@@ -22,8 +22,10 @@
   15. Tab
   16. Table
   17. Toast
-  18. Forms
-  19. Utilities
+  18. Trends
+  19. Forms
+  20. Utilities
+  21. Waves
   #########################
 **/
 
@@ -236,14 +238,42 @@ $toaster-z-index: 1000 !default;
 $generated-css-vars: map.set($generated-css-vars, 'toaster-z-index', $toaster-z-index);
 
 /**
-  18. Forms
-  18.1 Default
-  18.2 Material Forms
-  18.3 Switch
+  18. Trends
+  18.1 Glassmorphism
+  18.2 Claymorphism
 **/
 
 /**
-  18.1 Default
+  18.1 Glassmorphism
+**/
+$glass-background: rgba(255, 255, 255, 0.25) !default;
+$glass-blur: 5px !default;
+$generated-css-vars: map.set($generated-css-vars, 'glass-background', $glass-background);
+$generated-css-vars: map.set($generated-css-vars, 'glass-blur', $glass-blur);
+
+/**
+  18.2 Claymorphism
+**/
+$clay-background: rgba(255, 255, 255, 1) !default;
+$clay-blur: 5px !default;
+$clay-shadow-color: 145, 192, 255 !default;
+$clay-shadow: 35px 35px 68px 0px rgba(var(getCssVar(clay-shadow-color)), 0.5),
+  inset -8px -8px 16px 0px rgba(var(getCssVar(clay-shadow-color)), 0.6),
+  inset 0px 11px 28px 0px rgb(255, 255, 255) !default;
+$generated-css-vars: map.set($generated-css-vars, 'clay-background', $clay-background);
+$generated-css-vars: map.set($generated-css-vars, 'clay-blur', $clay-blur);
+$generated-css-vars: map.set($generated-css-vars, 'clay-shadow-color', $clay-shadow-color);
+$generated-css-vars: map.set($generated-css-vars, 'clay-shadow', $clay-shadow);
+
+/**
+  19. Forms
+  19.1 Default
+  19.2 Material Forms
+  19.3 Switch
+**/
+
+/**
+  19.1 Default
 **/
 $form-helper-size: 0.75rem !default;
 $form-helper-color: #747474 !default;
@@ -264,7 +294,7 @@ $generated-css-vars: map.set($generated-css-vars, 'form-disabled-color', $form-d
 $generated-css-vars: map.set($generated-css-vars, 'form-check-disabled-color', $form-check-disabled-color);
 
 /**
-  18.2 Material Forms
+  19.2 Material Forms
 **/
 $form-material-color: getColor('viride', 'dark', 1) !default;
 $form-material-transition-duration: 0.3s !default;
@@ -299,7 +329,7 @@ $generated-css-vars: map.set(
 );
 
 /**
-  18.3 Switch
+  19.3 Switch
 **/
 $form-switch-color: #e2e2e2 !default;
 $form-switch-active-color: getColor('viride', 'dark', 1) !default;
@@ -316,31 +346,31 @@ $generated-css-vars: map.set(
 );
 
 /**
-  19. Utilities
-  19.1 Cursors
-  19.2 Overflow
-  19.3 Shadows
-  19.4 Hoverable
-  19.5 Rounded
-  19.6 Margins & paddings
-  19.7 Line height
-  19.8 Display
-  19.9 Borders
-  19.10 Typography
+  20. Utilities
+  20.1 Cursors
+  20.2 Overflow
+  20.3 Shadows
+  20.4 Hoverable
+  20.5 Rounded
+  20.6 Margins & paddings
+  20.7 Line height
+  20.8 Display
+  20.9 Borders
+  20.10 Typography
 **/
 
 /**
-  19.1 Cursors
+  20.1 Cursors
 **/
 $cursors: 'default', 'pointer', 'not-allowed', 'grab', 'wait', 'zoom-in', 'zoom-out', 'none' !default;
 
 /**
-  19.2 Overflow
+  20.2 Overflow
 **/
 $overflows: 'visible', 'auto', 'hidden', 'scroll', 'initial', 'inherit' !default;
 
 /**
-  19.3 Shadows
+  20.3 Shadows
 **/
 $light-shadows: (
   '1': '0 6px 10px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
@@ -374,7 +404,7 @@ $text-shadows: (
 ) !default;
 
 /**
-  19.4 Hoverable
+  20.4 Hoverable
 **/
 $light-hoverable-delay: 0.3s !default;
 $hoverable-delay: 0.2s !default;
@@ -396,7 +426,7 @@ $hoverable: (
 ) !default;
 
 /**
-  19.5 Rounded
+  20.5 Rounded
 **/
 $rounded: (
   '0': '0',
@@ -408,7 +438,7 @@ $rounded: (
 ) !default;
 
 /**
-  19.6 Margins & paddings
+  20.6 Margins & paddings
 **/
 $mp-base-space: 1rem !default;
 $mp-spaces: (
@@ -422,7 +452,7 @@ $mp-spaces: (
 ) !default;
 
 /**
-  19.7 Line height
+  20.7 Line height
 **/
 $lh-relative: (
   '1': 1,
@@ -442,12 +472,12 @@ $lh-rem: (
 ) !default;
 
 /**
-  19.8 Display
+  20.8 Display
 **/
 $displays: 'block', 'flex', 'grid', 'table', 'inline', 'inline-block', 'inline-flex', 'inline-table' !default;
 
 /**
-  19.9 Borders
+  20.9 Borders
 **/
 $bd-base-width: 1px !default;
 $bd-width: (
@@ -463,7 +493,7 @@ $bd-style: 'dashed', 'dotted', 'double', 'groove', 'hidden', 'none', 'inset', 'o
   'revert' !default;
 
 /**
-  19.10 Typography
+  20.10 Typography
 **/
 $font-base-size: 1rem !default;
 $font-sizes: (
@@ -482,7 +512,7 @@ $font-sizes: (
 ) !default;
 
 /**
-  20 Waves
+  21 Waves
 **/
 $waves-color: rgba(#fff, 0.1);
 $generated-css-vars: map.set($generated-css-vars, 'waves-color', $waves-color);
