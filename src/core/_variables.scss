@@ -239,11 +239,31 @@ $generated-css-vars: map.set($generated-css-vars, 'toaster-z-index', $toaster-z-
 
 /**
   18. Trends
+  18.1 Glassmorphism
+  18.2 Claymorphism
+**/
+
+/**
+  18.1 Glassmorphism
 **/
 $glass-background: rgba(255, 255, 255, 0.25) !default;
 $glass-blur: 5px !default;
 $generated-css-vars: map.set($generated-css-vars, 'glass-background', $glass-background);
 $generated-css-vars: map.set($generated-css-vars, 'glass-blur', $glass-blur);
+
+/**
+  18.2 Claymorphism
+**/
+$clay-background: rgba(255, 255, 255, 1) !default;
+$clay-blur: 5px !default;
+$clay-shadow-color: 145, 192, 255 !default;
+$clay-shadow: 35px 35px 68px 0px rgba(var(getCssVar(clay-shadow-color)), 0.5),
+  inset -8px -8px 16px 0px rgba(var(getCssVar(clay-shadow-color)), 0.6),
+  inset 0px 11px 28px 0px rgb(255, 255, 255) !default;
+$generated-css-vars: map.set($generated-css-vars, 'clay-background', $clay-background);
+$generated-css-vars: map.set($generated-css-vars, 'clay-blur', $clay-blur);
+$generated-css-vars: map.set($generated-css-vars, 'clay-shadow-color', $clay-shadow-color);
+$generated-css-vars: map.set($generated-css-vars, 'clay-shadow', $clay-shadow);
 
 /**
   19. Forms

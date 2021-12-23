@@ -1,8 +1,16 @@
-// Glassmorphism
 .glassmorphism {
   background-color: var(getCssVar(glass-background));
   backdrop-filter: blur(var(getCssVar(glass-blur)));
   border-radius: 16px;
 }
 
-// Claymorphism
+.claymorphism {
+  background-color: var(getCssVar(clay-background));
+  backdrop-filter: blur(var(getCssVar(clay-blur)));
+  border-radius: 24px;
+  box-shadow: var(getCssVar(clay-shadow));
+
+  &.glassmorphism {
+    background-color: var(getCssVar(glass-background));
+  }
+}
