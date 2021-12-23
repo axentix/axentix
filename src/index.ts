@@ -13,6 +13,7 @@ import './components/pagination';
 import './components/table';
 import './components/loading';
 import './components/utilities';
+import './components/trends';
 
 // JS Components
 export { default as Caroulix } from './components/caroulix/index';

@@ -1,0 +1,8 @@
+// Glassmorphism
+.glassmorphism {
+  background-color: var(getCssVar(glass-background));
+  backdrop-filter: blur(var(getCssVar(glass-blur)));
+  border-radius: 16px;
+}
+
+// Claymorphism
