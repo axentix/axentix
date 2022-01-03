@@ -5,6 +5,7 @@
   - `.glassmorphism` & `.claymorphism` classes to follow the new trends
 - REMOVED
 - IMPROVED
+  - `d.ts` files generation 
   - Update dependencies
 - BUGFIXES
 
