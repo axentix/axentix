@@ -1,4 +1,4 @@
-# 2.0.0-beta.5 - Under development
+# 2.0.0-beta.5 - 2022-01-04
 
 - ADDED
   - Form validation
