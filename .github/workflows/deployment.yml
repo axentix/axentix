@@ -33,7 +33,7 @@ jobs:
           access: "public"
           tag: "next"
 
-      - uses: papeloto/action-zip@v1
+      - uses: papeloto/action-zip@master
         with:
           files: dist/ LICENSE CHANGELOG.md README.md
           dest: axentix-${{ steps.get_version.outputs.VERSION }}.zip
