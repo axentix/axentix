@@ -1,3 +1,11 @@
+# 2.0.0-beta.6 - Under development
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Tooltip timeouts handling
+- BUGFIXES
+
 # 2.0.0-beta.5 - 2022-01-04
 
 - ADDED
