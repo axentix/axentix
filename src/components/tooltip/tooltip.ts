@@ -30,6 +30,7 @@ export class Tooltip extends AxentixComponent implements Component {
   #listenerEnterRef: any;
   #listenerLeaveRef: any;
   #listenerResizeRef: any;
+  #timeoutRef: any;
   #elRect: DOMRect;
   #tooltipRect: DOMRect;
 
@@ -73,8 +74,9 @@ export class Tooltip extends AxentixComponent implements Component {
     if (!this.#positionList.includes(this.options.position)) this.options.position = 'top';
 
     this.setupListeners();
-
     this.updatePosition();
+
+    this.#tooltip.style.display = 'none';
   }
 
   setupListeners() {
@@ -106,9 +108,9 @@ export class Tooltip extends AxentixComponent implements Component {
   }
 
   #setBasicPosition() {
-    const isHorizontalSide = this.options.position == 'top' || this.options.position == 'bottom';
+    const isVerticalSide = this.options.position == 'top' || this.options.position == 'bottom';
 
-    if (isHorizontalSide) {
+    if (isVerticalSide) {
       const top = this.options.position === 'top' ? this.#elRect.top : this.#elRect.top + this.#elRect.height;
       this.#tooltip.style.top = top + 'px';
     } else if (this.options.position == 'right') {
@@ -164,9 +166,11 @@ export class Tooltip extends AxentixComponent implements Component {
 
   /** Show tooltip */
   show() {
+    this.#tooltip.style.display = 'block';
     this.updatePosition();
+    clearTimeout(this.#timeoutRef);
 
-    setTimeout(() => {
+    this.#timeoutRef = setTimeout(() => {
       createEvent(this.el, 'tooltip.show');
 
       const negativity = this.options.position == 'top' || this.options.position == 'left' ? '-' : '';
@@ -181,9 +185,14 @@ export class Tooltip extends AxentixComponent implements Component {
   /** Hide tooltip */
   hide() {
     createEvent(this.el, 'tooltip.hide');
+    clearTimeout(this.#timeoutRef);
 
     this.#tooltip.style.transform = 'translate(0)';
     this.#tooltip.style.opacity = '0';
+
+    this.#timeoutRef = setTimeout(() => {
+      this.#tooltip.style.display = 'none';
+    }, this.options.animationDuration);
   }
 
   /** Change current options */
