@@ -1,3 +1,11 @@
+# 1.3.5 - Under development
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Tooltip timeouts handling
+- BUGFIXES
+
 # 1.3.4 - 2021-11-17
 
 - ADDED

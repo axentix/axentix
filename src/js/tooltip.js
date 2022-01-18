@@ -65,8 +65,9 @@
       this.positionList.includes(this.options.position) ? '' : (this.options.position = 'top');
 
       this._setupListeners();
-
       this.updatePosition();
+
+      this.tooltip.style.display = 'none';
     }
 
     /**
@@ -182,9 +183,11 @@
      * Show tooltip
      */
     show() {
+      this.tooltip.style.display = 'block';
       this.updatePosition();
+      clearTimeout(this.timeoutRef);
 
-      setTimeout(() => {
+      this.timeoutRef = setTimeout(() => {
         Axentix.createEvent(this.el, 'tooltip.show');
 
         this.options.position == 'top'
@@ -206,9 +209,14 @@
      */
     hide() {
       Axentix.createEvent(this.el, 'tooltip.hide');
+      clearTimeout(this.timeoutRef);
 
       this.tooltip.style.transform = 'translate(0)';
       this.tooltip.style.opacity = 0;
+
+      this.timeoutRef = setTimeout(() => {
+        this.tooltip.style.display = 'none';
+      }, this.options.animationDuration);
     }
 
     /**
