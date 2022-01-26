@@ -3,7 +3,6 @@
 - ADDED
 - REMOVED
   - `{component}-trigger` classes. Now only `data-target` is needed.
-  - `dropdown-trigger`. You must use `data-target`.
 - IMPROVED
   - Tooltip timeouts handling
   - Lightbox rework for better behavior
