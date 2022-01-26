@@ -136,12 +136,12 @@ export class Lightbox extends AxentixComponent implements Component {
   #calculateRatio() {
     const offset = window.innerWidth >= 960 ? this.options.offset : this.options.mobileOffset;
 
-    if (window.innerWidth / window.innerHeight >= this.#baseRect['width'] / this.#baseRect['height']) {
+    if (window.innerWidth / window.innerHeight >= this.#baseRect.width / this.#baseRect.height) {
       this.#newHeight = window.innerHeight - offset;
-      this.#newWidth = (this.#newHeight * this.#baseRect['width']) / this.#baseRect['height'];
+      this.#newWidth = (this.#newHeight * this.#baseRect.width) / this.#baseRect.height;
     } else {
       this.#newWidth = window.innerWidth - offset;
-      this.#newHeight = (this.#newWidth * this.#baseRect['height']) / this.#baseRect['width'];
+      this.#newHeight = (this.#newWidth * this.#baseRect.height) / this.#baseRect.width;
     }
   }
 
@@ -240,8 +240,8 @@ export class Lightbox extends AxentixComponent implements Component {
     const centerLeft = window.innerWidth / 2;
     
     this.#baseRect = rect;
-    this.el.style.width = this.#baseRect['width'] + 'px';
-    this.el.style.height = this.#baseRect['height'] + 'px';
+    this.el.style.width = this.#baseRect.width + 'px';
+    this.el.style.height = this.#baseRect.height + 'px';
 
     this.el.style.top = '0';
     this.el.style.left = '0';
@@ -262,8 +262,8 @@ export class Lightbox extends AxentixComponent implements Component {
       } 
       this.el.classList.add('active');
 
-      this.#container.style.width = this.#baseRect['width'] + 'px';
-      this.#container.style.height = this.#baseRect['height'] + 'px';
+      this.#container.style.width = this.#baseRect.width + 'px';
+      this.#container.style.height = this.#baseRect.height + 'px';
 
       this.el.style.width = this.#newWidth + 'px';
       this.el.style.height = this.#newHeight + 'px';
@@ -285,8 +285,8 @@ export class Lightbox extends AxentixComponent implements Component {
     this.el.style.position = 'absolute';
     this.el.style.top = '0px';
     this.el.style.left = '0px';
-    this.el.style.width = this.#baseRect['width'] + 'px';
-    this.el.style.height = this.#baseRect['height'] + 'px';
+    this.el.style.width = this.#baseRect.width + 'px';
+    this.el.style.height = this.#baseRect.height + 'px';
   }
 }
 
