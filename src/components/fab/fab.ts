@@ -1,6 +1,6 @@
 import { AxentixComponent, Component } from '../../utils/component';
 import { registerComponent, instances } from '../../utils/config';
-import { createEvent, getComponentOptions } from '../../utils/utilities';
+import { createEvent, getComponentOptions, getTriggers } from '../../utils/utilities';
 
 interface IFabOptions {
   animationDuration?: number;
@@ -56,8 +56,8 @@ export class Fab extends AxentixComponent implements Component {
 
     this.#isAnimated = false;
     this.#isActive = false;
-    this.#trigger = document.querySelector(`#${this.el.id} .fab-trigger`);
-    this.#fabMenu = document.querySelector(`#${this.el.id} .fab-menu`);
+    this.#trigger = getTriggers(this.el.id)[0];
+    this.#fabMenu = this.el.querySelector('.fab-menu');
 
     this.#verifOptions();
     this.setupListeners();
