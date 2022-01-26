@@ -1,6 +1,6 @@
 import { AxentixComponent, Component } from '../../utils/component';
 import { registerComponent, instances } from '../../utils/config';
-import { createEvent, getComponentOptions, getInstanceByType } from '../../utils/utilities';
+import { createEvent, getComponentOptions, getInstanceByType, getTriggers } from '../../utils/utilities';
 
 interface IDropdownOptions {
   animationDuration?: number;
@@ -24,7 +24,7 @@ export class Dropdown extends AxentixComponent implements Component {
   options: IDropdownOptions;
 
   #dropdownContent: HTMLElement;
-  #dropdownTrigger: HTMLElement;
+  #trigger: HTMLElement;
   #isAnimated = false;
   #isActive = false;
   #documentClickRef: any;
@@ -51,7 +51,7 @@ export class Dropdown extends AxentixComponent implements Component {
     createEvent(this.el, 'dropdown.setup');
 
     this.#dropdownContent = this.el.querySelector('.dropdown-content');
-    this.#dropdownTrigger = this.el.querySelector('.dropdown-trigger');
+    this.#trigger = getTriggers(this.el.id)[0];
     this.#isAnimated = false;
     this.#isActive = this.el.classList.contains('active') ? true : false;
 
@@ -67,7 +67,7 @@ export class Dropdown extends AxentixComponent implements Component {
     if (this.options.hover) return;
 
     this.#listenerRef = this.#onClickTrigger.bind(this);
-    this.#dropdownTrigger.addEventListener('click', this.#listenerRef);
+    this.#trigger.addEventListener('click', this.#listenerRef);
 
     this.#documentClickRef = this.#onDocumentClick.bind(this);
     document.addEventListener('click', this.#documentClickRef, true);
@@ -76,7 +76,7 @@ export class Dropdown extends AxentixComponent implements Component {
   removeListeners() {
     if (this.options.hover) return;
 
-    this.#dropdownTrigger.removeEventListener('click', this.#listenerRef);
+    this.#trigger.removeEventListener('click', this.#listenerRef);
     this.#listenerRef = undefined;
 
     document.removeEventListener('click', this.#documentClickRef, true);
@@ -95,8 +95,8 @@ export class Dropdown extends AxentixComponent implements Component {
     }
   }
 
-  #onDocumentClick(e: any) {
-    if (e.target.matches('.dropdown-trigger') || this.#isAnimated || !this.#isActive) return;
+  #onDocumentClick(e: Event) {
+    if (e.target === this.#trigger || this.#isAnimated || !this.#isActive) return;
 
     this.close();
   }
@@ -168,7 +168,6 @@ export class Dropdown extends AxentixComponent implements Component {
       }, this.options.animationDuration);
     } else {
       this.#dropdownContent.style.display = '';
-      this.#isAnimated = false;
       this.#isActive = false;
       createEvent(this.el, 'dropdown.closed');
     }
