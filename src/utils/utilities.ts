@@ -78,7 +78,7 @@ export const destroyAll = () => instances.map((ins) => ins.instance.destroy());
 export const createOverlay = (isActive, overlay, id, animationDuration) => {
   const overlayElement: HTMLElement =
     isActive && overlay
-      ? document.querySelector('.ax-overlay[data-target="' + id + '"]')
+      ? document.querySelector(`.ax-overlay[data-target="${id}"]`)
       : document.createElement('div');
   overlayElement.classList.add('ax-overlay');
   overlayElement.style.transitionDuration = animationDuration + 'ms';
@@ -104,3 +104,6 @@ export const updateOverlay = (overlay, overlayElement, listenerRef, state, anima
     }, animationDuration);
   }
 };
+
+export const getTriggers = (id: string, query = '[data-target="{ID}"]'): Array<HTMLElement> =>
+  Array.from(document.querySelectorAll(query.replace('{ID}', id)));
