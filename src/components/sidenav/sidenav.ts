@@ -6,6 +6,7 @@ import {
   getComponentOptions,
   getInstanceByType,
   updateOverlay,
+  getTriggers,
 } from '../../utils/utilities';
 
 interface ISidenavOptions {
@@ -25,7 +26,7 @@ export class Sidenav extends AxentixComponent implements Component {
 
   options: ISidenavOptions;
 
-  #sidenavTriggers: NodeListOf<HTMLElement>;
+  #triggers: Array<HTMLElement>;
   #isActive = false;
   #isAnimated = false;
   #isFixed = false;
@@ -55,7 +56,7 @@ export class Sidenav extends AxentixComponent implements Component {
 
   setup() {
     createEvent(this.el, 'sidenav.setup');
-    this.#sidenavTriggers = document.querySelectorAll('.sidenav-trigger');
+    this.#triggers = getTriggers(this.el.id);
     this.#isActive = false;
     this.#isAnimated = false;
     this.#windowWidth = window.innerWidth;
@@ -85,18 +86,16 @@ export class Sidenav extends AxentixComponent implements Component {
 
   setupListeners() {
     this.#listenerRef = this.#onClickTrigger.bind(this);
-    this.#sidenavTriggers.forEach((trigger) => {
-      if (trigger.dataset.target === this.el.id) trigger.addEventListener('click', this.#listenerRef);
-    });
+    this.#triggers.forEach((trigger) => trigger.addEventListener('click', this.#listenerRef));
+
     this.#windowResizeRef = this.#resizeHandler.bind(this);
     window.addEventListener('resize', this.#windowResizeRef);
   }
 
   removeListeners() {
-    this.#sidenavTriggers.forEach((trigger) => {
-      if (trigger.dataset.target === this.el.id) trigger.removeEventListener('click', this.#listenerRef);
-    });
+    this.#triggers.forEach((trigger) => trigger.removeEventListener('click', this.#listenerRef));
     this.#listenerRef = undefined;
+
     window.removeEventListener('resize', this.#windowResizeRef);
     this.#windowResizeRef = undefined;
   }
