@@ -101,6 +101,8 @@ export class Lightbox extends AxentixComponent implements Component {
       return;
     }
     
+    this.#setOverflowParents();
+
     this.#overlay = document.createElement('div');
     this.#overlay.style.transitionDuration = this.options.animationDuration + 'ms';
     this.#overlay.className = 'lightbox-overlay ' + this.options.overlayClass;
@@ -156,7 +158,7 @@ export class Lightbox extends AxentixComponent implements Component {
         elementSyle.overflowY === 'hidden'
       ) {
         this.#overflowParents.push(elem);
-        elem.style.setProperty('overflow', 'visible', 'important');
+        if (elem !== document.body) elem.style.setProperty('overflow', 'visible', 'important');
         document.body.style.overflowX = 'hidden';
       }
     }
@@ -229,7 +231,6 @@ export class Lightbox extends AxentixComponent implements Component {
       rect = containerRect = this.#container.getBoundingClientRect();
     } else {
       rect = containerRect = this.el.getBoundingClientRect();
-      this.#setOverflowParents();
     }
     this.#isClosing = false;
 
