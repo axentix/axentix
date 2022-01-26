@@ -23,21 +23,22 @@ export class Lightbox extends AxentixComponent implements Component {
 
   options: ILightboxOptions;
 
-  #openOnClickRef: any;
-  #closeEventRef: any;
+  #onClickRef: any;
+  #transitionEndEventRef: any;
+  #keyUpRef: any;
+  #scrollRef: any;
+  #resizeRef: any;
   #overlay: HTMLElement;
   #overlayClickEventRef: any;
   #overflowParents: Array<HTMLElement>;
-  #basicWidth = 0;
-  #basicHeight = 0;
-  #newTop = 0;
-  #newLeft = 0;
+  #baseRect: DOMRect;
   #newHeight = 0;
   #newWidth = 0;
   #isActive = false;
-  #isAnimated = false;
   #isResponsive = false;
   #container: HTMLDivElement;
+  #isClosing = false;
+  #isOpening = false;
 
   constructor(element: string, options?: ILightboxOptions, isLoadedWithData?: boolean) {
     super();
@@ -66,27 +67,40 @@ export class Lightbox extends AxentixComponent implements Component {
   }
 
   setupListeners() {
-    this.#openOnClickRef = this.open.bind(this);
-    this.el.addEventListener('click', this.#openOnClickRef);
+    this.#onClickRef = this.#onClickTrigger.bind(this);
+    this.el.addEventListener('click', this.#onClickRef);
 
-    this.#closeEventRef = this.close.bind(this);
-    window.addEventListener('keyup', this.#closeEventRef);
-    window.addEventListener('scroll', this.#closeEventRef);
-    window.addEventListener('resize', this.#closeEventRef);
+    this.#keyUpRef = this.#handleKeyUp.bind(this);
+    this.#scrollRef = this.#handleScroll.bind(this);
+    this.#resizeRef = this.#handleResize.bind(this);
+    this.#transitionEndEventRef = this.#handleTransition.bind(this);
+
+    window.addEventListener('keyup', this.#keyUpRef);
+    window.addEventListener('scroll', this.#scrollRef);
+    window.addEventListener('resize', this.#resizeRef);
+    this.el.addEventListener('transitionend', this.#transitionEndEventRef);
   }
 
   removeListeners() {
-    this.el.removeEventListener('click', this.#openOnClickRef);
+    this.el.removeEventListener('click', this.#onClickRef);
+    this.el.removeEventListener('transitionend', this.#transitionEndEventRef);
 
-    window.removeEventListener('keyup', this.#closeEventRef);
-    window.removeEventListener('scroll', this.#closeEventRef);
-    window.removeEventListener('resize', this.#closeEventRef);
+    window.removeEventListener('keyup', this.#keyUpRef);
+    window.removeEventListener('scroll', this.#scrollRef);
+    window.removeEventListener('resize', this.#resizeRef);
 
-    this.#openOnClickRef = undefined;
-    this.#closeEventRef = undefined;
+    this.#onClickRef = undefined;
+    this.#keyUpRef = undefined;
+    this.#scrollRef = undefined;
+    this.#resizeRef = undefined;
+    this.#transitionEndEventRef = undefined;
   }
 
   #setOverlay() {
+    if (this.#overlay) {
+      return;
+    }
+    
     this.#overlay = document.createElement('div');
     this.#overlay.style.transitionDuration = this.options.animationDuration + 'ms';
     this.#overlay.className = 'lightbox-overlay ' + this.options.overlayClass;
@@ -104,27 +118,30 @@ export class Lightbox extends AxentixComponent implements Component {
   }
 
   #showOverlay() {
-    this.#overlay.style.opacity = '1';
+    setTimeout(() => {
+      this.#overlay.style.opacity = '1';
+    }, 50);
+  }
+
+  #hideOverlay() {
+    this.#overlay.style.opacity = '0';
   }
 
   #unsetOverlay() {
-    this.#overlay.style.opacity = '0';
-
     this.#overlay.removeEventListener('click', this.#overlayClickEventRef);
-    setTimeout(() => {
-      this.#overlay.remove();
-    }, this.options.animationDuration);
+    this.#overlay.remove();
+    this.#overlay = null;
   }
 
   #calculateRatio() {
     const offset = window.innerWidth >= 960 ? this.options.offset : this.options.mobileOffset;
 
-    if (window.innerWidth / window.innerHeight >= this.#basicWidth / this.#basicHeight) {
+    if (window.innerWidth / window.innerHeight >= this.#baseRect.width / this.#baseRect.height) {
       this.#newHeight = window.innerHeight - offset;
-      this.#newWidth = (this.#newHeight * this.#basicWidth) / this.#basicHeight;
+      this.#newWidth = (this.#newHeight * this.#baseRect.width) / this.#baseRect.height;
     } else {
       this.#newWidth = window.innerWidth - offset;
-      this.#newHeight = (this.#newWidth * this.#basicHeight) / this.#basicWidth;
+      this.#newHeight = (this.#newWidth * this.#baseRect.height) / this.#baseRect.width;
     }
   }
 
@@ -150,102 +167,126 @@ export class Lightbox extends AxentixComponent implements Component {
     document.body.style.overflowX = '';
   }
 
+  #handleTransition(e) {
+    if (!e.propertyName.includes('width') && !e.propertyName.includes('height')) {
+      return;
+    }
+
+    if (this.#isClosing) {
+      this.#clearLightbox();
+      this.#isClosing = false;
+      this.#isActive = false;
+      createEvent(this.el, 'lightbox.closed');
+    } else if (this.#isOpening) {
+      this.#isOpening = false;
+      createEvent(this.el, 'lightbox.opened');
+    }
+  }
+
+  #handleKeyUp(e) {
+    if (e.key === 'Escape' && (this.#isOpening || this.#isActive)) this.close();
+  }
+
+  #handleScroll() {
+    if (this.#isActive || this.#isOpening) this.close();
+  }
+
+  #handleResize = () => {
+    if (this.#isActive) this.close();
+  }
+
+  #clearLightbox() {
+    this.el.classList.remove('active');
+    this.#unsetOverlay();
+    this.#unsetOverflowParents();
+
+    if (this.#isResponsive) this.el.classList.add('responsive-media');
+
+    this.#container.removeAttribute('style');
+    this.el.style.position = '';
+    this.el.style.left = '';
+    this.el.style.top = '';
+    this.el.style.width = '';
+    this.el.style.height = '';
+    this.el.style.transform = '';
+  }
+
+  #onClickTrigger() {
+    if (this.#isOpening || this.#isActive) {
+      this.close();
+      return;
+    }
+
+    this.open();
+  }
+
   /** Open lightbox */
   open() {
-    if (this.#isActive) return this.close();
-    else if (this.#isAnimated) return;
+    this.#isOpening = true;
+    let rect: DOMRect, containerRect: DOMRect;
+    
+    if (this.#isClosing) {
+      rect = containerRect = this.#container.getBoundingClientRect();
+    } else {
+      rect = containerRect = this.el.getBoundingClientRect();
+      this.#setOverflowParents();
+    }
+    this.#isClosing = false;
 
-    this.#setOverflowParents();
+    this.#setOverlay();
+    this.#showOverlay();
 
     const centerTop = window.innerHeight / 2;
     const centerLeft = window.innerWidth / 2;
-
-    const rect = this.el.getBoundingClientRect();
-    const containerRect = this.el.getBoundingClientRect();
-
-    this.#basicWidth = rect.width;
-    this.el.style.width = this.#basicWidth + 'px';
-    this.#basicHeight = rect.height;
-    this.el.style.height = this.#basicHeight + 'px';
+    
+    this.#baseRect = rect;
+    this.el.style.width = this.#baseRect.width + 'px';
+    this.el.style.height = this.#baseRect.height + 'px';
 
     this.el.style.top = '0';
     this.el.style.left = '0';
 
-    this.#newTop = centerTop + window.scrollY - (containerRect.top + window.scrollY);
-    this.#newLeft = centerLeft + window.scrollX - (containerRect.left + window.scrollX);
+    const newTop = centerTop + window.scrollY - (containerRect.top + window.scrollY);
+    const newLeft = centerLeft + window.scrollX - (containerRect.left + window.scrollX);
 
     this.#calculateRatio();
-
     this.#container.style.position = 'relative';
-    this.#setOverlay();
 
     setTimeout(() => {
-      createEvent(this.el, 'lightbox.open');
-
-      this.#isAnimated = true;
-
-      this.el.classList.add('active');
-
-      if (this.el.classList.contains('responsive-media')) {
-        this.el.classList.remove('responsive-media');
-        this.#isResponsive = true;
-      } else {
-        this.#isResponsive = false;
-      }
-
+      createEvent(this.el, 'lightbox.open')
       this.#isActive = true;
 
-      this.#showOverlay();
-      this.#container.style.width = this.#basicWidth + 'px';
-      this.#container.style.height = this.#basicHeight + 'px';
+      if (this.el.classList.contains('responsive-media')) {
+        this.#isResponsive = true;
+        this.el.classList.remove('responsive-media');
+      } 
+      this.el.classList.add('active');
+
+      this.#container.style.width = this.#baseRect.width + 'px';
+      this.#container.style.height = this.#baseRect.height + 'px';
 
       this.el.style.width = this.#newWidth + 'px';
       this.el.style.height = this.#newHeight + 'px';
-      this.el.style.top = this.#newTop - this.#newHeight / 2 + 'px';
-      this.el.style.left = this.#newLeft - this.#newWidth / 2 + 'px';
-
-      this.#isAnimated = false;
+      this.el.style.top = newTop - this.#newHeight / 2 + 'px';
+      this.el.style.left = newLeft - this.#newWidth / 2 + 'px';
     }, 50);
-
-    setTimeout(() => {
-      createEvent(this.el, 'lightbox.opened');
-    }, this.options.animationDuration + 50);
   }
 
   /** Close lightbox */
   close(e?: any) {
-    if (!this.#isActive || (e && e.key && e.key !== 'Escape') || this.#isAnimated) return;
-
-    this.#isAnimated = true;
-
-    this.el.style.top = '0';
-    this.el.style.left = '0';
-
-    this.el.style.width = this.#basicWidth + 'px';
-    this.el.style.height = this.#basicHeight + 'px';
-    this.#unsetOverlay();
+    if (e?.key && e.key !== 'Escape') return;
+    this.#isActive = false;
+    this.#isClosing = true;
+    this.#isOpening = false;
 
     createEvent(this.el, 'lightbox.close');
-
-    setTimeout(() => {
-      this.el.classList.remove('active');
-
-      if (this.#isResponsive) this.el.classList.add('responsive-media');
-
-      this.#container.removeAttribute('style');
-      this.el.style.left = '';
-      this.el.style.top = '';
-      this.el.style.width = '';
-      this.el.style.height = '';
-      this.el.style.transform = '';
-
-      this.#unsetOverflowParents();
-
-      this.#isActive = false;
-      this.#isAnimated = false;
-
-      createEvent(this.el, 'lightbox.closed');
-    }, this.options.animationDuration + 50);
+    this.#hideOverlay();
+    
+    this.el.style.position = 'absolute';
+    this.el.style.top = '0px';
+    this.el.style.left = '0px';
+    this.el.style.width = this.#baseRect.width + 'px';
+    this.el.style.height = this.#baseRect.height + 'px';
   }
 }
 
