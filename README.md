@@ -7,23 +7,19 @@
 <h3 align="center">Axentix - Front-end framework</h3>
 
 <p align="center">
-  <a href="https://useaxentix.com/"><strong>Home</strong></a> |
-  <a href="https://useaxentix.com/docs/"><strong>Documentation</strong></a>
+  <a href="https://useaxentix.com/2.0.x/?ref=github"><strong>Home</strong></a> |
+  <a href="https://useaxentix.com/2.0.x/docs/?ref=github"><strong>Documentation</strong></a>
 </p>
-
-<h3 align="center">
-WARNING: This branch corresponds to Axentix v2 which is still under development.
-<br/>
-Find the LTS version on the <a href="https://github.com/axentix/axentix/tree/v1">v1 branch</a>.
-</h3>
 
 <br>
 
 <p align="center">
-  <a href="https://badge.fury.io/js/axentix">
-    <img src="https://badge.fury.io/js/axentix.svg" alt="npm version" />
+  <a href="https://www.npmjs.com/package/axentix">
+    <img alt="npm (tag)" src="https://img.shields.io/npm/v/axentix/next">
   </a>
-  <img src="https://img.shields.io/github/v/release/axentix/axentix" alt="GitHub release (latest by date)" />
+  <a href="https://github.com/axentix/axentix/releases">
+    <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/axentix/axentix?include_prereleases">
+  </a>
   <a href="https://www.jsdelivr.com/package/npm/axentix">
     <img src="https://data.jsdelivr.com/v1/package/npm/axentix/badge?style=rounded" alt="jsDelivr Hits" />
   </a>
@@ -46,9 +42,15 @@ Find the LTS version on the <a href="https://github.com/axentix/axentix/tree/v1"
   </a>
 </p>
 
-Axentix is an open source Framework based on CSS Grid using HTML, CSS and JS. The easy layout control and grid system makes it one of the most easy to learn framework.
+Axentix is a framework mixing fully customizable components & utility-first classes, leaving the design choice to the developer. 
 
-![home gif](https://useaxentix.com/img/gif-home.gif)
+![home gif](https://useaxentix.com/img/gif-home.gif?2)
+
+<h3 align="center">
+WARNING: This branch corresponds to Axentix v2, which is still in beta.
+<br/>
+Find the LTS version on the <a href="https://github.com/axentix/axentix/tree/v1">v1 branch</a>.
+</h3>
 
 ## Quickstart
 
@@ -81,7 +83,7 @@ You can build project with `npm run build` or serve it with `npm run serve`.
 
 ## Documentation
 
-Find the documentation at <https://useaxentix.com/2.0.x/docs/>.
+Find the documentation at [https://useaxentix.com/2.0.x/docs/](https://useaxentix.com/2.0.x/docs/?ref=github).
 
 ## Changelog
 
