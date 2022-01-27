@@ -1,6 +1,12 @@
 import { AxentixComponent, Component } from '../../utils/component';
 import { registerComponent, instances } from '../../utils/config';
-import { createEvent, createOverlay, getComponentOptions, updateOverlay } from '../../utils/utilities';
+import {
+  createEvent,
+  createOverlay,
+  getComponentOptions,
+  updateOverlay,
+  getTriggers,
+} from '../../utils/utilities';
 
 interface IModalOptions {
   overlay?: boolean;
@@ -20,7 +26,7 @@ export class Modal extends AxentixComponent implements Component {
   options: IModalOptions;
   overlayElement: HTMLElement;
 
-  #modalTriggers: NodeListOf<HTMLElement>;
+  #triggers: Array<HTMLElement>;
   #isActive = false;
   #isAnimated = false;
   #listenerRef: any;
@@ -44,7 +50,7 @@ export class Modal extends AxentixComponent implements Component {
 
   setup() {
     createEvent(this.el, 'modal.setup');
-    this.#modalTriggers = document.querySelectorAll('.modal-trigger');
+    this.#triggers = getTriggers(this.el.id);
     this.#isActive = this.el.classList.contains('active') ? true : false;
     this.#isAnimated = false;
 
@@ -62,19 +68,11 @@ export class Modal extends AxentixComponent implements Component {
 
   setupListeners() {
     this.#listenerRef = this.#onClickTrigger.bind(this);
-    this.#modalTriggers.forEach((trigger) => {
-      if (trigger.dataset.target === this.el.id) {
-        trigger.addEventListener('click', this.#listenerRef);
-      }
-    });
+    this.#triggers.forEach((trigger) => trigger.addEventListener('click', this.#listenerRef));
   }
 
   removeListeners() {
-    this.#modalTriggers.forEach((trigger) => {
-      if (trigger.dataset.target === this.el.id) {
-        trigger.removeEventListener('click', this.#listenerRef);
-      }
-    });
+    this.#triggers.forEach((trigger) => trigger.removeEventListener('click', this.#listenerRef));
     this.#listenerRef = undefined;
   }
 

@@ -24,7 +24,7 @@
 
     <div id="example-sidenav" class="sidenav white sidenav-fixed sidenav-right">
       <div class="sidenav-header">
-        <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
+        <button data-target="example-sidenav"><i class="fas fa-times"></i></button>
         <img
           class="sidenav-logo dropshadow-1"
           src="https://useaxentix.com/img/axentix.svg"
@@ -55,7 +55,7 @@
 
     <div id="example-sidenav2" class="sidenav sidenav-fixed secondary">
       <div class="sidenav-header">
-        <button data-target="example-sidenav2" class="sidenav-trigger"><i class="fas fa-times"></i></button>
+        <button data-target="example-sidenav2"><i class="fas fa-times"></i></button>
         <img
           class="sidenav-logo dropshadow-1"
           src="https://useaxentix.com/img/axentix.svg"
@@ -82,25 +82,19 @@
         </div>
       </div>
       <a href="#" class="sidenav-link">Link 2</a>
-      <button data-target="example-sidenav" class="btn press amaranth dark-1 sidenav-trigger">
-        Open sidenav
-      </button>
+      <button data-target="example-sidenav" class="btn press amaranth dark-1">Open sidenav</button>
     </div>
 
     <main>
-      <button data-target="example-sidenav" class="btn press amaranth dark-1 sidenav-trigger">
-        Open sidenav
-      </button>
+      <button data-target="sidenav-collapsible" class="btn press amaranth dark-1">Open collapsible</button>
 
-      <button data-target="example-sidenav2" class="btn press airforce dark-1 sidenav-trigger">
-        Open sidenav 2
-      </button>
+      <button data-target="example-sidenav2" class="btn press airforce dark-1">Open sidenav 2</button>
 
-      <button data-target="example-modal" class="btn press amaranth dark-1 modal-trigger">Open modal</button>
+      <button data-target="example-modal" class="btn press amaranth dark-1">Open modal</button>
 
       <div class="modal white no-axentix-init" id="example-modal">
         <div class="modal-header">
-          <button data-target="example-modal" class="modal-trigger">
+          <button data-target="example-modal">
             <i class="fas fa-times"></i>
           </button>
           Header
@@ -116,7 +110,7 @@
         <div class="divider"></div>
         <div class="modal-footer flex vcenter">
           Footer
-          <button data-target="example-modal" class="mg-l-auto btn primary modal-trigger">Close</button>
+          <button data-target="example-modal" class="mg-l-auto btn primary">Close</button>
         </div>
       </div>
 

@@ -16,7 +16,7 @@
             <a class="navbar-link" href="#">Link 1</a>
             <a class="navbar-link" href="#">Link 2</a>
             <div class="dropdown" id="drop1" data-ax="dropdown">
-              <div class="navbar-link airforce dropdown-trigger">Toggle</div>
+              <div class="navbar-link airforce" data-target="drop1">Toggle</div>
               <div class="dropdown-content dropdown-right white shadow-1">
                 <a class="dropdown-item" href="#">Dropdown in navbar</a>
                 <a class="dropdown-item" href="#">Item 2</a>
@@ -33,7 +33,9 @@
             data-ax="dropdown"
             data-dropdown-animation-type="fade"
           >
-            <button type="button" class="btn shadow-1 rounded-1 primary dropdown-trigger">Animated DD</button>
+            <button type="button" class="btn shadow-1 rounded-1 primary" data-target="dropdown">
+              Animated DD
+            </button>
             <div class="dropdown-content white shadow-1 rounded-1">
               <a class="dropdown-item" href="#">This is the first item</a>
               <a class="dropdown-item" href="#">Item 2</a>
@@ -42,7 +44,7 @@
           </div>
 
           <div class="dropdown mx-auto my-4" id="example2" data-ax="dropdown">
-            <button type="button" class="btn shadow-1 rounded-1 primary dropdown-trigger">
+            <button type="button" class="btn shadow-1 rounded-1 primary" data-target="example2">
               Width constrained dropdown
             </button>
             <div class="dropdown-content dropdown-constrain-width white shadow-1 rounded-1">
@@ -53,7 +55,7 @@
           </div>
 
           <div class="dropdown mx-auto my-4" id="example" data-ax="dropdown">
-            <button type="button" class="btn shadow-1 rounded-1 primary dropdown-trigger">Right</button>
+            <button type="button" class="btn shadow-1 rounded-1 primary" data-target="example">Right</button>
             <div class="dropdown-content dropdown-right white shadow-1 rounded-1">
               <a class="dropdown-item" href="#">This is the first item</a>
               <a class="dropdown-item" href="#">Item 2</a>
