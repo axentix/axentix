@@ -114,7 +114,7 @@ export class Collapsible extends AxentixComponent implements Component {
   }
 
   /** Enable / disable active state to trigger when collapsible is in sidenav */
-  #addActiveToTrigger(state: boolean) {
+  #toggleTriggerActive(state: boolean) {
     if (!this.#sidenavId) return;
 
     this.#sidenavTriggers.forEach((trigger) => {
@@ -158,7 +158,7 @@ export class Collapsible extends AxentixComponent implements Component {
     this.#applyOverflow();
     this.el.style.maxHeight = this.el.scrollHeight + 'px';
 
-    if (this.options.sidenav.activeWhenOpen) this.#addActiveToTrigger(true);
+    if (this.options.sidenav.activeWhenOpen) this.#toggleTriggerActive(true);
     if (this.options.sidenav.autoClose) this.#autoClose();
 
     setTimeout(() => {
@@ -175,7 +175,7 @@ export class Collapsible extends AxentixComponent implements Component {
     this.el.style.maxHeight = '';
     this.#applyOverflow();
 
-    if (this.options.sidenav.activeWhenOpen) this.#addActiveToTrigger(false);
+    if (this.options.sidenav.activeWhenOpen) this.#toggleTriggerActive(false);
 
     setTimeout(() => {
       this.el.style.display = '';
