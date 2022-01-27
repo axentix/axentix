@@ -7,8 +7,8 @@
 <h3 align="center">Axentix - Front-end framework</h3>
 
 <p align="center">
-  <a href="https://useaxentix.com/"><strong>Home</strong></a> |
-  <a href="https://useaxentix.com/docs/"><strong>Documentation</strong></a>
+  <a href="https://useaxentix.com/2.0.x/?ref=github"><strong>Home</strong></a> |
+  <a href="https://useaxentix.com/2.0.x/docs/?ref=github"><strong>Documentation</strong></a>
 </p>
 
 <br>
@@ -42,7 +42,7 @@
   </a>
 </p>
 
-Axentix is an open source Framework based on CSS Grid using HTML, CSS and JS. The easy layout control and grid system makes it one of the most easy to learn framework.
+Axentix is a framework mixing fully customizable components & utility-first classes, leaving the design choice to the developer. 
 
 ![home gif](https://useaxentix.com/img/gif-home.gif?2)
 
@@ -83,7 +83,7 @@ You can build project with `npm run build` or serve it with `npm run serve`.
 
 ## Documentation
 
-Find the documentation at <https://useaxentix.com/2.0.x/docs/>.
+Find the documentation at [https://useaxentix.com/2.0.x/docs/](https://useaxentix.com/2.0.x/docs/?ref=github).
 
 ## Changelog
 
