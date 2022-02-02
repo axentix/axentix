@@ -11,12 +11,8 @@ export const extend = (...args: any[]) => {
   }, {});
 };
 
-export const getComponentOptions = (component, options, el, isLoadedWithData) =>
-  extend(
-    getComponentClass(component).getDefaultOptions(),
-    isLoadedWithData ? {} : formatOptions(component, el),
-    options
-  );
+export const getComponentOptions = (component, options, el) =>
+  extend(getComponentClass(component).getDefaultOptions(), formatOptions(component, el), options);
 
 export const wrap = (target, wrapper = document.createElement('div')) => {
   const parent = target[0].parentElement;

@@ -34,7 +34,7 @@ export class ScrollSpy extends AxentixComponent implements Component {
   #links: Array<HTMLElement>;
   #elements: Array<HTMLElement>;
 
-  constructor(element: string, options?: IScrollSpyOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: IScrollSpyOptions) {
     super();
 
     try {
@@ -43,7 +43,7 @@ export class ScrollSpy extends AxentixComponent implements Component {
 
       this.el = document.querySelector(element);
 
-      this.options = getComponentOptions('ScrollSpy', options, this.el, isLoadedWithData);
+      this.options = getComponentOptions('ScrollSpy', options, this.el);
 
       this.setup();
     } catch (error) {

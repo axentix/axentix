@@ -66,7 +66,7 @@ export class Caroulix extends AxentixComponent implements Component {
   #autoplayInterval: number;
   #pointerType: string;
 
-  constructor(element: string, options?: ICaroulixOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: ICaroulixOptions) {
     super();
 
     try {
@@ -75,7 +75,7 @@ export class Caroulix extends AxentixComponent implements Component {
 
       this.el = document.querySelector(element);
 
-      this.options = getComponentOptions('Caroulix', options, this.el, isLoadedWithData);
+      this.options = getComponentOptions('Caroulix', options, this.el);
 
       this.setup();
     } catch (error) {

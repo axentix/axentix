@@ -35,7 +35,7 @@ export class Collapsible extends AxentixComponent implements Component {
   #resizeRef: any;
   #sidenavId: string;
 
-  constructor(element: string, options?: ICollapsibleOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: ICollapsibleOptions) {
     super();
 
     try {
@@ -44,7 +44,7 @@ export class Collapsible extends AxentixComponent implements Component {
 
       this.el = document.querySelector(element);
 
-      this.options = getComponentOptions('Collapsible', options, this.el, isLoadedWithData);
+      this.options = getComponentOptions('Collapsible', options, this.el);
 
       this.setup();
     } catch (error) {

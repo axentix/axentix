@@ -37,7 +37,7 @@ export class Sidenav extends AxentixComponent implements Component {
   #windowResizeRef: any;
   #windowWidth: number;
 
-  constructor(element: string, options?: ISidenavOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: ISidenavOptions) {
     super();
 
     try {
@@ -46,7 +46,7 @@ export class Sidenav extends AxentixComponent implements Component {
 
       this.el = document.querySelector(element);
 
-      this.options = getComponentOptions('Sidenav', options, this.el, isLoadedWithData);
+      this.options = getComponentOptions('Sidenav', options, this.el);
 
       this.setup();
     } catch (error) {

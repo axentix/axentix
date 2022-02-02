@@ -34,7 +34,7 @@ export class Fab extends AxentixComponent implements Component {
   #documentClickRef: any;
   #listenerRef: any;
 
-  constructor(element: string, options?: IFabOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: IFabOptions) {
     super();
 
     try {
@@ -43,7 +43,7 @@ export class Fab extends AxentixComponent implements Component {
 
       this.el = document.querySelector(element);
 
-      this.options = getComponentOptions('Fab', options, this.el, isLoadedWithData);
+      this.options = getComponentOptions('Fab', options, this.el);
 
       this.setup();
     } catch (error) {

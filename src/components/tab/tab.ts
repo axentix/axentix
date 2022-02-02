@@ -46,7 +46,7 @@ export class Tab extends AxentixComponent implements Component {
   #caroulixInstance: Caroulix;
   #isAnimated = false;
 
-  constructor(element: string, options?: ITabOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: ITabOptions) {
     super();
 
     try {
@@ -55,7 +55,7 @@ export class Tab extends AxentixComponent implements Component {
 
       this.el = document.querySelector(element);
 
-      this.options = getComponentOptions('Tab', options, this.el, isLoadedWithData);
+      this.options = getComponentOptions('Tab', options, this.el);
 
       this.setup();
     } catch (error) {
