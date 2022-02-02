@@ -5,22 +5,28 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-      /* :root {
-        --ax-form-material-color: #c91d34 !important;
-        --ax-form-switch-active-color: #c91d34 !important;
-      } */
+      :root {
+        /* --ax-form-material-color: #c91d34 !important; */
+        --ax-form-material-border: 2px grey solid !important;
+        /* --ax-form-switch-active-color: #c91d34 !important; */
+      }
     </style>
   </head>
 
   <body class="layout">
-    <main class="py-5">
-      <form class="container form-material">
+    <main class="py-5 container">
+      <h1>Forms</h1>
+      <form class="form-material form-material-bordered">
         <div class="grix xs1 md2">
+          <div class="form-field">
+            <input type="text" id="surname" class="form-control rounded-1" />
+            <label for="surname">Surname</label>
+          </div>
           <div class="form-field">
             <div class="form-group rounded-1">
               <!-- <span class="form-group-item">@</span> -->
-              <label for="name">Name</label>
               <input type="text" id="name" class="form-control" ax-form-validate="lazy" required />
+              <label for="name">Name</label>
               <span class="form-group-item">@</span>
             </div>
             <span class="form-helper">Form helper</span>
@@ -45,12 +51,12 @@
             <span class="form-helper text-center">You can click but not edit in readonly mode.</span>
           </div>
           <div class="form-field col-md2">
-            <label for="textarea">A textarea</label>
             <textarea id="textarea" class="form-control"></textarea>
+            <label for="textarea">A textarea</label>
           </div>
           <div class="form-field form-inline form-default col-md2">
-            <label for="inline">inline</label>
             <input type="text" id="inline" class="form-control" />
+            <label for="inline">inline</label>
           </div>
 
           <div class="form-field">

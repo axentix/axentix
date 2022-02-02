@@ -15,7 +15,7 @@ select.form-control {
 
   &[multiple] {
     height: auto;
-    padding: 0;
+    padding: 0 !important;
 
     @media (pointer: coarse) {
       height: 2.5rem;

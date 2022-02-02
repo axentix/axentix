@@ -31,14 +31,11 @@ const detectInput = (input: any) => {
   const formField = input.closest('.form-field');
 
   const isActive = formField.classList.contains('active');
+  const types = ['date', 'month', 'week', 'time']
   const hasContent =
     input.value.length > 0 ||
     (input.tagName !== 'SELECT' && input.placeholder.length > 0) ||
-    input.tagName === 'SELECT' ||
-    input.matches('[type="date"]') ||
-    input.matches('[type="month"]') ||
-    input.matches('[type="week"]') ||
-    input.matches('[type="time"]');
+    input.tagName === 'SELECT' || types.some(type => input.matches(`[type="${type}"]`));
   const isFocused = document.activeElement === input;
   const isDisabled = input.hasAttribute('disabled') || input.hasAttribute('readonly');
 
@@ -67,7 +64,8 @@ const updateInput = (input: any, isActive: boolean, hasContent: boolean, isFocus
 
   if (isFocused && !isTextArea) formField.classList.add('is-focused');
   else formField.classList.remove('is-focused');
-
+  
+  if (isTextArea) formField.querySelector('label').style.backgroundColor = 'white';
   if (isFocused && isTextArea) formField.classList.add('is-textarea-focused');
   else formField.classList.remove('is-textarea-focused');
 };
@@ -80,6 +78,7 @@ const setFormPosition = (input: HTMLElement, formField: HTMLElement) => {
     inputLeftOffset = input.offsetLeft;
 
   const topOffset = input.clientHeight + input.offsetTop + 'px';
+  const isBordered = input.closest('form').classList.contains('form-material-bordered');
 
   formField.style.setProperty(getCssVar('form-material-position'), topOffset);
 
@@ -99,7 +98,9 @@ const setFormPosition = (input: HTMLElement, formField: HTMLElement) => {
   formField.style.setProperty(getCssVar('form-material-width'), width);
 
   const label = formField.querySelector('label');
-  if (label) label.style.left = labelLeft + 'px';
+  if (label) {
+    label.style.left = labelLeft + 'px';
+  }
 };
 
 const validate = (input: HTMLInputElement, e: Event) => {

@@ -127,6 +127,10 @@
 
 // Material Style
 .form-material {
+  &:not(.form-material-bordered) .form-field .form-control {
+    border-radius: 0;
+  }
+
   .form-field:not(.form-default) {
     padding-top: 0.75rem;
     align-self: start;
@@ -150,7 +154,6 @@
       border: none;
       border-bottom: var(getCssVar(form-material-border)) !important;
       padding: 0;
-      border-radius: 0;
       background-color: transparent;
 
       &:focus {
@@ -207,6 +210,32 @@
           color: var(getCssVar(form-disabled-color));
         }
       }
+    }
+  }
+
+  &.form-material-bordered .form-field  {
+    label {
+      padding: 0 0.25rem;
+      margin-left: 0.5rem;
+    }
+
+    .form-control{
+      border: var(getCssVar(form-material-border)) !important;
+      padding-left: 0.75rem;
+
+      &:focus {
+        border-color: var(getCssVar(form-material-color)) !important;
+        box-shadow: none;
+      }
+
+      &[disabled],
+      &[readonly] {
+        border: var(getCssVar(form-material-disabled-border)) !important;
+      }
+    }
+
+    &::after{
+      content: none;
     }
   }
 }
