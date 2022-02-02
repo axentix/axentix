@@ -89,6 +89,11 @@ $formSwitchTransitionDuration: getCssVar(form-switch-transition-duration);
       left: 60%;
     }
   }
+
+  input:disabled + .form-slider {
+    background-color: var(getCssVar(form-disabled-bg-color));
+    cursor: default;
+  }
 }
 
 .form-field {
