@@ -100,6 +100,23 @@ const setFormPosition = (input: HTMLElement, formField: HTMLElement) => {
   const label = formField.querySelector('label');
   if (label) {
     label.style.left = labelLeft + 'px';
+    
+    if (isBordered) {
+      let target: HTMLElement = label;
+      let color: any;
+
+      while (target.parentElement) {
+        let bg = window.getComputedStyle(target).backgroundColor
+        if (bg && !['transparent', 'rgba(0, 0, 0, 0)'].includes(bg)) {
+          console.log(bg, target)
+          color = bg;
+          break;
+        }
+        target = target.parentElement;
+      }
+      label.style.backgroundColor = color ? color : 'white';
+      console.log(label)
+    }
   }
 };
 
