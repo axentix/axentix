@@ -31,7 +31,7 @@ export class Modal extends AxentixComponent implements Component {
   #isAnimated = false;
   #listenerRef: any;
 
-  constructor(element: string, options?: IModalOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: IModalOptions) {
     super();
 
     try {
@@ -40,7 +40,7 @@ export class Modal extends AxentixComponent implements Component {
 
       this.el = document.querySelector(element);
 
-      this.options = getComponentOptions('Modal', options, this.el, isLoadedWithData);
+      this.options = getComponentOptions('Modal', options, this.el);
 
       this.setup();
     } catch (error) {

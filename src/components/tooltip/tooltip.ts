@@ -34,7 +34,7 @@ export class Tooltip extends AxentixComponent implements Component {
   #elRect: DOMRect;
   #tooltipRect: DOMRect;
 
-  constructor(element: string, options?: ITooltipOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: ITooltipOptions) {
     super();
 
     try {
@@ -42,7 +42,7 @@ export class Tooltip extends AxentixComponent implements Component {
       instances.push({ type: 'Tooltip', instance: this });
 
       this.el = document.querySelector(element);
-      this.options = getComponentOptions('Tooltip', options, this.el, isLoadedWithData);
+      this.options = getComponentOptions('Tooltip', options, this.el);
 
       this.setup();
     } catch (error) {
@@ -197,7 +197,7 @@ export class Tooltip extends AxentixComponent implements Component {
 
   /** Change current options */
   change(options?: ITooltipOptions) {
-    this.options = getComponentOptions('Tooltip', options, this.el, true);
+    this.options = getComponentOptions('Tooltip', options, this.el);
 
     if (!this.#positionList.includes(this.options.position)) this.options.position = 'top';
 

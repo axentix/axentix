@@ -30,7 +30,7 @@ export class Dropdown extends AxentixComponent implements Component {
   #documentClickRef: any;
   #listenerRef: any;
 
-  constructor(element: string, options?: IDropdownOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: IDropdownOptions) {
     super();
 
     try {
@@ -39,7 +39,7 @@ export class Dropdown extends AxentixComponent implements Component {
 
       this.el = document.querySelector(element);
 
-      this.options = getComponentOptions('Dropdown', options, this.el, isLoadedWithData);
+      this.options = getComponentOptions('Dropdown', options, this.el);
 
       this.setup();
     } catch (error) {

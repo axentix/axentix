@@ -74,9 +74,8 @@ const setup = () => {
     }
 
     try {
-      const options = formatOptions(component, el);
       const classDef = getComponentClass(component);
-      new classDef(`#${el.id}`, options, true);
+      new classDef(`#${el.id}`);
     } catch (error) {
       console.error('[Axentix] Data: Unable to load ' + component, error);
     }

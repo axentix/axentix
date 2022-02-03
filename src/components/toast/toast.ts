@@ -56,7 +56,7 @@ export class Toast {
     this.id = Math.random().toString().split('.')[1];
 
     this.#content = content;
-    this.options = getComponentOptions('Toast', options, '', true);
+    this.options = getComponentOptions('Toast', options, '');
     // @ts-ignore
     this.options.position = this.options.position.toLowerCase();
     // @ts-ignore

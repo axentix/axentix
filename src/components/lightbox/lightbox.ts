@@ -40,7 +40,7 @@ export class Lightbox extends AxentixComponent implements Component {
   #isClosing = false;
   #isOpening = false;
 
-  constructor(element: string, options?: ILightboxOptions, isLoadedWithData?: boolean) {
+  constructor(element: string, options?: ILightboxOptions) {
     super();
 
     try {
@@ -49,7 +49,7 @@ export class Lightbox extends AxentixComponent implements Component {
 
       this.el = document.querySelector(element);
 
-      this.options = getComponentOptions('Lightbox', options, this.el, isLoadedWithData);
+      this.options = getComponentOptions('Lightbox', options, this.el);
 
       this.setup();
     } catch (error) {
@@ -100,7 +100,7 @@ export class Lightbox extends AxentixComponent implements Component {
     if (this.#overlay) {
       return;
     }
-    
+
     this.#setOverflowParents();
 
     this.#overlay = document.createElement('div');
@@ -195,7 +195,7 @@ export class Lightbox extends AxentixComponent implements Component {
 
   #handleResize = () => {
     if (this.#isActive) this.close();
-  }
+  };
 
   #clearLightbox() {
     this.el.classList.remove('active');
@@ -226,7 +226,7 @@ export class Lightbox extends AxentixComponent implements Component {
   open() {
     this.#isOpening = true;
     let rect: DOMRect, containerRect: DOMRect;
-    
+
     if (this.#isClosing) {
       rect = containerRect = this.#container.getBoundingClientRect();
     } else {
@@ -239,7 +239,7 @@ export class Lightbox extends AxentixComponent implements Component {
 
     const centerTop = window.innerHeight / 2;
     const centerLeft = window.innerWidth / 2;
-    
+
     this.#baseRect = rect;
     this.el.style.width = this.#baseRect.width + 'px';
     this.el.style.height = this.#baseRect.height + 'px';
@@ -254,13 +254,13 @@ export class Lightbox extends AxentixComponent implements Component {
     this.#container.style.position = 'relative';
 
     setTimeout(() => {
-      createEvent(this.el, 'lightbox.open')
+      createEvent(this.el, 'lightbox.open');
       this.#isActive = true;
 
       if (this.el.classList.contains('responsive-media')) {
         this.#isResponsive = true;
         this.el.classList.remove('responsive-media');
-      } 
+      }
       this.el.classList.add('active');
 
       this.#container.style.width = this.#baseRect.width + 'px';
@@ -282,7 +282,7 @@ export class Lightbox extends AxentixComponent implements Component {
 
     createEvent(this.el, 'lightbox.close');
     this.#hideOverlay();
-    
+
     this.el.style.position = 'absolute';
     this.el.style.top = '0px';
     this.el.style.left = '0px';
