@@ -7,6 +7,8 @@
   - Tooltip timeouts handling
   - Lightbox rework for better behavior
   - Collapsible code
+  - Disabled style for `form-switch`
+  - Code quality
 - BUGFIXES
 
 # 2.0.0-beta.5 - 2022-01-04
