@@ -43,7 +43,7 @@
   "engine": "node >= 12",
   "devDependencies": {
     "autoprefixer": "^10.4.2",
-    "sass": "^1.49.0",
+    "sass": "^1.49.7",
     "typescript": "^4.5.5",
     "vite": "^2.7.13",
     "vite-plugin-mpa": "^1.1.1"
