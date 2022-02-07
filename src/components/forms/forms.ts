@@ -103,7 +103,6 @@ const setFormPosition = (input: HTMLElement, formField: HTMLElement) => {
 
     if (isBordered) {
       let color: any = getLabelColor(label);
-      console.log(color)
       label.style.backgroundColor = color ? color : 'white';
     }
   }
@@ -119,7 +118,6 @@ const getLabelColor = (label) => {
     }
     target = target.parentElement;
   }
-  
 }
 
 const validate = (input: HTMLInputElement, e: Event) => {
