@@ -31,3 +31,24 @@ select.form-control {
 .form-material .form-field:not(.form-default) .form-control:not([multiple]) {
   background-position: right -0.25rem center;
 }
+
+.form-custom-select {
+  width: 100%;
+  cursor: pointer;
+
+  .form-control {
+    &[readonly] {
+      background-color: inherit !important;
+      color: inherit !important;
+      border: var(getCssVar(form-control-border));
+    }
+  }
+
+  .dropdown {
+    width: 100%;
+
+    .dropdown-content {
+      overflow-y: auto;
+    }
+  }
+}
