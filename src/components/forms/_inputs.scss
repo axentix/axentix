@@ -213,13 +213,19 @@
     }
   }
 
-  &.form-material-bordered .form-field  {
+  &.form-material-bordered .form-field {
+    &.is-focused label,
+    &.active label {
+      margin-top: 0.15rem;
+    }
+
     label {
+      transition-property: top, color, font-size, margin-top;
       padding: 0 0.25rem;
       margin-left: 0.5rem;
     }
 
-    .form-control{
+    .form-control {
       border: var(getCssVar(form-material-border)) !important;
       padding-left: 0.75rem;
 
@@ -234,7 +240,7 @@
       }
     }
 
-    &::after{
+    &::after {
       content: none;
     }
   }
