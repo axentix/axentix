@@ -213,10 +213,14 @@
     }
   }
 
-  &.form-material-bordered .form-field {
+  &.form-material-bordered .form-field:not(.form-default) {
     &.is-focused label,
     &.active label {
       margin-top: 0.15rem;
+    }
+
+    &.is-focused .form-control {
+      border-color: var(getCssVar(form-material-color)) !important;
     }
 
     label {
@@ -228,11 +232,6 @@
     .form-control {
       border: var(getCssVar(form-material-border)) !important;
       padding-left: 0.75rem;
-
-      &:focus {
-        border-color: var(getCssVar(form-material-color)) !important;
-        box-shadow: none;
-      }
 
       &[disabled],
       &[readonly] {
