@@ -70,7 +70,7 @@
 
 .form-control {
   position: relative;
-  display: block;
+  display: inline-flex;
   border: var(getCssVar(form-control-border));
   padding: 0.5rem 0.75rem;
   transition: border 0.2s ease, box-shadow 0.3s ease;
