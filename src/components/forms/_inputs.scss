@@ -70,7 +70,7 @@
 
 .form-control {
   position: relative;
-  display: block;
+  display: inline-flex;
   border: var(getCssVar(form-control-border));
   padding: 0.5rem 0.75rem;
   transition: border 0.2s ease, box-shadow 0.3s ease;
@@ -127,6 +127,10 @@
 
 // Material Style
 .form-material {
+  &:not(.form-material-bordered) .form-field:not(.form-default) .form-control {
+    border-radius: 0;
+  }
+
   .form-field:not(.form-default) {
     padding-top: 0.75rem;
     align-self: start;
@@ -150,7 +154,6 @@
       border: none;
       border-bottom: var(getCssVar(form-material-border)) !important;
       padding: 0;
-      border-radius: 0;
       background-color: transparent;
 
       &:focus {
@@ -207,6 +210,37 @@
           color: var(getCssVar(form-disabled-color));
         }
       }
+    }
+  }
+
+  &.form-material-bordered .form-field:not(.form-default) {
+    &.is-focused label,
+    &.active label {
+      margin-top: 0.15rem;
+    }
+
+    &.is-focused .form-control {
+      border-color: var(getCssVar(form-material-color)) !important;
+    }
+
+    label {
+      transition-property: top, color, font-size, margin-top;
+      padding: 0 0.25rem;
+      margin-left: 0.5rem;
+    }
+
+    .form-control {
+      border: var(getCssVar(form-material-border)) !important;
+      padding-left: 0.75rem;
+
+      &[disabled],
+      &[readonly] {
+        border: var(getCssVar(form-material-disabled-border)) !important;
+      }
+    }
+
+    &::after {
+      content: none;
     }
   }
 }
