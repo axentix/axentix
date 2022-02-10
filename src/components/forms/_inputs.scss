@@ -127,7 +127,7 @@
 
 // Material Style
 .form-material {
-  &:not(.form-material-bordered) .form-field .form-control {
+  &:not(.form-material-bordered) .form-field:not(.form-default) .form-control {
     border-radius: 0;
   }
 

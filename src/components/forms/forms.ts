@@ -66,7 +66,9 @@ const updateInput = (input: any, isActive: boolean, hasContent: boolean, isFocus
   if (isFocused && !isTextArea) formField.classList.add('is-focused');
   else formField.classList.remove('is-focused');
 
-  if (isTextArea) formField.querySelector('label').style.backgroundColor = 'white';
+  const label = formField.querySelector('label');
+  
+  if (isTextArea) label.style.backgroundColor = getLabelColor(label);
   if (isFocused && isTextArea) formField.classList.add('is-textarea-focused');
   else formField.classList.remove('is-textarea-focused');
 };
@@ -103,8 +105,7 @@ const setFormPosition = (input: HTMLElement, formField: HTMLElement) => {
     label.style.left = labelLeft + 'px';
 
     if (isBordered) {
-      let color: any = getLabelColor(label);
-      label.style.backgroundColor = color ? color : 'white';
+      label.style.backgroundColor = getLabelColor(label);
     }
   }
 };
@@ -119,6 +120,8 @@ const getLabelColor = (label) => {
     }
     target = target.parentElement;
   }
+
+  return 'white';
 };
 
 const validate = (input: HTMLInputElement, e: Event) => {
