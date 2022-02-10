@@ -1,6 +1,7 @@
 # 2.0.0-beta.6 - Under development
 
 - ADDED
+  - New material forms design variant
 - REMOVED
   - `{component}-trigger` classes. Now only `data-target` is needed.
 - IMPROVED
