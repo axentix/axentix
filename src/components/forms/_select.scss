@@ -39,11 +39,8 @@ select.form-control:not([multiple]),
 
   .form-control {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    height: auto;
     padding: 0.5rem;
-    min-height: 2.5rem;
     white-space: nowrap;
     overflow-x: hidden;
     background-position: right 0 center !important;
