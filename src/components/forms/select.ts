@@ -1,12 +1,15 @@
 import { wrap, unwrap, getUid } from '../../utils/utilities';
 import { Dropdown } from '../dropdown/dropdown';
+import { updateInputs } from './forms';
 
 export class Select {
   el: HTMLSelectElement;
 
   #dropdownInstance: Dropdown;
   #container: HTMLDivElement;
-  #input: HTMLInputElement;
+  #input: HTMLDivElement;
+  #label: HTMLLabelElement;
+  #clickRef: any;
 
   constructor(select: HTMLSelectElement) {
     this.el = select;
@@ -17,12 +20,15 @@ export class Select {
     this.el.style.display = 'none';
     this.#container = wrap([this.el]);
     this.#container.className = 'form-custom-select';
-    this.el.classList.remove('form-custom-select');
 
     this.#setupDropdown();
   }
 
   destroy() {
+    this.#dropdownInstance.el.removeEventListener('ax.dropdown.open', this.#clickRef);
+    this.#dropdownInstance.el.removeEventListener('ax.dropdown.close', this.#clickRef);
+    this.#clickRef = null;
+
     this.#dropdownInstance.destroy();
     this.#dropdownInstance.el.remove();
     this.#dropdownInstance = null;
@@ -32,36 +38,54 @@ export class Select {
   }
 
   #setupDropdown() {
-    const dropdown = document.createElement('div');
     const uid = `dropdown-${getUid()}`;
-    dropdown.className = 'dropdown';
-    dropdown.id = uid;
+    const inputClasses = this.el.dataset.selectInputClasses;
 
-    this.#input = document.createElement('input');
-    this.#input.type = 'text';
-    this.#input.className = 'form-control';
-    this.#input.readOnly = true;
-    this.#input.disabled = this.el.disabled;
+    this.#input = document.createElement('div');
+    this.#input.className = `form-control ${inputClasses ? inputClasses : ''}`;
     this.#input.dataset.target = uid;
 
     const dropdownContent = document.createElement('div');
     const classes = this.el.className.replace('form-control', '');
     dropdownContent.className = `dropdown-content ${classes}`;
 
-    this.#setupContent(dropdownContent);
+    if (this.el.disabled) {
+      this.#input.setAttribute('disabled', '');
+      this.#container.append(this.#input);
+      this.#setupContent(dropdownContent);
+      return;
+    }
+
+    this.#clickRef = this.#setFocusedClass.bind(this);
+
+    const dropdown = document.createElement('div');
+    dropdown.className = 'dropdown';
+    dropdown.id = uid;
+    dropdown.addEventListener('ax.dropdown.open', this.#clickRef);
+    dropdown.addEventListener('ax.dropdown.close', this.#clickRef);
 
     Array.from(this.el.attributes).forEach((a) => {
       if (a.name.startsWith('data-dropdown')) dropdown.setAttribute(a.name, a.value);
     });
-    dropdown.appendChild(this.#input);
-    dropdown.appendChild(dropdownContent);
+    dropdown.append(this.#input);
+    dropdown.append(dropdownContent);
 
-    this.#container.appendChild(dropdown);
+    this.#container.append(dropdown);
 
-    this.#dropdownInstance = new Dropdown(`#${uid}`);
+    this.#setupContent(dropdownContent);
+
+    this.#dropdownInstance = new Dropdown(`#${uid}`, {
+      closeOnClick: !this.el.multiple,
+      preventViewport: true,
+    });
+
+    // Fix zindex & marginTop of label when .form-material-bordered is used
+    const zindex = window.getComputedStyle(dropdown).zIndex;
+    this.#label = this.el.closest('.form-field').querySelector('label:not(.form-check)');
+    this.#label.style.zIndex = zindex + 5;
   }
 
-  #createCheckbox() {
+  #createCheckbox(content: string) {
     const formField = document.createElement('div');
     formField.className = 'form-field';
 
@@ -71,8 +95,11 @@ export class Select {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
 
-    label.appendChild(checkbox);
-    formField.appendChild(label);
+    const span = document.createElement('span');
+    span.innerHTML = content;
+
+    label.append(checkbox, span);
+    formField.append(label);
 
     return formField;
   }
@@ -81,17 +108,31 @@ export class Select {
     for (const option of this.el.options) {
       const item = document.createElement('div');
       item.className = 'dropdown-item';
-      item.innerHTML = this.el.multiple ? this.#createCheckbox().innerHTML + option.text : option.text;
+      item.innerHTML = this.el.multiple ? this.#createCheckbox(option.text).innerHTML : option.text;
       (item as any).axValue = option.value || option.text;
 
       (item as any).axClickRef = this.#onClick.bind(this, item);
       item.addEventListener('click', (item as any).axClickRef);
 
-      dropdownContent.appendChild(item);
+      if (
+        option.hasAttribute('selected') ||
+        (!this.el.multiple && this.el.value === (option.value || option.text))
+      )
+        this.#select(item);
+
+      dropdownContent.append(item);
     }
   }
 
-  #onClick(item: any) {
+  #setFocusedClass() {
+    const formField = this.#input.closest('.form-field');
+    if (formField.classList.contains('is-focused')) formField.classList.remove('is-focused');
+    else formField.classList.add('is-focused');
+  }
+
+  #onClick(item: any, e: Event) {
+    e.preventDefault();
+
     if (!item.classList.contains('form-selected')) this.#select(item);
     else this.#unSelect(item);
   }
@@ -103,10 +144,12 @@ export class Select {
     if (this.el.multiple) item.querySelector('input').checked = true;
 
     const computedValue = this.el.multiple
-      ? [...this.#input.value.split(', ').filter(Boolean), value].join(', ')
+      ? [...this.#input.innerText.split(', ').filter(Boolean), value].join(', ')
       : value;
-    this.#input.value = computedValue;
+    this.#input.innerText = computedValue;
     this.el.value = computedValue;
+
+    updateInputs([this.#input]);
   }
 
   #unSelect(item: HTMLDivElement) {
@@ -117,15 +160,17 @@ export class Select {
     if (this.el.multiple) {
       item.querySelector('input').checked = false;
 
-      const values = this.#input.value.split(', ').filter(Boolean);
+      const values = this.#input.innerText.split(', ').filter(Boolean);
       const i = values.findIndex((v) => v === value);
       values.splice(i, 1);
 
       computedValue = values.join(', ');
     }
 
-    this.#input.value = computedValue;
+    this.#input.innerText = computedValue;
     this.el.value = computedValue;
+
+    updateInputs([this.#input]);
   }
 }
 

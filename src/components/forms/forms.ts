@@ -29,31 +29,44 @@ const delayDetectionAllInputs = (inputElements: NodeListOf<Element>) => {
  */
 const detectInput = (input: any) => {
   const formField = input.closest('.form-field');
+  const isCustomSelect = formField.querySelector('.form-custom-select');
 
   const isActive = formField.classList.contains('active');
   const types = ['date', 'month', 'week', 'time'];
-  const hasContent =
-    input.value.length > 0 ||
-    (input.tagName !== 'SELECT' && input.placeholder.length > 0) ||
-    input.tagName === 'SELECT' ||
-    types.some((type) => input.matches(`[type="${type}"]`));
+
+  let hasContent = isCustomSelect && input.tagName === 'DIV' && input.innerText.length > 0;
+  if (!isCustomSelect)
+    hasContent =
+      input.value.length > 0 ||
+      (input.tagName !== 'SELECT' && input.placeholder.length > 0) ||
+      input.tagName === 'SELECT' ||
+      types.some((type) => input.matches(`[type="${type}"]`));
+
   const isFocused = document.activeElement === input;
   const isDisabled = input.hasAttribute('disabled') || input.hasAttribute('readonly');
 
   if (input.firstInit) {
-    updateInput(input, isActive, hasContent, isFocused, formField);
+    updateInput(input, isActive, hasContent, isFocused, formField, isCustomSelect);
     input.firstInit = false;
     input.isInit = true;
   } else {
-    if (!isDisabled) updateInput(input, isActive, hasContent, isFocused, formField);
+    if (!isDisabled) updateInput(input, isActive, hasContent, isFocused, formField, isCustomSelect);
   }
 };
 
 /**
  * Update input field
  */
-const updateInput = (input: any, isActive: boolean, hasContent: boolean, isFocused: boolean, formField) => {
+const updateInput = (
+  input: any,
+  isActive: boolean,
+  hasContent: boolean,
+  isFocused: boolean,
+  formField,
+  isCustomSelect: boolean
+) => {
   const isTextArea = input.type === 'textarea';
+  const label = formField.querySelector('label:not(.form-check)');
 
   if (!isActive && (hasContent || isFocused)) {
     formField.classList.add('active');
@@ -61,15 +74,11 @@ const updateInput = (input: any, isActive: boolean, hasContent: boolean, isFocus
     formField.classList.remove('active');
   }
 
-  if (!isTextArea) setFormPosition(input, formField);
+  if (!isTextArea) setFormPosition(input, formField, label);
+  else if (label) label.style.backgroundColor = getLabelColor(label);
 
   if (isFocused && !isTextArea) formField.classList.add('is-focused');
-  else formField.classList.remove('is-focused');
-
-  if (isTextArea) {
-    const label = formField.querySelector('label');
-    label.style.backgroundColor = getLabelColor(label);
-  }
+  else if (!isCustomSelect) formField.classList.remove('is-focused');
 
   if (isFocused && isTextArea) formField.classList.add('is-textarea-focused');
   else formField.classList.remove('is-textarea-focused');
@@ -78,7 +87,7 @@ const updateInput = (input: any, isActive: boolean, hasContent: boolean, isFocus
 /**
  * Add bottom position variable to form
  */
-const setFormPosition = (input: HTMLElement, formField: HTMLElement) => {
+const setFormPosition = (input: HTMLElement, formField: HTMLElement, label?: HTMLLabelElement) => {
   const inputWidth = input.clientWidth,
     inputLeftOffset = input.offsetLeft;
 
@@ -102,7 +111,6 @@ const setFormPosition = (input: HTMLElement, formField: HTMLElement) => {
   if (offset != 0) labelLeft = inputLeftOffset;
   formField.style.setProperty(getCssVar('form-material-width'), width);
 
-  const label = formField.querySelector('label');
   if (label) {
     label.style.left = labelLeft + 'px';
 
@@ -208,7 +216,9 @@ const updateInputsFile = () => {
  * Update inputs state
  */
 export const updateInputs = (
-  inputElements = document.querySelectorAll('.form-material .form-field:not(.form-default) .form-control')
+  inputElements: NodeListOf<HTMLElement> | Array<HTMLElement> = document.querySelectorAll(
+    '.form-material .form-field:not(.form-default) .form-control:not(.form-custom-select)'
+  )
 ) => {
   const { setupInputs, detectInputs } = Array.from(inputElements).reduce(
     (acc, el: any) => {

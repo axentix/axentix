@@ -8,6 +8,7 @@ interface IDropdownOptions {
   hover?: boolean;
   autoClose?: boolean;
   preventViewport?: boolean;
+  closeOnClick?: boolean;
 }
 
 const DropdownOptions: IDropdownOptions = {
@@ -16,6 +17,7 @@ const DropdownOptions: IDropdownOptions = {
   hover: false,
   autoClose: true,
   preventViewport: false,
+  closeOnClick: true,
 };
 
 export class Dropdown extends AxentixComponent implements Component {
@@ -95,8 +97,14 @@ export class Dropdown extends AxentixComponent implements Component {
     }
   }
 
-  #onDocumentClick(e: Event) {
-    if (e.target === this.#trigger || this.#isAnimated || !this.#isActive) return;
+  #onDocumentClick(e: any) {
+    if (
+      e.target === this.#trigger ||
+      this.#isAnimated ||
+      !this.#isActive ||
+      (!this.options.closeOnClick && e.target.closest('.dropdown-content'))
+    )
+      return;
 
     this.close();
   }
