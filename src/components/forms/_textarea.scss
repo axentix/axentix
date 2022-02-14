@@ -48,6 +48,7 @@ textarea.form-control {
 
     &.is-textarea-focused {
       textarea.form-control {
+        border: var(getCssVar(form-material-active-border-width)) var(getCssVar(form-material-active-border-style)) var(getCssVar(form-material-color)) !important;
         border-color: var(getCssVar(form-material-color)) !important;
       }
     }
