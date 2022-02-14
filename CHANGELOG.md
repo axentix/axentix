@@ -1,7 +1,8 @@
-# 2.0.0-beta.6 - Under development
+# 2.0.0 - Under development
 
 - ADDED
   - New material forms design variant
+  - `text-justify` class
 - REMOVED
   - `{component}-trigger` classes. Now only `data-target` is needed.
 - IMPROVED
