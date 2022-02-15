@@ -1,9 +1,23 @@
 import { wrap, unwrap, getUid } from '../../utils/utilities';
 import { Dropdown } from '../dropdown/dropdown';
 import { updateInputs } from './forms';
+import { AxentixComponent, Component } from '../../utils/component';
+import { registerComponent, instances } from '../../utils/config';
+import { getComponentOptions } from '../../utils/utilities';
 
-export class Select {
-  el: HTMLSelectElement;
+interface ISelectOptions {
+  inputClasses?: string;
+}
+
+const SelectOptions: ISelectOptions = {
+  inputClasses: '',
+};
+
+export class Select extends AxentixComponent implements Component {
+  static getDefaultOptions = () => SelectOptions;
+
+  declare el: HTMLSelectElement;
+  options: ISelectOptions;
 
   #dropdownInstance: Dropdown;
   #container: HTMLDivElement;
@@ -11,9 +25,21 @@ export class Select {
   #label: HTMLLabelElement;
   #clickRef: any;
 
-  constructor(select: HTMLSelectElement) {
-    this.el = select;
-    this.setup();
+  constructor(element: string, options?: ISelectOptions) {
+    super();
+
+    try {
+      this.preventDbInstance(element);
+      instances.push({ type: 'Select', instance: this });
+
+      this.el = document.querySelector(element);
+
+      this.options = getComponentOptions('Select', options, this.el);
+
+      this.setup();
+    } catch (error) {
+      console.error('[Axentix] Select init error', error);
+    }
   }
 
   setup() {
@@ -25,13 +51,17 @@ export class Select {
   }
 
   destroy() {
-    this.#dropdownInstance.el.removeEventListener('ax.dropdown.open', this.#clickRef);
-    this.#dropdownInstance.el.removeEventListener('ax.dropdown.close', this.#clickRef);
-    this.#clickRef = null;
+    super.destroy();
 
-    this.#dropdownInstance.destroy();
-    this.#dropdownInstance.el.remove();
-    this.#dropdownInstance = null;
+    if (this.#dropdownInstance) {
+      this.#dropdownInstance.el.removeEventListener('ax.dropdown.open', this.#clickRef);
+      this.#dropdownInstance.el.removeEventListener('ax.dropdown.close', this.#clickRef);
+      this.#clickRef = null;
+
+      this.#dropdownInstance.destroy();
+      this.#dropdownInstance.el.remove();
+      this.#dropdownInstance = null;
+    }
 
     unwrap(this.#container);
     this.el.classList.add('form-custom-select');
@@ -39,10 +69,9 @@ export class Select {
 
   #setupDropdown() {
     const uid = `dropdown-${getUid()}`;
-    const inputClasses = this.el.dataset.selectInputClasses;
 
     this.#input = document.createElement('div');
-    this.#input.className = `form-control ${inputClasses ? inputClasses : ''}`;
+    this.#input.className = `form-control ${this.options.inputClasses}`;
     this.#input.dataset.target = uid;
 
     const dropdownContent = document.createElement('div');
@@ -182,15 +211,12 @@ export class Select {
   }
 }
 
-let selectRefs = [];
-document.addEventListener('DOMContentLoaded', () => {
-  const selects = document.querySelectorAll('.form-custom-select:not(.no-axentix-init');
-  if (selects.length === 0) return;
-
-  selects.forEach((s: HTMLSelectElement) => selectRefs.push(new Select(s)));
+registerComponent({
+  class: Select,
+  name: 'Select',
+  dataDetection: true,
+  autoInit: {
+    enabled: true,
+    selector: '.form-custom-select',
+  },
 });
-
-export const destroyAllSelects = () => {
-  selectRefs.forEach((s) => s.destroy());
-  selectRefs = [];
-};

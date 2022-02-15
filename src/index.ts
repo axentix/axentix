@@ -29,6 +29,7 @@ export { default as Toast } from './components/toast/index';
 export { default as Tooltip } from './components/tooltip/index';
 export { default as Waves } from './components/waves/index';
 export { Forms } from './components/forms/index';
+export { Select } from './components/forms/select';
 
 // Must be loaded at the end
 import './core/_colors.scss';
