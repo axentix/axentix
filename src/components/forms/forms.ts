@@ -1,4 +1,4 @@
-import { getCssVar, config } from '../../utils/config';
+import { getCssVar } from '../../utils/config';
 import { validateInput } from './forms-validation';
 
 let isInit = true;
@@ -125,7 +125,7 @@ const getLabelColor = (label) => {
 };
 
 const validate = (input: HTMLInputElement, e: Event) => {
-  if (input.hasAttribute(`${config.prefix}-form-validate`)) validateInput(input, e.type);
+  if (input.hasAttribute(`data-form-validate`)) validateInput(input, e.type);
 };
 
 /**
