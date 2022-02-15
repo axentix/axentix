@@ -2,6 +2,6 @@ import './forms.scss';
 
 import { updateInputs } from './forms';
 import { validateAll } from './forms-validation';
-import { destroyAllSelects } from './select';
+import { destroyAllSelects, Select } from './select';
 
-export const Forms = { updateInputs, validateAll, destroyAllSelects };
+export const Forms = { updateInputs, validateAll, destroyAllSelects, Select };

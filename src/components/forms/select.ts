@@ -85,7 +85,7 @@ export class Select {
     this.#label.style.zIndex = zindex + 5;
   }
 
-  #createCheckbox(content: string) {
+  #createCheckbox(content: string, isDisabled: boolean) {
     const formField = document.createElement('div');
     formField.className = 'form-field';
 
@@ -94,6 +94,8 @@ export class Select {
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
+
+    if (isDisabled) checkbox.setAttribute('disabled', '');
 
     const span = document.createElement('span');
     span.innerHTML = content;
@@ -106,13 +108,19 @@ export class Select {
 
   #setupContent(dropdownContent: HTMLDivElement) {
     for (const option of this.el.options) {
+      const isDisabled = option.hasAttribute('disabled');
+
       const item = document.createElement('div');
       item.className = 'dropdown-item';
-      item.innerHTML = this.el.multiple ? this.#createCheckbox(option.text).innerHTML : option.text;
+      item.innerHTML = this.el.multiple
+        ? this.#createCheckbox(option.text, isDisabled).innerHTML
+        : option.text;
       (item as any).axValue = option.value || option.text;
 
-      (item as any).axClickRef = this.#onClick.bind(this, item);
-      item.addEventListener('click', (item as any).axClickRef);
+      if (!isDisabled) {
+        (item as any).axClickRef = this.#onClick.bind(this, item);
+        item.addEventListener('click', (item as any).axClickRef);
+      } else item.classList.add('form-disabled');
 
       if (
         option.hasAttribute('selected') ||
@@ -176,7 +184,7 @@ export class Select {
 
 let selectRefs = [];
 document.addEventListener('DOMContentLoaded', () => {
-  const selects = document.querySelectorAll('.form-custom-select');
+  const selects = document.querySelectorAll('.form-custom-select:not(.no-axentix-init');
   if (selects.length === 0) return;
 
   selects.forEach((s: HTMLSelectElement) => selectRefs.push(new Select(s)));

@@ -35,7 +35,6 @@ select.form-control:not([multiple]),
 
 .form-custom-select {
   width: 100%;
-  cursor: pointer;
 
   .form-control {
     display: flex;
@@ -44,6 +43,7 @@ select.form-control:not([multiple]),
     white-space: nowrap;
     overflow-x: hidden;
     background-position: right 0 center !important;
+    cursor: pointer;
   }
 
   label {
@@ -61,6 +61,50 @@ select.form-control:not([multiple]),
     .dropdown-content {
       overflow-y: auto;
       margin-top: var(getCssVar(form-material-active-border-width));
+
+      .dropdown-item {
+        position: relative;
+        cursor: pointer;
+        background-color: inherit !important;
+        transition: color 0.2s ease;
+        will-change: color;
+
+        &::before {
+          content: '';
+          position: absolute;
+          background-color: currentColor;
+          opacity: 0;
+          pointer-events: none;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          top: 0;
+          transition: opacity 0.2s ease;
+          will-change: opacity;
+        }
+
+        &.form-selected {
+          color: var(getCssVar(form-material-color));
+        }
+
+        &.form-disabled {
+          color: rgba(0, 0, 0, 0.3);
+          cursor: default;
+          pointer-events: none;
+
+          &::before {
+            opacity: 0.1;
+          }
+        }
+
+        &:hover,
+        &.form-selected,
+        &:focus {
+          &::before {
+            opacity: 0.12;
+          }
+        }
+      }
     }
 
     .form-check input {
