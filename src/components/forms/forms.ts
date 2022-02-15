@@ -29,13 +29,13 @@ const delayDetectionAllInputs = (inputElements: NodeListOf<Element>) => {
  */
 const detectInput = (input: any) => {
   const formField = input.closest('.form-field');
-  const isCustomSelect = formField.querySelector('.form-custom-select');
+  const customSelect = formField.querySelector('.form-custom-select');
 
   const isActive = formField.classList.contains('active');
   const types = ['date', 'month', 'week', 'time'];
 
-  let hasContent = isCustomSelect && input.tagName === 'DIV' && input.innerText.length > 0;
-  if (!isCustomSelect)
+  let hasContent = customSelect && input.tagName === 'DIV' && input.innerText.length > 0;
+  if (!customSelect)
     hasContent =
       input.value.length > 0 ||
       (input.tagName !== 'SELECT' && input.placeholder.length > 0) ||
@@ -46,11 +46,11 @@ const detectInput = (input: any) => {
   const isDisabled = input.hasAttribute('disabled') || input.hasAttribute('readonly');
 
   if (input.firstInit) {
-    updateInput(input, isActive, hasContent, isFocused, formField, isCustomSelect);
+    updateInput(input, isActive, hasContent, isFocused, formField, customSelect);
     input.firstInit = false;
     input.isInit = true;
   } else {
-    if (!isDisabled) updateInput(input, isActive, hasContent, isFocused, formField, isCustomSelect);
+    if (!isDisabled) updateInput(input, isActive, hasContent, isFocused, formField, customSelect);
   }
 };
 
@@ -63,7 +63,7 @@ const updateInput = (
   hasContent: boolean,
   isFocused: boolean,
   formField,
-  isCustomSelect: boolean
+  customSelect: HTMLDivElement
 ) => {
   const isTextArea = input.type === 'textarea';
   const label = formField.querySelector('label:not(.form-check)');
@@ -74,11 +74,11 @@ const updateInput = (
     formField.classList.remove('active');
   }
 
-  if (!isTextArea) setFormPosition(input, formField, label);
+  if (!isTextArea) setFormPosition(input, formField, customSelect, label);
   else if (label) label.style.backgroundColor = getLabelColor(label);
 
   if (isFocused && !isTextArea) formField.classList.add('is-focused');
-  else if (!isCustomSelect) formField.classList.remove('is-focused');
+  else if (!customSelect) formField.classList.remove('is-focused');
 
   if (isFocused && isTextArea) formField.classList.add('is-textarea-focused');
   else formField.classList.remove('is-textarea-focused');
@@ -87,11 +87,16 @@ const updateInput = (
 /**
  * Add bottom position variable to form
  */
-const setFormPosition = (input: HTMLElement, formField: HTMLElement, label?: HTMLLabelElement) => {
+const setFormPosition = (
+  input: HTMLElement,
+  formField: HTMLElement,
+  customSelect: HTMLDivElement,
+  label?: HTMLLabelElement
+) => {
   const inputWidth = input.clientWidth,
     inputLeftOffset = input.offsetLeft;
 
-  const topOffset = input.clientHeight + input.offsetTop + 'px';
+  const topOffset = input.clientHeight + (customSelect ? customSelect.offsetTop : input.offsetTop) + 'px';
   const isBordered = input.closest('.form-material').classList.contains('form-material-bordered');
 
   formField.style.setProperty(getCssVar('form-material-position'), topOffset);

@@ -60,6 +60,7 @@ select.form-control:not([multiple]),
 
     .dropdown-content {
       overflow-y: auto;
+      margin-top: var(getCssVar(form-material-active-border-width));
     }
 
     .form-check input {
