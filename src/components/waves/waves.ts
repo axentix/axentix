@@ -108,7 +108,7 @@ const getTarget = (el: HTMLElement, id: string) => {
   if (target) return target;
   if (el.getAttribute('data-waves') !== null) return el;
 
-  return el.closest('[datawaves]') || null;
+  return el.closest('[data-waves]') || null;
 };
 
 const handler = (e) => {
