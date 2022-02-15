@@ -1,9 +1,8 @@
-import { wrap, unwrap, getUid } from '../../utils/utilities';
+import { wrap, unwrap, getUid, getComponentOptions } from '../../utils/utilities';
 import { Dropdown } from '../dropdown/dropdown';
 import { updateInputs } from './forms';
 import { AxentixComponent, Component } from '../../utils/component';
 import { registerComponent, instances } from '../../utils/config';
-import { getComponentOptions } from '../../utils/utilities';
 
 interface ISelectOptions {
   inputClasses?: string;
