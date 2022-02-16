@@ -161,9 +161,7 @@ export class Select extends AxentixComponent implements Component {
   }
 
   #setFocusedClass() {
-    const formField = this.#input.closest('.form-field');
-    if (formField.classList.contains('is-focused')) formField.classList.remove('is-focused');
-    else formField.classList.add('is-focused');
+    this.#input.closest('.form-field').classList.toggle('is-focused');
   }
 
   #onClick(item: any, e: Event) {
