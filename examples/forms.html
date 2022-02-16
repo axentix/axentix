@@ -201,6 +201,9 @@
           </div>
         </div>
         <button class="btn press secondary" type="reset">Reset me</button>
+        <button class="btn rounded-1 orange dark-1 text-white" type="button" id="select-btn">
+          Reset select
+        </button>
       </form>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit architecto eaque dolor illum veritatis
       tenetur amet explicabo? Nam sunt, blanditiis eum neque repellat inventore quae soluta placeat,
@@ -210,7 +213,12 @@
     </main>
 
     <script type="module">
-      import { Select } from '../src/index.ts';
+      import { Select, getInstance } from '../src/index.ts';
+
+      document.getElementById('select-btn').addEventListener('click', () => {
+        const selectInstance = getInstance('#select');
+        selectInstance.reset();
+      });
     </script>
   </body>
 </html>

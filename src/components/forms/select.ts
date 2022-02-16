@@ -49,8 +49,13 @@ export class Select extends AxentixComponent implements Component {
     this.#setupDropdown();
   }
 
-  destroy() {
-    super.destroy();
+  reset() {
+    this.destroy(true);
+    super.reset();
+  }
+
+  destroy(withoutSuperCall?: boolean) {
+    if (!withoutSuperCall) super.destroy();
 
     if (this.#dropdownInstance) {
       this.#dropdownInstance.el.removeEventListener('ax.dropdown.open', this.#clickRef);
@@ -64,6 +69,7 @@ export class Select extends AxentixComponent implements Component {
 
     unwrap(this.#container);
     this.el.classList.add('form-custom-select');
+    this.el.style.display = '';
   }
 
   #setupDropdown() {
