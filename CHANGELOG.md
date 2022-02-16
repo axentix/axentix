@@ -2,6 +2,8 @@
 
 - ADDED
   - New material forms design variant
+  - Form custom select component
+  - `closeOnClick` dropdown option
   - `text-justify` class
 - REMOVED
   - `{component}-trigger` classes. Now only `data-target` is needed.

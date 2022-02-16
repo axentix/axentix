@@ -5,19 +5,19 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-      :root {
+      /* :root {
         --ax-form-material-color: green !important;
         --ax-form-material-border: 2px lightgrey solid !important;
         --ax-form-material-active-border-width: 2px !important;
         --ax-form-switch-active-color: green !important;
-      }
+      } */
     </style>
   </head>
 
   <body class="layout">
     <main class="py-5 container">
       <h1>Forms</h1>
-      <form class="form-material form-material-bordered">
+      <form class="form-material form-material-">
         <div class="grix xs1 md2">
           <div class="form-field">
             <input type="text" id="surname" class="form-control rounded-1" />
@@ -145,14 +145,43 @@
               <span class="form-slider form-slider-large form-slider-thin"></span>
             </label>
           </div>
+
           <div class="form-field">
-            <label class="text-center" for="select">Select an option</label>
-            <select class="form-control" id="select">
+            <select
+              class="form-control form-custom-select white shadow-1"
+              data-ax="select"
+              data-select-input-classes="rounded-1"
+              id="select"
+              multiple
+            >
               <option selected disabled value="">plage</option>
               <option>2</option>
               <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              <option>15</option>
+              <option>16</option>
+              <option>17</option>
+              <option>18</option>
+              <option>19</option>
+              <option>20</option>
+              <option>21</option>
+              <option>22</option>
+              <option>23</option>
+              <option>24</option>
             </select>
+            <label class="text-center" for="select">Select an option</label>
           </div>
+
           <div class="form-field form-default">
             <label class="text-center" for="multiple-select">Choose one or more option</label>
             <select class="form-control" multiple id="multiple-select">
@@ -172,6 +201,9 @@
           </div>
         </div>
         <button class="btn press secondary" type="reset">Reset me</button>
+        <button class="btn rounded-1 orange dark-1 text-white" type="button" id="select-btn">
+          Reset select
+        </button>
       </form>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit architecto eaque dolor illum veritatis
       tenetur amet explicabo? Nam sunt, blanditiis eum neque repellat inventore quae soluta placeat,
@@ -180,6 +212,13 @@
       ipsa similique nostrum inventore, saepe nesciunt ab deserunt.
     </main>
 
-    <script type="module" src="../src/index.ts"></script>
+    <script type="module">
+      import { Select, getInstance } from '../src/index.ts';
+
+      document.getElementById('select-btn').addEventListener('click', () => {
+        const selectInstance = getInstance('#select');
+        selectInstance.reset();
+      });
+    </script>
   </body>
 </html>
