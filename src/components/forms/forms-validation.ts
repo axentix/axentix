@@ -55,7 +55,7 @@ export const validateInput = (input: HTMLInputElement, eType: string): boolean =
 };
 
 export const validateAll = (form: HTMLFormElement, reset?: boolean): boolean => {
-  const inputs = form.querySelectorAll(`data-form-validate]`);
+  const inputs = form.querySelectorAll(`[data-form-validate]`);
   if (reset) {
     inputs.forEach((input) => resetInputValidation(input.closest('.form-field')));
     return true;

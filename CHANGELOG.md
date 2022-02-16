@@ -10,6 +10,7 @@
   - Lightbox rework for better behavior
   - Collapsible code
   - Disabled style for `form-switch`
+  - Uniformize `data` prefixes
   - Code quality
 - BUGFIXES
 
