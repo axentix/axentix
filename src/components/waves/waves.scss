@@ -15,25 +15,25 @@
   }
 }
 
-[#{$prefix}-waves] {
+[data-waves] {
   cursor: pointer;
   user-select: none;
 }
 
-.#{$prefix}-waves-box {
+.data-waves-box {
   position: relative;
   cursor: pointer;
   user-select: none;
 }
 
-.#{$prefix}-waves-item-inner {
+.data-waves-item-inner {
   position: absolute;
   overflow: hidden;
   display: block;
   pointer-events: none;
 }
 
-.#{$prefix}-waves-item {
+.data-waves-item {
   position: absolute;
   display: block;
   background-color: var(getCssVar(waves-color));

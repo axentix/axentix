@@ -1,8 +1,7 @@
 import { getPointerType, getUid } from '../../utils/utilities';
-import { config, getCssVar } from '../../utils/config';
+import { getCssVar } from '../../utils/config';
 
 let pointerType = '';
-const prefix = config.prefix;
 const targetMap = {};
 const itemMap = {};
 
@@ -22,12 +21,12 @@ const createWaveItem = (target: HTMLElement) => {
   const container: HTMLElement = document.createElement('div');
   const tagName: string = target.tagName.toLowerCase();
 
-  target.setAttribute(`${prefix}-waves-id`, id);
-  container.classList.add(`${prefix}-waves-item-inner`);
-  container.setAttribute(`${prefix}-waves-id`, id);
+  target.setAttribute('data-waves-id', id);
+  container.classList.add('data-waves-item-inner');
+  container.setAttribute('data-waves-id', id);
 
-  el.classList.add(`${prefix}-waves-box`);
-  el.setAttribute(`${prefix}-waves-id`, id);
+  el.classList.add('data-waves-box');
+  el.setAttribute('data-waves-id', id);
 
   el.appendChild(container);
   targetMap[id] = target;
@@ -49,8 +48,8 @@ const createWaves = ({ id, size, x, y, container, item, target }: WavesParams, c
 
   if (color) style += `${getCssVar('waves-color')}: ${color}`;
 
-  waves.setAttribute(`${prefix}-waves-id`, id);
-  waves.classList.add(`${prefix}-waves-item`);
+  waves.setAttribute('data-waves-id', id);
+  waves.classList.add('data-waves-item');
   waves.setAttribute('style', style);
 
   waves.addEventListener(
@@ -60,7 +59,7 @@ const createWaves = ({ id, size, x, y, container, item, target }: WavesParams, c
       if (!container.children.length && item) {
         if (item.parentNode) item.parentNode.removeChild(item);
 
-        target.removeAttribute(`${prefix}-waves-id`);
+        target.removeAttribute('data-waves-id');
         delete itemMap[id];
         delete targetMap[id];
       }
@@ -77,7 +76,7 @@ const getWavesParams = (clientX: number, clientY: number, id: string, target: HT
   let item: any = itemMap[id];
 
   if (!item) item = createWaveItem(target);
-  id = item.getAttribute(`${prefix}-waves-id`) || getUid();
+  id = item.getAttribute('data-waves-id') || getUid();
 
   const container: HTMLElement = item.children[0];
 
@@ -107,18 +106,18 @@ const getTarget = (el: HTMLElement, id: string) => {
   const target = targetMap[id];
 
   if (target) return target;
-  if (el.getAttribute(`${prefix}-waves`) !== null) return el;
+  if (el.getAttribute('data-waves') !== null) return el;
 
-  return el.closest(`[${prefix}-waves]`) || null;
+  return el.closest('[data-waves]') || null;
 };
 
 const handler = (e) => {
   const el = e.target;
-  const id = el.getAttribute(`${prefix}-waves-id`) || '';
+  const id = el.getAttribute('data-waves-id') || '';
   const target = getTarget(el, id);
 
   if (!target || target.getAttribute('disabled')) return;
-  const color = target.getAttribute(`${prefix}-waves`);
+  const color = target.getAttribute('data-waves');
 
   let { clientX, clientY } = e;
   if (pointerType === 'touch') {

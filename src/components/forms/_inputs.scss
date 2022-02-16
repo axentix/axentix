@@ -60,7 +60,7 @@
   &.form-invalid {
     #{getCssVar(form-material-color)}: var(getCssVar(form-invalid-color));
     #{getCssVar(form-material-label-color)}: var(getCssVar(form-invalid-color));
-    #{getCssVar(form-material-border)}: 0.08em solid var(getCssVar(form-invalid-color));
+    #{getCssVar(form-material-border)}: var(getCssVar(form-material-active-border-width)) var(getCssVar(form-material-active-border-style)) var(getCssVar(form-invalid-color));
 
     .form-helper-invalid {
       display: block;
