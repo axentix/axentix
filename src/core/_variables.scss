@@ -102,6 +102,11 @@ $axentix-palette: (
   'transparent': transparent,
 ) !default;
 
+@each $name, $value in $axentix-palette {
+  $generated-css-vars: map.set($generated-css-vars, $name, $value);
+  $generated-css-vars: map.set($generated-css-vars, 'text-#{$name}', textColor($value));
+}
+
 /**
   3. Grix
 **/
