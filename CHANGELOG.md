@@ -3,6 +3,7 @@
 - ADDED
   - New material forms design variant
   - Form custom select component
+  - Axentix color palette now generate color in css variables
   - `closeOnClick` dropdown option
   - `text-justify` class
 - REMOVED

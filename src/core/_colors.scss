@@ -44,13 +44,13 @@
 
 @each $name, $value in $axentix-palette {
   .#{$name} {
-    background-color: #{$value};
-    color: textColor($value);
+    background-color: var(getCssVar($name));
+    color: var(getCssVar('text-#{$name}'));
   }
   .text-#{$name} {
-    color: #{$value} !important;
+    color: var(getCssVar('text-#{$name}')) !important;
   }
   .bd-#{$name} {
-    border-color: #{$value} !important;
+    border-color: var(getCssVar($name)) !important;
   }
 }
