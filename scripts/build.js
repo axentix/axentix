@@ -45,11 +45,11 @@ glob('{**/**/index.ts,src/utils/*.ts}').then(async (files) => {
   const mainPath = files.find((f) => f === 'src/index.ts' && f.split('/')[1] !== 'utils');
   await buildMain(mainPath);
 
-  files
-    .filter((f) => f !== 'src/index.ts' && f.split('/')[1] !== 'utils')
-    .forEach(async (f) => await buildComponent(f));
+  Promise.all(
+    files.filter((f) => f !== 'src/index.ts' && f.split('/')[1] !== 'utils').map((f) => buildComponent(f))
+  );
 
-  files
-    .filter((f) => f !== 'src/index.ts' && f.split('/')[1] === 'utils')
-    .forEach(async (f) => await buildUtil(f));
+  Promise.all(
+    files.filter((f) => f !== 'src/index.ts' && f.split('/')[1] === 'utils').map((f) => buildUtil(f))
+  );
 });
