@@ -5,3 +5,4 @@ dist
 *.log
 *.tgz
 *.d.ts
+stats.html

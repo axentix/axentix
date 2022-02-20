@@ -2,6 +2,7 @@ const glob = require('fast-glob');
 const { build } = require('vite');
 const { config } = require('./config');
 const { resolve } = require('path');
+const { visualizer } = require('rollup-plugin-visualizer');
 
 const buildComponent = async (filepath) => {
   const fileSplitted = filepath.split('/');
@@ -30,6 +31,7 @@ const buildMain = async (filepath) => {
   c.build.lib.entry = resolve(__dirname, `../${filepath}`);
   c.build.lib.fileName = (format) => (format === 'umd' ? 'axentix.min.js' : 'axentix.esm.js');
   c.build.rollupOptions.output.assetFileNames = 'axentix.min.[ext]';
+  c.build.rollupOptions.plugins = [visualizer({ gzipSize: true, title: 'Axentix Stats' })];
 
   await build(c);
 };
