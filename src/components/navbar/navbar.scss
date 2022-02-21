@@ -56,9 +56,12 @@ $navbarHeight: getCssVar(navbar-height);
         padding: 0 0.4rem;
       }
 
-      &:hover,
+      &:hover {
+        background-color: var(getCssVar(hover-background));
+      }
+
       &.active {
-        background-color: rgba(0, 0, 0, 0.15);
+        background-color: var(getCssVar(active-background));
       }
     }
   }

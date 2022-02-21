@@ -10,9 +10,8 @@
   a {
     padding-left: 1.75rem;
 
-    &:hover,
     &.active {
-      background-color: rgba(0, 0, 0, 0.09);
+      background-color: var(getCssVar(collapsible-active-background));
     }
   }
 }
