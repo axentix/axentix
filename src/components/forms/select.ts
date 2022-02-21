@@ -2,7 +2,7 @@ import { wrap, unwrap, getUid, getComponentOptions } from '../../utils/utilities
 import { Dropdown } from '../dropdown/dropdown';
 import { updateInputs } from './forms';
 import { AxentixComponent, Component } from '../../utils/component';
-import { registerComponent, instances } from '../../utils/config';
+import { registerComponent, instances, getComponentClass } from '../../utils/config';
 
 interface ISelectOptions {
   inputClasses?: string;
@@ -108,7 +108,8 @@ export class Select extends AxentixComponent implements Component {
 
     this.#setupContent(dropdownContent);
 
-    this.#dropdownInstance = new Dropdown(`#${uid}`, {
+    const dropdownClass = getComponentClass('Dropdown');
+    this.#dropdownInstance = new dropdownClass(`#${uid}`, {
       closeOnClick: !this.el.multiple,
       preventViewport: true,
     });
