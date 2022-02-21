@@ -78,6 +78,11 @@
     }
   }
 
+  &.hover-dark, .hover-dark{
+    #{getCssVar(hover-background)}: var(getCssVar(hover-background-dark));
+    #{getCssVar(active-background)}: var(getCssVar(active-background-dark));
+  }
+
   .divider {
     margin: 0.2rem 0;
   }

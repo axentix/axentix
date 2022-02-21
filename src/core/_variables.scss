@@ -521,16 +521,14 @@ $font-sizes: (
 **/
 
 $ax-hover-background: rgba(0, 0, 0, 0.04) !default;
-$ax-active-background: rgba(0, 0, 0, 0.1) !default;
-$ax-collapsible-active-background: rgba(0, 0, 0, 0.08) !default;
+$ax-active-background: rgba(0, 0, 0, 0.09) !default;
 $generated-css-vars: map.set($generated-css-vars, 'hover-background', $ax-hover-background);
 $generated-css-vars: map.set($generated-css-vars, 'active-background', $ax-active-background);
-$generated-css-vars: map.set($generated-css-vars, 'collapsible-active-background', $ax-collapsible-active-background);
 
-$ax-hover-background-light: rgba(255, 255, 255, 0.05) !default;
-$ax-active-background-light: rgba(255, 255, 255, 0.1) !default;
-$generated-css-vars: map.set($generated-css-vars, 'hover-background-light', $ax-hover-background-light);
-$generated-css-vars: map.set($generated-css-vars, 'active-background-light', $ax-active-background-light);
+$ax-hover-background-dark: rgba(255, 255, 255, 0.05) !default;
+$ax-active-background-dark: rgba(255, 255, 255, 0.1) !default;
+$generated-css-vars: map.set($generated-css-vars, 'hover-background-dark', $ax-hover-background-dark);
+$generated-css-vars: map.set($generated-css-vars, 'active-background-dark', $ax-active-background-dark);
 
 /**
   21 Waves
