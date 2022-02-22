@@ -9,7 +9,7 @@
   - `hover-dark` class to create light hover effect on dark components
 - REMOVED
   - `{component}-trigger` classes. Now only `data-target` is needed.
-  - Dropdown item `active` default color removed
+  - Dropdown item `active` default color
 - IMPROVED
   - Tooltip timeouts handling
   - Lightbox rework for better behavior
