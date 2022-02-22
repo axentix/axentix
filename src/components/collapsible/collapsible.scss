@@ -13,11 +13,11 @@
 
   .sidenav-link:hover,
   .sidenav-link.active {
-    background-color: var(getCssVar(collapsible-active-background));
+    background-color: var(getCssVar(hover-collapsible-background));
   }
 
   &.hover-dark,
   .hover-dark {
-    #{getCssVar(collapsible-active-background)}: var(getCssVar(collapsible-active-background-dark));
+    #{getCssVar(hover-collapsible-background)}: var(getCssVar(hover-collapsible-background-dark));
   }
 }
