@@ -69,18 +69,10 @@
     flex-shrink: 0;
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &.active {
       background-color: var(getCssVar(hover-background));
     }
-
-    &.active {
-      background-color: var(getCssVar(collapsible-active-background));
-    }
-  }
-
-  &.hover-dark,
-  .hover-dark {
-    #{getCssVar(collapsible-active-background)}: var(getCssVar(collapsible-active-background-dark));
   }
 
   .divider {

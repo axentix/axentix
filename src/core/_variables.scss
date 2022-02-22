@@ -40,8 +40,8 @@ $generated-css-vars: map.remove(
 ) !default;
 $prefix: 'ax' !default;
 
-$ax-overlay-z-index: 700 !default;
-$generated-css-vars: map.set($generated-css-vars, 'ax-overlay-z-index', $ax-overlay-z-index);
+$overlay-z-index: 700 !default;
+$generated-css-vars: map.set($generated-css-vars, 'overlay-z-index', $overlay-z-index);
 
 /** 
   1. Breakpoints
@@ -520,22 +520,22 @@ $font-sizes: (
 /**
   20.11 General hover effect
 **/
-$ax-hover-background: rgba(0, 0, 0, 0.05) !default;
-$ax-collapsible-active-background: rgba(0, 0, 0, 0.09) !default;
-$generated-css-vars: map.set($generated-css-vars, 'hover-background', $ax-hover-background);
+$hover-background: rgba(0, 0, 0, 0.07) !default;
+$collapsible-active-background: rgba(0, 0, 0, 0.04) !default;
+$generated-css-vars: map.set($generated-css-vars, 'hover-background', $hover-background);
 $generated-css-vars: map.set(
   $generated-css-vars,
   'collapsible-active-background',
-  $ax-collapsible-active-background
+  $collapsible-active-background
 );
 
-$ax-hover-background-dark: rgba(255, 255, 255, 0.09) !default;
-$ax-collapsible-active-background-dark: rgba(255, 255, 255, 0.14) !default;
-$generated-css-vars: map.set($generated-css-vars, 'hover-background-dark', $ax-hover-background-dark);
+$hover-background-dark: rgba(255, 255, 255, 0.1) !default;
+$collapsible-active-background-dark: rgba(255, 255, 255, 0.06) !default;
+$generated-css-vars: map.set($generated-css-vars, 'hover-background-dark', $hover-background-dark);
 $generated-css-vars: map.set(
   $generated-css-vars,
   'collapsible-active-background-dark',
-  $ax-collapsible-active-background-dark
+  $collapsible-active-background-dark
 );
 
 /**
