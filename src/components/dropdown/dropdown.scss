@@ -32,11 +32,8 @@
       padding: 1rem 1.25rem;
       transition: background-color 0.2s ease;
 
+      &:hover,
       &.active {
-        background-color: var(getCssVar(active-background));
-      }
-
-      &:hover:not(.active) {
         background-color: var(getCssVar(hover-background));
       }
     }

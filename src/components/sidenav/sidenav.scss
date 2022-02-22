@@ -74,13 +74,14 @@
     }
 
     &.active {
-      background-color: var(getCssVar(active-background));
+      background-color: var(getCssVar(collapsible-active-background));
     }
   }
 
-  &.hover-dark, .hover-dark{
+  &.hover-dark,
+  .hover-dark {
     #{getCssVar(hover-background)}: var(getCssVar(hover-background-dark));
-    #{getCssVar(active-background)}: var(getCssVar(active-background-dark));
+    #{getCssVar(collapsible-active-background)}: var(getCssVar(collapsible-active-background-dark));
   }
 
   .divider {

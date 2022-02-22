@@ -14,8 +14,4 @@
       background-color: var(getCssVar(hover-background));
     }
   }
-
-  &.hover-dark, .hover-dark {
-    #{getCssVar(hover-background)}: var(getCssVar(hover-background-dark));
-  }
 }
