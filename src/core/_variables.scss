@@ -529,8 +529,8 @@ $generated-css-vars: map.set(
   $ax-collapsible-active-background
 );
 
-$ax-hover-background-dark: rgba(255, 255, 255, 0.05) !default;
-$ax-collapsible-active-background-dark: rgba(255, 255, 255, 0.1) !default;
+$ax-hover-background-dark: rgba(255, 255, 255, 0.09) !default;
+$ax-collapsible-active-background-dark: rgba(255, 255, 255, 0.14) !default;
 $generated-css-vars: map.set($generated-css-vars, 'hover-background-dark', $ax-hover-background-dark);
 $generated-css-vars: map.set(
   $generated-css-vars,

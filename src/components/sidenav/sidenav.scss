@@ -80,7 +80,6 @@
 
   &.hover-dark,
   .hover-dark {
-    #{getCssVar(hover-background)}: var(getCssVar(hover-background-dark));
     #{getCssVar(collapsible-active-background)}: var(getCssVar(collapsible-active-background-dark));
   }
 

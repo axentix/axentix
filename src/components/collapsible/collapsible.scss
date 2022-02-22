@@ -9,9 +9,5 @@
 
   a {
     padding-left: 1.75rem;
-
-    &.active {
-      background-color: var(getCssVar(hover-background));
-    }
   }
 }

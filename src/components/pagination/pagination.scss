@@ -45,7 +45,7 @@
       opacity: 0.6;
     }
   }
-  
+
   &.pagination-small li {
     a {
       padding: 0.5rem 0.75rem;
@@ -58,9 +58,5 @@
       padding: 1rem 1.25rem;
     }
     font-size: 1.25rem;
-  }
-
-  &.hover-dark, .hover-dark {
-    #{getCssVar(hover-background)}: var(getCssVar(active-background-dark));
   }
 }
