@@ -6,8 +6,10 @@
   - Axentix color palette now generate color in css variables
   - `closeOnClick` dropdown option
   - `text-justify` class
+  - `hover-dark` class to create light hover effect on dark components
 - REMOVED
   - `{component}-trigger` classes. Now only `data-target` is needed.
+  - Dropdown item `active` default color
 - IMPROVED
   - Tooltip timeouts handling
   - Lightbox rework for better behavior
@@ -15,6 +17,7 @@
   - Disabled style for `form-switch`
   - Uniformize `data` prefixes
   - Code quality
+  - Hover effects standardization
 - BUGFIXES
 
 # 2.0.0-beta.5 - 2022-01-04

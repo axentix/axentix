@@ -9,10 +9,15 @@
 
   a {
     padding-left: 1.75rem;
+  }
 
-    &:hover,
-    &.active {
-      background-color: rgba(0, 0, 0, 0.09);
-    }
+  .sidenav-link:hover,
+  .sidenav-link.active {
+    background-color: var(getCssVar(hover-collapsible-background));
+  }
+
+  &.hover-dark,
+  .hover-dark {
+    #{getCssVar(hover-collapsible-background)}: var(getCssVar(hover-collapsible-background-dark));
   }
 }

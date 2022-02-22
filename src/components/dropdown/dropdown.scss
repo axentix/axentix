@@ -32,13 +32,9 @@
       padding: 1rem 1.25rem;
       transition: background-color 0.2s ease;
 
+      &:hover,
       &.active {
-        background-color: getColor('primary');
-        color: textColor(getColor('primary'));
-      }
-
-      &:hover:not(.active) {
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: var(getCssVar(hover-background));
       }
     }
   }

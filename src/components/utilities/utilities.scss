@@ -227,3 +227,8 @@
   max-width: 100%;
   height: auto;
 }
+
+// Hover effect
+.hover-dark {
+  #{getCssVar(hover-background)}: var(getCssVar(hover-background-dark));
+}

@@ -71,7 +71,7 @@
 
     &:hover,
     &.active {
-      background-color: rgba(0, 0, 0, 0.15);
+      background-color: var(getCssVar(hover-background));
     }
   }
 

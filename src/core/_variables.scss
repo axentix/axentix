@@ -40,8 +40,8 @@ $generated-css-vars: map.remove(
 ) !default;
 $prefix: 'ax' !default;
 
-$ax-overlay-z-index: 700 !default;
-$generated-css-vars: map.set($generated-css-vars, 'ax-overlay-z-index', $ax-overlay-z-index);
+$overlay-z-index: 700 !default;
+$generated-css-vars: map.set($generated-css-vars, 'overlay-z-index', $overlay-z-index);
 
 /** 
   1. Breakpoints
@@ -362,6 +362,7 @@ $generated-css-vars: map.set(
   20.8 Display
   20.9 Borders
   20.10 Typography
+  20.11 General hover effect
 **/
 
 /**
@@ -515,6 +516,27 @@ $font-sizes: (
   '11': $font-base-size * 5,
   '12': $font-base-size * 6,
 ) !default;
+
+/**
+  20.11 General hover effect
+**/
+$hover-background: rgba(0, 0, 0, 0.07) !default;
+$hover-collapsible-background: rgba(0, 0, 0, 0.04) !default;
+$generated-css-vars: map.set($generated-css-vars, 'hover-background', $hover-background);
+$generated-css-vars: map.set(
+  $generated-css-vars,
+  'hover-collapsible-background',
+  $hover-collapsible-background
+);
+
+$hover-background-dark: rgba(255, 255, 255, 0.1) !default;
+$hover-collapsible-background-dark: rgba(255, 255, 255, 0.06) !default;
+$generated-css-vars: map.set($generated-css-vars, 'hover-background-dark', $hover-background-dark);
+$generated-css-vars: map.set(
+  $generated-css-vars,
+  'hover-collapsible-background-dark',
+  $hover-collapsible-background-dark
+);
 
 /**
   21 Waves

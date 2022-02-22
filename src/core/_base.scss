@@ -71,7 +71,7 @@ p {
   height: 100%;
   background-color: rgba(0, 0, 0, 0);
   transition: background-color ease;
-  z-index: var(getCssVar(ax-overlay-z-index));
+  z-index: var(getCssVar(overlay-z-index));
 
   &.active {
     background-color: rgba(0, 0, 0, 0.4);
