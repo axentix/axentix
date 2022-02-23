@@ -4,6 +4,7 @@
   - New material forms design variant
   - Form custom select component
   - Axentix color palette now generate color in css variables
+  - New build system allowing to import specific components via CDN
   - `closeOnClick` dropdown option
   - `text-justify` class
   - `hover-dark` class to create light hover effect on dark components

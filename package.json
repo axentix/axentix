@@ -1,15 +1,20 @@
 {
   "name": "axentix",
   "version": "2.0.0-beta.5",
-  "description": "Axentix is an open source Framework based on CSS Grid using HTML, CSS and JS. The easy layout control and grid system makes it one of the most easy to learn framework.",
+  "description": "Axentix is a framework mixing fully customizable components & utility-first classes, leaving the design choice to the developer.",
   "homepage": "https://useaxentix.com",
   "author": "Axel SIMONET, Vincent LEVEQUE",
   "license": "MIT",
   "scripts": {
-    "serve": "vite --host",
-    "build": "vite build && npm run build:def",
+    "dev": "vite --host",
+    "build": "node scripts/build.js && npm run build:def",
+    "build:main": "node scripts/build.js main",
     "build:def": "tsc",
     "generate:examples": "node scripts/generate-examples.js"
+  },
+  "funding": {
+    "type": "buymeacoffee",
+    "url": "https://www.buymeacoffee.com/axentix"
   },
   "keywords": [
     "axentix",
@@ -32,7 +37,7 @@
   "sass": "./src/only.scss",
   "main": "./dist/axentix.min.js",
   "module": "./dist/axentix.esm.js",
-  "typings": "./src/index.d.ts",
+  "typings": "./dist/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -43,6 +48,8 @@
   "engine": "node >= 12",
   "devDependencies": {
     "autoprefixer": "^10.4.2",
+    "fast-glob": "^3.2.11",
+    "rollup-plugin-visualizer": "^5.5.4",
     "sass": "^1.49.8",
     "typescript": "^4.5.5",
     "vite": "^2.8.4",

@@ -1,6 +1,7 @@
 {
   "include": ["src/**/*"],
   "compilerOptions": {
+    "outDir": "dist",
     "isolatedModules": true,
     "useDefineForClassFields": true,
     "declaration": true,
