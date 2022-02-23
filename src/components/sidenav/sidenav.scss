@@ -68,15 +68,6 @@
     line-height: 3rem;
     flex-shrink: 0;
     cursor: pointer;
-
-    &:hover,
-    &.active {
-      background-color: var(getCssVar(hover-background));
-    }
-  }
-
-  .divider {
-    margin: 0.2rem 0;
   }
 
   .sidenav-footer {
@@ -86,6 +77,24 @@
     padding: 1rem 0.5rem;
     margin-top: auto;
     flex-shrink: 0;
+  }
+
+  &.hover-text, .hover-text, &.hover-text-dark, .hover-text-dark {
+    &.sidenav-link, .sidenav-link  {
+      transition: color 0.30s ease;
+
+      &:hover, &.active {
+        color: var(getCssVar(hover-text-color));
+        background-color: inherit !important;
+      }
+    }
+  }
+}
+
+.sidenav .sidenav-link {
+  &:hover,
+  &.active {
+    background-color: var(getCssVar(hover-background));
   }
 }
 

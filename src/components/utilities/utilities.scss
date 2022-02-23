@@ -16,6 +16,9 @@
 /// Shadows
 @import './utilities/shadows';
 
+// Hover effect
+@import './utilities/hover';
+
 // Width
 .w100 {
   width: 100% !important;
@@ -226,9 +229,4 @@
 .responsive-media {
   max-width: 100%;
   height: auto;
-}
-
-// Hover effect
-.hover-dark {
-  #{getCssVar(hover-background)}: var(getCssVar(hover-background-dark));
 }

@@ -1,0 +1,15 @@
+.hover-dark {
+  #{getCssVar(hover-background)}: var(getCssVar(hover-background-dark));
+}
+
+.hover-text:not(.navbar) {
+  &:hover {
+    color: var(getCssVar(hover-text-color));
+  }
+}
+
+.hover-text-dark {
+  &:hover {
+    color: var(getCssVar(hover-text-color-dark))
+  }
+}

@@ -60,30 +60,19 @@ $navbarHeight: getCssVar(navbar-height);
     }
   }
 
-  &.hover-text-dark, .hover-text-dark {
-    .navbar-link {
-      transition: color 0.25s ease;
-      color: rgba(255, 255, 255, 0.6);
+  &.hover-text, .hover-text, &.hover-text-dark, .hover-text-dark {
+    &.navbar-link, .navbar-link  {
+      transition: color 0.30s ease;
 
-      &:hover {
-        color: #fff;
-      }
-    }
-  }
-
-  &.hover-text, .hover-text {
-    .navbar-link {
-      transition: color 0.25s ease;
-      color: rgba(0, 0, 0, 0.6);
-
-      &:hover {
-        color: #000;
+      &:hover, &.active {
+        color: var(getCssVar(hover-text-color));
+        background-color: inherit !important;
       }
     }
   }
 }
 
-.navbar:not(.hover-text):not(.hover-text-dark) .navbar-link {
+.navbar .navbar-link {
   &.active,
   &:hover {
     background-color: var(getCssVar(hover-background));
