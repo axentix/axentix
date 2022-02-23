@@ -9,6 +9,7 @@ $navbarHeight: getCssVar(navbar-height);
   padding: 0 0.5rem;
   height: var($navbarHeight);
   line-height: var($navbarHeight);
+  z-index: var(getCssVar(navbar-z-index));
 
   .navbar-logo {
     height: calc(var($navbarHeight) - 5%);
@@ -69,7 +70,6 @@ $navbarHeight: getCssVar(navbar-height);
   height: var($navbarHeight);
   width: 100%;
   position: relative;
-  z-index: var(getCssVar(navbar-z-index));
 
   .navbar {
     position: fixed;
