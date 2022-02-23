@@ -57,12 +57,36 @@ $navbarHeight: getCssVar(navbar-height);
       @include responsive('xs') {
         padding: 0 0.4rem;
       }
+    }
+  }
 
-      &.active,
+  &.hover-text-dark, .hover-text-dark {
+    .navbar-link {
+      transition: color 0.25s ease;
+      color: rgba(255, 255, 255, 0.6);
+
       &:hover {
-        background-color: var(getCssVar(hover-background));
+        color: #fff;
       }
     }
+  }
+
+  &.hover-text, .hover-text {
+    .navbar-link {
+      transition: color 0.25s ease;
+      color: rgba(0, 0, 0, 0.6);
+
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+}
+
+.navbar:not(.hover-text):not(.hover-text-dark) .navbar-link {
+  &.active,
+  &:hover {
+    background-color: var(getCssVar(hover-background));
   }
 }
 
