@@ -3,7 +3,6 @@ $navbarHeight: getCssVar(navbar-height);
 .navbar {
   display: flex;
   position: relative;
-  z-index: 3;
   flex-direction: row;
   align-items: center;
   padding: 0 0.5rem;
