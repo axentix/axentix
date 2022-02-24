@@ -16,8 +16,8 @@
     background-color: var(getCssVar(hover-collapsible-background));
   }
 
-  &.hover-dark,
-  .hover-dark {
+  &.hover-bg-dark,
+  .hover-bg-dark {
     #{getCssVar(hover-collapsible-background)}: var(getCssVar(hover-collapsible-background-dark));
   }
 }

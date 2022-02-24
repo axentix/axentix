@@ -7,7 +7,8 @@
   - New build system allowing to import specific components via CDN
   - `closeOnClick` dropdown option
   - `text-justify` class
-  - `hover-dark` class to create light hover effect on dark components
+  - `hover-bg` & `hover-bg-dark` classes to create hover effect on components
+  - `hover-text` & `hover-text-dark` classes to create hover effect on text
 - REMOVED
   - `{component}-trigger` classes. Now only `data-target` is needed.
   - Dropdown item `active` default color

@@ -1,4 +1,8 @@
-.hover-dark {
+.hover-bg {
+  #{getCssVar(hover-background)}: var(getCssVar(hover-background));
+}
+
+.hover-bg-dark {
   #{getCssVar(hover-background)}: var(getCssVar(hover-background-dark));
 }
 
