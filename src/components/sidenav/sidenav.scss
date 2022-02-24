@@ -68,6 +68,11 @@
     line-height: 3rem;
     flex-shrink: 0;
     cursor: pointer;
+    
+    &:hover,
+    &.active {
+      background-color: var(getCssVar(hover-background));
+    }
   }
 
   .sidenav-footer {
@@ -104,13 +109,6 @@
       }
     }
   } 
-}
-
-.sidenav .sidenav-link {
-  &:hover,
-  &.active {
-    background-color: var(getCssVar(hover-background));
-  }
 }
 
 .sidenav .dropdown {
