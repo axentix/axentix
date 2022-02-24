@@ -84,11 +84,26 @@
       transition: color 0.30s ease;
 
       &:hover, &.active {
-        color: var(getCssVar(hover-text-color));
         background-color: inherit !important;
       }
     }
   }
+
+  &.hover-text, .hover-text {
+    &.sidenav-link, .sidenav-link {
+      &:hover, &.active {
+        color: var(getCssVar(hover-text-color));
+      }
+    }
+  }
+
+  &.hover-text-dark, .hover-text-dark {
+    &.sidenav-link, .sidenav-link {
+      &:hover, &.active {
+        color: var(getCssVar(hover-text-color-dark));
+      }
+    }
+  } 
 }
 
 .sidenav .sidenav-link {

@@ -62,13 +62,28 @@ $navbarHeight: getCssVar(navbar-height);
   &.hover-text, .hover-text, &.hover-text-dark, .hover-text-dark {
     &.navbar-link, .navbar-link  {
       transition: color 0.30s ease;
-
+      
       &:hover, &.active {
-        color: var(getCssVar(hover-text-color));
         background-color: inherit !important;
       }
     }
   }
+
+  &.hover-text, .hover-text {
+    &.navbar-link, .navbar-link  {
+      &:hover, &.active {
+        color: var(getCssVar(hover-text-color));
+      }
+    }
+  }
+
+  &.hover-text-dark, .hover-text-dark {
+    &.navbar-link, .navbar-link  {
+      &:hover, &.active {
+        color: var(getCssVar(hover-text-color-dark));
+      }
+    }
+  } 
 }
 
 .navbar .navbar-link {
