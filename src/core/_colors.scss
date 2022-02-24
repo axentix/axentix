@@ -48,7 +48,7 @@
     color: var(getCssVar('text-#{$name}'));
   }
   .text-#{$name} {
-    color: var(getCssVar('text-#{$name}')) !important;
+    color: var(getCssVar($name)) !important;
   }
   .bd-#{$name} {
     border-color: var(getCssVar($name)) !important;
