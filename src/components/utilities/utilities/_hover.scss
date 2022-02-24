@@ -1,0 +1,27 @@
+.hover-bg {
+  #{getCssVar(hover-background)}: var(getCssVar(hover-background));
+
+  &:hover:not(.sidenav):not(.collapsible):not(.navbar):not(.navbar-menu):not(.dropdown) {
+    background-color: var(getCssVar(hover-background));
+  }
+}
+
+.hover-bg-dark {
+  #{getCssVar(hover-background)}: var(getCssVar(hover-background-dark));
+
+  &:hover:not(.sidenav):not(.collapsible):not(.navbar):not(.navbar-menu):not(.dropdown) {
+    background-color: var(getCssVar(hover-background-dark));
+  }
+}
+
+.hover-text {
+  &:hover {
+    color: var(getCssVar(hover-text-color));
+  }
+}
+
+.hover-text-dark {
+  &:hover {
+    color: var(getCssVar(hover-text-color-dark));
+  }
+}

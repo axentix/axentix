@@ -538,6 +538,11 @@ $generated-css-vars: map.set(
   $hover-collapsible-background-dark
 );
 
+$hover-text-color: #000 !default;
+$hover-text-color-dark: #fff !default;
+$generated-css-vars: map.set($generated-css-vars, 'hover-text-color', $hover-text-color);
+$generated-css-vars: map.set($generated-css-vars, 'hover-text-color-dark', $hover-text-color-dark);
+
 /**
   21 Waves
 **/

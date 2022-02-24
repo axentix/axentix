@@ -8,6 +8,7 @@ $navbarHeight: getCssVar(navbar-height);
   padding: 0 0.5rem;
   height: var($navbarHeight);
   line-height: var($navbarHeight);
+  z-index: var(getCssVar(navbar-z-index));
 
   .navbar-logo {
     height: calc(var($navbarHeight) - 5%);
@@ -55,12 +56,40 @@ $navbarHeight: getCssVar(navbar-height);
       @include responsive('xs') {
         padding: 0 0.4rem;
       }
+    }
+  }
 
-      &.active,
-      &:hover {
-        background-color: var(getCssVar(hover-background));
+  &.hover-text, .hover-text, &.hover-text-dark, .hover-text-dark {
+    &.navbar-link, .navbar-link  {
+      transition: color 0.30s ease;
+      
+      &:hover, &.active {
+        background-color: inherit !important;
       }
     }
+  }
+
+  &.hover-text, .hover-text {
+    &.navbar-link, .navbar-link  {
+      &:hover, &.active {
+        color: var(getCssVar(hover-text-color));
+      }
+    }
+  }
+
+  &.hover-text-dark, .hover-text-dark {
+    &.navbar-link, .navbar-link  {
+      &:hover, &.active {
+        color: var(getCssVar(hover-text-color-dark));
+      }
+    }
+  } 
+}
+
+.navbar .navbar-link {
+  &.active,
+  &:hover {
+    background-color: var(getCssVar(hover-background));
   }
 }
 
@@ -68,7 +97,6 @@ $navbarHeight: getCssVar(navbar-height);
   height: var($navbarHeight);
   width: 100%;
   position: relative;
-  z-index: var(getCssVar(navbar-z-index));
 
   .navbar {
     position: fixed;

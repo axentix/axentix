@@ -10,22 +10,15 @@
 
   <body class="layout with-sidenav fixed-sidenav">
     <header>
-      <nav class="navbar primary shadow-1">
-        <a href="#" class="navbar-logo navbar-centered">
-          <img src="https://axelsimonet.fr/assets/img/logoA.svg" alt="Xelzs" />
-        </a>
+      <nav class="navbar hover-text white shadow-1">
         <a href="#" target="_blank" class="navbar-brand">Axentix</a>
-        <div class="navbar-menu ml-auto">
+        <div class="navbar-menu text-grey text-dark-2 navbar-centered">
           <a class="navbar-link" href="#">Link 1</a>
           <a class="navbar-link" href="#">Link 2</a>
           <div class="dropdown" id="nav-dropdown">
-            <div class="navbar-link secondary dropdown-trigger">Toggle</div>
+            <div class="navbar-link" data-target="nav-dropdown">Toggle</div>
             <div class="dropdown-content dropdown-right white rounded-1 shadow-1">
               <a class="dropdown-item" href="#">Drop122222222222222222</a>
-              <a class="dropdown-item" href="#">Drop2</a>
-              <a class="dropdown-item" href="#">Drop2</a>
-              <a class="dropdown-item" href="#">Drop2</a>
-              <a class="dropdown-item" href="#">Drop2</a>
               <a class="dropdown-item" href="#">Drop2</a>
               <a class="dropdown-item" href="#">Drop2</a>
               <a class="dropdown-item" href="#">Drop2</a>
@@ -40,19 +33,24 @@
             </div>
           </div>
         </div>
+        <a href="#" class="navbar-logo ml-auto">
+          <img src="https://axelsimonet.fr/assets/img/logoA.svg" alt="Xelzs" />
+        </a>
       </nav>
     </header>
 
     <div id="example-sidenav" class="sidenav large fixed white shadow-1">
       <div class="sidenav-header">
-        <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
+        <button data-target="example-sidenav"><i class="fas fa-times" aria-hidden="true"></i></button>
         <img class="sidenav-logo dropshadow-1" src="https://useaxentix.com/img/axentix.svg" alt="Logo" />
       </div>
-      <a href="#" class="sidenav-link active">Link 1</a>
-      <a href="#" class="sidenav-link">Link 2</a>
-      <a href="#" class="sidenav-link">Link 3</a>
+      <div class="sidenav-menu hover-text-dark text-grey text-dark-2">
+        <a href="#" class="sidenav-link active">Link 1</a>
+        <a href="#" class="sidenav-link">Link 2</a>
+        <a href="#" class="sidenav-link">Link 3</a>
+      </div>
       <div class="dropdown centered" id="sidenav-dropdown">
-        <div class="sidenav-link dropdown-trigger">Toggle</div>
+        <div class="sidenav-link" data-target="sidenav-dropdown">Toggle</div>
         <div class="dropdown-content white rounded-1 shadow-1">
           <a class="dropdown-item" href="#">Drop122222222222222222</a>
           <a class="dropdown-item" href="#">Drop2</a>
@@ -64,6 +62,7 @@
 
     <main>
       <div class="container mt-4">
+        <button data-target="example-sidenav">Sidenav</button>
         <form class="form-material mt-2">
           <div class="grix xs1 sm2">
             <div class="form-field">
@@ -108,7 +107,9 @@
           deserunt aspernatur, magnam impedit eaque.
         </p>
         <div class="dropdown mx-auto" id="example-dropdown">
-          <button type="button" class="btn primary dropdown-trigger shadow-1 rounded-1">Toggle</button>
+          <button type="button" class="btn primary shadow-1 rounded-1" data-target="example-dropdown">
+            Toggle
+          </button>
           <div class="dropdown-content constrain-width white rounded-1 shadow-1">
             <a class="dropdown-item" href="#">Drop1222222222</a>
             <a class="dropdown-item" href="#">Drop2</a>
@@ -145,7 +146,7 @@
     </main>
 
     <script type="module">
-      import { Sidenav, Axentix } from '../src/index.ts';
+      import { Sidenav, Dropdown, Axentix } from '../src/index.ts';
       var sidenav = new Sidenav('#example-sidenav');
       // var dropdown = new Dropdown('#example-dropdown', {
       //   animationType: 'fade'

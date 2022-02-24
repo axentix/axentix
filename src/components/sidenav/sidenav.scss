@@ -75,10 +75,6 @@
     }
   }
 
-  .divider {
-    margin: 0.2rem 0;
-  }
-
   .sidenav-footer {
     display: flex;
     align-items: center;
@@ -86,6 +82,43 @@
     padding: 1rem 0.5rem;
     margin-top: auto;
     flex-shrink: 0;
+  }
+
+  &.hover-text,
+  .hover-text,
+  &.hover-text-dark,
+  .hover-text-dark {
+    &.sidenav-link,
+    .sidenav-link {
+      transition: color 0.3s ease;
+
+      &:hover,
+      &.active {
+        background-color: inherit !important;
+      }
+    }
+  }
+
+  &.hover-text,
+  .hover-text {
+    &.sidenav-link,
+    .sidenav-link {
+      &:hover,
+      &.active {
+        color: var(getCssVar(hover-text-color));
+      }
+    }
+  }
+
+  &.hover-text-dark,
+  .hover-text-dark {
+    &.sidenav-link,
+    .sidenav-link {
+      &:hover,
+      &.active {
+        color: var(getCssVar(hover-text-color-dark));
+      }
+    }
   }
 }
 
