@@ -12,3 +12,9 @@
     }
   }
 }
+
+@mixin colorScheme($name) {
+  @media (prefers-color-scheme: #{$name}) {
+    @content;
+  }
+}

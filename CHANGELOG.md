@@ -9,6 +9,7 @@
   - `text-justify` class
   - `hover-bg` & `hover-bg-dark` classes to create hover effect on components
   - `hover-text` & `hover-text-dark` classes to create hover effect on text
+  - `colorScheme($name)` sass mixin
 - REMOVED
   - `{component}-trigger` classes. Now only `data-target` is needed.
   - Dropdown item `active` default color
