@@ -68,7 +68,7 @@
     line-height: 3rem;
     flex-shrink: 0;
     cursor: pointer;
-    
+
     &:hover,
     &.active {
       background-color: var(getCssVar(hover-background));
@@ -84,31 +84,42 @@
     flex-shrink: 0;
   }
 
-  &.hover-text, .hover-text, &.hover-text-dark, .hover-text-dark {
-    &.sidenav-link, .sidenav-link  {
-      transition: color 0.30s ease;
+  &.hover-text,
+  .hover-text,
+  &.hover-text-dark,
+  .hover-text-dark {
+    &.sidenav-link,
+    .sidenav-link {
+      transition: color 0.3s ease;
 
-      &:hover, &.active {
+      &:hover,
+      &.active {
         background-color: inherit !important;
       }
     }
   }
 
-  &.hover-text, .hover-text {
-    &.sidenav-link, .sidenav-link {
-      &:hover, &.active {
+  &.hover-text,
+  .hover-text {
+    &.sidenav-link,
+    .sidenav-link {
+      &:hover,
+      &.active {
         color: var(getCssVar(hover-text-color));
       }
     }
   }
 
-  &.hover-text-dark, .hover-text-dark {
-    &.sidenav-link, .sidenav-link {
-      &:hover, &.active {
+  &.hover-text-dark,
+  .hover-text-dark {
+    &.sidenav-link,
+    .sidenav-link {
+      &:hover,
+      &.active {
         color: var(getCssVar(hover-text-color-dark));
       }
     }
-  } 
+  }
 }
 
 .sidenav .dropdown {
