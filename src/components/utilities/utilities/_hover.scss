@@ -14,14 +14,10 @@
   }
 }
 
-.hover-text {
-  &:hover {
-    color: var(getCssVar(hover-text-color));
-  }
+.hover-text:hover:not(.sidenav):not(.collapsible):not(.navbar):not(.navbar-menu):not(.dropdown) {
+  color: var(getCssVar(hover-text-color));
 }
 
-.hover-text-dark {
-  &:hover {
-    color: var(getCssVar(hover-text-color-dark));
-  }
+.hover-text-dark:hover:not(.sidenav):not(.collapsible):not(.navbar):not(.navbar-menu):not(.dropdown) {
+  color: var(getCssVar(hover-text-color-dark));
 }
