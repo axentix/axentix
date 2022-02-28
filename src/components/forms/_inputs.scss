@@ -60,7 +60,8 @@
   &.form-invalid {
     #{getCssVar(form-material-color)}: var(getCssVar(form-invalid-color));
     #{getCssVar(form-material-label-color)}: var(getCssVar(form-invalid-color));
-    #{getCssVar(form-material-border)}: var(getCssVar(form-material-active-border-width)) var(getCssVar(form-material-active-border-style)) var(getCssVar(form-invalid-color));
+    #{getCssVar(form-material-border)}: var(getCssVar(form-material-active-border-width))
+      var(getCssVar(form-material-active-border-style)) var(getCssVar(form-invalid-color));
 
     .form-helper-invalid {
       display: block;
@@ -130,7 +131,7 @@
   &:not(.form-material-bordered) .form-field:not(.form-default) .form-control {
     border-radius: 0;
   }
-  
+
   .form-field:not(.form-default) {
     padding-top: 0.75rem;
     align-self: start;
