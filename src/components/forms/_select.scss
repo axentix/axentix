@@ -117,7 +117,3 @@ select.form-control:not([multiple]),
 .form-material.form-material-bordered .form-field.is-focused:not(.active) .form-custom-select + label {
   margin-top: 0 !important;
 }
-
-.form-field:not(.form-default)::after {
-  z-index: var(getCssVar(form-material-after-z-index));
-}

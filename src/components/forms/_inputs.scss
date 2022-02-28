@@ -130,7 +130,7 @@
   &:not(.form-material-bordered) .form-field:not(.form-default) .form-control {
     border-radius: 0;
   }
-
+  
   .form-field:not(.form-default) {
     padding-top: 0.75rem;
     align-self: start;
@@ -181,6 +181,7 @@
       border-bottom: var(getCssVar(form-material-active-border-width))
         var(getCssVar(form-material-active-border-style)) var(getCssVar(form-material-color));
       transition: width var(getCssVar(form-material-transition-duration)) ease;
+      z-index: var(getCssVar(form-material-after-z-index));
     }
 
     &.form-rtl::after {
