@@ -21,6 +21,7 @@
   - Uniformize `data` prefixes
   - Code quality
   - Hover effects standardization
+  - Cards & Modals default padding
 - BUGFIXES
 
 # 2.0.0-beta.5 - 2022-01-04
