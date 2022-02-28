@@ -60,7 +60,8 @@
   &.form-invalid {
     #{getCssVar(form-material-color)}: var(getCssVar(form-invalid-color));
     #{getCssVar(form-material-label-color)}: var(getCssVar(form-invalid-color));
-    #{getCssVar(form-material-border)}: var(getCssVar(form-material-active-border-width)) var(getCssVar(form-material-active-border-style)) var(getCssVar(form-invalid-color));
+    #{getCssVar(form-material-border)}: var(getCssVar(form-material-active-border-width))
+      var(getCssVar(form-material-active-border-style)) var(getCssVar(form-invalid-color));
 
     .form-helper-invalid {
       display: block;
@@ -181,6 +182,7 @@
       border-bottom: var(getCssVar(form-material-active-border-width))
         var(getCssVar(form-material-active-border-style)) var(getCssVar(form-material-color));
       transition: width var(getCssVar(form-material-transition-duration)) ease;
+      z-index: var(getCssVar(form-material-after-z-index));
     }
 
     &.form-rtl::after {

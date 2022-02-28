@@ -304,10 +304,11 @@ $generated-css-vars: map.set($generated-css-vars, 'form-check-disabled-color', $
 $form-material-color: getColor('viride', 'dark', 1) !default;
 $form-material-transition-duration: 0.3s !default;
 $form-material-label-color: getColor('grey', 'dark', 2) !default;
-$form-material-border: 0.08em solid #c7c7c7 !default;
-$form-material-disabled-border: 0.08em dashed #c7c7c7 !default;
-$form-material-active-border-width: 0.1em !default;
+$form-material-border: 2px solid #c7c7c7 !default;
+$form-material-disabled-border: 2px dashed #c7c7c7 !default;
+$form-material-active-border-width: 2px !default;
 $form-material-active-border-style: solid !default;
+$form-material-after-z-index: 15 !default;
 
 $generated-css-vars: map.set($generated-css-vars, 'form-material-color', $form-material-color);
 $generated-css-vars: map.set(
@@ -331,6 +332,11 @@ $generated-css-vars: map.set(
   $generated-css-vars,
   'form-material-active-border-style',
   $form-material-active-border-style
+);
+$generated-css-vars: map.set(
+  $generated-css-vars,
+  'form-material-after-z-index',
+  $form-material-after-z-index
 );
 
 /**
