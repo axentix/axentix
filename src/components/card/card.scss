@@ -1,27 +1,18 @@
 .card {
   position: relative;
   margin: 0.5rem 0;
-  align-self: start;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 
   .card-header {
     font-size: 1.5rem;
-    padding: 1.5rem;
+    padding: 0.75rem;
   }
 
   .card-content {
-    padding: 1.5rem;
+    padding: 0.75rem;
     flex-grow: 1;
-
-    .card-header {
-      padding: 0 0 3rem 0;
-    }
-
-    .card-footer {
-      padding: 3rem 0 0 0;
-    }
 
     p {
       margin: 0;
@@ -29,7 +20,7 @@
   }
 
   .card-footer {
-    padding: 1.5rem;
+    padding: 0.75rem;
   }
 
   .card-image {
@@ -42,7 +33,12 @@
   }
 }
 
-// Grix stretch fix
-.grix.vstretch .card {
-  align-self: auto;
+.grix {
+  &.vstretch .card {
+    align-self: auto;
+  }
+
+  .card {
+    align-self: start;
+  }
 }
