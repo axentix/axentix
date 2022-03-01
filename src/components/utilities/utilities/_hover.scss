@@ -1,9 +1,5 @@
-.hover-bg {
-  #{getCssVar(hover-background)}: var(getCssVar(hover-background));
-
-  &:hover:not(.sidenav):not(.collapsible):not(.navbar):not(.navbar-menu):not(.dropdown) {
-    background-color: var(getCssVar(hover-background));
-  }
+.hover-bg:hover:not(.sidenav):not(.collapsible):not(.navbar):not(.navbar-menu):not(.dropdown) {
+  background-color: var(getCssVar(hover-background));
 }
 
 .hover-bg-dark {
