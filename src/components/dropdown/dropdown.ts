@@ -31,6 +31,7 @@ export class Dropdown extends AxentixComponent implements Component {
   #isActive = false;
   #documentClickRef: any;
   #listenerRef: any;
+  #contentHeightRef: any;
 
   constructor(element: string, options?: IDropdownOptions) {
     super();
@@ -73,6 +74,9 @@ export class Dropdown extends AxentixComponent implements Component {
 
     this.#documentClickRef = this.#onDocumentClick.bind(this);
     document.addEventListener('click', this.#documentClickRef, true);
+
+    this.#contentHeightRef = this.#setContentHeight.bind(this);
+    if (this.options.preventViewport) window.addEventListener('scroll', this.#contentHeightRef);
   }
 
   removeListeners() {
@@ -83,6 +87,9 @@ export class Dropdown extends AxentixComponent implements Component {
 
     document.removeEventListener('click', this.#documentClickRef, true);
     this.#documentClickRef = undefined;
+
+    if (this.options.preventViewport) window.removeEventListener('scroll', this.#contentHeightRef);
+    this.#contentHeightRef = undefined;
   }
 
   #setupAnimation() {
