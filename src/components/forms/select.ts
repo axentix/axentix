@@ -201,7 +201,7 @@ export class Select extends AxentixComponent implements Component {
     const value = (item as any).axValue;
     item.classList.remove('form-selected');
 
-    let computedValue = value;
+    let computedValue = '';
     if (this.el.multiple) {
       item.querySelector('input').checked = false;
 
