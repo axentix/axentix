@@ -180,10 +180,14 @@ export class Select extends AxentixComponent implements Component {
 
   #select(item: HTMLDivElement) {
     const value = (item as any).axValue;
-    item.classList.add('form-selected');
 
     if (this.el.multiple) item.querySelector('input').checked = true;
+    else if (this.#dropdownInstance)
+      this.#dropdownInstance.el
+        .querySelectorAll('.dropdown-item')
+        .forEach((i) => i.classList.remove('form-selected'));
 
+    item.classList.add('form-selected');
     const computedValue = this.el.multiple
       ? [...this.#input.innerText.split(', ').filter(Boolean), value].join(', ')
       : value;
