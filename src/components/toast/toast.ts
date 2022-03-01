@@ -1,5 +1,5 @@
 import { getCssVar, registerComponent, instances } from '../../utils/config';
-import { createEvent, extend, getComponentOptions, getInstanceByType } from '../../utils/utilities';
+import { createEvent, extend, getInstanceByType } from '../../utils/utilities';
 
 interface IToastOptions {
   animationDuration?: number;
