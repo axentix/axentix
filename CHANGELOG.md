@@ -20,6 +20,7 @@
   - Disabled style for `form-switch`
   - Uniformize `data` prefixes
   - Code quality
+  - Dropdown preventViewport option scroll handling
   - Hover effects standardization
 - BUGFIXES
 
