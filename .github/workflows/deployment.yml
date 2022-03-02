@@ -31,7 +31,6 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
           access: "public"
-          tag: "next"
 
       - uses: vimtor/action-zip@v1
         with:
@@ -42,4 +41,3 @@ jobs:
         with:
           artifacts: "axentix-${{ steps.get_version.outputs.VERSION }}.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
-          prerelease: true

@@ -7,18 +7,18 @@
 <h3 align="center">Axentix - Front-end framework</h3>
 
 <p align="center">
-  <a href="https://useaxentix.com/2.0.x/?ref=github"><strong>Home</strong></a> |
-  <a href="https://useaxentix.com/2.0.x/docs/?ref=github"><strong>Documentation</strong></a>
+  <a href="https://useaxentix.com/?ref=github"><strong>Home</strong></a> |
+  <a href="https://useaxentix.com/docs/?ref=github"><strong>Documentation</strong></a>
 </p>
 
 <br>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/axentix">
-    <img alt="npm (tag)" src="https://img.shields.io/npm/v/axentix/next">
+    <img alt="npm" src="https://img.shields.io/npm/v/axentix">
   </a>
   <a href="https://github.com/axentix/axentix/releases">
-    <img alt="GitHub release (latest by date including pre-releases)" src="https://img.shields.io/github/v/release/axentix/axentix?include_prereleases">
+    <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/axentix/axentix">
   </a>
   <a href="https://www.jsdelivr.com/package/npm/axentix">
     <img src="https://data.jsdelivr.com/v1/package/npm/axentix/badge?style=rounded" alt="jsDelivr Hits" />
@@ -46,22 +46,16 @@ Axentix is a framework mixing fully customizable components & utility-first clas
 
 ![home gif](https://useaxentix.com/img/gif-home.gif?2)
 
-<h3 align="center">
-WARNING: This branch corresponds to Axentix v2, which is still in beta.
-<br/>
-Find the LTS version on the <a href="https://github.com/axentix/axentix/tree/v1">v1 branch</a>.
-</h3>
-
 ## Quickstart
 
 ### NPM
 ```
-npm install axentix@next
+npm install axentix
 ```
 
 ### Yarn
 ```
-yarn add axentix@next
+yarn add axentix
 ```
 
 ### CDN
@@ -83,7 +77,7 @@ You can build project with `npm run build` or serve it with `npm run serve`.
 
 ## Documentation
 
-Find the documentation at [https://useaxentix.com/2.0.x/docs/](https://useaxentix.com/2.0.x/docs/?ref=github).
+Find the documentation at [https://useaxentix.com/docs/](https://useaxentix.com/docs/?ref=github).
 
 ## Changelog
 
