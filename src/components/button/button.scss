@@ -24,7 +24,8 @@
     }
   }
 
-  &:hover {
+  &:hover,
+  &.active {
     filter: brightness(115%);
   }
 
