@@ -20,7 +20,7 @@
   &[class*='light-hoverable-'] {
     &:not(.btn-press),
     &:not(.btn-outline) {
-      transition-property: filter, transform, box-shadow;
+      transition-property: filter, transform, box-shadow !important;
     }
   }
 
