@@ -20,11 +20,12 @@
   &[class*='light-hoverable-'] {
     &:not(.btn-press),
     &:not(.btn-outline) {
-      transition-property: filter, transform, box-shadow;
+      transition-property: filter, transform, box-shadow !important;
     }
   }
 
-  &:hover {
+  &:hover:not(.btn-outline),
+  &.active:not(.btn-outline) {
     filter: brightness(115%);
   }
 
@@ -140,7 +141,8 @@
       }
     }
 
-    &:hover {
+    &:hover,
+    &.active {
       animation-name: fix-outline-button;
       animation-delay: 0.001s;
       animation-fill-mode: forwards;
