@@ -1,3 +1,13 @@
+# 2.1.0 - Under development
+
+- ADDED
+  - Active button class
+  - Flex space classes
+- REMOVED
+- IMPROVED
+  - Flex alignments class naming
+- BUGFIXES
+
 # 2.0.0 - 2022-03-02
 
 Axentix v2 is here !

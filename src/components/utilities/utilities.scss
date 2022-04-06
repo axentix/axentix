@@ -36,39 +36,6 @@
   }
 }
 
-// Flex
-.fx-col {
-  flex-direction: column !important;
-}
-
-.fx-col-reverse {
-  flex-direction: column-reverse !important;
-}
-
-.fx-row {
-  flex-direction: row !important;
-}
-
-.fx-row-reverse {
-  flex-direction: row-reverse !important;
-}
-
-.fx-grow {
-  flex-grow: 1 !important;
-}
-
-.fx-wrap {
-  flex-wrap: wrap !important;
-}
-
-.fx-nowrap {
-  flex-wrap: nowrap !important;
-}
-
-.fx-wrap-reverse {
-  flex-wrap: wrap-reverse !important;
-}
-
 // Hide elements
 .hide {
   display: none !important;
