@@ -5,7 +5,8 @@
   - Flex space classes
 - REMOVED
 - IMPROVED
-  - Flex alignments class naming
+  - Flexbox class naming
+  - Alignments classnames refactor
 - BUGFIXES
 
 # 2.0.0 - 2022-03-02
