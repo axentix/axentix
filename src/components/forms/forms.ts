@@ -123,16 +123,24 @@ const setFormPosition = (
   }
 };
 
-const getLabelColor = (label) => {
-  let target: HTMLElement = label;
+const extractBgColor = (target: HTMLElement) => {
+  const bg = window.getComputedStyle(target).backgroundColor;
+  if (bg && !['transparent', 'rgba(0, 0, 0, 0)'].includes(bg)) return bg;
+};
+
+const getLabelColor = (label: HTMLElement) => {
+  label.style.backgroundColor = '';
+  let target = label;
 
   while (target.parentElement) {
-    let bg = window.getComputedStyle(target).backgroundColor;
-    if (bg && !['transparent', 'rgba(0, 0, 0, 0)'].includes(bg)) {
-      return bg;
-    }
+    const bg = extractBgColor(target);
+    if (bg) return bg;
+
     target = target.parentElement;
   }
+
+  const htmlBg = extractBgColor(document.documentElement);
+  if (htmlBg) return htmlBg;
 
   return 'white';
 };
