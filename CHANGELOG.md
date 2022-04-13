@@ -1,3 +1,12 @@
+# 2.0.1 - 2022-04-13
+
+- ADDED
+  - Active button class
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Material form label can have wrong background color
+
 # 2.0.0 - 2022-03-02
 
 Axentix v2 is here !
