@@ -6,11 +6,11 @@
 - IMPROVED
   - Build `src/core` folder to dist
 - BUGFIXES
-  - Form validation won't work on `form-file`
-  - Material form label can have wrong background color
+  - Form validation didn't work on `form-file`
+  - Material form label could have wrong background color
   - Apply padding to `.collapsible .sidenav-link` instead of `.collapsible a`
-  - Dropdown cannot hover another dropdown
-  - Form custom select can throw an error
+  - Dropdown couldn't hover another dropdown
+  - Form custom select could throw an error
 
 # 2.0.0 - 2022-03-02
 
