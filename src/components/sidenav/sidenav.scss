@@ -122,6 +122,6 @@
   }
 }
 
-.sidenav .dropdown {
+.sidenav .dropdown .dropdown-content {
   z-index: var(getCssVar(dropdown-z-index-sidenav));
 }

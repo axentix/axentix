@@ -59,31 +59,42 @@ $navbarHeight: getCssVar(navbar-height);
     }
   }
 
-  &.hover-text, .hover-text, &.hover-text-dark, .hover-text-dark {
-    &.navbar-link, .navbar-link  {
-      transition: color 0.30s ease;
-      
-      &:hover, &.active {
+  &.hover-text,
+  .hover-text,
+  &.hover-text-dark,
+  .hover-text-dark {
+    &.navbar-link,
+    .navbar-link {
+      transition: color 0.3s ease;
+
+      &:hover,
+      &.active {
         background-color: inherit !important;
       }
     }
   }
 
-  &.hover-text, .hover-text {
-    &.navbar-link, .navbar-link  {
-      &:hover, &.active {
+  &.hover-text,
+  .hover-text {
+    &.navbar-link,
+    .navbar-link {
+      &:hover,
+      &.active {
         color: var(getCssVar(hover-text-color));
       }
     }
   }
 
-  &.hover-text-dark, .hover-text-dark {
-    &.navbar-link, .navbar-link  {
-      &:hover, &.active {
+  &.hover-text-dark,
+  .hover-text-dark {
+    &.navbar-link,
+    .navbar-link {
+      &:hover,
+      &.active {
         color: var(getCssVar(hover-text-color-dark));
       }
     }
-  } 
+  }
 }
 
 .navbar .navbar-link {
@@ -106,10 +117,7 @@ $navbarHeight: getCssVar(navbar-height);
   }
 }
 
-.navbar .dropdown {
+.navbar .dropdown .dropdown-content {
+  line-height: 1.15;
   z-index: var(getCssVar(dropdown-z-index-navbar));
-
-  .dropdown-content {
-    line-height: 1.15;
-  }
 }

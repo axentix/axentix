@@ -1,7 +1,6 @@
 .dropdown {
   position: relative;
   display: inline-block;
-  z-index: var(getCssVar(dropdown-z-index));
 
   &.dropdown-vp .dropdown-content {
     overflow-y: auto;
@@ -14,6 +13,7 @@
     flex-direction: column;
     overflow: hidden;
     white-space: nowrap;
+    z-index: var(getCssVar(dropdown-z-index));
 
     &.dropdown-right {
       right: 0;
