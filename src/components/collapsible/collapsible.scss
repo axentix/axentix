@@ -7,13 +7,13 @@
 .sidenav .collapsible {
   flex-shrink: 0;
 
-  a {
+  .sidenav-link {
     padding-left: 1.75rem;
-  }
 
-  .sidenav-link:hover,
-  .sidenav-link.active {
-    background-color: var(getCssVar(hover-collapsible-background));
+    &:hover,
+    &.active {
+      background-color: var(getCssVar(hover-collapsible-background));
+    }
   }
 
   &.hover-bg-dark,

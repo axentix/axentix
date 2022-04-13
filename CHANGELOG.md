@@ -6,6 +6,7 @@
 - IMPROVED
 - BUGFIXES
   - Material form label can have wrong background color
+  - Apply padding to `.collapsible .sidenav-link` instead of `.collapsible a`
 
 # 2.0.0 - 2022-03-02
 
