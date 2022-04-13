@@ -4,6 +4,7 @@
   - Active button class
 - REMOVED
 - IMPROVED
+  - Build `src/core` folder to dist
 - BUGFIXES
   - Form validation won't work on `form-file`
   - Material form label can have wrong background color

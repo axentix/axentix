@@ -40,10 +40,7 @@ const buildMain = async (filepath) => {
   await build(c);
 };
 
-if (process.argv[2] === 'main') {
-  buildMain('src/index.ts');
-  return;
-}
+if (process.argv[2] === 'main') buildMain('src/index.ts');
 
 glob('{**/**/index.ts,src/utils/*.ts,src/**/select.ts}').then(async (files) => {
   const mainPath = files.find((f) => f === 'src/index.ts' && f.split('/')[1] !== 'utils');
