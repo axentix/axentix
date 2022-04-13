@@ -117,7 +117,7 @@ export class Select extends AxentixComponent implements Component {
     // Fix zindex & marginTop of label when .form-material-bordered is used
     const zindex = window.getComputedStyle(dropdown).zIndex;
     this.#label = this.el.closest('.form-field').querySelector('label:not(.form-check)');
-    this.#label.style.zIndex = zindex + 5;
+    if (this.#label) this.#label.style.zIndex = zindex + 5;
   }
 
   #createCheckbox(content: string, isDisabled: boolean) {

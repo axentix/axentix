@@ -9,6 +9,7 @@
   - Material form label can have wrong background color
   - Apply padding to `.collapsible .sidenav-link` instead of `.collapsible a`
   - Dropdown cannot hover another dropdown
+  - Form custom select can throw an error
 
 # 2.0.0 - 2022-03-02
 
