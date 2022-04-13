@@ -36,7 +36,7 @@ export const validateInput = (input: HTMLInputElement, eType: string): boolean =
 
   const isValid = checkBrowserValidity(input);
 
-  const formField: HTMLElement = input.closest('.form-field');
+  const formField: HTMLElement = input.closest('.form-field, .form-file');
 
   resetInputValidation(formField);
 
@@ -54,12 +54,12 @@ export const validateInput = (input: HTMLInputElement, eType: string): boolean =
   return true;
 };
 
-export const validateAll = (form: HTMLFormElement, reset?: boolean): boolean => {
+export const resetValidation = (form: HTMLFormElement) => {
   const inputs = form.querySelectorAll(`[data-form-validate]`);
-  if (reset) {
-    inputs.forEach((input) => resetInputValidation(input.closest('.form-field')));
-    return true;
-  }
+  inputs.forEach((input) => resetInputValidation(input.closest('.form-field, .form-file')));
+};
 
-  return ![...inputs].some((input: HTMLInputElement) => !validateInput(input, 'change'));
+export const validate = (form: HTMLFormElement): boolean => {
+  const inputs = form.querySelectorAll(`[data-form-validate]`);
+  return [...inputs].map((input: HTMLInputElement) => validateInput(input, 'change')).every((b) => b);
 };

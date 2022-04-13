@@ -195,13 +195,24 @@
 
           <div class="form-file col-md2 mb-4">
             <label for="img" class="btn primary rounded-1 shadow-1">Image</label>
-            <input type="file" name="img" id="img" multiple accept="image/png, image/jpeg" />
+            <input
+              type="file"
+              name="img"
+              id="img"
+              data-form-validate="auto"
+              multiple
+              accept="image/png, image/jpeg"
+              required
+            />
             <div class="form-file-path"></div>
           </div>
         </div>
         <button class="btn press secondary" type="reset">Reset me</button>
         <button class="btn rounded-1 orange dark-1 text-white" type="button" id="select-btn">
           Reset select
+        </button>
+        <button class="btn rounded-1 orange dark-1 text-white" type="button" id="validate-btn">
+          Validate all
         </button>
       </form>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit architecto eaque dolor illum veritatis
@@ -212,11 +223,16 @@
     </main>
 
     <script type="module">
-      import { Select, getInstance } from '../src/index.ts';
+      import { Select, getInstance, Forms } from '../src/index.ts';
 
       document.getElementById('select-btn').addEventListener('click', () => {
         const selectInstance = getInstance('#select');
         selectInstance.reset();
+      });
+
+      document.getElementById('validate-btn').addEventListener('click', () => {
+        const form = document.querySelector('form');
+        console.log(Forms.validate(form));
       });
     </script>
   </body>

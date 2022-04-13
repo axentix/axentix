@@ -1,6 +1,6 @@
 import './forms.scss';
 
 import { updateInputs } from './forms';
-import { validateAll } from './forms-validation';
+import { validate, resetValidation } from './forms-validation';
 
-export const Forms = { updateInputs, validateAll };
+export const Forms = { updateInputs, validate, resetValidation };
