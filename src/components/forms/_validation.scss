@@ -1,0 +1,48 @@
+.form-field,
+.form-file {
+  [class*='form-helper'] {
+    font-size: var(getCssVar(form-helper-size));
+    color: #747474;
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  .form-helper-valid,
+  .form-helper-invalid {
+    display: none;
+  }
+
+  .form-helper-valid {
+    color: var(getCssVar(form-valid-color));
+  }
+
+  .form-helper-invalid {
+    color: var(getCssVar(form-invalid-color));
+  }
+
+  &.form-valid:not(.form-no-helper),
+  &.form-invalid:not(.form-no-helper) {
+    .form-helper {
+      display: none;
+    }
+  }
+
+  &.form-valid {
+    #{getCssVar(form-material-color)}: var(getCssVar(form-valid-color));
+
+    .form-helper-valid {
+      display: block;
+    }
+  }
+
+  &.form-invalid {
+    #{getCssVar(form-material-color)}: var(getCssVar(form-invalid-color));
+    #{getCssVar(form-material-label-color)}: var(getCssVar(form-invalid-color));
+    #{getCssVar(form-material-border)}: var(getCssVar(form-material-active-border-width))
+      var(getCssVar(form-material-active-border-style)) var(getCssVar(form-invalid-color));
+
+    .form-helper-invalid {
+      display: block;
+    }
+  }
+}

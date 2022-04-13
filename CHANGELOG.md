@@ -5,6 +5,7 @@
 - REMOVED
 - IMPROVED
 - BUGFIXES
+  - Form validation won't work on `form-file`
   - Material form label can have wrong background color
   - Apply padding to `.collapsible .sidenav-link` instead of `.collapsible a`
   - Dropdown cannot hover another dropdown

@@ -31,4 +31,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+
+  [class*='form-helper'] {
+    margin-left: 0.5rem;
+  }
 }
