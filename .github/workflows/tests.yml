@@ -19,8 +19,14 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
+
       - name: Install dependencies and run tests
-        run: npm ci
-        run: npx playwright install --with-deps
+        run: |
+         npm ci
+         npx playwright install --with-deps
+
+      - name: Build
         run: npm run build
+      
+      - name: Test
         run: npm run test
