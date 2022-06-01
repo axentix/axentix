@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Axentix - Modal</title>
+    <title>Modal test</title>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../dist/axentix.min.css" />
   </head>
 
   <body class="layout">
@@ -11,7 +13,9 @@
         <h2>Modal</h2>
 
         <div class="grix xs1 gutter-xs6 mt-5">
-          <button class="btn primary rounded-1 shadow-1 mx-auto" data-target="normal">Normal modal</button>
+          <button data-test="trigger" class="btn primary rounded-1 shadow-1 mx-auto" data-target="normal">
+            Normal modal
+          </button>
           <button class="btn primary rounded-1 shadow-1 mx-auto" data-target="falling">Falling modal</button>
           <button class="btn primary rounded-1 shadow-1 mx-auto" data-target="bouncing">
             Bouncing modal
@@ -19,10 +23,10 @@
         </div>
       </div>
 
-      <div class="modal white" id="normal" data-ax="modal">
-        <div class="modal-header">
-          Header
-          <button data-target="normal">
+      <div data-test="modal" class="modal white" id="normal" data-ax="modal">
+        <div class="modal-header d-flex">
+          <span>Header</span>
+          <button class="btn transparent ml-auto" data-target="normal" data-test="close-btn">
             <span>X</span>
           </button>
         </div>
@@ -31,9 +35,9 @@
       </div>
 
       <div class="modal modal-falling white" id="falling" data-ax="modal">
-        <div class="modal-header">
-          Header
-          <button data-target="falling">
+        <div class="modal-header d-flex">
+          <span>Header</span>
+          <button class="btn transparent ml-auto" data-target="falling">
             <span>X</span>
           </button>
         </div>
@@ -42,9 +46,9 @@
       </div>
 
       <div class="modal modal-bouncing white" id="bouncing" data-ax="modal">
-        <div class="modal-header">
-          Header
-          <button data-target="bouncing">
+        <div class="modal-header d-flex">
+          <span>Header</span>
+          <button class="btn transparent ml-auto" data-target="bouncing">
             <span>X</span>
           </button>
         </div>
@@ -53,8 +57,6 @@
       </div>
     </main>
 
-    <script type="module">
-      import { Modal } from '../src/index.ts';
-    </script>
+    <script src="../dist/axentix.min.js"></script>
   </body>
 </html>

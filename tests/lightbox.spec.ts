@@ -9,7 +9,6 @@ test.beforeEach(async ({ page }) => {
     width: 1280,
     height: 720,
   });
-  await page.waitForTimeout(500);
 });
 
 test('lightbox should be 1000x600 px', async ({ page }) => {

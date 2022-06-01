@@ -31,7 +31,7 @@ test.describe('sm-down screens sidenav tests', () => {
     const trigger = page.locator('[data-test="sidenav-trigger"]');
 
     await trigger.click();
-    await page.waitForTimeout(300);
+    await page.waitForTimeout(400);
     const box = await sidenav.boundingBox();
     await expect(box.x).toBe(0);
   });
