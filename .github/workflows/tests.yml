@@ -17,10 +17,10 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: 16
           cache: 'npm'
       - name: Install dependencies and run tests
-      - run: npm ci
-      - run: npx playwright install --with-deps
-      - run: npm run build
-      - run: npm run test
+        run: npm ci
+        run: npx playwright install --with-deps
+        run: npm run build
+        run: npm run test
