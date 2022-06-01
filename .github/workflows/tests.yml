@@ -16,10 +16,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16.x'
-          
-      - uses: microsoft/playwright-github-action@v1
 
       - name: Install dependencies and run tests
-      - run: npm ci
-      - run: npm run build
-      - run: npm run test
+        run: npm ci
+        run: npx playwright install --with-deps
+        run: npm run build
+        run: npm run test
