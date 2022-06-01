@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 const path = require('path');
 
-// const sidenavPagePath = path.join('file://', __dirname, 'testFiles/sidenav.html');
 const sidenavPagePath = path.join('file://', __dirname, '../examples/sidenav.html');
 
 test.describe('sm-down screens sidenav tests', () => {
@@ -43,10 +42,10 @@ test.describe('sm-down screens sidenav tests', () => {
 
     await trigger.click();
     await page.waitForTimeout(300);
-    const box = await sidenav.boundingBox();
-
-    // click on the right of the sidenav, so on the overlay
-    await page.mouse.click(box.x + box.width + 5, box.height / 2);
+    
+    const overlay = page.locator('.ax-overlay.active');
+    expect(overlay).toBeTruthy();
+    await overlay.click();
 
     await page.waitForTimeout(300);
     const newBox = await sidenav.boundingBox();
@@ -88,19 +87,17 @@ test.describe('md-up sidenav tests', () => {
     await expect(box.width).toBe(320);
   });
 
-  // test('sidenav should be on the right', async ({ page }) => {
-  //   const sidenav = page.locator('[data-test="sidenav"]');
+  test('sidenav should be right aligned', async ({ page }) => {
+    const sidenav = page.locator('[data-test="sidenav"]');
 
-  //   await page.evaluate(() => {
-  //     const sidenav = document.querySelector('[data-test="sidenav"]');
-  //     const instance = getComponentClass('sidenav') as Sidenav;
-  //     sidenav.classList.add('sidenav-right');
-  //     instance.reset();
-  //   });
-
-  //   await page.waitForTimeout(300);
-  //   const box = await sidenav.boundingBox();
-
-  //   await expect(box.width + box.x).toBe(1280);
-  // });
+    await page.evaluate(() => {
+      const sidenav = document.querySelector('[data-test="sidenav"]');
+      sidenav.classList.add('sidenav-right');
+      window["Axentix"].getInstance('#example-sidenav').reset();
+    });
+    
+    await page.waitForTimeout(500);
+    const box = await sidenav.boundingBox();
+    await expect(box.x + box.width).toBe(1280);
+  });
 });

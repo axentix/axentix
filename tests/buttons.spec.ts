@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 const path = require('path');
 
-// const buttonsPagePath = path.join('file://', __dirname, 'testFiles/buttons.html');
 const buttonsPagePath = path.join('file://', __dirname, '../examples/buttons.html');
 
 test.beforeEach(async ({ page }) => {

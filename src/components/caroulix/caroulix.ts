@@ -63,7 +63,7 @@ export class Caroulix extends AxentixComponent implements Component {
   #xStart = 0;
   #yStart = 0;
   #indicators: HTMLElement;
-  #autoplayInterval: number;
+  #autoplayInterval: ReturnType<typeof setInterval>;
   #pointerType: string;
 
   constructor(element: string, options?: ICaroulixOptions) {
