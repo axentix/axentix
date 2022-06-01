@@ -2,9 +2,10 @@
 name: tests
 
 on:
-  push:
-    branches:
-      - '**'
+  pull_request:
+    types:
+      - opened
+      - synchronize
 
 jobs:
   e2e-tests:
