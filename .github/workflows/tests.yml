@@ -5,27 +5,19 @@ on:
   push:
     branches:
       - '**'
+
 jobs:
   e2e-tests:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "16.x"
-      - name: Cache playwright binaries
-        uses: actions/cache@v3
-        id: playwright-cache
-        with:
-          path: |
-            ~/.cache/ms-playwright
-          key: cache-playwright-linux-1.19.2
+    runs-on: ubuntu-latest # or macos-latest, windows-latest
 
-      - name: Install Dependencies
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+
+      - uses: microsoft/playwright-github-action@v1
+
+      - name: Install dependencies and run tests
         run: npm ci
-      - name: Install Playwright
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
-      - name: Run Playwright tests
-        run: npx playwright test
+        run: npm run build
+        run: npm run test
