@@ -37,8 +37,8 @@
   <a href="https://discord.gg/8tgRDED">
     <img src="https://img.shields.io/discord/727545620683816980" alt="Discord" />
   </a>
-  <a href="https://openbase.io/js/axentix?utm_source=embedded&utm_medium=badge&utm_campaign=rate-badge">
-    <img src="https://badges.openbase.io/js/rating/axentix.svg" alt="Rate on Openbase" />
+  <a href="https://openbase.com/js/axentix?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge">
+    <img src="https://badges.openbase.com/js/rating/axentix.svg?token=xEWyuQ6VoC2qG3gEvoNm6V3hVAvXbAnGQXJTC9OkTrI=" alt="Rate this package" />
   </a>
 </p>
 
