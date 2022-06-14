@@ -54,3 +54,35 @@ Make sure to add [@Xelzs](https://github.com/Xelzs) & [@Stallos](https://github.
 ### Closing a pull request
 
 When a pull request is closed, make sure to close the related issues if existing.
+
+## Tests
+
+# End-to-end
+
+Install browsers
+
+```sh
+npx playwright install
+```
+
+Run the tests
+
+```sh
+npm test
+```
+
+# Linux users
+
+To start the test suite, you need to install this package 
+
+```sh
+# Example with apt based operating system
+sudo apt-get install libenchant1c2a
+```
+---
+
+To watch tests running in browsers, use this command
+
+```sh
+PWDEBUG=1 npm run test
+```
