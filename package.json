@@ -8,6 +8,8 @@
   "scripts": {
     "dev": "vite --host",
     "test": "npx playwright test",
+    "test:watch": "PWDEBUG=1 npx playwright test",
+    "test:watch-windows": "set PWDEBUG=1 && npx playwright test",
     "build": "node scripts/build.js && npm run build:def",
     "build:main": "node scripts/build.js main",
     "build:def": "tsc",

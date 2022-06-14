@@ -1,10 +1,11 @@
 import { test, expect } from '@playwright/test';
-const path = require('path');
-
-const buttonsPagePath = path.join('file://', __dirname, '../examples/buttons.html');
 
 test.beforeEach(async ({ page }) => {
-  await page.goto(buttonsPagePath);
+  await page.goto('./buttons.html');
+  await page.setViewportSize({
+    width: 1280,
+    height: 720,
+  });
 });
 
 test('button should be visible', async ({ page }) => {

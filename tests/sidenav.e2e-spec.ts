@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
-const path = require('path');
 
-const sidenavPagePath = path.join('file://', __dirname, '../examples/sidenav.html');
+const sidenavPagePath = './sidenav.html';
 
 test.describe('sm-down screens sidenav tests', () => {
   test.beforeEach(async ({ page }) => {
@@ -42,7 +41,7 @@ test.describe('sm-down screens sidenav tests', () => {
 
     await trigger.click();
     await page.waitForTimeout(300);
-    
+
     const overlay = page.locator('.ax-overlay.active');
     expect(overlay).toBeTruthy();
     await overlay.click();
@@ -93,9 +92,9 @@ test.describe('md-up sidenav tests', () => {
     await page.evaluate(() => {
       const sidenav = document.querySelector('[data-test="sidenav"]');
       sidenav.classList.add('sidenav-right');
-      window["Axentix"].getInstance('#example-sidenav').reset();
+      window['Axentix'].getInstance('#example-sidenav').reset();
     });
-    
+
     await page.waitForTimeout(500);
     const box = await sidenav.boundingBox();
     await expect(box.x + box.width).toBe(1280);

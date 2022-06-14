@@ -84,5 +84,5 @@ sudo apt-get install libenchant1c2a
 To watch tests running in browsers, use this command
 
 ```sh
-PWDEBUG=1 npm run test
+npm run test:watch
 ```

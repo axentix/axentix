@@ -11,7 +11,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="../dist/axentix.min.css" />
   </head>
 
   <body class="layout">
@@ -36,6 +35,8 @@
       </div>
     </main>
 
-    <script src="../dist/axentix.min.js"></script>
+    <script type="module">
+      import { Lightbox } from '../src/index.ts';
+    </script>
   </body>
 </html>

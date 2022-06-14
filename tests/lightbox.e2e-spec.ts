@@ -1,10 +1,7 @@
 import { test, expect } from '@playwright/test';
-const path = require('path');
-
-const lightboxPagePath = path.join('file://', __dirname, '../examples/lightbox.html');
 
 test.beforeEach(async ({ page }) => {
-  await page.goto(lightboxPagePath);
+  await page.goto('./lightbox.html');
   await page.setViewportSize({
     width: 1280,
     height: 720,
