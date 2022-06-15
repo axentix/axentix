@@ -1,415 +1,44 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>Axentix Layout - Fixed sidenav</title>
+    <title>Buttons test</title>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
   </head>
 
   <body class="layout">
-    <main class="container">
-      <h2>NORMAL BUTTONS</h2>
+    <header>
+      <nav class="navbar shadow-1 primary">
+        <a href="#" class="navbar-brand mx-auto">Test file</a>
+      </nav>
+    </header>
 
-      <div class="grix xs3">
-        <div class="btn primary btn-small hoverable-1">DIV</div>
-        <a href="#" class="btn primary btn-small active">A</a>
-        <button class="btn btn-small primary">BTN</button>
-
-        <div class="btn primary">DIV</div>
-        <a href="#" class="btn primary">A</a>
-        <button class="btn primary">BTN</button>
-
-        <div class="btn primary btn-large light-hoverable-2">DIV</div>
-        <a href="#" class="btn primary btn-large">A</a>
-        <button class="btn primary btn-large">BTN</button>
-      </div>
-
-      <div class="divider"></div>
-
-      <h2>PRESS BUTTONS</h2>
-      <div class="grix xs3">
-        <div class="btn primary btn-small btn-press">DIV</div>
-        <a href="#" class="btn primary btn-small btn-press">A</a>
-        <button class="btn primary btn-small btn-press">BTN</button>
-
-        <div class="btn primary btn-press">DIV</div>
-        <a href="#" class="btn primary btn-press">A</a>
-        <button class="btn primary btn-press">BTN</button>
-
-        <div class="btn primary btn-large btn-press light-hoverable-2">DIV</div>
-        <a href="#" class="btn primary btn-large btn-press">A</a>
-        <button class="btn primary btn-large btn-press">BTN</button>
-      </div>
-
-      <div class="divider"></div>
-
-      <h2>OUTLINE BUTTONS</h2>
-      <div class="grix xs3">
-        <div class="btn text-primary btn-outline btn-small"><span class="btn-outline-text">DIV</span></div>
-        <a class="btn text-primary btn-outline btn-small active"><span class="btn-outline-text">A</span></a>
-        <button class="btn text-primary btn-outline btn-small" disabled>
-          <span class="btn-outline-text">BTN</span>
+    <main>
+      <div class="h100 d-flex fx-col fx-center vcenter">
+        <button data-test="button-small" class="btn btn-small blue">Small button</button>
+        <button data-test="button" class="btn blue">Normal button</button>
+        <button data-test="button-large" class="btn btn-large blue">Large button</button>
+        <button data-test="circle" class="btn btn-circle blue shadow-1">
+          <i class="fa-solid fa-thumbs-up" aria-hidden="true"></i>
         </button>
-
-        <div class="btn text-primary btn-outline"><span class="btn-outline-text">DIV</span></div>
-        <a class="btn text-primary btn-outline"><span class="btn-outline-text">A</span></a>
-        <button class="btn text-primary btn-outline"><span class="btn-outline-text">BTN</span></button>
-
-        <div class="btn text-primary btn-outline btn-large light-hoverable-2">
-          <span class="btn-outline-text">DIV</span>
-        </div>
-        <a class="btn text-primary btn-outline btn-large"><span class="btn-outline-text">A</span></a>
-        <button class="btn text-primary btn-outline btn-large">
-          <span class="btn-outline-text">BTN</span>
+        <div data-test="press" class="btn rounded-1 blue btn-press">Press button</div>
+        <button data-test="outline" class="btn shadow-1 rounded-1 btn-outline text-blue">
+          <span class="btn-outline-text">Outline</span>
+        </button>
+        <button data-test="outline-invert" class="btn shadow-1 rounded-1 btn-outline text-blue text-light-3">
+          <span class="btn-outline-text btn-outline-invert">Outline invert</span>
         </button>
       </div>
-
-      <h2>OPENING BUTTONS</h2>
-      <div class="grix xs3">
-        <div class="btn text-primary btn-outline btn-opening btn-small">
-          <span class="btn-outline-text">DIV</span>
-        </div>
-        <a class="btn text-primary btn-outline btn-opening btn-small"
-          ><span class="btn-outline-text">A</span></a
-        >
-        <button class="btn text-primary btn-outline btn-opening btn-small">
-          <span class="btn-outline-text">BTN</span>
-        </button>
-
-        <div class="btn text-primary btn-outline btn-opening"><span class="btn-outline-text">DIV</span></div>
-        <a class="btn text-primary btn-outline btn-opening"><span class="btn-outline-text">A</span></a>
-        <button class="btn text-primary btn-outline btn-opening">
-          <span class="btn-outline-text">BTN</span>
-        </button>
-
-        <div class="btn text-primary btn-outline btn-opening btn-large">
-          <span class="btn-outline-text">DIV</span>
-        </div>
-        <a class="btn text-primary btn-outline btn-opening btn-large"
-          ><span class="btn-outline-text">A</span></a
-        >
-        <button class="btn text-primary btn-outline btn-opening btn-large">
-          <span class="btn-outline-text">BTN</span>
-        </button>
-      </div>
-
-      <h2>CIRCLE BUTTONS CIRCLE BUTTONS CIRCLE BUTTONS</h2>
-      <h2>NORMAL BUTTONS</h2>
-
-      <div class="grix xs3">
-        <button class="btn btn-circle primary"><i class="fas fa-chevron-right"></i></button>
-        <div class="btn primary btn-small btn-circle">DIV</div>
-        <a href="#" class="btn primary btn-small btn-circle">A</a>
-        <button class="btn primary btn-small btn-circle">BTN</button>
-
-        <div class="btn primary btn-circle">DIV</div>
-        <a href="#" class="btn primary btn-circle">A</a>
-        <button class="btn primary btn-circle">BTN</button>
-
-        <div class="btn primary btn-large btn-circle">DIV</div>
-        <a href="#" class="btn primary btn-large btn-circle">A</a>
-        <button class="btn primary btn-large btn-circle">BTN</button>
-      </div>
-
-      <h2>PRESS BUTTONS</h2>
-      <div class="grix xs3">
-        <div class="btn primary btn-small press btn-circle">DIV</div>
-        <a href="#" class="btn primary btn-small press btn-circle">A</a>
-        <button class="btn primary btn-small press btn-circle">BTN</button>
-
-        <div class="btn primary press btn-circle">DIV</div>
-        <a href="#" class="btn primary press btn-circle">A</a>
-        <button class="btn primary press btn-circle">BTN</button>
-
-        <div class="btn primary btn-large press btn-circle">DIV</div>
-        <a href="#" class="btn primary btn-large press btn-circle">A</a>
-        <button class="btn primary btn-large press btn-circle">BTN</button>
-      </div>
-
-      <h2>OUTLINE BUTTONS</h2>
-      <div class="grix xs3">
-        <div class="btn text-primary btn-outline btn-small btn-circle">
-          <span class="btn-outline-text">DIV</span>
-        </div>
-        <a class="btn text-primary btn-outline btn-small btn-circle"
-          ><span class="btn-outline-text">A</span></a
-        >
-        <button class="btn text-primary btn-outline btn-small btn-circle">
-          <span class="btn-outline-text">BTN</span>
-        </button>
-
-        <div class="btn text-primary btn-outline btn-circle"><span class="btn-outline-text">DIV</span></div>
-        <a class="btn text-primary btn-outline btn-circle"><span class="btn-outline-text">A</span></a>
-        <button class="btn text-primary btn-outline btn-circle">
-          <span class="btn-outline-text">BTN</span>
-        </button>
-
-        <div class="btn text-primary btn-outline btn-large btn-circle">
-          <span class="btn-outline-text">DIV</span>
-        </div>
-        <a class="btn text-primary btn-outline btn-large btn-circle"
-          ><span class="btn-outline-text">A</span></a
-        >
-        <button class="btn text-primary btn-outline btn-large btn-circle">
-          <span class="btn-outline-text">BTN</span>
-        </button>
-      </div>
-
-      <h2>OPENING BUTTONS</h2>
-      <div class="grix xs3">
-        <div class="btn text-primary btn-outline btn-opening btn-small btn-circle">
-          <span class="btn-outline-text">DIV</span>
-        </div>
-        <a class="btn text-primary btn-outline btn-opening btn-small btn-circle"
-          ><span class="btn-outline-text">A</span></a
-        >
-        <button class="btn text-primary btn-outline btn-opening btn-small btn-circle">
-          <span class="btn-outline-text">BTN</span>
-        </button>
-
-        <div class="btn text-primary btn-outline btn-opening btn-circle">
-          <span class="btn-outline-text">DIV</span>
-        </div>
-        <a class="btn text-primary btn-outline btn-opening btn-circle"
-          ><span class="btn-outline-text">A</span></a
-        >
-        <button class="btn text-primary btn-outline btn-opening btn-circle">
-          <span class="btn-outline-text">BTN</span>
-        </button>
-
-        <div class="btn text-primary btn-outline btn-opening btn-large btn-circle">
-          <span class="btn-outline-text">DIV</span>
-        </div>
-        <a class="btn text-primary btn-outline btn-opening btn-large btn-circle"
-          ><span class="btn-outline-text">A</span></a
-        >
-        <button class="btn text-primary btn-outline btn-opening btn-large btn-circle">
-          <span class="btn-outline-text">BTN</span>
-        </button>
-      </div>
-
-      <h2>OUTLINE BUTTONS WHITE</h2>
-      <div class="grix xs3 grey light-2">
-        <div class="btn text-white btn-outline btn-small btn-circle">
-          <span class="btn-outline-text btn-outline-invert">DIV</span>
-        </div>
-        <a class="btn text-white btn-outline btn-small btn-circle"
-          ><span class="btn-outline-text btn-outline-invert">A</span></a
-        >
-        <button class="btn text-white btn-outline btn-small btn-circle">
-          <span class="btn-outline-text btn-outline-invert">BTN</span>
-        </button>
-
-        <div class="btn text-white btn-outline btn-circle">
-          <span class="btn-outline-text btn-outline-invert">DIV</span>
-        </div>
-        <a class="btn text-white btn-outline btn-circle"
-          ><span class="btn-outline-text btn-outline-invert">A</span></a
-        >
-        <button class="btn text-white btn-outline btn-circle">
-          <span class="btn-outline-text btn-outline-invert">BTN</span>
-        </button>
-
-        <div class="btn text-white btn-outline btn-large btn-circle">
-          <span class="btn-outline-text btn-outline-invert">DIV</span>
-        </div>
-        <a class="btn text-white btn-outline btn-large btn-circle"
-          ><span class="btn-outline-text btn-outline-invert">A</span></a
-        >
-        <button class="btn text-white btn-outline btn-large btn-circle">
-          <span class="btn-outline-text btn-outline-invert">BTN</span>
-        </button>
-      </div>
-
-      <h2>OPENING BUTTONS WHITE</h2>
-      <div class="grix xs3 grey light-2">
-        <div class="btn text-white btn-outline btn-opening btn-small btn-circle">
-          <span class="btn-outline-text btn-outline-invert">DIV</span>
-        </div>
-        <a class="btn text-white btn-outline btn-opening btn-small btn-circle"
-          ><span class="btn-outline-text btn-outline-invert">A</span></a
-        >
-        <button class="btn text-white btn-outline btn-opening btn-small btn-circle">
-          <span class="btn-outline-text btn-outline-invert">BTN</span>
-        </button>
-
-        <div class="btn text-white btn-outline btn-opening btn-circle">
-          <span class="btn-outline-text btn-outline-invert">DIV</span>
-        </div>
-        <a class="btn text-white btn-outline btn-opening btn-circle"
-          ><span class="btn-outline-text btn-outline-invert">A</span></a
-        >
-        <button class="btn text-white btn-outline btn-opening btn-circle">
-          <span class="btn-outline-text btn-outline-invert">BTN</span>
-        </button>
-
-        <div class="btn text-white btn-outline btn-opening btn-large btn-circle">
-          <span class="btn-outline-text btn-outline-invert">DIV</span>
-        </div>
-        <a class="btn text-white btn-outline btn-opening btn-large btn-circle"
-          ><span class="btn-outline-text btn-outline-invert">A</span></a
-        >
-        <button class="btn text-white btn-outline btn-opening btn-large btn-circle">
-          <span class="btn-outline-text btn-outline-invert">BTN</span>
-        </button>
-      </div>
-
-      <h2>BTN GROUP</h2>
-      <div class="grix xs3">
-        <div class="btn-group btn-group-small rounded-2 light-shadow-2">
-          <button class="btn airforce dark-2 small">btn</button>
-          <button class="btn airforce dark-2">btn</button>
-          <button class="btn airforce dark-2 large">btn</button>
-        </div>
-        <div class="btn-group rounded-3">
-          <div class="btn airforce dark-2 small">div</div>
-          <div class="btn airforce dark-2">div</div>
-          <div class="btn airforce dark-2 large">div</div>
-        </div>
-        <div class="btn-group btn-group-large">
-          <a class="btn airforce dark-2 small">a</a>
-          <a class="btn airforce dark-2">a</a>
-          <a class="btn airforce dark-2 large">a</a>
-        </div>
-      </div>
-
-      <h2>VERTICAL BTN GROUP</h2>
-      <div class="grix xs3">
-        <div class="btn-group btn-group-vertical btn-group-small rounded-2">
-          <button class="btn airforce dark-2 btn-small">btn</button>
-          <button class="btn airforce dark-2">btn</button>
-          <button class="btn airforce dark-2 btn-large">btn</button>
-        </div>
-        <div class="btn-group btn-group-vertical rounded-3">
-          <div class="btn airforce dark-2 btn-small">div</div>
-          <div class="btn airforce dark-2">div</div>
-          <div class="btn airforce dark-2 btn-large">div</div>
-        </div>
-        <div class="btn-group btn-group-vertical btn-group-large">
-          <a class="btn airforce dark-2 btn-small">a</a>
-          <a class="btn airforce dark-2">a</a>
-          <a class="btn airforce dark-2 btn-large">a</a>
-        </div>
-      </div>
-
-      <h2>PRESS - BTN GROUP</h2>
-      <div class="grix xs3">
-        <div class="btn-group btn-group-small rounded-2 light-shadow-2">
-          <button class="btn btn-press airforce dark-2 btn-small">btn</button>
-          <button class="btn btn-press airforce dark-2">btn</button>
-          <button class="btn btn-press airforce dark-2 btn-large">btn</button>
-        </div>
-        <div class="btn-group rounded-3">
-          <div class="btn btn-press airforce dark-2 btn-small">div</div>
-          <div class="btn btn-press airforce dark-2">div</div>
-          <div class="btn btn-press airforce dark-2 btn-large">div</div>
-        </div>
-        <div class="btn-group btn-group-large">
-          <a class="btn btn-press airforce dark-2 btn-small">a</a>
-          <a class="btn btn-press airforce dark-2">a</a>
-          <a class="btn btn-press airforce dark-2 btn-large">a</a>
-        </div>
-      </div>
-
-      <h2>PRESS - VERTICAL BTN GROUP</h2>
-      <div class="grix xs3">
-        <div class="btn-group btn-group-vertical btn-group-small rounded-2 light-shadow-2">
-          <button class="btn btn-press airforce dark-2 btn-small">btn</button>
-          <button class="btn btn-press airforce dark-2">btn</button>
-          <button class="btn btn-press airforce dark-2 btn-large">btn</button>
-        </div>
-        <div class="btn-group btn-group-vertical rounded-3">
-          <div class="btn btn-press airforce dark-2 btn-small">div</div>
-          <div class="btn btn-press airforce dark-2">div</div>
-          <div class="btn btn-press airforce dark-2 btn-large">div</div>
-        </div>
-        <div class="btn-group btn-group-vertical btn-group-large">
-          <a class="btn btn-press airforce dark-2 btn-small">a</a>
-          <a class="btn btn-press airforce dark-2">a</a>
-          <a class="btn btn-press airforce dark-2 btn-large">a</a>
-        </div>
-      </div>
-
-      <h2>OUTLINE BTN GROUP</h2>
-      <div class="grix xs3">
-        <div class="btn-group btn-group-small rounded-2 light-shadow-2">
-          <button class="btn btn-outline text-airforce text-dark-2 small">
-            <span class="btn-outline-text">btn</span>
-          </button>
-          <button class="btn btn-outline text-airforce text-dark-2">
-            <span class="btn-outline-text">btn</span>
-          </button>
-          <button class="btn btn-outline text-airforce text-dark-2">
-            <span class="btn-outline-text">btn</span>
-          </button>
-          <button class="btn btn-outline text-airforce text-dark-2">
-            <span class="btn-outline-text">btn</span>
-          </button>
-          <button class="btn btn-outline text-airforce text-dark-2 btn-large">
-            <span class="btn-outline-text">btn</span>
-          </button>
-        </div>
-        <div class="btn-group rounded-3">
-          <div class="btn btn-outline text-airforce text-dark-2 small">
-            <span class="btn-outline-text">div</span>
-          </div>
-          <div class="btn btn-outline text-airforce text-dark-2">
-            <span class="btn-outline-text">div</span>
-          </div>
-          <div class="btn btn-outline text-airforce text-dark-2 btn-large">
-            <span class="btn-outline-text">div</span>
-          </div>
-        </div>
-        <div class="btn-group btn-group-large">
-          <a class="btn btn-outline text-airforce text-dark-2 small"
-            ><span class="btn-outline-text">a</span></a
-          >
-          <a class="btn btn-outline text-airforce text-dark-2"><span class="btn-outline-text">a</span></a>
-          <a class="btn btn-outline text-airforce text-dark-2 btn-large"
-            ><span class="btn-outline-text">a</span></a
-          >
-        </div>
-      </div>
-
-      <h2>VERTICAL OUTLINE BTN GROUP</h2>
-      <div class="grix xs3">
-        <div class="btn-group btn-group-vertical btn-group-small rounded-2">
-          <button class="btn btn-outline text-airforce text-dark-2 small">
-            <span class="btn-outline-text">btn</span>
-          </button>
-          <button class="btn btn-outline text-airforce text-dark-2">
-            <span class="btn-outline-text">btn</span>
-          </button>
-          <button class="btn btn-outline text-airforce text-dark-2 large">
-            <span class="btn-outline-text">btn</span>
-          </button>
-        </div>
-        <div class="btn-group btn-group-vertical rounded-3">
-          <div class="btn btn-outline text-airforce text-dark-2 small">
-            <span class="btn-outline-text">div</span>
-          </div>
-          <div class="btn btn-outline text-airforce text-dark-2">
-            <span class="btn-outline-text">div</span>
-          </div>
-          <div class="btn btn-outline text-airforce text-dark-2 large">
-            <span class="btn-outline-text">div</span>
-          </div>
-        </div>
-        <div class="btn-group btn-group-vertical btn-group-large">
-          <a class="btn btn-outline text-airforce text-dark-2 small"
-            ><span class="btn-outline-text">a</span></a
-          >
-          <a class="btn btn-outline text-airforce text-dark-2"><span class="btn-outline-text">a</span></a>
-          <a class="btn btn-outline text-airforce text-dark-2 large"
-            ><span class="btn-outline-text">a</span></a
-          >
-        </div>
-      </div>
-
-      <div class="mt-5"></div>
     </main>
+
+    <footer class="footer primary">Copyright © 2022 - Example</footer>
 
     <script type="module" src="../src/index.ts"></script>
   </body>

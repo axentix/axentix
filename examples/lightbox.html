@@ -1,98 +1,42 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>Axentix Layout - Fixed sidenav</title>
+    <title>Lightbox test</title>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
   </head>
 
   <body class="layout">
-    <main class="container">
-      <p>text here</p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A, excepturi quaerat. Exercitationem et eum
-        animi laborum similique? Ab aspernatur dolor cupiditate possimus, nisi tempora in amet distinctio
-        excepturi quisquam cumque!
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A, excepturi quaerat. Exercitationem et eum
-        animi laborum similique? Ab aspernatur dolor cupiditate possimus, nisi tempora in amet distinctio
-        excepturi quisquam cumque!
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A, excepturi quaerat. Exercitationem et eum
-        animi laborum similique? Ab aspernatur dolor cupiditate possimus, nisi tempora in amet distinctio
-        excepturi quisquam cumque!
-      </p>
-      <img
-        id="lightbox2"
-        data-ax="lightbox"
-        class="lightbox"
-        src="https://picsum.photos/200/500"
-        alt="picsum"
-      />
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A, excepturi quaerat. Exercitationem et eum
-        animi laborum similique? Ab aspernatur dolor cupiditate possimus, nisi tempora in amet distinctio
-        excepturi quisquam cumque!
-      </p>
-      <div class="card shadow-1 rounded-1">
-        <div class="card-content">
-          <img
-            id="lightbox"
-            class="lightbox responsive-media"
-            src="https://picsum.photos/500/400"
-            alt="picsum"
-          />
-        </div>
-      </div>
+    <header>
+      <nav class="navbar shadow-1 primary">
+        <a href="#" class="navbar-brand mx-auto">Test file</a>
+      </nav>
+    </header>
 
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A, excepturi quaerat. Exercitationem et eum
-        animi laborum similique? Ab aspernatur dolor cupiditate possimus, nisi tempora in amet distinctio
-        excepturi quisquam cumque!
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A, excepturi quaerat. Exercitationem et eum
-        animi laborum similique? Ab aspernatur dolor cupiditate possimus, nisi tempora in amet distinctio
-        excepturi quisquam cumque!
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A, excepturi quaerat. Exercitationem et eum
-        animi laborum similique? Ab aspernatur dolor cupiditate possimus, nisi tempora in amet distinctio
-        excepturi quisquam cumque!
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A, excepturi quaerat. Exercitationem et eum
-        animi laborum similique? Ab aspernatur dolor cupiditate possimus, nisi tempora in amet distinctio
-        excepturi quisquam cumque!
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A, excepturi quaerat. Exercitationem et eum
-        animi laborum similique? Ab aspernatur dolor cupiditate possimus, nisi tempora in amet distinctio
-        excepturi quisquam cumque!
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A, excepturi quaerat. Exercitationem et eum
-        animi laborum similique? Ab aspernatur dolor cupiditate possimus, nisi tempora in amet distinctio
-        excepturi quisquam cumque!
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A, excepturi quaerat. Exercitationem et eum
-        animi laborum similique? Ab aspernatur dolor cupiditate possimus, nisi tempora in amet distinctio
-        excepturi quisquam cumque!
-      </p>
+    <main>
+      <h1 class="font-w400 text-center">Lightbox test page</h1>
+      <div class="h100 d-flex fx-col fx-center vcenter">
+        <img
+          data-test="lightbox"
+          id="lightbox"
+          data-ax="lightbox"
+          data-lightbox-caption="Caption text"
+          class="lightbox responsive-media"
+          src="https://picsum.photos/1000/600?random=1"
+          alt="picsum"
+        />
+      </div>
     </main>
 
     <script type="module">
       import { Lightbox } from '../src/index.ts';
-
-      let lightbox = new Lightbox('#lightbox', {
-        overlayColor: 'airforce dark-3',
-        caption: 'Caption text <br> test',
-      });
     </script>
   </body>
 </html>
