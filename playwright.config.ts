@@ -2,7 +2,7 @@ import { PlaywrightTestConfig, devices } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 1 : 0,
   webServer: {
     command: 'npm run dev',
     url: 'http://localhost:3000/index.html',

@@ -43,7 +43,9 @@
     <footer class="footer primary">Copyright © 2022 - Example</footer>
 
     <script type="module">
-      import { Sidenav } from '../src/index.ts';
+      import { Sidenav, exportToWindow, getInstance } from '../src/index.ts';
+      exportToWindow();
+      window.Axentix.getInstance = getInstance;
     </script>
   </body>
 </html>
