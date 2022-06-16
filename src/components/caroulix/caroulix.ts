@@ -1,6 +1,6 @@
 import { AxentixComponent, Component } from '../../utils/component';
 import { registerComponent, instances } from '../../utils/config';
-import { createEvent, getComponentOptions, getPointerType } from '../../utils/utilities';
+import { createEvent, getClientXPosition, getClientYPosition, getComponentOptions, getPointerType } from '../../utils/utilities';
 
 export interface ICaroulixOptions {
   animationDuration?: number;
@@ -289,15 +289,15 @@ export class Caroulix extends AxentixComponent implements Component {
 
     this.#deltaX = 0;
     this.#deltaY = 0;
-    this.#xStart = this.#getXPosition(e);
-    this.#yStart = this.#getYPosition(e);
+    this.#xStart = getClientXPosition(e);
+    this.#yStart = getClientYPosition(e);
   }
 
   #handleDragMove(e: Event) {
     if (!this.#isPressed || this.#isScrolling) return;
 
-    let x = this.#getXPosition(e),
-      y = this.#getYPosition(e);
+    let x = getClientXPosition(e),
+      y = getClientYPosition(e);
 
     this.#deltaX = this.#xStart - x;
     this.#deltaY = Math.abs(this.#yStart - y);
@@ -372,18 +372,6 @@ export class Caroulix extends AxentixComponent implements Component {
   #resetIndicators() {
     Array.from(this.#indicators.children).forEach((li) => li.removeAttribute('class'));
     this.#indicators.children[this.activeIndex].classList.add('active');
-  }
-
-  #getXPosition(e: any): number {
-    if (e.targetTouches && e.targetTouches.length >= 1) return e.targetTouches[0].clientX;
-
-    return e.clientX;
-  }
-
-  #getYPosition(e: any): number {
-    if (e.targetTouches && e.targetTouches.length >= 1) return e.targetTouches[0].clientY;
-
-    return e.clientY;
   }
 
   #setTransitionDuration(duration: number) {
