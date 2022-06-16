@@ -73,7 +73,7 @@ npm ci
 ```
 
 After installation you have access to our source files.  
-You can build project with `npm run build` or serve it with `npm run serve`.
+You can build project with `npm run build` or launch development server with `npm run dev`.
 
 ## Documentation
 
@@ -85,7 +85,7 @@ Changelog is accessible in the [CHANGELOG.md](CHANGELOG.md) file or in [the rele
 
 ## Sponsors
 
-Support this project on [BuyMeACoffee](https://www.buymeacoffee.com/axentix) to become a sponsor and get **your logo here and on the docs** with a link to your website.
+Support this project on [BuyMeACoffee](https://www.buymeacoffee.com/axentix) to become a sponsor and get **your logo on the docs** with a link to your website.
 
 <div align="center">
   <a href="https://www.buymeacoffee.com/axentix" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Become a sponsor" height="50" width="180"></a>
