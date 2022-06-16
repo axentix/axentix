@@ -103,3 +103,15 @@ export const updateOverlay = (overlay, overlayElement, listenerRef, state, anima
 
 export const getTriggers = (id: string, query = '[data-target="{ID}"]'): Array<HTMLElement> =>
   Array.from(document.querySelectorAll(query.replace('{ID}', id)));
+
+export const getClientYPosition = (e: any): number => {
+  if (e.targetTouches && e.targetTouches.length >= 1) return e.targetTouches[0].clientY;
+
+  return e.clientY;
+}
+
+export const getClientXPosition = (e: any): number => {
+  if (e.targetTouches && e.targetTouches.length >= 1) return e.targetTouches[0].clientX;
+
+  return e.clientX;
+}

@@ -2,6 +2,7 @@
 
 - ADDED
   - End-to-end tests
+  - Swipeable toast option
 - REMOVED
 - IMPROVED
   - Update dependencies

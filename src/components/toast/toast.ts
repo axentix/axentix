@@ -1,5 +1,5 @@
 import { getCssVar, registerComponent, instances } from '../../utils/config';
-import { createEvent, extend, getInstanceByType } from '../../utils/utilities';
+import { createEvent, extend, getClientXPosition, getInstanceByType, getPointerType } from '../../utils/utilities';
 
 interface IToastOptions {
   animationDuration?: number;
@@ -10,6 +10,7 @@ interface IToastOptions {
   mobileDirection?: 'bottom' | 'top';
   offset?: { x?: string; y?: string; mobileX?: string; mobileY?: string };
   isClosable?: boolean;
+  isSwipeable?: boolean;
   closableContent?: string;
   loading?: {
     enabled?: boolean;
@@ -26,6 +27,7 @@ const ToastOptions: IToastOptions = {
   mobileDirection: 'bottom',
   offset: { x: '5%', y: '0%', mobileX: '10%', mobileY: '0%' },
   isClosable: false,
+  isSwipeable: true,
   closableContent: 'x',
   loading: {
     enabled: true,
@@ -44,6 +46,12 @@ export class Toast {
     right?: HTMLElement;
     left?: HTMLElement;
   };
+  #pointerType: string;
+  #touchStartRef: any;
+  #touchMoveRef: any;
+  #touchReleaseRef: any;
+  #isPressed: boolean;
+  #xStart: number;
 
   constructor(content: string, options?: IToastOptions) {
     if (getInstanceByType('Toast').length > 0) {
@@ -57,6 +65,7 @@ export class Toast {
 
     this.#content = content;
     this.options = extend(Toast.getDefaultOptions(), options);
+    this.#pointerType = getPointerType();
     // @ts-ignore
     this.options.position = this.options.position.toLowerCase();
     // @ts-ignore
@@ -149,6 +158,69 @@ export class Toast {
     toast.style.height = '0';
   }
 
+  #setupSwipeListeners(toast) {
+    this.#touchStartRef = this.#handleDragStart.bind(this);
+      this.#touchMoveRef = this.#handleDragMove.bind(this);
+      this.#touchReleaseRef = this.#handleDragRelease.bind(this);
+
+      toast.addEventListener(
+        `${this.#pointerType}${this.#pointerType === 'touch' ? 'start' : 'down'}`,
+        this.#touchStartRef
+      );
+
+      toast.addEventListener(`${this.#pointerType}move`, this.#touchMoveRef);
+      toast.addEventListener(
+        `${this.#pointerType}${this.#pointerType === 'touch' ? 'end' : 'up'}`,
+        this.#touchReleaseRef
+      );
+      toast.addEventListener(
+        this.#pointerType === 'pointer' ? 'pointerleave' : 'mouseleave',
+        this.#touchReleaseRef
+      );
+  }
+  
+  #handleDragStart(e: any) {
+    const toast = e.target.closest('.toast') as HTMLElement;
+    if (toast.dataset.closing) return;
+    this.#xStart = getClientXPosition(e);
+    this.#isPressed = true;
+    toast.style.transitionProperty = 'height, margin, padding, transform, box-shadow';
+  }
+
+  #handleDragMove(e: any) {
+    if (!this.#isPressed) return;
+    const toast: HTMLElement = e.target.closest('.toast');
+    const client = toast.getBoundingClientRect();
+    const absDiff = Math.abs(getClientXPosition(e) - this.#xStart);
+    
+    toast.style.left = getClientXPosition(e) - this.#xStart + 'px';
+    toast.style.opacity = absDiff < client.width ?
+                          (0.99 - absDiff / client.width).toString() :
+                          '0.01';
+  }
+
+  #handleDragRelease(e: any) {
+    if (!this.#isPressed) return;
+    if (e.cancelable) e.preventDefault();
+
+    this.#isPressed = false;
+    const toast = e.target.closest('.toast');
+    
+    toast.style.transitionProperty = 'height, margin, opacity, padding, transform, box-shadow, left';
+
+    if (Math.abs(getClientXPosition(e) - this.#xStart) > toast.getBoundingClientRect().width / 2) {
+      this.#hide(toast);
+      toast.dataset.closing = "true";
+    } else {
+      toast.style.left = '0px'
+      toast.style.opacity = 1;
+    }
+  }
+
+  #handleSwipe(toast: HTMLElement) {
+    this.#setupSwipeListeners(toast)
+  }
+
   #createToast() {
     let toast = document.createElement('div');
 
@@ -165,6 +237,7 @@ export class Toast {
       toast.appendChild(trigger);
     }
 
+    if (this.options.isSwipeable) this.#handleSwipe(toast);
     this.#fadeInToast(toast);
 
     this.#toasters[this.options.position].appendChild(toast);
