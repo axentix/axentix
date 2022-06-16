@@ -1,6 +1,7 @@
 # 2.1.0 - Under development
 
 - ADDED
+  - Skeleton loading
   - End-to-end tests
   - Swipeable toast option
 - REMOVED
