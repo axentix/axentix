@@ -1,3 +1,12 @@
+# 2.1.0 - Under development
+
+- ADDED
+  - End-to-end tests
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+
 # 2.0.1 - 2022-04-13
 
 - ADDED
