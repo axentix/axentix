@@ -44,7 +44,7 @@
 
 Axentix is a framework mixing fully customizable components & utility-first classes, leaving the design choice to the developer. 
 
-![home gif](https://useaxentix.com/img/gif-home.gif?2)
+![top image](./top.png)
 
 ## Quickstart
 
