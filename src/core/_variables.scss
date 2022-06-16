@@ -26,6 +26,7 @@
   19. Forms
   20. Utilities
   21. Waves
+  22. Skeleton
   #########################
 **/
 
@@ -552,5 +553,13 @@ $generated-css-vars: map.set($generated-css-vars, 'hover-text-color-dark', $hove
 /**
   21 Waves
 **/
-$waves-color: rgba(#fff, 0.1);
+$waves-color: rgba(#fff, 0.1) !default;
 $generated-css-vars: map.set($generated-css-vars, 'waves-color', $waves-color);
+
+/**
+  22 Skeleton
+**/
+$skeleton-background-from: #e0e4e7 !default;
+$skeleton-background-to: #f0f3f5 !default;
+$generated-css-vars: map.set($generated-css-vars, 'skeleton-background-from', $skeleton-background-from);
+$generated-css-vars: map.set($generated-css-vars, 'skeleton-background-to', $skeleton-background-to);

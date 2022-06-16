@@ -14,6 +14,7 @@ import './components/table';
 import './components/loading';
 import './components/utilities';
 import './components/trends';
+import './components/skeleton';
 
 // JS Components
 export { default as Caroulix } from './components/caroulix/index';
