@@ -10,6 +10,29 @@
     right: 0;
     animation: skeleton-animation 1s linear infinite alternate;
   }
+
+  &.skeleton-gradient {
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      background-color: var(getCssVar(skeleton-background-from));
+    }
+
+    &::after {
+      background: linear-gradient(
+        90deg,
+        hsla(0, 0%, 0%, 0),
+        var(getCssVar(skeleton-background-to)),
+        hsla(0, 0%, 0%, 0)
+      );
+      transform: translateX(-100%);
+      animation: skeleton-gradient-animation 1.5s linear infinite;
+    }
+  }
 }
 
 @keyframes skeleton-animation {
@@ -18,5 +41,11 @@
   }
   100% {
     background-color: var(getCssVar(skeleton-background-to));
+  }
+}
+
+@keyframes skeleton-gradient-animation {
+  100% {
+    transform: translateX(100%);
   }
 }
