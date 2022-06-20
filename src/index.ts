@@ -31,6 +31,7 @@ export { default as Tooltip } from './components/tooltip/index';
 export { default as Waves } from './components/waves/index';
 export { Forms } from './components/forms/index';
 export { Select } from './components/forms/select';
+export { Theme } from './components/theme/index';
 
 // Must be loaded at the end
 import './core/_colors.scss';
