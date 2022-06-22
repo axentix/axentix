@@ -4,7 +4,7 @@ import { Forms } from '../forms/index';
 export let themeMode = 'light';
 export let theme = '';
 
-export const toggleMode = (forceTheme = 'system') => {
+export const toggle = (forceTheme = 'system') => {
   themeMode = forceTheme;
 
   if (forceTheme === 'system') {
@@ -12,9 +12,9 @@ export const toggleMode = (forceTheme = 'system') => {
     localStorage.removeItem('ax-theme');
   }
 
-  document.documentElement.classList.remove(theme);
-  document.documentElement.classList.add(forceTheme);
+  if (theme) document.documentElement.classList.remove(theme);
   theme = `theme-${forceTheme}`;
+  document.documentElement.classList.add(theme);
 
   Forms.updateInputs();
 
@@ -24,11 +24,11 @@ export const toggleMode = (forceTheme = 'system') => {
 const setup = () => {
   window
     .matchMedia('(prefers-color-scheme: dark)')
-    .addEventListener('change', () => themeMode === 'system' && toggleMode('system'));
+    .addEventListener('change', () => themeMode === 'system' && toggle('system'));
 
   const localTheme = localStorage.getItem('ax-theme');
-  if (localTheme) toggleMode(localTheme);
-  else toggleMode(themeMode);
+  if (localTheme) toggle(localTheme.replace('theme-', ''));
+  else toggle(themeMode);
 };
 
 document.addEventListener('DOMContentLoaded', setup);
