@@ -14,7 +14,7 @@ export const toggleMode = (forceTheme = 'system') => {
 
   document.documentElement.classList.remove(theme);
   document.documentElement.classList.add(forceTheme);
-  theme = forceTheme;
+  theme = `theme-${forceTheme}`;
 
   Forms.updateInputs();
 
