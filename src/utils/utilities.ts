@@ -108,10 +108,13 @@ export const getClientYPosition = (e: any): number => {
   if (e.targetTouches && e.targetTouches.length >= 1) return e.targetTouches[0].clientY;
 
   return e.clientY;
-}
+};
 
 export const getClientXPosition = (e: any): number => {
   if (e.targetTouches && e.targetTouches.length >= 1) return e.targetTouches[0].clientX;
 
   return e.clientX;
-}
+};
+
+export const isDarkMode = () =>
+  window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;

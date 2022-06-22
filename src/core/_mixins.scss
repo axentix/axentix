@@ -18,3 +18,13 @@
     @content;
   }
 }
+
+@mixin theme($name) {
+  html.theme-#{$name} {
+    color-scheme: #{$name};
+
+    body {
+      @content;
+    }
+  }
+}
