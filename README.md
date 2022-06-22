@@ -73,7 +73,7 @@ npm ci
 ```
 
 After installation you have access to our source files.  
-You can build project with `npm run build` or launch development server with `npm run dev`.
+You can build the project with `npm run build` or launch development server with `npm run dev`.
 
 ## Documentation
 
