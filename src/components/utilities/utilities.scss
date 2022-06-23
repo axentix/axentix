@@ -230,3 +230,10 @@
   max-width: 100%;
   height: auto;
 }
+
+// Word break
+@each $wb in $word-break {
+  .wb-#{$wb} {
+    word-break: #{$wb} !important;
+  }
+}
