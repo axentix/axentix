@@ -5,7 +5,11 @@ export let themeMode = 'system';
 export let theme = '';
 export let enabled = false;
 
-export const enable = () => (enabled = true);
+export const enable = () => {
+  enabled = true;
+  toggleLocalTheme();
+};
+
 export const disable = () => (enabled = false);
 
 export const toggle = (forceTheme = 'system') => {
@@ -29,14 +33,18 @@ export const toggle = (forceTheme = 'system') => {
   if (themeMode !== 'system') localStorage.setItem('ax-theme', theme);
 };
 
+const toggleLocalTheme = () => {
+  const localTheme = localStorage.getItem('ax-theme');
+  if (localTheme) toggle(localTheme.replace('theme-', ''));
+  else toggle(themeMode);
+};
+
 const setup = () => {
   window
     .matchMedia('(prefers-color-scheme: dark)')
     .addEventListener('change', () => themeMode === 'system' && toggle('system'));
 
-  const localTheme = localStorage.getItem('ax-theme');
-  if (localTheme) toggle(localTheme.replace('theme-', ''));
-  else toggle(themeMode);
+  toggleLocalTheme();
 };
 
 document.addEventListener('DOMContentLoaded', setup);

@@ -117,5 +117,4 @@ export const getClientXPosition = (e: any): number => {
 };
 
 export const isDarkMode = () =>
-  (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ||
-  window.getComputedStyle(document.documentElement).colorScheme === 'dark';
+  window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
