@@ -1,4 +1,4 @@
-# 2.1.0 - Under development
+# 2.1.0 - 2022-06-23
 
 - ADDED
   - Skeleton loading
