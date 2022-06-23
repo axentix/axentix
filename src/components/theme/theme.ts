@@ -1,10 +1,16 @@
-import { isDarkMode } from '../../utils/utilities';
+import { createEvent, isDarkMode } from '../../utils/utilities';
 import { Forms } from '../forms/index';
 
-export let themeMode = 'light';
+export let themeMode = 'system';
 export let theme = '';
+export let enabled = false;
+
+export const enable = () => (enabled = true);
+export const disable = () => (enabled = false);
 
 export const toggle = (forceTheme = 'system') => {
+  if (!enabled) return;
+
   themeMode = forceTheme;
 
   if (forceTheme === 'system') {
@@ -17,6 +23,8 @@ export const toggle = (forceTheme = 'system') => {
   document.documentElement.classList.add(theme);
 
   Forms.updateInputs();
+
+  createEvent(document.documentElement, 'theme.change', { theme });
 
   if (themeMode !== 'system') localStorage.setItem('ax-theme', theme);
 };
