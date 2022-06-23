@@ -2,12 +2,14 @@
 
 - ADDED
   - Skeleton loading
+  - Theme switcher with built-in dark-mode support
   - End-to-end tests
   - Swipeable toast option
 - REMOVED
 - IMPROVED
   - Update dependencies
 - BUGFIXES
+  - Form check can have a padding-left in form-material-bordered variant 
 
 # 2.0.1 - 2022-04-13
 
