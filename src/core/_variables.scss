@@ -370,6 +370,7 @@ $generated-css-vars: map.set(
   20.9 Borders
   20.10 Typography
   20.11 General hover effect
+  20.12 Word break
 **/
 
 /**
@@ -549,6 +550,11 @@ $hover-text-color: #000 !default;
 $hover-text-color-dark: #fff !default;
 $generated-css-vars: map.set($generated-css-vars, 'hover-text-color', $hover-text-color);
 $generated-css-vars: map.set($generated-css-vars, 'hover-text-color-dark', $hover-text-color-dark);
+
+/**
+  20.12 Word break
+**/
+$word-break: 'break-all', 'keep-all', 'normal', 'break-word', 'revert', 'unset' !default;
 
 /**
   21 Waves
