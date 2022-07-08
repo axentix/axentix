@@ -20,6 +20,9 @@
   <a href="https://www.jsdelivr.com/package/npm/axentix">
     <img alt="jsDelivr hits (npm)" src="https://img.shields.io/jsdelivr/npm/hy/axentix"></img>
   </a>
+  <a href="https://github.com/axentix/axentix/actions/workflows/tests.yml">
+    <img alt="test workflow" src="https://github.com/axentix/axentix/actions/workflows/tests.yml/badge.svg"></img>
+  </a>
   <a href="https://sonarcloud.io/dashboard?id=axentix_axentix">
     <img src="https://sonarcloud.io/api/project_badges/measure?project=axentix_axentix&metric=alert_status">
   </a>
@@ -43,7 +46,7 @@ Axentix is a framework mixing fully customizable components & utility-first clas
 
 ![top image](./top.png)
 
-# Why Axentix
+## Why Axentix
 
 - **Easy to custom** : Add your own color to the palette and its 9 variants will be generated. Every component comes with CSS Variables making you able to custom each of them.
 
