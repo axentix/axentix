@@ -1,5 +1,11 @@
 import { getCssVar, registerComponent, instances } from '../../utils/config';
-import { createEvent, extend, getClientXPosition, getInstanceByType, getPointerType } from '../../utils/utilities';
+import {
+  createEvent,
+  extend,
+  getClientXPosition,
+  getInstanceByType,
+  getPointerType,
+} from '../../utils/utilities';
 
 interface IToastOptions {
   animationDuration?: number;
@@ -160,26 +166,27 @@ export class Toast {
 
   #setupSwipeListeners(toast) {
     this.#touchStartRef = this.#handleDragStart.bind(this);
-      this.#touchMoveRef = this.#handleDragMove.bind(this);
-      this.#touchReleaseRef = this.#handleDragRelease.bind(this);
+    this.#touchMoveRef = this.#handleDragMove.bind(this);
+    this.#touchReleaseRef = this.#handleDragRelease.bind(this);
 
-      toast.addEventListener(
-        `${this.#pointerType}${this.#pointerType === 'touch' ? 'start' : 'down'}`,
-        this.#touchStartRef
-      );
+    toast.addEventListener(
+      `${this.#pointerType}${this.#pointerType === 'touch' ? 'start' : 'down'}`,
+      this.#touchStartRef
+    );
 
-      toast.addEventListener(`${this.#pointerType}move`, this.#touchMoveRef);
-      toast.addEventListener(
-        `${this.#pointerType}${this.#pointerType === 'touch' ? 'end' : 'up'}`,
-        this.#touchReleaseRef
-      );
-      toast.addEventListener(
-        this.#pointerType === 'pointer' ? 'pointerleave' : 'mouseleave',
-        this.#touchReleaseRef
-      );
+    toast.addEventListener(`${this.#pointerType}move`, this.#touchMoveRef);
+    toast.addEventListener(
+      `${this.#pointerType}${this.#pointerType === 'touch' ? 'end' : 'up'}`,
+      this.#touchReleaseRef
+    );
+    toast.addEventListener(
+      this.#pointerType === 'pointer' ? 'pointerleave' : 'mouseleave',
+      this.#touchReleaseRef
+    );
   }
-  
+
   #handleDragStart(e: any) {
+    if ((e.target as HTMLElement).closest('.toast-trigger')) return;
     const toast = e.target.closest('.toast') as HTMLElement;
     if (toast.dataset.closing) return;
     this.#xStart = getClientXPosition(e);
@@ -192,11 +199,9 @@ export class Toast {
     const toast: HTMLElement = e.target.closest('.toast');
     const client = toast.getBoundingClientRect();
     const absDiff = Math.abs(getClientXPosition(e) - this.#xStart);
-    
+
     toast.style.left = getClientXPosition(e) - this.#xStart + 'px';
-    toast.style.opacity = absDiff < client.width ?
-                          (0.99 - absDiff / client.width).toString() :
-                          '0.01';
+    toast.style.opacity = absDiff < client.width ? (0.99 - absDiff / client.width).toString() : '0.01';
   }
 
   #handleDragRelease(e: any) {
@@ -205,20 +210,20 @@ export class Toast {
 
     this.#isPressed = false;
     const toast = e.target.closest('.toast');
-    
+
     toast.style.transitionProperty = 'height, margin, opacity, padding, transform, box-shadow, left';
 
     if (Math.abs(getClientXPosition(e) - this.#xStart) > toast.getBoundingClientRect().width / 2) {
       this.#hide(toast);
-      toast.dataset.closing = "true";
+      toast.dataset.closing = 'true';
     } else {
-      toast.style.left = '0px'
+      toast.style.left = '0px';
       toast.style.opacity = 1;
     }
   }
 
   #handleSwipe(toast: HTMLElement) {
-    this.#setupSwipeListeners(toast)
+    this.#setupSwipeListeners(toast);
   }
 
   #createToast() {

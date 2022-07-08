@@ -106,13 +106,13 @@ export const getTriggers = (id: string, query = '[data-target="{ID}"]'): Array<H
 
 export const getClientYPosition = (e: any): number => {
   if (e.targetTouches && e.targetTouches.length >= 1) return e.targetTouches[0].clientY;
-
+  else if (e.changedTouches && e.changedTouches.length >= 1) return e.changedTouches[0].pageY;
   return e.clientY;
 };
 
 export const getClientXPosition = (e: any): number => {
   if (e.targetTouches && e.targetTouches.length >= 1) return e.targetTouches[0].clientX;
-
+  else if (e.changedTouches && e.changedTouches.length >= 1) return e.changedTouches[0].pageX;
   return e.clientX;
 };
 

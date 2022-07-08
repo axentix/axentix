@@ -1,10 +1,20 @@
-import { isDarkMode } from '../../utils/utilities';
+import { createEvent, isDarkMode } from '../../utils/utilities';
 import { Forms } from '../forms/index';
 
-export let themeMode = 'light';
+export let themeMode = 'system';
 export let theme = '';
+export let enabled = false;
+
+export const enable = () => {
+  enabled = true;
+  toggleLocalTheme();
+};
+
+export const disable = () => (enabled = false);
 
 export const toggle = (forceTheme = 'system') => {
+  if (!enabled) return;
+
   themeMode = forceTheme;
 
   if (forceTheme === 'system') {
@@ -18,7 +28,15 @@ export const toggle = (forceTheme = 'system') => {
 
   Forms.updateInputs();
 
+  createEvent(document.documentElement, 'theme.change', { theme });
+
   if (themeMode !== 'system') localStorage.setItem('ax-theme', theme);
+};
+
+const toggleLocalTheme = () => {
+  const localTheme = localStorage.getItem('ax-theme');
+  if (localTheme) toggle(localTheme.replace('theme-', ''));
+  else toggle(themeMode);
 };
 
 const setup = () => {
@@ -26,9 +44,7 @@ const setup = () => {
     .matchMedia('(prefers-color-scheme: dark)')
     .addEventListener('change', () => themeMode === 'system' && toggle('system'));
 
-  const localTheme = localStorage.getItem('ax-theme');
-  if (localTheme) toggle(localTheme.replace('theme-', ''));
-  else toggle(themeMode);
+  toggleLocalTheme();
 };
 
 document.addEventListener('DOMContentLoaded', setup);

@@ -1,13 +1,16 @@
-# 2.1.0 - Under development
+# 2.1.0 - 2022-06-23
 
 - ADDED
   - Skeleton loading
+  - Theme switcher with built-in dark-mode support
   - End-to-end tests
   - Swipeable toast option
+  - `wb-` word-break utilities
 - REMOVED
 - IMPROVED
   - Update dependencies
 - BUGFIXES
+  - Form check could have a padding-left in form-material-bordered variant 
 
 # 2.0.1 - 2022-04-13
 

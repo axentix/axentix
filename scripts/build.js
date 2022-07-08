@@ -41,16 +41,17 @@ const buildMain = async (filepath) => {
 };
 
 if (process.argv[2] === 'main') buildMain('src/index.ts');
+else {
+  glob('{**/**/index.ts,src/utils/*.ts,src/**/select.ts}').then(async (files) => {
+    const mainPath = files.find((f) => f === 'src/index.ts' && f.split('/')[1] !== 'utils');
+    await buildMain(mainPath);
 
-glob('{**/**/index.ts,src/utils/*.ts,src/**/select.ts}').then(async (files) => {
-  const mainPath = files.find((f) => f === 'src/index.ts' && f.split('/')[1] !== 'utils');
-  await buildMain(mainPath);
+    Promise.all(
+      files.filter((f) => f !== 'src/index.ts' && f.split('/')[1] !== 'utils').map((f) => buildComponent(f))
+    );
 
-  Promise.all(
-    files.filter((f) => f !== 'src/index.ts' && f.split('/')[1] !== 'utils').map((f) => buildComponent(f))
-  );
-
-  Promise.all(
-    files.filter((f) => f !== 'src/index.ts' && f.split('/')[1] === 'utils').map((f) => buildUtil(f))
-  );
-});
+    Promise.all(
+      files.filter((f) => f !== 'src/index.ts' && f.split('/')[1] === 'utils').map((f) => buildUtil(f))
+    );
+  });
+}

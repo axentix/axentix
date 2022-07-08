@@ -179,7 +179,7 @@
       border-color: var(getCssVar(form-material-color)) !important;
     }
 
-    label {
+    label:not(.form-check) {
       transition-property: top, color, font-size, margin-top;
       padding: 0 0.25rem;
       margin-left: 0.5rem;
