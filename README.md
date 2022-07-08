@@ -14,14 +14,11 @@
 <br>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/axentix">
-    <img alt="npm" src="https://img.shields.io/npm/v/axentix">
-  </a>
   <a href="https://github.com/axentix/axentix/releases">
     <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/axentix/axentix">
   </a>
   <a href="https://www.jsdelivr.com/package/npm/axentix">
-    <img src="https://data.jsdelivr.com/v1/package/npm/axentix/badge?style=rounded" alt="jsDelivr Hits" />
+    <img alt="jsDelivr hits (npm)" src="https://img.shields.io/jsdelivr/npm/hy/axentix"></img>
   </a>
   <a href="https://sonarcloud.io/dashboard?id=axentix_axentix">
     <img src="https://sonarcloud.io/api/project_badges/measure?project=axentix_axentix&metric=alert_status">
@@ -35,7 +32,7 @@
 
 <p align="center">
   <a href="https://discord.gg/8tgRDED">
-    <img src="https://img.shields.io/discord/727545620683816980" alt="Discord" />
+    <img src="https://img.shields.io/badge/chat-on%20discord-%09%233442d9" alt="Discord" />
   </a>
   <a href="https://openbase.com/js/axentix?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge">
     <img src="https://badges.openbase.com/js/rating/axentix.svg?token=xEWyuQ6VoC2qG3gEvoNm6V3hVAvXbAnGQXJTC9OkTrI=" alt="Rate this package" />
@@ -45,6 +42,24 @@
 Axentix is a framework mixing fully customizable components & utility-first classes, leaving the design choice to the developer. 
 
 ![top image](./top.png)
+
+# Why Axentix
+
+- **Easy to custom** : Add your own color to the palette and its 9 variants will be generated. Every component comes with CSS Variables making you able to custom each of them.
+
+- **Fast to learn, read and write** : You won't be lost between frameworks, Axentix's class names are easy to read, write and learn. If you already used Bootstrap or TailwindCSS, you already know a plenty of them.
+
+- **Design choice to the developer** : The framework is focused on the developer experience and lets them choose their design by implementing easy to custom components & utility-first classes
+
+- **Easiest grid system** : Axentix is the first framework using the css grid feature to create its grid system, making it the most advanced as easy to use grid system.
+
+- **Themeable** : The integrated Theme Switcher handles natively dark mode and custom user theme. 
+
+- **Google accessibility-friendly color palette** : The integrated color palette of **130+ colors** automatically generates lighten and darken variants. Setting them on any element will choose the best text-color depending on the google requirements.
+
+- **Growing ecosystem** : Axentix comes with [its friends](https://github.com/axentix), Neu-Axentix implementing neumorphism design, a VSCode extension and its code snippets, Vue-Axentix and its VueJS components and more are incoming.
+
+- **Zero dependencies** : No dependencies means freedom.
 
 ## Quickstart
 
