@@ -50,10 +50,10 @@
   ],
   "engine": "node >= 12",
   "devDependencies": {
-    "@playwright/test": "^1.22.2",
+    "@playwright/test": "^1.23.4",
     "autoprefixer": "^10.4.7",
     "fast-glob": "^3.2.11",
-    "rollup-plugin-visualizer": "^5.6.0",
+    "rollup-plugin-visualizer": "^5.7.1",
     "sass": "^1.53.0",
     "typescript": "^4.7.4",
     "vite": "2.9.9",
