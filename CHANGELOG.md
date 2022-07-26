@@ -1,3 +1,11 @@
+# 2.1.1 - 2022-07-26
+
+- ADDED
+- REMOVED
+- IMPROVED
+- BUGFIXES
+  - Skeleton gradient overflow
+
 # 2.1.0 - 2022-06-23
 
 - ADDED
@@ -10,7 +18,7 @@
 - IMPROVED
   - Update dependencies
 - BUGFIXES
-  - Form check could have a padding-left in form-material-bordered variant 
+  - Form check could have a padding-left in form-material-bordered variant
 
 # 2.0.1 - 2022-04-13
 

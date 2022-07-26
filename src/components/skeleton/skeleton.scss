@@ -12,6 +12,8 @@
   }
 
   &.skeleton-gradient {
+    overflow: hidden;
+
     &::before {
       content: '';
       position: absolute;
