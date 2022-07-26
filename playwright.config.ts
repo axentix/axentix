@@ -5,12 +5,12 @@ const config: PlaywrightTestConfig = {
   retries: process.env.CI ? 1 : 0,
   webServer: {
     command: 'npm run dev',
-    url: 'http://localhost:3000/index.html',
+    url: 'http://localhost:5173/index.html',
     reuseExistingServer: !process.env.CI,
   },
   use: {
     trace: 'on-first-retry',
-    baseURL: 'http://localhost:3000/examples/',
+    baseURL: 'http://localhost:5173/examples/',
   },
   testMatch: /.*(e2e-spec).(js|ts|mjs)/,
   projects: [
