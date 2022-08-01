@@ -1,5 +1,5 @@
 const removeTarget = (e: Event) => {
-  const targetId = (e.target as HTMLElement).getAttribute('data-close');
+  const targetId = (e.currentTarget as HTMLElement).getAttribute('data-close');
   if (!targetId) return console.error('[Axentix] A closable target must be set');
 
   const target = document.getElementById(targetId);
