@@ -1,11 +1,10 @@
 last 2 versions
 > 0.5%
-Chrome >= 58
-Safari >= 10.1
-Firefox >= 54
-Opera >= 45
-Edge >= 79
-iOS >= 10.3
+Chrome >= 87
+Safari >= 13
+Firefox >= 78
+Edge >= 88
+iOS >= 13.1
 not IE <= 11
 not ie_mob <= 11
 not dead
