@@ -1,3 +1,13 @@
+# 2.2.0 - Under development
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Since we have updated vite to v3, we have drop support for some (very) old browsers
+  - Update dependencies
+- BUGFIXES
+  - Skeleton gradient not working as expected on iOS devices
+
 # 2.1.1 - 2022-07-26
 
 - ADDED
