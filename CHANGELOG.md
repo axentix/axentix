@@ -1,6 +1,7 @@
 # 2.2.0 - Under development
 
 - ADDED
+  - `data-close` utility
 - REMOVED
 - IMPROVED
   - Since we have updated vite to v3, we have drop support for some (very) old browsers

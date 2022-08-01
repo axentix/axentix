@@ -40,3 +40,4 @@ import './core/_colors.scss';
 export * from './utils/config';
 export * from './utils/core';
 export * from './utils/utilities';
+export * from './utils/close';
