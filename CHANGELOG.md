@@ -2,12 +2,13 @@
 
 - ADDED
   - `data-close` utility
+  - Toast `data-toast-close` feature
 - REMOVED
 - IMPROVED
-  - Since we have updated vite to v3, we have drop support for some (very) old browsers
+  - Since we have updated vite to v3, we have dropped the support of some (very) old browsers
   - Update dependencies
 - BUGFIXES
-  - Skeleton gradient not working as expected on iOS devices
+  - Skeleton gradient wasn't working as expected on IOS devices
 
 # 2.1.1 - 2022-07-26
 
