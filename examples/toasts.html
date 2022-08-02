@@ -13,11 +13,12 @@
     <main class="container">
       <h1>Toasts</h1>
       <div class="d-flex fx-center w100 mt-3">
-        <button class="btn primary rounded-2 shadow-1 mr-2" onclick="show1()">1</button>
-        <button class="btn primary rounded-2 shadow-1 ml-2" onclick="show2()">2</button>
+        <button class="btn primary rounded-2 shadow-1" onclick="show1()">1</button>
+        <button class="btn primary rounded-2 shadow-1 mx-3" onclick="show2()">2</button>
+        <button class="btn primary rounded-2 shadow-1" onclick="show3()">3</button>
       </div>
     </main>
-
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
     <script type="module">
       import { Toast } from '../src/index.ts';
       var mytoast = new Toast('Bonjour Axel', {
@@ -45,6 +46,34 @@
           classes: 'green dark-2 rounded-2',
           duration: 2000,
           animationDelay: 400,
+        });
+        mytoast.show();
+      };
+
+      const toastContent = `
+        <div class='d-flex fx-col'>
+          <div class='d-flex vcenter white p-2'>
+            <span class='iconify-inline text-yellow text-dark-1 font-s3 mr-1' data-icon='mdi:star'></span>
+            <span>Star !</span>
+            <div class='ml-auto font-s1 text-grey text-dark-2 mr-1'>1min ago</div>
+            <div data-toast-close>
+              <span class='iconify-inline text-grey text-dark-2 font-s3 mr-1' data-icon='mdi:close-circle'></span>
+            </div>
+          </div>
+          <div class='d-flex fx-col grey light-4 p-3'>
+            Axentix repository won 1 star on github !
+            <a class='d-flex text-blue font-s1 ml-auto mt-2' target='_blank' rel='noopener' href='https://github.com/axentix/axentix'>-> Add a star</a>
+          </div>
+        </div>
+      `;
+
+      window.show3 = () => {
+        mytoast.change(toastContent, {
+          classes: 'white p-0 rounded-1',
+          isClosable: false,
+          offset: {
+            y: '5%',
+          },
         });
         mytoast.show();
       };
