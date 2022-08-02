@@ -185,6 +185,14 @@ export class Toast {
     );
   }
 
+  #setupCloseListeners(toast: HTMLDivElement) {
+    toast.querySelectorAll("[data-toast-close]").forEach(el => {
+      el.addEventListener('click', () => {
+        this.#hide(toast);
+      })
+    });
+  }
+
   #handleDragStart(e: any) {
     if ((e.target as HTMLElement).closest('.toast-trigger')) return;
     const toast = e.target.closest('.toast') as HTMLElement;
@@ -241,9 +249,11 @@ export class Toast {
       trigger.addEventListener('click', (trigger as any).listenerRef);
       toast.appendChild(trigger);
     }
-
+    
     if (this.options.isSwipeable) this.#handleSwipe(toast);
     this.#fadeInToast(toast);
+
+    this.#setupCloseListeners(toast);
 
     this.#toasters[this.options.position].appendChild(toast);
 
