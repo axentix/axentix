@@ -1,6 +1,6 @@
 {
   "name": "axentix",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Axentix is a framework mixing fully customizable components & utility-first classes, leaving the design choice to the developer.",
   "homepage": "https://useaxentix.com",
   "author": "Axel SIMONET, Vincent LEVEQUE",
@@ -53,7 +53,7 @@
     "autoprefixer": "^10.4.8",
     "fast-glob": "^3.2.11",
     "rollup-plugin-visualizer": "^5.7.1",
-    "sass": "^1.54.0",
+    "sass": "^1.54.1",
     "typescript": "^4.7.4",
     "vite": "3.0.4",
     "vite-plugin-mpa": "^1.1.4"

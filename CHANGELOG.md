@@ -1,4 +1,4 @@
-# 2.2.0 - Under development
+# 2.2.0 - 2022-08-03
 
 - ADDED
   - `data-close` utility
