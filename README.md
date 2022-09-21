@@ -40,6 +40,9 @@
   <a href="https://openbase.com/js/axentix?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge">
     <img src="https://badges.openbase.com/js/rating/axentix.svg?token=xEWyuQ6VoC2qG3gEvoNm6V3hVAvXbAnGQXJTC9OkTrI=" alt="Rate this package" />
   </a>
+  <a href="https://kandi.openweaver.com/typescript/axentix/axentix">
+    <img src="https://kandi.openweaver.com/badges/xray.svg" alt="kandi xray" />
+  </a>
 </p>
 
 Axentix is a framework mixing fully customizable components & utility-first classes, leaving the design choice to the developer. 
