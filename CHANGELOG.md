@@ -1,3 +1,11 @@
+# 2.2.1 - 2022-10-24
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+
 # 2.2.0 - 2022-08-03
 
 - ADDED
