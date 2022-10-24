@@ -7,6 +7,7 @@
 - BUGFIXES
   - Glassmorphism / claymorphism default `border-radius` couldn't be overloaded by the `rounded` classes.
   - Switches width could be compressed on small screen resolutions.
+  - Checkboxes' large text could overlap the checkbox.
 
 # 2.2.0 - 2022-08-03
 

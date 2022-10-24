@@ -4,7 +4,7 @@ $formMaterialColor: getCssVar(form-material-color);
 .form-check {
   span {
     cursor: pointer;
-    display: inline;
+    display: block;
   }
 
   input {
