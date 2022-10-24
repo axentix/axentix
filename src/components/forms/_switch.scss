@@ -19,6 +19,7 @@ $formSwitchTransitionDuration: getCssVar(form-switch-transition-duration);
     cursor: pointer;
     display: inline-block;
     width: 3rem;
+    min-width: 3rem;
     height: 1.75rem;
     background-color: var(getCssVar(form-switch-color));
     transition: background-color var($formSwitchTransitionDuration) ease;
@@ -29,6 +30,7 @@ $formSwitchTransitionDuration: getCssVar(form-switch-transition-duration);
       content: '';
       position: absolute;
       width: 1.25rem;
+      min-width: 1.25rem;
       height: 1.25rem;
       left: 0.25rem;
       top: 0.25rem;
@@ -40,20 +42,24 @@ $formSwitchTransitionDuration: getCssVar(form-switch-transition-duration);
 
     &.form-slider-small {
       width: 2.5rem;
+      min-width: 2.5rem;
       height: 1.5rem;
 
       &::before {
         width: 1rem;
+        min-width: 1rem;
         height: 1rem;
       }
     }
 
     &.form-slider-large {
       width: 3.5rem;
+      min-width: 3.5rem;
       height: 2rem;
 
       &::before {
         width: 1.5rem;
+        min-width: 1.5rem;
         height: 1.5rem;
       }
     }

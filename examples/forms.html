@@ -1,239 +1,230 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Axentix - Forms</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      /* :root {
+
+<head>
+  <title>Axentix - Forms</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* :root {
         --ax-form-material-color: green !important;
         --ax-form-material-border: 2px lightgrey solid !important;
         --ax-form-material-active-border-width: 2px !important;
         --ax-form-switch-active-color: green !important;
       } */
-    </style>
-  </head>
+  </style>
+</head>
 
-  <body class="layout">
-    <main class="py-5 container">
-      <h1>Forms</h1>
-      <form class="form-material form-material-bordered">
-        <div class="grix xs1 md2">
-          <div class="form-field">
-            <input type="text" id="surname" class="form-control rounded-1" />
-            <label for="surname">Surname</label>
-          </div>
-          <div class="form-field">
-            <div class="form-group rounded-1">
-              <!-- <span class="form-group-item">@</span> -->
-              <input type="text" id="name" class="form-control" data-form-validate="lazy" required />
-              <label for="name">Name</label>
-              <span class="form-group-item">@</span>
-            </div>
-            <span class="form-helper">Form helper</span>
-            <!-- <span class="form-helper-valid">Valid helper</span>
-            <span class="form-helper-invalid">Invalid helper</span> -->
-          </div>
-          <div class="form-field">
-            <input type="date" id="date" class="form-control" />
-            <label for="date">Date</label>
-          </div>
-          <div class="form-field col-md2" style="--ax-form-material-color: purple">
-            <input type="email" id="email" class="form-control" placeholder="contact@example.com" />
-            <label for="email">Email</label>
-          </div>
-          <div class="form-field col-md2">
-            <input type="text" id="subject" class="form-control" disabled placeholder="Disabled input" />
-            <label for="subject">Subject</label>
-          </div>
-          <div class="form-field col-md2">
-            <input type="text" id="address" class="form-control" readonly />
-            <label for="address">Address</label>
-            <span class="form-helper text-center">You can click but not edit in readonly mode.</span>
-          </div>
-          <div class="form-field col-md2">
-            <textarea id="textarea" class="form-control"></textarea>
-            <label for="textarea">A textarea</label>
-          </div>
-          <div class="form-field form-inline form-default col-md2">
-            <input type="text" id="inline" class="form-control" />
-            <label for="inline">inline</label>
-          </div>
-
-          <div class="form-field">
-            <label class="form-check">
-              <input type="radio" checked="true" name="yon" />
-              <span>Yes</span>
-            </label>
-            <label class="form-check">
-              <input type="radio" name="yon" />
-              <span>No</span>
-            </label>
-            <label class="form-check">
-              <input type="radio" name="yon" />
-              <span>Maybe</span>
-            </label>
-          </div>
-          <div class="form-field">
-            <label class="form-check">
-              <input type="checkbox" disabled value="check" id="checkbox" />
-              <span>Checkbox</span>
-            </label>
-          </div>
-          <div class="form-field form-default">
-            <label class="form-switch mt-2">
-              dd
-              <input type="checkbox" />
-              <span class="form-slider small"></span>
-              Cc
-            </label>
-            <label class="form-switch mt-2">
-              <input type="checkbox" checked />
-              <span class="form-slider small"></span>
-            </label>
-            <label class="form-switch mt-2">
-              dd
-              <input type="checkbox" />
-              <span class="form-slider"></span>
-              Cc
-            </label>
-            <label class="form-switch mt-2">
-              <input type="checkbox" checked />
-              <span class="form-slider"></span>
-            </label>
-            <label class="form-switch mt-2">
-              dd
-              <input type="checkbox" disabled />
-              <span class="form-slider large"></span>
-              disabled
-            </label>
-            <label class="form-switch mt-2">
-              <input type="checkbox" checked disabled />
-              <span class="form-slider large"></span>
-              disabled
-            </label>
-          </div>
-          <div class="form-field form-default">
-            <label class="form-switch mt-2">
-              dd
-              <input type="checkbox" />
-              <span class="form-slider form-slider-small form-slider-thin"></span>
-              Cc
-            </label>
-            <label class="form-switch mt-2">
-              <input type="checkbox" checked />
-              <span class="form-slider form-slider-small form-slider-thin"></span>
-            </label>
-            <label class="form-switch mt-2">
-              dd
-              <input type="checkbox" />
-              <span class="form-slider form-slider-thin"></span>
-              Cc
-            </label>
-            <label class="form-switch mt-2">
-              <input type="checkbox" checked />
-              <span class="form-slider form-slider-thin"></span>
-            </label>
-            <label class="form-switch mt-2">
-              dd
-              <input type="checkbox" />
-              <span class="form-slider form-slider-large form-slider-thin"></span>
-              Cc
-            </label>
-            <label class="form-switch mt-2">
-              <input type="checkbox" checked />
-              <span class="form-slider form-slider-large form-slider-thin"></span>
-            </label>
-          </div>
-
-          <div class="form-field">
-            <select
-              class="form-control form-custom-select white shadow-1"
-              data-ax="select"
-              data-select-input-classes="rounded-1"
-              id="select"
-            >
-              <option disabled value="">plage</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
-              <option>13</option>
-              <option>14</option>
-              <option>15</option>
-              <option>16</option>
-              <option>17</option>
-              <option>18</option>
-              <option>19</option>
-              <option>20</option>
-              <option>21</option>
-              <option>22</option>
-              <option>23</option>
-              <option>24</option>
-            </select>
-            <label class="text-center" for="select">Select an option</label>
-          </div>
-
-          <div class="form-field form-default">
-            <label class="text-center" for="multiple-select">Choose one or more option</label>
-            <select class="form-control" multiple id="multiple-select">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-            </select>
-          </div>
-
-          <div class="form-file col-md2 mb-4">
-            <label for="img" class="btn primary rounded-1 shadow-1">Image</label>
-            <input
-              type="file"
-              name="img"
-              id="img"
-              data-form-validate="auto"
-              multiple
-              accept="image/png, image/jpeg"
-              required
-            />
-            <div class="form-file-path"></div>
-          </div>
+<body class="layout">
+  <main class="py-5 container">
+    <h1>Forms</h1>
+    <form class="form-material form-material-bordered">
+      <div class="grix xs1 md2">
+        <div class="form-field">
+          <input type="text" id="surname" class="form-control rounded-1" />
+          <label for="surname">Surname</label>
         </div>
-        <button class="btn press secondary" type="reset">Reset me</button>
-        <button class="btn rounded-1 orange dark-1 text-white" type="button" id="select-btn">
-          Reset select
-        </button>
-        <button class="btn rounded-1 orange dark-1 text-white" type="button" id="validate-btn">
-          Validate all
-        </button>
-      </form>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit architecto eaque dolor illum veritatis
-      tenetur amet explicabo? Nam sunt, blanditiis eum neque repellat inventore quae soluta placeat,
-      voluptatum architecto doloribus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-      nihil totam ratione alias laborum ducimus quibusdam. Eveniet quo reprehenderit dolorum, quaerat, dolore
-      ipsa similique nostrum inventore, saepe nesciunt ab deserunt.
-    </main>
+        <div class="form-field">
+          <div class="form-group rounded-1">
+            <!-- <span class="form-group-item">@</span> -->
+            <input type="text" id="name" class="form-control" data-form-validate="lazy" required />
+            <label for="name">Name</label>
+            <span class="form-group-item">@</span>
+          </div>
+          <span class="form-helper">Form helper</span>
+          <!-- <span class="form-helper-valid">Valid helper</span>
+            <span class="form-helper-invalid">Invalid helper</span> -->
+        </div>
+        <div class="form-field">
+          <input type="date" id="date" class="form-control" />
+          <label for="date">Date</label>
+        </div>
+        <div class="form-field col-md2" style="--ax-form-material-color: purple">
+          <input type="email" id="email" class="form-control" placeholder="contact@example.com" />
+          <label for="email">Email</label>
+        </div>
+        <div class="form-field col-md2">
+          <input type="text" id="subject" class="form-control" disabled placeholder="Disabled input" />
+          <label for="subject">Subject</label>
+        </div>
+        <div class="form-field col-md2">
+          <input type="text" id="address" class="form-control" readonly />
+          <label for="address">Address</label>
+          <span class="form-helper text-center">You can click but not edit in readonly mode.</span>
+        </div>
+        <div class="form-field col-md2">
+          <textarea id="textarea" class="form-control"></textarea>
+          <label for="textarea">A textarea</label>
+        </div>
+        <div class="form-field form-inline form-default col-md2">
+          <input type="text" id="inline" class="form-control" />
+          <label for="inline">inline</label>
+        </div>
 
-    <script type="module">
-      import { Select, getInstance, Forms } from '../src/index.ts';
+        <div class="form-field">
+          <label class="form-check">
+            <input type="radio" checked="true" name="yon" />
+            <span>Yes</span>
+          </label>
+          <label class="form-check">
+            <input type="radio" name="yon" />
+            <span>No</span>
+          </label>
+          <label class="form-check">
+            <input type="radio" name="yon" />
+            <span>Maybe</span>
+          </label>
+        </div>
+        <div class="form-field">
+          <label class="form-check">
+            <input type="checkbox" disabled value="check" id="checkbox" />
+            <span>Checkbox</span>
+          </label>
+        </div>
+        <div class="form-field form-default">
+          <label class="form-switch mt-2">
+            Long text to test switch width
+            <input type="checkbox" />
+            <span class="form-slider small"></span>
+            Cc
+          </label>
+          <label class="form-switch mt-2">
+            <input type="checkbox" checked />
+            <span class="form-slider small"></span>
+          </label>
+          <label class="form-switch mt-2">
+            dd
+            <input type="checkbox" />
+            <span class="form-slider"></span>
+            Cc
+          </label>
+          <label class="form-switch mt-2">
+            <input type="checkbox" checked />
+            <span class="form-slider"></span>
+          </label>
+          <label class="form-switch mt-2">
+            dd
+            <input type="checkbox" disabled />
+            <span class="form-slider large"></span>
+            disabled
+          </label>
+          <label class="form-switch mt-2">
+            <input type="checkbox" checked disabled />
+            <span class="form-slider large"></span>
+            disabled
+          </label>
+        </div>
+        <div class="form-field form-default">
+          <label class="form-switch mt-2">
+            dd
+            <input type="checkbox" />
+            <span class="form-slider form-slider-small form-slider-thin"></span>
+            Cc
+          </label>
+          <label class="form-switch mt-2">
+            <input type="checkbox" checked />
+            <span class="form-slider form-slider-small form-slider-thin"></span>
+          </label>
+          <label class="form-switch mt-2">
+            dd
+            <input type="checkbox" />
+            <span class="form-slider form-slider-thin"></span>
+            Cc
+          </label>
+          <label class="form-switch mt-2">
+            <input type="checkbox" checked />
+            <span class="form-slider form-slider-thin"></span>
+          </label>
+          <label class="form-switch mt-2">
+            dd
+            <input type="checkbox" />
+            <span class="form-slider form-slider-large form-slider-thin"></span>
+            Cc
+          </label>
+          <label class="form-switch mt-2">
+            <input type="checkbox" checked />
+            <span class="form-slider form-slider-large form-slider-thin"></span>
+          </label>
+        </div>
 
-      document.getElementById('select-btn').addEventListener('click', () => {
-        const selectInstance = getInstance('#select');
-        selectInstance.reset();
-      });
+        <div class="form-field">
+          <select class="form-control form-custom-select white shadow-1" data-ax="select"
+            data-select-input-classes="rounded-1" id="select">
+            <option disabled value="">plage</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
+            <option>16</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option>
+            <option>20</option>
+            <option>21</option>
+            <option>22</option>
+            <option>23</option>
+            <option>24</option>
+          </select>
+          <label class="text-center" for="select">Select an option</label>
+        </div>
 
-      document.getElementById('validate-btn').addEventListener('click', () => {
-        const form = document.querySelector('form');
-        console.log(Forms.validate(form));
-      });
-    </script>
-  </body>
+        <div class="form-field form-default">
+          <label class="text-center" for="multiple-select">Choose one or more option</label>
+          <select class="form-control" multiple id="multiple-select">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+          </select>
+        </div>
+
+        <div class="form-file col-md2 mb-4">
+          <label for="img" class="btn primary rounded-1 shadow-1">Image</label>
+          <input type="file" name="img" id="img" data-form-validate="auto" multiple accept="image/png, image/jpeg"
+            required />
+          <div class="form-file-path"></div>
+        </div>
+      </div>
+      <button class="btn press secondary" type="reset">Reset me</button>
+      <button class="btn rounded-1 orange dark-1 text-white" type="button" id="select-btn">
+        Reset select
+      </button>
+      <button class="btn rounded-1 orange dark-1 text-white" type="button" id="validate-btn">
+        Validate all
+      </button>
+    </form>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit architecto eaque dolor illum veritatis
+    tenetur amet explicabo? Nam sunt, blanditiis eum neque repellat inventore quae soluta placeat,
+    voluptatum architecto doloribus! Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
+    nihil totam ratione alias laborum ducimus quibusdam. Eveniet quo reprehenderit dolorum, quaerat, dolore
+    ipsa similique nostrum inventore, saepe nesciunt ab deserunt.
+  </main>
+
+  <script type="module">
+    import { Select, getInstance, Forms } from '../src/index.ts';
+
+    document.getElementById('select-btn').addEventListener('click', () => {
+      const selectInstance = getInstance('#select');
+      selectInstance.reset();
+    });
+
+    document.getElementById('validate-btn').addEventListener('click', () => {
+      const form = document.querySelector('form');
+      console.log(Forms.validate(form));
+    });
+  </script>
+</body>
+
 </html>
