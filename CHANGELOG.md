@@ -5,6 +5,7 @@
 - IMPROVED
   - Update dependencies
 - BUGFIXES
+  - Glassmorphism / claymorphism default `border-radius` can't be overloaded by our `rounded` classes.
 
 # 2.2.0 - 2022-08-03
 
