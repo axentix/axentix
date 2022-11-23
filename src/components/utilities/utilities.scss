@@ -13,6 +13,12 @@
   }
 }
 
+@each $name, $size in $letter-spacings {
+  .font-ls#{$name} {
+    letter-spacing: #{$size} !important;
+  }
+}
+
 /// Shadows
 @import './utilities/shadows';
 
