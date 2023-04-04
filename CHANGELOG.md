@@ -1,3 +1,16 @@
+# 2.3.0 - 2023-04-04
+
+Thanks to our new contributors [@bretheskevin](https://github.com/bretheskevin) & [@Vincentdm31](https://github.com/Vincentdm31).
+
+- ADDED
+  - Letter spacing
+  - Transform
+  - More flex utilities
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+
 # 2.2.1 - 2022-10-24
 
 - ADDED
