@@ -1,20 +1,19 @@
 // Flip
-.v-reverse {
+.flip-v {
   transform: scaleX(-1) !important;
 }
 
-.h-reverse {
+.flip-h {
   transform: scaleY(-1) !important;
 }
 
-.vh-reverse {
+.flip-vh {
   transform: scale(-1, -1) !important;
 }
 
 // Scale
 $scale-down-counter: 1;
 @for $i from 9 through 1 {
-
   .scale-down-#{$scale-down-counter} {
     transform: scale(#{$i * 0.1}) !important;
   }
