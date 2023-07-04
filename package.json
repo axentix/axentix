@@ -49,13 +49,13 @@
     "CHANGELOG"
   ],
   "devDependencies": {
-    "@playwright/test": "^1.32.2",
+    "@playwright/test": "^1.35.1",
     "autoprefixer": "^10.4.14",
-    "fast-glob": "^3.2.12",
-    "rollup-plugin-visualizer": "^5.9.0",
-    "sass": "^1.60.0",
-    "typescript": "^5.0.3",
-    "vite": "4.2.1",
-    "vite-plugin-mpa": "^1.1.4"
+    "fast-glob": "^3.3.0",
+    "rollup-plugin-visualizer": "^5.9.2",
+    "sass": "^1.63.6",
+    "typescript": "^5.1.6",
+    "vite": "4.3.9",
+    "vite-plugin-mpa": "^1.2.0"
   }
 }

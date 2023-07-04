@@ -7,7 +7,7 @@ $formMaterialColor: getCssVar(form-material-color);
     display: block;
   }
 
-  input {
+  input:not(.form-control) {
     cursor: pointer;
 
     &:disabled {
@@ -15,7 +15,7 @@ $formMaterialColor: getCssVar(form-material-color);
     }
   }
 
-  input:disabled + span {
+  input:not(.form-control):disabled + span {
     color: var($formCheckDisabledColor) !important;
     cursor: default;
   }
@@ -41,7 +41,7 @@ $formMaterialColor: getCssVar(form-material-color);
       pointer-events: auto;
       color: inherit;
 
-      input {
+      input:not(.form-control) {
         position: absolute;
         pointer-events: none;
         opacity: 0;
