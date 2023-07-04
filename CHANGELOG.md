@@ -1,11 +1,12 @@
 # 2.4.0 - 2023-07-04
 
 - ADDED
+  - `.bd-x-*` & `.bd-y-*` classes. (Thanks to [@bretheskevin](https://github.com/bretheskevin))
 - REMOVED
 - IMPROVED
   - Update dependencies
 - BUGFIXES
-  - Forms cannot be inside `.form-check`
+  - Forms could not be inside `.form-check`
 
 # 2.3.0 - 2023-04-04
 
