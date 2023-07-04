@@ -20,6 +20,16 @@
   .bd-l-#{$number} {
     border-left-width: #{$value} !important;
   }
+
+  .bd-x-#{$number} {
+    border-left-width: #{$value} !important;
+    border-right-width: #{$value} !important;
+  }
+
+  .bd-y-#{$number} {
+    border-top-width: #{$value} !important;
+    border-bottom-width: #{$value} !important;
+  }
 }
 
 @each $style in $bd-style {
@@ -43,5 +53,15 @@
 
   .bd-l-#{$style} {
     border-left-style: #{$style} !important;
+  }
+
+  .bd-x-#{$style} {
+    border-left-style: #{$style} !important;
+    border-right-style: #{$style} !important;
+  }
+
+  .bd-y-#{$style} {
+    border-top-style: #{$style} !important;
+    border-bottom-style: #{$style} !important;
   }
 }

@@ -6,3 +6,4 @@ dist
 *.tgz
 *.d.ts
 stats.html
+.idea
