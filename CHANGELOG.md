@@ -1,3 +1,11 @@
+# 2.4.1 - soon
+
+- ADDED
+- REMOVED
+- IMPROVED
+  - Update dependencies
+- BUGFIXES
+
 # 2.4.0 - 2023-07-04
 
 - ADDED

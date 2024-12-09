@@ -23,9 +23,6 @@
   <a href="https://github.com/axentix/axentix/actions/workflows/tests.yml">
     <img alt="test workflow" src="https://github.com/axentix/axentix/actions/workflows/tests.yml/badge.svg"></img>
   </a>
-  <a href="https://sonarcloud.io/dashboard?id=axentix_axentix">
-    <img src="https://sonarcloud.io/api/project_badges/measure?project=axentix_axentix&metric=alert_status">
-  </a>
   <img alt="npm bundle size (version)" src="https://img.shields.io/bundlephobia/minzip/axentix/next">
   <a href="https://snyk.io/test/github/axentix/axentix?targetFile=package.json">
     <img src="https://snyk.io/test/github/axentix/axentix/badge.svg?targetFile=package.json" alt="Known Vulnerabilities" />
@@ -36,9 +33,6 @@
 <p align="center">
   <a href="https://discord.gg/8tgRDED">
     <img src="https://img.shields.io/badge/chat-on%20discord-%09%233442d9" alt="Discord" />
-  </a>
-  <a href="https://openbase.com/js/axentix?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge">
-    <img src="https://badges.openbase.com/js/rating/axentix.svg?token=xEWyuQ6VoC2qG3gEvoNm6V3hVAvXbAnGQXJTC9OkTrI=" alt="Rate this package" />
   </a>
 </p>
 
@@ -115,7 +109,7 @@ Support this project on [BuyMeACoffee](https://www.buymeacoffee.com/axentix) to 
 
 [<img src="https://avatars.githubusercontent.com/u/32241342?v=4" width="40" style="border-radius:50%"/>](https://github.com/Xelzs)
 [<img src="https://avatars.githubusercontent.com/u/49057921?v=4" width="40" style="border-radius:50%"/>](https://github.com/Stallos11)
-[<img src="https://avatars.githubusercontent.com/u/103579979?s=200&v=4" width="40" style="border-radius:50%"/>](https://axenthost.com)
+[<img src="https://avatars.githubusercontent.com/u/103579979?s=200&v=4" width="40" style="border-radius:50%"/>](https://axenthost.com/)
 
 ## Creators
 
@@ -125,7 +119,8 @@ Support this project on [BuyMeACoffee](https://www.buymeacoffee.com/axentix) to 
   [Website](https://axelsimonet.fr/)
 - Vincent LEVEQUE - (Stallos11)  
   [Github](https://github.com/Stallos11)  
-  [Linkedin](https://www.linkedin.com/in/leveque-vincent/)
+  [Linkedin](https://www.linkedin.com/in/leveque-vincent/)  
+  [AxentHost](https://axenthost.com/)
 
 <br>
 

@@ -1,8 +1,12 @@
-const glob = require('fast-glob');
-const { build } = require('vite');
-const { config } = require('./config');
-const { resolve } = require('path');
-const { visualizer } = require('rollup-plugin-visualizer');
+import glob from 'fast-glob';
+import { build } from 'vite';
+import { config } from './config.js';
+import { resolve, dirname } from 'path';
+import { visualizer } from 'rollup-plugin-visualizer';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const buildComponent = async (filepath) => {
   const fileSplitted = filepath.split('/');
