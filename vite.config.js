@@ -1,6 +1,9 @@
 import { defineConfig } from 'vite';
-import mpa from 'vite-plugin-mpa';
 import autoprefixer from 'autoprefixer';
+import mpaPlugin from 'vite-plugin-mpa';
+
+// @ts-expect-error
+const mpa = mpaPlugin.default;
 
 const plugins =
   process.env.NODE_ENV === 'production'
@@ -18,10 +21,10 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `
-        @import 'src/core/mixins';
-        @import 'src/core/functions';
-        @import 'src/core/variables';
-      `,
+          @import 'src/core/mixins';
+          @import 'src/core/functions';
+          @import 'src/core/variables';
+        `,
       },
     },
     postcss: {

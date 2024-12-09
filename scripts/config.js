@@ -1,6 +1,6 @@
-const autoprefixer = require('autoprefixer');
+import autoprefixer from 'autoprefixer';
 
-const config = (name, filepath = '') => {
+export const config = (name, filepath = '') => {
   if (filepath) filepath = filepath.replace('src/', '').replace('index.ts', '');
 
   return {
@@ -9,10 +9,10 @@ const config = (name, filepath = '') => {
       preprocessorOptions: {
         scss: {
           additionalData: `
-          @import 'src/core/mixins';
-          @import 'src/core/functions';
-          @import 'src/core/variables';
-        `,
+            @import 'src/core/mixins';
+            @import 'src/core/functions';
+            @import 'src/core/variables';
+          `,
         },
       },
       postcss: {
@@ -37,8 +37,4 @@ const config = (name, filepath = '') => {
       },
     },
   };
-};
-
-module.exports = {
-  config,
 };
