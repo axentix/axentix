@@ -48,17 +48,17 @@ $generated-css-vars: map.set($generated-css-vars, 'overlay-z-index', $overlay-z-
   1. Breakpoints
  **/
 $breakpoints: (
-  'xs': 'screen and (max-width: 599px)',
-  'sm': 'screen and (min-width: 600px) and (max-width: 959px)',
-  'md': 'screen and (min-width: 960px) and (max-width: 1279px)',
-  'lg': 'screen and (min-width: 1280px) and (max-width: 1919px)',
+  'xs': 'screen and (max-width: 599.98px)',
+  'sm': 'screen and (min-width: 600px) and (max-width: 959.98px)',
+  'md': 'screen and (min-width: 960px) and (max-width: 1279.98px)',
+  'lg': 'screen and (min-width: 1280px) and (max-width: 1919.98px)',
   'xl': 'screen and (min-width: 1920px)',
 ) !default;
 
 $extra-breakpoints: (
-  'sm-down': 'screen and (max-width: 959px)',
-  'md-down': 'screen and (max-width: 1279px)',
-  'lg-down': 'screen and (max-width: 1919px)',
+  'sm-down': 'screen and (max-width: 959.98px)',
+  'md-down': 'screen and (max-width: 1279.98px)',
+  'lg-down': 'screen and (max-width: 1919.98px)',
   'sm-up': 'screen and (min-width: 600px)',
   'md-up': 'screen and (min-width: 960px)',
   'lg-up': 'screen and (min-width: 1280px)',
@@ -581,4 +581,3 @@ $skeleton-background-from: #e0e4e7 !default;
 $skeleton-background-to: #f0f3f5 !default;
 $generated-css-vars: map.set($generated-css-vars, 'skeleton-background-from', $skeleton-background-from);
 $generated-css-vars: map.set($generated-css-vars, 'skeleton-background-to', $skeleton-background-to);
-

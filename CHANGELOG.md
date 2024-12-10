@@ -1,10 +1,12 @@
-# 2.4.1 - soon
+# 2.4.1 - 2024-12-10
 
 - ADDED
 - REMOVED
 - IMPROVED
   - Update dependencies
 - BUGFIXES
+  - Trigger breakpoints for not entire pixels.
+  - Gutters breakpoints overload was generated in the wrong order.
 
 # 2.4.0 - 2023-07-04
 
