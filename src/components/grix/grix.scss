@@ -58,13 +58,15 @@
 
 // Gutters
 @each $name, $value in $grix-breakpoints {
-  @each $num, $size in $grix-gutter {
-    @if ($name == 'xs') {
+  @if ($name == 'xs') {
+    @each $num, $size in $grix-gutter {
       .gutter-#{$name}#{$num} {
         grid-gap: $size;
       }
-    } @else {
-      @media #{$value} {
+    }
+  } @else {
+    @media #{$value} {
+      @each $num, $size in $grix-gutter {
         .gutter-#{$name}#{$num} {
           grid-gap: $size;
         }
